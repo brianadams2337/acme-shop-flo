@@ -905,7 +905,7 @@
   optionalDependencies:
     ipx "^1.2.0"
 
-"@nuxt/kit@3.6.5", "@nuxt/kit@^3.4.0", "@nuxt/kit@^3.5.3", "@nuxt/kit@^3.6.5":
+"@nuxt/kit@3.6.5", "@nuxt/kit@^3.3.2", "@nuxt/kit@^3.4.0", "@nuxt/kit@^3.5.3", "@nuxt/kit@^3.6.5":
   version "3.6.5"
   resolved "https://registry.yarnpkg.com/@nuxt/kit/-/kit-3.6.5.tgz#208777acdc2a09109fbe4209aad736874eb9a3f5"
   integrity sha512-uBI5I2Zx6sk+vRHU+nBmifwxg/nyXCGZ1g5hUKrUfgv1ZfiKB8JkN5T9iRoduDOaqbwM6XSnEl1ja73iloDcrw==
@@ -4613,6 +4613,14 @@ nuxi@3.6.5:
   optionalDependencies:
     fsevents "~2.3.2"
 
+nuxt-lazy-hydrate@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/nuxt-lazy-hydrate/-/nuxt-lazy-hydrate-1.0.0.tgz#205377c54c497e6d26e1e2c788b5eed8144a2ae8"
+  integrity sha512-NJE4wXIud+ihI4B+m5046/hh1wORZni5L9ybCytTO+5FL/PaAS5SBr7boDduTwIjzT2u09p1vVo6yLVzjogljA==
+  dependencies:
+    "@nuxt/kit" "^3.3.2"
+    vue3-lazy-hydration "^1.2.1"
+
 nuxt-svgo@^3.4.0:
   version "3.4.0"
   resolved "https://registry.yarnpkg.com/nuxt-svgo/-/nuxt-svgo-3.4.0.tgz#a3f886db2f9d0b01684f7d9769a2820692437982"
@@ -6533,6 +6541,11 @@ vue-router@^4.2.4:
   integrity sha512-9PISkmaCO02OzPVOMq2w82ilty6+xJmQrarYZDkjZBfl4RvYAlt4PKnEX21oW4KTtWfa9OuO/b3qk1Od3AEdCQ==
   dependencies:
     "@vue/devtools-api" "^6.5.0"
+
+vue3-lazy-hydration@^1.2.1:
+  version "1.2.1"
+  resolved "https://registry.yarnpkg.com/vue3-lazy-hydration/-/vue3-lazy-hydration-1.2.1.tgz#a1c179f2049c6d0fe796f84ff1d5a56e8c3f1fda"
+  integrity sha512-0KEU+t1ZcOFomf2xhpKPMU2XBdZDVyVjvkxcXAJRpZ818Om4MMhKxbrmIK6hZ+NZOyoRAgMHl/N1zFZJuQoSJA==
 
 vue@^3.3.4:
   version "3.3.4"

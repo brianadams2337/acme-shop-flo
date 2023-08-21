@@ -1,16 +1,16 @@
 <template>
   <header>
-    <div class="border-b flex py-4 items-center">
+    <div class="flex items-center border-b py-4">
       <nuxt-link to="/">
         <SvgoUiLogo class="w-32" :font-controlled="false" />
       </nuxt-link>
-      <div class="flex-1 flex justify-end space-x-3 items-center">
+      <div class="flex flex-1 items-center justify-end space-x-3">
         <HeaderSearch />
         <NuxtLink to="women">Women</NuxtLink>
         <NuxtLink to="men">Men</NuxtLink>
         <NuxtLink to="sale">Sale</NuxtLink>
         <SvgoUiUser class="w-4" />
-        <SvgoUiBasket class="w-5 h-5" />
+        <SvgoUiBasket class="h-5 w-5" />
       </div>
     </div>
   </header>

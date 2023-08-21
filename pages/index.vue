@@ -20,9 +20,7 @@ const appUser = ["AYK", "Connor", "Rob"][
 ];
 
 const count = ref(0);
-const countUp = () => {
-  count.value += 1;
-};
+
 useJsonld(() => ({
   "@context": "https://schema.org",
   "@type": "Thing",

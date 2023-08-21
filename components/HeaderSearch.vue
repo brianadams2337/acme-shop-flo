@@ -1,9 +1,9 @@
 <template>
-  <div class="flex items-center border p-1 rounded-md">
+  <div class="flex items-center rounded-md border p-1">
     <input
+      ref="inputRef"
       placeholder="Search Products"
       class="px-2"
-      ref="inputRef"
       type="text"
     />
     <SvgoUiSearch class="w-5" />

@@ -1,5 +1,4 @@
 const DE_DOMAIN_FILE = "de-De.json";
-
 const locales = [
   {
     code: "en",
@@ -31,10 +30,10 @@ const locales = [
 export default {
   locales,
   differentDomains: false,
-  detectBrowserLanguage: false,
+  detectBrowserLanguage: false as const,
   defaultLocale: "de",
   langDir: "langs/",
   lazy: true,
-  strategy: "prefix",
+  strategy: "prefix" as const,
   vueI18n: "./i18n.config.ts",
 };

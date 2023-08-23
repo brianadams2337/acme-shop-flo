@@ -5,7 +5,7 @@
       placeholder="Search Products"
       class="px-2"
       type="text" />
-    <SvgoUiSearch class="w-5" />
+    <IconUiSearch class="w-5" />
   </div>
 </template>
 

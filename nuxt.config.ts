@@ -19,6 +19,19 @@ export default defineNuxtConfig({
     'nuxt-jsonld',
     '@vueuse/nuxt',
   ],
+
+  components: {
+    global: true,
+    dirs: [
+      '~/components',
+      {
+        path: '~/assets/icons',
+        prefix: 'icon',
+        pathPrefix: true,
+        extensions: ['svg'],
+      },
+    ],
+  },
   svgo,
   image,
   i18n,

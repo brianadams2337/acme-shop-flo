@@ -39,11 +39,11 @@ The options above make sure that the bundler is `Vite` and the framework that we
 
 ### Vuelidate
 
-The approach that we're using in Nuxt 3 is almost the same as it was in Nuxt 2.
-When it comes to the rule message localization there is one thing to keep in mind.
-In Nuxt 2, when defining the validation plugin, we accessed the global `i18n`
-instance within the context argument. Now we need to access it via `useNuxtApp`
-composable.
+- The approach that we're using in Nuxt 3 is almost the same as it was in Nuxt 2.
+  When it comes to the rule message localization there is one thing to keep in mind.
+  In Nuxt 2, when defining the validation plugin, we accessed the global `i18n`
+  instance within the context argument. Now we need to access it via `useNuxtApp`
+  composable.
 
 ```ts
 export default defineNuxtPlugin(() => {
@@ -51,3 +51,6 @@ export default defineNuxtPlugin(() => {
   // ...
 })
 ```
+
+- Furthermore, we don't need to manually override the types as we did in Nuxt 2
+  with `Context` interface. Rule types will work not automatically.

@@ -53,4 +53,4 @@ export default defineNuxtPlugin(() => {
 ```
 
 - Furthermore, we don't need to manually override the types as we did in Nuxt 2
-  with `Context` interface. Rule types will work not automatically.
+  with `Context` interface. Rule types will work now automatically.

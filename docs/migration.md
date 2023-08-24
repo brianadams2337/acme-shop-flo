@@ -60,6 +60,53 @@ export default defineNuxtPlugin(() => {
 - Furthermore, we don't need to manually override the types as we did in Nuxt 2
   with `Context` interface. Rule types will work now automatically.
 
+## Toast
+
+- Toast plugin with its UI components remains almost the same. The only thing that
+  changed is that we need to use `refreshNuxtData` instead of `$nuxt.refresh()`
+  within the `reload` toast action
+
+```ts
+  onClick: () => Promise.resolve(refreshNuxtData()),
+```
+
+### Constants/types
+
+One of the major change regarding the re-usable compnents are the usage of constants and types.
+Now we introduced constants that are located under the `constants` folder which are
+representing TypeScript companion pattern approach (Exporting the same type and
+variable which TS smartly resolves it depends on the usage). This way we have everything
+encapsulated at one place and the advantage is flexibility and scalaibility.
+(e.g If we want to add one more Button type, we'll just add it on one place)
+
+Example:
+
+```ts
+// constants/ui.ts
+
+export const Size = {
+  XS: 'xs',
+  SM: 'sm',
+  MD: 'md',
+  LG: 'lg',
+  XL: 'xl',
+} as const
+
+export type Size = ValuesType<typeof Size>
+
+// Usage example:
+
+import { Size } from '~/constants/ui'
+
+const props = defineProps({
+  size: {
+    type: String as PropType<Size>, // TS use it here as type
+    default: Size.MD, // Regular object prop usage
+    validator: (val: Size) => Object.values(Size).includes(val),
+  },
+})
+```
+
 ### UI components
 
 ## Radio Input

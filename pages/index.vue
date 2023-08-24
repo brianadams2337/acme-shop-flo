@@ -10,6 +10,7 @@
       </div>
     </NuxtLazyHydrate>
 
+    <Headline size="4xl">Test headline</Headline>
     <br />
     <br />
     <AppButton> Test primary </AppButton>

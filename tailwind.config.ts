@@ -1,6 +1,5 @@
-/** @type {import('tailwindcss').Config} */
-const plugin = require('tailwindcss/plugin')
-const breakpoints = require('./config/breakpoints.json')
+import plugin from 'tailwindcss/plugin'
+import breakpoints from './config/breakpoints.json'
 
 const defaultSizes = {
   '6xs': '2rem',
@@ -15,15 +14,7 @@ const defaultSizes = {
   '3xl': '48rem',
 }
 
-module.exports = {
-  content: [
-    './components/**/*.{js,vue,ts}',
-    './layouts/**/*.vue',
-    './pages/**/*.vue',
-    './plugins/**/*.{js,ts}',
-    './nuxt.config.{js,ts}',
-    './app.vue',
-  ],
+export default {
   theme: {
     screens: {
       ...breakpoints,
@@ -131,7 +122,7 @@ module.exports = {
     },
   },
   plugins: [
-    plugin(function ({ addUtilities }) {
+    plugin(({ addUtilities }) => {
       const utilities = {
         '.anchor-scrolling-none': {
           overflowAnchor: 'none',
@@ -147,13 +138,13 @@ module.exports = {
         '.search-decoration-none': {
           '&::-ms-clear': {
             display: 'none',
-            width: 0,
-            height: 0,
+            width: '0',
+            height: '0',
           },
           '&::-ms-reveal': {
             display: 'none',
-            width: 0,
-            height: 0,
+            width: '0',
+            height: '0',
           },
           '&::-webkit-search-decoration': {
             display: 'none',

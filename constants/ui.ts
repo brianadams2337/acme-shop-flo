@@ -51,8 +51,8 @@ export const LinkVariant = {
   LOUD: 'loud',
   NORMAL: 'normal',
   WHISPER: 'whisper',
-  QUIETER: 'quiter',
-  QUITE: 'quite',
+  QUIETER: 'quieter',
+  QUIET: 'quiet',
 } as const
 
 export type LinkVariant = ValuesType<typeof LinkVariant>

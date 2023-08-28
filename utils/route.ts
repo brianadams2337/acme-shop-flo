@@ -1,9 +1,9 @@
-import { RouteLocationRaw } from '#vue-router'
-
 type Link = 'home'
 
-export type LinkList = Record<Link, RouteLocationRaw>
+export type LinkList = Record<Link, { name: string; path: string }>
 
-export const routes: LinkList = {
+const routes: LinkList = {
   home: { name: 'index', path: '/' },
-}
+} as const
+
+export default { routes }

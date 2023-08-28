@@ -1,4 +1,4 @@
-import { bool, cleanEnv, defaultReporter, host, str, url } from 'envalid'
+import { bool, cleanEnv, defaultReporter, num, host, str, url } from 'envalid'
 import yn from 'yn'
 
 export default cleanEnv(
@@ -6,6 +6,9 @@ export default cleanEnv(
   {
     BASE_URL: url(),
     REDIS_HOST: host({ default: 'localhost' }),
+    REDIS_PORT: num({ default: 6379 }),
+    REDIS_PREFIX: str({ default: '' }),
+    REDIS_SSL_TRANSIT: bool({ default: false }),
 
     BAPI_HOST: url(),
     BAPI_TOKEN: str(),

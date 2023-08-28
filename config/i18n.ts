@@ -1,4 +1,5 @@
 import { NuxtConfig } from '@nuxt/schema'
+import environment from '../environment'
 
 type ModuleOptions = NuxtConfig['i18n']
 
@@ -8,26 +9,26 @@ const locales = [
   {
     code: 'en',
     iso: 'en-GB',
-    domain: '',
+    domain: environment.DOMAIN_DEFAULT,
     file: 'en-GB.json',
   },
   {
     code: 'de',
     iso: 'de-DE',
-    domain: '',
+    domain: environment.DOMAIN_DEFAULT,
     file: DE_DOMAIN_FILE,
     shopId: 1001,
   },
   {
     code: 'de-at',
     iso: 'de-AT',
-    domain: '',
+    domain: environment.DOMAIN_DEFAULT,
     file: DE_DOMAIN_FILE,
   },
   {
     code: 'de-ch',
     iso: 'de-CH',
-    domain: '',
+    domain: environment.DOMAIN_DEFAULT,
     file: DE_DOMAIN_FILE,
   },
 ]

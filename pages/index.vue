@@ -1,44 +1,8 @@
 <template>
-  <div>
-    <NuxtLazyHydrate when-visible>
-      <div class="h-[600px]">
-        <p>Nuxt Img</p>
-        <nuxt-img
-          class="h-full"
-          provider="default"
-          src="images/1bef383677e1873e174d75f52fc51a2a.jpg" />
-      </div>
-    </NuxtLazyHydrate>
-
-    <Headline size="4xl">Test headline</Headline>
+  <div class="flex flex-col items-center justify-center p-6">
+    <Headline size="4xl">Homepage</Headline>
     <br />
     <br />
-
-    <h3>Slideshow</h3>
-    <div class="mt-4 w-1/2 border py-4">
-      <Slideshow
-        :slides="slides"
-        :autoplay="{ delay: 5000, disableOnInteraction: false }"
-        navigation
-        loop />
-    </div>
-
-    <br />
-    <br />
-    <AppButton @click="toggleToast"> toggle toast </AppButton>
-
-    <br />
-    <br />
-    <AppButton type="secondary"> Test secondary </AppButton>
-
-    <br />
-    <br />
-    <AppButton type="tertiary"> Test tertiary</AppButton>
-
-    <br />
-    <br />
-    <AppButton type="ghost"> Test ghost </AppButton>
-
     <div class="mt-20">
       <h3 class="my-5">Form validations with Vuelidate</h3>
       <form
@@ -67,9 +31,8 @@
 
 <script setup lang="ts">
 import { useVuelidate } from '@vuelidate/core'
-import { Action } from '~/constants/toast'
 
-const { $validation, $i18n, $alert } = useNuxtApp()
+const { $validation, $i18n } = useNuxtApp()
 
 const payload = reactive({
   email: '',
@@ -99,10 +62,6 @@ const genderItems = computed(() => [
   },
 ])
 
-const toggleToast = () => {
-  $alert.show('Toast success', Action.CONFIRM)
-}
-
 // jsonld
 const count = ref(0)
 useJsonld(() => ({
@@ -110,13 +69,6 @@ useJsonld(() => ({
   '@type': 'Thing',
   name: `reactive json: count is ${count.value}`,
 }))
-
-// swiper
-const slides = [
-  'images/1bef383677e1873e174d75f52fc51a2a.jpg',
-  'images/9ded160420d5cb605253138f2a945b9a.jpg',
-  'images/df37f64895689731f2c6654b41fff39d.jpg',
-]
 </script>
 
 <script lang="ts">

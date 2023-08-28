@@ -4,8 +4,8 @@
     :is="tag"
     v-else
     data-test-id="headline"
-    :class="classes"
-    class="flex items-center gap-2 font-semibold leading-tight">
+    class="flex items-center gap-2 font-semibold leading-tight"
+    :class="classes">
     <slot />
     <slot :badge="badge" name="badge">
       <HeadlineBadge v-if="badge" :badge="badge" />

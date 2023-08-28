@@ -27,7 +27,7 @@ const LinkTypeClass = {
   [LinkVariant.NORMAL]: 'font-semibold',
   [LinkVariant.WHISPER]: 'text-gray-700',
   [LinkVariant.QUIETER]: 'text-xs font-medium text-gray-750 tracking-normal',
-  [LinkVariant.QUITE]: 'text-sm font-semibold tracking-normal',
+  [LinkVariant.QUIET]: 'text-sm font-semibold tracking-normal',
 } as const
 
 const props = defineProps({

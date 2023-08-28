@@ -1,5 +1,4 @@
-// https://nuxt.com/docs/api/configuration/nuxt-config
-import { i18n, image, svgo, swiper } from './config'
+import { i18n, image, svgo, swiper, storefront } from './config'
 
 export default defineNuxtConfig({
   devtools: { enabled: true },
@@ -10,8 +9,13 @@ export default defineNuxtConfig({
       autoprefixer: {},
     },
   },
+  build: {
+    transpile: ['tslib', 'crypto-js'],
+  },
   plugins: ['~/plugins/validation', '~/plugins/toast'],
   modules: [
+    '@scayle/storefront-nuxt/module',
+    '@nuxtjs/tailwindcss',
     'nuxt-svgo',
     '@nuxt/image',
     '@nuxtjs/i18n',
@@ -20,6 +24,7 @@ export default defineNuxtConfig({
     '@vueuse/nuxt',
     'nuxt-swiper',
   ],
+  storefront,
   svgo,
   image,
   i18n,

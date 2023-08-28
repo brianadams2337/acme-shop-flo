@@ -70,6 +70,32 @@ export default defineNuxtPlugin(() => {
   onClick: () => Promise.resolve(refreshNuxtData()),
 ```
 
+### Helpers/Utils
+
+In Nuxt 2 we had `helpers` folder which exported some of the helper functions.
+We also attached those helpers within the `useContext` so that we can access it
+through the components, composables etc.
+Nuxt 3 recommends using [utils](https://nuxt.com/docs/guide/directory-structure/utils)
+folder. Now we don't need to manually expose the helpers or import them explicitly
+because everything that exists under that folder will be auto-imported.
+
+```ts
+// utils/route.ts
+
+type Link = 'home'
+
+export type LinkList = Record<Link, { name: string; path: string }>
+
+const routes: LinkList = {
+  home: { name: 'index', path: '/' },
+} as const
+
+export default { routes }
+
+// In component usage
+ <DefaultLink :to="{ name: route.routes.home.name }" />
+```
+
 ### Constants/types
 
 One of the major change regarding the re-usable compnents are the usage of constants and types.
@@ -128,7 +154,9 @@ export type Item = { label: string; value: string }
 
 ### Vue-slick-carousel replaced with Swiper
 
-We are moving away from the vue-slick-carousel in favor of Swiper. Nuxt has a module for swiper which is easy to integrate and configure and supports SSR. All details related to configurations can be found at [Swiper Docs](https://nuxt.com/modules/swiper)
+We are moving away from the vue-slick-carousel in favor of Swiper.
+Nuxt has a module for swiper which is easy to integrate and configure and supports SSR.
+All details related to configurations can be found at [Swiper Docs](https://nuxt.com/modules/swiper)
 
 ### Additions
 

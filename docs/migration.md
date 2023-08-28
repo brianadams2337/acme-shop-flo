@@ -164,3 +164,5 @@ All details related to configurations can be found at [Swiper Docs](https://nuxt
 
 - [utility-types](https://www.npmjs.com/package/utility-types) for complex
   TypeScript types simplification
+- [nuxt-lodash](https://github.com/cipami/nuxt-lodash#readme) as a `lodash`
+  nuxt module wrapper which supports auto-imports

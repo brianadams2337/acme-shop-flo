@@ -72,10 +72,8 @@ const {
   openFlyoutMenuForNavigationTree,
 } = useUiState()
 
-const isCheckoutPage = computed(() => {
-  return false
-  // return isExactActiveRoute(route.value, $helpers.route.routes.checkout.path, {
-  //     ignoreQuery: false,
-  //   }),
+// TODO: Check if this really works when we start touching checkout related stuff
+const { isExactActive: isCheckoutPage } = useLink({
+  to: { name: route.routes.checkout.name },
 })
 </script>

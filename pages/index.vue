@@ -7,7 +7,10 @@
       <h3 class="my-5">Form validations with Vuelidate</h3>
       <form
         class="flex w-[500px] flex-col space-y-3 rounded-md border p-6 shadow-sm">
-        <CheckBox id="newsletter" v-model="payload.brands" />
+        <CheckBox
+          v-if="viewport.isLessThan('tablet')"
+          id="newsletter"
+          v-model="payload.brands" />
         <RadioGroup
           v-model="payload.gender"
           :items="genderItems"
@@ -33,6 +36,8 @@
 import { useVuelidate } from '@vuelidate/core'
 
 const { $validation, $i18n } = useNuxtApp()
+
+const viewport = useViewport()
 
 const payload = reactive({
   email: '',

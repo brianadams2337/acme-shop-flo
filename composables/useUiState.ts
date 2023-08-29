@@ -23,7 +23,7 @@ type UiState = Record<
 }
 
 const DEFAULT_FLYOUT_NAVIGATION_ITEM: NavigationItemExternal = {
-  id: 1,
+  id: NaN,
   children: [],
   type: 'external',
   assets: {},
@@ -37,10 +37,10 @@ const DEFAULT_FLYOUT_NAVIGATION_ITEM: NavigationItemExternal = {
 }
 
 const DEFAULT_FLYOUT_CATEGORY: FlyoutMenuCategory = {
+  id: NaN,
   name: '',
   path: '',
   slug: '',
-  id: 1,
   children: [],
 }
 

@@ -9,9 +9,6 @@ export default defineNuxtConfig({
       autoprefixer: {},
     },
   },
-  build: {
-    transpile: ['tslib', 'crypto-js'],
-  },
   plugins: ['~/plugins/validation', '~/plugins/toast'],
   modules: [
     '@scayle/storefront-nuxt/module',

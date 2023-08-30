@@ -172,11 +172,40 @@ setting.
     messagePath: ({ $validator }) => `validation.${useSnakeCase($validator)}`,
 ```
 
+### Replace our custom `breakpoints` solution with the `nuxt-viewport` module
+
+- In Nuxt 3 we will use [nuxt-viewport](https://nuxt.com/modules/nuxt-viewport) which
+  we use for the viewport/breakpoints handling. We added the `./config/breakpoints.ts`
+  file where we have all the breakpoints defined. We use that for the `tailwind` and
+  for the `nuxt-viewport` config so that we have those two in sync.
+  Current usage of the breakpoint handling is different which will be seen in the
+  example bellow:
+
+```vue
+<template>
+  <div v-if="viewport.isLessThan('sm')">Content</div>
+</template>
+
+<script setup lang="ts">
+import { useVuelidate } from '@vuelidate/core'
+
+const viewport = useViewport()
+// Other usage:
+// const { $viewport } = useNuxtApp()
+</script>
+```
+
 ### Additions
 
 #### Packages
 
-- [utility-types](https://www.npmjs.com/package/utility-types) for complex
-  TypeScript types simplification
-- [nuxt-lodash](https://github.com/cipami/nuxt-lodash#readme) as a `lodash`
+- [utility-types](https://www.npmjs.com/package/utility-types) - complex
+  TypeScript types simplification utils
+- [nuxt-lodash](https://github.com/cipami/nuxt-lodash#readme) - `lodash`
   nuxt module
+- [nuxt-viewport](https://nuxt.com/modules/nuxt-viewport) - module for handling
+  the breakpoints
+
+```
+
+```

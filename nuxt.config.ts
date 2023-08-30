@@ -1,4 +1,4 @@
-import { i18n, image, svgo, swiper, storefront } from './config'
+import { i18n, image, svgo, swiper, viewport, storefront } from './config'
 
 export default defineNuxtConfig({
   devtools: { enabled: true },
@@ -21,12 +21,14 @@ export default defineNuxtConfig({
     '@vueuse/nuxt',
     'nuxt-swiper',
     'nuxt-lodash',
+    'nuxt-viewport',
   ],
   storefront,
   svgo,
   image,
   i18n,
   swiper,
+  viewport,
   components: {
     global: true,
     dirs: [{ path: '~/components', pathPrefix: false, extensions: ['.vue'] }],

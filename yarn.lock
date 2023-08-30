@@ -1547,14 +1547,15 @@
     ufo "^1.1.1"
     utility-types "^3.10.0"
 
-"@scayle/storefront-nuxt@7.3.3":
-  version "7.3.3"
-  resolved "https://gitlab.com/api/v4/projects/29746107/packages/npm/@scayle/storefront-nuxt/-/@scayle/storefront-nuxt-7.3.3.tgz#40633fe894f6596b1749e729c1a561952fa6c348"
-  integrity sha1-QGM/6JT2WWsXSecpwaVhlS+mw0g=
+"@scayle/storefront-nuxt@7.4.0":
+  version "7.4.0"
+  resolved "https://gitlab.com/api/v4/projects/29746107/packages/npm/@scayle/storefront-nuxt/-/@scayle/storefront-nuxt-7.4.0.tgz#7db28407210d11923ae896c4570b9424679e6470"
+  integrity sha1-fbKEByENEZI66JbEVwuUJGeeZHA=
   dependencies:
     "@nuxt/kit" "^3.6.5"
     "@scayle/storefront-core" "7.10.2"
     consola "^3.2.3"
+    core-js "^3.32.1"
     defu "^6.1.2"
     h3 "1.7.1"
 
@@ -3290,6 +3291,11 @@ cookies@~0.8.0:
   dependencies:
     depd "~2.0.0"
     keygrip "~1.1.0"
+
+core-js@^3.32.1:
+  version "3.32.1"
+  resolved "https://registry.yarnpkg.com/core-js/-/core-js-3.32.1.tgz#a7d8736a3ed9dd05940c3c4ff32c591bb735be77"
+  integrity sha512-lqufgNn9NLnESg5mQeYsxQP5w7wrViSj0jr/kv6ECQiByzQkrn1MKvV0L3acttpDqfQrHLwr2KCMgX5b8X+lyQ==
 
 core-util-is@1.0.2:
   version "1.0.2"

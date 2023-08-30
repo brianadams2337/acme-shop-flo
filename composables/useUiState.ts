@@ -81,6 +81,7 @@ export default () => {
   const isFlyoutMenuOpen = computed(() => uiState.flyoutMenuOpen)
   const flyoutMenuCategory = computed(() => uiState.flyoutMenuCategory)
   const flyoutNavigationItem = computed(() => uiState.flyoutNavigationItem)
+  let closeFlyoutTimeout: NodeJS.Timeout
 
   const closeFlyoutMenu = (event: MouseEvent, force = false) => {
     const relatedTarget = event.relatedTarget as Element
@@ -96,7 +97,7 @@ export default () => {
       return
     }
 
-    setTimeout(() => {
+    closeFlyoutTimeout = setTimeout(() => {
       uiState.flyoutMenuOpen = false
       uiState.flyoutMenuCategory = DEFAULT_FLYOUT_CATEGORY
       uiState.flyoutNavigationItem = DEFAULT_FLYOUT_NAVIGATION_ITEM
@@ -106,6 +107,9 @@ export default () => {
     if (children?.length === 0) {
       uiState.flyoutMenuOpen = false
       return
+    }
+    if (closeFlyoutTimeout) {
+      clearTimeout(closeFlyoutTimeout)
     }
 
     uiState.flyoutMenuOpen = true

@@ -17,8 +17,8 @@
       </AppButton>
     </div>
     <div
-      class="bg-secondary-450 flex flex-wrap items-center justify-center p-3">
-      <span v-if="user" class="text-secondary mr-1 break-all text-xs">
+      class="flex flex-wrap items-center justify-center bg-secondary-450 p-3">
+      <span v-if="user" class="mr-1 break-all text-xs text-secondary">
         {{ $t('global.you_are_not_user', { name: user.firstName }) }}
       </span>
       <p

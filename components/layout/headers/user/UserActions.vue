@@ -17,11 +17,10 @@
       </AppButton>
     </div>
     <div
-      class="flex flex-wrap items-center justify-center bg-secondary-450 p-3">
-      <span v-if="user" class="mr-1 break-all text-xs text-secondary">
+      class="bg-secondary-450 flex flex-wrap items-center justify-center p-3">
+      <span v-if="user" class="text-secondary mr-1 break-all text-xs">
         {{ $t('global.you_are_not_user', { name: user.firstName }) }}
       </span>
-
       <p
         class="inline-flex cursor-pointer items-center gap-2 whitespace-nowrap text-xs font-semibold leading-5 tracking-wide"
         @click="!isSubmitting && logout()">
@@ -39,8 +38,8 @@ const { closeUserFlyout } = useUiState()
 // const { logout, isSubmitting } = useAuthentication('logout')
 
 // TODO: clarify what we want to do with this component for guest customers
-
 // const isGuestCustomer = computed(() => user.value?.status?.isGuestCustomer)
+
 const user = { firstName: 'John' }
 const isGuestCustomer = false
 const isSubmitting = false

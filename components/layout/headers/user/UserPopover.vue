@@ -12,12 +12,12 @@
     </template>
     <template v-if="user" #content>
       <ClientOnly>
-        <UserContent />
+        <UserActions />
       </ClientOnly>
     </template>
     <template v-else #content>
       <ClientOnly>
-        <GuestContent />
+        <GuestActions />
       </ClientOnly>
     </template>
   </Popover>

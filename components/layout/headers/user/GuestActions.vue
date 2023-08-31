@@ -9,8 +9,8 @@
         {{ $t('global.sign_in') }}
       </AppButton>
     </div>
-    <div class="flex h-10 items-center justify-center bg-secondary-450">
-      <span class="mr-1 text-xs text-secondary">
+    <div class="bg-secondary-450 flex h-10 items-center justify-center">
+      <span class="text-secondary mr-1 text-xs">
         {{ $t('global.not_registered') }}
       </span>
       <AppButton

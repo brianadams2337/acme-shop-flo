@@ -35,7 +35,7 @@ import {
 
 defineProps({
   fetching: {
-    type: Boolean as PropType<boolean>,
+    type: Boolean,
     default: false,
   },
   brands: {
@@ -51,11 +51,11 @@ defineProps({
     default: () => [],
   },
   searchTerm: {
-    type: String as PropType<string>,
+    type: String,
     default: '',
   },
   resultsCount: {
-    type: Number as PropType<number>,
+    type: Number,
     default: 0,
   },
 })

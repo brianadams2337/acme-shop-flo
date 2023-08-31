@@ -22,15 +22,15 @@ import { RouteLocationRaw } from '#vue-router'
 
 defineProps({
   term: {
-    type: String as PropType<string>,
+    type: String,
+    default: '',
+  },
+  imageUrl: {
+    type: String,
     default: '',
   },
   to: {
     type: [Object, String] as PropType<RouteLocationRaw>,
-    default: '',
-  },
-  imageUrl: {
-    type: String as PropType<string>,
     default: '',
   },
 })

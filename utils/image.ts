@@ -1,6 +1,6 @@
 import {
   getAttributeValue,
-  // getImageFromList,
+  getImageFromList,
   isImageType,
   ProductImage,
 } from '@scayle/storefront-nuxt'
@@ -122,7 +122,7 @@ const getAttribute = (image: ProductImage, key: string) => {
 }
 
 export default {
-  // getImageFromList,
+  getImageFromList,
   isImageType,
   getDetailPageImages,
   getFirstModelImage,

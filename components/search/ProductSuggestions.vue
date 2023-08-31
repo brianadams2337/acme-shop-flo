@@ -52,11 +52,11 @@ defineProps({
     default: () => [],
   },
   searchTerm: {
-    type: String as PropType<string>,
+    type: String,
     default: '',
   },
   showImages: {
-    type: Boolean as PropType<boolean>,
+    type: Boolean,
     default: false,
   },
 })

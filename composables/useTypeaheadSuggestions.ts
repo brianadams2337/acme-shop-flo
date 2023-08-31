@@ -14,25 +14,27 @@ const useTypeaheadSuggestions = (
     )
   })
 
-  function isProduct(s?: TypeaheadSuggestion): s is TypeaheadProductSuggestion {
-    return s?.type === 'product'
+  const isProduct = (
+    suggestion?: TypeaheadSuggestion,
+  ): suggestion is TypeaheadProductSuggestion => {
+    return suggestion?.type === 'product'
   }
 
-  function isBrand(
-    s?: TypeaheadSuggestion,
-  ): s is TypeaheadBrandOrCategorySuggestion {
+  const isBrand = (
+    suggestion?: TypeaheadSuggestion,
+  ): suggestion is TypeaheadBrandOrCategorySuggestion => {
     return (
-      s?.type === 'brandOrCategory' &&
-      s.brandOrCategorySuggestion.primaryMatch === 'brand'
+      suggestion?.type === 'brandOrCategory' &&
+      suggestion.brandOrCategorySuggestion.primaryMatch === 'brand'
     )
   }
 
-  function isCategory(
-    s?: TypeaheadSuggestion,
-  ): s is TypeaheadBrandOrCategorySuggestion {
+  const isCategory = (
+    suggestion?: TypeaheadSuggestion,
+  ): suggestion is TypeaheadBrandOrCategorySuggestion => {
     return (
-      s?.type === 'brandOrCategory' &&
-      s.brandOrCategorySuggestion.primaryMatch === 'category'
+      suggestion?.type === 'brandOrCategory' &&
+      suggestion.brandOrCategorySuggestion.primaryMatch === 'category'
     )
   }
 

@@ -30,19 +30,19 @@ import { PRODUCT_LIMIT } from '~/constants/search'
 
 defineProps({
   limit: {
-    type: Number as PropType<number>,
+    type: Number,
     default: PRODUCT_LIMIT,
   },
   term: {
-    type: String as PropType<string>,
+    type: String,
     default: '',
   },
   resultsCount: {
-    type: Number as PropType<number>,
+    type: Number,
     default: 0,
   },
   showLabels: {
-    type: Boolean as PropType<boolean>,
+    type: Boolean,
     default: true,
   },
   productSuggestions: {

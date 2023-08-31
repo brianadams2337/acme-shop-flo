@@ -32,20 +32,20 @@ import {
 
 const props = defineProps({
   searchTerm: {
-    type: String as PropType<string>,
+    type: String,
     default: '',
   },
   label: {
-    type: String as PropType<string>,
+    type: String,
     required: true,
+  },
+  showImages: {
+    type: Boolean,
+    default: false,
   },
   items: {
     type: Array as PropType<TypeaheadSuggestion[]>,
     default: () => [],
-  },
-  showImages: {
-    type: Boolean as PropType<boolean>,
-    default: false,
   },
 })
 

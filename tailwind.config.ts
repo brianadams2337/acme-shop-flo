@@ -123,6 +123,9 @@ export default {
     },
   },
   plugins: [
+    require('@tailwindcss/forms'),
+    require('@tailwindcss/typography'),
+    require('@tailwindcss/aspect-ratio'),
     plugin(({ addUtilities }) => {
       const utilities = {
         '.anchor-scrolling-none': {

@@ -27,13 +27,15 @@
             :key="shopId"
             class="text-xs"
             :list-name="list">
-            <a
+            <AppButton
               :key="`${locale}-locale`"
-              class="block cursor-pointer px-4 py-2 uppercase text-black hover:bg-gray-200"
+              type="ghost"
+              is-full-width
+              class="!justify-start rounded-none px-4 py-2 text-xs uppercase hover:bg-gray-200"
               :class="{ 'font-bold': locale === currentShop?.locale }"
               @click="changeShop($i18n.differentDomains ? domain : path)">
-              {{ locale }}
-            </a>
+              {{ getShopName(locale) }}
+            </AppButton>
           </ListboxOption>
         </ListboxOptions>
       </transition>
@@ -75,6 +77,14 @@ const selectedCountry = computed(() => {
 
   return region ? regionTranslator.value?.of(region) : null
 })
+
+const getShopName = (locale: string) => {
+  const [languageCode] = locale.split('-')
+
+  return new Intl.DisplayNames([locale], {
+    type: 'language',
+  }).of(languageCode)
+}
 
 const changeShop = (value?: string) => {
   // Track shop change

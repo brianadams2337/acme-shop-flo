@@ -10,11 +10,7 @@
         :key="productSuggestion.product.id"
         :term="searchTerm"
         :to="route.getProductDetailRoute(productSuggestion.product)"
-        :image-url="
-          showImages
-            ? image.getFirstModelImage(productSuggestion.product.images).hash
-            : ''
-        "
+        :image-url="getImageUrl(productSuggestion)"
         @click:result="emit('click:result', productSuggestion)">
         <div class="w-full overflow-hidden">
           <div class="truncate text-2xs font-medium text-secondary">
@@ -27,11 +23,9 @@
             <div
               v-if="productSuggestion.product.priceRange"
               class="ml-auto shrink-0">
-              USD
-              <!-- TODO: Use this after we implemented this utility within the SFC -->
-              <!--   {{ price.toCurrency( -->
-              <!--     productSuggestion.product.priceRange.min.withTax, -->
-              <!--   ) }} -->
+              {{
+                getCurrency(productSuggestion.product.priceRange.min.withTax)
+              }}
             </div>
           </div>
         </div>
@@ -46,7 +40,7 @@ import {
   TypeaheadProductSuggestion,
 } from '@scayle/storefront-nuxt'
 
-defineProps({
+const props = defineProps({
   items: {
     type: Array as PropType<TypeaheadProductSuggestion[]>,
     default: () => [],
@@ -61,8 +55,31 @@ defineProps({
   },
 })
 
+const currentShop = useCurrentShop()
+
+const getCurrency = (value: number): string => {
+  if (!currentShop.value) {
+    return ''
+  }
+
+  return toCurrency(
+    value,
+    usePick(currentShop.value, [
+      'locale',
+      'currency',
+      'currencyFractionDigits',
+    ]),
+  )
+}
+
 const getCategoryName = (productSuggestion: ProductSuggestion) => {
   return productSuggestion.product.categories?.[0]?.at(-1)?.categoryName
+}
+
+const getImageUrl = (productSuggestion: ProductSuggestion) => {
+  return props.showImages
+    ? image.getFirstModelImage(productSuggestion.product.images).hash
+    : ''
 }
 
 const emit = defineEmits<{

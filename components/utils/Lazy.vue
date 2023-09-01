@@ -1,8 +1,10 @@
 <template>
-  <!-- TODO Implement real lazy component -->
-  <div>
+  <div :test="r">
     <slot />
   </div>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+const r = ref('a')
+console.log(r.value)
+</script>

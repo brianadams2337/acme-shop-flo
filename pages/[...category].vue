@@ -5,15 +5,16 @@
   <PageContent>
     <div class="sm:flex">
       <div v-if="viewport.isGreaterOrEquals('md')" class="-ml-4 w-1/3 lg:w-1/5">
-        <Lazy
+        <!-- <Lazy
           v-if="categories && 'children' in categories && categories.children"
-          ssr>
-          <SideNavigation
-            :categories="categories.children"
-            :fetching="categoriesStatus === 'pending'"
-            :root-category="categories"
-            show-nested-categories />
-        </Lazy>
+          ssr> -->
+        <SideNavigation
+          v-if="categories && 'children' in categories && categories.children"
+          :categories="categories.children"
+          :fetching="categoriesStatus === 'pending'"
+          :root-category="categories"
+          show-nested-categories />
+        <!-- </Lazy> -->
       </div>
       <div class="w-full">
         <!-- <template v-if="preListingContent && isFirstPage">
@@ -24,36 +25,36 @@
               :blok="preContent" />
           </template> -->
 
-        <Lazy ssr>
+        <!-- <Lazy ssr> -->
+        <div
+          class="flex flex-col items-start justify-between overflow-x-hidden">
+          <ProductListBreadcrumbs />
           <div
-            class="flex flex-col items-start justify-between overflow-x-hidden">
-            <ProductListBreadcrumbs />
-            <div
-              class="mt-2 flex w-full flex-col justify-between space-y-2 md:flex-row">
-              <ProductQuickFilters
-                :filters="quickFilters"
-                :is-active-filter="isActiveFilter"
-                :loading="filtersStatus === 'pending'"
-                :total-count="unfilteredCount"
-                @click:selected-filter="applyFilter($event, true)" />
-              <div class="order-1 flex items-center space-x-4 text-sm">
-                <SortingMenu
-                  :selected="selectedSort.name"
-                  :values="sortingValues" />
-                <AppButton
-                  data-test-id="filter-toggle-button"
-                  type="tertiary"
-                  size="sm"
-                  @click="toggleFilter">
-                  <template #icon="{ _class }">
-                    <SvgoUiFilter :class="_class" />
-                  </template>
-                  {{ $t('plp.filter') }}
-                </AppButton>
-              </div>
+            class="mt-2 flex w-full flex-col justify-between space-y-2 md:flex-row">
+            <ProductQuickFilters
+              :filters="quickFilters"
+              :is-active-filter="isActiveFilter"
+              :loading="filtersStatus === 'pending'"
+              :total-count="unfilteredCount"
+              @click:selected-filter="applyFilter($event, true)" />
+            <div class="order-1 flex items-center space-x-4 text-sm">
+              <SortingMenu
+                :selected="selectedSort.name"
+                :values="sortingValues" />
+              <AppButton
+                data-test-id="filter-toggle-button"
+                type="tertiary"
+                size="sm"
+                @click="toggleFilter">
+                <template #icon="{ _class }">
+                  <IconFilter :class="_class" />
+                </template>
+                {{ $t('plp.filter') }}
+              </AppButton>
             </div>
           </div>
-        </Lazy>
+        </div>
+        <!-- </Lazy> -->
 
         <!-- <ProductList
           :loading="fetchingProducts"
@@ -63,14 +64,14 @@
           class="mt-8 grid w-auto grid-cols-12 gap-1"
           @click:product="trackProductClick"
           @intersect:row="trackViewListing" /> -->
-        <Lazy>
-          <Pagination
-            v-if="pagination"
-            class="mt-16"
-            :current-page="pagination.page"
-            :first-page="pagination.first"
-            :last-page="pagination.last" />
-        </Lazy>
+        <!-- <Lazy> -->
+        <Pagination
+          v-if="pagination"
+          class="mt-16"
+          :current-page="pagination.page"
+          :first-page="pagination.first"
+          :last-page="pagination.last" />
+        <!-- </Lazy> -->
 
         <!-- <template v-if="postListingContent && isFirstPage">
           <component
@@ -237,12 +238,12 @@ await refreshProductCount()
 watch(
   () => route.query,
   async () => {
-    console.log('refetch')
     await fetchProducts(fetchParameters.value)
   },
 )
 
 const updateFilterCount = async (filter: Record<string, any>) => {
+  // TODO pass filter here
   await refreshProductCount()
 }
 

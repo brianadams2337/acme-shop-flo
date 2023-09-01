@@ -9,7 +9,7 @@
           @click="toggle">
           {{ $t(`sorting_select.${selected}`) }}
           <template #icon="{ _class }">
-            <SvgoUiUpdown :class="_class" />
+            <IconUpdown :class="_class" />
           </template>
         </AppButton>
       </div>

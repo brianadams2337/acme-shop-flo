@@ -4,7 +4,7 @@
     class="flex flex-row items-stretch justify-center space-x-2">
     <slot v-bind="{ canNavigateLeft, previousPage }" name="previous-button">
       <PaginationButton v-if="canNavigateLeft" :page="previousPage">
-        <SvgoUiArrowLeft class="h-3 w-3" />
+        <IconArrowLeft class="h-3 w-3" />
       </PaginationButton>
     </slot>
 
@@ -42,7 +42,7 @@
 
     <slot name="next-button" v-bind="{ canNavigateRight, nextPage }">
       <PaginationButton v-if="canNavigateRight" :page="nextPage">
-        <SvgoUiArrowRight class="h-3 w-3" />
+        <IconArrowRight class="h-3 w-3" />
       </PaginationButton>
     </slot>
   </div>

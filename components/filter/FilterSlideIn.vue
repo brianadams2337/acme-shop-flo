@@ -20,7 +20,7 @@
           data-test-id="closeCross"
           @click="toggleItem">
           <template #icon="{ _class }">
-            <SvgoUiClose :class="_class" />
+            <IconClose :class="_class" />
           </template>
         </AppButton>
       </div>
@@ -76,7 +76,7 @@
           </MultipleSelectionList>
         </FilterGroup>
 
-        <!-- <FilterGroup
+        <FilterGroup
           :badge="state.color.length"
           :label="$t('filter.colors')"
           @click:reset="resetFilter('color')">
@@ -102,9 +102,9 @@
               </button>
             </template>
           </MultipleSelectionList>
-        </FilterGroup> -->
+        </FilterGroup>
 
-        <!-- <FilterGroup
+        <FilterGroup
           v-if="hasPriceRange"
           :label="$t('filter.price')"
           :show-action="
@@ -117,7 +117,7 @@
             :min="minPrice"
             :currency-code="currencyCode"
             :locale="locale" />
-        </FilterGroup> -->
+        </FilterGroup>
 
         <FilterGroup v-if="isSaleActive" :label="$t('filter.only_sale')">
           <template #action>
@@ -165,10 +165,6 @@ import {
   transformMinAndMaxPriceToFilter,
   transformStateToFilters,
 } from '@scayle/storefront-nuxt'
-
-function createCopy<T>(toCopy: T): T {
-  return JSON.parse(JSON.stringify(toCopy))
-}
 
 const props = defineProps({
   filters: {
@@ -241,7 +237,7 @@ const initialState = computed<FilterState>(() => ({
 }))
 
 // user's selected conditions
-const state = reactive(createCopy(initialState.value))
+const state = reactive(useClone(initialState.value))
 
 const setActiveFiltersInState = (filters: TransformedFilter[]) => {
   /**
@@ -317,14 +313,14 @@ const resetFilter = (key: keyof FilterState) => {
 }
 
 const resetFilters = () => {
-  Object.assign(state, createCopy(initialState.value))
+  Object.assign(state, useClone(initialState.value))
   emit('filter:reset')
 }
 
 const currentShop = useCurrentShop()
 
 const locale = currentShop.value?.locale?.replace('_', '-')
-const currencyCode = currentShop.value?.currency
+const currencyCode = currentShop.value?.currency || ''
 
 const isSaleActive = computed(
   () =>

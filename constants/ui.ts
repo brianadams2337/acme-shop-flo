@@ -1,5 +1,9 @@
 import { ValuesType } from 'utility-types'
 
+/* eslint-enable @typescript-eslint/no-redeclare */
+
+import { UiSize } from '~/@types/ui'
+
 /* eslint-disable @typescript-eslint/no-redeclare */
 /* intentionally naming the variables the same as the type */
 
@@ -66,4 +70,10 @@ export const ButtonType = {
 
 export type ButtonType = ValuesType<typeof ButtonType>
 
-/* eslint-enable @typescript-eslint/no-redeclare */
+export const DEFAULT_UI_SIZE_PROP = {
+  size: {
+    type: String as PropType<UiSize>,
+    default: 'md',
+    validator: (val: UiSize) => ['xl', 'lg', 'md', 'sm', 'xs'].includes(val),
+  },
+}

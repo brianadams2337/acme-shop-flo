@@ -31,11 +31,10 @@
 </template>
 
 <script setup lang="ts">
-import { ProductColor } from '@scayle/storefront-nuxt'
 import Color from 'color'
-import { DEFAULT_UI_SIZE_PROP } from '~/constants/ui'
+import { ProductColor } from '@scayle/storefront-nuxt'
 import useUiSize from '~/composables/useUiSize'
-import { ColorMap } from '~/constants/product'
+import { ColorMap, DEFAULT_UI_SIZE_PROP } from '~/constants'
 
 const props = defineProps({
   ...DEFAULT_UI_SIZE_PROP,
@@ -53,7 +52,7 @@ const props = defineProps({
   },
 })
 
-const { $helpers } = useContext()
+const { $helpers } = useNuxtApp()
 const { isSize } = useUiSize(props.size)
 
 const colorCode = computed<string | string[]>(() => {

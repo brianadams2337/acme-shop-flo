@@ -14,7 +14,7 @@
 </template>
 
 <script setup lang="ts">
-import { HeadlineSize, HeadlineTag } from '~/constants/ui'
+import { HeadlineSize, HeadlineTag } from '~/constants'
 
 const props = defineProps({
   loading: {

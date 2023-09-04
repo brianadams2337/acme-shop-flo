@@ -18,7 +18,7 @@
 <script setup lang="ts">
 const props = defineProps({
   modelValue: {
-    type: Boolean as PropType<boolean>,
+    type: Boolean,
     default: false,
   },
 })

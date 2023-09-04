@@ -16,15 +16,15 @@
 export default defineComponent({
   props: {
     modelValue: {
-      type: Number as PropType<number>,
+      type: Number,
       required: true,
     },
     max: {
-      type: Number as PropType<number>,
+      type: Number,
       default: null,
     },
     min: {
-      type: Number as PropType<number>,
+      type: Number,
       default: null,
     },
     currencyCode: {

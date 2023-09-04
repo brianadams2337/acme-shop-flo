@@ -40,11 +40,11 @@ defineProps({
     required: true,
   },
   selected: {
-    type: String as PropType<string>,
+    type: String,
     default: '',
   },
 })
-
+// TODO tracking
 // const { trackFilterApply } = useTrackingEvents()
 
 const trackSort = (value: SortValue): void => {

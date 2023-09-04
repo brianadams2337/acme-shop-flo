@@ -31,7 +31,7 @@ defineProps({
     required: true,
   },
   selected: {
-    type: String as PropType<string>,
+    type: String,
     default: '',
   },
 })

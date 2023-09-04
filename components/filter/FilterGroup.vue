@@ -33,19 +33,19 @@
 <script setup lang="ts">
 defineProps({
   label: {
-    type: String as PropType<String>,
+    type: String,
     default: '',
   },
   resetLabel: {
-    type: String as PropType<String>,
+    type: String,
     default: null,
   },
   badge: {
-    type: Number as PropType<number>,
+    type: Number,
     default: 0,
   },
   showAction: {
-    type: Boolean as PropType<boolean>,
+    type: Boolean,
     default: false,
   },
 })

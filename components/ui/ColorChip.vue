@@ -47,7 +47,7 @@ const props = defineProps({
     required: true,
   },
   isActive: {
-    type: Boolean as PropType<boolean>,
+    type: Boolean,
     default: false,
   },
   rounded: {

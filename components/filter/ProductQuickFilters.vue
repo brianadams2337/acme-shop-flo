@@ -56,11 +56,11 @@ defineProps({
     default: false,
   },
   filters: {
-    type: Array as PropType<Array<any>>,
+    type: Array,
     default: () => [],
   },
   totalCount: {
-    type: Number as PropType<number>,
+    type: Number,
     default: 0,
   },
   isActiveFilter: {

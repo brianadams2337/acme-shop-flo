@@ -180,15 +180,15 @@ const props = defineProps({
     default: () => false,
   },
   filteredCount: {
-    type: Number as PropType<number>,
+    type: Number,
     default: 0,
   },
   unfilteredCount: {
-    type: Number as PropType<number>,
+    type: Number,
     default: 0,
   },
   fetchingFilteredCount: {
-    type: Boolean as PropType<boolean>,
+    type: Boolean,
     default: false,
   },
 })

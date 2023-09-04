@@ -68,7 +68,7 @@ defineProps({
     default: null,
   },
   showNestedCategories: {
-    type: Boolean as PropType<boolean>,
+    type: Boolean,
     default: false,
   },
 })

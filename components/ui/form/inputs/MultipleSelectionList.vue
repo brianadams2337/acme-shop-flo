@@ -34,7 +34,7 @@ const props = defineProps({
     default: () => [],
   },
   name: {
-    type: String as PropType<string>,
+    type: String,
     required: true,
   },
   modelValue: {

@@ -44,7 +44,7 @@ type SlideType = 'default' | 'fromBottom'
 
 const props = defineProps({
   name: {
-    type: String as PropType<string>,
+    type: String,
     required: true,
   },
   slideClass: {

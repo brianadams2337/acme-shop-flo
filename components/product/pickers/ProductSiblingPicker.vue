@@ -1,7 +1,7 @@
 <template>
   <div>
     <slot :items="items">
-      <div v-if="withValues" class="text-secondary mb-3 text-xs font-semibold">
+      <div v-if="withValues" class="mb-3 text-xs font-semibold text-secondary">
         {{ colorLabel }}
       </div>
       <div

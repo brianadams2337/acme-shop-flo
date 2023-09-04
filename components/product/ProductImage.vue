@@ -5,13 +5,9 @@
     :src="image.hash"
     :modifiers="{ ...(shouldTrim && { trim: 1 }), brightness }"
     :loading="imageLoading"
+    :class="classes"
     provider="default"
     class="picture block mix-blend-darken"
-    :class="{
-      'picture-contain': fit === 'contain',
-      'picture-cover': fit === 'cover',
-      'm-auto h-[90%]': isCentered,
-    }"
     @load="load" />
 </template>
 
@@ -62,24 +58,24 @@ const imageBackground = computed(() => {
 })
 
 const brightness = computed(() => {
-  const background = getAttributeValue(
-    props.image.attributes,
-    'imageBackground',
-  )
-  if (background === 'white') {
+  if (imageBackground.value === 'white') {
     return 0.96
   }
-  if (background === 'grey') {
+  if (imageBackground.value === 'grey') {
     return 1.06
   }
   return 1
 })
 
 const background = computed(() => {
-  const bg = getAttributeValue(props.image.attributes, 'imageBackground')
-
-  return bg === 'transparent' ? 'F4F4F4' : 'FFFFFF'
+  return imageBackground.value === 'transparent' ? 'f4f4f4' : 'ffffff'
 })
+
+const classes = computed(() => ({
+  'picture-contain': props.fit === 'contain',
+  'picture-cover': props.fit === 'cover',
+  'm-auto h-[90%]': props.isCentered,
+}))
 </script>
 
 <style>

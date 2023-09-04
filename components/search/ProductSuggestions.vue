@@ -78,7 +78,7 @@ const getCategoryName = (productSuggestion: ProductSuggestion) => {
 
 const getImageUrl = (productSuggestion: ProductSuggestion) => {
   return props.showImages
-    ? image.getFirstModelImage(productSuggestion.product.images).hash
+    ? getFirstModelImage(productSuggestion.product.images).hash
     : ''
 }
 

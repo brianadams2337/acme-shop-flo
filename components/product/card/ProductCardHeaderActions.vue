@@ -2,7 +2,7 @@
   <div
     class="absolute left-auto right-0 top-0 z-10 flex h-8 w-auto cursor-pointer p-1 md:p-3">
     <AppButton
-      :key="`item-${product.id}-is-in-wishlist-${isInWishlist}`"
+      :key="`item-${productId}-is-in-wishlist-${isInWishlist}`"
       :data-test-id="
         isInWishlist
           ? 'product-card-action-remove-item-from-wishlist-button'
@@ -41,17 +41,19 @@ const props = defineProps({
 
 const product = toRef(props, 'product')
 const productId = computed(() => product.value.id)
-const wishlist = await useCurrentWishlist()
+
+const isInWishlist = false
+const wishlist = { pending: false }
+// const wishlist = await useCurrentWishlist()
 
 const toggleItemInWishlist = async () => {
   // const wasInWishlist = !!wishlist.findItem({ productId: productId.value })
   // Add tracking meta
-  await wishlist.toggleItem({ productId: productId.value })
-
+  // await wishlist.toggleItem({ productId: productId.value })
   // wishlistUtils.showWishlistToast(!wasInWishlist, product.value)
 }
 
-const isInWishlist = computed(() => {
-  return !!wishlist.findItem({ productId: productId.value })
-})
+// const isInWishlist = computed(() => {
+//   return !!wishlist.findItem({ productId: productId.value })
+// })
 </script>

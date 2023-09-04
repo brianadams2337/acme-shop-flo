@@ -1,16 +1,16 @@
 <template>
   <div
-    :data-product-card-id="id"
+    :data-product-card-id="product.id"
     :class="{ 'animate-pulse': loading }"
     class="group relative">
     <slot>
       <!-- TODO: Implement intersection observer component: -->
       <!-- https://vueuse.org/core/useIntersectionObserver/ -->
       <!-- <Intersect :threshold="0.5" @enter="emit('intersect:product', id)"> -->
-      <article :id="`product-${id}`" class="flex h-full flex-col">
+      <article :id="`product-${product.id}`" class="flex h-full flex-col">
         <slot name="header">
           <div
-            class="aspect-h-4 aspect-w-3 max-h-md group relative flex items-center justify-center bg-gray-200"
+            class="group relative flex max-h-md items-center justify-center bg-gray-200"
             @mouseover="onMouseOver"
             @mouseleave="onMouseLeave">
             <slot v-if="product" name="header-actions">
@@ -62,7 +62,7 @@
           <div class="my-2 px-2.5 md:my-2.5">
             <NuxtLink
               :to="link"
-              class="text-2xs text-primary font-medium uppercase leading-tight opacity-50 md:text-xs"
+              class="text-2xs font-medium uppercase leading-tight text-primary opacity-50 md:text-xs"
               @click.capture="$emit('click:product')">
               <p class="uppercase">{{ title }}</p>
               <p class="mb-1" data-test-id="product-card-product-name">
@@ -70,8 +70,9 @@
               </p>
               <slot name="description-price" :price="price">
                 <ProductPrice
+                  v-if="price"
                   v-bind="{ price, lowestPriorPrice }"
-                  :applied-reductions="price.appliedReductions"
+                  :applied-reductions="price?.appliedReductions ?? []"
                   :size="viewport.isGreaterThan('md') ? 'sm' : 'xs'"
                   type="whisper" />
               </slot>
@@ -108,24 +109,15 @@
 <script setup lang="ts">
 import {
   Product,
-  ProductImage as ProductImageType,
-  Price,
-  Value,
+  getProductAndSiblingsColors,
   getProductSiblings,
-  LowestPriorPrice,
+  getFirstAttributeValue,
 } from '@scayle/storefront-nuxt'
-import { RouteLocationRaw } from '#vue-router'
-
-type ProductSiblings = ReturnType<typeof getProductSiblings>
 
 const props = defineProps({
-  id: {
+  index: {
     type: Number,
     required: true,
-  },
-  link: {
-    type: [Object, String] as PropType<RouteLocationRaw>,
-    default: () => ({}),
   },
   product: {
     type: Object as PropType<Product>,
@@ -135,44 +127,9 @@ const props = defineProps({
     type: Boolean,
     default: false,
   },
-  title: {
-    type: String as PropType<string | undefined>,
-    default: '',
-  },
-  name: {
-    type: String as PropType<string | undefined>,
-    default: '',
-  },
-  price: {
-    type: Object as PropType<Price>,
-    default: () => ({}),
-  },
-  lowestPriorPrice: {
-    type: Object as PropType<LowestPriorPrice>,
-    default: () => ({
-      withTax: null,
-      relativeDifferenceToPrice: null,
-    }),
-  },
-  image: {
-    type: Object as PropType<ProductImageType | null>,
-    default: () => ({}),
-  },
-  hoverImage: {
-    type: Object as PropType<ProductImageType>,
-    default: null,
-  },
   badgeLabel: {
     type: String,
     default: null,
-  },
-  colors: {
-    type: Array as PropType<Value[]>,
-    default: () => [],
-  },
-  siblings: {
-    type: Array as PropType<ProductSiblings>,
-    default: () => [],
   },
   isAvailable: {
     type: Boolean,
@@ -198,35 +155,76 @@ const props = defineProps({
     type: String as PropType<'default' | 'narrow'>,
     default: 'default',
   },
-  imageLoading: {
-    type: String as PropType<'lazy' | 'eager'>,
-    default: 'lazy',
-  },
 })
 
 const loadHoverImage = ref(false)
-const imageHover = ref(false)
+const shouldHoverImage = ref(false)
 
 const viewport = useViewport()
 
 const onMouseOver = () => {
   loadHoverImage.value = true
-  imageHover.value = true
+  shouldHoverImage.value = true
   emit('productimage:mouseover')
 }
 
 const onMouseLeave = () => {
-  imageHover.value = false
+  shouldHoverImage.value = false
   emit('productimage:mouseleave')
 }
 
+const title = computed(() => {
+  return getFirstAttributeValue(props.product.attributes, 'brand')?.label
+})
+
+const name = computed(() => {
+  return getFirstAttributeValue(props.product.attributes, 'name')?.label ?? ''
+})
+
+const price = computed(() => {
+  return getLowestPriceBetweenVariants(props.product)
+})
+const lowestPriorPrice = computed(() => {
+  return getVariantWithLowestPrice(props.product.variants)?.lowestPriorPrice
+})
+
+const colors = computed(() => {
+  return getProductAndSiblingsColors(props.product, 'color')
+})
+
+const image = computed(() => {
+  return getImageFromList(props.product.images, ProductImageType.BUST, 'front')
+})
+
+const imageLoading = computed(() => (!props.index ? 'eager' : 'lazy'))
+
+const hoverImage = computed(() => {
+  const modelImageOrFirstAvailable = getFirstModelImage(
+    props.product.images,
+    props.index,
+  )
+  const hoverImageIsTheSameAsMain =
+    modelImageOrFirstAvailable?.hash === image.value?.hash
+
+  if (hoverImageIsTheSameAsMain && props.product.images.length > 0) {
+    return props.product.images[1]
+  }
+  return modelImageOrFirstAvailable
+})
+
+const siblings = computed(() => getProductSiblings(props.product) || [])
+
+// const link = computed(() => route.getProductDetailRoute(props.product))
+const link = '/'
+
 const imageClasses = computed(() => ({
-  'group-hover:opacity-0': props.hoverImage && props.isAvailable,
+  'group-hover:opacity-0': hoverImage.value && props.isAvailable,
   'opacity-20': !props.isAvailable,
 }))
 
 const headerActionsClass = computed(() => ({
-  'lg:opacity-0': props.isWishlistCard && !imageHover && props.isAvailable,
+  'lg:opacity-0':
+    props.isWishlistCard && !shouldHoverImage && props.isAvailable,
 }))
 
 const emit = defineEmits<{

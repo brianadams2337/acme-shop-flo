@@ -84,8 +84,7 @@
                   :spacing="siblingSpacing"
                   class="flex pb-1">
                   <template #item="{ item }">
-                    <NuxtLink
-                      :to="route.getProductDetailRoute(product, item.id)">
+                    <NuxtLink :to="getProductDetailRoute(product, item.id)">
                       <!-- TODO: Implement color chip component -->
                       <!-- <ColorChip -->
                       <!--   v-if="item.colors.length" -->
@@ -214,7 +213,7 @@ const hoverImage = computed(() => {
 
 const siblings = computed(() => getProductSiblings(props.product) || [])
 
-const link = computed(() => route.getProductDetailRoute(props.product))
+const link = computed(() => getProductDetailRoute(props.product))
 
 const imageClasses = computed(() => ({
   'group-hover:opacity-0': hoverImage.value && props.isAvailable,

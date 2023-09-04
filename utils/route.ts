@@ -83,10 +83,3 @@ export const routeList: LinkList = {
   user: { name: 'account-user', path: '/account/user' },
   account: { name: 'account', path: '/account' },
 } as const
-
-export default {
-  routes: routeList,
-  getProductDetailRoute,
-  getSearchRoute,
-  getSearchSuggestionPath,
-}

@@ -9,7 +9,7 @@
         v-if="productSuggestion"
         :key="productSuggestion.product.id"
         :term="searchTerm"
-        :to="route.getProductDetailRoute(productSuggestion.product)"
+        :to="getProductDetailRoute(productSuggestion.product)"
         :image-url="getImageUrl(productSuggestion)"
         @click:result="emit('click:result', productSuggestion)">
         <div class="w-full overflow-hidden">

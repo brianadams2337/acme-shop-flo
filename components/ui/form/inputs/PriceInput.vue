@@ -2,7 +2,7 @@
   <input
     ref="root"
     :type="inputType"
-    class="bg-secondary-450 text-primary h-10 w-[100px] rounded border text-center text-sm font-semibold"
+    class="h-10 w-[100px] rounded border bg-secondary-450 text-center text-sm font-semibold text-primary"
     :value="
       inputType === 'text'
         ? formatCurrency(modelValue)

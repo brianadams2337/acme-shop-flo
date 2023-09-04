@@ -12,7 +12,7 @@
           params: { ...$route.params },
           query: { ...$route.query, sort: item.query },
         }"
-        @click.native="emit('click:item', item)">
+        @click="emit('click:item', item)">
         {{ $t(`sorting_select.${item.name}`) }}
       </DefaultLink>
     </li>

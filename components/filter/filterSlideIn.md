@@ -235,8 +235,7 @@ Example to use a mutliple selection value in template
 <FilterGroup
   :badge="state.gender.length"
   :label="$t('filter.gender')"
-  @click:reset="resetFilter('gender')"
->
+  @click:reset="resetFilter('gender')">
 <MultipleSelectionList
   v-model="state.gender"
   :items="availableFilterValues.gender"
@@ -253,4 +252,5 @@ Example to use a mutliple selection value in template
     </AppButton>
   </template>
 </MultipleSelectionList>
+</FilterGroup>
 ```

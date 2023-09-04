@@ -18,7 +18,7 @@
     <template #menu-content="{ close }">
       <FadeInTransition>
         <div
-          class="min-w-48 mt-2 max-w-[100px] bg-white px-4 pb-5 pt-3 shadow"
+          class="mt-2 min-w-48 max-w-[100px] bg-white px-4 pb-5 pt-3 shadow"
           data-test-id="sorting-options-container">
           <SortingItemsList
             :items="values"
@@ -47,7 +47,7 @@ defineProps({
 // TODO tracking
 // const { trackFilterApply } = useTrackingEvents()
 
-const trackSort = (value: SortValue): void => {
+const trackSort = (_value: SortValue): void => {
   // trackFilterApply('sort', value.name)
 }
 

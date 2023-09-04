@@ -14,7 +14,7 @@
         <AppButton
           size="sm"
           type="ghost"
-          class="text-secondary py-0 text-xs font-semibold"
+          class="py-0 text-xs font-semibold text-secondary"
           :class="{
             'opacity-0': !(badge > 0 || showAction),
           }"

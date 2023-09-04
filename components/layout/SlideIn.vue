@@ -20,7 +20,7 @@
         :leave-to-class="slideTypes[slideType].leaveToClasses">
         <div
           v-if="isOpen"
-          class="max-h-md fixed bottom-0 z-50 w-full overflow-y-auto bg-white p-5 shadow-sm xl:right-0 xl:max-h-full xl:max-w-[22.5rem]"
+          class="fixed bottom-0 z-50 max-h-md w-full overflow-y-auto bg-white p-5 shadow-sm xl:right-0 xl:max-h-full xl:max-w-[22.5rem]"
           :class="slideClass">
           <div class="relative flex h-full flex-col">
             <slot v-bind="toggle" name="slideInContent">

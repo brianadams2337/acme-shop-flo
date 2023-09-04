@@ -6,7 +6,7 @@
       <button
         class="absolute -mt-1 inline-block h-6 w-6 rounded-full bg-white shadow transition duration-200 ease-linear focus:outline-none"
         :class="{
-          'bg-primary left-0 -ml-2': !isActive,
+          'left-0 -ml-2 bg-primary': !isActive,
           'translate-x-4': isActive,
         }"
         role="switch"

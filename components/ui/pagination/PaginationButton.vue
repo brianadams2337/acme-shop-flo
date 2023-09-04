@@ -6,7 +6,7 @@
       'font-bold': isActive,
     }"
     data-test-id="paginationButton"
-    @click.native="scrollToTop">
+    @click="scrollToTop">
     <slot />
   </NuxtLink>
 </template>

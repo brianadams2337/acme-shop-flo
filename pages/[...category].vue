@@ -49,16 +49,14 @@
             </div>
           </div>
         </div>
-
-        <!-- <ProductList
-          :loading="fetchingProducts"
+        <ProductList
+          :loading="productsStatus === 'pending'"
           :per-page="productsPerPage"
           :products="products"
-          :refreshing="fetchingProducts"
+          :refreshing="productsStatus === 'pending'"
           class="mt-8 grid w-auto grid-cols-12 gap-1"
           @click:product="trackProductClick"
-          @intersect:row="trackViewListing" /> -->
-        <div class="h-96" />
+          @intersect:row="trackViewListing" />
         <NuxtLazyHydrate :when-visible="{ rootMargin: '100px' }">
           <Pagination
             v-if="pagination"
@@ -69,6 +67,7 @@
         </NuxtLazyHydrate>
 
         <!-- <template v-if="postListingContent && isFirstPage">
+          TODO CMS
           <component
             :is="preContent.component"
             v-for="preContent in postListingContent"
@@ -94,6 +93,7 @@
 
 <script setup lang="ts">
 import {
+  Product,
   SortValue,
   getSortByValue,
   getSortingValues,
@@ -102,10 +102,10 @@ import {
 import { sustainabilityAttributes } from '~/constants/attributes'
 import {} from '#components'
 
-const listingMetaData = {
-  name: 'Category Product List',
-  id: 'CategoryProductList',
-}
+// const listingMetaData = {
+//   name: 'Category Product List',
+//   id: 'CategoryProductList',
+// }
 const productsPerPage = 24
 
 const viewport = useViewport()
@@ -170,7 +170,7 @@ const {
   },
   includedFilters,
 })
-
+// TODO CMS
 // const cms = useCms<SbListingPage>(`ListingPage-${params.value.pathMatch}`)
 
 const customDefaultSorting = computed(
@@ -197,6 +197,8 @@ const {
 } = useQueryFilterState({ defaultSort: DEFAULT_SORTING_KEY })
 
 const trackViewListing = ({ items }: { row: number; items: Product[] }) => {
+  console.log('Track row', items)
+  // TODO tracking
   // const paginationOffset = ((pagination.value?.page || 1) - 1) * 24
   // trackViewItemList({
   //   items,
@@ -225,6 +227,7 @@ const fetchParameters = computed(() => ({
 
 await fetchProducts(fetchParameters.value)
 await refreshProductCount()
+// TODO CMS
 // const {
 //   content: cmsContent,
 //   hasTeaserImage,
@@ -240,21 +243,22 @@ watch(
 )
 
 const updateFilterCount = async (filter: Record<string, any>) => {
-  // TODO pass filter here
   await refreshProductCount()
 }
 
-// const trackProductClick = (product: Product) => {
-//   trackSelectItem({
-//     product,
-//     listingMetaData,
-//     pagePayload: {
-//       content_name: route.value.fullPath,
-//       page_type: store.state.pageType,
-//       page_type_id: params.value.id?.toString() || '',
-//     },
-//   })
-// }
+const trackProductClick = (product: Product) => {
+  console.log('Track product click', product)
+  // TODO tracking
+  // trackSelectItem({
+  //   product,
+  //   listingMetaData,
+  //   pagePayload: {
+  //     content_name: route.value.fullPath,
+  //     page_type: store.state.pageType,
+  //     page_type_id: params.value.id?.toString() || '',
+  //   },
+  // })
+}
 
 const applyFilter = (
   filter: Record<string, any>,
@@ -300,7 +304,7 @@ const quickFilters: Ref<{ key: string }[]> = computed(() =>
       )
     : [],
 )
-
+// TODO SEO
 // useMeta(() => {
 //   const isFiltered = !!productConditions.value.where?.attributes?.length
 //   const robots = isFiltered ? 'noindex,follow' : 'index,follow'
@@ -322,7 +326,7 @@ const quickFilters: Ref<{ key: string }[]> = computed(() =>
 //   return { title, ...metaTags }
 // })
 
-const isFirstPage = computed(() => pagination.value?.page === 1)
+// const isFirstPage = computed(() => pagination.value?.page === 1)
 
 const filteredProductsCount = computed(() => productCountData.value?.count || 0)
 </script>

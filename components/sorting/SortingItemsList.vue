@@ -5,7 +5,7 @@
         type="whisper"
         :only-exact-active="true"
         :class="{
-          'font-bold text-black': item.name === selected,
+          'font-bold text-gray-800': item.name === selected,
         }"
         :to="{
           name,

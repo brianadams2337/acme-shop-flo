@@ -10,7 +10,7 @@
       <article :id="`product-${product.id}`" class="flex h-full flex-col">
         <slot name="header">
           <div
-            class="group aspect-h-4 aspect-w-3 relative flex max-h-md items-center justify-center bg-gray-200"
+            class="aspect-h-4 aspect-w-3 max-h-md group relative flex items-center justify-center bg-gray-200"
             @mouseover="onMouseOver"
             @mouseleave="onMouseLeave">
             <slot v-if="product" name="header-actions">
@@ -62,7 +62,7 @@
           <div class="my-2 px-2.5 md:my-2.5">
             <NuxtLink
               :to="link"
-              class="text-2xs font-medium uppercase leading-tight text-primary opacity-50 md:text-xs"
+              class="text-2xs text-primary font-medium uppercase leading-tight opacity-50 md:text-xs"
               @click.capture="$emit('click:product')">
               <p class="uppercase">{{ title }}</p>
               <p class="mb-1" data-test-id="product-card-product-name">
@@ -85,13 +85,12 @@
                   class="flex pb-1">
                   <template #item="{ item }">
                     <NuxtLink :to="getProductDetailRoute(product, item.id)">
-                      <!-- TODO: Implement color chip component -->
-                      <!-- <ColorChip -->
-                      <!--   v-if="item.colors.length" -->
-                      <!--   data-test-id="product-card-color-circle" -->
-                      <!--   :color="item.colors[0]" -->
-                      <!--   :size="colorChipSize" -->
-                      <!--   :rounded="colorChipRoundedSize" /> -->
+                      <ColorChip
+                        v-if="item.colors.length"
+                        data-test-id="product-card-color-circle"
+                        :color="asProductColor(item.colors[0])"
+                        :size="colorChipSize"
+                        :rounded="colorChipRoundedSize" />
                     </NuxtLink>
                   </template>
                 </ProductSiblingPicker>
@@ -107,10 +106,12 @@
 
 <script setup lang="ts">
 import {
+  ProductColor,
   Product,
   getProductAndSiblingsColors,
   getProductSiblings,
   getFirstAttributeValue,
+  Value,
 } from '@scayle/storefront-nuxt'
 
 const props = defineProps({
@@ -211,7 +212,9 @@ const hoverImage = computed(() => {
   return modelImageOrFirstAvailable
 })
 
-const siblings = computed(() => getProductSiblings(props.product) || [])
+const siblings = computed(
+  () => getProductSiblings(props.product, 'color') || [],
+)
 
 const link = computed(() => getProductDetailRoute(props.product))
 
@@ -225,6 +228,7 @@ const headerActionsClass = computed(() => ({
     props.isWishlistCard && !shouldHoverImage && props.isAvailable,
 }))
 
+const asProductColor = (value: Value) => value as ProductColor
 const emit = defineEmits<{
   (e: 'intersect:product', value: number): void
   (e: 'productimage:mouseover'): void

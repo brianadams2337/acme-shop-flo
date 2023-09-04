@@ -77,3 +77,12 @@ export const DEFAULT_UI_SIZE_PROP = {
     validator: (val: UiSize) => ['xl', 'lg', 'md', 'sm', 'xs'].includes(val),
   },
 }
+
+export const CLASSES_FOR_LINK_TYPES: { [key: string]: string } = {
+  loud: 'font-bold',
+  'extra-loud': 'font-bold uppercase',
+  normal: 'font-semibold',
+  whisper: 'text-gray-700',
+  quieter: 'text-xs font-medium text-gray-750 tracking-normal',
+  quiet: 'text-sm font-semibold tracking-normal',
+}

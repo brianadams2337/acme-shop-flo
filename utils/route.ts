@@ -8,7 +8,7 @@ import {
 } from '@scayle/storefront-nuxt'
 import { RouteLocationRaw } from '#vue-router'
 
-const getProductDetailRoute = (
+export const getProductDetailRoute = (
   product: Product,
   id?: number,
 ): RouteLocationRaw => {
@@ -21,26 +21,26 @@ const getProductDetailRoute = (
   }
 }
 
-const getProductDetailPath = (product: Product, id?: number) => {
+export const getProductDetailPath = (product: Product, id?: number) => {
   const name = getFirstAttributeValue(product.attributes, 'name')?.label
   return `/p/${slugify(name)}-${id || product.id}`
 }
 
-const getSearchRoute = (term: string): RouteLocationRaw => {
+export const getSearchRoute = (term: string): RouteLocationRaw => {
   return {
     name: 'search',
     query: { term },
   }
 }
 
-const getCategoryPath = (category: Category) => {
+export const getCategoryPath = (category: Category) => {
   if (!category) {
     return
   }
   return `${category.path}`
 }
 
-const getSearchSuggestionPath = (
+export const getSearchSuggestionPath = (
   suggestion: ProductSuggestion | BrandOrCategorySuggestion,
 ) => {
   if (!suggestion) {
@@ -73,7 +73,7 @@ type Link =
 
 export type LinkList = Record<Link, { name: string; path: string }>
 
-const routes: LinkList = {
+export const routeList: LinkList = {
   home: { name: 'index', path: '/' },
   checkout: { name: 'checkout', path: '/checkout' },
   wishlist: { name: 'wishlist', path: '/wishlist' },
@@ -85,7 +85,7 @@ const routes: LinkList = {
 } as const
 
 export default {
-  routes,
+  routes: routeList,
   getProductDetailRoute,
   getSearchRoute,
   getSearchSuggestionPath,

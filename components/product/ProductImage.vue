@@ -1,9 +1,8 @@
 <template>
   <NuxtPicture
     data-test-id="product-image"
-    v-bind="{ alt, quality, background, sizes }"
+    v-bind="{ alt, quality, background, sizes, modifiers }"
     :src="image.hash"
-    :modifiers="{ ...(shouldTrim && { trim: 1 }), brightness }"
     :loading="imageLoading"
     :class="classes"
     provider="default"
@@ -66,6 +65,11 @@ const brightness = computed(() => {
   }
   return 1
 })
+
+const modifiers = computed(() => ({
+  ...(props.shouldTrim && { trim: 1 }),
+  brightness: brightness.value,
+}))
 
 const background = computed(() => {
   return imageBackground.value === 'transparent' ? 'f4f4f4' : 'ffffff'

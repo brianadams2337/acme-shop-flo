@@ -89,14 +89,12 @@ type Link = 'home'
 
 export type LinkList = Record<Link, { name: string; path: string }>
 
-const routes: LinkList = {
+export const routes: LinkList = {
   home: { name: 'index', path: '/' },
 } as const
 
-export default { routes }
-
 // In component usage
- <DefaultLink :to="{ name: route.routes.home.name }" />
+ <DefaultLink :to="{ name: routes.home.name }" />
 ```
 
 ### Constants/types

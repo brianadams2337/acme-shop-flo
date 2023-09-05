@@ -1,17 +1,13 @@
 <template>
   <ul>
-    <li v-for="item in items" :key="item.name" data-test-id="sorting-option">
+    <li v-for="item in listItems" :key="item.name" data-test-id="sorting-option">
       <DefaultLink
         type="whisper"
         :only-exact-active="true"
         :class="{
           'font-bold text-gray-800': item.name === selected,
         }"
-        :to="{
-          name,
-          params: { ...$route.params },
-          query: { ...$route.query, sort: item.query },
-        }"
+        :to="item.target"
         @click="emit('click:item', item)">
         {{ $t(`sorting_select.${item.name}`) }}
       </DefaultLink>
@@ -24,8 +20,8 @@ import { SortValue } from '@scayle/storefront-nuxt'
 const route = useRoute()
 const baseName = useRouteBaseName()
 
-const name = computed(() => baseName(route))
-defineProps({
+
+const props = defineProps({
   items: {
     type: Array as PropType<SortValue[]>,
     required: true,
@@ -34,6 +30,17 @@ defineProps({
     type: String,
     default: '',
   },
+})
+
+const listItems = computed(() => {
+  return props.items.map((item) => ({
+    ...item,
+    target: {
+      name: baseName(route),
+      params: { ...route.params },
+      query: { ...route.query, sort: item.query },
+    },
+  }))
 })
 
 const emit = defineEmits<{

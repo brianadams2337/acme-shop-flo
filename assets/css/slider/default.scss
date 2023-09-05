@@ -1,28 +1,23 @@
-/* stylelint-disable */
 @import 'triangle';
+
 $themeColor: #2d2c2f !default;
 $disabledOpacity: 0.5 !default;
-
 $bgColor: #e5e5e9 !default;
 $railBorderRadius: 15px !default;
-
-$dotShadow: 0.5px 0.5px 2px 1px rgba(0, 0, 0, 0.32) !default;
-$dotShadowFocus: 0px 0px 1px 2px rgba($themeColor, 0.36) !default;
-$dotBgColor: #fff !default;
-$dotBgColorDisable: #ccc !default;
+$dotShadow: 0.5px 0.5px 2px 1px rgb(0 0 0 / 0.32) !default;
+$dotShadowFocus: 0 0 1px 2px rgba($themeColor, 0.36) !default;
+$dotBgColor: #ffffff !default;
+$dotBgColorDisable: #cccccc !default;
 $dotBorderRadius: 50% !default;
-
 $tooltipBgColor: $themeColor !default;
-$tooltipColor: #fff !default;
+$tooltipColor: #ffffff !default;
 $tooltipBorderRadius: 5px !default;
 $tooltipPadding: 2px 5px !default;
 $tooltipMinWidth: 20px !default;
 $tooltipArrow: 10px !default;
 $tooltipFontSize: 14px !default;
-
 $stepBorderRadius: 50% !default;
-$stepBgColor: rgba(0, 0, 0, 0.16) !default;
-
+$stepBgColor: rgb(0 0 0 / 0.16) !default;
 $labelFontSize: 14px !default;
 
 /* component style */
@@ -60,16 +55,18 @@ $labelFontSize: 14px !default;
     border-radius: $stepBorderRadius;
     background-color: $stepBgColor;
 
+/*
     &-active {
-    }
+    } */
   }
 
   @at-root &-label {
     font-size: $labelFontSize;
     white-space: nowrap;
 
+/*
     &-active {
-    }
+    } */
   }
 }
 
@@ -87,6 +84,7 @@ $labelFontSize: 14px !default;
     @at-root &-focus {
       box-shadow: $dotShadowFocus;
     }
+
     @at-root &-disabled {
       cursor: not-allowed;
       background-color: $dotBgColorDisable;
@@ -105,16 +103,18 @@ $labelFontSize: 14px !default;
       border-color: $tooltipBgColor;
       background-color: $tooltipBgColor;
       box-sizing: content-box;
+
       @include arrow($tooltipArrow, inherit);
     }
   }
 
   @at-root &-tooltip-wrapper {
     opacity: 0;
+    /* stylelint-disable-next-line plugin/no-low-performance-animation-properties */
     transition: all 0.3s;
+
     @at-root &-show {
       opacity: 1;
     }
   }
 }
-/* stylelint-enable */

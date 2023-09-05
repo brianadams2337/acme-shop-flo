@@ -40,7 +40,8 @@
 </template>
 
 <script setup lang="ts">
-type SlideType = 'default' | 'fromBottom'
+import { SlideInType } from '~/constants/ui';
+
 
 const props = defineProps({
   name: {
@@ -51,10 +52,10 @@ const props = defineProps({
     type: String,
     default: '',
   },
-  slideType: {
-    type: String as PropType<SlideType>,
-    default: 'default',
-    validator: (val: string) => ['default', 'fromBottom'].includes(val),
+  slideType: { 
+    type: String as PropType<SlideInType>,
+    default: SlideInType.DEFAULT,
+    validator: (val: SlideInType) => Object.values(SlideInType).includes(val),
   },
 })
 
@@ -69,14 +70,14 @@ type SlideTypeClasses = {
   leaveToClasses: string
 }
 
-const slideTypes: Record<SlideType, SlideTypeClasses> = {
-  default: {
+const slideTypes: Record<SlideInType, SlideTypeClasses> = {
+  [SlideInType.DEFAULT]: {
     enterClasses: 'translate-y-full xl:translate-y-0 xl:translate-x-full',
     enterToClasses: 'translate-y-0 xl:translate-x-0',
     leaveClasses: 'translate-y-0 xl:translate-x-0',
     leaveToClasses: 'translate-y-full xl:translate-y-0 xl:translate-x-full',
   },
-  fromBottom: {
+  [SlideInType.FROM_BOTTOM]: {
     enterClasses: 'translate-y-full',
     enterToClasses: 'translate-y-0',
     leaveClasses: 'translate-y-0',

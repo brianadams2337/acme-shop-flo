@@ -12,8 +12,8 @@
         class="mb-4 px-12 !text-xl !font-bold"
         only-exact-active
         :to="rootCategory.path">
-        {{ rootCategory.name }}</DefaultLink
-      >
+        {{ rootCategory.name }}
+      </DefaultLink>
       <ul
         v-if="'length' in categories && categories.length"
         class="my-4 md:mt-0">
@@ -24,8 +24,8 @@
           :class="{ 'text-pink-neon': category.path === '/sale' }"
           @click="emit('click:navigationItem')">
           <DefaultLink class="text-base" :to="category.path">
-            {{ category.name }}</DefaultLink
-          >
+            {{ category.name }}
+          </DefaultLink>
           <ul
             v-if="showNestedCategories && category.children?.length"
             class="my-4">
@@ -34,8 +34,8 @@
               :key="`side_navigation_list_item_${child.id}`"
               class="mb-3 ml-3 last:mb-0">
               <DefaultLink class="!text-sm" :to="child.path">
-                {{ child.name }}</DefaultLink
-              >
+                {{ child.name }}
+              </DefaultLink>
             </li>
           </ul>
         </li>
@@ -45,8 +45,8 @@
         class="px-12 !text-xl text-pink-neon"
         only-exact-active
         to="/sale">
-        Sale</DefaultLink
-      >
+        Sale
+      </DefaultLink>
     </div>
   </div>
 </template>

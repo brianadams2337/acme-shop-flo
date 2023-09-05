@@ -15,18 +15,14 @@
       v-if="limit != null && !showAll && items.length > limit"
       size="sm"
       type="ghost"
-      class="text-secondary mr-auto py-0 text-xs font-semibold"
+      class="mr-auto py-0 text-xs font-semibold text-secondary"
       @click="showAll = true">
       {{ $t('filter.show_all') }}
     </AppButton>
   </div>
 </template>
 
-<script setup lang="ts">
-type Item = {
-  value: any
-  [key: string]: any
-}
+<script setup lang="ts" generic="Item extends { value: string | number; [key: string]: any }">
 
 const props = defineProps({
   items: {

@@ -26,6 +26,7 @@
     "@nuxtjs/tailwindcss": "6.8.0",
     "@scayle/eslint-config-storefront": "^3.2.3",
     "@scayle/prettier-config-storefront": "^2.0.1",
+    "@types/color": "^3.0.4",
     "@types/node": "^18.17.3",
     "autoprefixer": "10.4.15",
     "cypress": "12.17.4",

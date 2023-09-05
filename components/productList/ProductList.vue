@@ -5,11 +5,7 @@
         v-for="index in 20"
         :key="`product-loading-${index}`"
         type="custom"
-        :class="{
-          'col-span-6': columns === 2,
-          'col-span-4': columns === 3,
-          'col-span-3': columns === 4,
-        }" />
+        :class="columnClasses" />
     </slot>
 
     <template v-else>
@@ -27,11 +23,7 @@
           <ProductCard
             :key="`product-${product.id}`"
             class="mb-7"
-            :class="{
-              'col-span-6': columns === 2,
-              'col-span-4': columns === 3,
-              'col-span-3': columns === 4,
-            }"
+            :class="columnClasses"
             data-test-id="product-item"
             :index="index"
             :product="product"
@@ -41,30 +33,7 @@
             @click:product="$emit('click:product', product, index)"
             @intersect:product="collectRowIntersection(index)">
             <template #header-badge>
-              <div class="flex h-max w-max flex-col">
-                <ProductBadge
-                  v-if="isProductSustainable(product)"
-                  badge-label="sustainable" />
-                <ProductBadge v-if="product.isNew" badge-label="new" />
-                <ProductBadge
-                  v-for="(campaign, idx) in getSalesRelativeAmountByCategory(
-                    product,
-                    'campaign',
-                  )"
-                  :key="`campaign-${idx}`"
-                  class="w-max bg-[#ff6e17]"
-                  :badge-label="`-${campaign.amount.relative * 100}% EXTRA`"
-                  :translate="false" />
-                <ProductBadge
-                  v-for="(sale, idx) in getSalesRelativeAmountByCategory(
-                    product,
-                    'sale',
-                  )"
-                  :key="`sale-${idx}`"
-                  class="w-max bg-red-500"
-                  :badge-label="`-${sale.amount.relative * 100}%`"
-                  :translate="false" />
-              </div>
+              <ProductListHeaderBadges :product="product" />
             </template>
           </ProductCard>
         </NuxtLazyHydrate>
@@ -113,6 +82,12 @@ const columns = computed(() =>
     ? 3
     : 2,
 )
+
+const columnClasses = computed(() => ({
+  'col-span-6': columns.value === 2,
+  'col-span-4': columns.value === 3,
+  'col-span-3': columns.value === 4,
+}))
 
 const _getRowByIndex = (index: number) =>
   getRowByIndex(index, {

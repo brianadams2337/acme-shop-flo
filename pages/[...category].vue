@@ -28,7 +28,6 @@
             class="mt-2 flex w-full flex-col justify-between space-y-2 md:flex-row">
             <ProductQuickFilters
               :filters="quickFilters"
-              :is-active-filter="isActiveFilter"
               :loading="filtersStatus === 'pending'"
               :total-count="unfilteredCount"
               @click:selected-filter="applyFilter($event, true)" />
@@ -51,7 +50,7 @@
         </div>
         <ProductList
           :loading="productsStatus === 'pending'"
-          :per-page="productsPerPage"
+          :per-page="PRODUCTS_PER_PAGE"
           :products="products"
           :refreshing="productsStatus === 'pending'"
           class="mt-8 grid w-auto grid-cols-12 gap-1"
@@ -80,12 +79,11 @@
           v-if="filters"
           :active-filters="activeFilters"
           :filters="filters"
-          :is-active-filter="isActiveFilter"
           :filtered-count="filteredProductsCount"
           :unfiltered-count="unfilteredCount"
           :fetching-filtered-count="productCountStatus === 'pending'"
           @filter:apply="applyFilter"
-          @filter:stateChanged="updateFilterCount" />
+          @filter:state-changed="updateFilterCount" />
       </div>
     </div>
   </PageContent>
@@ -100,13 +98,12 @@ import {
   groupFilterableValuesByKey,
 } from '@scayle/storefront-nuxt'
 import { sustainabilityAttributes } from '~/constants/attributes'
-import {} from '#components'
 
 // const listingMetaData = {
 //   name: 'Category Product List',
 //   id: 'CategoryProductList',
 // }
-const productsPerPage = 24
+const PRODUCTS_PER_PAGE = 24
 
 const viewport = useViewport()
 
@@ -123,7 +120,7 @@ const categoryPath = computed(() => {
 
 const { toggle: toggleFilter } = useSlideIn('FilterSlideIn')
 
-const includedFilters = ['sale', 'isNew', 'styleGroup']
+const includedQuickFilters = ['sale', 'isNew', 'styleGroup']
 const DEFAULT_SORTING_KEY = 'dateNewest'
 const {
   products,
@@ -168,7 +165,7 @@ const {
       },
     },
   },
-  includedFilters,
+  includedFilters: includedQuickFilters,
 })
 // TODO CMS
 // const cms = useCms<SbListingPage>(`ListingPage-${params.value.pathMatch}`)
@@ -215,7 +212,7 @@ const fetchParameters = computed(() => ({
     ...productConditions?.value?.where,
     term: term.value.toString(),
   },
-  perPage: productsPerPage,
+  perPage: PRODUCTS_PER_PAGE,
   cache: {
     ttl: 1000,
     cacheKeyPrefix: `PLP:${categoryPath}`,
@@ -297,9 +294,9 @@ const parseAndPreserveAttributeFilters = () => {
   return attributeFilters
 }
 
-const quickFilters: Ref<{ key: string }[]> = computed(() =>
+const quickFilters = computed(() =>
   filters.value
-    ? groupFilterableValuesByKey(filters.value, includedFilters).filter(
+    ? groupFilterableValuesByKey(filters.value, includedQuickFilters).filter(
         (filter) => !!filter.count,
       )
     : [],

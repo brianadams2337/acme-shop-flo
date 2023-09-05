@@ -1,11 +1,10 @@
 <template>
   <HorizontalItemsDivider
     v-if="breadcrumbs.length"
-    :items="breadcrumbs"
-    align-items="start">
+    :items="breadcrumbs">
     <template #default="{ items }">
       <template
-        v-for="(link, idx) in asCrumbs(items)"
+        v-for="(link, idx) in items"
         :key="`breadcrumb-${idx}`">
         <DefaultLink
           :to="link.to"
@@ -33,7 +32,7 @@
 
 <script setup lang="ts">
 import { getBreadcrumbsFromPath } from '@scayle/storefront-nuxt'
-import type { BreadcrumbItem } from '@scayle/storefront-nuxt'
+
 const route = useRoute()
 const currentShop = useCurrentShop()
 
@@ -45,8 +44,6 @@ const isActive = (url: string) => {
   const { isExactActive } = useLink({ to: url })
   return isExactActive.value
 }
-
-const asCrumbs = (items: any) => items as BreadcrumbItem[]
 
 const showDividerTag = (index: number, arrayLength: number) => {
   return index >= 0 && arrayLength > 1 && index < arrayLength - 1

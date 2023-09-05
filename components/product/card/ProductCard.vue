@@ -4,10 +4,10 @@
     :class="{ 'animate-pulse': loading }"
     class="group relative">
     <slot>
-      <!-- TODO: Implement intersection observer component: -->
-      <!-- https://vueuse.org/core/useIntersectionObserver/ -->
-      <!-- <Intersect :threshold="0.5" @enter="emit('intersect:product', id)"> -->
-      <article :id="`product-${product.id}`" class="flex h-full flex-col">
+      <article
+        :id="`product-${product.id}`" 
+        ref="article"
+        class="flex h-full flex-col">
         <slot name="header">
           <div
             class="group aspect-h-4 aspect-w-3 relative flex max-h-md items-center justify-center bg-gray-200"
@@ -229,10 +229,18 @@ const headerActionsClass = computed(() => ({
 }))
 
 const asProductColor = (value: Value) => value as ProductColor
+
 const emit = defineEmits<{
   (e: 'intersect:product', value: number): void
   (e: 'productimage:mouseover'): void
   (e: 'productimage:mouseleave'): void
   (e: 'click:product'): void
 }>()
+
+const article = ref(null)
+
+useIntersectionObserver(article, () => {
+  emit('intersect:product', props.product.id)
+}, { threshold: [0, 0.2]})
+
 </script>

@@ -9,8 +9,8 @@
       </slot>
     </template>
     <template v-else>
-      <slot name="body" v-bind="{ totalCount, isActiveFilter }">
-        <slot name="default" v-bind="{ totalCount, isActiveFilter }">
+      <slot name="body" v-bind="{ totalCount }">
+        <slot name="default" v-bind="{ totalCount }">
           <AppButton
             class="text-sm"
             data-test-id="totalCount"
@@ -23,14 +23,12 @@
             </slot>
           </AppButton>
         </slot>
-
         <slot
           v-for="(filter, idx) in filters"
           name="buttons"
           v-bind="{
             filter,
             totalCount,
-            isActiveFilter,
           }">
           <AppButton
             :key="idx"
@@ -50,22 +48,24 @@
 </template>
 
 <script setup lang="ts">
+import { TransformedFilter } from '@scayle/storefront-nuxt';
+
 defineProps({
   loading: {
     type: Boolean,
     default: false,
   },
   filters: {
-    type: Array,
+    type: Array<TransformedFilter>,
     default: () => [],
   },
   totalCount: {
     type: Number,
     default: 0,
   },
-  isActiveFilter: {
-    type: Function as PropType<(filter?: any) => boolean>,
-    default: () => false,
+  activeFilters: {
+    type: Object as PropType<Record<string, any>>,
+    default: () => {},
   },
 })
 

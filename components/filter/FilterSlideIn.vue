@@ -1,13 +1,8 @@
 <template>
   <SlideIn
     name="FilterSlideIn"
-    slide-class="mt-[112px] border-t border-l border-primary xl:inset-y-0"
-    @open="
-      () => {
-        setStateFromUrlParams()
-        trackFilterFlyout('open', 'true')
-      }
-    "
+    slide-class="mt-[7rem] border-t border-l border-primary xl:inset-y-0"
+    @open="onSlideInOpen"
     @close="trackFilterFlyout('close', 'true')">
     <template #slideInHeader="{ toggle: toggleItem }">
       <div class="flex w-full items-center justify-between">
@@ -93,8 +88,8 @@
                 <ColorChip
                   data-test-id="filter-color-circle"
                   :color="{
-                    id: item.value,
-                    value: item.value,
+                    id: +item.value,
+                    value: `${item.value}`,
                     label: item.displayName,
                   }"
                   class="h-5 w-5"
@@ -175,10 +170,6 @@ const props = defineProps({
     type: Object as PropType<Record<string, any>>,
     default: () => {},
   },
-  isActiveFilter: {
-    type: Function as PropType<() => boolean>,
-    default: () => false,
-  },
   filteredCount: {
     type: Number,
     default: 0,
@@ -195,7 +186,7 @@ const props = defineProps({
 
 const emit = defineEmits([
   'filter:apply',
-  'filter:stateChanged',
+  'filter:state-changed',
   'filter:reset',
 ])
 
@@ -214,7 +205,8 @@ interface FilterState {
 }
 
 const availableFilterValues = computed(() =>
-  getGroupedFilterableValues(supportedFilters, filterableValues.value),
+// TODO fix in core
+  getGroupedFilterableValues(supportedFilters, filterableValues.value) as Record<string, TransformedFilter[]>,
 )
 
 const minPrice = computed(() =>
@@ -237,7 +229,7 @@ const initialState = computed<FilterState>(() => ({
 }))
 
 // user's selected conditions
-const state = reactive(useClone(initialState.value))
+const state = reactive(useClone(initialState.value)) as FilterState
 
 const setActiveFiltersInState = (filters: TransformedFilter[]) => {
   /**
@@ -291,7 +283,7 @@ const applyFilters = () => {
 }
 
 const debouncedStateChangedEvent = useDebounce(
-  () => emitFilterEvent('filter:stateChanged'),
+  () => emitFilterEvent('filter:state-changed'),
   50,
 )
 
@@ -299,7 +291,7 @@ watch(state, () => {
   debouncedStateChangedEvent()
 })
 
-const emitFilterEvent = (event: 'filter:apply' | 'filter:stateChanged') => {
+const emitFilterEvent = (event: 'filter:apply' | 'filter:state-changed') => {
   emit(event, {
     ...transformStateToFilters(useOmit(state, ['prices', 'sale'])),
     ...(priceChanged.value && transformMinAndMaxPriceToFilter(state.prices)),
@@ -327,4 +319,9 @@ const isSaleActive = computed(
     (availableFilterValues.value.sale || []).length &&
     !!availableFilterValues.value.sale[0].count,
 )
+
+const onSlideInOpen = () => {
+  setStateFromUrlParams()
+  trackFilterFlyout('open', 'true')
+}
 </script>

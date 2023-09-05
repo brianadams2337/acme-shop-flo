@@ -1,22 +1,24 @@
-/* stylelint-disable */
+
 @mixin triangle($size, $color, $direction) {
   height: 0;
   width: 0;
-  @if ($direction==top) or
-    ($direction==bottom) or
-    ($direction==right) or
-    ($direction==left)
+
+  @if ($direction == top) or
+    ($direction == bottom) or
+    ($direction == right) or
+    ($direction == left)
   {
     border-color: transparent;
     border-style: solid;
     border-width: $size * 0.5;
-    @if $direction==top {
+
+    @if $direction == top {
       border-bottom-color: $color;
-    } @else if $direction==right {
+    } @else if $direction == right {
       border-left-color: $color;
-    } @else if $direction==bottom {
+    } @else if $direction == bottom {
       border-top-color: $color;
-    } @else if $direction==left {
+    } @else if $direction == left {
       border-right-color: $color;
     }
   }
@@ -33,6 +35,7 @@
       top: 100%;
       left: 50%;
       transform: translate(-50%, 0);
+
       @include triangle($size, $color, bottom);
     }
   }
@@ -42,6 +45,7 @@
       bottom: 100%;
       left: 50%;
       transform: translate(-50%, 0);
+
       @include triangle($size, $color, top);
     }
   }
@@ -51,6 +55,7 @@
       left: 100%;
       top: 50%;
       transform: translate(0, -50%);
+
       @include triangle($size, $color, right);
     }
   }
@@ -60,8 +65,8 @@
       right: 100%;
       top: 50%;
       transform: translate(0, -50%);
+
       @include triangle($size, $color, left);
     }
   }
 }
-/* stylelint-enable */

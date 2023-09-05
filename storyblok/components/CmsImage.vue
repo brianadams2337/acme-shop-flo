@@ -1,6 +1,6 @@
 <template>
   <div v-editable="blok">
-    <NuxtImg
+    <NuxtPicture
       v-if="imageSource?.src"
       ref="element"
       provider="storyblok"

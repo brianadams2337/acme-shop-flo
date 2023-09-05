@@ -66,5 +66,4 @@ defineProps({
 })
 
 const emit = defineEmits(['intersect:product'])
-const sm = ref(false)
 </script>

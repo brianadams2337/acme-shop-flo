@@ -17,7 +17,7 @@
     </div>
     <div class="mt-4 flex flex-col">
       <div
-        class="text-2xs pb-1 font-bold leading-4 sm:pb-0 sm:text-xs sm:leading-6">
+        class="pb-1 text-2xs font-bold leading-4 sm:pb-0 sm:text-xs sm:leading-6">
         {{ blok.topline || '&nbsp;' }}
       </div>
       <Headline

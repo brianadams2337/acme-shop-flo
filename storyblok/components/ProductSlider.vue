@@ -66,28 +66,6 @@ const productIds = computed(
   () => props.blok.product_ids?.split(',').map((id: string) => parseInt(id)),
 )
 
-const fetchParams = {
-  ids: productIds.value || [],
-  with: {
-    attributes: {
-      withKey: ['color', 'brand', 'name'],
-    },
-    variants: {
-      attributes: {
-        withKey: ['price', 'size'],
-      },
-      lowestPriorPrice: true,
-    },
-    images: {
-      attributes: {
-        withKey: ['imageType', 'imageView', 'imageBackground', 'imageKind'],
-      },
-    },
-    priceRange: true,
-    lowestPriorPrice: true,
-  },
-}
-
 const { data, refresh, pending } = await useProductsByIds({
   ids: productIds.value || [],
   with: {
@@ -184,32 +162,32 @@ onMounted(() => refresh())
 
 // const columns = computed(() => (md.value ? 5 : 2))
 
-const trackIntersection = ({
-  product,
-  index,
-}: {
-  product: any
-  index: number
-}) => {
-  //   const isTracked =
-  // trackingCollector.value.findIndex((p) => p.id === product.id) !== -1
-  //   const isFirstItemInRow = isFirstIndexOfRow(index, columns.value)
-  // Threat slider as a special case of product list, track all interesected items at once
-  // But instead of checking is row tracked, check per product
-  //   if (isFirstItemInRow && !isTracked) {
-  //     const itemsInSliderRow = [...(data.value || [])]
-  //       .slice(index, index + columns.value)
-  //       .map((item, idx) => ({ ...item, index: index + idx }))
-  //     trackViewItemList({
-  //       items: itemsInSliderRow,
-  //       listingMetaData,
-  //       source: `${
-  //         route.value.fullPath === '/' ? 'home' : route.value.name
-  //       }|ProductSlider|${props.blok.headline}`,
-  //     })
-  //     trackingCollector.value.push(...itemsInSliderRow)
-  //   }
-}
+// const trackIntersection = ({
+//   product,
+//   index,
+// }: {
+//   product: any
+//   index: number
+// }) => {
+//   const isTracked =
+// trackingCollector.value.findIndex((p) => p.id === product.id) !== -1
+//   const isFirstItemInRow = isFirstIndexOfRow(index, columns.value)
+// Threat slider as a special case of product list, track all interesected items at once
+// But instead of checking is row tracked, check per product
+//   if (isFirstItemInRow && !isTracked) {
+//     const itemsInSliderRow = [...(data.value || [])]
+//       .slice(index, index + columns.value)
+//       .map((item, idx) => ({ ...item, index: index + idx }))
+//     trackViewItemList({
+//       items: itemsInSliderRow,
+//       listingMetaData,
+//       source: `${
+//         route.value.fullPath === '/' ? 'home' : route.value.name
+//       }|ProductSlider|${props.blok.headline}`,
+//     })
+//     trackingCollector.value.push(...itemsInSliderRow)
+//   }
+// }
 
 const products = computed(() => data.value)
 </script>

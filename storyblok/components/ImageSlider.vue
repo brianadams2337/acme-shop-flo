@@ -11,7 +11,7 @@
     </div>
     <HorizontalItemsSlider
       with-arrows
-      class="scrollbar-hide mt-4 box-border flex overflow-x-auto overflow-y-hidden">
+      class="mt-4 box-border flex overflow-x-auto overflow-y-hidden scrollbar-hide">
       <component
         :is="entry.component"
         v-for="entry in blok.slides"

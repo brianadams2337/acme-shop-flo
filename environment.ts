@@ -32,6 +32,7 @@ export default cleanEnv(
     CHECKOUT_HOST: str({ default: '' }),
     CHECKOUT_TOKEN_1001: str(),
     CHECKOUT_SECRET_1001: str(),
+    CHECKOUT_USER_1001: str(),
 
     GOOGLE_TAG_MANAGER_ID: str({ default: '' }),
 

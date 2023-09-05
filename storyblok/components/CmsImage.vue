@@ -36,6 +36,7 @@ const props = defineProps({
   },
 })
 
+// TODO Wire up tracking & breakpoint composables
 // const { trackPromotion } = useTrackingEvents()
 // const { md } = useBreakpoints()
 const { sanitize } = useStoryblokImageSanitizer()
@@ -50,7 +51,7 @@ const element = ref(null)
 //   element,
 //   ([{ isIntersecting }]) => {
 //     if (isIntersecting && props.blok.promotion_id) {
-//       trackPromotion('view_promotion', props.blok)
+//       // trackPromotion('view_promotion', props.blok)
 //       stop()
 //     }
 //   },

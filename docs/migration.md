@@ -153,11 +153,74 @@ export type Item = { label: string; value: string }
  <RadioGroup v-model="gender" :items="genders" title="Gender" />
 ```
 
-### Vue-slick-carousel replaced with Swiper
+### `vue-slick-carousel` replaced with `Swiper`
 
-We are moving away from the vue-slick-carousel in favor of Swiper.
-Nuxt has a module for swiper which is easy to integrate and configure and supports SSR.
-All details related to configurations can be found at [Swiper Docs](https://nuxt.com/modules/swiper)
+Previously for our slide show / carousel components we used vue-slick-carousel. We are now moving towards using `Swiper`. Swiper is available as a nuxt module built on top of swiper.js .There no need to create a custom plugin since the nuxt module is sufficient for our usage.
+
+To migrate the following steps are needed:
+
+#### **Module Installation**
+
+```bash
+yarn add nuxt-swiper
+```
+
+#### **Module Configuration**
+
+Once installed you need to add this module to nuxt.config.ts and provide some configurations
+
+```ts
+// nuxt.config.ts
+modules: [
+  ...,
+    'nuxt-swiper',
+  ],
+
+```
+
+#### **Module Options**
+
+We are using smaller configuration files to provide module options, but this can also be done within the nuxt.config.ts file is so preferred. In this example I am taking the dedicated file into consideration.
+
+```ts
+// config/swiper.ts
+export default {
+  prefix: 'Swiper',
+  modules: ['navigation', 'autoplay', 'pagination'],
+}
+```
+
+The `Prefix` option can be used to provide a custom prefix and will change the module names from `Swiper[ModuleName]` to `MyPrefix[ModuleName]` for example: `SwiperNavigation` would change to `MyPrefixNavigation` in the component usage.
+
+The `modules` option can be used to configure what extra functionalities you want with your swiper instance. A full list can be found [here](https://github.com/cpreston321/nuxt-swiper#usage)
+
+#### Usage
+
+Once swiper has been correctly configured the components `<Swiper>` & `<SwiperSlide>` will be auto-imported and available for usage. Your custom slide needs to be wrapped with the `<SwiperSlide>` component
+
+```html
+<template>
+  <Swiper :modules="[...]" loop autoplay navigation>
+    <SwiperSlide v-for="let slide in slides">
+      <!-- Slide content here -->
+    </SwiperSlide>
+  </SwiperSlide>
+</template>
+```
+
+#### Lazy loading
+
+An Important note here is the Lazy loading module is no longer supported. Instead you can provide `<swiper-slide lazy=true>` and `<img loading="lazy" />` to lazy load images.
+
+```html
+<template>
+  <Swiper>
+    <SwiperSlide v-for="let slide in slides" lazy>
+      <img src="source" loading="lazy" />
+    </SwiperSlide>
+  </SwiperSlide>
+</template>
+```
 
 ### `radash` replaced with `nuxt-lodash`
 

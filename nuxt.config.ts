@@ -1,4 +1,6 @@
+import path from 'path'
 import { i18n, image, svgo, swiper, viewport, storefront } from './config'
+import environment from './environment'
 
 export default defineNuxtConfig({
   devtools: { enabled: true },
@@ -35,6 +37,12 @@ export default defineNuxtConfig({
   vite: {
     optimizeDeps: {
       include: ['@scayle/storefront-nuxt', '@scayle/storefront-core'],
+    },
+  },
+  devServer: {
+    https: {
+      key: path.resolve(__dirname, environment.HTTPS_KEY),
+      cert: path.resolve(__dirname, environment.HTTPS_CERT),
     },
   },
 })

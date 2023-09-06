@@ -1104,6 +1104,30 @@
     unimport "^3.2.0"
     untyped "^1.4.0"
 
+"@nuxt/kit@3.7.1":
+  version "3.7.1"
+  resolved "https://registry.yarnpkg.com/@nuxt/kit/-/kit-3.7.1.tgz#d93ac970e5b4c4e11ea2a1bb42a415075ef78817"
+  integrity sha512-8k4q+92qLz5z7RdSOKrEJIjM63xXBg0z/WhTtZgXv1R5ULZ77usdTMjQYhQ+Kgd1NMkpIXeKaAO6903xrSt53Q==
+  dependencies:
+    "@nuxt/schema" "3.7.1"
+    c12 "^1.4.2"
+    consola "^3.2.3"
+    defu "^6.1.2"
+    globby "^13.2.2"
+    hash-sum "^2.0.0"
+    ignore "^5.2.4"
+    jiti "^1.19.3"
+    knitwork "^1.0.0"
+    mlly "^1.4.2"
+    pathe "^1.1.1"
+    pkg-types "^1.0.3"
+    scule "^1.0.0"
+    semver "^7.5.4"
+    ufo "^1.3.0"
+    unctx "^2.3.1"
+    unimport "^3.3.0"
+    untyped "^1.4.0"
+
 "@nuxt/postcss8@^1.1.3":
   version "1.1.3"
   resolved "https://registry.yarnpkg.com/@nuxt/postcss8/-/postcss8-1.1.3.tgz#a7f8f6f2a664430bbdd3b175498eb693e0b1b351"
@@ -1132,6 +1156,22 @@
     std-env "^3.4.3"
     ufo "^1.3.0"
     unimport "^3.2.0"
+    untyped "^1.4.0"
+
+"@nuxt/schema@3.7.1":
+  version "3.7.1"
+  resolved "https://registry.yarnpkg.com/@nuxt/schema/-/schema-3.7.1.tgz#48e3ed5629d6f320c11bae94b0266d79f0add888"
+  integrity sha512-+0W/oos7Ktm3eTwQ/78PrcAObR0+yQzHIUzbQ7HgUnEEntRGVxp4hnfng5dmhvVjJqQvpuGZHa3yIS/g41vE6A==
+  dependencies:
+    "@nuxt/ui-templates" "^1.3.1"
+    defu "^6.1.2"
+    hookable "^5.5.3"
+    pathe "^1.1.1"
+    pkg-types "^1.0.3"
+    postcss-import-resolver "^2.0.0"
+    std-env "^3.4.3"
+    ufo "^1.3.0"
+    unimport "^3.3.0"
     untyped "^1.4.0"
 
 "@nuxt/telemetry@^2.4.1":
@@ -1513,6 +1553,15 @@
     typescript "^5.1.6"
     yaml-eslint-parser "^1.2.2"
 
+"@scayle/h3-session@0.2.0":
+  version "0.2.0"
+  resolved "https://gitlab.com/api/v4/projects/29746107/packages/npm/@scayle/h3-session/-/@scayle/h3-session-0.2.0.tgz#80396e5a0b234536bf4325c39d3282853403c79c"
+  integrity sha1-gDluWgsjRTa/QyXDnTKChTQDx5w=
+  dependencies:
+    defu "^6.1.2"
+    uncrypto "^0.1.3"
+    unstorage "^1.9.0"
+
 "@scayle/prettier-config-storefront@^2.0.1":
   version "2.0.1"
   resolved "https://gitlab.com/api/v4/projects/29746107/packages/npm/@scayle/prettier-config-storefront/-/@scayle/prettier-config-storefront-2.0.1.tgz#c6603156a6694f33266e728d691ed89fa242076b"
@@ -1541,19 +1590,22 @@
     ufo "^1.1.1"
     utility-types "^3.10.0"
 
-"@scayle/storefront-nuxt@7.7.0":
-  version "7.7.0"
-  resolved "https://gitlab.com/api/v4/projects/29746107/packages/npm/@scayle/storefront-nuxt/-/@scayle/storefront-nuxt-7.7.0.tgz#5ee1657e77bdb9667f389c694a11cb48635a738e"
-  integrity sha1-XuFlfne9uWZ/OJxpShHLSGNac44=
+"@scayle/storefront-nuxt@7.8.1":
+  version "7.8.1"
+  resolved "https://gitlab.com/api/v4/projects/29746107/packages/npm/@scayle/storefront-nuxt/-/@scayle/storefront-nuxt-7.8.1.tgz#0d00c491e48d5d2a242762d10e72d79d988656d9"
+  integrity sha1-DQDEkeSNXSokJ2LRDnLXnZiGVtk=
   dependencies:
-    "@nuxt/kit" "^3.6.5"
+    "@nuxt/kit" "3.7.1"
+    "@scayle/h3-session" "0.2.0"
     "@scayle/storefront-core" "7.12.0"
     "@vueuse/core" "^10.4.1"
     consola "^3.2.3"
     core-js "^3.32.1"
     defu "^6.1.2"
-    h3 "1.7.1"
+    h3 "1.8.1"
+    jose "^4.14.4"
     lodash-es "^4.17.21"
+    uncrypto "^0.1.3"
     vue-router "4.2.4"
 
 "@sideway/address@^4.1.3":
@@ -5193,20 +5245,7 @@ gzip-size@^7.0.0:
   dependencies:
     duplexer "^0.1.2"
 
-h3@1.7.1:
-  version "1.7.1"
-  resolved "https://registry.yarnpkg.com/h3/-/h3-1.7.1.tgz#fc9328adf5da1d29cbb2d97b81ae3dd9b426463e"
-  integrity sha512-A9V2NEDNHet7v1gCg7CMwerSigLi0SRbhTy7C3lGb0N4YKIpPmLDjedTUopqp4dnn7COHfqUjjaz3zbtz4QduA==
-  dependencies:
-    cookie-es "^1.0.0"
-    defu "^6.1.2"
-    destr "^2.0.0"
-    iron-webcrypto "^0.7.0"
-    radix3 "^1.0.1"
-    ufo "^1.1.2"
-    uncrypto "^0.1.3"
-
-h3@^1.6.6, h3@^1.7.1, h3@^1.8.0, h3@^1.8.1:
+h3@1.8.1, h3@^1.6.6, h3@^1.7.1, h3@^1.8.0, h3@^1.8.1:
   version "1.8.1"
   resolved "https://registry.yarnpkg.com/h3/-/h3-1.8.1.tgz#e36371407982b0a37475412d64697c521dd3ce43"
   integrity sha512-m5rFuu+5bpwBBHqqS0zexjK+Q8dhtFRvO9JXQG0RvSPL6QrIT6vv42vuBM22SLOgGMoZYsHk0y7VPidt9s+nkw==
@@ -6791,6 +6830,16 @@ mlly@^1.2.0, mlly@^1.3.0, mlly@^1.4.0, mlly@^1.4.1:
   version "1.4.1"
   resolved "https://registry.yarnpkg.com/mlly/-/mlly-1.4.1.tgz#7ab9cbb040bf8bd8205a0c341ce9acc3ae0c3a74"
   integrity sha512-SCDs78Q2o09jiZiE2WziwVBEqXQ02XkGdUy45cbJf+BpYRIjArXRJ1Wbowxkb+NaM9DWvS3UC9GiO/6eqvQ/pg==
+  dependencies:
+    acorn "^8.10.0"
+    pathe "^1.1.1"
+    pkg-types "^1.0.3"
+    ufo "^1.3.0"
+
+mlly@^1.4.2:
+  version "1.4.2"
+  resolved "https://registry.yarnpkg.com/mlly/-/mlly-1.4.2.tgz#7cf406aa319ff6563d25da6b36610a93f2a8007e"
+  integrity sha512-i/Ykufi2t1EZ6NaPLdfnZk2AX8cs0d+mTzVKuPfqPKPatxLApaBoxJQ9x1/uckXtrS/U5oisPMDkNs0yQTaBRg==
   dependencies:
     acorn "^8.10.0"
     pathe "^1.1.1"
@@ -9865,6 +9914,23 @@ unimport@^3.2.0:
     local-pkg "^0.4.3"
     magic-string "^0.30.3"
     mlly "^1.4.0"
+    pathe "^1.1.1"
+    pkg-types "^1.0.3"
+    scule "^1.0.0"
+    strip-literal "^1.3.0"
+    unplugin "^1.4.0"
+
+unimport@^3.3.0:
+  version "3.3.0"
+  resolved "https://registry.yarnpkg.com/unimport/-/unimport-3.3.0.tgz#46b0eb5f83fe5b3cd7e3004b0fae5cb589a6794a"
+  integrity sha512-3jhq3ZG5hFZzrWGDCpx83kjPzefP/EeuKkIO1T0MA4Zwj+dO/Og1mFvZ4aZ5WSDm0FVbbdVIRH1zKBG7c4wOpg==
+  dependencies:
+    "@rollup/pluginutils" "^5.0.4"
+    escape-string-regexp "^5.0.0"
+    fast-glob "^3.3.1"
+    local-pkg "^0.4.3"
+    magic-string "^0.30.3"
+    mlly "^1.4.1"
     pathe "^1.1.1"
     pkg-types "^1.0.3"
     scule "^1.0.0"

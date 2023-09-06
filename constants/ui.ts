@@ -86,3 +86,10 @@ export const CLASSES_FOR_LINK_TYPES: { [key: string]: string } = {
   quieter: 'text-xs font-medium text-gray-750 tracking-normal',
   quiet: 'text-sm font-semibold tracking-normal',
 }
+export const SlideInType = {
+  DEFAULT: 'default',
+  FROM_BOTTOM: 'fromBottom',
+}
+export type SlideInType = ValuesType<typeof SlideInType>
+
+/* eslint-enable @typescript-eslint/no-redeclare */

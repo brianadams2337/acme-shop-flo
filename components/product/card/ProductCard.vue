@@ -4,10 +4,10 @@
     :class="{ 'animate-pulse': loading }"
     class="group relative">
     <slot>
-      <!-- TODO: Implement intersection observer component: -->
-      <!-- https://vueuse.org/core/useIntersectionObserver/ -->
-      <!-- <Intersect :threshold="0.5" @enter="emit('intersect:product', id)"> -->
-      <article :id="`product-${product.id}`" class="flex h-full flex-col">
+      <article
+        :id="`product-${product.id}`"
+        ref="article"
+        class="flex h-full flex-col">
         <slot name="header">
           <div
             class="group aspect-h-4 aspect-w-3 relative flex max-h-md items-center justify-center bg-gray-200"
@@ -85,11 +85,11 @@
                   class="flex pb-1">
                   <template #item="{ item }">
                     <NuxtLink :to="getProductDetailRoute(product, item.id)">
-                      <!-- TODO: Implement color chip component -->
+ 
                       <ColorChip
                         v-if="item.colors.length"
                         data-test-id="product-card-color-circle"
-                        :color="item.colors[0]"
+                        :color="asProductColor(item.colors[0])" 
                         :size="colorChipSize"
                         :rounded="colorChipRoundedSize" />
                     </NuxtLink>
@@ -107,10 +107,12 @@
 
 <script setup lang="ts">
 import {
+  ProductColor,
   Product,
   getProductAndSiblingsColors,
   getProductSiblings,
   getFirstAttributeValue,
+  Value,
 } from '@scayle/storefront-nuxt'
 
 const props = defineProps({
@@ -211,7 +213,9 @@ const hoverImage = computed(() => {
   return modelImageOrFirstAvailable
 })
 
-const siblings = computed(() => getProductSiblings(props.product) || [])
+const siblings = computed(
+  () => getProductSiblings(props.product, 'color') || [],
+)
 
 const link = computed(() => getProductDetailRoute(props.product))
 
@@ -225,10 +229,22 @@ const headerActionsClass = computed(() => ({
     props.isWishlistCard && !shouldHoverImage && props.isAvailable,
 }))
 
+const asProductColor = (value: Value) => value as ProductColor
+
 const emit = defineEmits<{
   (e: 'intersect:product', value: number): void
   (e: 'productimage:mouseover'): void
   (e: 'productimage:mouseleave'): void
   (e: 'click:product'): void
 }>()
+
+const article = ref(null)
+
+useIntersectionObserver(
+  article,
+  () => {
+    emit('intersect:product', props.product.id)
+  },
+  { threshold: [0, 0.2] },
+)
 </script>

@@ -14,16 +14,12 @@
         "entries": {
           "type": "bloks",
           "restrict_components": true,
-          "component_whitelist": [
-            "AccordionEntry"
-          ]
+          "component_whitelist": ["AccordionEntry"]
         },
         "tab-afb0f8ff-f3e9-4753-a858-1e14773a0529": {
           "type": "tab",
           "display_name": "Settings",
-          "keys": [
-            "margin_top"
-          ],
+          "keys": ["margin_top"],
           "pos": 0
         },
         "margin_top": {
@@ -141,12 +137,7 @@
           "type": "richtext",
           "translatable": true,
           "customize_toolbar": true,
-          "toolbar": [
-            "bold",
-            "italic",
-            "underline",
-            "paragraph"
-          ],
+          "toolbar": ["bold", "italic", "underline", "paragraph"],
           "style_options": [
             {
               "value": "text-center",
@@ -164,9 +155,7 @@
           "type": "bloks",
           "maximum": "",
           "restrict_components": true,
-          "component_whitelist": [
-            "BannerLink"
-          ]
+          "component_whitelist": ["BannerLink"]
         },
         "tab-6b637a5d-c349-4e1d-8e4b-1ea0fb627809": {
           "type": "tab",
@@ -327,9 +316,7 @@
         "image": {
           "type": "bloks",
           "restrict_components": true,
-          "component_whitelist": [
-            "CmsImage"
-          ],
+          "component_whitelist": ["CmsImage"],
           "pos": 1,
           "required": true
         },
@@ -378,10 +365,7 @@
         "tab-accb501a-1a4e-4b29-87ae-1c1a3b2fa56c": {
           "type": "tab",
           "display_name": "Settings",
-          "keys": [
-            "margin_top",
-            ""
-          ],
+          "keys": ["margin_top", ""],
           "pos": 10
         },
         "margin_top": {
@@ -453,15 +437,11 @@
       "schema": {
         "desktop_image": {
           "type": "asset",
-          "filetypes": [
-            "images"
-          ]
+          "filetypes": ["images"]
         },
         "mobile_image": {
           "type": "asset",
-          "filetypes": [
-            "images"
-          ]
+          "filetypes": ["images"]
         },
         "tab-9f1239f1-fa1b-493d-8564-305f5a537194": {
           "type": "tab",
@@ -560,17 +540,13 @@
       "schema": {
         "teaser_image": {
           "type": "asset",
-          "filetypes": [
-            "images"
-          ],
+          "filetypes": ["images"],
           "pos": 0
         },
         "teaser_image_mobile": {
           "type": "asset",
           "pos": 1,
-          "filetypes": [
-            "images"
-          ]
+          "filetypes": ["images"]
         },
         "headline": {
           "type": "text",
@@ -596,9 +572,7 @@
         "tab-cee38d23-6238-49e6-8fd8-d7ef6d6326c5": {
           "type": "tab",
           "display_name": "Settings",
-          "keys": [
-            "SEO"
-          ],
+          "keys": ["SEO"],
           "pos": 5
         },
         "SEO": {
@@ -650,9 +624,7 @@
       "schema": {
         "image": {
           "type": "asset",
-          "filetypes": [
-            "images"
-          ],
+          "filetypes": ["images"],
           "required": true
         },
         "product_ids": {
@@ -692,9 +664,7 @@
         "tab-ee4e4087-a626-4501-9c59-9086db12a1bb": {
           "type": "tab",
           "display_name": "Settings",
-          "keys": [
-            "margin_top"
-          ],
+          "keys": ["margin_top"],
           "pos": 2
         },
         "margin_top": {
@@ -771,9 +741,7 @@
         "link_groups": {
           "type": "bloks",
           "restrict_components": true,
-          "component_whitelist": [
-            "LinkGroup"
-          ],
+          "component_whitelist": ["LinkGroup"],
           "pos": 2,
           "key": "link_groups"
         },
@@ -787,9 +755,7 @@
           "display_name": "",
           "restrict_type": "",
           "restrict_components": true,
-          "component_whitelist": [
-            "SocialMediaLink"
-          ],
+          "component_whitelist": ["SocialMediaLink"],
           "key": "social_media",
           "pos": 4
         }
@@ -981,16 +947,12 @@
         "slides": {
           "type": "bloks",
           "restrict_components": true,
-          "component_whitelist": [
-            "ImageSliderSlide"
-          ]
+          "component_whitelist": ["ImageSliderSlide"]
         },
         "tab-a1d851a8-9d77-4b49-9451-a10803de1467": {
           "type": "tab",
           "display_name": "Settings",
-          "keys": [
-            "margin_top"
-          ],
+          "keys": ["margin_top"],
           "pos": 0
         },
         "margin_top": {
@@ -1046,9 +1008,7 @@
       "schema": {
         "image": {
           "type": "asset",
-          "filetypes": [
-            "images"
-          ],
+          "filetypes": ["images"],
           "pos": 0,
           "required": true
         },
@@ -1186,9 +1146,7 @@
           "pos": 1,
           "restrict_type": "",
           "restrict_components": true,
-          "component_whitelist": [
-            "CmsImage"
-          ],
+          "component_whitelist": ["CmsImage"],
           "maximum": 1,
           "key": "image",
           "required": true
@@ -1211,13 +1169,7 @@
           "pos": 4,
           "translatable": false,
           "customize_toolbar": true,
-          "toolbar": [
-            "bold",
-            "italic",
-            "strike",
-            "underline",
-            "paragraph"
-          ],
+          "toolbar": ["bold", "italic", "strike", "underline", "paragraph"],
           "key": "text"
         },
         "cta": {
@@ -1259,12 +1211,7 @@
         },
         "tab-bdb219cf-dc9a-40ad-9378-e8879b9aa37e": {
           "display_name": "Settings",
-          "keys": [
-            "verticalAlign",
-            "horizontalAlign",
-            "justify",
-            "align"
-          ],
+          "keys": ["verticalAlign", "horizontalAlign", "justify", "align"],
           "pos": 8,
           "type": "tab",
           "key": "tab-bdb219cf-dc9a-40ad-9378-e8879b9aa37e"
@@ -1304,10 +1251,7 @@
         "tab-87264d94-414c-4d3d-a3c9-973f49c143ea": {
           "type": "tab",
           "display_name": "Advanced",
-          "keys": [
-            "open_new_tab",
-            "open_in_new_tab"
-          ],
+          "keys": ["open_new_tab", "open_in_new_tab"],
           "pos": 3
         },
         "open_in_new_tab": {
@@ -1343,9 +1287,7 @@
           "type": "bloks",
           "restrict_components": true,
           "restrict_type": "",
-          "component_whitelist": [
-            "Link"
-          ]
+          "component_whitelist": ["Link"]
         }
       },
       "image": null,
@@ -1371,20 +1313,12 @@
           "type": "bloks",
           "maximum": "",
           "restrict_components": true,
-          "component_whitelist": [
-            "Grid",
-            "Product",
-            "CmsImage"
-          ]
+          "component_whitelist": ["Grid", "Product", "CmsImage"]
         },
         "tab-8a78c5c1-719e-4503-abf0-4002d300aac6": {
           "type": "tab",
           "display_name": "Settings",
-          "keys": [
-            "is_containered",
-            "width",
-            "insert_in_row"
-          ],
+          "keys": ["is_containered", "width", "insert_in_row"],
           "pos": 0
         },
         "is_containered": {
@@ -1440,18 +1374,14 @@
       "schema": {
         "teaser_image": {
           "type": "asset",
-          "filetypes": [
-            "images"
-          ],
+          "filetypes": ["images"],
           "description": "Adds a Teaser at the beginning of the page",
           "pos": 0
         },
         "teaser_image_mobile": {
           "type": "asset",
           "pos": 1,
-          "filetypes": [
-            "images"
-          ]
+          "filetypes": ["images"]
         },
         "pre_listing_content": {
           "type": "bloks",
@@ -1462,17 +1392,13 @@
           "type": "bloks",
           "description": "Add disruptor elements to product listing ",
           "restrict_components": true,
-          "component_whitelist": [
-            "ListingDisruptor"
-          ],
+          "component_whitelist": ["ListingDisruptor"],
           "pos": 3
         },
         "tab-ad6dab39-b1b1-41b2-98c1-6343ebc2c186": {
           "type": "tab",
           "display_name": "Settings",
-          "keys": [
-            "SEO"
-          ],
+          "keys": ["SEO"],
           "pos": 0
         },
         "SEO": {
@@ -1539,19 +1465,14 @@
         "teaser_image": {
           "type": "asset",
           "pos": 0,
-          "filetypes": [
-            "images",
-            "videos"
-          ],
+          "filetypes": ["images", "videos"],
           "description": "used for lookbook overview page in the App",
           "required": false
         },
         "teaser_image_mobile": {
           "type": "asset",
           "pos": 1,
-          "filetypes": [
-            "images"
-          ]
+          "filetypes": ["images"]
         },
         "content": {
           "type": "bloks",
@@ -1566,9 +1487,7 @@
         "tab-2f7f5112-232e-4030-90ef-6f37569832ba": {
           "type": "tab",
           "display_name": "Settings",
-          "keys": [
-            "SEO"
-          ],
+          "keys": ["SEO"],
           "pos": 3
         },
         "SEO": {
@@ -1623,9 +1542,7 @@
         },
         "images": {
           "type": "multiasset",
-          "filetypes": [
-            "images"
-          ],
+          "filetypes": ["images"],
           "pos": 4,
           "translatable": true
         }
@@ -1692,9 +1609,7 @@
         "tab-54903665-2a8d-4e6e-a06a-36f27291f853": {
           "type": "tab",
           "display_name": "Settings",
-          "keys": [
-            "margin_top"
-          ],
+          "keys": ["margin_top"],
           "pos": 0
         },
         "margin_top": {
@@ -1752,30 +1667,20 @@
           "type": "bloks",
           "maximum": "1",
           "restrict_components": true,
-          "component_whitelist": [
-            "CmsImage"
-          ]
+          "component_whitelist": ["CmsImage"]
         },
         "tab-0287af66-29e6-4804-892d-f43218b2c2eb": {
           "type": "tab",
           "display_name": "Details Page",
-          "keys": [
-            "detail_images",
-            "title",
-            "product_ids"
-          ],
+          "keys": ["detail_images", "title", "product_ids"],
           "pos": 0
         },
         "detail_images": {
           "type": "bloks",
-          "filetypes": [
-            "images"
-          ],
+          "filetypes": ["images"],
           "maximum": "",
           "restrict_components": true,
-          "component_whitelist": [
-            "DetailImage"
-          ]
+          "component_whitelist": ["DetailImage"]
         },
         "title": {
           "type": "text"
@@ -1788,9 +1693,7 @@
         "tab-879fe632-b825-4d42-a314-4dfd71bc20aa": {
           "type": "tab",
           "display_name": "Settings",
-          "keys": [
-            "margin_top"
-          ],
+          "keys": ["margin_top"],
           "pos": 0
         },
         "margin_top": {
@@ -1846,23 +1749,14 @@
       "schema": {
         "image": {
           "type": "bloks",
-          "filetypes": [
-            "videos"
-          ],
+          "filetypes": ["videos"],
           "pos": 0,
           "restrict_components": true,
-          "component_whitelist": [
-            "CmsImage",
-            "Video"
-          ]
+          "component_whitelist": ["CmsImage", "Video"]
         },
         "tab-65e456a2-9865-47ec-bf50-3bd4841fe3ce": {
           "display_name": "Settings",
-          "keys": [
-            "is_dark",
-            "align",
-            "justify"
-          ],
+          "keys": ["is_dark", "align", "justify"],
           "pos": 0,
           "type": "tab"
         },
@@ -1964,18 +1858,14 @@
           "type": "bloks",
           "required": false,
           "restrict_components": true,
-          "component_whitelist": [
-            "Slide"
-          ],
+          "component_whitelist": ["Slide"],
           "filetypes": [],
           "pos": 1
         },
         "tab-c44a00ff-e006-4955-8328-11ee8705a18a": {
           "type": "tab",
           "display_name": "Settings",
-          "keys": [
-            "margin_top"
-          ],
+          "keys": ["margin_top"],
           "pos": 2
         },
         "margin_top": {
@@ -2095,9 +1985,7 @@
       "schema": {
         "image": {
           "type": "asset",
-          "filetypes": [
-            "images"
-          ]
+          "filetypes": ["images"]
         },
         "city": {
           "type": "text"
@@ -2126,9 +2014,7 @@
         "tab-ecfe6ee3-183d-4ed7-a843-0dcfc56c0a53": {
           "type": "tab",
           "display_name": "Settings",
-          "keys": [
-            "SEO"
-          ],
+          "keys": ["SEO"],
           "pos": 0
         },
         "SEO": {
@@ -2160,9 +2046,7 @@
         "teaser_image": {
           "type": "bloks",
           "restrict_components": true,
-          "component_whitelist": [
-            "CmsImage"
-          ],
+          "component_whitelist": ["CmsImage"],
           "maximum": "1",
           "required": true
         },
@@ -2173,9 +2057,7 @@
         "tab-f4767fca-54d6-4f6a-8418-c2df4f399a82": {
           "type": "tab",
           "display_name": "Settings",
-          "keys": [
-            "SEO"
-          ],
+          "keys": ["SEO"],
           "pos": 0
         },
         "SEO": {
@@ -2215,9 +2097,7 @@
           "display_name": "",
           "add_https": false,
           "default_value": "",
-          "filetypes": [
-            "images"
-          ]
+          "filetypes": ["images"]
         },
         "label": {
           "type": "text"
@@ -2252,9 +2132,7 @@
         },
         "image": {
           "type": "asset",
-          "filetypes": [
-            "images"
-          ]
+          "filetypes": ["images"]
         }
       },
       "image": null,
@@ -2357,24 +2235,18 @@
         },
         "video": {
           "type": "asset",
-          "filetypes": [
-            "videos"
-          ],
+          "filetypes": ["videos"],
           "pos": 5,
           "required": true
         },
         "preview_desktop_image": {
           "type": "asset",
-          "filetypes": [
-            "images"
-          ],
+          "filetypes": ["images"],
           "pos": 6
         },
         "preview_mobile_image": {
           "type": "asset",
-          "filetypes": [
-            "images"
-          ],
+          "filetypes": ["images"],
           "pos": 7
         },
         "tab-4c03723b-5909-4c17-a82d-29e0de4dcc29": {

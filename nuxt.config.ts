@@ -1,6 +1,6 @@
-import environment from './environment'
 import path from 'path'
-import { i18n, image, svgo, swiper, viewport, storefront } from './config' 
+import environment from './environment'
+import { i18n, image, svgo, swiper, viewport, storefront } from './config'
 
 export default defineNuxtConfig({
   devtools: { enabled: true },

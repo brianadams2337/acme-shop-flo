@@ -37,7 +37,7 @@ export default cleanEnv(
     GOOGLE_TAG_MANAGER_ID: str({ default: '' }),
 
     BASIC_AUTH: str({ default: '' }),
- 
+
     CAMPAIGN_KEY_PREFIX: str(),
 
     HTTPS_KEY: str({ default: '' }),

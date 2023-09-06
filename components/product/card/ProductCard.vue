@@ -85,11 +85,10 @@
                   class="flex pb-1">
                   <template #item="{ item }">
                     <NuxtLink :to="getProductDetailRoute(product, item.id)">
- 
                       <ColorChip
                         v-if="item.colors.length"
                         data-test-id="product-card-color-circle"
-                        :color="asProductColor(item.colors[0])" 
+                        :color="asProductColor(item.colors[0])"
                         :size="colorChipSize"
                         :rounded="colorChipRoundedSize" />
                     </NuxtLink>

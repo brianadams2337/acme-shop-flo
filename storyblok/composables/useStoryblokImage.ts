@@ -5,17 +5,16 @@ type SanitizedImage = {
   alt: string
 }
 
-// TODO remove this function once responsive utility is added
-const mockUseBreakPointsComposable = () => {
-  return { md: ref(true) }
+// TODO clean up, make this reactive
+const isMobile = () => {
+  const { isLessThan } = useViewport()
+  return isLessThan('md')
 }
 
 export const useStoryblokImageSanitizer = () => {
-  const { md } = mockUseBreakPointsComposable()
-
   const sanitize = (img: CmsImageStoryblok): SanitizedImage => {
     return {
-      src: img[!md.value ? 'mobile_image' : 'desktop_image']?.filename || '',
+      src: img[isMobile() ? 'mobile_image' : 'desktop_image']?.filename || '',
       alt: img?.desktop_image?.alt || '',
     }
   }
@@ -25,8 +24,6 @@ export const useStoryblokImageSanitizer = () => {
 }
 
 export function getTeaserImage(blok: any) {
-  const { md } = mockUseBreakPointsComposable()
-
   const sanitizedImage: SanitizedImage = reactive({
     src: '',
     alt: '',
@@ -35,7 +32,7 @@ export function getTeaserImage(blok: any) {
   const mobileImageProperty = 'teaser_image_mobile'
 
   if (blok) {
-    const image = blok[!md.value ? mobileImageProperty : desktopImageProperty]
+    const image = blok[isMobile() ? mobileImageProperty : desktopImageProperty]
     sanitizedImage.src = image?.filename || ''
     sanitizedImage.alt = image?.alt || image?.name || ''
   }

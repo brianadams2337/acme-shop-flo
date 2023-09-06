@@ -1,4 +1,5 @@
 <template>
+  <!-- TODO Bring back intersection observer -->
   <!-- <Intersect 
     :parent="$parent?.$el"
     root-margin="25px 100px 25px 100px"
@@ -48,9 +49,8 @@ const props = defineProps({
 })
 
 // const { trackPromotion } = useTrackingEvents()
-// const { sm } = useBreakpoints()
-
-const sm = ref(false)
+const { isLessThan } = useViewport()
+const isMobile = computed(() => isLessThan('md'))
 
 const element = ref(null)
 const isInViewport = ref(true)
@@ -73,5 +73,5 @@ const clickObserver = () => {
     // trackPromotion('select_promotion', props.blok)
   }
 }
-const headlineSize = computed(() => (sm.value ? 'xl' : '2xl'))
+const headlineSize = computed(() => (isMobile.value ? 'xl' : '2xl'))
 </script>

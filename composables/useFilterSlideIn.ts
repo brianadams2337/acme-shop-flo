@@ -158,7 +158,7 @@ const useFilterSlideIn = (
 
   const resetFilters = () => {
     Object.assign(state, useClone(initialState.value))
-    onFilterReset()
+    onFilterReset && onFilterReset()
   }
 
   const currentShop = useCurrentShop()

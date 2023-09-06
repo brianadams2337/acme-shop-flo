@@ -25,6 +25,9 @@ export default cleanEnv(
     BASIC_AUTH: str({ default: '' }),
 
     CAMPAIGN_KEY_PREFIX: str(),
+
+    HTTPS_KEY: str({ default: '' }),
+    HTTPS_CERT: str({ default: '' }),
   },
   {
     reporter: (options) => {

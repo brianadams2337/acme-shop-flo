@@ -68,22 +68,6 @@ export const ButtonType = {
 
 export type ButtonType = ValuesType<typeof ButtonType>
 
-export const DEFAULT_UI_SIZE_PROP = {
-  size: {
-    type: String as PropType<Size>,
-    default: 'md',
-    validator: (val: Size) => ['xl', 'lg', 'md', 'sm', 'xs'].includes(val),
-  },
-}
-
-export const CLASSES_FOR_LINK_TYPES: { [key: string]: string } = {
-  loud: 'font-bold',
-  'extra-loud': 'font-bold uppercase',
-  normal: 'font-semibold',
-  whisper: 'text-gray-700',
-  quieter: 'text-xs font-medium text-gray-750 tracking-normal',
-  quiet: 'text-sm font-semibold tracking-normal',
-}
 export const SlideInType = {
   DEFAULT: 'default',
   FROM_BOTTOM: 'fromBottom',

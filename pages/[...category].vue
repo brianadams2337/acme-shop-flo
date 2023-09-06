@@ -97,7 +97,7 @@ import {
   getSortingValues,
   groupFilterableValuesByKey,
 } from '@scayle/storefront-nuxt'
-import { sustainabilityAttributes } from '~/constants/attributes'
+import { sustainabilityAttributes } from '~/constants'
 
 // const listingMetaData = {
 //   name: 'Category Product List',

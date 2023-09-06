@@ -8,9 +8,8 @@ export const useStoryblokHelpers = () => {
     const isAllowedDraft = ['staging', 'integration', 'development']
     if (environment && isAllowedDraft.includes(environment)) {
       return isInEditorMode.value ? 'draft' : 'published'
-    } else {
-      return 'published'
     }
+    return 'published'
   }
 
   return {

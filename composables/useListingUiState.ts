@@ -1,12 +1,11 @@
+// TODO check why this is outside the composable
 const listingUiState = reactive({
   columns: 0,
 })
 
 export default () => {
-  // TODO wireup breakpoints
-  //   const { md } = useBreakpoints()
-  const md = ref(true)
-
+  const { isGreaterOrEquals } = useViewport()
+  const md = computed(() => isGreaterOrEquals('md'))
   if (listingUiState.columns === 0) {
     listingUiState.columns = !md.value ? 2 : 3
   }

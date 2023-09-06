@@ -13,7 +13,7 @@ defineProps({
   },
   target: {
     type: String as PropType<'_self' | '_blank' | '_parent' | '_top'>,
-    default: '',
+    default: '_self',
   },
 })
 </script>

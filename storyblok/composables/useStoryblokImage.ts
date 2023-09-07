@@ -1,0 +1,40 @@
+import { CmsImageStoryblok } from '../types/component-types-sb'
+
+type SanitizedImage = {
+  src: string
+  alt: string
+}
+
+// TODO clean up, make this reactive
+const isMobile = () => {
+  const { isLessThan } = useViewport()
+  return isLessThan('md')
+}
+
+export const useStoryblokImageSanitizer = () => {
+  const sanitize = (img: CmsImageStoryblok): SanitizedImage => {
+    return {
+      src: img[isMobile() ? 'mobile_image' : 'desktop_image']?.filename || '',
+      alt: img?.desktop_image?.alt || '',
+    }
+  }
+  return {
+    sanitize,
+  }
+}
+
+export function getTeaserImage(blok: any) {
+  const sanitizedImage: SanitizedImage = reactive({
+    src: '',
+    alt: '',
+  })
+  const desktopImageProperty = 'teaser_image'
+  const mobileImageProperty = 'teaser_image_mobile'
+
+  if (blok) {
+    const image = blok[isMobile() ? mobileImageProperty : desktopImageProperty]
+    sanitizedImage.src = image?.filename || ''
+    sanitizedImage.alt = image?.alt || image?.name || ''
+  }
+  return sanitizedImage
+}

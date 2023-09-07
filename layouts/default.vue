@@ -12,6 +12,7 @@
       class="mb-4" />
     <ToastContainer />
     <slot />
+    <AppFooter />
   </div>
 </template>
 

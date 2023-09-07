@@ -1,6 +1,14 @@
 import path from 'path'
-import { i18n, image, svgo, swiper, viewport, storefront } from './config'
 import environment from './environment'
+import {
+  i18n,
+  image,
+  svgo,
+  swiper,
+  viewport,
+  storefront,
+  storyblok,
+} from './config'
 
 export default defineNuxtConfig({
   devtools: { enabled: true },
@@ -23,6 +31,7 @@ export default defineNuxtConfig({
     '@vueuse/nuxt',
     'nuxt-swiper',
     'nuxt-lodash',
+    '@storyblok/nuxt',
     'nuxt-viewport',
   ],
   storefront,
@@ -30,6 +39,7 @@ export default defineNuxtConfig({
   image,
   i18n,
   swiper,
+  storyblok,
   viewport,
   components: [
     { path: '~/components', pathPrefix: false, extensions: ['.vue'] },

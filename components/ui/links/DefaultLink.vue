@@ -20,7 +20,7 @@
 
 <script setup lang="ts">
 import { RouteLocationRaw } from '#vue-router'
-import { LinkVariant } from '~/constants/ui'
+import { LinkVariant } from '~/constants'
 
 const LinkTypeClass = {
   [LinkVariant.LOUD]: 'font-bold',

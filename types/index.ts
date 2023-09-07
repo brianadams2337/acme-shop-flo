@@ -8,4 +8,10 @@ export type FlyoutMenuCategory = {
   children: Category[]
 }
 
+export type PaymentIcon = {
+  component: any
+  width: number
+}
+
+export type PaymentIconsMap = { [key: string]: PaymentIcon }
 export type ListboxValue = Value & { disabled: boolean }

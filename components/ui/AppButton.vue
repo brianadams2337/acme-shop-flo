@@ -22,7 +22,7 @@
 </template>
 
 <script setup lang="ts">
-import { Size, ButtonType } from '~/constants/ui'
+import { Size, ButtonType } from '~/constants'
 
 const props = defineProps({
   type: {

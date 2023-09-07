@@ -26,6 +26,7 @@ const screens = Object.entries(breakpoints).reduce(
 )
 
 export default {
+  content: ['storyblok/**/*.{vue,js, ts}'],
   theme: {
     screens,
     container: {

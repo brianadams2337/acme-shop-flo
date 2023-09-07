@@ -1,4 +1,4 @@
-#### SVG Handling
+## SVG Handling
 
 With vite you can include svg icons by simply prefixing it with the `<Icon\* />`
 which is configured in the svgo config (default is `<Svgo\* />`.
@@ -23,7 +23,7 @@ export default defineNuxtConfig({
 })
 ```
 
-#### Cypress
+## Cypress
 
 There are a couple of points that are important to highlight when setting up cypress.
 
@@ -45,7 +45,7 @@ module.exports = defineConfig({
 
 The options above make sure that the bundler is `Vite` and the framework that we're using is `vue`
 
-### Vuelidate
+## Vuelidate
 
 - The approach that we're using in Nuxt 3 is almost the same as it was in Nuxt 2.
   When it comes to the rule message localization there is one thing to keep in mind.
@@ -73,7 +73,7 @@ export default defineNuxtPlugin(() => {
   onClick: () => Promise.resolve(refreshNuxtData()),
 ```
 
-### Helpers/Utils
+## Helpers/Utils
 
 In Nuxt 2 we had `helpers` folder which exported some of the helper functions.
 We also attached those helpers within the `useContext` so that we can access it
@@ -97,7 +97,7 @@ export const routeList: LinkList = {
  <DefaultLink :to="{ name: routeList.home.name }" />
 ```
 
-### Constants/types
+## Constants/types
 
 One of the major change regarding the re-usable compnents are the usage of constants and types.
 Now we introduced constants that are located under the `constants` folder which are
@@ -123,7 +123,7 @@ export type Size = ValuesType<typeof Size>
 
 // Usage example:
 
-import { Size } from '~/constants/ui'
+import { Size } from '~/constants'
 
 const props = defineProps({
   size: {
@@ -134,9 +134,9 @@ const props = defineProps({
 })
 ```
 
-### UI components
+## UI components
 
-## Radio Input
+### Radio Input
 
 - In Nuxt 2 we had only one `Radio` component and we repeated it for each radio.
   Now we introduced `RadioGroup` component, which has `RadioItem`s in it. Now we
@@ -153,13 +153,78 @@ export type Item = { label: string; value: string }
  <RadioGroup v-model="gender" :items="genders" title="Gender" />
 ```
 
-### Vue-slick-carousel replaced with Swiper
+## Carousel Implementation: `vue-slick-carousel` replaced with `Swiper`
 
-We are moving away from the vue-slick-carousel in favor of Swiper.
-Nuxt has a module for swiper which is easy to integrate and configure and supports SSR.
-All details related to configurations can be found at [Swiper Docs](https://nuxt.com/modules/swiper)
+Previously for our slide show / carousel components we used vue-slick-carousel. We are now moving towards using `Swiper`. Swiper is available as a nuxt module built on top of swiper.js .There no need to create a custom plugin since the nuxt module is sufficient for our usage.
 
-### `radash` replaced with `nuxt-lodash`
+To migrate the following steps are needed:
+
+### **Module Installation**
+
+```bash
+yarn add nuxt-swiper
+```
+
+### **Module Configuration**
+
+Once installed you need to add this module to nuxt.config.ts and provide some configurations
+
+```ts
+import swiper from './config'
+// nuxt.config.ts
+modules: [
+  ...,
+    'nuxt-swiper',
+  ],
+...
+swiper // configuration file below
+```
+
+### **Module Options**
+
+We are using smaller configuration files to provide module options, but this can also be done within the nuxt.config.ts file is so preferred. In this example I am taking the dedicated file into consideration.
+
+```ts
+// config/swiper.ts
+export default {
+  prefix: 'Swiper',
+  modules: ['navigation', 'autoplay', 'pagination'],
+}
+```
+
+The `Prefix` option can be used to provide a custom prefix and will change the module names from `Swiper[ModuleName]` to `MyPrefix[ModuleName]` for example: `SwiperNavigation` would change to `MyPrefixNavigation` in the component usage.
+
+The `modules` option can be used to configure what extra functionalities you want with your swiper instance. A full list can be found [here](https://github.com/cpreston321/nuxt-swiper#usage)
+
+### Usage
+
+Once swiper has been correctly configured the components `<Swiper>` & `<SwiperSlide>` will be auto-imported and available for usage. Your custom slide needs to be wrapped with the `<SwiperSlide>` component
+
+```html
+<template>
+  <Swiper :modules="[...]" loop autoplay navigation>
+    <SwiperSlide v-for="let slide in slides">
+      <!-- Slide content here -->
+    </SwiperSlide>
+  </SwiperSlide>
+</template>
+```
+
+### Lazy loading
+
+An Important note here is the Lazy loading module is no longer supported. Instead you can provide `<swiper-slide lazy=true>` and `<img loading="lazy" />` to lazy load images.
+
+```html
+<template>
+  <Swiper>
+    <SwiperSlide v-for="let slide in slides" lazy>
+      <img src="source" loading="lazy" />
+    </SwiperSlide>
+  </SwiperSlide>
+</template>
+```
+
+## `radash` replaced with `nuxt-lodash`
 
 We are now moving to the [nuxt-lodash](https://nuxt.com/modules/lodash/changelog)
 that's recommended by the nuxt community. It supports auto imports and it's easy
@@ -173,7 +238,7 @@ setting.
     messagePath: ({ $validator }) => `validation.${useSnakeCase($validator)}`,
 ```
 
-### Replace our custom `breakpoints` solution with the `nuxt-viewport` module
+## Replace our custom `breakpoints` solution with the `nuxt-viewport` module
 
 - In Nuxt 3 we will use [nuxt-viewport](https://nuxt.com/modules/nuxt-viewport) which
   we use for the viewport/breakpoints handling. We added the `./config/breakpoints.ts`
@@ -196,9 +261,9 @@ const viewport = useViewport()
 </script>
 ```
 
-### Additions
+## Additions
 
-#### Packages
+### Packages
 
 - [utility-types](https://www.npmjs.com/package/utility-types) - complex
   TypeScript types simplification utils
@@ -221,3 +286,49 @@ const viewport = useViewport()
     },
   })
   ```
+
+## CMS with Storyblok
+
+### Module configuration
+
+The module configuration for `@storyblok/nuxt` are identical to nuxt 2, you need to add it to the modules array and provide your storyblok access token in the module options
+
+```ts
+
+import storyblok from './config'
+
+  // nuxt.config.ts
+  modules: [
+    '@storyblok/nuxt',
+  ],
+  ...
+  storyblok // configuration file below
+
+  //config/storyblok.ts
+  export default {
+    accessToken: environment.STORYBLOK_ACCESS_TOKEN,
+  },
+```
+
+### Auto-imported components
+
+Storblok components are auto imported. You need to create a `storyblok` directory at the root and the components will be made available. Be mindful of component name collisions. If your component in the `~/components` director is named same as the one inside `~/storyblok` there can be issues with the storyblok auto-imported components.
+
+The `StoryBlokComponent` is also auto-imported and can be used out of the box.
+
+### useAsyncStoryblok composable
+
+With this module the `useAsyncStoryblok` composable is also auto-imported and is enough to fetch content from storyblok. You do not need a plugin or custom composables for the basic implementation. If you'd need a plugin the guide can be found [here](https://github.com/storyblok/storyblok-nuxt#options).
+
+With this composable you can provide `bridge` & `ApiOptions` in one place
+
+```ts
+const story = await useAsyncStoryblok(
+  'vue',
+  { version: 'draft', resolve_relations: 'Article.author' }, // API Options
+  { resolveRelations: ['Article.author'], resolveLinks: 'url' }, // Bridge Options
+)
+```
+
+_Minor Note_
+For now the `useCms` composable is not needed but this might change as the migration is approaches completion.

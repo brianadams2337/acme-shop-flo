@@ -1,5 +1,7 @@
 <template>
-  <RawLink v-if="!isInEditorMode" :to="to" :target="target"><slot /></RawLink>
+  <DefaultLink v-if="!isInEditorMode" raw :to="to" :target="target"
+    ><slot />
+  </DefaultLink>
   <div v-else :to="to"><slot /></div>
 </template>
 
@@ -13,7 +15,7 @@ defineProps({
   },
   target: {
     type: String as PropType<'_self' | '_blank' | '_parent' | '_top'>,
-    default: '_self',
+    default: '',
   },
 })
 </script>

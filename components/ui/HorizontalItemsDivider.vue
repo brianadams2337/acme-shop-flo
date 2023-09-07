@@ -20,7 +20,7 @@
   generic="T extends { value: string; label?: string; to?: RouteLocationRaw }">
 import { RouteLocationRaw } from '#vue-router'
 
-type DividerItemType = 'p' | 'RawLink' | 'NuxtLink'
+type DividerItemType = 'p' | 'DefaultLink'
 
 defineProps({
   tag: {

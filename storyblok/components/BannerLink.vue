@@ -3,11 +3,12 @@
     v-if="blok.cta_url?.cached_url"
     v-editable="blok"
     class="border border-white px-7 py-3.5 text-sm leading-normal text-white">
-    <RawLink
+    <DefaultLink
       :key="blok._uid"
+      raw
       :to="blok.cta_url?.cached_url"
       @click="clickObserver(blok)"
-      >{{ blok.label }}</RawLink
+      >{{ blok.label }}</DefaultLink
     >
   </div>
 </template>

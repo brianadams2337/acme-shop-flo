@@ -1,7 +1,8 @@
 <template>
   <div v-if="blok && imageSource.src" v-editable="blok" :class="marginClasses">
-    <RawLink
+    <DefaultLink
       v-if="blok.cta_url.linktype === 'story' && blok.cta_url.cached_url"
+      raw
       :to="blok.cta_url.cached_url">
       <NuxtImg
         ref="element"
@@ -11,7 +12,7 @@
         :alt="imageSource.alt"
         loading="lazy"
         :sizes="sizes" />
-    </RawLink>
+    </DefaultLink>
 
     <a
       v-else-if="blok.cta_url.linktype === 'url'"

@@ -43,12 +43,13 @@
     </div>
     <div v-if="footerContent.social_media" class="container pb-8">
       <div class="flex justify-end gap-4">
-        <RawLink
+        <DefaultLink
           v-for="social in footerContent.social_media"
           :key="social._uid"
+          raw
           :to="social.url?.cached_url">
           <component :is="`IconSocial${getSocialName(social.type)}`" />
-        </RawLink>
+        </DefaultLink>
       </div>
     </div>
     <div

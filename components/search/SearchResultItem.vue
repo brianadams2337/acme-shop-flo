@@ -4,7 +4,6 @@
     <DefaultLink
       class="flex w-full flex-1 items-center transition-colors duration-100 ease-in-out"
       :to="to"
-      raw
       @click="emit('click:result')">
       <NuxtImg
         v-if="imageUrl"

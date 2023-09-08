@@ -1,9 +1,7 @@
 ## SVG Handling
 
-With vite you can include svg icons by simply prefixing it with the `<Icon\* />`
-which is configured in the svgo config (default is `<Svgo\* />`.
-
-otherwise you need to import the svg explicitly and use it as a component.
+With vite you can include svg icons by simply prefixing it with the `<Icon\* />` which is configured in the svgo config (default is `<Svgo\* />`.
+Otherwise you need to import the svg explicitly and use it as a component.
 
 - On issue you might stumble on is using this module you can't size your icons
   as you might wish to with tailwind classes. By default there is a prop `fontControlled`
@@ -25,12 +23,12 @@ export default defineNuxtConfig({
 
 ## Cypress
 
-There are a couple of points that are important to highlight when setting up cypress.
+There are a couple of points that are important to highlight when setting up Cypress.
 
-- Now we use `BASE_URL` which comes from `.env`, and we also validate the url when setting up the cypress config.
-  Therefore, if you have not installed it beforehand, starting cypress will not work.
+- Now we use `BASE_URL` which comes from `.env`, and we also validate the url when setting up the Cypress config.
+  Therefore, if you have not installed it beforehand, starting Cypress will not work.
 - Cypress config is now written in TypeScript
-- It is important to note that, since we are using `Vite`, we need to set the following in the cypress config:
+- It is important to note that, since we are using `vite`, we need to set the following in the Cypress config:
 
 ```ts
 module.exports = defineConfig({
@@ -43,7 +41,7 @@ module.exports = defineConfig({
 })
 ```
 
-The options above make sure that the bundler is `Vite` and the framework that we're using is `vue`
+The options above make sure that the bundler is `vite` and the framework that we're using is `vue`
 
 ## Vuelidate
 
@@ -76,11 +74,9 @@ export default defineNuxtPlugin(() => {
 ## Helpers/Utils
 
 In Nuxt 2 we had `helpers` folder which exported some of the helper functions.
-We also attached those helpers within the `useContext` so that we can access it
-through the components, composables etc.
-Nuxt 3 recommends using [utils](https://nuxt.com/docs/guide/directory-structure/utils)
-folder. Now we don't need to manually expose the helpers or import them explicitly
-because everything that exists under that folder will be auto-imported.
+We also attached those helpers within the `useContext` so that we can access it through the components, composables etc.
+Nuxt 3 recommends using [utils](https://nuxt.com/docs/guide/directory-structure/utils) folder.
+Now we don't need to manually expose the helpers or import them explicitly because everything that exists under that folder will be auto-imported.
 
 ```ts
 // utils/route.ts
@@ -99,12 +95,9 @@ export const routeList: LinkList = {
 
 ## Constants/types
 
-One of the major change regarding the re-usable compnents are the usage of constants and types.
-Now we introduced constants that are located under the `constants` folder which are
-representing TypeScript companion pattern approach (Exporting the same type and
-variable which TS smartly resolves it depends on the usage). This way we have everything
-encapsulated at one place and the advantage is flexibility and scalaibility.
-(e.g If we want to add one more Button type, we'll just add it on one place)
+One of the major change regarding the re-usable components are the usage of constants and types.
+Now we introduced constants that are located under the `constants` folder which are representing TypeScript companion pattern approach (Exporting the same type and variable which TS smartly resolves it depends on the usage). This way we have everything encapsulated at one place and the advantage is flexibility and scalability
+(e.g If we want to add one more Button type, we'll just add it on one place).
 
 Example:
 
@@ -155,13 +148,15 @@ export type Item = { label: string; value: string }
 
 ## Carousel Implementation: `vue-slick-carousel` replaced with `Swiper`
 
-Previously for our slide show / carousel components we used vue-slick-carousel. We are now moving towards using `Swiper`. Swiper is available as a nuxt module built on top of swiper.js .There no need to create a custom plugin since the nuxt module is sufficient for our usage.
+Previously for our slide show / carousel components we used vue-slick-carousel. We are now moving towards using `Swiper`.
+Swiper is available as a nuxt module built on top of `swiper.js`.
+There no need to create a custom plugin since the nuxt module is sufficient for our usage.
 
 To migrate the following steps are needed:
 
 ### **Module Installation**
 
-```bash
+```sh
 yarn add nuxt-swiper
 ```
 
@@ -182,7 +177,8 @@ swiper // configuration file below
 
 ### **Module Options**
 
-We are using smaller configuration files to provide module options, but this can also be done within the nuxt.config.ts file is so preferred. In this example I am taking the dedicated file into consideration.
+We are using smaller configuration files to provide module options, but this can also be done within the nuxt.config.ts file is so preferred.
+In this example I am taking the dedicated file into consideration.
 
 ```ts
 // config/swiper.ts
@@ -192,13 +188,16 @@ export default {
 }
 ```
 
-The `Prefix` option can be used to provide a custom prefix and will change the module names from `Swiper[ModuleName]` to `MyPrefix[ModuleName]` for example: `SwiperNavigation` would change to `MyPrefixNavigation` in the component usage.
+The `Prefix` option can be used to provide a custom prefix and will change the module names from `Swiper[ModuleName]` to `MyPrefix[ModuleName]` for example:
+`SwiperNavigation` would change to `MyPrefixNavigation` in the component usage.
 
-The `modules` option can be used to configure what extra functionalities you want with your swiper instance. A full list can be found [here](https://github.com/cpreston321/nuxt-swiper#usage)
+The `modules` option can be used to configure what extra functionalities you want with your swiper instance.
+A full list can be found [here](https://github.com/cpreston321/nuxt-swiper#usage).
 
 ### Usage
 
-Once swiper has been correctly configured the components `<Swiper>` & `<SwiperSlide>` will be auto-imported and available for usage. Your custom slide needs to be wrapped with the `<SwiperSlide>` component
+Once swiper has been correctly configured the components `<Swiper>` & `<SwiperSlide>` will be auto-imported and available for usage.
+Your custom slide needs to be wrapped with the `<SwiperSlide>` component
 
 ```html
 <template>
@@ -212,7 +211,8 @@ Once swiper has been correctly configured the components `<Swiper>` & `<SwiperSl
 
 ### Lazy loading
 
-An Important note here is the Lazy loading module is no longer supported. Instead you can provide `<swiper-slide lazy=true>` and `<img loading="lazy" />` to lazy load images.
+An Important note here is the Lazy loading module is no longer supported.
+Instead you can provide `<swiper-slide lazy=true>` and `<img loading="lazy" />` to lazy load images.
 
 ```html
 <template>
@@ -226,10 +226,8 @@ An Important note here is the Lazy loading module is no longer supported. Instea
 
 ## `radash` replaced with `nuxt-lodash`
 
-We are now moving to the [nuxt-lodash](https://nuxt.com/modules/lodash/changelog)
-that's recommended by the nuxt community. It supports auto imports and it's easy
-to configure via nuxt config. We stick with the `use` prefix as it is the default
-setting.
+We are now moving to the [nuxt-lodash](https://nuxt.com/modules/lodash/changelog) that's recommended by the nuxt community.
+It supports auto imports and it's easy to configure via nuxt config. We stick with the `use` prefix as it is the default setting.
 
 ```ts
 // plugins/validation.ts
@@ -291,10 +289,9 @@ const viewport = useViewport()
 
 ### Module configuration
 
-The module configuration for `@storyblok/nuxt` are identical to nuxt 2, you need to add it to the modules array and provide your storyblok access token in the module options
+The module configuration for `@storyblok/nuxt` are identical to nuxt 2, you need to add it to the modules array and provide your storyblok access token in the module options.
 
 ```ts
-
 import storyblok from './config'
 
   // nuxt.config.ts
@@ -312,13 +309,16 @@ import storyblok from './config'
 
 ### Auto-imported components
 
-Storblok components are auto imported. You need to create a `storyblok` directory at the root and the components will be made available. Be mindful of component name collisions. If your component in the `~/components` director is named same as the one inside `~/storyblok` there can be issues with the storyblok auto-imported components.
+Storyblok components are auto imported. You need to create a `storyblok` directory at the root and the components will be made available.
+Be mindful of component name collisions. If your component in the `~/components` director is named same as the one inside `~/storyblok` there can be issues with the storyblok auto-imported components.
 
 The `StoryBlokComponent` is also auto-imported and can be used out of the box.
 
 ### useAsyncStoryblok composable
 
-With this module the `useAsyncStoryblok` composable is also auto-imported and is enough to fetch content from storyblok. You do not need a plugin or custom composables for the basic implementation. If you'd need a plugin the guide can be found [here](https://github.com/storyblok/storyblok-nuxt#options).
+With this module the `useAsyncStoryblok` composable is also auto-imported and is enough to fetch content from storyblok.
+You do not need a plugin or custom composables for the basic implementation.
+If you'd need a plugin the guide can be found [here](https://github.com/storyblok/storyblok-nuxt#options).
 
 With this composable you can provide `bridge` & `ApiOptions` in one place
 

@@ -17,8 +17,12 @@
 </template>
 
 <script setup lang="ts">
+import withParams from '~/constants/withParams'
+
 const { data: rootCategories, fetching: fetchingCategories } =
   await useCategories({ path: '/' }, { autoFetch: true })
+
+const _wishlist = await useWishlist(withParams.wishlist, { autoFetch: true })
 </script>
 
 <script lang="ts">

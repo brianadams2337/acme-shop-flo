@@ -42,16 +42,16 @@ const props = defineProps({
 const product = toRef(props, 'product')
 const productId = computed(() => product.value.id)
 
-const wishlist = await useWishlist()
+const { toggleItem, fetching, contains } = await useWishlist()
 
 const toggleItemInWishlist = async () => {
-  const wasInWishlist = !!wishlist.findItem({ productId: productId.value })
+  const wasInWishlist = contains({ productId: productId.value })
   // Add tracking meta
-  await wishlist.toggleItem({ productId: productId.value })
-  // wishlistUtils.showWishlistToast(!wasInWishlist, product.value)
+  await toggleItem({ productId: productId.value })
+  showWishlistToast(!wasInWishlist, product.value)
 }
 
 const isInWishlist = computed(() => {
-  return !!wishlist.findItem({ productId: productId.value })
+  return contains({ productId: productId.value })
 })
 </script>

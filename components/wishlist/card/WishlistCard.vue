@@ -1,8 +1,8 @@
 <template>
   <ProductCard
     v-bind="{ index, product, isAvailable }"
-    :loading="pending"
     :id="product.id"
+    :loading="isWishlistFetching"
     class="col-span-6 md:col-span-4 2xl:col-span-3"
     wishlist-remove-icon="close"
     is-wishlist-card
@@ -186,12 +186,11 @@ const props = defineProps({
   },
 })
 
-const wishlist = await useWishlist()
+const { fetching: isWishlistFetching, replaceItem: replaceWishlistItem } =
+  await useWishlist()
 const basket = await useBasket()
 const viewport = useViewport()
 // const { trackAddToBasket } = useTrackingEvents()
-
-const pending = computed(() => wishlist.pending.value)
 
 const { toggle: toggleFilter } = useSlideIn(`wishlistcard_${props.product.id}`)
 
@@ -251,7 +250,7 @@ const changeSizeAndAddToBasket = async (product: Product, size: ISize) => {
     return
   }
   sizeSavingId.value = product.id
-  wishlist.replaceItem({ productId: product.id }, { variantId: newVariant!.id })
+  replaceWishlistItem({ productId: product.id }, { variantId: newVariant!.id })
 
   await basket.addItem({
     variantId: newVariant!.id,
@@ -289,7 +288,7 @@ const changeSize = async ({ id, variants }: Product, size: Value) => {
     return
   }
   sizeSavingId.value = id
-  await wishlist.replaceItem({ productId: id }, { variantId: newVariant!.id })
+  await replaceWishlistItem({ productId: id }, { variantId: newVariant!.id })
   sizeSavingId.value = null
 }
 

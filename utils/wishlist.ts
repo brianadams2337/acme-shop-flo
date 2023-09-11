@@ -1,0 +1,38 @@
+import { Product, getFirstAttributeValue } from '@scayle/storefront-nuxt'
+import { Action } from '~/constants'
+
+export const getWishlistToastMessage = (
+  productName: string,
+  addedToWishlist: boolean,
+) => {
+  const { $i18n } = useNuxtApp()
+  return addedToWishlist
+    ? $i18n.t('wishlist.notification.add_to_wishlist', {
+        productName,
+      })
+    : $i18n.t('wishlist.notification.remove_from_wishlist', {
+        productName,
+      })
+}
+
+export const getWishlistParams = (productId: number, variantId?: number) => {
+  return variantId ? { variantId } : { productId }
+}
+
+export const showWishlistToast = (
+  isAddedToWishlist: boolean,
+  item: Product | null,
+) => {
+  const { $alert, $i18n } = useNuxtApp()
+  const name =
+    getFirstAttributeValue(item?.attributes, 'name')?.label ||
+    $i18n.t('wishlist.product')
+  const message = getWishlistToastMessage(name, isAddedToWishlist)
+
+  const action = isAddedToWishlist ? Action.ROUTE : Action.CONFIRM
+  $alert.show(
+    message,
+    action,
+    isAddedToWishlist ? { name: routeList.wishlist.name } : undefined,
+  )
+}

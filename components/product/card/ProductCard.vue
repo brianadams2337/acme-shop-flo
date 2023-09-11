@@ -17,7 +17,17 @@
                   :class="headerActionsClass"
                   class="opacity-100 transition" />
               </slot>
-              <slot name="header-image" v-bind="{ image, imageLoading, imageClasses, link, hoverImage, loadHoverImage, name}">
+              <slot
+                name="header-image"
+                v-bind="{
+                  image,
+                  imageLoading,
+                  imageClasses,
+                  link,
+                  hoverImage,
+                  loadHoverImage,
+                  name,
+                }">
                 <slot name="button"> </slot>
                 <DefaultLink
                   :to="link"
@@ -60,7 +70,9 @@
               </slot>
             </div>
           </slot>
-          <slot name="description" v-bind="{ ...$props, name, price, title, lowestPriorPrice }">
+          <slot
+            name="description"
+            v-bind="{ ...$props, name, price, title, lowestPriorPrice }">
             <div class="my-2 px-2.5 md:my-2.5">
               <DefaultLink
                 :to="link"

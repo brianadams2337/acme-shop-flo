@@ -15,11 +15,11 @@
           v-if="isOpen"
           :threshold="0.5"
           class="relative z-50 flex w-full items-center"
-          :class="classes">
+          :class="classes"
+          @enter="onIntersect">
           <section
             class="container flex flex-col items-center justify-center gap-2 text-center sm:relative sm:flex-row"
-            :class="{ 'sm:flex-col': hasScrollableLinks }"
-            @enter="onIntersect">
+            :class="{ 'sm:flex-col': hasScrollableLinks }">
             <slot name="body">
               <div class="md:flex md:w-full md:items-center md:justify-center">
                 <CmsText

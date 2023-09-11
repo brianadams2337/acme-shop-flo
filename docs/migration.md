@@ -345,7 +345,7 @@ await router.push(toLocalePath(customRoute))
 await router.push(getSearchRoute(searchQuery.value))
 ```
 
-### HTTPS vs HTTP development mode
+## HTTPS vs HTTP development mode
 
 In Nuxt 2 we used the `https certificates` and we always used `https` mode for the `yarn dev`.
 As part of Nuxt 3 we introduced two scripts so that we can run the app in http or https mode:
@@ -357,4 +357,35 @@ In order to have the `https` mode work properly we need to set env variables for
 ```text
 HTTPS_KEY=
 HTTPS_CERT=
+```
+
+## Intersection observer
+
+- The same as in Nuxt 2 we introduced the `Intersect` component which handles
+  and implements observer intersection. In the past we used our custom
+  implementation with the native `IntersectionObserver` API. Now we use
+  `useIntersectionObserver` composable that comes from `vueuse` and by doing that
+  we simplified the solution a bit. One of the things that's worth mentioning is
+  that now we expose `stop` function through the slot and event which can stop the
+  intersection.
+
+  ```vue
+  <Intersect :threshold="0.5" @enter="onIntersect">
+  // ...
+  </Intersect>
+
+  <script setup lang="ts">
+  const onIntersect = (_: IntersectionObserverEntry, stop: () => void) => {
+    if (!props.blok.promotion_id) {
+      return
+    }
+    stop()
+  }
+  </script>
+  ```
+
+</script>
+
+```
+
 ```

@@ -4,9 +4,9 @@
     :class="{ 'animate-pulse': loading }"
     class="group relative">
     <slot>
-      <article
+      <Intersect @enter="emit('intersect:product', props.product.id)">
+        <article
         :id="`product-${product.id}`"
-        ref="article"
         class="flex h-full flex-col">
         <slot name="header">
           <div
@@ -106,7 +106,7 @@
           </div>
         </slot>
       </article>
-      <!-- </Intersect> -->
+      </Intersect>
     </slot>
   </div>
 </template>
@@ -241,14 +241,4 @@ const emit = defineEmits<{
   (e: 'productimage:mouseleave'): void
   (e: 'click:product'): void
 }>()
-
-const article = ref(null)
-
-useIntersectionObserver(
-  article,
-  () => {
-    emit('intersect:product', props.product.id)
-  },
-  { threshold: [0, 0.2] },
-)
 </script>

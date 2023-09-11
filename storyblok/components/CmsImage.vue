@@ -1,13 +1,12 @@
 <template>
-  <div v-editable="blok">
+  <Intersect v-editable="blok">
     <NuxtPicture
       v-if="imageSource?.src"
-      ref="element"
       provider="storyblok"
       class="picture picture-contain h-full bg-gray-200"
       :src="imageSource?.src"
       loading="lazy" />
-  </div>
+  </Intersect>
 </template>
 
 <script setup lang="ts">
@@ -44,8 +43,6 @@ const { sanitize } = useStoryblokImageSanitizer()
 const imageSource = computed(() =>
   props.isTeaser ? getTeaserImage(props.blok) : sanitize(props.blok),
 )
-
-const element = ref(null)
 
 // const { stop } = useIntersectionObserver(
 //   element,

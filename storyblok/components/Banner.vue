@@ -11,16 +11,12 @@
         leave-from-class="opacity-100 translate-y-0"
         leave-to-class="opacity-0 -translate-y-4"
         leave-active-class="transform transition ease-out duration-300 ">
-        <div
+        <Intersect
           v-if="isOpen"
-          ref="element"
+          :threshold="0.5"
           class="relative z-50 flex w-full items-center"
-          :class="{
-            'bg-tertiary-1-500 text-black': is('info'),
-            'bg-tertiary-2-500 text-white': is('sale'),
-            'bg-tertiary-3-500 text-black': is('highlight'),
-            'bg-black text-white': is('alert'),
-          }">
+          :class="classes"
+          @enter="onIntersect">
           <section
             class="container flex flex-col items-center justify-center gap-2 text-center sm:relative sm:flex-row"
             :class="{ 'sm:flex-col': hasScrollableLinks }">
@@ -57,14 +53,13 @@
               </AppButton>
             </slot>
           </section>
-        </div>
+        </Intersect>
       </transition>
     </slot>
   </component>
 </template>
 
 <script setup lang="ts">
-import { useIntersectionObserver } from '@vueuse/core'
 import { SbBanner } from '~/storyblok/types/storyblok'
 import useBanner from '~/composables/useBanner'
 
@@ -102,20 +97,21 @@ const baseTag = computed(() => (cachedUrl.value ? 'StoryblokLink' : 'div'))
 const bindings = computed(() =>
   cachedUrl.value ? { to: cachedUrl.value } : {},
 )
-const element = ref(null)
 
-const { stop } = useIntersectionObserver(
-  element,
-  ([{ isIntersecting }]) => {
-    if (isIntersecting && props.blok.promotion_id) {
-      // trackPromotion('view_promotion', props.blok)
-      stop()
-    }
-  },
-  {
-    threshold: 0.5,
-  },
-)
+const classes = computed(() => ({
+  'bg-tertiary-1-500 text-black': is('info'),
+  'bg-tertiary-2-500 text-white': is('sale'),
+  'bg-tertiary-3-500 text-black': is('highlight'),
+  'bg-black text-white': is('alert'),
+}))
+
+const onIntersect = (_: IntersectionObserverEntry, stop: () => void) => {
+  if (!props.blok.promotion_id) {
+    return
+  }
+  //   trackPromotion('view_promotion', props.blok)
+  stop()
+}
 </script>
 
 <script lang="ts">

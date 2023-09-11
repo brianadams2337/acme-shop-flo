@@ -1,32 +1,20 @@
 <template>
   <div v-if="blok && imageSource.src" v-editable="blok" :class="marginClasses">
     <DefaultLink
-      v-if="blok.cta_url.linktype === 'story' && blok.cta_url.cached_url"
-      raw
-      :to="blok.cta_url.cached_url">
-      <NuxtImg
-        ref="element"
-        provider="storyblok"
-        class="h-full w-full object-cover"
-        :src="imageSource.src"
-        :alt="imageSource.alt"
-        loading="lazy"
-        :sizes="sizes" />
+      v-if="blok.cta_url.cached_url"
+      :target="isLinkTypeUrl ? '_blank' : '_self'"
+      :to="blok.cta_url.cached_url"
+      raw>
+      <Intersect :threshold="0.5" @enter="onIntersect">
+        <NuxtImg
+          provider="storyblok"
+          class="h-full w-full object-cover"
+          :src="imageSource.src"
+          :alt="imageSource.alt"
+          loading="lazy"
+          :sizes="sizes" />
+      </Intersect>
     </DefaultLink>
-
-    <a
-      v-else-if="blok.cta_url.linktype === 'url'"
-      :href="blok.cta_url.cached_url"
-      target="_blank">
-      <NuxtImg
-        ref="element"
-        provider="storyblok"
-        class="h-full w-full object-cover"
-        :src="imageSource.src"
-        :alt="imageSource.alt"
-        loading="lazy"
-        :sizes="sizes" />
-    </a>
   </div>
 </template>
 
@@ -52,20 +40,15 @@ const image = computed(() => props.blok?.image[0])
 const { sanitize } = useStoryblokImageSanitizer()
 const imageSource = computed(() => sanitize(image.value))
 
-const element = ref(null)
+const isLinkTypeUrl = computed(() => props.blok.cta_url.linktype === 'url')
 
-const { stop } = useIntersectionObserver(
-  element,
-  ([{ isIntersecting }]) => {
-    if (isIntersecting && props.blok.promotion_id) {
-      //   trackPromotion('view_promotion', image.value)
-      stop()
-    }
-  },
-  {
-    threshold: 0.5,
-  },
-)
+const onIntersect = (_: IntersectionObserverEntry, stop: () => void) => {
+  if (!props.blok.promotion_id) {
+    return
+  }
+  //   trackPromotion('view_promotion', props.blok)
+  stop()
+}
 
 // const clickObserver = image.value.promotion_id
 //   ? () => {

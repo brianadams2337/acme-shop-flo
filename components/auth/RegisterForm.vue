@@ -51,7 +51,7 @@
     </ValidatedInputGroup>
 
     <AppButton
-      class="w-full"
+      class="mt-3 w-full"
       :disabled="isSubmitting"
       :loading="isSubmitting"
       @click="onSubmit">

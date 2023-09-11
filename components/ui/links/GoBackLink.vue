@@ -35,7 +35,9 @@ const backClickEventHandling = computed(() => {
 })
 
 const componentName = computed(() => {
-  return props.useWindowHistory ? Component.BUTTON : Component.DEFAULT_LINK
+  return props.useWindowHistory
+    ? Component.BUTTON
+    : resolveComponent(Component.DEFAULT_LINK)
 })
 
 const goBack = () => window?.history.back()

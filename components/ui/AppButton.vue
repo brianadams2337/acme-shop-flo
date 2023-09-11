@@ -76,7 +76,9 @@ const isGhost = computed(() => props.type === ButtonType.GHOST)
 
 const { isSize } = useUiSize(props.size)
 
-const componentName = computed(() => (props.to ? 'DefaultLink' : 'Button'))
+const componentName = computed(() => {
+  return props.to ? resolveComponent('DefaultLink') : 'Button'
+})
 
 const emit = defineEmits<{
   (e: 'click'): void

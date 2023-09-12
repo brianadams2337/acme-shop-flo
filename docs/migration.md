@@ -227,10 +227,12 @@ Instead you can provide `<swiper-slide lazy=true>` and `<img loading="lazy" />` 
 </template>
 ```
 
-## `radash` replaced with `nuxt-lodash`
+## `radash` enhanced with `nuxt-radash`
 
-We are now moving to the [nuxt-lodash](https://nuxt.com/modules/lodash/changelog) that's recommended by the nuxt community.
-It supports auto imports and it's easy to configure via nuxt config. We stick with the `use` prefix as it is the default setting.
+We are now enhancing the usage of radash by adding the
+[nuxt-radash](https://github.com/bbg/nuxt-radash) that's recommended by the nuxt
+community. It supports auto imports and it's easy to configure via nuxt config.k
+We stick with the `use` prefix as it is the default setting.
 
 ```ts
 // plugins/validation.ts

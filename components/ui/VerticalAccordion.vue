@@ -2,7 +2,7 @@
   <div class="mx-auto max-w-[33.75rem]">
     <div
       v-for="(tab, index) in tabs"
-      :key="index"
+      :key="`accordion-tab-${index}`"
       class="flex flex-col gap-3.5 border p-3.5 first:rounded-t last:rounded-b"
       :class="getClasses(index)"
       @click="activeIndex = index">

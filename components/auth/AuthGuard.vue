@@ -1,12 +1,12 @@
+<template>
+  <div v-if="isLoggedIn">
+    <slot />
+  </div>
+  <div v-else>
+    <NuxtPage name="signin" />
+  </div>
+</template>
+
 <script setup lang="ts">
 const { isLoggedIn } = await useUser()
-const router = useRouter()
-
-watch(
-  () => isLoggedIn.value,
-  (value) => {
-    !value && router.push(toLocalePath(routeList.signin.path))
-  },
-  { immediate: true },
-)
 </script>

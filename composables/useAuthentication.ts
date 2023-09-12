@@ -164,7 +164,7 @@ export const useAuthentication = async (event: any) =>
         //   user.value.email,
         // )
 
-        const isSigninPath = route.path === routeList.signin.path
+        const isSigninPath = route.path === toLocalePath(routeList.signin.path)
         const homePath = authConfig?.redirect.home || routeList.home.path
         const redirectTo = isSigninPath ? homePath : route.fullPath
 
@@ -210,11 +210,12 @@ export const useAuthentication = async (event: any) =>
       // We are coming from inside an AuthGuard and have to reload
       // the page in order to trigger the onFetchAsync hook
       // (it only gets triggered on the client when the URL changes)
+      //
       if (router.currentRoute.value.fullPath === redirectTo) {
         return window.location.reload()
       }
 
-      await router.push(redirectTo)
+      await router.push(toLocalePath(redirectTo))
     }
 
     return {

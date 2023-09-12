@@ -74,7 +74,11 @@ const v = useVuelidate(
 const onSubmit = async () => {
   // validate all inputs
   const isValid = await v.value.$validate()
-  isValid && (await login(editableUser))
+  if (!isValid) {
+    return
+  }
+
+  await login(editableUser)
 }
 
 watch(lastLoggedInUser, (user) => {

@@ -37,7 +37,7 @@
     "@types/color": "3.0.4",
     "@types/node": "18.17.15",
     "autoprefixer": "10.4.15",
-    "cypress": "12.17.4",
+    "cypress": "13.2.0",
     "cypress-real-events": "1.10.3",
     "env-cmd": "10.1.0",
     "eslint": "8.49.0",

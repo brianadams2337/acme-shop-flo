@@ -39,15 +39,15 @@ const props = defineProps({
     default: '',
   },
   required: {
-    type: Boolean as PropType<boolean>,
+    type: Boolean,
     default: false,
   },
   readonly: {
-    type: Boolean as PropType<boolean>,
-    default: undefined,
+    type: Boolean,
+    default: false,
   },
   maxLength: {
-    type: Number as PropType<number>,
+    type: Number,
     default: undefined,
   },
   hint: {
@@ -55,7 +55,7 @@ const props = defineProps({
     default: '',
   },
   hasErrors: {
-    type: Boolean as PropType<boolean>,
+    type: Boolean,
     default: false,
   },
 })

@@ -1,4 +1,5 @@
 export * from './ui'
+export * from './mask'
 export * from './toast'
 export * from './color'
 export * from './attributes'

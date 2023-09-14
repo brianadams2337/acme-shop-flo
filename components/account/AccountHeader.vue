@@ -4,7 +4,7 @@
     <div
       class="absolute bottom-[50%] left-0 translate-y-1/2 cursor-pointer pl-5"
       @click="$router.go(-1)">
-      <IconUiBack class="h-3 w-3" />
+      <IconBack class="h-3 w-3" />
     </div>
     <div
       class="flex w-40 items-center justify-center py-1 text-sm font-semibold text-primary">

@@ -1,6 +1,6 @@
 <template>
   <Listbox
-    v-slot="{ isOpen,  list }"
+    v-slot="{ isOpen, list }"
     :value="selectedSize"
     :name="`product-size-picker-menu-${id}`"
     :before-input="handleBeforeInput"
@@ -59,7 +59,8 @@ import {
   isVariantInStock,
   Variant,
 } from '@scayle/storefront-nuxt'
-
+import { VariantSize } from '~/types/product'
+import { getVariantAvailability } from '~/utils/product'
 
 const props = defineProps({
   id: {
@@ -83,7 +84,7 @@ const emit = defineEmits(['selectSize', 'input'])
 
 const handleBeforeInput = (value: any) =>
   isVariantInStock(props.variants, value, 'size')
-const _sizes = ref<ISize[]>([]) //
+const _sizes = ref<VariantSize[]>([]) //
 const variants = toRef(props, 'variants')
 
 const getSizeFromVariant = (variant: Variant) => {
@@ -114,16 +115,18 @@ watch(
   { immediate: true },
 )
 
-const selectedSize: Ref<ISize | undefined> = ref<ISize | undefined>(
-  _sizes.value.find((s) => s.value === props.value)
+const selectedSize: Ref<VariantSize | undefined> = ref<VariantSize | undefined>(
+  _sizes.value.find((s) => s.value === props.value),
 )
 
-const selectSize = (newSize: ISize)  => {
+const selectSize = (newSize: VariantSize) => {
   emit('selectSize', newSize)
 
   emit(
     'input',
-    props.variants.find((variant: Variant) => variant.id === newSize?.variantId),
+    props.variants.find(
+      (variant: Variant) => variant.id === newSize?.variantId,
+    ),
   )
 }
 

@@ -211,7 +211,9 @@ const image = computed(() => {
   return getImageFromList(props.product.images, ProductImageType.BUST, 'front')
 })
 
-const imageLoading = computed<'eager'|'lazy'>(() => (!props.index ? 'eager' : 'lazy'))
+const imageLoading = computed<'eager' | 'lazy'>(() =>
+  !props.index ? 'eager' : 'lazy',
+)
 
 const hoverImage = computed(() => {
   const modelImageOrFirstAvailable = getFirstModelImage(

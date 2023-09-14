@@ -22,7 +22,6 @@
 </template>
 
 <script setup lang="ts" generic="Item extends { label: string; value: any }">
-
 const props = defineProps({
   modelValue: {
     type: String,

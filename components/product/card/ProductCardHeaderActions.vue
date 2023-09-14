@@ -8,7 +8,7 @@
           ? 'product-card-action-remove-item-from-wishlist-button'
           : 'product-card-action-add-item-to-wishlist-button'
       "
-      :loading="wishlist.pending.value"
+      :loading="fetching"
       class="opacity-50"
       type="ghost"
       @click="toggleItemInWishlist">

@@ -10,7 +10,6 @@
 </template>
 
 <script setup lang="ts" generic="T extends { disabled?: boolean }">
-
 const props = defineProps({
   listName: {
     type: String,

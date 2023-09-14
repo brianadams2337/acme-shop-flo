@@ -58,7 +58,7 @@ export default defineNuxtPlugin(() => {
     alerts.value.push({
       id: Date.now(),
       message,
-      duration: 50000000,
+      duration: 5000,
       actions: getAction(action, to),
     })
   }

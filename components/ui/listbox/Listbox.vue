@@ -4,7 +4,7 @@
   </div>
 </template>
 
-<script lang="ts" setup generic="ListboxItem extends { disabled?: boolean}">
+<script lang="ts" setup generic="ListboxItem extends { disabled?: boolean }">
 import { onClickOutside } from '@vueuse/core'
 
 const emit = defineEmits(['input', 'click:outside'])

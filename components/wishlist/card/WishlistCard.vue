@@ -170,6 +170,7 @@ import {
   getVariantBySize,
 } from '@scayle/storefront-nuxt'
 import { ONE_SIZE_KEY } from '~/constants/attributes'
+import { VariantSize } from '~/types/product'
 
 const props = defineProps({
   index: {
@@ -205,7 +206,7 @@ const hasOneSizeVariantOnly = computed(() => {
   const variants = props.product?.variants
   return (
     variants?.length === 1 &&
-    getAttributeValue(variants[0].attributes, 'size') === 'one_size'
+    getAttributeValue(variants[0].attributes, 'size') === ONE_SIZE_KEY
   )
 })
 
@@ -231,7 +232,7 @@ const lowestPriorPrice = computed<LowestPriorPrice | undefined>(() => {
 
 const sizes = computed(() => getVariantSizes(props.product.variants))
 
-const getSize = (value: string): ISize | undefined => {
+const getSize = (value: string): VariantSize | undefined => {
   return sizes.value.find((size) => size.value === value)
 }
 
@@ -244,7 +245,10 @@ const sizeSelected = (value: string) => {
   }
 }
 
-const changeSizeAndAddToBasket = async (product: Product, size: ISize) => {
+const changeSizeAndAddToBasket = async (
+  product: Product,
+  size: VariantSize,
+) => {
   const newVariant = getVariantBySize(product.variants || [], size, 'size')
   if (isEmpty(newVariant)) {
     return

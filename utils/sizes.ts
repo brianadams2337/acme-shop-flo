@@ -4,14 +4,6 @@ import {
   Variant,
 } from '@scayle/storefront-nuxt'
 
-export interface ISize {
-  variantId: number
-  label: string
-  value?: string
-  isAvailable: boolean
-  [key: string]: unknown
-}
-
 export const ONE_SIZE_KEY = 'one_size'
 
 export const getVariantSizes = (variants: Variant[] | undefined) => {

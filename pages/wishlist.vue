@@ -37,7 +37,7 @@
         <EmptyState
           :title="$t('wishlist.no_items_info')"
           :description="$t('wishlist.continue_shopping_info')"
-          icon="card-2">
+          icon="IconEmptyWishlist">
           <div class="mt-8 flex justify-center gap-4 md:justify-start">
             <AppButton :to="{ name: routeList.home.name }" type="tertiary">
               {{ $t('wishlist.continue_shopping_label') }}
@@ -60,15 +60,14 @@ import {
   WishlistItem,
   getFirstAttributeValue,
   Product,
-  Value,
   getAttributeValue,
-  getVariantBySize,
 } from '@scayle/storefront-nuxt'
+import { ONE_SIZE_KEY } from '~/constants'
 import { Action } from '~/constants/toast'
-import withParams from '~/constants/withParams';
+import withParams from '~/constants/withParams'
 
-const wishlist = await useWishlist(withParams.wishlist, { immediate: true })
-const basket = await useBasket(undefined, { immediate: true})
+const wishlist = await useWishlist(withParams.wishlist, { autoFetch: true })
+const basket = await useBasket(undefined, { autoFetch: true })
 const { isLoggedIn } = await useUser()
 const { $alert, $i18n } = useNuxtApp()
 // TODO Tracking
@@ -78,7 +77,6 @@ const { $alert, $i18n } = useNuxtApp()
 //   trackAddToBasket,
 //   collectProductListItems,
 // } = useTrackingEvents()
-
 
 const addItemToCart = async (itemKey: string, index: number) => {
   const entry = wishlist.data.value?.items.find((el) => el.key === itemKey)
@@ -97,7 +95,7 @@ const addItemToCart = async (itemKey: string, index: number) => {
     !entry.variant &&
     entry.product?.variants?.length === 1 &&
     getAttributeValue(entry.product?.variants[0]?.attributes, 'size') ===
-      'one_size'
+      ONE_SIZE_KEY
   ) {
     entry.variant = entry.product?.variants[0]
   }
@@ -111,7 +109,7 @@ const addItemToCart = async (itemKey: string, index: number) => {
     variantId: entry.variant.id,
     quantity: 1,
   })
-  
+
   // showBasketFlyOut()
 
   // const { product } = entry
@@ -131,16 +129,17 @@ const addItemToCart = async (itemKey: string, index: number) => {
 }
 
 const orderedItems = computed(() => {
-  const sortedItems = useSortBy(
+  const sortedItems = useAlphabetical(
     wishlist.items.value || [],
     (item: WishlistItem) => {
       return (
         getFirstAttributeValue(item.product?.attributes, 'name')?.label ?? ''
       )
     },
-  ) as WishlistItem[]
+  )
   return sortedItems.filter(
-    (item): item is WishlistItem & { product: Product } => !!item.product,
+    (item: WishlistItem): item is WishlistItem & { product: Product } =>
+      !!item.product,
   )
 })
 // TODO Meta
@@ -171,8 +170,7 @@ onMounted(() => {
 })
 
 const count = wishlist.count
-const fetching = wishlist.pending
-const fetchingBasket = basket.pending
+const fetchingBasket = basket.fetching
 </script>
 
 <script lang="ts">

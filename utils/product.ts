@@ -4,7 +4,7 @@ import {
   getLowestPrice,
   getAppliedReductionsByCategory,
 } from '@scayle/storefront-nuxt'
-import { ColorMap } from '~/constants'
+import { ColorMap, MINIMUM_QUANTITY_IMMEDIATE_AVAILABILITY } from '~/constants'
 
 export { ProductImageType } from '@scayle/storefront-nuxt'
 
@@ -54,11 +54,11 @@ export interface VariantAvailability {
 
 export function getVariantAvailability(
   variant: Variant,
-  minimumQuantityForImmediateAvaliability = 5,
+  minimumQuantityForImmediateAvailability = MINIMUM_QUANTITY_IMMEDIATE_AVAILABILITY,
 ): VariantAvailability {
   const { quantity, isSellableWithoutStock } = variant.stock
 
-  if (quantity > minimumQuantityForImmediateAvaliability) {
+  if (quantity > minimumQuantityForImmediateAvailability) {
     return {
       available: true,
       type: 'immediate',

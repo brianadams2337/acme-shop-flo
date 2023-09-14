@@ -20,7 +20,7 @@ export interface Alert {
 export default defineNuxtPlugin(() => {
   const alerts = ref<Alert[]>([])
 
-  const getAction = (action: Action, to?: string) => {
+  const getAction = (action: Action, to?: RouteLocationRaw) => {
     const actionClasses = 'font-normal text-transform-unset'
     const actions = {
       CONFIRM: [
@@ -54,7 +54,7 @@ export default defineNuxtPlugin(() => {
     return actions[action]
   }
 
-  const show = (message: string, action: Action, to?: string) => {
+  const show = (message: string, action: Action, to?: RouteLocationRaw) => {
     alerts.value.push({
       id: Date.now(),
       message,

@@ -21,16 +21,14 @@
   </label>
 </template>
 
-<script setup lang="ts">
-import { Item } from './RadioGroup.vue'
-
+<script setup lang="ts" generic="Item extends { label: string; value: any }">
 const props = defineProps({
   modelValue: {
     type: String,
     default: undefined,
   },
   value: {
-    type: String as PropType<Item['value']>,
+    type: [String, Number, Object, Array] as PropType<Item['value']>,
     default: undefined,
   },
   label: {

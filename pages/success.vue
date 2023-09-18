@@ -79,7 +79,6 @@
 </template>
 
 <script setup lang="ts">
-import { OspPaymentSummary } from '#build/components'
 import { OrderProduct, OrderVariant } from '~/types/osp'
 
 const viewport = useViewport()
@@ -98,10 +97,9 @@ const {
 const user = await useUser()
 
 // const { trackPurchaseEvent } = useTrackingEvents()
-onMounted(() => {
-  fetchCbdData().then(() => {
-    // trackPurchaseEvent(orderData.value)
-  })
+onMounted(async () => {
+  await fetchCbdData()
+  // trackPurchaseEvent(orderData.value)
 })
 
 watch(user.fetching, (isFetching) => {

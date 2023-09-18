@@ -30,7 +30,7 @@ export const getProductDetailRoute = (
   return toLocalePath({
     name: 'p-name-id',
     params: {
-      name: `${slugify(name)}`,
+      name: slugify(name),
       id: id || product.id,
     },
   })
@@ -44,7 +44,8 @@ export const getOrderProductDetailRoute = (
   return toLocalePath({
     name: 'p-name-id',
     params: {
-      name: `${slugify(name)}-${id || product.id}`,
+      name: slugify(name),
+      id: id || product.id,
     },
   })
 }

@@ -114,11 +114,7 @@ onMounted(async () => {
     currentOrderId.value &&
     viewport.isGreaterOrEquals('md')
   ) {
-    const orderDetailRoute = {
-      name: routeList.orderDetail.name,
-      params: { id: currentOrderId.value.toString() },
-    }
-    await router.push(toLocalePath(orderDetailRoute))
+    await router.push(getOrderDetailsRoute(currentOrderId.value))
   }
   updateSlicedOrders()
 })

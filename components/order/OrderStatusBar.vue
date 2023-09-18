@@ -23,7 +23,7 @@
         </Headline>
       </div>
     </div>
-    <div class="mt-5 md:hidden">
+    <div v-if="viewport.isGreaterOrEquals('md')" class="mt-5">
       <ProgressBar
         :progress="progressLevel"
         class="mb-1 mt-2"
@@ -72,6 +72,8 @@ const props = defineProps({
     required: true,
   },
 })
+
+const viewport = useViewport()
 
 const progressLevel = computed<number>(() => {
   return DeliveryProgress[props.deliveryStatus] || 5

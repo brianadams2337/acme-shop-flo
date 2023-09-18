@@ -67,14 +67,16 @@ const { data: variant } = await useVariant(
 )
 
 const uniqueItems = computed(() => {
-  return useUnique(props.orderItems, (it) => it.variant.id)
+  return useUnique(props.orderItems, (it: OrderItems[0]) => it.variant.id)
 })
 
 const carrierBundledItemsMap = computed<CarrierMap>(() => {
   // every item has a packageId
   // every carrier has a package id
   return props.packages.reduce((carrierMap: CarrierMap, pkg: Package) => {
-    const items = uniqueItems.value?.filter((it) => it.packageId === pkg.id)
+    const items = uniqueItems.value?.filter(
+      (it: OrderItems[0]) => it.packageId === pkg.id,
+    )
     const formattedStatus = pkg.deliveryStatus?.split('_').join(' ') || ''
     const deliveryInfo = { ...pkg, formattedStatus }
     carrierMap[pkg.id] = { items: items ?? [], deliveryInfo }

@@ -8,7 +8,7 @@
           ? 'product-card-action-remove-item-from-wishlist-button'
           : 'product-card-action-add-item-to-wishlist-button'
       "
-      :loading="!!wishlist.pending"
+      :loading="fetching"
       class="opacity-50"
       type="ghost"
       @click="toggleItemInWishlist">
@@ -42,18 +42,16 @@ const props = defineProps({
 const product = toRef(props, 'product')
 const productId = computed(() => product.value.id)
 
-const isInWishlist = false
-const wishlist = { pending: false }
-// const wishlist = await useCurrentWishlist()
+const { toggleItem, fetching, contains } = await useWishlist()
 
 const toggleItemInWishlist = async () => {
-  // const wasInWishlist = !!wishlist.findItem({ productId: productId.value })
+  const wasInWishlist = contains({ productId: productId.value })
   // Add tracking meta
-  // await wishlist.toggleItem({ productId: productId.value })
-  // wishlistUtils.showWishlistToast(!wasInWishlist, product.value)
+  await toggleItem({ productId: productId.value })
+  showWishlistToast(!wasInWishlist, product.value)
 }
 
-// const isInWishlist = computed(() => {
-//   return !!wishlist.findItem({ productId: productId.value })
-// })
+const isInWishlist = computed(() => {
+  return contains({ productId: productId.value })
+})
 </script>

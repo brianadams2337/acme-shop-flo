@@ -21,16 +21,14 @@
   </label>
 </template>
 
-<script setup lang="ts">
-import { Item } from './RadioGroup.vue'
-
+<script setup lang="ts" generic="Item extends { label: string; value: any }">
 const props = defineProps({
   modelValue: {
     type: String,
     default: undefined,
   },
   value: {
-    type: String as PropType<Item['value']>,
+    type: [String, Number, Object, Array] as PropType<Item['value']>,
     default: undefined,
   },
   label: {
@@ -43,11 +41,11 @@ const props = defineProps({
   },
 })
 
-const emit = defineEmits(['update:modelValue', 'selectedValue'])
+const emit = defineEmits(['update:model-value'])
 
 const selected = computed({
   get: () => props.modelValue,
-  set: (value?: string) => emit('update:modelValue', value),
+  set: (value?: string) => emit('update:model-value', value),
 })
 
 const isActive = computed(() => String(props.modelValue) === props.value)

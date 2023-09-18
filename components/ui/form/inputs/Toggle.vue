@@ -1,14 +1,11 @@
 <template>
   <div
     class="relative inline-block h-4 w-8 rounded-full transition-colors duration-200 ease-in-out"
-    :class="{ 'bg-gray-500': !isActive, 'bg-primary': isActive }">
+    :class="isActive ? 'bg-primary' : 'bg-gray-500'">
     <slot name="trigger" :is-active="isActive" @toggle="toggle">
       <button
         class="absolute -mt-1 inline-block h-6 w-6 rounded-full bg-white shadow transition duration-200 ease-linear focus:outline-none"
-        :class="{
-          'left-0 -ml-2 bg-primary': !isActive,
-          'translate-x-4': isActive,
-        }"
+        :class="isActive ? 'translate-x-4' : 'left-0 -ml-2 bg-primary'"
         role="switch"
         @click="toggle" />
     </slot>
@@ -23,14 +20,20 @@ const props = defineProps({
   },
 })
 
-const emit = defineEmits(['update:modelValue'])
+const emit = defineEmits(['update:model-value'])
 
 const isActive = computed({
   get: () => props.modelValue as boolean,
-  set: (newValue: boolean) => emit('update:modelValue', newValue),
+  set: (newValue: boolean) => emit('update:model-value', newValue),
 })
 
 const toggle = () => {
   isActive.value = !isActive.value
+}
+</script>
+
+<script lang="ts">
+export default {
+  name: 'AppToggle',
 }
 </script>

@@ -39,15 +39,15 @@ const props = defineProps({
     default: '',
   },
   required: {
-    type: Boolean as PropType<boolean>,
+    type: Boolean,
     default: false,
   },
   readonly: {
-    type: Boolean as PropType<boolean>,
-    default: undefined,
+    type: Boolean,
+    default: false,
   },
   maxLength: {
-    type: Number as PropType<number>,
+    type: Number,
     default: undefined,
   },
   hint: {
@@ -55,16 +55,16 @@ const props = defineProps({
     default: '',
   },
   hasErrors: {
-    type: Boolean as PropType<boolean>,
+    type: Boolean,
     default: false,
   },
 })
 
-const emit = defineEmits(['update:modelValue'])
+const emit = defineEmits(['update:model-value'])
 
 const content = computed({
   get: () => props.modelValue,
-  set: (newValue: string): void => emit('update:modelValue', newValue),
+  set: (newValue: string): void => emit('update:model-value', newValue),
 })
 
 const dataMaska = computed(() => {

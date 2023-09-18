@@ -9,7 +9,7 @@
         {{ $t('my_account.profile_menu') }}
       </AppButton>
       <AppButton
-        :to="{ name: routeList.order.name }"
+        :to="{ name: routeList.orders.name }"
         type="secondary"
         class="w-full"
         @click="closeUserFlyout">
@@ -31,17 +31,10 @@
 </template>
 
 <script setup lang="ts">
-// import { useAuthentication } from '~/composables/useAuthentication'
-
 const { closeUserFlyout } = useUiState()
-// const { user } = useUser()
-// const { logout, isSubmitting } = useAuthentication('logout')
+const { user } = await useUser()
+const { logout, isSubmitting } = await useAuthentication('logout')
 
 // TODO: clarify what we want to do with this component for guest customers
-// const isGuestCustomer = computed(() => user.value?.status?.isGuestCustomer)
-
-const user = { firstName: 'John' }
-const isGuestCustomer = false
-const isSubmitting = false
-const logout = () => {}
+const isGuestCustomer = computed(() => user.value?.status?.isGuestCustomer)
 </script>

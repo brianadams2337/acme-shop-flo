@@ -4,8 +4,8 @@ import {
   getLowestPrice,
   getAppliedReductionsByCategory,
 } from '@scayle/storefront-nuxt'
-import { ColorMap } from '~/constants'
 import { VariantAvailability } from '~/types'
+import { ColorMap, MINIMUM_QUANTITY_IMMEDIATE_AVAILABILITY } from '~/constants'
 
 export { ProductImageType } from '@scayle/storefront-nuxt'
 
@@ -36,13 +36,23 @@ export const getColorCodeForId = (id: number): string | string[] => {
   return ColorMap.WHITE.hex
 }
 
+export const getSalesRelativeAmountByCategory = (
+  product: Product,
+  category: 'sale' | 'campaign',
+) => {
+  const variantsLowestPrice = getLowestPriceBetweenVariants(product)
+  return variantsLowestPrice
+    ? getAppliedReductionsByCategory(variantsLowestPrice, category)
+    : []
+}
+
 export function getVariantAvailability(
   variant: Variant,
-  minimumQuantityForImmediateAvaliability = 5,
+  minimumQuantityForImmediateAvailability = MINIMUM_QUANTITY_IMMEDIATE_AVAILABILITY,
 ): VariantAvailability {
   const { quantity, isSellableWithoutStock } = variant.stock
 
-  if (quantity > minimumQuantityForImmediateAvaliability) {
+  if (quantity > minimumQuantityForImmediateAvailability) {
     return {
       available: true,
       type: 'immediate',
@@ -72,14 +82,4 @@ export function getVariantAvailability(
     type: 'soon',
     text: 'availability.available_soon',
   }
-}
-
-export const getSalesRelativeAmountByCategory = (
-  product: Product,
-  category: 'sale' | 'campaign',
-) => {
-  const variantsLowestPrice = getLowestPriceBetweenVariants(product)
-  return variantsLowestPrice
-    ? getAppliedReductionsByCategory(variantsLowestPrice, category)
-    : []
 }

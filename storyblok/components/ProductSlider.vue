@@ -1,13 +1,13 @@
 <template>
   <div v-editable="blok" :class="marginClasses">
     <div class="flex w-full justify-between px-5 sm:px-14">
-      <Headline v-if="blok.headline" tag="p" size="base" type="loud">{{
-        blok.headline
-      }}</Headline>
+      <Headline v-if="blok.headline" tag="p" size="base" type="loud">
+        {{ blok.headline }}
+      </Headline>
 
-      <DefaultLink v-if="blok.cta_url && blok.cta_label" :to="blok.cta_url">{{
-        blok.cta_label
-      }}</DefaultLink>
+      <DefaultLink v-if="blok.cta_url && blok.cta_label" :to="blok.cta_url">
+        {{ blok.cta_label }}
+      </DefaultLink>
     </div>
 
     <HorizontalItemsSlider
@@ -19,22 +19,22 @@
         :key="`product-slider-item-${product.id}`"
         class="box-content w-1/2 shrink-0 snap-start snap-always px-px first:pl-5 last:pr-5 sm:w-1/5 sm:px-0.5 sm:first:pl-14 sm:last:pr-14"
         :product="product"
-        :fetching="pending" />
+        :fetching="fetching" />
 
-      <template #prevButton="{ prev, isPrevEnabled }">
+      <template #prev-button="{ prev, isPrevEnabled }">
         <button
           class="absolute left-0 top-[40%] rounded-sm bg-black text-white disabled:hidden sm:left-14"
           :disabled="!isPrevEnabled"
           @click="prev(sliderOffset)">
-          <IconArrowLeft />
+          <IconArrowLeft class="h-8 w-8 p-1.5" />
         </button>
       </template>
-      <template #nextButton="{ next, isNextEnabled }">
+      <template #next-button="{ next, isNextEnabled }">
         <button
           class="absolute right-0 top-[40%] rounded-sm bg-black text-white disabled:hidden sm:right-14"
           :disabled="!isNextEnabled"
           @click="next(sliderOffset)">
-          <IconArrowRight />
+          <IconArrowRight class="h-8 w-8 p-1.5" />
         </button>
       </template>
     </HorizontalItemsSlider>
@@ -43,11 +43,11 @@
 
 <script setup lang="ts">
 import useStoryblokMargins from '../composables/useStoryblokMargins'
-import { ProductSliderStoryblok } from '../types/component-types-sb'
+import { SbProductSlider } from '~/storyblok/types/storyblok'
 
 const props = defineProps({
   blok: {
-    type: Object as PropType<ProductSliderStoryblok>,
+    type: Object as PropType<SbProductSlider>,
     required: true,
   },
 })
@@ -66,7 +66,7 @@ const productIds = computed(
   () => props.blok.product_ids?.split(',').map((id: string) => parseInt(id)),
 )
 
-const { data, refresh, pending } = await useProductsByIds({
+const { data, fetch, fetching } = await useProductsByIds({
   ids: productIds.value || [],
   with: {
     attributes: {
@@ -88,7 +88,7 @@ const { data, refresh, pending } = await useProductsByIds({
   },
 })
 
-onMounted(() => refresh())
+onMounted(() => fetch())
 
 // const fetchProducts = async () => {
 //   if (productIds.value) {

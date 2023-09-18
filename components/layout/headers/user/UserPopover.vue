@@ -2,10 +2,12 @@
   <Popover
     :is-open="isUserFlyoutOpen"
     content-wrapper-class="mt-8"
-    @mouseenter="isGreatedThanMd && openUserFlyout()"
-    @mouseleave="isGreatedThanMd && closeUserFlyout()">
+    @mouseenter="isGreaterThanMd && openUserFlyout()"
+    @mouseleave="isGreaterThanMd && closeUserFlyout()">
     <template #action>
-      <IconUser class="h-5 w-5 cursor-pointer" @click="redirectToMyAccount" />
+      <DefaultLink :to="link" raw>
+        <IconUser class="h-5 w-5 cursor-pointer" />
+      </DefaultLink>
       <div
         v-if="isUserFlyoutOpen"
         class="absolute -bottom-3 left-2 h-0.5 w-8 bg-black" />
@@ -27,21 +29,13 @@
 const viewport = useViewport()
 
 const { openUserFlyout, closeUserFlyout, isUserFlyoutOpen } = useUiState()
-const router = useRouter()
-// const { user } = useUser()
+const { user } = await useUser()
 
-const user = ref({})
+const isGreaterThanMd = computed(() => viewport.isGreaterOrEquals('md'))
 
-const isGreatedThanMd = computed(() => viewport.isGreaterOrEquals('md'))
-
-const redirectToMyAccount = async () => {
-  if (isGreatedThanMd.value) {
-    return
-  }
-  await router.push(
-    user.value
-      ? { name: routeList.account.name }
-      : { name: routeList.signin.name },
-  )
-}
+const link = computed(() => {
+  return user.value
+    ? { name: routeList.account.name }
+    : { name: routeList.signin.name }
+})
 </script>

@@ -1,0 +1,50 @@
+<template>
+  <div ref="observerElement">
+    <slot :stop="stop" />
+  </div>
+</template>
+
+<script setup lang="ts">
+import { MaybeComputedElementRef } from '@vueuse/core'
+
+const props = defineProps({
+  threshold: {
+    type: [Array, Number] as PropType<number[] | number>,
+    default: () => [0, 0.2],
+  },
+  root: {
+    type: (typeof HTMLElement !== 'undefined'
+      ? HTMLElement
+      : Object) as PropType<MaybeComputedElementRef>,
+    default: null,
+  },
+  rootMargin: {
+    type: String,
+    default: '0px 0px 0px 0px',
+  },
+})
+
+const observerElement = ref(null)
+
+const emit = defineEmits<{
+  (e: 'enter', value: IntersectionObserverEntry, stop: () => void): void
+  (e: 'leave', value: IntersectionObserverEntry): void
+}>()
+
+const { stop } = useIntersectionObserver(
+  observerElement,
+  ([observerEntry]) => {
+    const { isIntersecting } = observerEntry
+    return isIntersecting
+      ? emit('enter', observerEntry, stop)
+      : emit('leave', observerEntry)
+  },
+  usePick(props, ['threshold', 'root', 'rootMargin']),
+)
+</script>
+
+<script lang="ts">
+export default {
+  name: 'IntersectionObserver',
+}
+</script>

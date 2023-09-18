@@ -1,7 +1,7 @@
 <template>
   <NuxtLink
-    v-bind="{ openInNewTab, activeClass, exactActiveClass }"
-    :to="target"
+    v-bind="{ openInNewTab, activeClass, exactActiveClass, target }"
+    :to="resolvedLink"
     :class="variantClass"
     class="inline-flex items-center gap-2 whitespace-nowrap text-xs leading-5 tracking-wide transition duration-200 ease-linear">
     <slot />
@@ -57,6 +57,10 @@ const props = defineProps({
     type: Boolean,
     default: false,
   },
+  target: {
+    type: String as PropType<'_self' | '_blank' | '_parent' | '_top'>,
+    default: '_self',
+  },
 })
 
 const ACTIVE_CLASS = '!font-bold'
@@ -71,10 +75,9 @@ const exactActiveClass = computed(() => {
   return props.onlyExactActive ? ACTIVE_CLASS : ''
 })
 
-const target = computed(() => {
-  if (typeof props.to === 'string' && props.to.startsWith('http')) {
-    return props.to
-  }
-  return toLocalePath(props.to)
+const resolvedLink = computed(() => {
+  const isExternal = typeof props.to === 'string' && props.to.startsWith('http')
+
+  return isExternal ? props.to : toLocalePath(props.to)
 })
 </script>

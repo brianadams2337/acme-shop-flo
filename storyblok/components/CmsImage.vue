@@ -1,25 +1,24 @@
 <template>
-  <div v-editable="blok">
+  <Intersect v-editable="blok" @enter="onIntersect">
     <NuxtPicture
       v-if="imageSource?.src"
-      ref="element"
       provider="storyblok"
       class="picture picture-contain h-full bg-gray-200"
       :src="imageSource?.src"
       loading="lazy" />
-  </div>
+  </Intersect>
 </template>
 
 <script setup lang="ts">
-import { CmsImageStoryblok } from '../types/component-types-sb'
 import {
   getTeaserImage,
   useStoryblokImageSanitizer,
 } from '../composables/useStoryblokImage'
+import { SbCmsImage } from '~/storyblok/types/storyblok'
 
 const props = defineProps({
   preload: {
-    type: Boolean as PropType<boolean>,
+    type: Boolean,
     default: false,
   },
   sizes: {
@@ -27,11 +26,11 @@ const props = defineProps({
     default: 'xs:100vw sm:100vw md:100vw lg:100vw xl:100vw xxl:100vw 2xl:100vw',
   },
   isTeaser: {
-    type: Boolean as PropType<boolean>,
+    type: Boolean,
     default: false,
   },
   blok: {
-    type: Object as PropType<CmsImageStoryblok>,
+    type: Object as PropType<SbCmsImage>,
     required: true,
   },
 })
@@ -45,18 +44,11 @@ const imageSource = computed(() =>
   props.isTeaser ? getTeaserImage(props.blok) : sanitize(props.blok),
 )
 
-const element = ref(null)
-
-// const { stop } = useIntersectionObserver(
-//   element,
-//   ([{ isIntersecting }]) => {
-//     if (isIntersecting && props.blok.promotion_id) {
-//       // trackPromotion('view_promotion', props.blok)
-//       stop()
-//     }
-//   },
-//   {
-//     threshold: 0.5,
-//   },
-// )
+const onIntersect = (_: IntersectionObserverEntry, stop: () => void) => {
+  if (!props.blok.promotion_id) {
+    return
+  }
+  //   trackPromotion('view_promotion', props.blok)
+  stop()
+}
 </script>

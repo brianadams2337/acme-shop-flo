@@ -8,16 +8,16 @@
         data-test-id="wishlist-link"
         class="relative"
         type="loud">
-        <FloatingBadge v-show="wishlistCount" class="-right-2 -top-2">
+        <FloatingBadge v-if="wishlistCount" class="-right-2 -top-2">
           {{ wishlistCount }}
         </FloatingBadge>
         <IconHeart class="h-8 w-8" />
       </DefaultLink>
     </div>
+    <BasketPopover />
   </div>
 </template>
 
 <script setup lang="ts">
-// const { count: wishlistCount } = await useCurrentWishlist()
-const wishlistCount = 0
+const { count: wishlistCount } = await useWishlist()
 </script>

@@ -36,32 +36,20 @@ const paramId = computed(() => +route.params.id)
 
 const viewport = useViewport()
 
-const {
-  data: orderDetails,
-  fetch: getOrder,
-  fetching,
-} = await useOrder(
+const { data: orderDetails, fetching } = await useOrder(
   { orderId: paramId.value },
-  { autoFetch: false },
+  { autoFetch: true },
   `orderId-${paramId.value}`,
 )
-
-onMounted(async () => {
-  if (paramId.value) {
-    await getOrder()
-    await fetchVariants()
-  }
-})
-
 const variantIds = computed(() => {
   const ids =
     orderDetails.value?.items?.map((it) => it.variant.id as number) ?? []
   return useUnique(ids)
 })
 
-const { fetch: fetchVariants } = await useVariant(
+await useVariant(
   { ids: variantIds.value },
-  { autoFetch: false },
+  { autoFetch: true },
   `variant-${paramId.value}`,
 )
 

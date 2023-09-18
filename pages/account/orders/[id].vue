@@ -40,10 +40,11 @@ const {
   data: orderDetails,
   fetch: getOrder,
   fetching,
-} = await useOrder({
-  params: { orderId: paramId.value },
-  key: `orderId-${paramId.value}`,
-})
+} = await useOrder(
+  { orderId: paramId.value },
+  { autoFetch: false },
+  `orderId-${paramId.value}`,
+)
 
 onMounted(async () => {
   if (paramId.value) {
@@ -58,10 +59,11 @@ const variantIds = computed(() => {
   return useUnique(ids)
 })
 
-const { fetch: fetchVariants } = await useVariant({
-  params: { ids: variantIds.value },
-  key: `variant-${paramId.value}`,
-})
+const { fetch: fetchVariants } = await useVariant(
+  { ids: variantIds.value },
+  { autoFetch: false },
+  `variant-${paramId.value}`,
+)
 
 const totalAmount = computed(() => orderDetails.value?.cost.withTax ?? 0)
 

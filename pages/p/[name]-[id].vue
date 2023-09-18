@@ -1,7 +1,7 @@
 <template>
   <ProductDetailSkeleton v-if="pending" />
   <PageContent v-else>
-    <GoBackLink use-window-history />
+    <GoBackLink use-window-history class="mt-4 md:ml-7 md:mt-7" />
     <div class="flex flex-1 flex-col items-start md:flex-row md:gap-3">
       <ProductImageGallery :images="product.images" />
       <div class="sticky right-0 top-0 mt-5 w-full md:w-1/2 md:px-9 xl:w-1/3">

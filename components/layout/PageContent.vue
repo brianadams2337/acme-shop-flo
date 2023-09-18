@@ -1,5 +1,5 @@
 <template>
-  <section class="container mt-10 overflow-hidden">
+  <section class="container my-10 overflow-hidden">
     <slot />
   </section>
 </template>

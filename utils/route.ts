@@ -7,6 +7,7 @@ import {
   BrandOrCategorySuggestion,
 } from '@scayle/storefront-nuxt'
 import { RouteLocationRaw } from '#vue-router'
+import { OrderProduct } from '~/types/osp'
 
 const getCategoryPath = (category: Category) => {
   if (!category) {
@@ -29,7 +30,21 @@ export const getProductDetailRoute = (
   return toLocalePath({
     name: 'p-name-id',
     params: {
-      name: `${slugify(name)}`,
+      name: slugify(name),
+      id: id || product.id,
+    },
+  })
+}
+
+export const getOrderProductDetailRoute = (
+  product: OrderProduct,
+  id?: number,
+): RouteLocationRaw => {
+  const name = product.attributes.name.label
+  return toLocalePath({
+    name: 'p-name-id',
+    params: {
+      name: slugify(name),
       id: id || product.id,
     },
   })
@@ -69,6 +84,13 @@ export const getSearchSuggestionPath = (
   return route && toLocalePath(route)
 }
 
+export const getOrderDetailsRoute = (id: number): RouteLocationRaw => {
+  return toLocalePath({
+    name: routeList.orderDetail.name,
+    params: { id },
+  })
+}
+
 type Link =
   | 'home'
   | 'checkout'
@@ -76,9 +98,10 @@ type Link =
   | 'basket'
   | 'signin'
   | 'user'
-  | 'order'
+  | 'orders'
   | 'account'
   | 'pdp'
+  | 'orderDetail'
 
 export type LinkList = Record<Link, { name: string; path: string }>
 
@@ -88,10 +111,11 @@ export const routeList: LinkList = {
   wishlist: { name: 'wishlist', path: '/wishlist' },
   basket: { name: 'basket', path: '/basket' },
   signin: { name: 'signin', path: '/signin' },
-  order: { name: 'account-order', path: '/account/order' },
+  orders: { name: 'account-orders', path: '/account/orders' },
   user: { name: 'account-user', path: '/account/user' },
   account: { name: 'account', path: '/account' },
   pdp: { name: 'p-name-id', path: '/p/' },
+  orderDetail: { name: 'account-orders-id', path: '/account/orders/' },
 } as const
 
 export { getCategoryPath }

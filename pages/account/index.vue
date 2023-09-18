@@ -7,9 +7,11 @@
       v-if="user"
       class="flex flex-col justify-center space-x-0 space-y-4 px-4 py-8 sm:flex-row sm:space-x-8 sm:space-y-0">
       <ContainerLink
-        :to="{ name: routeList.order.name }"
+        :to="{ name: routeList.orders.name }"
         :header="$t('my_account.orders_menu')"
-        :subheader="$t('my_account.orders_count', user?.orderSummary?.length)"
+        :subheader="
+          $t('my_account.orders_count', { count: user?.orderSummary?.length })
+        "
         class="w-full" />
       <ContainerLink
         :to="{ name: routeList.user.name }"

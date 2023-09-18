@@ -2,7 +2,7 @@
  * @param date
  * @returns Date formatted according to currentShop.locale
  */
-const localeFormattedDate = (date: string | undefined): string | null => {
+export const localeFormattedDate = (date?: string): string | null => {
   const locale = useCurrentShop().value?.locale
   if (!date || isNaN(new Date(date).valueOf()) || !locale) {
     return null
@@ -12,5 +12,3 @@ const localeFormattedDate = (date: string | undefined): string | null => {
     dateStyle: 'medium',
   }).format(new Date(date))
 }
-
-export default { localeFormattedDate }

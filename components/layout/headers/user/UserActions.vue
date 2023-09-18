@@ -9,7 +9,7 @@
         {{ $t('my_account.profile_menu') }}
       </AppButton>
       <AppButton
-        :to="{ name: routeList.order.name }"
+        :to="{ name: routeList.orders.name }"
         type="secondary"
         class="w-full"
         @click="closeUserFlyout">

@@ -8,13 +8,12 @@
           :class="{ 'hidden md:block': route.params.id || isAccountPage }">
           <OrderOverviewHeader :orders-count="orders.length" />
           <div v-if="orders.length" class="rounded-md border border-gray-350">
-            <!-- TODO: Implement this within the orders implementation -->
-            <!-- <OrderHistoryItem -->
-            <!--   v-for="(order, idx) in slicedOrders" -->
-            <!--   :key="order.id" -->
-            <!--   v-bind="order" -->
-            <!--   :is-latest-order="!idx" -->
-            <!--   :class="{ 'border-t border-t-gray-350': idx }" /> -->
+            <OrderHistoryItem
+              v-for="(order, idx) in slicedOrders"
+              :key="order.id"
+              v-bind="order"
+              :is-latest-order="!idx"
+              :class="{ 'border-t border-t-gray-350': idx }" />
           </div>
           <div v-else class="bg-slate-100 p-10 text-center">
             <div class="p-5 text-sm font-bold text-primary">
@@ -66,7 +65,7 @@ const props = defineProps({
 const ORDERS_PER_PAGE = 8
 
 const route = useRoute()
-// const router = useRouter()
+const router = useRouter()
 const viewport = useViewport()
 
 const { user } = await useUser()
@@ -108,18 +107,18 @@ watch(orders, () => updateSlicedOrders())
 // when mounted determines the first order that should be shown - if possible
 // this can only happen when order data is loaded before mounting.
 // usually this means: being rendered on the server
-onMounted(() => {
+onMounted(async () => {
   if (
     !route.params?.id &&
     !props.isAccountPage &&
     currentOrderId.value &&
     viewport.isGreaterOrEquals('md')
   ) {
-    // const orderDetailRoute = {
-    //   name: routeList.orderDetail.name,
-    //   params: { id: currentOrderId.value.toString() },
-    // }
-    // await router.push(toLocalePath(orderDetailRoute))
+    const orderDetailRoute = {
+      name: routeList.orderDetail.name,
+      params: { id: currentOrderId.value.toString() },
+    }
+    await router.push(toLocalePath(orderDetailRoute))
   }
   updateSlicedOrders()
 })

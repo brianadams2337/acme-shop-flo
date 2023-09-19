@@ -226,7 +226,7 @@ const hasOneSizeVariantOnly = computed(() => {
   const variants = product.value?.variants
   return (
     variants?.length === 1 &&
-    getAttributeValue(variants[0].attributes, 'size') === 'one_size'
+    getAttributeValue(variants[0].attributes, 'size') === ONE_SIZE_KEY
   )
 })
 

@@ -59,6 +59,7 @@ import {
 import { IconArrowLeft } from '#build/components'
 import { Size } from '~/constants'
 
+// TODO use computed property for dynamic class bindings on line 24
 const props = defineProps({
   loading: {
     type: Boolean as PropType<boolean>,

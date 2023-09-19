@@ -93,16 +93,16 @@ const { data: orderData, fetching } = await useOrderConfirmation<
 const user = await useUser()
 
 // const { trackPurchaseEvent } = useTrackingEvents()
-onMounted(() => {
-  // trackPurchaseEvent(orderData.value)
-})
+// onMounted(() => {
+// trackPurchaseEvent(orderData.value)
+// })
 
-watch(user.fetching, (isFetching) => {
+watch(user.fetching, async (isFetching) => {
   if (!isFetching && user.isLoggedIn) {
     // This will force fetching fresh user data from the backend.
-    // Without it the new order will not be available in the users order list, 
+    // Without it the new order will not be available in the users order list,
     // which will cause the oder not being displayed in the MyAccount area.
-    user.forceRefresh()
+    await user.forceRefresh()
   }
 })
 

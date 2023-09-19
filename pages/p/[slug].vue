@@ -292,37 +292,36 @@ const addItemToBasket = async () => {
     getFirstAttributeValue(product.value?.attributes, 'name')?.label ||
     $i18n.t('wishlist.product')
 
+  try {
+    isAnyAddOnSelected.value
+      ? await addGroupToBasket({
+          mainItem: { variantId: activeVariant.value.id, quantity: 1 },
+          items: [
+            ...Object.keys(addOnsSelected.value).map((v) => ({
+              variantId: parseInt(v),
+              quantity: 1,
+            })),
+          ],
+        })
+      : await addBasketItem({ variantId: activeVariant.value.id, quantity: 1 })
+    showBasketFlyOut()
 
-    try {
-        isAnyAddOnSelected.value
-          ? await addGroupToBasket({
-              mainItem: { variantId: activeVariant.value.id, quantity: 1 },
-              items: [
-                ...Object.keys(addOnsSelected.value).map((v) => ({
-                  variantId: parseInt(v),
-                  quantity: 1,
-                })),
-              ],
-            })
-          : await addBasketItem({ variantId: activeVariant.value.id, quantity: 1 })
-        showBasketFlyOut()
+    showAddToBasketToast(true, product.value)
 
-        showAddToBasketToast(true, product.value)
-        
-        // TODO tracking
-        // if (product.value) {
-        //   trackAddToBasket({
-        //     product: product.value,
-        //     variant: activeVariant.value,
-        //     index: 1,
-        //   })
-        // }
-      } catch {
-        $alert.show(
-          $i18n.t('basket.notification.add_to_basket_error', { productName }),
-          Action.CONFIRM,
-        )
-      }
+    // TODO tracking
+    // if (product.value) {
+    //   trackAddToBasket({
+    //     product: product.value,
+    //     variant: activeVariant.value,
+    //     index: 1,
+    //   })
+    // }
+  } catch {
+    $alert.show(
+      $i18n.t('basket.notification.add_to_basket_error', { productName }),
+      Action.CONFIRM,
+    )
+  }
 }
 
 // wishlist

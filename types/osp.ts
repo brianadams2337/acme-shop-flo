@@ -11,8 +11,6 @@ import {
 type OrderAttribute = Omit<AttributeGroup, 'id' | 'type'>
 type OrderAdvancedAttribute = Omit<AdvancedAttribute, 'id' | 'type'>
 
-export type DeliveryDate = ListOfPackages[0]['deliveryDate']
-
 interface OrderCategory {
   categoryHidden: boolean
   categoryId: number
@@ -20,6 +18,8 @@ interface OrderCategory {
   categorySlug: string
   categoryUrl: string
 }
+
+export type DeliveryDate = ListOfPackages[0]['deliveryDate']
 
 export type OrderPrice = Exclude<BaseOrder['items'], undefined>[0]['price']
 

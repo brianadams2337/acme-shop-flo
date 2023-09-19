@@ -30,7 +30,7 @@
           </div>
           <OspDeliveryDate
             v-if="orderData.packages && viewport.isLessThan('sm')"
-            v-bind="orderData.packages[0].deliveryDate" />
+            :delivery-date="orderData.packages[0].deliveryDate" />
           <div class="my-8 flex space-x-4 sm:mt-12">
             <AppButton type="tertiary" :to="{ name: routeList.home.name }">
               {{ $t('basket.continue_shopping_label') }}
@@ -49,7 +49,7 @@
           <div class="divide-y divide-gray-500">
             <OspDeliveryDate
               v-if="orderData.packages"
-              v-bind="orderData.packages[0].deliveryDate" />
+              :delivery-date="orderData.packages[0].deliveryDate" />
             <div class="space-y-2">
               <Headline
                 size="sm"

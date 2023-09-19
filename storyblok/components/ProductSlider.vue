@@ -86,7 +86,7 @@ const { data, fetch, fetching } = await useProductsByIds({
     priceRange: true,
     lowestPriorPrice: true,
   },
-})
+}, undefined, `productSlider-${props.blok._uid}`)
 
 onMounted(() => fetch())
 

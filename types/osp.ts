@@ -5,6 +5,7 @@ import {
   AdvancedAttribute,
   LowestPriorPrice,
   Order as BaseOrder,
+  ListOfPackages,
 } from '@scayle/storefront-nuxt'
 
 type OrderAttribute = Omit<AttributeGroup, 'id' | 'type'>
@@ -17,6 +18,8 @@ interface OrderCategory {
   categorySlug: string
   categoryUrl: string
 }
+
+export type DeliveryDate = ListOfPackages[0]['deliveryDate']
 
 export type OrderPrice = Exclude<BaseOrder['items'], undefined>[0]['price']
 

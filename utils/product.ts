@@ -4,6 +4,7 @@ import {
   getLowestPrice,
   getAppliedReductionsByCategory,
 } from '@scayle/storefront-nuxt'
+import { VariantAvailability } from '~/types'
 import { ColorMap, MINIMUM_QUANTITY_IMMEDIATE_AVAILABILITY } from '~/constants'
 
 export { ProductImageType } from '@scayle/storefront-nuxt'
@@ -43,13 +44,6 @@ export const getSalesRelativeAmountByCategory = (
   return variantsLowestPrice
     ? getAppliedReductionsByCategory(variantsLowestPrice, category)
     : []
-}
-
-export interface VariantAvailability {
-  available: boolean
-  type: 'immediate' | 'soon' | 'unavailable'
-  text: string
-  textArgs?: any
 }
 
 export function getVariantAvailability(

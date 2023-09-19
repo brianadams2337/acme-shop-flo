@@ -1,4 +1,4 @@
-import { Category } from '@scayle/storefront-nuxt'
+import { Category, CentAmount } from '@scayle/storefront-nuxt'
 
 export type FlyoutMenuCategory = {
   name: string
@@ -14,3 +14,16 @@ export type PaymentIcon = {
 }
 
 export type PaymentIconsMap = { [key: string]: PaymentIcon }
+
+export interface VariantAvailability {
+  available: boolean
+  type: 'immediate' | 'soon' | 'unavailable'
+  text: string
+  textArgs?: any
+}
+
+export type AddOnItem = {
+  label: string
+  price: CentAmount
+  variantId: number
+}

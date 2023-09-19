@@ -86,32 +86,25 @@ const viewport = useViewport()
 const route = useRoute()
 const cbdToken = String(route.query.cbd)
 
-const {
-  data: orderData,
-  fetch: fetchCbdData,
-  fetching,
-} = await useOrderConfirmation<OrderProduct, OrderVariant>(
-  { cbdToken },
-  { autoFetch: true },
-)
+const { data: orderData, fetching } = await useOrderConfirmation<
+  OrderProduct,
+  OrderVariant
+>({ cbdToken }, { autoFetch: true })
 const user = await useUser()
 
 // const { trackPurchaseEvent } = useTrackingEvents()
-onMounted(async () => {
-  await fetchCbdData()
+onMounted(() => {
   // trackPurchaseEvent(orderData.value)
 })
 
-watch(user.fetching, (isFetching) => {
-  if (!isFetching && user.isLoggedIn) {
-    user.fetch()
-  }
-})
+watch(
+  user.fetching,
+  (isFetching) => !isFetching && user.isLoggedIn && user.fetch(),
+)
 
 const getItemQuantity = (variantId: number): number | undefined => {
-  return orderData.value?.items?.filter(
-    (value: any) => value.variant.id === variantId,
-  ).length
+  const isVariant = (value: any) => value.variant.id === variantId
+  return orderData.value?.items?.filter(isVariant).length
 }
 
 const orderItems = computed(() => {

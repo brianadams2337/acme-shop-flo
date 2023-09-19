@@ -8,7 +8,7 @@
         <div class="mt-16 space-y-2">
           <Headline size="lg" type="loud" class="block">
             <div class="flex items-center sm:text-lg">
-              <IconCheckmark class="relative top-[-2px] mr-2 h-5 w-5" />
+              <IconUiCheckmark class="relative top-[-2px] mr-2 h-5 w-5" />
               {{ $t('osp.intro') }}
               {{ orderData.customer?.firstName }}
             </div>
@@ -44,7 +44,7 @@
           </div>
         </div>
       </div>
-      <div class="w-3/4 sm:bg-gray-100">
+      <div class="w-3/4 max-sm:container sm:bg-gray-100">
         <div class="container py-4 text-sm sm:p-10 md:px-20">
           <div class="divide-y divide-gray-500">
             <OspDeliveryDate
@@ -97,10 +97,14 @@ onMounted(() => {
   // trackPurchaseEvent(orderData.value)
 })
 
-watch(
-  user.fetching,
-  (isFetching) => !isFetching && user.isLoggedIn && user.fetch(),
-)
+watch(user.fetching, (isFetching) => {
+  if (!isFetching && user.isLoggedIn) {
+    // This will force fetching fresh user data from the backend.
+    // Without it the new order will not be available in the users order list, 
+    // which will cause the oder not being displayed in the MyAccount area.
+    user.forceRefresh()
+  }
+})
 
 const getItemQuantity = (variantId: number): number | undefined => {
   const isVariant = (value: any) => value.variant.id === variantId

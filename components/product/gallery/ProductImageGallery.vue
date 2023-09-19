@@ -32,7 +32,6 @@
   <div v-else class="relative w-full md:w-1/2 xl:w-2/3">
     <HorizontalItemsSlider
       class="-mx-4 aspect-[5/6] snap-x snap-mandatory border-b">
-      <!-- TODO Handle intersect -->
       <intersect
         v-for="(item, idx) in images"
         :key="item.hash"
@@ -87,8 +86,6 @@ const emit = defineEmits<{
 const { md } = useViewportBreakpoints()
 
 const activeSlide = ref(0)
-
-// TODO wire up with intersect
 const setActiveSlide = (slide: number) => {
   console.log('active slide')
   activeSlide.value = slide

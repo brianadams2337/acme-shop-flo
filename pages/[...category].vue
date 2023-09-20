@@ -310,13 +310,18 @@ const quickFilters = computed(() =>
 //   return { title, ...metaTags }
 // })
 
-// CMS Content
-const cmsData = await useAsyncStoryblok(
-  `categories/${selectedCategory.value?.id}`,
-  {
-    version: getStoryblokContentVersion(),
-  },
-)
+// CMS Content, TODO move error handling to composable
+let cmsData = ref()
+try {
+  cmsData = await useAsyncStoryblok(
+    `categories/${selectedCategory.value?.id}`,
+    {
+      version: getStoryblokContentVersion(),
+    },
+  )
+} catch (e) {
+  console.error(e)
+}
 
 const {
   content,

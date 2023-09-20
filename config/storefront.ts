@@ -95,9 +95,7 @@ export const storefrontRuntimeConfigPrivate: Partial<ModuleOptions> = {
     clientId: '', // Override: NUXT_STOREFRONT_OAUTH_CLIENT_ID,
     clientSecret: '', // Override: NUXT_STOREFRONT_OAUTH_CLIENT_SECRET,
   },
-  shopSelector: process.env.NUXT_STOREFRONT_DOMAIN_PER_LOCALE
-    ? 'domain'
-    : 'path', // Override: NUXT_STOREFRONT_SHOP_SELECTOR
+  shopSelector: process.env.NUXT_STOREFRONT_DOMAIN_PER_LOCALE ? 'domain' : 'path', // Override: NUXT_STOREFRONT_SHOP_SELECTOR
   // Following keys are overridable using prefix NUXT_STOREFRONT_STORES
   stores: shops.reduce(
     (previousShopConfigs, shop) => ({
@@ -132,10 +130,10 @@ export const storefrontRuntimeConfigPrivate: Partial<ModuleOptions> = {
           secret: '', // Override: NUXT_STOREFRONT_STORES_{UNIQUE_IDENTIFIER}_CHECKOUT_SECRET,
           host: '', // Override: NUXT_STOREFRONT_STORES_{UNIQUE_IDENTIFIER}_CHECKOUT_HOST,
           user: '', // Override: NUXT_STOREFRONT_STORES_{UNIQUE_IDENTIFIER}_CHECKOUT_USER,
-        },
-      },
-    }),
-    {},
+        }
+      }}
+      ),
+    {}
   ),
   redis: {
     host: 'localhost', // Override: NUXT_STOREFRONT_REDIS_HOST,

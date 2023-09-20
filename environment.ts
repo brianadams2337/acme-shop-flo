@@ -27,10 +27,6 @@ export default cleanEnv(
     NUXT_STOREFRONT_OAUTH_CLIENT_ID: str({ default: '' }),
     NUXT_STOREFRONT_OAUTH_CLIENT_SECRET: str({ default: '' }),
 
-    NUXT_STOREFRONT_DOMAIN_EN: str({ default: '' }),
-    NUXT_STOREFRONT_DOMAIN_DE_DE: str({ default: '' }),
-    NUXT_STOREFRONT_DOMAIN_DE_AT: str({ default: '' }),
-    NUXT_STOREFRONT_DOMAIN_DE_CH: str({ default: '' }),
     NUXT_STOREFRONT_DOMAIN_DEFAULT: str({ default: '' }),
     NUXT_STOREFRONT_DOMAIN_PER_LOCALE: bool({ default: true }),
 
@@ -48,6 +44,8 @@ export default cleanEnv(
     NUXT_STOREFRONT_STORES_EN_US_CHECKOUT_TOKEN: str(),
     NUXT_STOREFRONT_STORES_EN_US_CHECKOUT_SECRET: str(),
     NUXT_STOREFRONT_STORES_EN_US_CHECKOUT_USER: str(),
+
+    NUXT_STOREFRONT_STORES_EN_US_DOMAIN: str({ default: '' }),
 
     NUXT_STOREFRONT_STORES_EN_US_CAMPAIGN_KEYWORD: str(),
 

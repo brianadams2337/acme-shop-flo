@@ -60,9 +60,9 @@ BASIC_AUTH=##:##
 ```
 
 It is important to set the used `{UNIQUE_IDENTIFIER}` needs to be equal to the key ( [shop.locale] or [shop.shopId] ) set of
-the `shops.reduce` function in `config/storefront.ts`. We __strongly recommend__ to use the `shopId` as `{UNIQUE_IDENTIFIER}`!
+the `shops.reduce` function in `config/storefront.ts`. We **strongly recommend** to use the `shopId` as `{UNIQUE_IDENTIFIER}`!
 
-- __RECOMMENDED__: Example if `[shop.shopId]` is used -> Overrideable environment variable: `NUXT_STOREFRONT_STORES_1001_CHECKOUT_USER`.
+- **RECOMMENDED**: Example if `[shop.shopId]` is used -> Overrideable environment variable: `NUXT_STOREFRONT_STORES_1001_CHECKOUT_USER`.
 - Example if `[shop.locale]` is used -> Overrideable environment variable: `NUXT_STOREFRONT_STORES_EN_US_CHECKOUT_USER`.
 
 For the shop application to properly start we also need to adjust the `shopId` value within `nuxt.config.ts` and

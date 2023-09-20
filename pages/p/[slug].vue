@@ -57,7 +57,7 @@
                     <ColorChip
                       :is-active="item.id === product.id"
                       :size="md ? Size.LG : Size.XL"
-                      :color="(item.colors[0] as ProductColor)" />
+                      :color="item.colors[0] as ProductColor" />
                   </DefaultLink>
                 </template>
               </ProductSiblingPicker>

@@ -98,6 +98,7 @@ import {
   getSortingValues,
   groupFilterableValuesByKey,
 } from '@scayle/storefront-nuxt'
+import { SbCmsImage } from '../storyblok/types/storyblok'
 import { sustainabilityAttributes } from '~/constants'
 
 // const listingMetaData = {
@@ -318,11 +319,13 @@ const cmsData = await useAsyncStoryblok(
 )
 
 const {
-  content: cmsContent,
+  content,
   hasTeaserImage,
   postListingContent,
   preListingContent,
 } = useCmsListingContent(cmsData)
+
+const cmsContent = content as unknown as SbCmsImage
 
 const isFirstPage = computed(() => pagination.value?.page === 1)
 

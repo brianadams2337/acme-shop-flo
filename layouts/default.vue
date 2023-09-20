@@ -2,28 +2,32 @@
   <div
     class="flex min-h-screen flex-col text-primary antialiased anchor-scrolling-none">
     <HeaderMetaBar />
-    <AppHeader
-      :fetching-categories="fetchingCategories"
-      :root-categories="
-        Array.isArray(rootCategories.categories)
-          ? rootCategories.categories
-          : [rootCategories.categories]
-      "
-      class="mb-4" />
+    <AppHeader v-bind="{ rootCategories, fetchingCategories }" class="mb-4" />
     <ToastContainer />
+    <MobileSidebar
+      v-if="viewport.isLessThan('md')"
+      v-bind="{ rootCategories, fetchingCategories }" />
     <slot />
-    <AppFooter class="mt-16"/>
+    <AppFooter class="mt-16" />
   </div>
 </template>
 
 <script setup lang="ts">
 import withParams from '~/constants/withParams'
 
-const { data: rootCategories, fetching: fetchingCategories } =
+const { data: rootCategoriesData, fetching: fetchingCategories } =
   await useCategories({ path: '/' }, { autoFetch: true })
 
-const _wishlist = await useWishlist(withParams.wishlist, { autoFetch: true })
-const _basket = await useBasket(withParams.basket, { autoFetch: true })
+await useWishlist(withParams.wishlist, { autoFetch: true })
+await useBasket(withParams.basket, { autoFetch: true })
+
+const viewport = useViewport()
+
+const rootCategories = computed(() => {
+  return Array.isArray(rootCategoriesData.value.categories)
+    ? rootCategoriesData.value.categories
+    : [rootCategoriesData.value.categories]
+})
 </script>
 
 <script lang="ts">

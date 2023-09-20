@@ -100,12 +100,14 @@ type Link =
   | 'account'
   | 'pdp'
   | 'orderDetail'
+  | 'search'
 
 export type LinkList = Record<Link, { name: string; path: string }>
 
 export const routeList: LinkList = {
   home: { name: 'index', path: '/' },
   checkout: { name: 'checkout', path: '/checkout' },
+  search: { name: 'search', path: '/search' },
   wishlist: { name: 'wishlist', path: '/wishlist' },
   basket: { name: 'basket', path: '/basket' },
   signin: { name: 'signin', path: '/signin' },

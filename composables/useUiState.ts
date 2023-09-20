@@ -160,8 +160,9 @@ export default () => {
 
   const mobileSearchIsActive = computed(() => uiState.mobileSearchIsActive)
 
-  const setMobileSearchIsActive = (value: boolean) =>
-    (uiState.mobileSearchIsActive = value)
+  const setMobileSearchIsActive = (value: boolean) => {
+    uiState.mobileSearchIsActive = value
+  }
 
   const selectedSideNavigationEntry = computed(
     () => uiState.selectedSideNavigationEntry,

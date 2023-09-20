@@ -1,5 +1,5 @@
 <template>
-  <transition
+  <Transition
     :appear="appear"
     :enter-active-class="easeLinearClass"
     :leave-active-class="easeLinearClass"
@@ -9,7 +9,7 @@
     leave-to-class="opacity-0"
     mode="out-in">
     <slot />
-  </transition>
+  </Transition>
 </template>
 
 <script setup lang="ts">

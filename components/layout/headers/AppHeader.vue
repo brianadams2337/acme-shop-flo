@@ -5,7 +5,7 @@
     data-test-id="main-header">
     <div class="border-b border-gray-200">
       <div
-        class="container flex h-[4.375rem] items-center justify-between gap-1 sm:gap-4">
+        class="mx-4 flex h-[4.375rem] items-center justify-between gap-1 md:container sm:gap-4">
         <div class="flex-1">
           <AppButton
             class="md:hidden"

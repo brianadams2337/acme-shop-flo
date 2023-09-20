@@ -8,13 +8,13 @@
         id="search"
         ref="inputRef"
         v-model="content"
+        :placeholder="$t('search.placeholder')"
         autocomplete="off"
         data-test-id="search-input"
-        class="w-full appearance-none rounded border border-transparent bg-gray-100 px-2 pl-10 text-sm outline-0 ring-0 transition-colors duration-200 ease-linear placeholder:text-gray-800 focus:border-black focus:bg-white focus:outline-none focus:ring-0 md:border-none"
-        :placeholder="$t('search.placeholder')"
         type="search"
+        class="w-full appearance-none rounded border border-transparent bg-gray-100 px-2 pl-10 text-sm outline-0 ring-0 transition-colors duration-200 ease-linear placeholder:text-gray-800 focus:border-black focus:bg-white focus:outline-none focus:ring-0 md:border-none"
         @focus="emit('focus')"
-        @blur="!content.length ? emit('cancel') : emit('blur')"
+        @blur="content.length ? emit('blur') : emit('cancel')"
         @keydown.exact.enter="emit('keydown:enter')" />
     </label>
   </div>
@@ -22,14 +22,14 @@
 
 <script setup lang="ts">
 const props = defineProps({
-  value: {
+  modelValue: {
     type: String,
     default: '',
   },
 })
 
 const emit = defineEmits<{
-  (e: 'input', value: string): void
+  (e: 'update:model-value', value: string): void
   (e: 'cancel'): void
   (e: 'focus'): void
   (e: 'blur'): void
@@ -37,7 +37,7 @@ const emit = defineEmits<{
 }>()
 
 const content = computed({
-  get: () => props.value,
-  set: (newValue: string) => emit('input', newValue),
+  get: () => props.modelValue,
+  set: (newValue: string) => emit('update:model-value', newValue),
 })
 </script>

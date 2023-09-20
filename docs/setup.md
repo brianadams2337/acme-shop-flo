@@ -1,4 +1,4 @@
-# SCAYLE Storefront Boilerplate - Nuxt 3 Migration
+# SCAYLE Storefront Boilerplate - Nuxt 3 Setup
 
 This document outlines the required steps to setup a Nuxt 2 based DemoShop with the SCAYLE Storefront Boilerplate.
 Please keep in mind that this documentation is still being extended and will be regularly updated.

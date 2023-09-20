@@ -112,7 +112,12 @@ export const storefrontRuntimeConfigPrivate: Partial<ModuleOptions> = {
       // as all values should be provided through runtime using NUXT_ environment variable overrides.
       // https://nuxt.com/docs/guide/going-further/runtime-config#example
       ...previousShopConfigs,
-      // Use shop.locale instead of shop.shopId to avoid conflicts if we use the same id
+      // We can use shop.locale instead of shop.shopId to avoid conflicts if we use the same shopId for multiple shop.
+      // The key [shop.locale] is connected to the overridable environment variables like NUXT_STOREFRONT_STORES_{UNIQUE_IDENTIFIER}_CHECKOUT_USER.
+      // Depending on what key will be used here, the variables need use either the locale or shopId as{UNIQUE_IDENTIFIER}.
+      // NOTE: We recommend to use the shopId as {UNIQUE_IDENTIFIER}!
+      // Example if `[shop.locale]` is used -> overridable environment variable: NUXT_STOREFRONT_STORES_EN_US_CHECKOUT_USER.
+      // Example if `[shop.shopId]` is used -> overridable environment variable: NUXT_STOREFRONT_STORES_1001_CHECKOUT_USER.
       [shop.locale]: {
         ...baseShopConfig,
         shopId: shop.shopId,
@@ -124,7 +129,7 @@ export const storefrontRuntimeConfigPrivate: Partial<ModuleOptions> = {
           resetPasswordUrl: `${protocol}${shop.locale}/signin/`,
         },
         storeCampaignKeyword:
-          environment.NUXT_STOREFRONT_STORES_EN_US_CAMPAIGN_KEYWORD,
+          environment.NUXT_STOREFRONT_STORES_EN_US_STORE_CAMPAIGN_KEYWORD,
         currency: shop.currency,
         checkout: {
           shopId: shop.shopId,

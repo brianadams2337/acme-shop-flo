@@ -20,8 +20,8 @@ export default cleanEnv(
 
     NUXT_STOREFRONT_REDIRECTS_ENABLED: bool({ default: false }),
 
-    NUXT_STOREFRONT_BAPI_HOST: url(),
-    NUXT_STOREFRONT_BAPI_TOKEN: str(),
+    NUXT_STOREFRONT_BAPI_HOST: url({ default: '' }),
+    NUXT_STOREFRONT_BAPI_TOKEN: str({ default: '' }),
 
     NUXT_STOREFRONT_OAUTH_API_HOST: str({ default: '' }),
     NUXT_STOREFRONT_OAUTH_CLIENT_ID: str({ default: '' }),
@@ -47,14 +47,14 @@ export default cleanEnv(
 
     NUXT_STOREFRONT_STORES_EN_US_DOMAIN: str({ default: '' }),
 
-    NUXT_STOREFRONT_STORES_EN_US_CAMPAIGN_KEYWORD: str(),
+    NUXT_STOREFRONT_STORES_EN_US_STORE_CAMPAIGN_KEYWORD: str({ default: '' }),
 
     NUXT_STOREFRONT_STORES_EN_US_IS_LOWEST_PREVIOUS_PRICE_ACTIVE: bool({
       default: false,
     }),
 
     /* Storyblok-specific Configuration */
-    NUXT_STORYBLOK_ACCESS_TOKEN: str(),
+    NUXT_STORYBLOK_ACCESS_TOKEN: str({ default: '' }),
     NUXT_STORYBLOK_WEBHOOK_SECRET: str({
       default: 'hereupon-caviar-nicety-wanton',
     }),

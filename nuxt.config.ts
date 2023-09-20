@@ -168,11 +168,7 @@ export default defineNuxtConfig({
     langDir: 'langs/',
     lazy: true,
     strategy: 'prefix',
-    vueI18n: {
-      legacy: false,
-      locale: 'en',
-      fallbackLocale: 'en',
-    },
+    vueI18n: 'vue-i18n.config.ts',
   },
 
   // https://github.com/cpreston321/nuxt-swiper#usage

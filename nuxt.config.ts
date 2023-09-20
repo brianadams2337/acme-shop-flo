@@ -21,14 +21,18 @@ const locales = [
     code: 'en',
     iso: 'en-GB',
     // TODO: Investigate runtimeConfig behaviour, as we want build independence
-    domain: process.env.NUXT_STOREFRONT_DOMAIN_PER_LOCALE ? domains.en : domains.default,
+    domain: process.env.NUXT_STOREFRONT_DOMAIN_PER_LOCALE
+      ? domains.en
+      : domains.default,
     file: 'en-GB.json',
   },
   {
     code: 'de',
     iso: 'de-DE',
     // TODO: Investigate runtimeConfig behaviour, as we want build independence
-    domain: process.env.NUXT_STOREFRONT_DOMAIN_PER_LOCALE ? domains.de : domains.default,
+    domain: process.env.NUXT_STOREFRONT_DOMAIN_PER_LOCALE
+      ? domains.de
+      : domains.default,
     file: DE_DOMAIN_FILE,
     shopId: 1001,
   },
@@ -36,14 +40,18 @@ const locales = [
     code: 'de-at',
     iso: 'de-AT',
     // TODO: Investigate runtimeConfig behaviour, as we want build independence
-    domain: process.env.NUXT_STOREFRONT_DOMAIN_PER_LOCALE ? domains['de-at'] : domains.default,
+    domain: process.env.NUXT_STOREFRONT_DOMAIN_PER_LOCALE
+      ? domains['de-at']
+      : domains.default,
     file: DE_DOMAIN_FILE,
   },
   {
     code: 'de-ch',
     iso: 'de-CH',
     // TODO: Investigate runtimeConfig behaviour, as we want build independence
-    domain: process.env.NUXT_STOREFRONT_DOMAIN_PER_LOCALE ? domains['de-ch'] : domains.default,
+    domain: process.env.NUXT_STOREFRONT_DOMAIN_PER_LOCALE
+      ? domains['de-ch']
+      : domains.default,
     file: DE_DOMAIN_FILE,
   },
 ]
@@ -119,7 +127,7 @@ export default defineNuxtConfig({
 
   // https://github.com/storyblok/storyblok-nuxt#options
   storyblok: {
-    accessToken: process.env.NUXT_STORYBLOK_ACCESS_TOKEN
+    accessToken: process.env.NUXT_STORYBLOK_ACCESS_TOKEN,
   },
 
   // https://github.com/cpsoinos/nuxt-svgo/blob/main/README.md#usage

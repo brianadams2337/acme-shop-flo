@@ -3,9 +3,7 @@
     class="container mt-10 flex flex-col items-center justify-center text-primary">
     <section class="flex flex-col items-center">
       <Headline>{{ title }}</Headline>
-      <Headline class="mt-2" size="sm" tag="h2">
-        {{ message }}
-      </Headline>
+      <Headline class="mt-2" size="sm" tag="h2">{{ message }}</Headline>
     </section>
     <section class="mt-6">
       <div @click="clearError({ redirect })">
@@ -30,14 +28,14 @@ const isNotFoundError = computed(() => {
 })
 const title = computed(() => {
   return isNotFoundError.value
-    ? $i18n.t('not_found_code')
-    : $i18n.t('not_found_message')
+    ? $i18n.t('error.not_found_code')
+    : $i18n.t('error.not_found_message')
 })
 
 const message = computed(() => {
   return isNotFoundError.value
-    ? $i18n.t('page_does_not_exist')
-    : $i18n.t('request_not_processed')
+    ? $i18n.t('error.page_does_not_exist')
+    : $i18n.t('error.request_not_processed')
 })
 
 useHead({ title: title.value })

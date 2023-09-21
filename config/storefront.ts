@@ -141,8 +141,8 @@ export const storefrontRuntimeConfigPrivate: Partial<ModuleOptions> = {
     host: 'localhost', // Override: NUXT_STOREFRONT_REDIS_HOST,
     port: 6379, // Override: NUXT_STOREFRONT_REDIS_PORT,
     prefix: '', // Override: NUXT_STOREFRONT_REDIS_PREFIX,
-    user: process.env.NUXT_STOREFRONT_REDIS_USER,
-    password: process.env.NUXT_STOREFRONT_REDIS_PASSWORD,
+    user: '', // Override: NUXT_STOREFRONT_REDIS_USER,
+    password: '', // Override: NUXT_STOREFRONT_REDIS_PASSWORD,
     sslTransit: Boolean(process.env.NUXT_STOREFRONT_SSL_TRANSIT),
   },
   // Following keys are Overrideable using prefix NUXT_STOREFRONT_CACHE

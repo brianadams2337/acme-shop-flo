@@ -14,7 +14,7 @@ This `.env` file will hold all relevant credentials, secrets and override values
 
 The provided `.env.example` file contains the rough structure and required values for a local `.env` file.
 
-```yaml
+```ini
 ### Global Configuration ###
 
 BASE_URL=http://localhost:3000

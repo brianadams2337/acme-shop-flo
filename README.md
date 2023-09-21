@@ -148,7 +148,7 @@ Please keep in mind that the shop accessed through http://localhost:3000 might n
 As the local HTTPS encryption is directly coupled to the `HTTPS_KEY` and `HTTPS_CERT`,
 simply remove or comment out the entries in your `.env`-file, like this:
 
-```yaml
+```ini
 # HTTPS_KEY=localhost.pem
 # HTTPS_CERT=localhost.crt
 SOME_OTHER_ACTIVE_KEY=someValue
@@ -195,7 +195,7 @@ npm config set -- '//gitlab.com/api/v4/projects/29746107/packages/npm/:_authToke
 
 Your global local `~/.npmrc` file should look similar to this afterwards:
 
-```text
+```ini
 @aboutyou:registry=https://gitlab.com/api/v4/projects/29746107/packages/npm/
 @scayle:registry=https://gitlab.com/api/v4/projects/29746107/packages/npm/
 //gitlab.com/api/v4/packages/npm/:_authToken=<TOKEN>
@@ -293,7 +293,7 @@ To intercept and debug API calls, we will be relying on `mitmproxy`'s core tool 
 
 For `mitmproxy` to be able to intercept HTTP(S) requests, we need to configure our shop `.env` file and add the following two values:
 
-```text
+```ini
 https_proxy=http://127.0.0.1:8080
 http_proxy=http://127.0.0.1:8080
 ```

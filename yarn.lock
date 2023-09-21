@@ -1805,10 +1805,10 @@
     uncrypto "^0.1.3"
     utility-types "^3.10.0"
 
-"@scayle/storefront-nuxt@7.20.1":
-  version "7.20.1"
-  resolved "https://gitlab.com/api/v4/projects/29746107/packages/npm/@scayle/storefront-nuxt/-/@scayle/storefront-nuxt-7.20.1.tgz#35033d830fc4ccec7470d2a1e602b43f0ed62f7c"
-  integrity sha1-NQM9gw/EzOx0cNKh5gK0Pw7WL3w=
+"@scayle/storefront-nuxt@7.20.2":
+  version "7.20.2"
+  resolved "https://gitlab.com/api/v4/projects/29746107/packages/npm/@scayle/storefront-nuxt/-/@scayle/storefront-nuxt-7.20.2.tgz#79a22e930aac9780974b5516a861c0c314c8fa08"
+  integrity sha1-eaIukwqsl4CXS1UWqGHAwxTI+gg=
   dependencies:
     "@nuxt/kit" "3.7.3"
     "@scayle/h3-session" "0.3.2"
@@ -7654,6 +7654,11 @@ mz@^2.7.0:
     object-assign "^4.0.1"
     thenify-all "^1.0.0"
 
+nanoid@5.0.1:
+  version "5.0.1"
+  resolved "https://registry.yarnpkg.com/nanoid/-/nanoid-5.0.1.tgz#3e95d775a8bc8a98afbf0a237e2bbc6a71b0662e"
+  integrity sha512-vWeVtV5Cw68aML/QaZvqN/3QQXc6fBfIieAlu05m7FZW2Dgb+3f0xc0TTxuJW+7u30t7iSDTV/j3kVI0oJqIfQ==
+
 nanoid@^3.3.6:
   version "3.3.6"
   resolved "https://registry.yarnpkg.com/nanoid/-/nanoid-3.3.6.tgz#443380c856d6e9f9824267d960b4236ad583ea4c"
@@ -11894,7 +11899,7 @@ ylru@^1.2.0:
   resolved "https://registry.yarnpkg.com/ylru/-/ylru-1.3.2.tgz#0de48017473275a4cbdfc83a1eaf67c01af8a785"
   integrity sha512-RXRJzMiK6U2ye0BlGGZnmpwJDPgakn6aNQ0A7gHRbD4I0uvK4TW6UqkK1V0pp9jskjJBAXd3dRrbzWkqJ+6cxA==
 
-yn@^5.0.0:
+yn@5.0.0:
   version "5.0.0"
   resolved "https://registry.yarnpkg.com/yn/-/yn-5.0.0.tgz#63fc2e2e0056cf294397eed6ad4a3fbdf707f26f"
   integrity sha512-+l37+9TyGEsyxGLaTg6QgYy5KnOp74ZZl4dPFLQpBWSkO99uBC5jnS0pOGwXFViPbiaEtWbParH2KrgWWF2duQ==

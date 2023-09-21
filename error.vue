@@ -6,9 +6,9 @@
       <Headline class="mt-2" size="sm" tag="h2">{{ message }}</Headline>
     </section>
     <section class="mt-6">
-      <div @click="clearError({ redirect })">
-        <span class="text-sm">{{ $t('error.continue_shopping') }}</span>
-      </div>
+      <AppButton @click="clearError({ redirect })">
+        {{ $t('error.continue_shopping') }}
+      </AppButton>
     </section>
   </div>
 </template>

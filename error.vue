@@ -43,7 +43,7 @@ useHead({ title: title.value })
 const redirect = toLocalePath({ name: routeList.home.name }).toString()
 </script>
 
-<script>
+<script lang="ts">
 export default {
   name: 'AppError',
 }

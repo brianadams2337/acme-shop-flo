@@ -1,5 +1,14 @@
 <template>
-  <div class="mb-24">
+  <div v-if="fetching">
+    <SkeletonLoader full-width class="h-[700px]" />
+  </div>
+  <div v-else-if="!lookbooksData" class="flex h-[700px]">
+    <p class="m-auto">
+      Seems like you dont have any lookbooks for now, head over to the CMS and
+      start creating your first lookbook!
+    </p>
+  </div>
+  <div v-else class="mb-24">
     <div v-for="story in lookbooksData" :key="story.uuid">
       <DefaultLink
         v-if="routeList.lookbooks.parameter"
@@ -30,12 +39,8 @@
 <script setup lang="ts">
 import { slugify } from '@scayle/storefront-nuxt'
 
-// Limitation of useStoryblokAsync not being able to fetch multiple stories, thus as a work around using storyblokApi
-// https://github.com/storyblok/storyblok-nuxt/issues/547#issuecomment-1697844103
-const storyApi = useStoryblokApi()
-const {
-  data: { stories: lookbooksData },
-} = await storyApi.getStories({ starts_with: 'lookbooks' })
+const { fetchByFolder, data: lookbooksData, fetching } = useCms('lookbooks')
+await fetchByFolder('lookbooks', { per_page: 5 })
 
 const prepareForUrl = (path: string) => slugify(path)
 </script>

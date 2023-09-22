@@ -1,5 +1,3 @@
-import { filename } from 'pathe/utils'
-
 const symbolMap: Record<number, string> = {
   720: 'machine_wash_30_gentle_or_delicate',
   741: 'machine_wash_30_permanent_press',
@@ -37,24 +35,13 @@ const symbolMap: Record<number, string> = {
   777: 'drip_dry',
 }
 
-const assets = import.meta.glob('~/assets/icons/care/**/*', {
-  eager: true,
-})
-
-const images = Object.fromEntries(
-  Object.entries(assets).map(([key, value]) => [
-    filename(key),
-    (value as any).default,
-  ]),
-)
-
 export function useCareIcons() {
   return {
-    iconComponent(iconId: number): Function | undefined {
-      if (iconId === -1 || !Object.keys(images).length) {
+    iconComponent(iconId?: number): string | undefined {
+      if (!iconId || !(iconId in symbolMap)) {
         return undefined
       }
-      return images[symbolMap[iconId]]?.render ?? undefined
+      return `IconCare${usePascal(symbolMap[iconId])}`
     },
   }
 }

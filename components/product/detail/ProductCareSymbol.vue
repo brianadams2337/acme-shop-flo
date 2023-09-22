@@ -1,8 +1,8 @@
 <template>
   <div :title="symbol.label">
     <component
-      :is="iconRenderFunction(symbol.id ?? -1)"
-      v-if="typeof iconRenderFunction === 'function'"
+      :is="iconComponentName"
+      v-if="iconComponentName"
       :key="symbol.label"
       class="h-5 w-5 md:h-6 md:w-6"
       :alt="symbol.label" />
@@ -20,5 +20,5 @@ const props = defineProps({
 })
 
 const { iconComponent } = useCareIcons()
-const iconRenderFunction = computed(() => iconComponent(props.symbol.id ?? -1))
+const iconComponentName = computed(() => iconComponent(props.symbol.id))
 </script>

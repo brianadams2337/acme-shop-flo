@@ -128,6 +128,7 @@ export default defineNuxtConfig({
 
   // https://github.com/storyblok/storyblok-nuxt#options
   storyblok: {
+    bridge: true,
     accessToken: process.env.NUXT_STORYBLOK_ACCESS_TOKEN,
   },
 

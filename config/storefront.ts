@@ -1,5 +1,4 @@
 import { HashAlgorithm, ModuleOptions } from '@scayle/storefront-nuxt'
-import yn from 'yn'
 import * as customRpcMethods from '../rpcMethods'
 import withParams from '../constants/withParams'
 
@@ -96,9 +95,7 @@ export const storefrontRuntimeConfigPrivate: Partial<ModuleOptions> = {
     clientId: '', // Override: NUXT_STOREFRONT_OAUTH_CLIENT_ID,
     clientSecret: '', // Override: NUXT_STOREFRONT_OAUTH_CLIENT_SECRET,
   },
-  shopSelector: yn(process.env.NUXT_STOREFRONT_DOMAIN_PER_LOCALE)
-    ? 'domain'
-    : 'path', // Override: NUXT_STOREFRONT_SHOP_SELECTOR
+  shopSelector: 'path', // Override: NUXT_STOREFRONT_SHOP_SELECTOR
   // Following keys are Overrideable using prefix NUXT_STOREFRONT_STORES
   stores: shops.reduce(
     (previousShopConfigs, shop) => ({

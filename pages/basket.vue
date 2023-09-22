@@ -68,8 +68,8 @@ import {
 } from '@scayle/storefront-nuxt'
 // import { metaTagGenerator } from '~/helpers/seo'
 
-const basket = await useBasket({ options: { autoFetch: true } })
-// const wishlist = await useWishlist({ options: { autoFetch: true } })
+const basket = await useBasket()
+// const wishlist = await useWishlist()
 
 if (basket.error.value) {
   throw createError(basket.error.value)

@@ -91,7 +91,6 @@ const { data: orderData, fetching } = await useOrderConfirmation<
   OrderVariant
 >({
   params: { cbdToken },
-  options: { autoFetch: true },
   key: `orderConfirmation-${cbdToken}`,
 })
 const user = await useUser()

@@ -38,7 +38,6 @@ const viewport = useViewport()
 
 const { data: orderDetails, fetching } = await useOrder({
   params: { orderId: paramId.value },
-  options: { autoFetch: true },
   key: `orderId-${paramId.value}`,
 })
 const variantIds = computed(() => {
@@ -49,7 +48,6 @@ const variantIds = computed(() => {
 
 await useVariant({
   params: { ids: variantIds.value },
-  options: { autoFetch: true },
   key: `variant-${paramId.value}`,
 })
 

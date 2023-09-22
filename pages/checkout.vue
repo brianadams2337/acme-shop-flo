@@ -15,13 +15,9 @@
 
 <script setup lang="ts">
 useCheckoutWebComponent()
-const { data: basketData, fetch: fetchBasket } = await useBasket({
-  options: {
-    autoFetch: true,
-  },
-})
+const { data: basketData, fetch: fetchBasket } = await useBasket()
 
-const { user, fetch: fetchUser } = await useUser({ autoFetch: true })
+const { user, fetch: fetchUser } = await useUser()
 
 const { logger } = useLog('CheckoutPage')
 // TODO tracking

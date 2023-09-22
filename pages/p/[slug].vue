@@ -170,7 +170,6 @@ const { data: product, fetching } = await useProduct({
     id: parseInt(productId.value),
     with: PRODUCT_WITH_PARAMS,
   },
-  options: { autoFetch: true },
   key: `useProduct-${productId.value}`,
 })
 

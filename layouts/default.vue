@@ -19,11 +19,10 @@
 </template>
 
 <script setup lang="ts">
-await useWishlist({ options: { autoFetch: true } })
-await useBasket({ options: { autoFetch: true } })
+await useWishlist()
+await useBasket()
 const categoryData = await useCategories({
   params: { path: '/' },
-  options: { autoFetch: true },
 })
 
 const { data: rootCategoriesData, fetching: fetchingCategories } = categoryData

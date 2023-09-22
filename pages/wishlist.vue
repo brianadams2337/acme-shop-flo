@@ -65,8 +65,8 @@ import {
 import { ONE_SIZE_KEY } from '~/constants'
 import { Action } from '~/constants/toast'
 
-const wishlist = await useWishlist({ options: { autoFetch: true } })
-const basket = await useBasket({ options: { autoFetch: true } })
+const wishlist = await useWishlist()
+const basket = await useBasket()
 const { isLoggedIn } = await useUser()
 const { $alert, $i18n } = useNuxtApp()
 // TODO Tracking

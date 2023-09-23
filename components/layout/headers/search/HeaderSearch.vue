@@ -6,7 +6,7 @@
     @keydown.esc="resetAndClose">
     <label class="sr-only">{{ $t('search.placeholder') }}</label>
     <IconSearchBold
-      class="absolute inset-y-[0.625rem] left-[0.625rem] h-6 w-6"
+      class="absolute inset-y-2.5 left-2 h-6 w-6"
       :class="inputActive ? 'pointer-events-none' : 'cursor-pointer'"
       @click="inputActive = true" />
 

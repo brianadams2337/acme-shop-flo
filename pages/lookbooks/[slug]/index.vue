@@ -7,7 +7,6 @@
       :key="preContent._uid"
       :blok="preContent" />
 
-    {{ postListingContent }}
     <component
       :is="postContent.component"
       v-for="postContent in postListingContent"

@@ -6,6 +6,8 @@ import {
 } from './config/storefront'
 import breakpoints from './config/breakpoints'
 
+const isProd = process.env.NODE_ENV === 'production'
+
 const domains = {
   en: process.env.NUXT_STOREFRONT_STORES_1028_DOMAIN!,
   de: process.env.NUXT_STOREFRONT_STORES_1001_DOMAIN!,
@@ -23,36 +25,28 @@ const locales = [
     code: 'en',
     iso: 'en-GB',
     // TODO: Investigate runtimeConfig behaviour, as we want build independence
-    domain: DOMAIN_PER_LOCALE
-      ? domains.en
-      : domains.default,
+    domain: DOMAIN_PER_LOCALE ? domains.en : domains.default,
     file: 'en-GB.json',
   },
   {
     code: 'de',
     iso: 'de-DE',
     // TODO: Investigate runtimeConfig behaviour, as we want build independence
-    domain: DOMAIN_PER_LOCALE
-      ? domains.de
-      : domains.default,
+    domain: DOMAIN_PER_LOCALE ? domains.de : domains.default,
     file: DE_DOMAIN_FILE,
   },
   {
     code: 'de-at',
     iso: 'de-AT',
     // TODO: Investigate runtimeConfig behaviour, as we want build independence
-    domain: DOMAIN_PER_LOCALE
-      ? domains['de-at']
-      : domains.default,
+    domain: DOMAIN_PER_LOCALE ? domains['de-at'] : domains.default,
     file: DE_DOMAIN_FILE,
   },
   {
     code: 'de-ch',
     iso: 'de-CH',
     // TODO: Investigate runtimeConfig behaviour, as we want build independence
-    domain: DOMAIN_PER_LOCALE
-      ? domains['de-ch']
-      : domains.default,
+    domain: DOMAIN_PER_LOCALE ? domains['de-ch'] : domains.default,
     file: DE_DOMAIN_FILE,
   },
 ]
@@ -78,8 +72,23 @@ export default defineNuxtConfig({
     // Following keys are Overrideable using prefix NUXT_PUBLIC_
     public: {
       domains,
-      gtmId: '', // Override: NUXT_PUBLIC_GTM_ID,
       baseUrl: process.env.BASE_URL, // Override: NUXT_PUBLIC_BASE_URL
+      trackingEventOrder: [
+        'shop_init',
+        'customer_data',
+        'view_cart',
+        'select_item',
+        'content_view',
+        'remove_from_cart',
+        'add_to_cart',
+        'cart',
+        'remove_from_wishlist',
+        'add_to_wishlist',
+        'wishlist',
+        'view_item_list',
+        'view_item',
+        'purchase',
+      ],
       // Following keys are Overrideable using prefix NUXT_PUBLIC_
       ...(storefrontRuntimeConfigPublic as any), // TODO: Extend SFC runtimeConfig type
     },
@@ -107,7 +116,12 @@ export default defineNuxtConfig({
     },
   },
 
-  plugins: ['~/plugins/validation', '~/plugins/toast'],
+  plugins: [
+    '~/plugins/validation',
+    '~/plugins/toast',
+    '~/plugins/tracking.client',
+    '~/plugins/routeChangeTrackingObserver',
+  ],
 
   modules: [
     '@scayle/storefront-nuxt/module',
@@ -122,6 +136,7 @@ export default defineNuxtConfig({
     'nuxt-radash',
     '@storyblok/nuxt',
     'nuxt-viewport',
+    '@zadigetvoltaire/nuxt-gtm',
   ],
 
   storefront: storefrontBuildtimeConfig,
@@ -194,6 +209,11 @@ export default defineNuxtConfig({
       Object.keys(breakpoints).map((name) => [name, name]),
     ),
     fallbackBreakpoint: 'lg',
+  },
+
+  gtm: {
+    id: process.env.NUXT_PUBLIC_GTM_ID,
+    debug: !isProd,
   },
 
   // Allow auto-import for vue components

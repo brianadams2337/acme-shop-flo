@@ -16,3 +16,5 @@ export const getShippingNetFee = (appliedFees: AppliedFees): number | null => {
     return total
   }, 0)
 }
+
+export const divideWithHundred = (price: number): number => price / 100

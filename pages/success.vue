@@ -95,10 +95,9 @@ const { data: orderData, fetching } = await useOrderConfirmation<
 })
 const user = await useUser()
 
-// const { trackPurchaseEvent } = useTrackingEvents()
-// onMounted(() => {
-// trackPurchaseEvent(orderData.value)
-// })
+const { trackPurchaseEvent } = useTrackingEvents()
+
+onMounted(() => trackPurchaseEvent(orderData.value))
 
 watch(user.fetching, async (isFetching) => {
   if (!isFetching && user.isLoggedIn) {

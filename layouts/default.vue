@@ -27,6 +27,9 @@ const categoryData = await useCategories({
 
 const { data: rootCategoriesData, fetching: fetchingCategories } = categoryData
 
+const { trackShopInit, listenToUserItemsChanges, listenToCustomerDataChanges } =
+  useTrackingEvents()
+
 const viewport = useViewport()
 
 const rootCategories = computed(() => {
@@ -58,6 +61,10 @@ const resetErrorState = async () => {
   await clearError({ redirect })
   error.value = undefined
 }
+
+trackShopInit()
+await listenToUserItemsChanges()
+await listenToCustomerDataChanges()
 </script>
 
 <script lang="ts">

@@ -111,7 +111,6 @@
                 </template>
               </AppButton>
             </div>
-            <!--
             <div class="mt-3">
               <ProductDetailGroup
                 v-if="sliderProducts.length"
@@ -120,7 +119,7 @@
                   {{ $t('global.product_recommendation') }}
                 </template>
                 <p>Recommendation Slider</p>
-                  <ProductRecommendations
+                <ProductRecommendations
                   size="4xs"
                   :products="sliderProducts"
                   :loading="fetchingCombineWithProducts"
@@ -128,7 +127,6 @@
                   @click:recommendation="trackRecommendationClick" />
               </ProductDetailGroup>
             </div>
-                  -->
           </div>
         </div>
       </div>
@@ -141,6 +139,8 @@
 
 <script setup lang="ts">
 import {
+  FetchProductsParams,
+  Product,
   Value,
   getVariantBySize,
   flattenDeep,
@@ -156,9 +156,21 @@ import {
   ProductColor,
 } from '@scayle/storefront-nuxt'
 import { Size, PRODUCT_WITH_PARAMS, Action } from '~/constants'
+
+const listingMetaData = {
+  name: 'ADP',
+  id: 'ADP',
+}
+
 const {
   params: { slug = '-1' },
 } = useRoute()
+
+const route = useRoute()
+const store = useStore()
+
+const { trackAddToBasket, trackViewItemList, trackViewItem, trackSelectItem } =
+  useTrackingEvents()
 
 // TODO slug is a stringified productName + productId combination. this can be automatically split into name and id by using the route structure name_id with an underscore in the route.ts helper
 const productId = computed(() => {
@@ -309,14 +321,13 @@ const addItemToBasket = async () => {
 
     showAddToBasketToast(true, product.value)
 
-    // TODO tracking
-    // if (product.value) {
-    //   trackAddToBasket({
-    //     product: product.value,
-    //     variant: activeVariant.value,
-    //     index: 1,
-    //   })
-    // }
+    if (product.value) {
+      trackAddToBasket({
+        product: product.value,
+        variant: activeVariant.value,
+        index: 1,
+      })
+    }
   } catch {
     $alert.show(
       $i18n.t('basket.notification.add_to_basket_error', { productName }),
@@ -325,7 +336,6 @@ const addItemToBasket = async () => {
   }
 }
 
-// wishlist
 const {
   fetching: fetchingWishlist,
   contains: wishlistContains,
@@ -342,46 +352,71 @@ const onToggleWishlist = async () => {
   showWishlistToast(!wasInWishlist, product.value)
 }
 
-// Reco Slider
-// const combineWithProductValues = getAdvancedAttributes({
-//   product: product.value as Product,
-//   property: 'combineWith',
-// })
-// const combineWithProductIds = computed(() =>
-//   combineWithProductValues
-//     ? combineWithProductValues
-//         .split(',')
-//         .map((productId: string) => parseInt(productId, 10))
-//     : [],
-// )
-// const recommendationsFetchParams = ref<FetchProductsParams>({ ids: [] })
+const combineWithProductValues = getAdvancedAttributes({
+  product: product.value as Product,
+  property: 'combineWith',
+})
+const combineWithProductIds = computed(() =>
+  combineWithProductValues
+    ? combineWithProductValues
+        .split(',')
+        .map((productId: string) => parseInt(productId, 10))
+    : [],
+)
+const recommendationsFetchParams = ref<FetchProductsParams>({ ids: [] })
 
-// watch(
-//   () => combineWithProductIds.value,
-//   (ids) => {
-//     recommendationsFetchParams.value = { ids }
-//   },
-// )
+watch(
+  () => combineWithProductIds.value,
+  (ids) => {
+    recommendationsFetchParams.value = { ids }
+  },
+)
 
-// const { data: combineWithProducts, pending: fetchingCombineWithProducts } =
-//   await useProductsByIds(
-//     recommendationsFetchParams,
-//     undefined,
-//     `products-pdpSlider-combineWith-${productId}`,
-//   )
+const { data: combineWithProducts, fetching: fetchingCombineWithProducts } =
+  await useProductsByIds({
+    params: recommendationsFetchParams,
+    key: `products-pdpSlider-combineWith-${productId}`,
+  })
 
-// const combineWith = computed(() => combineWithProducts.value || [])
-// const sliderProducts = computed(() =>
-//   combineWith.value.length
-//     ? combineWith.value.filter(
-//         (product) => product.isActive && !product.isSoldOut,
-//       )
-//     : [],
-// )
+const combineWith = computed(() => combineWithProducts.value || [])
+const sliderProducts = computed(() =>
+  combineWith.value.length
+    ? combineWith.value.filter(
+        (product) => product.isActive && !product.isSoldOut,
+      )
+    : [],
+)
 
-// TODO wire up tracking
-// const trackViewListing = () => {}
-// const trackRecommendationClick = () => {}
+const trackViewListing = ({ items }: { row: number; items: Product[] }) => {
+  trackViewItemList({ items, listingMetaData })
+}
+
+const trackRecommendationClick = (product: Product, index: number) => {
+  trackSelectItem({
+    product,
+    category: {
+      ...getDeepestCategoryForTracking(product.categories),
+    },
+    listingMetaData,
+    index,
+    source: `${String(route.name)}|RecommendationSlider`,
+    soldOut: product.isSoldOut,
+    pagePayload: {
+      content_name: route.fullPath,
+      page_type: store.value.pageType,
+      page_type_id: productId.value.toString() || '',
+    },
+  })
+}
+
+onMounted(() => {
+  store.value.pageTypeId = productId.value
+
+  setTimeout(
+    () => product.value && trackViewItem({ product: product.value }),
+    1000,
+  )
+})
 </script>
 
 <script lang="ts">

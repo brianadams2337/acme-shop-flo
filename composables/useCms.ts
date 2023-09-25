@@ -1,11 +1,10 @@
 import { StoryblokStory } from '@aboutyou/storyblok-generate-ts'
 import { ISbStoriesParams } from 'storyblok-js-client'
-import { SbListingPage } from '~/storyblok/types/storyblok.gen'
 
 type StoryblokFolder = 'lookbooks' | 'test'
 
-export default (key: string) => {
-  const data = useState<StoryblokStory<SbListingPage>>(`cms-data-${key}`)
+export default <T = unknown>(key: string) => {
+  const data = useState<StoryblokStory<T>>(`cms-data-${key}`)
   const fetching = useState<boolean>(`fetching-${key}`)
   async function fetchBySlug(slug: string) {
     if (!slug) {

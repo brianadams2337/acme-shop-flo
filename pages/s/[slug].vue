@@ -11,7 +11,7 @@
     <div class="py-4">
       <Breadcrumbs
         :items="[
-          { value: 'Home', to: '/' },
+          { value: 'Home', to: routeList.home.name },
           { value: story.name, to: story.slug },
         ]" />
     </div>
@@ -20,13 +20,15 @@
 </template>
 
 <script setup lang="ts">
+import { SbContentPage } from '~/storyblok/types/storyblok.gen'
+
 const route = useRoute()
 const slug = computed(() => route.params.slug)
 const {
   fetchBySlug,
   fetching,
   data: story,
-} = useCms(`services-page-${slug.value}`)
+} = useCms<SbContentPage>(`services-page-${slug.value}`)
 
 await fetchBySlug(`s/${slug.value}`)
 </script>

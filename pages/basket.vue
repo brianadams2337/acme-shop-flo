@@ -84,6 +84,7 @@ const listingMetaData = {
 }
 const {
   trackViewBasket,
+  trackRemoveFromBasket,
   collectBasketItems,
   trackSelectItem,
   trackBasket,
@@ -141,9 +142,15 @@ const trackProductClick = ({ product }: { product: Product }) => {
 }
 
 const removeItem = async (item: BasketItem) => {
-  await basket.removeItem({
-    variantId: item.variant.id,
-  })
+  await basket.removeItem({ variantId: item.variant.id })
+
+  trackRemoveFromBasket(item.product, item.quantity, item.variant)
+  trackBasket(
+    collectBasketItems(basket.items.value || [], {
+      listName: 'BasketList',
+      listId: 'BL',
+    }),
+  )
 }
 
 // Remove this to use bapi default: order by updated quantity

@@ -31,13 +31,28 @@ export default defineNuxtPlugin(() => {
   }
 
   const flush = () => {
+    const store = useStore()
     const sorted = queue.sort((a, b) => a.index - b.index)
     sorted.forEach((item) => {
       if ('ecommerce' in item.data) {
         gtm.push({ ecommerce: null }) // Clear the previous ecommerce object.
       }
 
-      gtm.push(item.data)
+      const {
+        event,
+        content_name: contentName,
+        page_type: pageType,
+        page_type_id: pageTypeId,
+        ...data
+      } = item.data
+
+      gtm.push({
+        event,
+        ...(contentName && { content_name: contentName }),
+        page_type: pageType,
+        page_type_id: String(store.value.pageTypeId || pageTypeId),
+        ...data,
+      })
     })
     queue.length = 0
   }

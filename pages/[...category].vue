@@ -313,6 +313,17 @@ const cmsContent = content as unknown as SbCmsImage
 const isFirstPage = computed(() => pagination.value?.page === 1)
 const filteredProductsCount = computed(() => productCountData.value?.count || 0)
 
+watch(
+  () => selectedCategory.value?.id,
+  (id) => {
+    if (!id) {
+      return
+    }
+    store.value.pageTypeId = id
+  },
+  { immediate: true },
+)
+
 // TODO SEO
 // useMeta(() => {
 //   const isFiltered = !!productConditions.value.where?.attributes?.length
@@ -334,6 +345,8 @@ const filteredProductsCount = computed(() => productCountData.value?.count || 0)
 
 //   return { title, ...metaTags }
 // })
+
+definePageMeta({ pageType: 'category' })
 </script>
 
 <script lang="ts">

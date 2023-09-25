@@ -63,6 +63,7 @@ const handleError = (payload = {}) => {
   })
 }
 </script>
+
 <script lang="ts">
 export default {
   name: 'CheckoutPage',

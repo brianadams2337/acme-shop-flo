@@ -72,13 +72,12 @@ const billingAddress = computed(() => {
 const itemCount = computed(() => orderDetails.value?.items?.length || 0)
 const packages = computed(() => orderDetails.value?.packages)
 const orderItems = computed(() => (orderDetails.value as Order)?.items)
+
+definePageMeta({ pageType: 'account_area:OId' })
 </script>
 
 <script lang="ts">
 export default {
   name: 'OrderDetailsView',
-  meta: {
-    pageType: 'account_area:OId',
-  },
 }
 </script>

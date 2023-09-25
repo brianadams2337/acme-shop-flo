@@ -116,13 +116,12 @@ const getItemQuantity = (variantId: number): number | undefined => {
 const orderItems = computed(() => {
   return useUnique(orderData.value?.items || [], (it: any) => it.variant.id)
 })
+
+definePageMeta({ pageType: 'osp' })
 </script>
 
 <script lang="ts">
 export default {
   name: 'OrderSuccessPage',
-  meta: {
-    pageType: 'osp',
-  },
 }
 </script>

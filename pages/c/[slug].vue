@@ -12,13 +12,13 @@
 
   <div v-else-if="story">
     <div v-if="'teaser_image' in story.content">
-      <CmsImage :blok="story.content" is-teaser />
+      <CmsImage :blok="{ ...story.content, component: 'CmsImage' }" is-teaser />
     </div>
     <div class="container">
       <div class="py-4">
         <Breadcrumbs
           :items="[
-            { value: 'Home', to: '/' },
+            { value: 'Home', to: routeList.home.name },
             { value: story.name, to: story.slug },
           ]">
         </Breadcrumbs>
@@ -29,9 +29,11 @@
 </template>
 
 <script setup lang="ts">
+import { SbContentPage } from '~/storyblok/types/storyblok.gen';
+
 const route = useRoute()
 const slug = computed(() => route.params.slug)
-const { fetching, fetchBySlug, data: story } = useCms(`content-page-${slug}`)
+const { fetching, fetchBySlug, data: story } = useCms<SbContentPage>(`content-page-${slug}`)
 await fetchBySlug(`c/${slug.value as string}`)
 </script>
 

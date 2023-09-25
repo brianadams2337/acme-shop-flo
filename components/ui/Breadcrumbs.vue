@@ -1,16 +1,16 @@
 <template>
-  <HorizontalItemsDivider tag="NuxtLink" v-bind="{ items }" class="mt-1">
+  <HorizontalItemsDivider tag="DefaultLink" v-bind="{ items }" class="mt-1">
     <template #default="{ items: breadcrumbItems }">
       <DefaultLink
-        v-for="(link, idx) in asLinks(breadcrumbItems)"
+        v-for="(link, idx) in breadcrumbItems"
         :key="link.value"
         only-exact-active
-        :to="link.to"
-        >{{ link.value }}
-        <template v-if="showDividerTag(idx, breadcrumbItems.length)"
-          >/</template
-        ></DefaultLink
-      >
+        :to="link.to">
+        {{ link.value }}
+        <template v-if="showDividerTag(idx, breadcrumbItems.length)">
+          /
+        </template>
+      </DefaultLink>
     </template>
   </HorizontalItemsDivider>
 </template>
@@ -25,6 +25,10 @@ defineProps({
     required: true,
   },
 })
+</script>
 
-const asLinks = (items: any) => items as Link[]
+<script lang="ts">
+export default {
+  name: 'AppBreadcrumbs',
+}
 </script>

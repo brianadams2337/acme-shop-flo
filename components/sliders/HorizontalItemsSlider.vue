@@ -65,8 +65,8 @@ const onScroll = () => {
   }
   const scrollLeft = slider.value?.scrollLeft
   arrivedRight.value =
-    scrollLeft + slider.value.clientWidth >=
-    slider.value.scrollWidth - ARRIVED_STATE_THRESHOLD_PIXELS
+    scrollLeft + slider.value?.clientWidth >=
+    slider.value?.scrollWidth - ARRIVED_STATE_THRESHOLD_PIXELS
   arrivedLeft.value = scrollLeft <= 0
   x.value = scrollLeft
 }

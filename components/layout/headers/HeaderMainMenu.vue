@@ -1,23 +1,10 @@
 <template>
   <div class="flex items-center justify-end text-primary">
     <HeaderSearch class="hidden md:flex" />
-    <UserPopover class="w-12" data-test-id="user-popover" />
-    <div class="flex w-12 justify-center">
-      <DefaultLink
-        :to="{ name: routeList.wishlist.name }"
-        data-test-id="wishlist-link"
-        class="relative"
-        type="loud">
-        <FloatingBadge v-if="wishlistCount" class="-right-2 -top-2">
-          {{ wishlistCount }}
-        </FloatingBadge>
-        <IconHeartBold class="mt-[1px] h-[1.625rem] w-[1.625rem]" />
-      </DefaultLink>
+    <div class="ml-1 flex h-full items-center justify-center space-x-4">
+      <UserPopover data-test-id="user-popover" />
+      <WishlistLink />
+      <BasketPopover />
     </div>
-    <BasketPopover />
   </div>
 </template>
-
-<script setup lang="ts">
-const { count: wishlistCount } = await useWishlist()
-</script>

@@ -30,6 +30,7 @@
             color-chip-size="sm"
             color-chip-rounded-size="sm"
             sibling-spacing="narrow"
+            :listing-meta-data="listingMetadata"
             @click:product="$emit('click:product', product, index)"
             @intersect:product="collectRowIntersection(index)">
             <template #header-badge>
@@ -48,6 +49,12 @@ import {
   getRowByIndex,
   isFirstIndexOfRow,
 } from '@scayle/storefront-nuxt'
+import { CategoryListingMetadata } from '~/constants'
+
+const listingMetadata = {
+  id: CategoryListingMetadata.ID,
+  name: CategoryListingMetadata.NAME,
+}
 
 const viewport = useViewport()
 

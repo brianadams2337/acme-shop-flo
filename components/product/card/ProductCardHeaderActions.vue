@@ -27,6 +27,7 @@
 
 <script setup lang="ts">
 import { Product } from '@scayle/storefront-nuxt'
+import { ListItem } from '~/types/tracking'
 
 const props = defineProps({
   product: {
@@ -37,6 +38,10 @@ const props = defineProps({
     type: String as PropType<'heart' | 'close'>,
     default: 'heart',
   },
+  listingMetaData: {
+    type: Object as PropType<ListItem>,
+    default: () => ({}),
+  },
 })
 
 const product = toRef(props, 'product')
@@ -46,7 +51,12 @@ const { toggleItem, fetching, contains } = await useWishlist()
 
 const toggleItemInWishlist = async () => {
   const wasInWishlist = contains({ productId: productId.value })
-  // Add tracking meta
+
+  trackWishlistEvent(wasInWishlist ? 'added' : 'removed', {
+    product: product.value,
+    listingMetaData: props.listingMetaData,
+  })
+
   await toggleItem({ productId: productId.value })
   showWishlistToast(!wasInWishlist, product.value)
 }

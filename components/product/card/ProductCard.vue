@@ -13,7 +13,7 @@
               @mouseleave="onMouseLeave">
               <slot v-if="product" name="header-actions">
                 <ProductCardHeaderActions
-                  v-bind="{ product, wishlistRemoveIcon }"
+                  v-bind="{ product, wishlistRemoveIcon, listingMetaData }"
                   :class="headerActionsClass"
                   class="opacity-100 transition" />
               </slot>
@@ -128,6 +128,7 @@ import {
   getFirstAttributeValue,
   Value,
 } from '@scayle/storefront-nuxt'
+import { ListItem } from '~/types/tracking'
 
 const props = defineProps({
   index: {
@@ -167,6 +168,10 @@ const props = defineProps({
   siblingSpacing: {
     type: String as PropType<'default' | 'narrow'>,
     default: 'default',
+  },
+  listingMetaData: {
+    type: Object as PropType<ListItem>,
+    default: () => ({}),
   },
 })
 

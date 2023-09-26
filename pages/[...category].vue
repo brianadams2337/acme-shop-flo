@@ -101,15 +101,19 @@ import {
 import { SbCmsImage, SbListingPage } from '../storyblok/types/storyblok'
 import { sustainabilityAttributes } from '~/constants'
 
-// const listingMetaData = {
-//   name: 'Category Product List',
-//   id: 'CategoryProductList',
-// }
 const PRODUCTS_PER_PAGE = 24
+const DEFAULT_SORTING_KEY = 'dateNewest'
+const INCLUDED_QUICK_FILTERS = ['sale', 'isNew', 'styleGroup']
+
+const listingMetaData = {
+  name: 'Category Product List',
+  id: 'CategoryProductList',
+}
 
 const viewport = useViewport()
 
 const route = useRoute()
+const store = useStore()
 
 const term = computed(() => route.query.term || '')
 
@@ -122,8 +126,9 @@ const categoryPath = computed(() => {
 
 const { toggle: toggleFilter } = useSlideIn('FilterSlideIn')
 
-const includedQuickFilters = ['sale', 'isNew', 'styleGroup']
-const DEFAULT_SORTING_KEY = 'dateNewest'
+const { trackViewItemList, trackSelectItem, trackFilterApply } =
+  useTrackingEvents()
+
 const {
   products,
   productsFetching,
@@ -172,7 +177,7 @@ const {
         },
       },
     },
-    includedFilters: includedQuickFilters,
+    includedFilters: INCLUDED_QUICK_FILTERS,
   },
 })
 
@@ -199,15 +204,13 @@ const {
 } = useQueryFilterState({ defaultSort: DEFAULT_SORTING_KEY })
 
 const trackViewListing = ({ items }: { row: number; items: Product[] }) => {
-  console.log('Track row', items)
-  // TODO tracking
-  // const paginationOffset = ((pagination.value?.page || 1) - 1) * 24
-  // trackViewItemList({
-  //   items,
-  //   listingMetaData,
-  //   paginationOffset,
-  //   source: `category|${selectedCategory.value?.id}`,
-  // })
+  const paginationOffset = ((pagination.value?.page || 1) - 1) * 24
+  trackViewItemList({
+    items,
+    listingMetaData,
+    paginationOffset,
+    source: `category|${selectedCategory.value?.id}`,
+  })
 }
 
 const fetchParameters = computed(() => ({
@@ -242,17 +245,15 @@ watch(
 )
 
 const trackProductClick = (product: Product) => {
-  console.log('Track product click', product)
-  // TODO tracking
-  // trackSelectItem({
-  //   product,
-  //   listingMetaData,
-  //   pagePayload: {
-  //     content_name: route.value.fullPath,
-  //     page_type: store.state.pageType,
-  //     page_type_id: params.value.id?.toString() || '',
-  //   },
-  // })
+  trackSelectItem({
+    product,
+    listingMetaData,
+    pagePayload: {
+      content_name: route.fullPath,
+      page_type: store.value.pageType,
+      page_type_id: route.params.id?.toString() || '',
+    },
+  })
 }
 
 const applyFilter = (
@@ -269,7 +270,7 @@ const applyFilter = (
       const values = Array.isArray(combinedFilters[key])
         ? combinedFilters[key].join('|')
         : combinedFilters[key]
-      // trackFilterApply(key, values)
+      trackFilterApply(key, values)
     })
   }
 
@@ -294,7 +295,7 @@ const parseAndPreserveAttributeFilters = () => {
 
 const quickFilters = computed(() =>
   filters.value
-    ? groupFilterableValuesByKey(filters.value, includedQuickFilters).filter(
+    ? groupFilterableValuesByKey(filters.value, INCLUDED_QUICK_FILTERS).filter(
         (filter) => !!filter.count,
       )
     : [],
@@ -313,6 +314,17 @@ const cmsContent = content as unknown as SbCmsImage
 
 const isFirstPage = computed(() => pagination.value?.page === 1)
 const filteredProductsCount = computed(() => productCountData.value?.count || 0)
+
+watch(
+  () => selectedCategory.value?.id,
+  (id) => {
+    if (!id) {
+      return
+    }
+    store.value.pageTypeId = id
+  },
+  { immediate: true },
+)
 
 // TODO SEO
 // useMeta(() => {
@@ -335,6 +347,8 @@ const filteredProductsCount = computed(() => productCountData.value?.count || 0)
 
 //   return { title, ...metaTags }
 // })
+
+definePageMeta({ pageType: 'category_page' })
 </script>
 
 <script lang="ts">

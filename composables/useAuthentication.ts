@@ -7,6 +7,7 @@ import {
 } from '@scayle/storefront-nuxt'
 import { FetchError } from 'ofetch'
 import { Action } from '~/constants'
+import { AuthTrackingEvent, AuthenticationType } from '~/types/tracking'
 
 const httpErrorMessages: Record<number, string> = {
   400: '400_bad_request',
@@ -18,17 +19,9 @@ const httpErrorMessages: Record<number, string> = {
   500: '500_server_error',
 } as const
 
-export type AuthEvent =
-  | 'login'
-  | 'logout'
-  | 'sign_up'
-  | 'forgot_password'
-  | 'reset_password'
-  | 'guest_login'
-
 export const useAuthentication = async (
-  event: AuthEvent,
-  // method: AuthenticationType = 'email',
+  event: AuthTrackingEvent,
+  method: AuthenticationType = 'email',
 ) => {
   const { $alert, $i18n } = useNuxtApp()
   const route = useRoute()
@@ -36,9 +29,9 @@ export const useAuthentication = async (
 
   const { auth: authConfig } = useRuntimeConfig().public
 
-  // const { trackAuthenticated, trackLogout } = useTrackingEvents()
+  const { trackAuthenticated, trackLogout } = useTrackingEvents()
 
-  const { user, fetch: refreshUser } = await useUser()
+  const { user, fetch: refreshUser, customerType } = await useUser()
   const { fetch: refreshWishlist } = await useWishlist()
   const { fetch: refreshBasket } = await useBasket()
 
@@ -134,7 +127,7 @@ export const useAuthentication = async (
     try {
       await session.revokeToken()
       if (user.value) {
-        // trackLogout(user.value.id, user.value.email)
+        await trackLogout(user.value.id, user.value.email)
       }
     } catch (error) {
       handleError(error)
@@ -156,16 +149,16 @@ export const useAuthentication = async (
     await refresh()
 
     if (user.value) {
-      // trackAuthenticated(
-      //   {
-      //     event,
-      //     method,
-      //     status: 'successful',
-      //     customer_id: user.value.id,
-      //     customer_type: customerType.value,
-      //   },
-      //   user.value.email,
-      // )
+      await trackAuthenticated(
+        {
+          event,
+          method,
+          status: 'successful',
+          customer_id: user.value.id,
+          customer_type: customerType.value,
+        },
+        user.value.email,
+      )
 
       const isSigninPath = route.path === toLocalePath(routeList.signin.path)
       const homePath = authConfig?.redirect.home || routeList.home.path
@@ -177,15 +170,15 @@ export const useAuthentication = async (
     $alert.show(successMessage.value, Action.CONFIRM)
   }
 
-  const trackFailedAuthentication = (_email: string) => {
-    // trackAuthenticated(
-    //   {
-    //     event,
-    //     method,
-    //     status: 'error',
-    //   },
-    //   email,
-    // )
+  const trackFailedAuthentication = async (email: string) => {
+    await trackAuthenticated(
+      {
+        event,
+        method,
+        status: 'error',
+      },
+      email,
+    )
   }
 
   const handleError = (error: unknown) => {

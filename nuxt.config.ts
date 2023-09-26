@@ -6,6 +6,8 @@ import {
 } from './config/storefront'
 import breakpoints from './config/breakpoints'
 
+const isProd = process.env.NODE_ENV === 'production'
+
 const domains = {
   en: process.env.NUXT_STOREFRONT_STORES_1028_DOMAIN!,
   de: process.env.NUXT_STOREFRONT_STORES_1001_DOMAIN!,
@@ -70,8 +72,23 @@ export default defineNuxtConfig({
     // Following keys are Overrideable using prefix NUXT_PUBLIC_
     public: {
       domains,
-      gtmId: '', // Override: NUXT_PUBLIC_GTM_ID,
       baseUrl: process.env.BASE_URL, // Override: NUXT_PUBLIC_BASE_URL
+      trackingEventOrder: [
+        'shop_init',
+        'customer_data',
+        'view_cart',
+        'select_item',
+        'content_view',
+        'remove_from_cart',
+        'add_to_cart',
+        'cart',
+        'remove_from_wishlist',
+        'add_to_wishlist',
+        'wishlist',
+        'view_item_list',
+        'view_item',
+        'purchase',
+      ],
       // Following keys are Overrideable using prefix NUXT_PUBLIC_
       ...(storefrontRuntimeConfigPublic as any), // TODO: Extend SFC runtimeConfig type
     },
@@ -99,8 +116,6 @@ export default defineNuxtConfig({
     },
   },
 
-  plugins: ['~/plugins/validation', '~/plugins/toast'],
-
   modules: [
     '@scayle/storefront-nuxt/module',
     '@nuxtjs/tailwindcss',
@@ -114,6 +129,7 @@ export default defineNuxtConfig({
     'nuxt-radash',
     '@storyblok/nuxt',
     'nuxt-viewport',
+    '@zadigetvoltaire/nuxt-gtm',
   ],
 
   storefront: storefrontBuildtimeConfig,
@@ -187,6 +203,12 @@ export default defineNuxtConfig({
       Object.keys(breakpoints).map((name) => [name, name]),
     ),
     fallbackBreakpoint: 'lg',
+  },
+
+  gtm: {
+    id: process.env.NUXT_PUBLIC_GTM_ID,
+    loadScript: true,
+    debug: !isProd,
   },
 
   // Allow auto-import for vue components

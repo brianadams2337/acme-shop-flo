@@ -95,10 +95,9 @@ const { data: orderData, fetching } = await useOrderConfirmation<
 })
 const user = await useUser()
 
-// const { trackPurchaseEvent } = useTrackingEvents()
-// onMounted(() => {
-// trackPurchaseEvent(orderData.value)
-// })
+const { trackPurchaseEvent } = useTrackingEvents()
+
+onMounted(() => trackPurchaseEvent(orderData.value))
 
 watch(user.fetching, async (isFetching) => {
   if (!isFetching && user.isLoggedIn) {
@@ -117,13 +116,12 @@ const getItemQuantity = (variantId: number): number | undefined => {
 const orderItems = computed(() => {
   return useUnique(orderData.value?.items || [], (it: any) => it.variant.id)
 })
+
+definePageMeta({ pageType: 'osp' })
 </script>
 
 <script lang="ts">
 export default {
   name: 'OrderSuccessPage',
-  meta: {
-    pageType: 'osp',
-  },
 }
 </script>

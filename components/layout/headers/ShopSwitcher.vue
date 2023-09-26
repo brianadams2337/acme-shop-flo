@@ -48,6 +48,8 @@ const currentShop = useCurrentShop()
 const availableShops = useAvailableShops()
 const switchLocalePath = useSwitchLocalePath()
 
+const { trackShopChange } = useTrackingEvents()
+
 const languageTranslator = computed(() => {
   if (!currentShop.value) {
     return
@@ -87,7 +89,7 @@ const getShopName = (locale: string) => {
 }
 
 const changeShop = (value?: string) => {
-  // Track shop change
+  trackShopChange()
   window.location.replace(switchLocalePath(value))
 }
 </script>

@@ -40,8 +40,9 @@ const props = defineProps({
   },
 })
 
-// const { trackPromotion } = useTrackingEvents()
 const { isLessThan } = useViewport()
+const { trackPromotion } = useTrackingEvents()
+
 const isMobile = computed(() => isLessThan('md'))
 
 const isInViewport = ref(true)
@@ -50,13 +51,13 @@ const onIntersect = (_: IntersectionObserverEntry, stop: () => void) => {
   if (!props.blok.promotion_id) {
     return
   }
-  //   trackPromotion('view_promotion', props.blok)
+  trackPromotion('view_promotion', props.blok)
   stop()
 }
 
 const clickObserver = () => {
   if (props.blok.promotion_id) {
-    // trackPromotion('select_promotion', props.blok)
+    trackPromotion('select_promotion', props.blok)
   }
 }
 const headlineSize = computed(() => (isMobile.value ? 'xl' : '2xl'))

@@ -66,61 +66,63 @@ import {
   getFirstAttributeValue,
   Product,
 } from '@scayle/storefront-nuxt'
+import { BasketListingMetadata, WishlistListingMetadata } from '~/constants'
 // import { metaTagGenerator } from '~/helpers/seo'
 
 const basket = await useBasket()
-// const wishlist = await useWishlist()
+const wishlist = await useWishlist()
 
 if (basket.error.value) {
   throw createError(basket.error.value)
 }
 
-// const { store } = useNuxtApp()
-// const route = useRoute()
+const store = useStore()
+const route = useRoute()
 
-// const _listingMetaData = {
-//   name: 'Basket List',
-//   id: 'BL',
-// }
-// const {
-//   trackViewBasket,
-//   collectBasketItems,
-//   trackSelectItem,
-//   trackBasket,
-//   trackWishlist,
-//   collectProductListItems,
-// } = useTrackingEvents()
+const listingMetaData = {
+  id: BasketListingMetadata.ID,
+  name: BasketListingMetadata.NAME,
+}
+const {
+  trackViewBasket,
+  trackRemoveFromBasket,
+  collectBasketItems,
+  trackSelectItem,
+  trackBasket,
+  trackWishlist,
+  collectProductListItems,
+} = useTrackingEvents()
 
 const { bundleByGroup } = await useBasketGroup()
 
-// onMounted(() => {
-//   if (basket.items.value) {
-//     trackViewBasket(
-//       collectBasketItems(basket.items.value || [], {
-//         listName: 'BasketList',
-//         listId: 'BL',
-//       }),
-//       {
-//         content_name: route.value.fullPath,
-//         page_type: store.state.pageType,
-//         page_type_id: params.value.id?.toString() || '',
-//       },
-//       basket.cost.value,
-//     )
-//     trackBasket(
-//       collectBasketItems(basket.items.value || [], {
-//         listName: 'BasketList',
-//         listId: 'BL',
-//       }),
-//     )
-//     trackWishlist(
-//       collectProductListItems(wishlist.products.value, {
-//         listName: 'WishlistList',
-//         listId: 'WL',
-//       }),
-//     )
-//   }
-// })
+onMounted(() => {
+  if (basket.items.value) {
+    trackViewBasket(
+      collectBasketItems(basket.items.value || [], {
+        listId: listingMetaData.id,
+        listName: listingMetaData.name,
+      }),
+      {
+        content_name: route.fullPath,
+        page_type: store.value.pageType,
+        page_type_id: route.params.id?.toString() || '',
+      },
+      basket.cost.value,
+    )
+    trackBasket(
+      collectBasketItems(basket.items.value || [], {
+        listId: listingMetaData.id,
+        listName: listingMetaData.name,
+      }),
+    )
+    trackWishlist(
+      collectProductListItems(wishlist.products.value, {
+        listId: WishlistListingMetadata.ID,
+        listName: WishlistListingMetadata.NAME,
+      }),
+    )
+  }
+})
 
 // const metaTags = metaTagGenerator({
 //   robots: 'noindex,follow',
@@ -129,23 +131,27 @@ const { bundleByGroup } = await useBasketGroup()
 // useMeta(() => ({ title: `Basket`, ...metaTags }))
 
 const trackProductClick = ({ product }: { product: Product }) => {
-  console.log('Track product click', product)
-  //   trackSelectItem({
-  //     product,
-  //     listingMetaData,
-  //     pagePayload: {
-  //       content_name: route.value.fullPath,
-  //       page_type: store.state.pageType,
-  //       page_type_id: params.value.id?.toString() || '',
-  //     },
-  //   })
+  trackSelectItem({
+    product,
+    listingMetaData,
+    pagePayload: {
+      content_name: route.fullPath,
+      page_type: store.value.pageType,
+      page_type_id: route.params.id?.toString() || '',
+    },
+  })
 }
 
 const removeItem = async (item: BasketItem) => {
-  console.log({ item })
-  await basket.removeItem({
-    variantId: item.variant.id,
-  })
+  await basket.removeItem({ variantId: item.variant.id })
+
+  trackRemoveFromBasket(item.product, item.quantity, item.variant)
+  trackBasket(
+    collectBasketItems(basket.items.value || [], {
+      listId: listingMetaData.id,
+      listName: listingMetaData.name,
+    }),
+  )
 }
 
 // Remove this to use bapi default: order by updated quantity
@@ -180,6 +186,8 @@ const sortBasketItems = (items: BasketItem[]) => {
 const fetching = basket.fetching
 const basketData = basket.data
 const basketCount = basket.count
+
+definePageMeta({ pageType: 'basket_page' })
 </script>
 
 <script lang="ts">

@@ -20,9 +20,10 @@ const { data: basketData, fetch: fetchBasket } = await useBasket()
 const { user, fetch: fetchUser } = await useUser()
 
 const { logger } = useLog('CheckoutPage')
-// TODO tracking
-// const { listenToCheckoutStepChanges } = useTrackingEvents()
-// listenToCheckoutStepChanges()
+
+const { listenToCheckoutStepChanges } = useTrackingEvents()
+listenToCheckoutStepChanges()
+
 const basketKey = computed(() => basketData?.value?.key)
 const checkoutRef = ref(null)
 const { data: campaignKey, fetch: fetchCampaignKey } = await useCampaign()
@@ -61,7 +62,10 @@ const handleError = (payload = {}) => {
     extras: loggingPayload,
   })
 }
+
+definePageMeta({ name: 'checkout' })
 </script>
+
 <script lang="ts">
 export default {
   name: 'CheckoutPage',

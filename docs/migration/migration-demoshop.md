@@ -262,14 +262,6 @@ const viewport = useViewport()
 </script>
 ```
 
-## Additions
-
-### Packages
-
-- [utility-types](https://www.npmjs.com/package/utility-types) - complex TypeScript types simplification utils
-- [nuxt-lodash](https://github.com/cipami/nuxt-lodash#readme) - `lodash` nuxt module
-- [nuxt-viewport](https://nuxt.com/modules/nuxt-viewport) - module for handling the breakpoints
-
 ### With parameters
 
 Storefront config now supports `withParams` option so that we can pass the `with` parameters through the shop.
@@ -427,3 +419,53 @@ const {
   starts_with: folder, // matches stories eg by passing {starts_with: 'lookbooks'} you can fetch lookbooks-1, lookbooks-2, ... lookbooks-n
 })
 ```
+
+## Tracking
+
+In the Nuxt 3 tracking implementation is almost the same as in Nuxt 2. There are
+frew differences that are worth mentioning.
+
+- Now we're using [@zadigetvoltaire/nuxt-gtm](https://github.com/zadigetvoltaire/nuxt-gtm)
+  which is basically a `@gtm-support/vue-gtm` wrapper. Usage of this module is the
+  same as `@nuxtjs/gtm` that we used in Nuxt 2.
+- Tracking composables are a bit simplified. Now we don't pass the `shopConfig`,
+  `localePath`, etc. as we did in the Nuxt 2 for some of the composables because
+  we have that auto-imported.
+
+## Store
+
+- In Nuxt 2 store was implemeneted out of the box. In Nuxt 3 that's not the case.
+  There are several options on how to achieve state management (Pinia, xstate, etc).
+  Since our needs are pretty basic and simple, we'll just use the basic `useStore`
+  composable that uses `useState` under the hood.
+
+  ```ts
+  const store = useStore()
+  // Will store "category" as pageType
+  store.value.pageType = 'category'
+  ```
+
+## Plugins
+
+- In Nuxt 3 plugins are auto-registered. The only thing that we need to take care
+  is the [order of plugins registration](https://nuxt.com/docs/guide/directory-structure/plugins#plugin-registration-order).
+  The perfect example is that we have `tracking.client` plugin and
+  `routeChangeTrackingObserver` that uses the tracking plugin. We need to register
+  `tracking.client` first because the other one depends on it. We achieve this by
+  adding the numeration prefix within the file name:
+
+```
+plugins/
+ | - 01.tracking.client.ts
+ | - 02.routeChangeTrackingObserver.ts
+
+```
+
+## Additions
+
+### Packages
+
+- [utility-types](https://www.npmjs.com/package/utility-types) - complex TypeScript types simplification utils
+- [nuxt-lodash](https://github.com/cipami/nuxt-lodash#readme) - `lodash` nuxt module
+- [nuxt-viewport](https://nuxt.com/modules/nuxt-viewport) - module for handling the breakpoints
+- [@zadigetvoltaire/nuxt-gtm](https://github.com/zadigetvoltaire/nuxt-gtm) - GTM module

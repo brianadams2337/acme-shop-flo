@@ -59,14 +59,15 @@ const PRODUCTS_PER_PAGE = 24
 
 const route = useRoute()
 
-const localePath = useLocalePath()
 const { $i18n, $alert } = useNuxtApp()
+const store = useStore()
 const term = computed(() => route.query.term || '')
 const { toggle: toggleFilter } = useSlideIn('FilterSlideIn')
 
 const wishlist = await useWishlist()
-// const { trackFilterApply, trackAddToWishlist, trackRemoveFromWishlist } =
-//   useTrackingEvents()
+
+const { trackFilterApply, trackAddToWishlist, trackRemoveFromWishlist } =
+  useTrackingEvents()
 
 const {
   products,
@@ -165,41 +166,41 @@ const toggleItem = (product: Product) => {
     },
   )
 
-  // wasInWishlist
-  //   ? trackRemoveFromWishlist({
-  //       product,
-  //       pagePayload: {
-  //         content_name: route.value.fullPath,
-  //         page_type: store.state.pageType,
-  //         page_type_id: route.params.value.id?.toString() || '',
-  //       },
-  //     })
-  //   : trackAddToWishlist({
-  //       product,
-  //       pagePayload: {
-  //         content_name: route.value.fullPath,
-  //         page_type: store.state.pageType,
-  //         page_type_id: route.params.value.id?.toString() || '',
-  //       },
-  //     })
+  wasInWishlist
+    ? trackRemoveFromWishlist({
+        product,
+        pagePayload: {
+          content_name: route.fullPath,
+          page_type: store.value.pageType,
+          page_type_id: route.params.id?.toString() || '',
+        },
+      })
+    : trackAddToWishlist({
+        product,
+        pagePayload: {
+          content_name: route.fullPath,
+          page_type: store.value.pageType,
+          page_type_id: route.params.id?.toString() || '',
+        },
+      })
 
   const action = !wasInWishlist ? Action.ROUTE : Action.CONFIRM
   $alert.show(
     message,
     action,
-    !wasInWishlist ? localePath(routeList.wishlist) : undefined,
+    !wasInWishlist ? toLocalePath(routeList.wishlist) : undefined,
   )
 }
 
 const applyFilter = (filter: Record<string, any>) => {
-  // if (!isEmpty(filter)) {
-  //   Object.keys(filter).forEach((key: string) => {
-  //     const values = Array.isArray(filter[key])
-  //       ? filter[key].join('|')
-  //       : filter[key]
-  //     // trackFilterApply(key, values)
-  //   })
-  // }
+  if (!isEmpty(filter)) {
+    Object.keys(filter).forEach((key: string) => {
+      const values = Array.isArray(filter[key])
+        ? filter[key].join('|')
+        : filter[key]
+      trackFilterApply(key, values)
+    })
+  }
 
   _applyFilter(filter)
 }
@@ -218,13 +219,12 @@ const selectedSort = computed(() => getSortByValue(route.query.sort || '').name)
 
 const resultsCount = computed(() => pagination.value?.total)
 const filteredCount = computed(() => productCountData.value?.count ?? 0)
+
+definePageMeta({ pageType: 'search_result_page' })
 </script>
 
 <script lang="ts">
 export default {
   name: 'SearchPage',
-  meta: {
-    pageType: 'search_result_page',
-  },
 }
 </script>

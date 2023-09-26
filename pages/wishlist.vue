@@ -62,26 +62,31 @@ import {
   Product,
   getAttributeValue,
 } from '@scayle/storefront-nuxt'
-import { ONE_SIZE_KEY } from '~/constants'
+import { ONE_SIZE_KEY, WishlistListingMetadata } from '~/constants'
 import { Action } from '~/constants/toast'
+
+const listingMetaData = {
+  id: WishlistListingMetadata.ID,
+  name: WishlistListingMetadata.NAME,
+} as const
 
 const wishlist = await useWishlist()
 const basket = await useBasket()
 const { isLoggedIn } = await useUser()
 const { $alert, $i18n } = useNuxtApp()
-// TODO Tracking
-// const {
-//   trackViewItemList,
-//   trackWishlist,
-//   trackAddToBasket,
-//   collectProductListItems,
-// } = useTrackingEvents()
+
+const {
+  trackViewItemList,
+  trackWishlist,
+  trackAddToBasket,
+  collectProductListItems,
+} = useTrackingEvents()
 
 if (wishlist.error.value) {
   throw createError(wishlist.error.value)
 }
 
-const addItemToCart = async (itemKey: string, _index: number) => {
+const addItemToCart = async (itemKey: string, index: number) => {
   const entry = wishlist.data.value?.items.find((el) => el.key === itemKey)
 
   if (!entry || !entry.product) {
@@ -115,20 +120,20 @@ const addItemToCart = async (itemKey: string, _index: number) => {
 
   showBasketFlyOut()
 
-  // const { product } = entry
-  // let { variant = undefined } = entry
-  // if (!variant && product && product.variants?.length) {
-  //   variant = product.variants[0]
-  // }
+  const { product } = entry
+  let { variant = undefined } = entry
+  if (!variant && product && product.variants?.length) {
+    variant = product.variants[0]
+  }
 
-  // if (product) {
-  //   trackAddToBasket({
-  //     product,
-  //     variant,
-  //     index,
-  //     list: { name: 'WishlistList', id: 'WL' },
-  //   })
-  // }
+  if (product) {
+    trackAddToBasket({
+      product,
+      variant,
+      index,
+      list: listingMetaData,
+    })
+  }
 }
 
 const orderedItems = computed(() => {
@@ -141,8 +146,9 @@ const orderedItems = computed(() => {
     },
   )
   return sortedItems.filter(
-    (item: WishlistItem): item is WishlistItem & { product: Product } =>
-      !!item.product,
+    (item: WishlistItem): item is WishlistItem & { product: Product } => {
+      return !!item.product
+    },
   )
 })
 // TODO Meta
@@ -153,27 +159,26 @@ const orderedItems = computed(() => {
 // useMeta({ title: 'Wishlist', ...metaTags })
 
 onMounted(() => {
-  // if (!wishlist.data.value) {
-  //   return
-  // }
-  // trackWishlist(
-  //   collectProductListItems(wishlist.products.value, {
-  //     listName: 'WishlistList',
-  //     listId: 'WL',
-  //   }),
-  // )
-  // trackViewItemList({
-  //   items: wishlist.products.value,
-  //   listingMetaData: {
-  //     name: 'Wishlist',
-  //     id: 'Wishlist',
-  //   },
-  //   source: 'wishlist',
-  // })
+  if (!wishlist.data.value) {
+    return
+  }
+  trackWishlist(
+    collectProductListItems(wishlist.products.value, {
+      listId: listingMetaData.id,
+      listName: listingMetaData.name,
+    }),
+  )
+  trackViewItemList({
+    items: wishlist.products.value,
+    listingMetaData,
+    source: 'wishlist',
+  })
 })
 
 const count = wishlist.count
 const fetchingBasket = basket.fetching
+
+definePageMeta({ pageType: 'wishlist_page' })
 </script>
 
 <script lang="ts">

@@ -23,10 +23,9 @@ defineProps({
   },
 })
 
-//   const { trackPromotion } = useTrackingEvents()
+const { trackPromotion } = useTrackingEvents()
+
 const clickObserver = (link: SbBannerLink) => {
-  if (link.promotion_id) {
-    //   trackPromotion('select_promotion', link)
-  }
+  return link.promotion_id && trackPromotion('select_promotion', link)
 }
 </script>

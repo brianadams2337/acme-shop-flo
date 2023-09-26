@@ -7,7 +7,7 @@
     </button>
     <FadeInTransition>
       <div v-if="!isCollapsed">
-        <CmsText :blok="{ ...blok, component: 'CmsText'}" />
+        <CmsText :blok="{ ...blok, component: 'CmsText' }" />
       </div>
     </FadeInTransition>
   </div>

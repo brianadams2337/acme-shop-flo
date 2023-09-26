@@ -59,13 +59,12 @@ const showUpdatePasswordByHash = computed(() => !!route.query.hash)
 const closeModal = async () => {
   await router.push(toLocalePath({ name: routeList.signin.name }))
 }
+
+definePageMeta({ pageType: 'signin_page' })
 </script>
 
 <script lang="ts">
 export default {
   name: 'SigninPage',
-  meta: {
-    pageType: 'signin_page',
-  },
 }
 </script>

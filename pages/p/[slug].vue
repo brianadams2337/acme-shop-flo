@@ -111,7 +111,6 @@
                 </template>
               </AppButton>
             </div>
-            <!--
             <div class="mt-3">
               <ProductDetailGroup
                 v-if="sliderProducts.length"
@@ -120,7 +119,7 @@
                   {{ $t('global.product_recommendation') }}
                 </template>
                 <p>Recommendation Slider</p>
-                  <ProductRecommendations
+                <ProductRecommendations
                   size="4xs"
                   :products="sliderProducts"
                   :loading="fetchingCombineWithProducts"
@@ -128,7 +127,6 @@
                   @click:recommendation="trackRecommendationClick" />
               </ProductDetailGroup>
             </div>
-                  -->
           </div>
         </div>
       </div>
@@ -141,6 +139,8 @@
 
 <script setup lang="ts">
 import {
+  FetchProductsParams,
+  Product,
   Value,
   getVariantBySize,
   flattenDeep,
@@ -156,9 +156,30 @@ import {
   ProductColor,
 } from '@scayle/storefront-nuxt'
 import { Size, PRODUCT_WITH_PARAMS, Action } from '~/constants'
+
+const listingMetaData = {
+  name: 'ADP',
+  id: 'ADP',
+}
+
 const {
   params: { slug = '-1' },
 } = useRoute()
+
+const route = useRoute()
+const store = useStore()
+
+const { $alert, $i18n } = useNuxtApp()
+const { fetching: basketIdle, addItem: addBasketItem } = await useBasket()
+const { addGroupToBasket } = await useBasketGroup()
+const {
+  fetching: fetchingWishlist,
+  contains: wishlistContains,
+  toggleItem: toggleWishlistItem,
+} = await useWishlist()
+
+const { trackAddToBasket, trackViewItemList, trackViewItem, trackSelectItem } =
+  useTrackingEvents()
 
 // TODO slug is a stringified productName + productId combination. this can be automatically split into name and id by using the route structure name_id with an underscore in the route.ts helper
 const productId = computed(() => {
@@ -272,13 +293,9 @@ const isAnyAddOnSelected = computed(() => {
   const anySelected = Object.keys(addOnsSelected.value).find(
     (key) => addOnsSelected.value[key as any],
   )
-  return Boolean(anySelected)
+  return !!anySelected
 })
 
-// TODO basket
-const { $alert, $i18n } = useNuxtApp()
-const { fetching: basketIdle, addItem: addBasketItem } = await useBasket()
-const { addGroupToBasket } = await useBasketGroup()
 const addItemToBasket = async () => {
   if (hasOneSizeVariantOnly.value && product.value?.variants) {
     activeVariant.value = product.value?.variants[0]
@@ -309,14 +326,13 @@ const addItemToBasket = async () => {
 
     showAddToBasketToast(true, product.value)
 
-    // TODO tracking
-    // if (product.value) {
-    //   trackAddToBasket({
-    //     product: product.value,
-    //     variant: activeVariant.value,
-    //     index: 1,
-    //   })
-    // }
+    if (product.value) {
+      trackAddToBasket({
+        product: product.value,
+        variant: activeVariant.value,
+        index: 1,
+      })
+    }
   } catch {
     $alert.show(
       $i18n.t('basket.notification.add_to_basket_error', { productName }),
@@ -325,63 +341,90 @@ const addItemToBasket = async () => {
   }
 }
 
-// wishlist
-const {
-  fetching: fetchingWishlist,
-  contains: wishlistContains,
-  toggleItem: toggleWishlistItem,
-} = await useWishlist()
 const isInWishlist = computed(() => {
   return wishlistContains({ productId: parseInt(productId.value, 10) })
 })
+
 const onToggleWishlist = async () => {
-  const productIdAsNumber = parseInt(productId.value, 10)
-  const wasInWishlist = wishlistContains({ productId: productIdAsNumber })
-  // TODO  Add tracking meta
-  await toggleWishlistItem({ productId: productIdAsNumber })
-  showWishlistToast(!wasInWishlist, product.value)
+  const id = parseInt(productId.value, 10)
+  const isNewItemInWishlist = !isInWishlist.value
+
+  trackWishlistEvent(isNewItemInWishlist ? 'added' : 'removed', {
+    product: product.value,
+    variant: activeVariant.value,
+  })
+
+  await toggleWishlistItem({ productId: id })
+  showWishlistToast(isNewItemInWishlist, product.value)
 }
 
-// Reco Slider
-// const combineWithProductValues = getAdvancedAttributes({
-//   product: product.value as Product,
-//   property: 'combineWith',
-// })
-// const combineWithProductIds = computed(() =>
-//   combineWithProductValues
-//     ? combineWithProductValues
-//         .split(',')
-//         .map((productId: string) => parseInt(productId, 10))
-//     : [],
-// )
-// const recommendationsFetchParams = ref<FetchProductsParams>({ ids: [] })
+const combineWithProductValues = getAdvancedAttributes({
+  product: product.value as Product,
+  property: 'combineWith',
+})
+const combineWithProductIds = computed(() =>
+  combineWithProductValues
+    ? combineWithProductValues
+        .split(',')
+        .map((productId: string) => parseInt(productId, 10))
+    : [],
+)
+const recommendationsFetchParams = ref<FetchProductsParams>({ ids: [] })
 
-// watch(
-//   () => combineWithProductIds.value,
-//   (ids) => {
-//     recommendationsFetchParams.value = { ids }
-//   },
-// )
+watch(
+  () => combineWithProductIds.value,
+  (ids) => {
+    recommendationsFetchParams.value = { ids }
+  },
+)
 
-// const { data: combineWithProducts, pending: fetchingCombineWithProducts } =
-//   await useProductsByIds(
-//     recommendationsFetchParams,
-//     undefined,
-//     `products-pdpSlider-combineWith-${productId}`,
-//   )
+const { data: combineWithProducts, fetching: fetchingCombineWithProducts } =
+  await useProductsByIds({
+    params: recommendationsFetchParams,
+    key: `products-pdpSlider-combineWith-${productId}`,
+  })
 
-// const combineWith = computed(() => combineWithProducts.value || [])
-// const sliderProducts = computed(() =>
-//   combineWith.value.length
-//     ? combineWith.value.filter(
-//         (product) => product.isActive && !product.isSoldOut,
-//       )
-//     : [],
-// )
+const combineWith = computed(() => combineWithProducts.value || [])
+const sliderProducts = computed(() =>
+  combineWith.value.length
+    ? combineWith.value.filter(
+        (product) => product.isActive && !product.isSoldOut,
+      )
+    : [],
+)
 
-// TODO wire up tracking
-// const trackViewListing = () => {}
-// const trackRecommendationClick = () => {}
+const trackViewListing = ({ items }: { row: number; items: Product[] }) => {
+  trackViewItemList({ items, listingMetaData })
+}
+
+const trackRecommendationClick = (product: Product, index: number) => {
+  trackSelectItem({
+    product,
+    category: {
+      ...getDeepestCategoryForTracking(product.categories),
+    },
+    listingMetaData,
+    index,
+    ...(route.name && { source: `${String(route.name)}|RecommendationSlider` }),
+    soldOut: product.isSoldOut,
+    pagePayload: {
+      content_name: route.fullPath,
+      page_type: store.value.pageType,
+      page_type_id: productId.value.toString() || '',
+    },
+  })
+}
+
+onMounted(async () => {
+  store.value.pageTypeId = productId.value
+  if (!product.value) {
+    return
+  }
+  await useSleep(1000)
+  trackViewItem({ product: product.value })
+})
+
+definePageMeta({ pageType: 'pdp' })
 </script>
 
 <script lang="ts">

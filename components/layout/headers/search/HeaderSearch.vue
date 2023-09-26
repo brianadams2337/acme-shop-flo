@@ -85,16 +85,14 @@ const { data, search, searchQuery, resetSearch, pending } = useSearch({
 const router = useRouter()
 const input = ref()
 
+const { trackSearchSuggestionClick } = useTrackingEvents()
+
 const showSuggestions = computed(
   () => searchQuery.value.length >= MIN_CHARS_FOR_SEARCH,
 )
 const { focused: inputActive } = useFocus(input)
 
-watch(inputActive, (val) => {
-  if (!val) {
-    resetSearch()
-  }
-})
+watch(inputActive, (val) => !val && resetSearch())
 
 const { products, categories, brands } = useTypeaheadSuggestions(data)
 
@@ -128,8 +126,7 @@ const resetAndClose = () => {
 const trackSuggestionClickAndClose = (
   suggestion: ProductSuggestion | BrandOrCategorySuggestion,
 ) => {
-  console.log({ suggestion })
-  // trackSearchSuggestionClick(searchQuery.value, suggestion)
+  trackSearchSuggestionClick(searchQuery.value, suggestion)
   resetAndClose()
 }
 

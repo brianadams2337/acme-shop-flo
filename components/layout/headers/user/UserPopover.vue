@@ -2,8 +2,8 @@
   <Popover
     :is-open="isUserFlyoutOpen"
     content-wrapper-class="mt-8"
-    @mouseenter="md && openUserFlyout()"
-    @mouseleave="md && closeUserFlyout()">
+    @mouseenter="isGreaterOrEquals('md') && openUserFlyout()"
+    @mouseleave="isGreaterOrEquals('md') && closeUserFlyout()">
     <template #action>
       <DefaultLink :to="link" raw>
         <IconAccount class="h-6 w-6" />
@@ -22,7 +22,7 @@
 </template>
 
 <script setup lang="ts">
-const { md } = useViewportBreakpoints()
+const { isGreaterOrEquals } = useViewport()
 
 const { openUserFlyout, closeUserFlyout, isUserFlyoutOpen } = useUiState()
 const { user } = await useUser()

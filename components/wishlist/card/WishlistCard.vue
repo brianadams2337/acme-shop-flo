@@ -126,7 +126,7 @@
         </div>
       </div>
       <SlideIn
-        v-if="!lg"
+        v-if="isLessThan('lg')"
         :name="`wishlistcard_${product.id}`"
         slide-type="fromBottom"
         slide-class="w-full xl:max-w-none h-auto xl:max-h-none top-auto left-0 p-0 pt-0">
@@ -187,11 +187,11 @@ const props = defineProps({
   },
 })
 
-const { lg } = useViewportBreakpoints()
-
 const { fetching: isWishlistFetching, replaceItem: replaceWishlistItem } =
   await useWishlist()
 const basket = await useBasket()
+
+const { isLessThan } = useViewport()
 
 const { trackAddToBasket } = useTrackingEvents()
 

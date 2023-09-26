@@ -75,7 +75,7 @@ const { user } = await useUser()
 
 const currentPage = ref<number>(1)
 
-const { md } = useViewportBreakpoints()
+const { isGreaterOrEquals } = useViewport()
 
 const orders = computed(() => user?.value?.orderSummary ?? [])
 const currentOrderId = computed(() => {
@@ -118,7 +118,7 @@ onMounted(async () => {
     !route.params?.id &&
     !props.isAccountPage &&
     currentOrderId.value &&
-    md.value // On mobile the user should first see the order list
+    isGreaterOrEquals('md') // On mobile the user should first see the order list
   ) {
     await router.push(getOrderDetailsRoute(currentOrderId.value))
   }

@@ -63,7 +63,7 @@ const listingMetaData = {
 
 const { marginClasses } = useStoryblokMargins(props.blok)
 
-const { md } = useViewportBreakpoints()
+const { isGreaterOrEquals } = useViewport()
 const route = useRoute()
 const store = useStore()
 
@@ -100,8 +100,8 @@ const { data, fetching } = await useProductsByIds({
 
 const trackingCollector = ref<Product[]>([])
 const products = computed(() => data.value)
-const sliderOffset = computed(() => (md.value ? 56 : 20))
-const columns = computed(() => (md.value ? 5 : 2))
+const sliderOffset = computed(() => (isGreaterOrEquals('md') ? 56 : 20))
+const columns = computed(() => (isGreaterOrEquals('md') ? 5 : 2))
 
 const trackingSource = computed(() => {
   const routePath = String(route.fullPath === '/' ? 'home' : route.name)

@@ -1,6 +1,6 @@
 <template>
   <div
-    v-if="md"
+    v-if="isGreaterOrEquals('md')"
     class="grid w-full flex-1 grid-cols-12 gap-1"
     data-test-id="tilled-gallery">
     <div
@@ -83,7 +83,7 @@ const emit = defineEmits<{
   (e: 'click:image', value: number): void
 }>()
 
-const { md } = useViewportBreakpoints()
+const { isGreaterOrEquals } = useViewport()
 
 const activeSlide = ref(0)
 const setActiveSlide = (slide: number) => {

@@ -5,7 +5,7 @@
     </div>
     <PageContent>
       <div class="sm:flex">
-        <div v-if="md" class="-ml-4 w-1/3 lg:w-1/5">
+        <div v-if="isGreaterOrEquals('md')" class="-ml-4 w-1/3 lg:w-1/5">
           <SideNavigation
             v-if="categories && 'children' in categories && categories.children"
             :categories="categories.children"
@@ -108,7 +108,7 @@ const listingMetaData = {
   id: 'CategoryProductList',
 }
 
-const { md } = useViewportBreakpoints()
+const { isGreaterOrEquals } = useViewport()
 
 const route = useRoute()
 const store = useStore()

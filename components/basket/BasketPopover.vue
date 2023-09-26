@@ -56,8 +56,9 @@
 <script setup lang="ts">
 import { BasketItem } from '@scayle/storefront-nuxt'
 
-const { sm } = useViewportBreakpoints()
-const isPopoverContentDisabled = computed(() => sm.value)
+const { isLessThan } = useViewport()
+
+const isPopoverContentDisabled = computed(() => isLessThan('md'))
 const { openBasketFlyout, closeBasketFlyout, isBasketFlyoutOpen } = useUiState()
 
 const groupIds = computed(() => Object.keys(basketItems.value.groups))

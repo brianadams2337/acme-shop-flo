@@ -82,7 +82,7 @@ const emit = defineEmits<{
   (e: 'click:recommendation', value: BapiProduct, i: number): void
 }>()
 
-const { md } = useViewportBreakpoints()
+const { isGreaterOrEquals } = useViewport()
 
 const trackingCollector = ref<BapiProduct[]>([])
 const carousel = ref<HTMLDivElement>()
@@ -124,7 +124,7 @@ const prev = () => {
   }
 }
 
-const columns = computed(() => (md.value ? 2 : 4))
+const columns = computed(() => (isGreaterOrEquals('md') ? 2 : 4))
 
 const collectColumnIntersection = (productId: number, index: number) => {
   const isTracked =

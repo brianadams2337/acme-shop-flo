@@ -171,6 +171,12 @@ const store = useStore()
 
 const { $alert, $i18n } = useNuxtApp()
 const { fetching: basketIdle, addItem: addBasketItem } = await useBasket()
+const {
+  fetching: fetchingWishlist,
+  contains: wishlistContains,
+  toggleItem: toggleWishlistItem,
+} = await useWishlist()
+
 const { addGroupToBasket } = await useBasketGroup()
 
 const { trackAddToBasket, trackViewItemList, trackViewItem, trackSelectItem } =
@@ -336,20 +342,21 @@ const addItemToBasket = async () => {
   }
 }
 
-const {
-  fetching: fetchingWishlist,
-  contains: wishlistContains,
-  toggleItem: toggleWishlistItem,
-} = await useWishlist()
 const isInWishlist = computed(() => {
   return wishlistContains({ productId: parseInt(productId.value, 10) })
 })
+
 const onToggleWishlist = async () => {
-  const productIdAsNumber = parseInt(productId.value, 10)
-  const wasInWishlist = wishlistContains({ productId: productIdAsNumber })
-  // TODO  Add tracking meta
-  await toggleWishlistItem({ productId: productIdAsNumber })
-  showWishlistToast(!wasInWishlist, product.value)
+  const id = parseInt(productId.value, 10)
+  const isNewItemInWishlist = !isInWishlist.value
+
+  trackWishlistEvent(isNewItemInWishlist ? 'added' : 'removed', {
+    product: product.value,
+    variant: activeVariant.value,
+  })
+
+  await toggleWishlistItem({ productId: id })
+  showWishlistToast(isNewItemInWishlist, product.value)
 }
 
 const combineWithProductValues = getAdvancedAttributes({

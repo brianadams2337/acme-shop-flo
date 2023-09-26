@@ -1,4 +1,9 @@
-import { Product, getFirstAttributeValue } from '@scayle/storefront-nuxt'
+import {
+  Product,
+  getFirstAttributeValue,
+  Variant,
+} from '@scayle/storefront-nuxt'
+import { ListItem } from '~/types/tracking'
 import { Action } from '~/constants'
 
 export const getWishlistToastMessage = (
@@ -35,4 +40,42 @@ export const showWishlistToast = (
     action,
     isAddedToWishlist ? { name: routeList.wishlist.name } : undefined,
   )
+}
+
+export const trackWishlistEvent = (
+  action: 'added' | 'removed',
+  params: {
+    product: Product | null
+    variant?: Variant
+    listingMetaData?: ListItem
+  },
+) => {
+  const { trackRemoveFromWishlist, trackAddToWishlist } = useTrackingEvents()
+  const route = useRoute()
+  const store = useStore()
+  const { product, variant, listingMetaData } = params
+  if (!product) {
+    return
+  }
+
+  return action === 'added'
+    ? trackAddToWishlist({
+        product,
+        variant,
+        listingMetaData,
+        pagePayload: {
+          content_name: route.fullPath,
+          page_type: store.value.pageType,
+          page_type_id: route.params.id?.toString() || '',
+        },
+      })
+    : trackRemoveFromWishlist({
+        product,
+        listingMetaData,
+        pagePayload: {
+          content_name: route.fullPath,
+          page_type: store.value.pageType,
+          page_type_id: route.params.id?.toString() || '',
+        },
+      })
 }

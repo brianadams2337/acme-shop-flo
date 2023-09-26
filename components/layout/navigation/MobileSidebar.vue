@@ -70,7 +70,11 @@
 </template>
 
 <script setup lang="ts">
-import { Category } from '@scayle/storefront-nuxt'
+import {
+  Category,
+  BrandOrCategorySuggestion,
+  ProductSuggestion,
+} from '@scayle/storefront-nuxt'
 import { DEBOUNCED_SEARCH_DURATION, MIN_CHARS_FOR_SEARCH } from '~/constants'
 
 defineProps({
@@ -119,17 +123,17 @@ const {
   },
 })
 
-// const { trackSearchSuggestionClick } = useTrackingEvents()
+const { trackSearchSuggestionClick } = useTrackingEvents()
 
 const { products, categories, totalCount, noSuggestions } =
   useTypeaheadSuggestions(data)
 
-const trackSuggestionClickAndClose = () =>
-  // suggestion: ProductSuggestion | BrandOrCategorySuggestion,
-  {
-    // trackSearchSuggestionClick(searchQuery.value, suggestion)
-    resetAndClose()
-  }
+const trackSuggestionClickAndClose = (
+  suggestion: ProductSuggestion | BrandOrCategorySuggestion,
+) => {
+  trackSearchSuggestionClick(searchQuery.value, suggestion)
+  resetAndClose()
+}
 
 const openSearchPage = async () => {
   await router.push(toLocalePath(getSearchRoute(searchQuery.value)))
@@ -142,9 +146,7 @@ const resetAndClose = () => {
   setMobileSearchIsActive(false)
 }
 
-onBeforeUnmount(() => {
-  resetAndClose()
-})
+onBeforeUnmount(() => resetAndClose())
 
 const validInput = computed(() => {
   return (searchQuery.value?.length || 0) >= MIN_CHARS_FOR_SEARCH

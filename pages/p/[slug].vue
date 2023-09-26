@@ -26,7 +26,7 @@
             </div>
             <div class="flex items-start justify-between md:flex-col">
               <Headline
-                :size="md ? '2xl' : 'xl'"
+                :size="isGreaterOrEquals('md') ? '2xl' : 'xl'"
                 :is-uppercase="false"
                 class="!leading-snug"
                 data-test-id="pdp-product-name"
@@ -37,7 +37,7 @@
                 v-if="price"
                 size="xl"
                 class="md:mt-6"
-                :type="md ? 'normal' : 'loud'"
+                :type="isGreaterOrEquals('md') ? 'normal' : 'loud'"
                 :price="price"
                 :lowest-prior-price="lowestPriorPrice"
                 :applied-reductions="price?.appliedReductions"
@@ -56,7 +56,7 @@
                     :to="getProductDetailRoute(product)">
                     <ColorChip
                       :is-active="item.id === product.id"
-                      :size="md ? Size.LG : Size.XL"
+                      :size="isGreaterOrEquals('md') ? Size.LG : Size.XL"
                       :color="item.colors[0] as ProductColor" />
                   </DefaultLink>
                 </template>
@@ -208,7 +208,6 @@ const productName = getFirstAttributeValue(product.value?.attributes, 'name')
   ?.label
 
 const { isGreaterOrEquals } = useViewport()
-const md = computed(() => isGreaterOrEquals('md'))
 const activeVariant = ref<Variant>()
 const variantWithLowestPrice = computed(() =>
   getVariantWithLowestPrice(product.value?.variants || []),

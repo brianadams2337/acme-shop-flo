@@ -6,7 +6,7 @@
         <template v-else-if="orderDetails && !fetching">
           <OrderHeader
             v-if="
-              viewport.isGreaterOrEquals('md') &&
+              isGreaterOrEquals('md') &&
               itemCount &&
               orderDetails.shop?.id &&
               orderDetails.confirmedAt
@@ -34,7 +34,7 @@ import { Order } from '~/types/osp'
 const route = useRoute()
 const paramId = computed(() => +route.params.id)
 
-const viewport = useViewport()
+const { isGreaterOrEquals } = useViewport()
 
 const { data: orderDetails, fetching } = await useOrder({
   params: { orderId: paramId.value },

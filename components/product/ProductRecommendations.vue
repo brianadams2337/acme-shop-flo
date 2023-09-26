@@ -83,7 +83,7 @@ const emit = defineEmits<{
   (e: 'click:recommendation', value: Product, i: number): void
 }>()
 
-const { md } = useViewportBreakpoints()
+const { isGreaterOrEquals } = useViewport()
 
 const trackingCollector = ref<Product[]>([])
 const carousel = ref<HTMLDivElement>()
@@ -92,6 +92,8 @@ const carouselStyles = ref({
   transform: 'translateX(0)',
 })
 const activeIndex = ref(0) // This keeps track of how many times the user has scrolled
+
+const columns = computed(() => (isGreaterOrEquals('md') ? 2 : 4))
 
 const next = () => {
   const carouselWidth = carousel?.value?.scrollWidth
@@ -124,8 +126,6 @@ const prev = () => {
     activeIndex.value--
   }
 }
-
-const columns = computed(() => (md.value ? 2 : 4))
 
 const collectColumnIntersection = (productId: number, index: number) => {
   const isTracked =

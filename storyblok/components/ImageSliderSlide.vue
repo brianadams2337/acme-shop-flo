@@ -43,8 +43,6 @@ const props = defineProps({
 const { isLessThan } = useViewport()
 const { trackPromotion } = useTrackingEvents()
 
-const isMobile = computed(() => isLessThan('md'))
-
 const isInViewport = ref(true)
 
 const onIntersect = (_: IntersectionObserverEntry, stop: () => void) => {
@@ -60,5 +58,5 @@ const clickObserver = () => {
     trackPromotion('select_promotion', props.blok)
   }
 }
-const headlineSize = computed(() => (isMobile.value ? 'xl' : '2xl'))
+const headlineSize = computed(() => (isLessThan('md') ? 'xl' : '2xl'))
 </script>

@@ -57,6 +57,7 @@
 import { BasketItem } from '@scayle/storefront-nuxt'
 
 const { isLessThan } = useViewport()
+
 const isPopoverContentDisabled = computed(() => isLessThan('md'))
 const { openBasketFlyout, closeBasketFlyout, isBasketFlyoutOpen } = useUiState()
 

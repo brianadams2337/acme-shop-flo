@@ -79,13 +79,13 @@
         <BasketCardAction
           v-if="!isInWishlist"
           data-test-id="basket-add-to-wishlist-button"
-          :class="{ 'absolute right-0 top-0 !p-4': viewport.isLessThan('lg') }"
+          :class="{ 'absolute right-0 top-0 !p-4': isLessThan('lg') }"
           @click="addToWishlist">
           <template #icon="{ _class }">
             <IconHeart :class="_class" />
           </template>
           {{
-            viewport.isGreaterOrEquals('lg')
+            isGreaterOrEquals('lg')
               ? $t('basket_card.add_to_wishlist_label')
               : ''
           }}
@@ -93,14 +93,14 @@
 
         <BasketCardAction
           v-if="isInWishlist"
-          :class="{ 'absolute right-0 top-0 !p-4': !viewport.isLessThan('lg') }"
+          :class="{ 'absolute right-0 top-0 !p-4': isGreaterOrEquals('lg') }"
           data-test-id="basket-remove-from-wishlist-button"
           @click="removeFromWishlist">
           <template #icon="{ _class }">
             <IconHeartFull :class="_class" />
           </template>
           {{
-            viewport.isGreaterOrEquals('lg')
+            isGreaterOrEquals('lg')
               ? $t('basket_card.remove_from_wishlist_label')
               : ''
           }}
@@ -171,7 +171,7 @@ const {
   trackRemoveFromBasket,
 } = useTrackingEvents()
 
-const viewport = useViewport()
+const { isGreaterOrEquals, isLessThan } = useViewport()
 const currentShop = useCurrentShop()
 const store = useStore()
 const route = useRoute()

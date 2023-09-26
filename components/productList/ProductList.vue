@@ -17,7 +17,7 @@
         :refreshing="refreshing">
         <NuxtLazyHydrate
           :when-visible="{ rootMargin: '100px' }"
-          :when-triggered="index < (viewport.isGreaterOrEquals('md') ? 8 : 2)"
+          :when-triggered="index < (isGreaterOrEquals('md') ? 8 : 2)"
           placeholder-class="mb-24"
           placeholder-ratio="3/4">
           <ProductCard
@@ -56,7 +56,7 @@ const listingMetadata = {
   name: CategoryListingMetadata.NAME,
 }
 
-const viewport = useViewport()
+const { isGreaterOrEquals } = useViewport()
 
 const props = defineProps({
   products: {
@@ -82,13 +82,12 @@ const route = useRoute()
 
 const currentPage = computed(() => parseInt(route.query.page as string) || 1)
 
-const columns = computed(() =>
-  viewport.isGreaterOrEquals('lg')
-    ? 4
-    : viewport.isGreaterOrEquals('md')
-    ? 3
-    : 2,
-)
+const columns = computed(() => {
+  if (isGreaterOrEquals('lg')) {
+    return 4
+  }
+  return isGreaterOrEquals('md') ? 3 : 2
+})
 
 const columnClasses = computed(() => ({
   'col-span-6': columns.value === 2,

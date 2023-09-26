@@ -1,7 +1,7 @@
 <template>
   <div>
     <!-- desktop tabular -->
-    <div v-if="md" class="mt-10 xl:w-[827px]">
+    <div v-if="isGreaterOrEquals" class="mt-10 xl:w-[827px]">
       <div
         class="relative box-border flex h-12 justify-between rounded-md border border-gray-350">
         <div
@@ -71,6 +71,8 @@ const props = defineProps({
     default: () => null,
   },
 })
+
+const { isGreaterOrEquals } = useViewport()
 
 const productInfos = computed(() => {
   const keys = [
@@ -146,7 +148,4 @@ const selectedIndex = ref(0)
 const slidingWindowOffset = computed(
   () => (100 / tabs.length) * selectedIndex.value,
 )
-
-const { isGreaterOrEquals } = useViewport()
-const md = computed(() => isGreaterOrEquals('md'))
 </script>

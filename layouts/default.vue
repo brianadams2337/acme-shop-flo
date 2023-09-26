@@ -5,7 +5,7 @@
     <AppHeader v-bind="{ rootCategories, fetchingCategories }" />
     <ToastContainer />
     <MobileSidebar
-      v-if="viewport.isLessThan('md')"
+      v-if="isLessThan('md')"
       v-bind="{ rootCategories, fetchingCategories }" />
     <div class="mt-4 grow">
       <ErrorLayout
@@ -30,7 +30,7 @@ const { data: rootCategoriesData, fetching: fetchingCategories } = categoryData
 const { trackShopInit, listenToUserItemsChanges, listenToCustomerDataChanges } =
   useTrackingEvents()
 
-const viewport = useViewport()
+const { isLessThan } = useViewport()
 
 const rootCategories = computed(() => {
   return Array.isArray(rootCategoriesData.value.categories)

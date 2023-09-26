@@ -3,10 +3,6 @@ export default defineNuxtPlugin(() => {
   const store = useStore()
   const { $tracking } = useNuxtApp()
 
-  if (!$tracking) {
-    return
-  }
-
   router?.afterEach((to, from) => {
     if (process.server) {
       return

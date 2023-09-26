@@ -432,6 +432,35 @@ frew differences that are worth mentioning.
   `localePath`, etc. as we did in the Nuxt 2 for some of the composables because
   we have that auto-imported.
 
+## Store
+
+- In Nuxt 2 store was implemeneted out of the box. In Nuxt 3 that's not the case.
+  There are several options on how to achieve state management (Pinia, xstate, etc).
+  Since our needs are pretty basic and simple, we'll just use the basic `useStore`
+  composable that uses `useState` under the hood.
+
+  ```ts
+  const store = useStore()
+  // Will store "category" as pageType
+  store.value.pageType = 'category'
+  ```
+
+## Plugins
+
+- In Nuxt 3 plugins are auto-registered. The only thing that we need to take care
+  is the [order of plugins registration](https://nuxt.com/docs/guide/directory-structure/plugins#plugin-registration-order).
+  The perfect example is that we have `tracking.client` plugin and
+  `routeChangeTrackingObserver` that uses the tracking plugin. We need to register
+  `tracking.client` first because the other one depends on it. We achieve this by
+  adding the numeration prefix within the file name:
+
+```
+plugins/
+ | - 01.tracking.client.ts
+ | - 02.routeChangeTrackingObserver.ts
+
+```
+
 ## Additions
 
 ### Packages

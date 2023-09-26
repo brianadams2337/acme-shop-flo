@@ -169,6 +169,10 @@ const {
 const route = useRoute()
 const store = useStore()
 
+const { $alert, $i18n } = useNuxtApp()
+const { fetching: basketIdle, addItem: addBasketItem } = await useBasket()
+const { addGroupToBasket } = await useBasketGroup()
+
 const { trackAddToBasket, trackViewItemList, trackViewItem, trackSelectItem } =
   useTrackingEvents()
 
@@ -284,13 +288,9 @@ const isAnyAddOnSelected = computed(() => {
   const anySelected = Object.keys(addOnsSelected.value).find(
     (key) => addOnsSelected.value[key as any],
   )
-  return Boolean(anySelected)
+  return !!anySelected
 })
 
-// TODO basket
-const { $alert, $i18n } = useNuxtApp()
-const { fetching: basketIdle, addItem: addBasketItem } = await useBasket()
-const { addGroupToBasket } = await useBasketGroup()
 const addItemToBasket = async () => {
   if (hasOneSizeVariantOnly.value && product.value?.variants) {
     activeVariant.value = product.value?.variants[0]

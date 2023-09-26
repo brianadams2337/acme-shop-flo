@@ -116,13 +116,6 @@ export default defineNuxtConfig({
     },
   },
 
-  plugins: [
-    '~/plugins/validation',
-    '~/plugins/toast',
-    '~/plugins/tracking.client',
-    '~/plugins/routeChangeTrackingObserver',
-  ],
-
   modules: [
     '@scayle/storefront-nuxt/module',
     '@nuxtjs/tailwindcss',

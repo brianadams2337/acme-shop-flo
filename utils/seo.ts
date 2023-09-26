@@ -1,5 +1,4 @@
-import { JsonLD } from 'nuxt-jsonld/dist/types/index.d'
-import { Brand, Offer } from 'schema-dts'
+import { Brand, Offer, WithContext, Product } from 'schema-dts'
 
 const CANONICAL_PARAM_WHITELIST = [
   'page',
@@ -97,7 +96,7 @@ export const generateProductSchema = ({
   isInStock?: boolean
   images?: string[]
   priceCurrency?: string
-}): JsonLD => {
+}): WithContext<Product> => {
   const offers = generateSchemaProductOffers({
     price,
     isInStock,

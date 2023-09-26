@@ -169,7 +169,7 @@ import {
   getSizeFromVariant,
   getVariantBySize,
 } from '@scayle/storefront-nuxt'
-import { ONE_SIZE_KEY } from '~/constants/attributes'
+import { ONE_SIZE_KEY, WishlistListingMetadata } from '~/constants'
 import { VariantSize } from '~/types/product'
 
 const props = defineProps({
@@ -191,7 +191,8 @@ const { fetching: isWishlistFetching, replaceItem: replaceWishlistItem } =
   await useWishlist()
 const basket = await useBasket()
 const viewport = useViewport()
-// const { trackAddToBasket } = useTrackingEvents()
+
+const { trackAddToBasket } = useTrackingEvents()
 
 const { toggle: toggleFilter } = useSlideIn(`wishlistcard_${props.product.id}`)
 
@@ -261,13 +262,15 @@ const changeSizeAndAddToBasket = async (
     quantity: 1,
   })
 
-  // TODO tracking
-  // trackAddToBasket({
-  //   product: props.product,
-  //   variant: newVariant,
-  //   index: props.index,
-  //   list: { name: 'WishlistList', id: 'WL' },
-  // })
+  trackAddToBasket({
+    product: props.product,
+    variant: newVariant,
+    index: props.index,
+    list: {
+      id: WishlistListingMetadata.ID,
+      name: WishlistListingMetadata.NAME,
+    },
+  })
 
   showAddToBasketToast(true, product)
 
@@ -277,11 +280,7 @@ const changeSizeAndAddToBasket = async (
 const showSizePicker = () => {
   const oneSize = getSize(ONE_SIZE_KEY)
 
-  if (oneSize) {
-    changeSizeAndAddToBasket(props.product, oneSize)
-  } else {
-    toggleFilter()
-  }
+  oneSize ? changeSizeAndAddToBasket(props.product, oneSize) : toggleFilter()
 }
 const isChangingSize = ref(false)
 const sizeSavingId = ref<number | null>(null)

@@ -35,9 +35,7 @@ const props = defineProps({
   },
 })
 
-// TODO Wire up tracking & breakpoint composables
-// const { trackPromotion } = useTrackingEvents()
-// const { md } = useBreakpoints()
+const { trackPromotion } = useTrackingEvents()
 const { sanitize } = useStoryblokImageSanitizer()
 
 const imageSource = computed(() =>
@@ -48,7 +46,7 @@ const onIntersect = (_: IntersectionObserverEntry, stop: () => void) => {
   if (!props.blok.promotion_id) {
     return
   }
-  //   trackPromotion('view_promotion', props.blok)
+  trackPromotion('view_promotion', props.blok)
   stop()
 }
 </script>

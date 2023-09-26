@@ -1,3 +1,5 @@
+import { BasketListingMetadata, WishlistListingMetadata } from '~/constants'
+
 // @function tracks basket and wishlist changes
 export const useUserItemsTrackingWatcher = async () => {
   const { data: basket } = await useBasket()
@@ -21,8 +23,8 @@ export const useUserItemsTrackingWatcher = async () => {
       ) {
         trackBasket(
           collectBasketItems(basket.value?.items, {
-            listName: 'BasketList',
-            listId: 'BL',
+            listId: BasketListingMetadata.ID,
+            listName: BasketListingMetadata.NAME,
           }),
         )
       }
@@ -36,8 +38,8 @@ export const useUserItemsTrackingWatcher = async () => {
       if (didWishlistOrBasketDataChange(oldValues, newValues)) {
         trackWishlist(
           collectProductListItems(wishlistProducts.value, {
-            listName: 'WishlistList',
-            listId: 'WL',
+            listId: WishlistListingMetadata.ID,
+            listName: WishlistListingMetadata.NAME,
           }),
         )
       }

@@ -33,7 +33,7 @@
 
 <script setup lang="ts">
 import { SortValue } from '@scayle/storefront-nuxt'
-// import { useTrackingEvents } from '~/composables'
+
 defineProps({
   values: {
     type: Array as PropType<SortValue[]>,
@@ -44,12 +44,9 @@ defineProps({
     default: '',
   },
 })
-// TODO tracking
-// const { trackFilterApply } = useTrackingEvents()
+const { trackFilterApply } = useTrackingEvents()
 
-const trackSort = (_value: SortValue): void => {
-  // trackFilterApply('sort', value.name)
-}
+const trackSort = ({ name }: SortValue): void => trackFilterApply('sort', name)
 
 const selectSorting = (sorting: SortValue, close: () => void) => {
   trackSort(sorting)

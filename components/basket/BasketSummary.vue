@@ -71,18 +71,19 @@
     </div>
   </div>
 </template>
+
 <script lang="ts" setup>
 const basket = await useBasket()
 const router = useRouter()
 const { $i18n } = useNuxtApp()
-// TODO tracking
-// const { trackBeginCheckout } = useTrackingEvents()
+
+const { trackBeginCheckout } = useTrackingEvents()
 
 const totalCost = computed(() => basket.data.value?.cost.withTax)
 const shippingCost = computed(() => 0)
 
 const onClickToCheckoutOrder = () => {
-  // trackBeginCheckout(basket.data.value?.items, 'BasketList', 'BL')
+  trackBeginCheckout(basket.data.value?.items, 'BasketList', 'BL')
   router.push({ path: '/checkout' })
 }
 

@@ -6,15 +6,13 @@ const SHOP_GENDER: 'male' | 'female' | 'other' | '' = ''
 const useShopEvents = (
   track: (event: TrackingEvent, payload: TrackingPayload) => any,
 ) => {
+  const currentShop = useCurrentShop().value
+  const currency = currentShop!.currency
+  const locale = currentShop!.locale
+  const shopId = currentShop!.shopId
+
   return {
     trackShopInit: () => {
-      const currentShop = useCurrentShop()
-      if (!currentShop.value) {
-        return
-      }
-
-      const { currency, shopId, locale } = currentShop.value
-
       return track('shop_init', {
         shop_currency: currency,
         shop_id: shopId,
@@ -25,6 +23,15 @@ const useShopEvents = (
         referrer: process.client ? window.document.referrer : '',
         parameter: process.client ? window.location.search || '' : '',
         origin: 'web',
+      })
+    },
+
+    trackShopChange: () => {
+      return track('shop_change', {
+        shop_id: String(shopId),
+        shop_gender: SHOP_GENDER,
+        locale: locale.replace(/_/g, '-'),
+        shop_currency: currency,
       })
     },
   }

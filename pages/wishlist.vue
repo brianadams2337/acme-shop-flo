@@ -62,8 +62,13 @@ import {
   Product,
   getAttributeValue,
 } from '@scayle/storefront-nuxt'
-import { ONE_SIZE_KEY } from '~/constants'
+import { ONE_SIZE_KEY, WishlistListingMetadata } from '~/constants'
 import { Action } from '~/constants/toast'
+
+const listingMetaData = {
+  id: WishlistListingMetadata.ID,
+  name: WishlistListingMetadata.NAME,
+} as const
 
 const wishlist = await useWishlist()
 const basket = await useBasket()
@@ -126,7 +131,7 @@ const addItemToCart = async (itemKey: string, index: number) => {
       product,
       variant,
       index,
-      list: { name: 'WishlistList', id: 'WL' },
+      list: listingMetaData,
     })
   }
 }
@@ -141,8 +146,9 @@ const orderedItems = computed(() => {
     },
   )
   return sortedItems.filter(
-    (item: WishlistItem): item is WishlistItem & { product: Product } =>
-      !!item.product,
+    (item: WishlistItem): item is WishlistItem & { product: Product } => {
+      return !!item.product
+    },
   )
 })
 // TODO Meta
@@ -158,16 +164,13 @@ onMounted(() => {
   }
   trackWishlist(
     collectProductListItems(wishlist.products.value, {
-      listName: 'WishlistList',
-      listId: 'WL',
+      listId: listingMetaData.id,
+      listName: listingMetaData.name,
     }),
   )
   trackViewItemList({
     items: wishlist.products.value,
-    listingMetaData: {
-      name: 'Wishlist',
-      id: 'Wishlist',
-    },
+    listingMetaData,
     source: 'wishlist',
   })
 })

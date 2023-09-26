@@ -139,12 +139,11 @@ import {
   getSizeFromVariant,
   getProductColors,
 } from '@scayle/storefront-nuxt'
-import { Action } from '~/constants'
-// import useTrackingEvents from '~/composables/tracking/useTrackingEvents'
+import { Action, BasketListingMetadata } from '~/constants'
 
-const _listingMetaData = {
-  name: 'Basket List',
-  id: 'BL',
+const listingMetaData = {
+  id: BasketListingMetadata.ID,
+  name: BasketListingMetadata.NAME,
 }
 
 const props = defineProps({
@@ -165,17 +164,21 @@ const props = defineProps({
 const { $i18n, $alert } = useNuxtApp()
 const wishlist = await useWishlist()
 const basket = await useBasket()
-// const {
-//   trackRemoveFromWishlist,
-//   trackAddToWishlist,
-//   trackAddToBasket,
-//   trackRemoveFromBasket,
-// } = useTrackingEvents()
+const {
+  trackRemoveFromWishlist,
+  trackAddToWishlist,
+  trackAddToBasket,
+  trackRemoveFromBasket,
+} = useTrackingEvents()
+
 const viewport = useViewport()
 const currentShop = useCurrentShop()
+const store = useStore()
+const route = useRoute()
 const state = ref('default')
 
-// const index = toRef(props, 'index')
+const index = toRef(props, 'index')
+
 const product = computed(() => mainItem.value!.product)
 const variant = computed(() => mainItem.value!.variant)
 const inStock = computed(() => isInStock(variant.value))
@@ -244,20 +247,20 @@ const addToWishlist = async () => {
   if (!mainItem.value) {
     return
   }
-  const { product } = mainItem.value
-  // const { product, _variant, _quantity = 1 } = mainItem.value
-  // trackAddToWishlist({
-  //   product,
-  //   variant,
-  //   quantity,
-  //   listingMetaData,
-  //   index: index.value,
-  //   pagePayload: {
-  //     content_name: route.value.fullPath,
-  //     page_type: store.state.pageType,
-  //     page_type_id: params.value.id?.toString() || '',
-  //   },
-  // })
+  const { product, variant, quantity = 1 } = mainItem.value
+
+  trackAddToWishlist({
+    product,
+    variant,
+    quantity,
+    listingMetaData,
+    index: index.value,
+    pagePayload: {
+      content_name: route.fullPath,
+      page_type: store.value.pageType,
+      page_type_id: route.params.id?.toString() || '',
+    },
+  })
 
   await wishlist.addItem({ productId: product.id })
   const message = $i18n.t('wishlist.notification.add_to_wishlist', {
@@ -271,19 +274,19 @@ const removeFromWishlist = async () => {
   const message = $i18n.t('wishlist.notification.remove_from_wishlist', {
     productName,
   })
-  // trackRemoveFromWishlist({
-  //   product: product.value,
-  //   variant: variant.value,
-  //   quantity: quantity.value,
-  //   index: index.value,
-  //   listingMetaData: { ...listingMetaData, index: index.value },
+  trackRemoveFromWishlist({
+    product: product.value,
+    variant: variant.value,
+    quantity: quantity.value,
+    index: index.value,
+    listingMetaData: { ...listingMetaData, index: index.value },
 
-  //   pagePayload: {
-  //     content_name: route.value.fullPath,
-  //     page_type: store.state.pageType,
-  //     page_type_id: params.value.id?.toString() || '',
-  //   },
-  // })
+    pagePayload: {
+      content_name: route.fullPath,
+      page_type: store.value.pageType,
+      page_type_id: route.params.id?.toString() || '',
+    },
+  })
 
   const data = wishlist.findItem({ variantId: variant.value.id })
     ? { variantId: variant.value.id }
@@ -323,22 +326,20 @@ const changeQuantity = async (newQuantity: number) => {
   }
 
   if (basketItem.quantity < newQuantity) {
-    console.log('track add to basket')
-    // trackAddToBasket({
-    //   product: product.value,
-    //   quantity: newQuantity - basketItem.quantity,
-    //   variant: variant.value,
-    //   index: index.value,
-    //   list: listingMetaData,
-    // })
+    trackAddToBasket({
+      product: product.value,
+      quantity: newQuantity - basketItem.quantity,
+      variant: variant.value,
+      index: index.value,
+      list: listingMetaData,
+    })
   } else if (basketItem.quantity > newQuantity) {
-    console.log('track remove from basket')
-    // trackRemoveFromBasket(
-    //   product.value,
-    //   basketItem.quantity - newQuantity,
-    //   variant.value,
-    //   index.value,
-    // )
+    trackRemoveFromBasket(
+      product.value,
+      basketItem.quantity - newQuantity,
+      variant.value,
+      index.value,
+    )
   }
 
   await basket.addItem({

@@ -27,9 +27,7 @@ const props = defineProps({
 
 const viewport = useViewport()
 const { marginClasses } = useStoryblokMargins(props.blok)
-// TODO tracking
-// const { trackPromotion } = useTrackingEvents()
-const trackPromotion = (_event: string, _video: SbVideo) => {}
+const { trackPromotion } = useTrackingEvents()
 
 const img = useImage()
 

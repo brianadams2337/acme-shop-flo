@@ -4,7 +4,8 @@
       v-if="blok.cta_url.cached_url"
       :target="isLinkTypeUrl ? '_blank' : '_self'"
       :to="blok.cta_url.cached_url"
-      raw>
+      raw
+      @click="clickObserver">
       <Intersect :threshold="0.5" @enter="onIntersect">
         <NuxtImg
           provider="storyblok"
@@ -35,7 +36,7 @@ const props = defineProps({
 })
 
 const { marginClasses } = useStoryblokMargins(props.blok)
-// const { trackPromotion } = useTrackingEvents()
+const { trackPromotion } = useTrackingEvents()
 const image = computed(() => props.blok?.image[0])
 const { sanitize } = useStoryblokImageSanitizer()
 const imageSource = computed(() => sanitize(image.value))
@@ -46,13 +47,11 @@ const onIntersect = (_: IntersectionObserverEntry, stop: () => void) => {
   if (!props.blok.promotion_id) {
     return
   }
-  //   trackPromotion('view_promotion', props.blok)
+  trackPromotion('view_promotion', props.blok)
   stop()
 }
 
-// const clickObserver = image.value.promotion_id
-//   ? () => {
-//       //   trackPromotion('select_promotion', image.value)
-//     }
-//   : () => {}
+const clickObserver = image.value.promotion_id
+  ? () => trackPromotion('select_promotion', image.value)
+  : () => {}
 </script>

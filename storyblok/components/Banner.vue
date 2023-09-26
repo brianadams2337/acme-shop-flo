@@ -81,7 +81,7 @@ const props = defineProps({
 })
 
 const { close, isOpen, shouldBeVisible: _shouldBeVisible } = useBanner()
-// const { trackPromotion } = useTrackingEvents()
+const { trackPromotion } = useTrackingEvents()
 const isActive = computed(() => {
   return isEmpty(props.blok) ? true : props.blok.is_active
 })
@@ -115,7 +115,7 @@ const onIntersect = (_: IntersectionObserverEntry, stop: () => void) => {
   if (!props.blok.promotion_id) {
     return
   }
-  //   trackPromotion('view_promotion', props.blok)
+  trackPromotion('view_promotion', props.blok)
   stop()
 }
 </script>

@@ -66,6 +66,7 @@ import {
   getFirstAttributeValue,
   Product,
 } from '@scayle/storefront-nuxt'
+import { BasketListingMetadata, WishlistListingMetadata } from '~/constants'
 // import { metaTagGenerator } from '~/helpers/seo'
 
 const basket = await useBasket()
@@ -79,8 +80,8 @@ const store = useStore()
 const route = useRoute()
 
 const listingMetaData = {
-  name: 'Basket List',
-  id: 'BL',
+  id: BasketListingMetadata.ID,
+  name: BasketListingMetadata.NAME,
 }
 const {
   trackViewBasket,
@@ -98,8 +99,8 @@ onMounted(() => {
   if (basket.items.value) {
     trackViewBasket(
       collectBasketItems(basket.items.value || [], {
-        listName: 'BasketList',
-        listId: 'BL',
+        listId: listingMetaData.id,
+        listName: listingMetaData.name,
       }),
       {
         content_name: route.fullPath,
@@ -110,14 +111,14 @@ onMounted(() => {
     )
     trackBasket(
       collectBasketItems(basket.items.value || [], {
-        listName: 'BasketList',
-        listId: 'BL',
+        listId: listingMetaData.id,
+        listName: listingMetaData.name,
       }),
     )
     trackWishlist(
       collectProductListItems(wishlist.products.value, {
-        listName: 'WishlistList',
-        listId: 'WL',
+        listId: WishlistListingMetadata.ID,
+        listName: WishlistListingMetadata.NAME,
       }),
     )
   }
@@ -147,8 +148,8 @@ const removeItem = async (item: BasketItem) => {
   trackRemoveFromBasket(item.product, item.quantity, item.variant)
   trackBasket(
     collectBasketItems(basket.items.value || [], {
-      listName: 'BasketList',
-      listId: 'BL',
+      listId: listingMetaData.id,
+      listName: listingMetaData.name,
     }),
   )
 }

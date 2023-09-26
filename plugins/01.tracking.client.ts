@@ -3,6 +3,8 @@ const WAIT_TIME = 1000
 export default defineNuxtPlugin(() => {
   const gtm = useGtm()
 
+  gtm?.enable()
+
   if (!gtm) {
     return
   }

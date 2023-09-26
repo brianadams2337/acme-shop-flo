@@ -98,7 +98,7 @@ import {
   getSortingValues,
   groupFilterableValuesByKey,
 } from '@scayle/storefront-nuxt'
-import { SbCmsImage } from '../storyblok/types/storyblok'
+import { SbCmsImage, SbListingPage } from '../storyblok/types/storyblok'
 import { sustainabilityAttributes } from '~/constants'
 
 const PRODUCTS_PER_PAGE = 24
@@ -302,7 +302,9 @@ const quickFilters = computed(() =>
 )
 
 // CMS
-const { fetchBySlug, data: cmsData } = useCms(`ListingPage-${route.path}`)
+const { fetchBySlug, data: cmsData } = useCms<SbListingPage>(
+  `ListingPage-${route.path}`,
+)
 await fetchBySlug(`categories/${selectedCategory.value?.id}`)
 
 const { content, hasTeaserImage, postListingContent, preListingContent } =

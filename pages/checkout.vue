@@ -62,6 +62,8 @@ const handleError = (payload = {}) => {
     extras: loggingPayload,
   })
 }
+
+definePageMeta({ name: 'checkout' })
 </script>
 
 <script lang="ts">

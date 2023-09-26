@@ -9,9 +9,7 @@
 <script setup lang="ts">
 const data = await useAsyncStoryblok('home')
 
-definePageMeta({
-  pageType: 'HomePage',
-})
+definePageMeta({ pageType: 'homepage' })
 </script>
 
 <script lang="ts">

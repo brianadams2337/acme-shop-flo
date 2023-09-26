@@ -187,9 +187,7 @@ const fetching = basket.fetching
 const basketData = basket.data
 const basketCount = basket.count
 
-definePageMeta({
-  pageType: 'BasketPage',
-})
+definePageMeta({ pageType: 'basket_page' })
 </script>
 
 <script lang="ts">

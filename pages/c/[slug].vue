@@ -39,13 +39,12 @@ const {
   data: story,
 } = useCms<SbContentPage>(`content-page-${slug}`)
 await fetchBySlug(`c/${slug.value as string}`)
+
+definePageMeta({ pageType: 'content_pages' })
 </script>
 
 <script lang="ts">
 export default {
   name: 'ContentPage',
-  meta: {
-    pageType: 'content_pages',
-  },
 }
 </script>

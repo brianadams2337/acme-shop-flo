@@ -424,9 +424,7 @@ onMounted(() => {
   )
 })
 
-definePageMeta({
-  pageType: 'ProductDetailPage',
-})
+definePageMeta({ pageType: 'pdp' })
 </script>
 
 <script lang="ts">

@@ -178,9 +178,7 @@ onMounted(() => {
 const count = wishlist.count
 const fetchingBasket = basket.fetching
 
-definePageMeta({
-  pageType: 'WishlistPage',
-})
+definePageMeta({ pageType: 'wishlist_page' })
 </script>
 
 <script lang="ts">

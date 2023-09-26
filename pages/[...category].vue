@@ -348,7 +348,7 @@ watch(
 //   return { title, ...metaTags }
 // })
 
-definePageMeta({ pageType: 'category' })
+definePageMeta({ pageType: 'category_page' })
 </script>
 
 <script lang="ts">

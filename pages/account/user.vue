@@ -17,13 +17,12 @@
 
 <script setup lang="ts">
 await useUser()
+
+definePageMeta({ pageType: 'account_area:user' })
 </script>
 
 <script lang="ts">
 export default {
   name: 'UserAccountDetailsPage',
-  meta: {
-    pageType: 'account_area:userIndex',
-  },
 }
 </script>

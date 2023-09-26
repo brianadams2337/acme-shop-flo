@@ -27,13 +27,12 @@
 
 <script setup lang="ts">
 const { user } = await useUser()
+
+definePageMeta({ pageType: 'account_area' })
 </script>
 
 <script lang="ts">
 export default {
   name: 'AccountOverview',
-  meta: {
-    pageType: 'account_area',
-  },
 }
 </script>

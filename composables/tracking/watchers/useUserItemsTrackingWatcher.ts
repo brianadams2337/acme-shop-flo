@@ -13,8 +13,7 @@ export const useUserItemsTrackingWatcher = async () => {
   const route = useRoute()
 
   watch(
-    // TODO: Replace with structuredClone since when we figure out why it does not work with it
-    () => JSON.parse(JSON.stringify(basket.value)),
+    () => deepClone(basket.value),
     (newValues, oldValues) => {
       const isBasketPage = route.fullPath.includes('/basket')
       if (
@@ -32,8 +31,7 @@ export const useUserItemsTrackingWatcher = async () => {
   )
 
   watch(
-    // TODO: Replace with structuredClone since when we figure out why it does not work with it
-    () => JSON.parse(JSON.stringify(wishlist.value)),
+    () => deepClone(wishlist.value),
     (newValues, oldValues) => {
       if (didWishlistOrBasketDataChange(oldValues, newValues)) {
         trackWishlist(

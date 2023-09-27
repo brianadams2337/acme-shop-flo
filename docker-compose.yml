@@ -31,7 +31,6 @@ services:
       dockerfile: docker/node/Dockerfile
     depends_on:
       - redis
-    env_file: .env
     environment:
       - HTTPS_KEY=
       - HTTPS_CERT=
@@ -42,4 +41,5 @@ services:
       - '3000:3000'
     restart: always
     volumes:
-      - ./.output:/app
+      - ./.output:/app/.output
+      - ./.env:/app/.env

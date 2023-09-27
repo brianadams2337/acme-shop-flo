@@ -1,8 +1,9 @@
 # Nuxt 3-based Storefront-Boilerplate (DemoShop) Dockerfile
-FROM node:18.17.1-alpine3.18
+FROM node:20.7.0-alpine3.18
 
-COPY ./.output/ /app/
+COPY ./.output/ /app/.output
+COPY .env /app/.env
 
 WORKDIR /app
 
-CMD ["node", "./server/index.mjs"]
+CMD ["node", "--env-file=.env", "./.output/server/index.mjs"]

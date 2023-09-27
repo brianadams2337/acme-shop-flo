@@ -48,4 +48,5 @@ const {
 await fetchByFolder('lookbooks', { per_page: 5 })
 
 const prepareForUrl = (path: string) => slugify(path)
+definePageMeta({ pageType: 'lookbooks' })
 </script>

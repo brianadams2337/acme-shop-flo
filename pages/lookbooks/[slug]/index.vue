@@ -52,30 +52,35 @@ const cmsPath = computed(() => {
   return `/lookbooks/${categories.value.activeNode?.id}`
 })
 
-const { products, fetchProducts, productsFetching, pagination } =
-  await useFacet({
-    key: 'lookbooks-plp-1',
-    params: {
-      with: {
-        product: {
+const {
+  products,
+  fetchProducts,
+  productsFetching,
+  pagination,
+  selectedCategory,
+} = await useFacet({
+  key: 'lookbooks-plp-1',
+  params: {
+    with: {
+      product: {
+        attributes: {
+          withKey: ['brand', 'name'],
+        },
+        variants: {
           attributes: {
-            withKey: ['brand', 'name'],
+            withKey: ['price'],
           },
-          variants: {
-            attributes: {
-              withKey: ['price'],
-            },
-            lowestPriorPrice: true,
-          },
-          images: {
-            attributes: {
-              withKey: ['imageType', 'imageView', 'imageBackground'],
-            },
+          lowestPriorPrice: true,
+        },
+        images: {
+          attributes: {
+            withKey: ['imageType', 'imageView', 'imageBackground'],
           },
         },
       },
     },
-  })
+  },
+})
 
 await fetchProducts({ path: lookbookCategoryCategoryPath.value })
 
@@ -86,21 +91,26 @@ await fetchBySlug(cmsPath.value)
 const { content, hasTeaserImage, preListingContent, postListingContent } =
   useCmsListingContent(cmsData)
 
-const trackViewListing = () => {
-  // TODO tracking
-  // const positionOffset = ((pagination.value?.page || 1) - 1) * 24
-  // trackViewItemList({
-  //   items: products.value as any,
-  //   category: {
-  //     name: selectedCategory.value?.name || '',
-  //     id: selectedCategory.value?.id.toString() || '',
-  //   },
-  //   listingMetaData,
-  //   positionOffset,
-  //   source: `lookbooks|${selectedCategory.value}`,
-  //   paginationOffset: positionOffset > -1 ? positionOffset : -1,
-  // })
+const listingMetaData = {
+  name: 'Lookbooks',
+  id: 'Lookbooks',
 }
+const { trackViewItemList } = useTrackingEvents()
+const trackViewListing = () => {
+  const positionOffset = ((pagination.value?.page || 1) - 1) * 24
+  trackViewItemList({
+    items: products.value as any,
+    category: {
+      name: selectedCategory.value?.name || '',
+      id: selectedCategory.value?.id.toString() || '',
+    },
+    listingMetaData,
+    positionOffset,
+    source: `lookbooks|${selectedCategory.value}`,
+    paginationOffset: positionOffset > -1 ? positionOffset : -1,
+  })
+}
+definePageMeta({ pageType: 'lookbooks' })
 </script>
 
 <script lang="ts">

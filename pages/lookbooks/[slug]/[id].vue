@@ -37,21 +37,20 @@
 <script setup lang="ts">
 const route = useRoute()
 
-const lookbookCategoryCategoryPath = computed(() => {
+const lookbookCategoryPath = computed(() => {
   return `/lookbooks/${route.params.slug}`
 })
 
 const itemId = computed(() => {
-  return route.params.id as string
+  return String(route.params.id)
 })
 
 const { data: categories } = await useCategories({
-  params: { path: lookbookCategoryCategoryPath.value, children: 0 },
-  key: lookbookCategoryCategoryPath.value,
+  params: { path: lookbookCategoryPath.value, children: 0 },
+  key: lookbookCategoryPath.value,
 })
 
 const cmsPath = computed(() => {
-  console.log('categories.value', categories.value)
   return `/lookbooks/${categories.value?.activeNode?.id}`
 })
 
@@ -60,4 +59,5 @@ const { detailItem, products, fetching, fetch } = await useLookbookDetail({
   id: itemId.value,
 })
 await fetch()
+definePageMeta({ pageType: 'lookbooks' })
 </script>

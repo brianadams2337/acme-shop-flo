@@ -4,25 +4,21 @@ const findElement = (
   nodes: Record<string, any>[],
   id: string,
 ): Record<string, any> | undefined => {
-  if (nodes) {
-    for (let i = 0; i < nodes.length; i++) {
-      const currentNode = nodes[i]
-
-      if (currentNode._uid === id) {
-        return currentNode
-      }
-
-      if (typeof currentNode.columns !== 'undefined') {
-        const result = findElement(currentNode.columns, id)
-
-        if (result) {
-          return result
-        }
-      }
-    }
+  if (!nodes) {
+    return
   }
 
-  return undefined
+  for (let i = 0; i < nodes.length; i++) {
+    const currentNode = nodes[i]
+
+    if (currentNode._uid === id) {
+      return currentNode
+    }
+
+    if (typeof currentNode.columns !== 'undefined') {
+      return findElement(currentNode.columns, id)
+    }
+  }
 }
 
 export const useLookbookDetail = async ({
@@ -59,7 +55,6 @@ export const useLookbookDetail = async ({
     if (!cmsData.value.content.pre_listing_content) {
       return
     }
-    console.log('ids', productIds.value)
     detailItem.value = findElement(
       cmsData.value.content.pre_listing_content,
       id,

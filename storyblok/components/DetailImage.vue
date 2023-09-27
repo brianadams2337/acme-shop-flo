@@ -1,6 +1,6 @@
 <template>
   <div v-if="blok" v-editable="blok">
-    <StoryblokLink :to="route.path + '/' + blok._uid">
+    <StoryblokLink :to="`${route.path}/${blok._uid}`">
       <NuxtPicture
         class="picture picture-contain w-full sm:block"
         provider="storyblok"
@@ -20,7 +20,7 @@ defineProps({
     required: true,
   },
   sizes: {
-    type: String as PropType<string>,
+    type: String,
     default: 'xs:100vw sm:100vw md:100vw lg:100vw xl:100vw xxl:100vw 2xl:100vw',
   },
 })

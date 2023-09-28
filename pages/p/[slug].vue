@@ -53,7 +53,7 @@
                   <DefaultLink
                     raw
                     class="flex items-center justify-center"
-                    :to="getProductDetailRoute(product)">
+                    :to="getProductDetailRoute(product, item.id)">
                     <ColorChip
                       :is-active="item.id === product.id"
                       :size="isGreaterOrEquals('md') ? Size.LG : Size.XL"

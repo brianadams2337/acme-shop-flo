@@ -12,7 +12,7 @@
         class="relative"
         type="loud">
         <FloatingBadge v-if="items?.length" class="-right-2 -top-2">
-          {{ items?.length }}
+          {{ countWithoutSoldOutItems }}
         </FloatingBadge>
         <IconCart class="h-6 w-6" />
       </DefaultLink>
@@ -63,7 +63,7 @@ const { openBasketFlyout, closeBasketFlyout, isBasketFlyoutOpen } = useUiState()
 
 const groupIds = computed(() => Object.keys(basketItems.value.groups))
 
-const { items } = await useBasket()
+const { items, countWithoutSoldOutItems } = await useBasket()
 const { bundleByGroup } = await useBasketGroup()
 
 const basketItems = computed(() => {

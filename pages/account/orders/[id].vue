@@ -4,17 +4,17 @@
       <div v-if="paramId">
         <OrderLoadingState v-if="fetching" />
         <template v-else-if="orderDetails && !fetching">
-          <OrderHeader
+          <template
             v-if="
-              isGreaterOrEquals('md') &&
-              itemCount &&
-              orderDetails.shop?.id &&
-              orderDetails.confirmedAt
-            "
-            :order-id="orderDetails.id"
-            :shop-id="orderDetails.shop.id"
-            :item-count="itemCount"
-            :order-date="orderDetails.confirmedAt" />
+              itemCount && orderDetails.shop?.id && orderDetails.confirmedAt
+            ">
+            <OrderHeader
+              v-show="isGreaterOrEquals('md')"
+              :order-id="orderDetails.id"
+              :shop-id="orderDetails.shop.id"
+              :item-count="itemCount"
+              :order-date="orderDetails.confirmedAt" />
+          </template>
           <AddressSummary
             v-if="shippingAddress || billingAddress"
             v-bind="{ shippingAddress, billingAddress }" />

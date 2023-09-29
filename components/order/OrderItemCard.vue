@@ -59,7 +59,10 @@
 </template>
 
 <script setup lang="ts">
-import { getFirstAttributeValue , getTotalAppliedReductions } from '@scayle/storefront-nuxt'
+import {
+  getFirstAttributeValue,
+  getTotalAppliedReductions,
+} from '@scayle/storefront-nuxt'
 import { OrderPrice, OrderProduct, OrderVariant } from '~/types/osp'
 
 const props = defineProps({

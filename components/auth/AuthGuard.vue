@@ -4,7 +4,7 @@
       <slot />
     </div>
     <div v-else>
-      <NuxtPage name="signin" />
+      <SignInForm></SignInForm>
     </div>
   </div>
 </template>

@@ -1,15 +1,13 @@
 import {
-  AttributeGroup,
   AttributeGroupSingle,
   AttributeGroupMulti,
   AdvancedAttribute,
   LowestPriorPrice,
   Order as BaseOrder,
   ListOfPackages,
-Attributes,
+  Attributes,
 } from '@scayle/storefront-nuxt'
 
-type OrderAttribute = Omit<AttributeGroup, 'id' | 'type'>
 type OrderAdvancedAttribute = Omit<AdvancedAttribute, 'id' | 'type'>
 
 interface OrderCategory {

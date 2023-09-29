@@ -6,6 +6,7 @@ import {
   LowestPriorPrice,
   Order as BaseOrder,
   ListOfPackages,
+Attributes,
 } from '@scayle/storefront-nuxt'
 
 type OrderAttribute = Omit<AttributeGroup, 'id' | 'type'>
@@ -32,8 +33,7 @@ export interface OrderProduct {
     advColor: OrderAdvancedAttribute
     productName: OrderAdvancedAttribute
   }
-  attributes: {
-    [k: string]: OrderAttribute
+  attributes: Attributes & {
     brand: AttributeGroupSingle
     brandLogo: AttributeGroupSingle
     category: AttributeGroupMulti
@@ -54,8 +54,7 @@ export interface OrderProduct {
 }
 
 export interface OrderVariant {
-  attributes: {
-    [k: string]: OrderAttribute
+  attributes: Attributes & {
     size: AttributeGroupSingle
   }
   createdAt: string

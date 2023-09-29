@@ -4,22 +4,27 @@ import { ISbStoriesParams } from 'storyblok-js-client'
 type StoryblokFolder = 'lookbooks' | 'test'
 
 export default <T = unknown>(key: string) => {
+  const log = useLog(`useCms ${key}`)
   const data = useState<StoryblokStory<T>>(`cms-data-${key}`)
   const fetching = useState<boolean>(`fetching-${key}`)
+  const status = useState<Status>(`status-${key}`, () => 'idle')
+  const error = useState<Status>(`error-${key}`)
+
   async function fetchBySlug(slug: string) {
-    if (!slug) {
-      return data
-    }
+    status.value = 'pending'
     fetching.value = true
     try {
       const storyData = await useAsyncStoryblok(slug, {
         version: getStoryblokContentVersion(),
       })
       data.value = storyData.value
+
     } catch (e) {
-      console.error(`Error fetching CMS Slug`, e)
+      error.value = e
+      log.error(`Error fetching CMS Slug`, e)
     } finally {
       fetching.value = false
+      status.value = error.value ? 'error' : 'success'
     }
   }
 
@@ -31,6 +36,7 @@ export default <T = unknown>(key: string) => {
     options?: ISbStoriesParams,
   ) {
     fetching.value = true
+    status.value = 'pending'
     try {
       const {
         data: { stories },
@@ -42,11 +48,13 @@ export default <T = unknown>(key: string) => {
       // TODO fix type
       data.value = stories as any
     } catch (e) {
-      console.error(`Error fetching CMS Folder`, e)
+      error.value = e
+      log.error(`Error fetching CMS Folder`, e)
     } finally {
       fetching.value = false
+      status.value = error.value ? 'error' : 'success'
     }
   }
 
-  return { fetchBySlug, data, fetchByFolder, fetching }
+  return { fetchBySlug, data, fetchByFolder, fetching, status, error }
 }

@@ -1,10 +1,8 @@
 <template>
-  <SignInForm></SignInForm>
+  <SignInForm />
 </template>
 
 <script setup lang="ts">
-import SignInForm from '~/components/SignInForm.vue'
-
 definePageMeta({ pageType: 'signin_page' })
 </script>
 

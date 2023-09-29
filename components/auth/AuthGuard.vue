@@ -4,7 +4,7 @@
       <slot />
     </div>
     <div v-else>
-      <SignInForm></SignInForm>
+      <SignInForm />
     </div>
   </div>
 </template>

@@ -52,3 +52,9 @@ if (status.value === 'idle') {
 const prepareForUrl = (path: string) => slugify(path)
 definePageMeta({ pageType: 'lookbooks' })
 </script>
+
+<script lang="ts">
+export default {
+  name: 'LookbooksPage',
+}
+</script>

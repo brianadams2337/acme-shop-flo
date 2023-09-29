@@ -130,7 +130,7 @@ export default defineNuxtConfig({
     'nuxt-jsonld',
     '@vueuse/nuxt',
     'nuxt-swiper',
-    'nuxt-radash',
+    'radash-nuxt',
     '@storyblok/nuxt',
     'nuxt-viewport',
     '@zadigetvoltaire/nuxt-gtm',

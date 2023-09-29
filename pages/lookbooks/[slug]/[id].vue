@@ -61,3 +61,9 @@ const { detailItem, products, fetching, fetch } = await useLookbookDetail({
 await fetchLazy(fetch())
 definePageMeta({ pageType: 'lookbooks' })
 </script>
+
+<script lang="ts">
+export default {
+  name: 'LookbookPage',
+}
+</script>

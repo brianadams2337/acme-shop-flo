@@ -62,7 +62,7 @@ const props = defineProps({
 })
 
 const uniqueItems = computed(() => {
-  return useUnique(props.orderItems, (it: OrderItems[0]) => it.variant.id)
+  return useUnique(props.orderItems, (it) => it.variant.id)
 })
 
 const carrierBundledItemsMap = computed<CarrierMap>(() => {

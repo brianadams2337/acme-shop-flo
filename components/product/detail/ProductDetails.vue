@@ -1,7 +1,7 @@
 <template>
   <div>
     <!-- desktop tabular -->
-    <div v-if="isGreaterOrEquals" class="mt-10 xl:w-[827px]">
+    <div v-if="isGreaterOrEquals('sm')" class="mt-10 xl:w-[827px]">
       <div
         class="relative box-border flex h-12 justify-between rounded-md border border-gray-350">
         <div
@@ -17,13 +17,10 @@
       <div class="mt-9 min-h-2xs leading-normal md:text-xs">
         <ProductDescription
           v-if="tabs[selectedIndex] === 'pdp.product_info_heading'"
-          :product-description-info="productDescriptionInfo"
-          :product-infos="productInfos"
-          :fit-infos="fitInfos" />
+          v-bind="{ productDescriptionInfo, productInfos, fitInfos }" />
         <ProductCompositionAndCare
           v-if="tabs[selectedIndex] === 'pdp.composition_care_heading'"
-          :material-info="materialInfo"
-          :care-info="careInfo" />
+          v-bind="{ materialInfo, careInfo }" />
         <ProductShippingAndReturn
           v-if="tabs[selectedIndex] === 'pdp.shipping_return_heading'" />
       </div>
@@ -31,27 +28,22 @@
 
     <!-- mobile accordion -->
     <div v-else class="mx-auto max-w-6xl md:mx-0">
-      <!-- <div class="max-w-3xl">
+      <div class="max-w-3xl">
         <div class="divide-y divide-gray-300">
           <ProductDetailAccordionEntry :title="$t('pdp.product_info_heading')">
             <ProductDescription
-              :product-description-info="productDescriptionInfo"
-              :product-infos="productInfos"
-              :fit-infos="fitInfos" />
+              v-bind="{ productDescriptionInfo, productInfos, fitInfos }" />
           </ProductDetailAccordionEntry>
           <ProductDetailAccordionEntry
             :title="$t('pdp.composition_care_heading')">
-            <ProductCompositionAndCare
-              :material-info="materialInfo"
-              :care-info="careInfo" />
+            <ProductCompositionAndCare v-bind="{ materialInfo, careInfo }" />
           </ProductDetailAccordionEntry>
           <ProductDetailAccordionEntry
             :title="$t('pdp.shipping_return_heading')">
             <ProductShippingAndReturn />
           </ProductDetailAccordionEntry>
         </div>
-      </div> -->
-      MOBILE PRODUCT DETAILS
+      </div>
     </div>
   </div>
 </template>
@@ -68,7 +60,7 @@ import {
 const props = defineProps({
   product: {
     type: Object as PropType<Product | null>,
-    default: () => null,
+    default: null,
   },
 })
 

@@ -227,10 +227,10 @@ Instead you can provide `<swiper-slide lazy=true>` and `<img loading="lazy" />` 
 </template>
 ```
 
-## `radash` enhanced with `nuxt-radash`
+## `radash` enhanced with `radash-nuxt`
 
 We are now enhancing the usage of radash by adding the
-[nuxt-radash](https://github.com/bbg/nuxt-radash) that's recommended by the nuxt
+[radash-nuxt](https://github.com/lukasaric/radash-nuxt) that's recommended by the nuxt
 community. It supports auto imports and it's easy to configure via nuxt config.
 We stick with the `use` prefix as it is the default setting.
 

@@ -44,3 +44,9 @@ const prepareForUrl = (title: string) => {
 const route = useRoute()
 const { marginClasses } = useStoryblokMargins(props.blok)
 </script>
+
+<script lang="ts">
+export default {
+  name: 'CmsAccordion',
+}
+</script>

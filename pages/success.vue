@@ -121,7 +121,7 @@ const getItemQuantity = (variantId: number): number | undefined => {
 }
 
 const orderItems = computed(() => {
-  return useUnique(orderData.value?.items || [], (it: any) => it.variant.id)
+  return useUnique(orderData.value?.items || [], (it) => it.variant.id)
 })
 
 definePageMeta({ pageType: 'osp' })

@@ -9,19 +9,19 @@
           <OrderOverviewHeader :orders-count="orders.length" />
           <div
             v-if="shouldDisplayOrderOverview"
-            class="border-gray-350 rounded-md border">
-              <OrderHistoryItem
-                v-for="(order, idx) in slicedOrders"
-                :key="order.id"
-                v-bind="order"
-                :is-latest-order="!idx"
-                :class="{ 'border-t-gray-350 border-t': idx }" />
+            class="rounded-md border border-gray-350">
+            <OrderHistoryItem
+              v-for="(order, idx) in slicedOrders"
+              :key="order.id"
+              v-bind="order"
+              :is-latest-order="!idx"
+              :class="{ 'border-t border-t-gray-350': idx }" />
           </div>
           <div v-else class="bg-slate-100 p-10 text-center">
-            <div class="text-primary p-5 text-sm font-bold">
+            <div class="p-5 text-sm font-bold text-primary">
               {{ $t('my_account.no_orders_found') }}
             </div>
-            <div class="border-t-gray-350 bg-secondary-450 border-t p-5">
+            <div class="border-t border-t-gray-350 bg-secondary-450 p-5">
               <DefaultLink
                 :to="{ name: routeList.home.name }"
                 class="!block w-full rounded bg-white px-4 py-2 text-center text-xs">
@@ -103,7 +103,9 @@ const changePage = (page: number): void => {
   updateSlicedOrders()
 }
 
-const shouldDisplayOrderOverview = computed(() => Boolean(orders?.value?.length) && Boolean(slicedOrders?.value?.length))
+const shouldDisplayOrderOverview = computed(
+  () => Boolean(orders?.value?.length) && Boolean(slicedOrders?.value?.length),
+)
 
 // in case the orders are not yet fetchen when mounting, we need to later
 // set these values. Use Case: client-side navigation to the page

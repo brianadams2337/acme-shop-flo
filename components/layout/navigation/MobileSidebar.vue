@@ -89,7 +89,6 @@ defineProps({
 })
 
 const sideNavigationActive = ref(true)
-const key = 'header-search'
 
 const router = useRouter()
 
@@ -106,22 +105,7 @@ const {
   searchQuery,
   resetSearch,
   pending: searching,
-} = useSearch({
-  key,
-  params: {
-    with: {
-      products: {
-        attributes: {
-          withKey: ['color', 'brand', 'name'],
-        },
-      },
-      categories: {
-        parents: 'all',
-        children: 10,
-      },
-    },
-  },
-})
+} = useSearch({ key: 'header-search' })
 
 const { trackSearchSuggestionClick } = useTrackingEvents()
 

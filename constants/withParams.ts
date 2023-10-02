@@ -1,33 +1,13 @@
-import { BasketWithOptions, WishlistWithOptions } from '@scayle/storefront-nuxt'
-
-const WISHLIST_WITH: WishlistWithOptions = {
-  items: {
-    variant: {
-      attributes: {
-        withKey: ['price', 'size'],
-      },
-    },
-    product: {
-      attributes: 'all',
-      categories: 'all',
-      variants: {
-        attributes: 'all',
-        lowestPriorPrice: true,
-      },
-      images: {
-        attributes: {
-          withKey: ['imageType', 'imageView', 'imageBackground', 'imageKind'],
-        },
-      },
-      priceRange: true,
-      lowestPriorPrice: true,
-    },
-  },
-}
-
-const BASKET_WITH: BasketWithOptions = WISHLIST_WITH
+import {
+  WISHLIST_WITH_PARAMS,
+  BASKET_WITH_PARAMS,
+  PRODUCT_WITH_PARAMS,
+  SEARCH_WITH_PARAMS,
+} from '.'
 
 export default {
-  wishlist: WISHLIST_WITH,
-  basket: BASKET_WITH,
+  wishlist: WISHLIST_WITH_PARAMS,
+  basket: BASKET_WITH_PARAMS,
+  product: PRODUCT_WITH_PARAMS,
+  search: SEARCH_WITH_PARAMS,
 }

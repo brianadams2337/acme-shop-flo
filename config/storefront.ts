@@ -95,7 +95,7 @@ export const storefrontRuntimeConfigPrivate: Partial<ModuleOptions> = {
     clientId: '', // Override: NUXT_STOREFRONT_OAUTH_CLIENT_ID,
     clientSecret: '', // Override: NUXT_STOREFRONT_OAUTH_CLIENT_SECRET,
   },
-  shopSelector: 'path', // Override: NUXT_STOREFRONT_SHOP_SELECTOR
+  shopSelector: 'domain', // Override: NUXT_STOREFRONT_SHOP_SELECTOR
   // Following keys are Overrideable using prefix NUXT_STOREFRONT_STORES
   stores: shops.reduce(
     (previousShopConfigs, shop) => ({

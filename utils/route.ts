@@ -18,8 +18,7 @@ const getCategoryPath = (category: Category) => {
 
 export const toLocalePath = (route: RouteLocationRaw): RouteLocationRaw => {
   const localePath = useLocalePath()
-  const router = useRouter()
-  return localePath(router.resolve(route)) || route
+  return localePath(route) || route
 }
 
 export const getProductDetailRoute = (

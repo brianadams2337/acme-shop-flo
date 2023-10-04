@@ -33,7 +33,7 @@
   "devDependencies": {
     "@aboutyou/storyblok-generate-ts": "1.14.0",
     "@nuxt/devtools": "latest",
-    "@nuxt/image": "1.0.0-rc.1",
+    "@nuxt/image": "1.0.0-rc.3",
     "@nuxtjs/i18n": "8.0.0-rc.5",
     "@nuxtjs/tailwindcss": "6.8.0",
     "@scayle/eslint-config-storefront": "3.2.3",
@@ -58,7 +58,7 @@
     "postcss-html": "1.5.0",
     "postcss-import": "15.1.0",
     "prettier": "3.0.3",
-    "prettier-plugin-tailwindcss": "0.5.4",
+    "prettier-plugin-tailwindcss": "0.5.5",
     "sass": "1.68.0",
     "storyblok": "3.25.2",
     "stylelint": "15.10.3",
@@ -100,6 +100,6 @@
     "yn": "5.0.0"
   },
   "volta": {
-    "node": "20.7.0"
+    "node": "20.8.0"
   }
 }

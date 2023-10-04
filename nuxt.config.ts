@@ -36,14 +36,14 @@ const locales = [
     file: DE_DOMAIN_FILE,
   },
   {
-    code: 'de-at',
+    code: 'at',
     iso: 'de-AT',
     // TODO: Investigate runtimeConfig behaviour, as we want build independence
     domain: DOMAIN_PER_LOCALE ? domains['de-at'] : domains.default,
     file: DE_DOMAIN_FILE,
   },
   {
-    code: 'de-ch',
+    code: 'ch',
     iso: 'de-CH',
     // TODO: Investigate runtimeConfig behaviour, as we want build independence
     domain: DOMAIN_PER_LOCALE ? domains['de-ch'] : domains.default,
@@ -185,7 +185,7 @@ export default defineNuxtConfig({
   // https://v8.i18n.nuxtjs.org/getting-started/basic-usage
   i18n: {
     locales,
-    differentDomains: DOMAIN_PER_LOCALE,
+    differentDomains: true,
     detectBrowserLanguage: false,
     defaultLocale: 'en',
     langDir: 'langs/',

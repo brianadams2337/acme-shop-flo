@@ -23,7 +23,7 @@
           v-if="isOpen"
           class="absolute right-0 top-0 z-60 max-h-32 w-32 overflow-y-auto bg-white shadow-md">
           <ListboxOption
-            v-for="{ shopId, path, locale, domain } in availableShops"
+            v-for="{ shopId, path, locale } in availableShops"
             :key="shopId"
             class="text-xs"
             :list-name="list">
@@ -33,7 +33,7 @@
               is-full-width
               class="!justify-start rounded-none px-4 py-2 text-xs uppercase hover:bg-gray-200"
               :class="{ 'font-bold': locale === currentShop?.locale }"
-              @click="changeShop($i18n.differentDomains ? domain : path)">
+              @click="changeShop(path)">
               {{ getShopName(locale) }}
             </AppButton>
           </ListboxOption>

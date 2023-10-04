@@ -483,7 +483,7 @@ await fetchLazy(fetchBySlug('some-slug'))
 ## Auth guard
 
 - In Nuxt 2 we used `AuthGuard` component as a wrapper for the protected auth
-  routes such as account area, checkout etc. In Nuxt 3 we introduced a `authGurad.global.ts`
+  routes such as account area, checkout etc. In Nuxt 3 we introduced a `authGuard.global.ts`
   global middleware that handles the guarding the protected auth routes.
 
 ## Additions

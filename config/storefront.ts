@@ -133,7 +133,7 @@ export const storefrontRuntimeConfigPrivate: Partial<ModuleOptions> = {
           /**
            * The number of seconds that a CBD token should be considered valid since issued
            */
-          cbdExpiration: 7200,
+          cbdExpiration: 2 * 60 * 60, // 2 Hours
         },
       },
     }),

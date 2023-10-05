@@ -60,32 +60,6 @@ import {
 } from '@scayle/storefront-nuxt'
 import { BasketListingMetadata, WishlistListingMetadata } from '~/constants'
 
-const basket = await useBasket({ options: { lazy: true } })
-const wishlist = await useWishlist({ options: { lazy: true } })
-
-if (basket.error.value) {
-  throw createError(basket.error.value)
-}
-
-const store = useStore()
-const route = useRoute()
-
-const listingMetaData = {
-  id: BasketListingMetadata.ID,
-  name: BasketListingMetadata.NAME,
-}
-const {
-  trackViewBasket,
-  trackRemoveFromBasket,
-  collectBasketItems,
-  trackSelectItem,
-  trackBasket,
-  trackWishlist,
-  collectProductListItems,
-} = useTrackingEvents()
-
-const { bundleByGroup } = await useBasketGroup()
-
 onMounted(() => {
   if (basket.items.value) {
     trackViewBasket(
@@ -114,6 +88,32 @@ onMounted(() => {
     )
   }
 })
+
+const basket = await useBasket({ options: { lazy: true } })
+const wishlist = await useWishlist({ options: { lazy: true } })
+
+if (basket.error.value) {
+  throw createError(basket.error.value)
+}
+
+const store = useStore()
+const route = useRoute()
+
+const listingMetaData = {
+  id: BasketListingMetadata.ID,
+  name: BasketListingMetadata.NAME,
+}
+const {
+  trackViewBasket,
+  trackRemoveFromBasket,
+  collectBasketItems,
+  trackSelectItem,
+  trackBasket,
+  trackWishlist,
+  collectProductListItems,
+} = useTrackingEvents()
+
+const { bundleByGroup } = await useBasketGroup()
 
 const trackProductClick = ({ product }: { product: Product }) => {
   trackSelectItem({

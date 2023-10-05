@@ -70,6 +70,23 @@ const listingMetaData = {
   name: WishlistListingMetadata.NAME,
 } as const
 
+onMounted(() => {
+  if (!wishlist.data.value) {
+    return
+  }
+  trackWishlist(
+    collectProductListItems(wishlist.products.value, {
+      listId: listingMetaData.id,
+      listName: listingMetaData.name,
+    }),
+  )
+  trackViewItemList({
+    items: wishlist.products.value,
+    listingMetaData,
+    source: 'wishlist',
+  })
+})
+
 const wishlist = await useWishlist({ options: { lazy: true } })
 const basket = await useBasket({ options: { lazy: true } })
 const { isLoggedIn } = await useUser()
@@ -155,23 +172,6 @@ const orderedItems = computed(() => {
 useSeoMeta({
   robots: 'noindex,follow',
   title: $i18n.t('navigation.wishlist'),
-})
-
-onMounted(() => {
-  if (!wishlist.data.value) {
-    return
-  }
-  trackWishlist(
-    collectProductListItems(wishlist.products.value, {
-      listId: listingMetaData.id,
-      listName: listingMetaData.name,
-    }),
-  )
-  trackViewItemList({
-    items: wishlist.products.value,
-    listingMetaData,
-    source: 'wishlist',
-  })
 })
 
 const count = wishlist.count

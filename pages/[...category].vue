@@ -3,7 +3,7 @@
     <div v-if="hasTeaserImage">
       <CmsImage :blok="cmsContent" is-teaser />
     </div>
-    <PageContent v-if="products?.length" class="sm:flex">
+    <PageContent v-if="products" class="sm:flex">
       <div v-if="viewport.isGreaterOrEquals('md')" class="-ml-4 w-1/3 lg:w-1/5">
         <SideNavigation
           v-if="categories && 'children' in categories && categories.children"
@@ -75,10 +75,7 @@
       </div>
       <FilterSlideIn
         v-if="filters"
-        :active-filters="activeFilters"
-        :filters="filters"
-        :filtered-count="filteredProductsCount"
-        :unfiltered-count="unfilteredCount"
+        v-bind="{ activeFilters, filters, filteredCount, unfilteredCount }"
         :fetching-filtered-count="productCountFetching"
         @filter:apply="applyFilter"
         @filter:state-changed="updateFilterCount($event)" />
@@ -212,7 +209,7 @@ const trackViewListing = ({ items }: { row: number; items: Product[] }) => {
 }
 
 const fetchParameters = computed(() => ({
-  path: categoryPath,
+  path: categoryPath.value,
   ...productConditions.value,
   where: {
     ...productConditions?.value?.where,
@@ -333,7 +330,7 @@ const { content, hasTeaserImage, postListingContent, preListingContent } =
 const cmsContent = content as unknown as SbCmsImage
 
 const isFirstPage = computed(() => pagination.value?.page === 1)
-const filteredProductsCount = computed(() => productCountData.value?.count || 0)
+const filteredCount = computed(() => productCountData.value?.count || 0)
 
 watch(
   () => selectedCategory.value?.id,
@@ -341,7 +338,7 @@ watch(
     if (!id) {
       return
     }
-    store.value.pageTypeId = id
+    store.value.pageTypeId = String(id)
   },
   { immediate: true },
 )

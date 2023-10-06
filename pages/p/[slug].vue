@@ -176,16 +176,6 @@ const route = useRoute()
 const store = useStore()
 
 const { $alert, $i18n, $config } = useNuxtApp()
-
-onMounted(async () => {
-  store.value.pageTypeId = productId.value
-  if (!product.value) {
-    return
-  }
-  await useSleep(1000)
-  trackViewItem({ product: product.value })
-})
-
 const { fetching: basketIdle, addItem: addBasketItem } = await useBasket({
   options: { lazy: true, autoFetch: true },
 })
@@ -444,6 +434,15 @@ const trackRecommendationClick = (product: Product, index: number) => {
     },
   })
 }
+
+onMounted(async () => {
+  store.value.pageTypeId = productId.value
+  if (!product.value) {
+    return
+  }
+  await useSleep(1000)
+  trackViewItem({ product: product.value })
+})
 
 definePageMeta({ pageType: 'pdp' })
 

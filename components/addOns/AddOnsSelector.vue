@@ -30,8 +30,6 @@ const props = defineProps({
   },
 })
 
-onMounted(() => resolveVariantInfo())
-
 const emit = defineEmits(['click:service-selection'])
 
 const keyPostfix = computed(() => props.addOnVariantIds.join('-'))
@@ -50,6 +48,8 @@ const { data: products } = await useProductsByIds({
   key: `addonProducts-${keyPostfix.value}`,
 })
 const computedAddOns = ref<AddOnItem[]>([])
+
+onMounted(() => resolveVariantInfo())
 
 const onSelectionChanged = (event: any, { variantId }: AddOnItem) => {
   emit('click:service-selection', {

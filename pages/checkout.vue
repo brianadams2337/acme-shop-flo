@@ -15,24 +15,6 @@
 
 <script setup lang="ts">
 useCheckoutWebComponent()
-
-onMounted(async () => {
-  try {
-    await useRetry({ times: 5, delay: 100 }, fetchCampaignKey)
-  } catch (error: any) {
-    logger({
-      message: `[checkout.vue] Error at getting campaign key`,
-      level: 'error',
-      extras: error,
-    })
-  }
-  showCheckout.value = true
-})
-
-onBeforeMount(async () => {
-  await Promise.all([fetchBasket(), fetchUser()])
-})
-
 const { data: basketData, fetch: fetchBasket } = await useBasket()
 
 const { user, fetch: fetchUser } = await useUser()
@@ -49,6 +31,23 @@ const { data: campaignKey, fetch: fetchCampaignKey } = await useCampaign()
 const showCheckout = ref(false)
 const accessToken = computed(() => {
   return user.value?.authentication?.storefrontAccessToken
+})
+
+onMounted(async () => {
+  try {
+    await useRetry({ times: 5, delay: 100 }, fetchCampaignKey)
+  } catch (error: any) {
+    logger({
+      message: `[checkout.vue] Error at getting campaign key`,
+      level: 'error',
+      extras: error,
+    })
+  }
+  showCheckout.value = true
+})
+
+onBeforeMount(async () => {
+  await Promise.all([fetchBasket(), fetchUser()])
 })
 
 const handleError = (payload = {}) => {

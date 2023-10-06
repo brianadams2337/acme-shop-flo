@@ -276,8 +276,7 @@
     "tax": "19% MwSt.",
     "total": "Summe",
     "quantity_label": "Anzahl",
-    "no_order_found": "Die Bestelldaten wurden nicht gefunden.",
-    "continue_shopping_label": "Weiter einkaufen"
+    "no_order_found": "Die Bestelldaten wurden nicht gefunden."
   },
   "main_nav": {
     "back_to": "Back to \"{name}\"",

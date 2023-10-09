@@ -226,4 +226,8 @@ export default defineNuxtConfig({
       cert: path.resolve(__dirname, process.env.HTTPS_CERT || ''),
     },
   },
+
+  typescript: {
+    typeCheck: true,
+  },
 })

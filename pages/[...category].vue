@@ -4,7 +4,9 @@
       <CmsImage :blok="cmsContent" is-teaser />
     </div>
     <PageContent v-if="products" class="sm:flex">
-      <div v-if="viewport.isGreaterOrEquals('md')" class="-ml-4 w-1/3 lg:w-1/5">
+      <div
+        v-show="viewport.isGreaterOrEquals('md')"
+        class="-ml-4 w-1/3 lg:w-1/5">
         <SideNavigation
           v-if="categories && 'children' in categories && categories.children"
           :categories="categories.children"
@@ -233,8 +235,10 @@ const {
 } = useCms<SbListingPage>(`ListingPage-${route.path}`)
 
 const fetchData = async () => {
-  await fetchProducts(fetchParameters.value)
-  await fetchBySlug(`categories/${selectedCategory.value?.id}`)
+  await Promise.all([
+    fetchProducts(fetchParameters.value),
+    fetchBySlug(`categories/${selectedCategory.value?.id}`),
+  ])
 }
 
 if (

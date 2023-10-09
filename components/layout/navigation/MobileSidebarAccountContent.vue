@@ -15,8 +15,11 @@
       <div class="break-all py-1 text-xs font-semibold text-primary">
         {{ $t('global.user_greeting', { name: user.firstName }) }}
       </div>
-      <div v-if="!isGuest" class="text-xs font-medium text-primary">
-        <DefaultLink :to="routeList.account" @click="closeSideNavigation">
+      <div class="text-xs font-medium text-primary">
+        <AppButton v-if="isGuest" type="ghost" class="text-xs" @click="!isSubmitting && logout()">
+          {{ $t('global.sign_out') }}
+        </AppButton>
+        <DefaultLink v-else :to="routeList.account" @click="closeSideNavigation">
           <div class="inline-flex items-center">
             <IconUserSecondary class="mr-1 h-3 w-3" />
             <span class="font-medium">{{ $t('navigation.my_account') }}</span>
@@ -30,6 +33,8 @@
 <script setup lang="ts">
 const { user } = await useUser()
 const { closeSideNavigation } = useUiState()
+
+const { logout, isSubmitting } = await useAuthentication('logout')
 
 const isGuest = computed(() => user.value?.status?.isGuestCustomer)
 </script>

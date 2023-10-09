@@ -21,7 +21,9 @@
     "minutes": "Minute | Minuten",
     "hours": "Stunde | Stunden",
     "days": "Tag | Tage",
-    "back": "Zurück"
+    "back": "Zurück",
+    "continue_shopping_label": "Weiter einkaufen",
+    "sign_in_label": "Anmelden"
   },
   "validation": {
     "email": "Das Feld {field} muss eine gültige E-Mail Adresse sein",
@@ -100,9 +102,7 @@
     "heading": "Wunschliste",
     "no_items_info": "Du hast noch keine Artikel auf Deiner Wunschliste.",
     "continue_shopping_info": "Jetzt unsere neuesten Artikel entdecken oder einloggen um gespeicherte Artikel anzuzeigen.",
-    "continue_shopping_label": "Weiter einkaufen",
     "products_count": "0 Produkte | {count} Produkt | {count} Produkte",
-    "sign_in_label": "Login",
     "product": "Artikel",
     "notification": {
       "add_to_wishlist": "{productName} wurde zur Wunschliste hinzugefügt",
@@ -118,8 +118,6 @@
     "empty_title": "Dein Warenkorb ist leer.",
     "empty_description": "Du siehst hier eine Auflistung Deiner Produkte sobald sie in deinem Warenkorb sind.",
     "continue_shopping_info": "Jetzt unsere neuesten Artikel entdecken oder einloggen um gespeicherte Artikel anzuzeigen.",
-    "continue_shopping_label": "Weiter einkaufen",
-    "sign_in_label": "Login",
     "total": "Gesamt",
     "shipping": "Versandkosten",
     "shipping_free": "Kostenlos",
@@ -274,11 +272,11 @@
     "order_nr": "Order-Nr.",
     "order_overview": "Bestellübersicht",
     "payment": "Zahlungsmethode",
-    "quatity_label": "Anzahl",
     "size": "Größe",
     "tax": "19% MwSt.",
     "total": "Summe",
-    "quantity_label": "Anzahl"
+    "quantity_label": "Anzahl",
+    "no_order_found": "Die Bestelldaten wurden nicht gefunden."
   },
   "main_nav": {
     "back_to": "Back to \"{name}\"",

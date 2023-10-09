@@ -126,7 +126,6 @@
                 <template #headline>
                   {{ $t('global.product_recommendation') }}
                 </template>
-                <p>Recommendation Slider</p>
                 <ProductRecommendations
                   size="4xs"
                   :products="sliderProducts"

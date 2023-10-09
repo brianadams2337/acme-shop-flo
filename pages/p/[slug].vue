@@ -126,7 +126,6 @@
                 <template #headline>
                   {{ $t('global.product_recommendation') }}
                 </template>
-                <p>Recommendation Slider</p>
                 <ProductRecommendations
                   size="4xs"
                   :products="sliderProducts"
@@ -165,7 +164,7 @@ import {
   ProductColor,
   isInStock,
 } from '@scayle/storefront-nuxt'
-import { Size, Action } from '~/constants'
+import { Size, Action, PRODUCT_WITH_PARAMS } from '~/constants'
 
 const listingMetaData = {
   name: 'ADP',
@@ -191,6 +190,7 @@ const {
 } = await useProduct({
   params: {
     id: parseInt(productId.value),
+    with: PRODUCT_WITH_PARAMS,
   },
   options: {
     lazy: true,
@@ -405,6 +405,7 @@ watch(
   (ids) => {
     recommendationsFetchParams.value = { ids }
   },
+  { immediate: true },
 )
 
 const { data: combineWithProducts, fetching: fetchingCombineWithProducts } =

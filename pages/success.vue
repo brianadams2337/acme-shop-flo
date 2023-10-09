@@ -27,7 +27,7 @@
             </div>
           </div>
           <OspDeliveryDate
-            v-if="orderData.packages && isLessThan('sm')"
+            v-show="orderData.packages && isLessThan('sm')"
             :delivery-date="orderData.packages[0].deliveryDate" />
           <div class="my-8 flex space-x-4 sm:mt-12">
             <AppButton type="tertiary" :to="{ name: routeList.home.name }">

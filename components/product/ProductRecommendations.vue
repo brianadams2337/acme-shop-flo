@@ -93,8 +93,6 @@ const carouselStyles = ref({
 })
 const activeIndex = ref(0) // This keeps track of how many times the user has scrolled
 
-const columns = computed(() => (isGreaterOrEquals('md') ? 2 : 4))
-
 const next = () => {
   const carouselWidth = carousel?.value?.scrollWidth
   // The check is because typescript complains that carouselWidth is possibly null
@@ -131,11 +129,13 @@ const collectColumnIntersection = (productId: number, index: number) => {
   const isTracked =
     trackingCollector.value.findIndex((p) => p.id === productId) !== -1
 
-  const isFirstItemInRow = isFirstIndexOfRow(index, columns.value)
+  const columns = isGreaterOrEquals('md') ? 2 : 4
+
+  const isFirstItemInRow = isFirstIndexOfRow(index, columns)
 
   if (isFirstItemInRow && !isTracked) {
     const itemsInSliderRow = [...props.products]
-      .slice(index, index + columns.value)
+      .slice(index, index + columns)
       .map((item, idx) => ({ ...item, index: index + idx }))
 
     emit('intersect:column', {

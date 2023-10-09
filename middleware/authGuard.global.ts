@@ -35,10 +35,18 @@ export default defineNuxtRouteMiddleware(async (to) => {
     isGuest && getProtectedRoutes(['checkout']).some((path) => to.path === path)
 
   if (!isLoggedIn.value && isProtectedRoute) {
-    return navigateTo({ path: localePath(routeList.signin.path) })
+    return navigateTo({
+      path: localePath(routeList.signin.path),
+      query: {
+        redirectUrl: to.fullPath,
+      },
+    })
   }
-
   if (isLoggedIn.value && isProtectRouteForGuest) {
-    return navigateTo({ path: localePath(routeList.home.path) })
+    let redirectPath = routeList.home.path
+    if (to.query.redirectUrl) {
+      redirectPath = to.query.redirectUrl as string
+    }
+    return navigateTo({ path: redirectPath })
   }
 })

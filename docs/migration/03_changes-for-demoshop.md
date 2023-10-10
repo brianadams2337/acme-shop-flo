@@ -1,4 +1,4 @@
-# SCAYLE Storefront Boilerplate - Nuxt 3 Migration
+# SCAYLE Storefront Boilerplate - Changes for Nuxt 3 Migration
 
 This document outlines all changes from the former Nuxt 2-based DemoShop to the new Nuxt 3-based Storefront Boilerplate.
 Please keep in mind that this documentation is still being extended and will be regularly updated.

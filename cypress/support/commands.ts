@@ -76,6 +76,7 @@ declare global {
       expectEventsInOrder(
         events: DemoShopTrackingEvent[],
       ): Cypress.Chainable<any>
+      signInWithEnvUser(): void
     }
   }
 }
@@ -90,6 +91,18 @@ function langFixture<Contents = any>(
 Cypress.Commands.add('testId', getBySelector)
 Cypress.Commands.add('getBySelector', getBySelector)
 
+Cypress.Commands.add('signInWithEnvUser', signInWithEnvUser)
+
+export function signInWithEnvUser() {
+  cy.getBySelector('login-email')
+    .click()
+    .type(Cypress.env('username'))
+    .getBySelector('login-password')
+    .click()
+    .type(Cypress.env('password'), { log: false })
+    .getBySelector('login-submit')
+    .click()
+}
 /**
  *
  * @param selector accepts a string, when separated by spaces it will look for children ids like `[data-test-id="parent-foo"] [data-test-id="child-bar"]`.

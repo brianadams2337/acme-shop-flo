@@ -1,5 +1,5 @@
 <template>
-  <AuthGuard>
+  <div>
     <AccountHeader :title="title" />
     <div class="container px-5 md:mt-6 md:px-4">
       <div class="flex flex-col md:flex-row md:pt-5">
@@ -23,7 +23,7 @@
             </div>
             <div class="border-t border-t-gray-350 bg-secondary-450 p-5">
               <DefaultLink
-                :to="{ name: routeList.home.name }"
+                :to="routeList.home"
                 class="!block w-full rounded bg-white px-4 py-2 text-center text-xs">
                 {{ $t('error.continue_shopping') }}
               </DefaultLink>
@@ -43,7 +43,7 @@
         </div>
       </div>
     </div>
-  </AuthGuard>
+  </div>
 </template>
 
 <script setup lang="ts">

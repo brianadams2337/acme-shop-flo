@@ -1,36 +1,30 @@
 <template>
-  <AuthGuard>
-    <PageContent>
-      <div v-if="paramId">
-        <OrderLoadingState v-if="fetching" />
-        <template v-else-if="orderDetails && !fetching">
-          <template
-            v-if="
-              itemCount && orderDetails.shop?.id && orderDetails.confirmedAt
-            ">
-            <OrderHeader
-              v-show="isGreaterOrEquals('md')"
-              :order-id="orderDetails.id"
-              :shop-id="orderDetails.shop.id"
-              :item-count="itemCount"
-              :order-date="orderDetails.confirmedAt" />
-          </template>
-          <AddressSummary
-            v-if="shippingAddress || billingAddress"
-            v-bind="{ shippingAddress, billingAddress }" />
-          <OrderItems v-bind="{ orderItems, packages, variants }" />
-          <PaymentSummary
-            v-bind="{ totalAmount, deliveryCost }"
-            :paid-with="orderDetails.payment && orderDetails.payment[0].key" />
+  <PageContent>
+    <div v-if="paramId">
+      <OrderLoadingState v-if="fetching" />
+      <template v-else-if="orderDetails && !fetching">
+        <template
+          v-if="itemCount && orderDetails.shop?.id && orderDetails.confirmedAt">
+          <OrderHeader
+            v-show="isGreaterOrEquals('md')"
+            :order-id="orderDetails.id"
+            :shop-id="orderDetails.shop.id"
+            :item-count="itemCount"
+            :order-date="orderDetails.confirmedAt" />
         </template>
-      </div>
-    </PageContent>
-  </AuthGuard>
+        <AddressSummary
+          v-if="shippingAddress || billingAddress"
+          v-bind="{ shippingAddress, billingAddress }" />
+        <OrderItems v-bind="{ orderItems, packages, variants }" />
+        <PaymentSummary
+          v-bind="{ totalAmount, deliveryCost }"
+          :paid-with="orderDetails.payment && orderDetails.payment[0].key" />
+      </template>
+    </div>
+  </PageContent>
 </template>
 
 <script setup lang="ts">
-import { Order } from '~/types/osp'
-
 const route = useRoute()
 const paramId = computed(() => +route.params.id)
 

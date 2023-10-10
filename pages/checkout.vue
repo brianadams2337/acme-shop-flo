@@ -1,16 +1,14 @@
 <template>
-  <AuthGuard>
-    <div id="ayCheckoutContainer" class="min-h-[85vh]">
-      <ay-checkout
-        v-if="accessToken && basketKey && showCheckout"
-        ref="checkoutRef"
-        :access-token="accessToken"
-        :basket-id="basketKey"
-        :campaign-key="campaignKey"
-        header-element="#header"
-        @error="handleError" />
-    </div>
-  </AuthGuard>
+  <div id="ayCheckoutContainer" class="min-h-[85vh]">
+    <ay-checkout
+      v-if="accessToken && basketKey && showCheckout"
+      ref="checkoutRef"
+      :access-token="accessToken"
+      :basket-id="basketKey"
+      :campaign-key="campaignKey"
+      header-element="#header"
+      @error="handleError" />
+  </div>
 </template>
 
 <script setup lang="ts">

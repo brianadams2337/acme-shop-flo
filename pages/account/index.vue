@@ -1,5 +1,5 @@
 <template>
-  <AuthGuard>
+  <div>
     <AccountHeader
       :title="$t('navigation.my_account')"
       icon="IconUserSecondary" />
@@ -7,12 +7,12 @@
       v-if="user"
       class="flex flex-col justify-center space-x-0 space-y-4 px-4 py-8 sm:flex-row sm:space-x-8 sm:space-y-0">
       <ContainerLink
-        :to="{ name: routeList.orders.name }"
+        :to="routeList.orders"
         :header="$t('my_account.orders_menu')"
         :subheader="$t('my_account.orders_count', { count: orderCount })"
         class="w-full" />
       <ContainerLink
-        :to="{ name: routeList.user.name }"
+        :to="routeList.user"
         :header="$t('my_account.profile_menu')"
         :subheader="$t('my_account.personal_data_title')"
         class="w-full" />
@@ -20,7 +20,7 @@
     <div class="mt-2 px-4">
       <LogoutButton data-test-id="add-item-to-basket-button" />
     </div>
-  </AuthGuard>
+  </div>
 </template>
 
 <script setup lang="ts">

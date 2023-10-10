@@ -27,8 +27,8 @@
             </div>
           </div>
           <OspDeliveryDate
-            v-if="orderData.packages && isLessThan('sm')"
-            :delivery-date="orderData.packages[0].deliveryDate" />
+            v-show="deliveryDate && isLessThan('sm')"
+            :delivery-date="deliveryDate" />
           <div class="my-8 flex space-x-4 sm:mt-12">
             <AppButton type="tertiary" :to="{ name: routeList.home.name }">
               {{ $t('basket.continue_shopping_label') }}
@@ -45,9 +45,7 @@
       <div class="w-3/4 max-sm:container sm:bg-gray-100">
         <div class="container py-4 text-sm sm:p-10 md:px-20">
           <div class="divide-y divide-gray-500">
-            <OspDeliveryDate
-              v-if="orderData.packages"
-              :delivery-date="orderData.packages[0].deliveryDate" />
+            <OspDeliveryDate v-if="deliveryDate" v-bind="{ deliveryDate }" />
             <div class="space-y-2">
               <Headline
                 size="sm"
@@ -127,6 +125,11 @@ const getItemQuantity = (variantId: number): number | undefined => {
 
 const orderItems = computed(() => {
   return useUnique(orderData.value?.items || [], (it) => it.variant.id)
+})
+
+const deliveryDate = computed(() => {
+  const [pkg] = orderData.value.packages || []
+  return pkg?.deliveryDate
 })
 
 definePageMeta({ pageType: 'osp' })

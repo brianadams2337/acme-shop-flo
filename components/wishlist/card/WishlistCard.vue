@@ -126,7 +126,7 @@
         </div>
       </div>
       <SlideIn
-        v-if="isLessThan('lg')"
+        v-show="isLessThan('lg')"
         :name="`wishlistcard_${product.id}`"
         slide-type="fromBottom"
         slide-class="w-full xl:max-w-none h-auto xl:max-h-none top-auto left-0 p-0 pt-0">

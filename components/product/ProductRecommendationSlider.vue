@@ -124,17 +124,16 @@ const prev = () => {
   }
 }
 
-const columns = computed(() => (isGreaterOrEquals('md') ? 2 : 4))
-
 const collectColumnIntersection = (productId: number, index: number) => {
   const isTracked =
     trackingCollector.value.findIndex((p) => p.id === productId) !== -1
 
-  const isFirstItemInRow = isFirstIndexOfRow(index, columns.value)
+  const columns = isGreaterOrEquals('md') ? 2 : 4
+  const isFirstItemInRow = isFirstIndexOfRow(index, columns)
 
   if (isFirstItemInRow && !isTracked) {
     const itemsInSliderRow = [...props.products]
-      .slice(index, index + columns.value)
+      .slice(index, index + columns)
       .map((item, idx) => ({ ...item, index: index + idx }))
 
     emit('intersect:column', {

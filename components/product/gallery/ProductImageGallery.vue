@@ -1,6 +1,6 @@
 <template>
   <div
-    v-if="isGreaterOrEquals('md')"
+    v-show="isGreaterOrEquals('md')"
     class="grid w-full flex-1 grid-cols-12 gap-1"
     data-test-id="tilled-gallery">
     <div
@@ -29,7 +29,9 @@
         :image-loading="idx === 0 ? 'eager' : 'lazy'" />
     </div>
   </div>
-  <div v-else class="relative w-full md:w-1/2 xl:w-2/3">
+  <div
+    v-show="!isGreaterOrEquals('md')"
+    class="relative w-full md:w-1/2 xl:w-2/3">
     <HorizontalItemsSlider
       class="-mx-4 aspect-[5/6] snap-x snap-mandatory border-b">
       <intersect

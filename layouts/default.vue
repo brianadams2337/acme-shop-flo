@@ -5,7 +5,7 @@
     <AppHeader v-bind="{ rootCategories, fetchingCategories }" />
     <ToastContainer />
     <MobileSidebar
-      v-if="isLessThan('md')"
+      v-show="isLessThan('md')"
       v-bind="{ rootCategories, fetchingCategories }" />
     <div class="mt-4 grow">
       <ErrorLayout

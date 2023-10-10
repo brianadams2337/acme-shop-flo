@@ -88,13 +88,13 @@
             <IconHeartFull v-if="isInWishlist" :class="_class" />
             <IconHeart v-else :class="_class" />
           </template>
-          <template v-if="isGreaterOrEquals('lg')">
+          <span v-show="isGreaterOrEquals('lg')">
             {{
               isInWishlist
                 ? $t('basket_card.remove_from_wishlist_label')
                 : $t('basket_card.add_to_wishlist_label')
             }}
-          </template>
+          </span>
         </BasketCardAction>
 
         <BasketCardAction

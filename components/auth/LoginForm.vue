@@ -9,6 +9,7 @@
         :has-errors="!isValid"
         required
         :readonly="isSubmitting"
+        data-test-id="login-email"
         @change="v.email.$touch()" />
     </ValidatedInputGroup>
 
@@ -21,6 +22,7 @@
         :has-errors="!isValid"
         required
         :readonly="isSubmitting"
+        data-test-id="login-password"
         @change="v.email.$touch()" />
     </ValidatedInputGroup>
 
@@ -42,6 +44,7 @@
       class="w-full"
       :disabled="isSubmitting"
       :loading="isSubmitting"
+      data-test-id="login-submit"
       @click="onSubmit()">
       {{ $t('global.sign_in') }}
     </AppButton>

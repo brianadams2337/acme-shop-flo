@@ -159,9 +159,17 @@ export const useAuthentication = async (
         user.value.email,
       )
 
-      const isSigninPath = route.path === toLocalePath(routeList.signin.path)
+      const isSignInPathWithoutRedirect =
+        route.fullPath === toLocalePath(routeList.signin.path)
       const homePath = authConfig?.redirect.home || routeList.home.path
-      const redirectTo = isSigninPath ? homePath : route.fullPath
+
+      let redirectTo = route.path
+      if (isSignInPathWithoutRedirect) {
+        redirectTo = homePath
+      }
+      if (route.query.redirectUrl) {
+        redirectTo = route.query.redirectUrl as string
+      }
 
       await redirectUser(redirectTo)
     }

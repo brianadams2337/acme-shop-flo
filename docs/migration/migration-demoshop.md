@@ -482,6 +482,48 @@ await fetchLazy(fetchBySlug('some-slug'))
   routes such as account area, checkout etc. In Nuxt 3 we introduced a `authGuard.global.ts`
   global middleware that handles the guarding the protected auth routes.
 
+## Lazy Loading with NuxtLazyHydrate
+
+In Nuxt 2 we used the `vue-lazy-hydration` within our custom `Lazy` component
+implementation. In Nuxt 3 we use `NuxtLazyHydrate` directly. It helps us defer
+the rendering of a component to improve performance.
+
+This example shows a grey placeholder 16:9 on desktop and square (1:1) on mobile.
+As the users scrolls the page and the placeholder enters the viewport,
+the components within are getting rendered. No rendering on server-side.
+
+```vue
+<NuxtLazyHydrate :placeholder-ratio="md ? '16/9' : '1/1'">
+  ...
+</NuxtLazyHydrate>
+```
+
+This example renders products in 2 columns on mobile and 4 columns on desktop.
+It skips the lazy-loading for the first row on mobile and 2 rows on desktop,
+because those are the ones visible to the user on page-load.
+
+```vue
+<NuxtLazyHydrate
+  v-for="(product, index) in products"
+  :key="product.id"
+  :when-visible="{ rootMargin: '100px' }"
+  :when-triggered="index < (isGreaterOrEquals('md') ? 8 : 2)"
+  class="col-span-6 md:col-span-3"
+  placeholder-class="mb-24"
+  placeholder-ratio="3/4">
+  ...
+</NuxtLazyHydrate>
+```
+
+This is the example of a content that will never be hydrated.
+
+```vue
+// Usage:
+<NuxtLazyHydrate>
+  // Content will never be hydrated
+</NuxtLazyHydrate>
+```
+
 ## Additions
 
 ### Packages

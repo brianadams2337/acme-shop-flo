@@ -14,7 +14,9 @@
         @clear-error="resetErrorState" />
       <slot v-else />
     </div>
-    <AppFooter class="mt-16" />
+    <NuxtLazyHydrate placeholder-ratio="16/9" when-visible>
+      <AppFooter class="mt-16" />
+    </NuxtLazyHydrate>
   </div>
 </template>
 
@@ -39,6 +41,7 @@ const rootCategories = computed(() => {
     ? rootCategoriesData.value.categories
     : [rootCategoriesData.value.categories]
 })
+
 // Error handling
 const error = ref()
 const hasError = computed(() => Boolean(error.value))
@@ -68,7 +71,7 @@ trackShopInit()
 await listenToUserItemsChanges()
 await listenToCustomerDataChanges()
 
-// meta tags
+// Meta tags
 const { isSideNavigationOpen, isModalOpen } = useUiState()
 useHead({
   bodyAttrs: () => ({

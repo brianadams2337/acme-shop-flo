@@ -23,33 +23,35 @@
             :blok="preContent" />
         </template>
 
-        <div
-          class="flex flex-col items-start justify-between overflow-x-hidden">
-          <ProductListBreadcrumbs />
+        <NuxtLazyHydrate>
           <div
-            class="mt-2 flex w-full flex-col justify-between space-y-2 md:flex-row">
-            <ProductQuickFilters
-              :filters="quickFilters"
-              :loading="filtersFetching"
-              :total-count="unfilteredCount"
-              @click:selected-filter="applyFilter($event, true)" />
-            <div class="order-1 flex items-center space-x-4 text-sm">
-              <SortingMenu
-                :selected="selectedSort.name"
-                :values="sortingValues" />
-              <AppButton
-                data-test-id="filter-toggle-button"
-                type="tertiary"
-                size="sm"
-                @click="toggleFilter">
-                <template #icon="{ _class }">
-                  <IconFilter :class="_class" />
-                </template>
-                {{ $t('plp.filter') }}
-              </AppButton>
+            class="flex flex-col items-start justify-between overflow-x-hidden">
+            <ProductListBreadcrumbs />
+            <div
+              class="mt-2 flex w-full flex-col justify-between space-y-2 md:flex-row">
+              <ProductQuickFilters
+                :filters="quickFilters"
+                :loading="filtersFetching"
+                :total-count="unfilteredCount"
+                @click:selected-filter="applyFilter($event, true)" />
+              <div class="order-1 flex items-center space-x-4 text-sm">
+                <SortingMenu
+                  :selected="selectedSort.name"
+                  :values="sortingValues" />
+                <AppButton
+                  data-test-id="filter-toggle-button"
+                  type="tertiary"
+                  size="sm"
+                  @click="toggleFilter">
+                  <template #icon="{ _class }">
+                    <IconFilter :class="_class" />
+                  </template>
+                  {{ $t('plp.filter') }}
+                </AppButton>
+              </div>
             </div>
           </div>
-        </div>
+        </NuxtLazyHydrate>
         <ProductList
           :loading="productsFetching"
           :per-page="PRODUCTS_PER_PAGE"

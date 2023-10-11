@@ -1,4 +1,4 @@
-# SCAYLE Storefront Boilerplate Nuxt (Demo Shop)readm
+# SCAYLE Storefront Boilerplate Nuxt (Demo Shop)
 
 The SCAYLE Storefront Boilerplate Nuxt is based on the [ Nuxt 3 framework](https://nuxt.com/docs/getting-started/introduction).
 Compared to the [Nuxt 2](https://v2.nuxt.com/) based DemoShop, there have been a multitude of changes due to the difference in overall framework architecture and more modern best practices,

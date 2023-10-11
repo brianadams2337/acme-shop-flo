@@ -30,16 +30,15 @@
               }}
             </Headline>
             <SearchResultSkeleton v-if="searching" />
-            <NuxtLazyHydrate v-else-if="validInput && !noSuggestions">
-              <SearchResults
-                :product-suggestions="products"
-                :categories="categories"
-                :fetching="searching"
-                :show-labels="false"
-                :results-count="totalCount"
-                :term="searchQuery"
-                @click:result="trackSuggestionClickAndClose" />
-            </NuxtLazyHydrate>
+            <LazySearchResults
+              v-else-if="validInput && !noSuggestions"
+              :product-suggestions="products"
+              :categories="categories"
+              :fetching="searching"
+              :show-labels="false"
+              :results-count="totalCount"
+              :term="searchQuery"
+              @click:result="trackSuggestionClickAndClose" />
             <div v-else-if="validInput && noSuggestions" class="mt-4">
               <EmptyState
                 :title="$t('search.search_try_again')"

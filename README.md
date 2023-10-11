@@ -1,4 +1,4 @@
-# SCAYLE Storefront Boilerplate Nuxt (Demo Shop)
+# SCAYLE Storefront Boilerplate Nuxt (Demo Shop)readm
 
 The SCAYLE Storefront Boilerplate Nuxt is based on the [ Nuxt 3 framework](https://nuxt.com/docs/getting-started/introduction).
 Compared to the [Nuxt 2](https://v2.nuxt.com/) based DemoShop, there have been a multitude of changes due to the difference in overall framework architecture and more modern best practices,
@@ -224,23 +224,30 @@ yarn dev # Run local dev server
 
 ## Lazy Loading with NuxtLazyHydrate
 
-`NuxtLazyHydrate` helps defer the rendering of a component to improve performance. Any component within will be rendered only as it enters the viewport of the browser. To learn more about the properties, please take a look at the implementation itself (Lazy.vue).
+In Nuxt 2 we used the `vue-lazy-hydration` within our custom `Lazy` component
+implementation. In Nuxt 3 we use `NuxtLazyHydrate` directly. It helps us defer
+the rendering of a component to improve performance.
 
-This example shows a grey placeholder 16:9 on desktop and square (1:1) on mobile. As the users scrolls the page and the placeholder enters the viewport, the components within are getting rendered. No rendering on server-side.
+This example shows a grey placeholder 16:9 on desktop and square (1:1) on mobile.
+As the users scrolls the page and the placeholder enters the viewport,
+the components within are getting rendered. No rendering on server-side.
 
-```html
+```vue
 <NuxtLazyHydrate :placeholder-ratio="md ? '16/9' : '1/1'">
   ...
 </NuxtLazyHydrate>
 ```
 
-This example renders products in 2 columns on mobile and 4 columns on desktop. It skips the lazy-loading for the first row on mobile and 2 rows on desktop, because those are the ones visible to the user on page-load.
+This example renders products in 2 columns on mobile and 4 columns on desktop.
+It skips the lazy-loading for the first row on mobile and 2 rows on desktop,
+because those are the ones visible to the user on page-load.
 
-```html
+```vue
 <NuxtLazyHydrate
   v-for="(product, index) in products"
   :key="product.id"
-  :important="index < (md ? 8 : 2)"
+  :when-visible="{ rootMargin: '100px' }"
+  :when-triggered="index < (isGreaterOrEquals('md') ? 8 : 2)"
   class="col-span-6 md:col-span-3"
   placeholder-class="mb-24"
   placeholder-ratio="3/4">
@@ -248,7 +255,18 @@ This example renders products in 2 columns on mobile and 4 columns on desktop. I
 </NuxtLazyHydrate>
 ```
 
-### When to pre-render on server-side using `ssr`-property?
+### When and how to pre-render on server-side (never hydrate)?
+
+_How_?
+
+```vue
+// Usage:
+<NuxtLazyHydrate>
+  // Content will never be hydrated
+</NuxtLazyHydrate>
+```
+
+_When?_
 
 - If the component is within the browser viewport on page-load.
 - If the generated HTML contains important things for SEO (e.g. h1).

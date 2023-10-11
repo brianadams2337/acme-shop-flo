@@ -1,10 +1,10 @@
 {
   "name": "@scayle/storefront-boilerplate-nuxt",
   "description": "SCAYLE demo shop application based on Nuxt 3",
-  "version": "1.0.0-rc.01",
+  "version": "1.0.0-rc.02",
   "private": true,
   "engines": {
-    "node": ">= 18.17.1"
+    "node": ">= 20.7.0"
   },
   "scripts": {
     "assert-mandatory-env-vars": "echo 'skipped'",

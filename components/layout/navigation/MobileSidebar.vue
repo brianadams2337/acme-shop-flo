@@ -2,6 +2,7 @@
   <SlideInFromLeftTransition>
     <nav
       v-if="isSideNavigationOpen"
+      v-show="isLessThanMdBreakpoint"
       class="sticky inset-1 z-50 min-h-screen overflow-hidden overflow-y-auto overscroll-none bg-white"
       :class="{ 'animate-pulse': fetchingCategories }">
       <div class="h-full" :style="{ 'max-height': 'calc(100% - 80px)' }">
@@ -89,6 +90,10 @@ defineProps({
 
 const router = useRouter()
 
+const { isLessThan } = useViewport()
+
+const isLessThanMdBreakpoint = computed(() => isLessThan('md'))
+
 const {
   closeSideNavigation,
   isSideNavigationOpen,
@@ -151,4 +156,6 @@ watch(searchQuery, () => {
   searching.value = true
   debouncedSearch()
 })
+
+watch(isLessThanMdBreakpoint, (value) => !value && resetAndClose())
 </script>

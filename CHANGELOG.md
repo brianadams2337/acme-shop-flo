@@ -1,3 +1,5 @@
+# @scayle/storefront-boilerplate-nuxt
+
 ## Replaced `useUiState` with smaller specific composables
 
 - In Nuxt 2 we had the `useUiState` composables that was bloated with the mixed

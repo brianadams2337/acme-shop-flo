@@ -1,3 +1,4 @@
+import { fileURLToPath, URL } from 'node:url'
 import { defineVitestConfig } from 'nuxt-vitest/config'
 
 export default defineVitestConfig({
@@ -19,8 +20,8 @@ export default defineVitestConfig({
   },
   resolve: {
     alias: {
-      '@': './',
-      '~': './',
+      '@': fileURLToPath(new URL('./', import.meta.url)),
+      '~': fileURLToPath(new URL('./', import.meta.url)),
     },
   },
 })

@@ -1,5 +1,7 @@
 export default () => {
-  const state = useState<{ isOpen: boolean }>(() => ({ isOpen: false }))
+  const state = useState<{ isOpen: boolean }>('modal-state', () => ({
+    isOpen: false,
+  }))
 
   const toggle = (isOpen: boolean) => {
     state.value.isOpen = isOpen

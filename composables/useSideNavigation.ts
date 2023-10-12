@@ -7,38 +7,38 @@ type SideNavigationState = {
 }
 
 export default () => {
-  const state = reactive<SideNavigationState>({
+  const state = useState<SideNavigationState>(() => ({
     isOpen: false,
     selectedItem: undefined,
-    active: false,
-  })
+    active: true,
+  }))
 
-  const isSideNavigationOpen = computed(() => state.isOpen)
-  const isSideNavigationActive = computed(() => state.active)
-  const selectedSideNavigationItem = computed(() => state.selectedItem)
+  const isSideNavigationOpen = computed(() => state.value.isOpen)
+  const isSideNavigationActive = computed(() => state.value.active)
+  const selectedSideNavigationItem = computed(() => state.value.selectedItem)
 
   const selectSideNavigationItem = (item: Category) => {
-    state.selectedItem = item
+    state.value.selectedItem = item
 
     if (item.depth > 3 || item.children?.length === 0) {
-      state.isOpen = false
+      state.value.isOpen = false
     }
   }
 
   const toggleSideNavigation = () => {
-    state.isOpen = !state.isOpen
+    state.value.isOpen = !state.value.isOpen
   }
 
   const closeSideNavigation = () => {
-    state.isOpen = false
+    state.value.isOpen = false
   }
 
   const openSideNavigation = () => {
-    state.isOpen = true
+    state.value.isOpen = true
   }
 
   const setSideNavigationActiveState = (value: boolean) => {
-    state.active = value
+    state.value.active = value
   }
 
   return {

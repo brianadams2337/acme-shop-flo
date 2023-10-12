@@ -12,6 +12,7 @@
         <div class="mt-4 flex flex-col border-b border-gray-350 px-5 pb-4">
           <MobileSearchInput
             v-model="searchQuery"
+            class="mb-3"
             @focus="setMobileSearchActive(true)"
             @cancel="setMobileSearchActive(false)"
             @click:close="resetAndClose"

@@ -45,22 +45,22 @@ const DEFAULT_FLYOUT_CATEGORY: FlyoutMenuCategory = {
   children: [],
 }
 
-const state = reactive<FlyoutsState>({
-  flyoutMenuOpen: false,
-  flyoutMenuCategory: DEFAULT_FLYOUT_CATEGORY,
-  flyoutNavigationItem: DEFAULT_FLYOUT_NAVIGATION_ITEM,
-  searchFlyout: false,
-  basketFlyout: false,
-  userFlyout: false,
-})
-
 export default () => {
-  const isFlyoutMenuOpen = computed(() => state.flyoutMenuOpen)
-  const flyoutMenuCategory = computed(() => state.flyoutMenuCategory)
-  const flyoutNavigationItem = computed(() => state.flyoutNavigationItem)
-  const isBasketFlyoutOpen = computed(() => state.basketFlyout)
-  const isUserFlyoutOpen = computed(() => state.userFlyout)
-  const isSearchFlyoutOpen = computed(() => state.searchFlyout)
+  const state = useState<FlyoutsState>('use-flyouts-state', () => ({
+    flyoutMenuOpen: false,
+    flyoutMenuCategory: DEFAULT_FLYOUT_CATEGORY,
+    flyoutNavigationItem: DEFAULT_FLYOUT_NAVIGATION_ITEM,
+    searchFlyout: false,
+    basketFlyout: false,
+    userFlyout: false,
+  }))
+
+  const isFlyoutMenuOpen = computed(() => state.value.flyoutMenuOpen)
+  const flyoutMenuCategory = computed(() => state.value.flyoutMenuCategory)
+  const flyoutNavigationItem = computed(() => state.value.flyoutNavigationItem)
+  const isBasketFlyoutOpen = computed(() => state.value.basketFlyout)
+  const isUserFlyoutOpen = computed(() => state.value.userFlyout)
+  const isSearchFlyoutOpen = computed(() => state.value.searchFlyout)
 
   let closeFlyoutTimeout: NodeJS.Timeout
 
@@ -79,59 +79,59 @@ export default () => {
     }
 
     closeFlyoutTimeout = setTimeout(() => {
-      state.flyoutMenuOpen = false
-      state.flyoutMenuCategory = DEFAULT_FLYOUT_CATEGORY
-      state.flyoutNavigationItem = DEFAULT_FLYOUT_NAVIGATION_ITEM
+      state.value.flyoutMenuOpen = false
+      state.value.flyoutMenuCategory = DEFAULT_FLYOUT_CATEGORY
+      state.value.flyoutNavigationItem = DEFAULT_FLYOUT_NAVIGATION_ITEM
     }, 200)
   }
   const openFlyoutMenu = ({ children, name, path, slug, id }: Category) => {
     if (children?.length === 0) {
-      state.flyoutMenuOpen = false
+      state.value.flyoutMenuOpen = false
       return
     }
     if (closeFlyoutTimeout) {
       clearTimeout(closeFlyoutTimeout)
     }
 
-    state.flyoutMenuOpen = true
-    state.flyoutMenuCategory = {
+    state.value.flyoutMenuOpen = true
+    state.value.flyoutMenuCategory = {
       name,
       path,
       slug,
       id,
       children: children || [],
     }
-    state.flyoutNavigationItem = DEFAULT_FLYOUT_NAVIGATION_ITEM
+    state.value.flyoutNavigationItem = DEFAULT_FLYOUT_NAVIGATION_ITEM
   }
 
   const openFlyoutMenuForNavigationTree = (item: NavigationItem) => {
-    state.flyoutNavigationItem = item
-    state.flyoutMenuCategory = DEFAULT_FLYOUT_CATEGORY
-    state.flyoutMenuOpen = true
+    state.value.flyoutNavigationItem = item
+    state.value.flyoutMenuCategory = DEFAULT_FLYOUT_CATEGORY
+    state.value.flyoutMenuOpen = true
   }
 
   const openSearchFlyout = () => {
-    state.searchFlyout = true
+    state.value.searchFlyout = true
   }
 
   const closeSearchFlyout = () => {
-    state.searchFlyout = false
+    state.value.searchFlyout = false
   }
 
   const openBasketFlyout = () => {
-    state.basketFlyout = true
+    state.value.basketFlyout = true
   }
 
   const closeBasketFlyout = () => {
-    state.basketFlyout = false
+    state.value.basketFlyout = false
   }
 
   const openUserFlyout = () => {
-    state.userFlyout = true
+    state.value.userFlyout = true
   }
 
   const closeUserFlyout = () => {
-    state.userFlyout = false
+    state.value.userFlyout = false
   }
 
   return {

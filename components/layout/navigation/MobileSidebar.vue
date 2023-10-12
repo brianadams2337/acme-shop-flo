@@ -6,17 +6,17 @@
       :class="{ 'animate-pulse': fetchingCategories }">
       <div class="h-full" :style="{ 'max-height': 'calc(100% - 80px)' }">
         <MobileSidebarAccountContent
-          @click:hide-categories="sideNavigationActive = false"
-          @click:show-categories="sideNavigationActive = true" />
+          @click:hide-categories="setSideNavigationActiveState(false)"
+          @click:show-categories="setSideNavigationActiveState(true)" />
 
         <div class="mt-4 flex flex-col border-b border-gray-350 px-5 pb-4">
           <MobileSearchInput
             v-model="searchQuery"
-            @focus="setMobileSearchIsActive(true)"
-            @cancel="setMobileSearchIsActive(false)"
+            @focus="setMobileSearchActive(true)"
+            @cancel="setMobileSearchActive(false)"
             @click:close="resetAndClose"
             @keydown:enter="openSearchPage" />
-          <template v-if="mobileSearchIsActive">
+          <template v-if="isMobileSearchActive">
             <Headline
               v-if="totalCount > 0 && !searching"
               class="my-4"
@@ -57,7 +57,7 @@
         </div>
 
         <MobileSideNavigation
-          v-if="!mobileSearchIsActive && sideNavigationActive"
+          v-if="!isMobileSearchActive && isSideNavigationActive"
           :categories="rootCategories"
           :fetching="fetchingCategories"
           show-nested-categories
@@ -86,16 +86,17 @@ defineProps({
   },
 })
 
-const sideNavigationActive = ref(true)
-
 const router = useRouter()
 
 const {
   closeSideNavigation,
   isSideNavigationOpen,
-  setMobileSearchIsActive,
-  mobileSearchIsActive,
-} = useUiState()
+  isSideNavigationActive,
+  setSideNavigationActiveState,
+} = useSideNavigation()
+
+const { isActive: isMobileSearchActive, setActive: setMobileSearchActive } =
+  useMobileSearch()
 
 const {
   data,
@@ -125,7 +126,7 @@ const openSearchPage = async () => {
 const resetAndClose = () => {
   resetSearch()
   closeSideNavigation()
-  setMobileSearchIsActive(false)
+  setMobileSearchActive(false)
 }
 
 onBeforeUnmount(() => resetAndClose())

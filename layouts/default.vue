@@ -72,7 +72,9 @@ await listenToUserItemsChanges()
 await listenToCustomerDataChanges()
 
 // Meta tags
-const { isSideNavigationOpen, isModalOpen } = useUiState()
+const { isSideNavigationOpen } = useSideNavigation()
+const { isOpen: isModalOpen } = useModal()
+
 useHead({
   bodyAttrs: () => ({
     class:

@@ -1,7 +1,8 @@
 <template>
-  <Portal to="backdrop">
+  <Teleport to="body">
     <FadeInTransition>
       <div
+        v-if="isOpen"
         class="fixed right-0 top-0 z-[51] flex w-full bg-black/50"
         :class="fullScreen ? 'h-full' : 'min-h-screen'">
         <div
@@ -12,14 +13,14 @@
             v-if="!hideCloseButton"
             data-test-id="close-button"
             class="absolute right-6 top-6 z-50 cursor-pointer p-3"
-            @click="emit('close')">
+            @click="close">
             <IconCloseBold class="h-5 w-5" />
           </button>
           <slot />
         </div>
       </div>
     </FadeInTransition>
-  </Portal>
+  </Teleport>
 </template>
 
 <script setup lang="ts">
@@ -36,10 +37,15 @@ defineProps({
 
 const emit = defineEmits(['close'])
 
-function handleKeyUpEvent(event: KeyboardEvent) {
-  if (event.key === 'Escape') {
-    emit('close')
-  }
+const { isOpen, toggle } = useModal()
+
+const close = () => {
+  emit('close')
+  toggle(false)
+}
+
+const handleKeyUpEvent = (event: KeyboardEvent) => {
+  event.key === 'Escape' && close()
 }
 
 const useKeyupEventListener = (shouldRemoveListener = false) => {
@@ -47,9 +53,15 @@ const useKeyupEventListener = (shouldRemoveListener = false) => {
   shouldRemoveListener && cleanup()
 }
 
-onMounted(() => useKeyupEventListener())
+onMounted(() => {
+  toggle(true)
+  useKeyupEventListener()
+})
 
-onUnmounted(() => useKeyupEventListener(true))
+onUnmounted(() => {
+  toggle(false)
+  useKeyupEventListener(true)
+})
 </script>
 
 <script lang="ts">

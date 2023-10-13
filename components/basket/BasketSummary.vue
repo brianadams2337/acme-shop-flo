@@ -73,8 +73,6 @@
 </template>
 
 <script lang="ts" setup>
-import { BasketListingMetadata } from '~/constants'
-
 const basket = await useBasket()
 const { isLoggedIn } = await useUser()
 const router = useRouter()

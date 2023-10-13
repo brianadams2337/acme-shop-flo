@@ -132,7 +132,6 @@ import {
   getSizeFromVariant,
   getProductColors,
 } from '@scayle/storefront-nuxt'
-import { Action, BasketListingMetadata } from '~/constants'
 
 const listingMetaData = {
   id: BasketListingMetadata.ID,
@@ -266,7 +265,7 @@ const addToWishlist = async () => {
   const message = $i18n.t('wishlist.notification.add_to_wishlist', {
     productName: name.value || $i18n.t('wishlist.product'),
   })
-  $alert.show(message, Action.ROUTE, '/wishlist')
+  $alert.show(message, 'ROUTE', '/wishlist')
 }
 
 const removeFromWishlist = async () => {
@@ -294,7 +293,7 @@ const removeFromWishlist = async () => {
 
   await wishlist.removeItem(data)
 
-  $alert.show(message, Action.CONFIRM)
+  $alert.show(message, 'CONFIRM')
 }
 
 const emit = defineEmits(['item:remove', 'item:select'])

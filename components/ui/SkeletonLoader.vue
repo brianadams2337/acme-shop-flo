@@ -3,7 +3,7 @@
 </template>
 
 <script setup lang="ts">
-import { SkeletonType } from '~/constants'
+import { SkeletonType } from '#imports'
 
 const props = defineProps({
   type: {

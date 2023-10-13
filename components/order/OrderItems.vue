@@ -25,8 +25,6 @@
 </template>
 
 <script setup lang="ts">
-export type DeliveryInfo = Package & { formattedStatus: string }
-
 type CarrierMap = Record<
   string,
   { items: OrderItems; deliveryInfo: DeliveryInfo }

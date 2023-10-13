@@ -25,8 +25,6 @@
 </template>
 
 <script setup lang="ts">
-import { Alert, ActionHandler } from '~/plugins/toast'
-
 const props = defineProps({
   alert: {
     type: Object as PropType<Alert>,

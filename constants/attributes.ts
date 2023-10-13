@@ -1,4 +1,4 @@
-export const sustainabilityAttributes = [
+export const SUSTAINABILITY_ATTRIBUTES = [
   'sustainability',
   'sustainabilityCertificates',
   'sustainabilityIcons',

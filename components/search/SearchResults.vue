@@ -27,7 +27,6 @@ import {
   TypeaheadBrandOrCategorySuggestion,
   TypeaheadProductSuggestion,
 } from '@scayle/storefront-nuxt'
-import { PRODUCT_LIMIT, CATEGORY_LIMIT } from '~/constants'
 
 defineProps({
   productLimit: {

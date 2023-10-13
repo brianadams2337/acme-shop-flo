@@ -208,6 +208,9 @@ export default defineNuxtConfig({
     ),
     fallbackBreakpoint: 'lg',
   },
+  imports: {
+    dirs: ['./constants'],
+  },
 
   // Allow auto-import for vue components
   components: [

@@ -159,7 +159,7 @@ import {
   ProductColor,
   isInStock,
 } from '@scayle/storefront-nuxt'
-import { Size, Action, PRODUCT_WITH_PARAMS } from '~/constants'
+import { Size } from '#imports'
 
 const listingMetaData = {
   name: 'ADP',
@@ -325,7 +325,7 @@ const addItemToBasket = async () => {
   }
 
   if (activeVariant.value === undefined) {
-    $alert.show($i18n.t('basket.notification.select_size'), Action.CONFIRM)
+    $alert.show($i18n.t('basket.notification.select_size'), 'CONFIRM')
     return
   }
 
@@ -359,7 +359,7 @@ const addItemToBasket = async () => {
   } catch {
     $alert.show(
       $i18n.t('basket.notification.add_to_basket_error', { productName }),
-      Action.CONFIRM,
+      'CONFIRM',
     )
   }
 }

@@ -20,7 +20,7 @@
   lang="ts"
   generic="T extends { value: string; label?: string; to?: RouteLocationRaw }">
 import { RouteLocationRaw } from '#vue-router'
-import { DividerItemTag } from '~/constants/ui'
+import { DividerItemTag } from '#imports'
 
 defineProps({
   tag: {

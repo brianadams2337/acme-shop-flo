@@ -1,4 +1,4 @@
-import { Size } from '~/constants'
+import { Size } from '#imports'
 
 const useUiSize = (currentSize: Size = Size.MD) => {
   const isSize = (size?: Size): boolean => size === currentSize

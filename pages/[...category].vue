@@ -97,7 +97,6 @@ import {
   transformToWhereCondition,
 } from '@scayle/storefront-nuxt'
 import { SbCmsImage, SbListingPage } from '../storyblok/types/storyblok'
-import { sustainabilityAttributes } from '~/constants'
 
 const PRODUCTS_PER_PAGE = 24
 const DEFAULT_SORTING_KEY = 'dateNewest'
@@ -151,7 +150,7 @@ const {
     with: {
       product: {
         attributes: {
-          withKey: ['color', 'brand', 'name', ...sustainabilityAttributes],
+          withKey: ['color', 'brand', 'name', ...SUSTAINABILITY_ATTRIBUTES],
         },
         variants: {
           attributes: {

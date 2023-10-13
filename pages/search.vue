@@ -55,7 +55,6 @@ import {
   getSortingValues,
   transformToWhereCondition,
 } from '@scayle/storefront-nuxt'
-import { Action } from '~/constants/toast'
 
 const PRODUCTS_PER_PAGE = 24
 
@@ -188,7 +187,7 @@ const toggleItem = (product: Product) => {
         },
       })
 
-  const action = !wasInWishlist ? Action.ROUTE : Action.CONFIRM
+  const action = !wasInWishlist ? 'ROUTE' : 'CONFIRM'
   $alert.show(
     message,
     action,

@@ -45,7 +45,6 @@
 
 <script setup lang="ts">
 import { OrderSummary } from '@scayle/storefront-nuxt'
-import { Status, DeliveryProgress } from '~/constants/order'
 
 const props = defineProps({
   id: {

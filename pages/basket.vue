@@ -57,7 +57,6 @@ import {
   getFirstAttributeValue,
   Product,
 } from '@scayle/storefront-nuxt'
-import { BasketListingMetadata, WishlistListingMetadata } from '~/constants'
 
 const basket = await useBasket({ options: { lazy: true } })
 const wishlist = await useWishlist({ options: { lazy: true } })

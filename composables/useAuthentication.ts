@@ -6,7 +6,6 @@ import {
   UpdatePasswordByHashRequest,
 } from '@scayle/storefront-nuxt'
 import { FetchError } from 'ofetch'
-import { Action } from '~/constants'
 
 const httpErrorMessages: Record<number, string> = {
   400: '400_bad_request',
@@ -97,7 +96,7 @@ export const useAuthentication = async (
 
     try {
       await session.forgetPassword(data)
-      $alert.show(successMessage.value, Action.CONFIRM)
+      $alert.show(successMessage.value, 'CONFIRM')
     } catch (error) {
       handleError(error)
       hasSuccess = false
@@ -174,7 +173,7 @@ export const useAuthentication = async (
       await redirectUser(redirectTo)
     }
 
-    $alert.show(successMessage.value, Action.CONFIRM)
+    $alert.show(successMessage.value, 'CONFIRM')
   }
 
   const trackFailedAuthentication = async (email: string) => {
@@ -195,7 +194,7 @@ export const useAuthentication = async (
         const errorMessage = $i18n.t(
           `login_page.${event}.status.error.${httpErrorMessages[status]}`,
         )
-        $alert.show(errorMessage, Action.CONFIRM)
+        $alert.show(errorMessage, 'CONFIRM')
       }
     }
     // remove user data (email, password) from the error object, before logging it

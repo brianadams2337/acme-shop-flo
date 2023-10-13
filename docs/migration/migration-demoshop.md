@@ -100,8 +100,14 @@ export const routeList: LinkList = {
 ## Constants/types
 
 One of the major change regarding the re-usable components are the usage of constants and types.
-Now we introduced constants that are located under the `constants` folder which are representing TypeScript companion pattern approach (Exporting the same type and variable which TS smartly resolves it depends on the usage). This way we have everything encapsulated at one place and the advantage is flexibility and scalability
+Now we introduced constants that are located under the `constants` folder which some of them
+are representing TypeScript companion pattern approach (Exporting the same type
+and variable which TS smartly resolves it depends on the usage). This way we have
+everything encapsulated at one place and the advantage is flexibility and scalability
 (e.g If we want to add one more Button type, we'll just add it on one place).
+This folder is auto-imported but still for the same name variables & types we still need
+to import them explicitly from `#imports` because, if not, type will not be resolved properly.
+For raw constants you can simply use the auto-import feature.
 
 Example:
 
@@ -120,7 +126,7 @@ export type Size = ValuesType<typeof Size>
 
 // Usage example:
 
-import { Size } from '~/constants'
+import { Size } from '#imports'
 
 const props = defineProps({
   size: {

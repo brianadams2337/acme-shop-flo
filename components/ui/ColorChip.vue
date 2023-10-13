@@ -21,9 +21,9 @@
 </template>
 
 <script setup lang="ts">
-import { ProductColor } from '@scayle/storefront-nuxt'
+import type { ProductColor } from '@scayle/storefront-nuxt'
 import Color from 'color'
-import { Size, ColorMap } from '~/constants'
+import { Size } from '#imports'
 
 const props = defineProps({
   size: {

@@ -57,11 +57,6 @@ import {
   BrandOrCategorySuggestion,
   ProductSuggestion,
 } from '@scayle/storefront-nuxt'
-import {
-  DEBOUNCED_SEARCH_DURATION,
-  MIN_CHARS_FOR_SEARCH,
-  PRODUCT_LIMIT,
-} from '~/constants'
 
 const { data, search, searchQuery, resetSearch, pending } = useSearch({
   key: 'header-search',

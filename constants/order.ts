@@ -1,9 +1,6 @@
-import { ListOfPackages } from '@scayle/storefront-nuxt'
 import { ValuesType } from 'utility-types'
 
-type DeliveryStatus = ListOfPackages[0]['deliveryStatus']
-
-export const Status: Record<string, DeliveryStatus> = {
+export const Status: Record<string, Package['deliveryStatus']> = {
   OPEN: 'open',
   SHIPMENT_PENDING: 'shipment_pending',
   DELEGATION_PENDING: 'delegation_pending',

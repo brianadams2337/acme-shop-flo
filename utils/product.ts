@@ -4,7 +4,6 @@ import {
   getLowestPrice,
   getAppliedReductionsByCategory,
 } from '@scayle/storefront-nuxt'
-import { ColorMap, MINIMUM_QUANTITY_IMMEDIATE_AVAILABILITY } from '~/constants'
 
 export { ProductImageType } from '@scayle/storefront-nuxt'
 

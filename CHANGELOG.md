@@ -5,6 +5,7 @@
 ### Minor Changes
 
 - Replaced `useUiState` with smaller composables which are: `useFlyouts`, `useMobileSearch`, `useModal` & `useSideNavigation`.
+- Enable auto-import for the `constants` folder
 
 ### Patch Changes
 

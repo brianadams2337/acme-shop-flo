@@ -185,7 +185,7 @@ export default defineNuxtConfig({
   // https://v8.i18n.nuxtjs.org/getting-started/basic-usage
   i18n: {
     locales,
-    differentDomains: true,
+    differentDomains: false,
     detectBrowserLanguage: false,
     defaultLocale: 'en',
     langDir: 'langs/',

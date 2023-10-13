@@ -1,5 +1,4 @@
 import { Product, getFirstAttributeValue } from '@scayle/storefront-nuxt'
-import { Action } from '~/constants'
 
 export const showAddToBasketToast = (
   isAddedToBasket: boolean,
@@ -15,7 +14,8 @@ export const showAddToBasketToast = (
     productName,
   })
 
-  const action = isAddedToBasket ? Action.ROUTE : Action.CONFIRM
+  const action = isAddedToBasket ? 'ROUTE' : 'CONFIRM'
+
   $alert.show(
     message,
     action,

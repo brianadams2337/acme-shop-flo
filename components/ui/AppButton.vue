@@ -22,7 +22,7 @@
 </template>
 
 <script setup lang="ts">
-import { Size, ButtonType } from '~/constants'
+import { Size, ButtonType } from '#imports'
 import { RouteLocationRaw } from '#vue-router'
 
 const props = defineProps({

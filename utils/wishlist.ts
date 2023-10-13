@@ -3,7 +3,6 @@ import {
   getFirstAttributeValue,
   Variant,
 } from '@scayle/storefront-nuxt'
-import { Action } from '~/constants'
 
 export const getWishlistToastMessage = (
   productName: string,
@@ -33,7 +32,8 @@ export const showWishlistToast = (
     $i18n.t('wishlist.product')
   const message = getWishlistToastMessage(name, isAddedToWishlist)
 
-  const action = isAddedToWishlist ? Action.ROUTE : Action.CONFIRM
+  const action = isAddedToWishlist ? 'ROUTE' : 'CONFIRM'
+
   $alert.show(
     message,
     action,

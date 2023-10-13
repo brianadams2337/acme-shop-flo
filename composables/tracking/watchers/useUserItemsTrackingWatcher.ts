@@ -1,5 +1,3 @@
-import { BasketListingMetadata, WishlistListingMetadata } from '~/constants'
-
 // @function tracks basket and wishlist changes
 export const useUserItemsTrackingWatcher = async () => {
   const { data: basket } = await useBasket()

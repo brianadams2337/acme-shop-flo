@@ -1,9 +1,7 @@
-import {
-  WISHLIST_WITH_PARAMS,
-  BASKET_WITH_PARAMS,
-  PRODUCT_WITH_PARAMS,
-  SEARCH_WITH_PARAMS,
-} from '.'
+import { WISHLIST_WITH_PARAMS } from './wishlist'
+import { BASKET_WITH_PARAMS } from './basket'
+import { PRODUCT_WITH_PARAMS } from './product'
+import { SEARCH_WITH_PARAMS } from './search'
 
 export default {
   wishlist: WISHLIST_WITH_PARAMS,

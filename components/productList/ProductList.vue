@@ -49,7 +49,6 @@ import {
   getRowByIndex,
   isFirstIndexOfRow,
 } from '@scayle/storefront-nuxt'
-import { CategoryListingMetadata } from '~/constants'
 
 const listingMetadata = {
   id: CategoryListingMetadata.ID,

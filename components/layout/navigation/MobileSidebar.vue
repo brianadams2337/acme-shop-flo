@@ -75,7 +75,6 @@ import {
   BrandOrCategorySuggestion,
   ProductSuggestion,
 } from '@scayle/storefront-nuxt'
-import { DEBOUNCED_SEARCH_DURATION, MIN_CHARS_FOR_SEARCH } from '~/constants'
 
 defineProps({
   rootCategories: {

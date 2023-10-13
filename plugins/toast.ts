@@ -1,21 +1,4 @@
 import { RouteLocationRaw } from '#vue-router'
-import { Action } from '~/constants'
-
-type ToastObject = { close: () => void }
-
-export interface ActionHandler {
-  text: string
-  class?: string
-  href?: RouteLocationRaw
-  onClick?: (_: Event, toastObject: ToastObject) => void
-}
-
-export interface Alert {
-  id: number
-  message: string
-  duration: number
-  actions: ActionHandler[]
-}
 
 export default defineNuxtPlugin(() => {
   const alerts = ref<Alert[]>([])

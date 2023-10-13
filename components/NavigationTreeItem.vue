@@ -11,7 +11,7 @@
 
 <script setup lang="ts">
 import { NavigationTreeItem } from '@scayle/storefront-nuxt'
-import { LinkVariant } from '~/constants/ui'
+import { LinkVariant } from '#imports'
 
 const props = defineProps({
   navigationItem: {

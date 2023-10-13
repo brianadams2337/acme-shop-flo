@@ -48,7 +48,6 @@
 <script setup lang="ts">
 import { formatDate, getPayloadDate } from '@scayle/storefront-nuxt'
 import useVuelidate from '@vuelidate/core'
-import { Action, dateOfBirthFormats } from '~/constants'
 
 const { $alert, $i18n, $validation } = useNuxtApp()
 const currentShop = useCurrentShop()
@@ -121,9 +120,9 @@ const update = async () => {
       ...payload,
       birthDate: getPayloadDate(payload.birthDate),
     })
-    $alert.show($i18n.t('my_account.user.save_message'), Action.CONFIRM)
+    $alert.show($i18n.t('my_account.user.save_message'), 'CONFIRM')
   } catch {
-    $alert.show(saveError, Action.CONFIRM)
+    $alert.show(saveError, 'CONFIRM')
   } finally {
     isUpdating.value = false
   }

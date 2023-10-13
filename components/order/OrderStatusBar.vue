@@ -41,9 +41,6 @@
 </template>
 
 <script setup lang="ts">
-import { DeliveryInfo } from './OrderItems.vue'
-import { Status, DeliveryProgress } from '~/constants/order'
-
 const props = defineProps({
   index: {
     type: Number as PropType<number>,

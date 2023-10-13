@@ -56,7 +56,7 @@ import {
   isFirstIndexOfRow,
   Product,
 } from '@scayle/storefront-nuxt'
-import { Size } from '~/constants'
+import { Size } from '#imports'
 
 // TODO use computed property for dynamic class bindings on line 24
 const props = defineProps({

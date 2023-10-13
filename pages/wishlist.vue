@@ -47,8 +47,6 @@ import {
   Product,
   getAttributeValue,
 } from '@scayle/storefront-nuxt'
-import { ONE_SIZE_KEY, WishlistListingMetadata } from '~/constants'
-import { Action } from '~/constants/toast'
 
 const listingMetaData = {
   id: WishlistListingMetadata.ID,
@@ -95,7 +93,7 @@ const addItemToCart = async (itemKey: string, index: number) => {
   }
 
   if (!entry.variant?.id) {
-    $alert.show($i18n.t('basket.notification.select_size'), Action.CONFIRM)
+    $alert.show($i18n.t('basket.notification.select_size'), 'CONFIRM')
     return
   }
 

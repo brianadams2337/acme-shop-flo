@@ -53,7 +53,6 @@
 
 <script setup lang="ts">
 import useVuelidate from '@vuelidate/core'
-import { Action } from '~/constants/toast'
 
 const { updatePassword, fetch: refresh } = await useUser()
 const { $alert, $i18n, $validation } = useNuxtApp()
@@ -106,7 +105,7 @@ const updateUserPassword = async () => {
   } catch (err) {
     msg = $i18n.t('my_account.user.password_update_error')
   } finally {
-    $alert.show(msg, Action.CONFIRM)
+    $alert.show(msg, 'CONFIRM')
     isUpdating.value = false
 
     await useSleep(500)

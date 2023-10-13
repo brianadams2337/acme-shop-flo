@@ -4,8 +4,6 @@ import {
   Variant,
 } from '@scayle/storefront-nuxt'
 
-export const ONE_SIZE_KEY = 'one_size'
-
 export type VariantSize = {
   variantId: number
   label: string

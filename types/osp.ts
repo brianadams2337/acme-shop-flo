@@ -89,4 +89,6 @@ declare global {
   type OrderAddress = Exclude<Order['address'], undefined>['billing']
 
   type Package = ListOfPackages[0]
+
+  type DeliveryInfo = Package & { formattedStatus: string }
 }

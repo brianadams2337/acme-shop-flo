@@ -169,7 +169,6 @@ import {
   getSizeFromVariant,
   getVariantBySize,
 } from '@scayle/storefront-nuxt'
-import { ONE_SIZE_KEY, WishlistListingMetadata } from '~/constants'
 
 const props = defineProps({
   index: {

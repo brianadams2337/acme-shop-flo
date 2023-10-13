@@ -54,9 +54,9 @@ import {
   getFirstAttributeValue,
   getLowestPrice,
   isFirstIndexOfRow,
-  Product as BapiProduct,
+  Product,
 } from '@scayle/storefront-nuxt'
-import { Size } from '~/constants'
+import { Size } from '#imports'
 
 const props = defineProps({
   loading: {
@@ -64,7 +64,7 @@ const props = defineProps({
     default: false,
   },
   products: {
-    type: Array as PropType<BapiProduct[]>,
+    type: Array as PropType<Product[]>,
     default: () => [],
   },
   size: {
@@ -78,13 +78,13 @@ const props = defineProps({
 })
 
 const emit = defineEmits<{
-  (e: 'intersect:column', value: { row: number; items: BapiProduct[] }): void
-  (e: 'click:recommendation', value: BapiProduct, i: number): void
+  (e: 'intersect:column', value: { row: number; items: Product[] }): void
+  (e: 'click:recommendation', value: Product, i: number): void
 }>()
 
 const { isGreaterOrEquals } = useViewport()
 
-const trackingCollector = ref<BapiProduct[]>([])
+const trackingCollector = ref<Product[]>([])
 const carousel = ref<HTMLDivElement>()
 const carouselStyles = ref({
   transition: '1s ease',

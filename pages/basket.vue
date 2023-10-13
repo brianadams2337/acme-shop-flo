@@ -26,7 +26,6 @@
             :key="item.key"
             @delete="removeItem(item)">
             <BasketCard
-              data-test-id="basket-card"
               class="w-full"
               :item="item"
               :index="index"

@@ -2,6 +2,7 @@
   <FadeInTransition>
     <div
       v-if="state === 'default'"
+      data-test-id="basket-card"
       class="w-full rounded border border-gray-350 p-4 text-sm lg:p-5">
       <div class="flex w-full" :class="{ 'opacity-50': !inStock }">
         <div

@@ -106,7 +106,7 @@ and variable which TS smartly resolves it depends on the usage). This way we hav
 everything encapsulated at one place and the advantage is flexibility and scalability
 (e.g If we want to add one more Button type, we'll just add it on one place).
 This folder is auto-imported but still for the same name variables & types we still need
-to import it explicitly from `#imports` because if not type will not be resolved properly.
+to import them explicitly from `#imports` because, if not, type will not be resolved properly.
 For raw constants you can simply use the auto-import feature.
 
 Example:

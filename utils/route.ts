@@ -6,6 +6,7 @@ import {
   ProductSuggestion,
   BrandOrCategorySuggestion,
 } from '@scayle/storefront-nuxt'
+import { NavigateToOptions } from 'nuxt/dist/app/composables/router'
 import { RouteLocationRaw } from '#vue-router'
 
 const getCategoryPath = (category: Category) => {
@@ -16,8 +17,17 @@ const getCategoryPath = (category: Category) => {
 }
 
 export const toLocalePath = (route: RouteLocationRaw): RouteLocationRaw => {
+  const router = useRouter()
   const localePath = useLocalePath()
-  return localePath(route) || route
+  return localePath(router.resolve(route)) || route
+}
+
+export const localizedNavigateTo = (
+  route: RouteLocationRaw,
+  options?: NavigateToOptions,
+) => {
+  const routePath = toLocalePath(route)
+  return navigateTo(routePath, options)
 }
 
 export const getProductDetailRoute = (
@@ -65,13 +75,11 @@ export const getSearchSuggestionPath = (
     return
   }
 
-  const product = (suggestion as ProductSuggestion).product
-  if (product) {
-    return getProductDetailPath(product)
+  if ('product' in suggestion) {
+    return getProductDetailPath(suggestion.product)
   }
 
-  const category = (suggestion as BrandOrCategorySuggestion).category
-  const brand = (suggestion as BrandOrCategorySuggestion).brand
+  const { category, brand } = suggestion
   const route =
     category && brand
       ? `${getCategoryPath(category)}?brand=${brand?.id}`

@@ -75,7 +75,6 @@
 <script lang="ts" setup>
 const basket = await useBasket()
 const { isLoggedIn } = await useUser()
-const router = useRouter()
 const { $i18n } = useNuxtApp()
 
 const { trackBeginCheckout } = useTrackingEvents()
@@ -93,7 +92,7 @@ const onClickToCheckoutOrder = async () => {
     ? routeList.checkout.name
     : routeList.signin.name
 
-  await router.push(toLocalePath({ name: routeName }))
+  await localizedNavigateTo({ name: routeName })
 }
 
 const sellingPoints = computed(() => [

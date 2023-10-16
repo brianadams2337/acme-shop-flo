@@ -77,7 +77,6 @@ const { data, search, searchQuery, resetSearch, pending } = useSearch({
   },
 })
 
-const router = useRouter()
 const input = ref()
 
 const { trackSearchSuggestionClick } = useTrackingEvents()
@@ -126,7 +125,7 @@ const trackSuggestionClickAndClose = (
 }
 
 const openSearchPage = async () => {
-  await router.push(getSearchRoute(searchQuery.value))
+  await localizedNavigateTo(getSearchRoute(searchQuery.value))
   resetAndClose()
 }
 

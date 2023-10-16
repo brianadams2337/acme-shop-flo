@@ -67,7 +67,6 @@ const props = defineProps({
 const ORDERS_PER_PAGE = 8
 
 const route = useRoute()
-const router = useRouter()
 
 const { user } = await useUser()
 
@@ -122,7 +121,7 @@ onMounted(async () => {
     currentOrderId.value &&
     isGreaterOrEquals('md') // On mobile the user should first see the order list
   ) {
-    await router.push(getOrderDetailsRoute(currentOrderId.value))
+    await localizedNavigateTo(getOrderDetailsRoute(currentOrderId.value))
   }
   updateSlicedOrders()
 })

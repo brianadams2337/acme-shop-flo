@@ -43,7 +43,6 @@ const { $i18n } = useNuxtApp()
 const { isLoggedIn, fetching } = await useUser()
 const { lastLoggedInUser } = await useLastLoggedInUser()
 
-const router = useRouter()
 const route = useRoute()
 
 const tabs = computed(() => [
@@ -58,7 +57,5 @@ const isForgotPasswordShown = computed(() => {
 
 const isUpdatePasswordByHashShown = computed(() => !!route.query.hash)
 
-const goToSignInPage = async () => {
-  await router.push(toLocalePath({ name: routeList.signin.name }))
-}
+const goToSignInPage = () => localizedNavigateTo(routeList.signin)
 </script>

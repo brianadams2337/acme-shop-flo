@@ -87,8 +87,6 @@ defineProps({
   },
 })
 
-const router = useRouter()
-
 const { isLessThan } = useViewport()
 
 const isLessThanMdBreakpoint = computed(() => isLessThan('md'))
@@ -124,7 +122,7 @@ const trackSuggestionClickAndClose = (
 }
 
 const openSearchPage = async () => {
-  await router.push(toLocalePath(getSearchRoute(searchQuery.value)))
+  await localizedNavigateTo(getSearchRoute(searchQuery.value))
   resetAndClose()
 }
 

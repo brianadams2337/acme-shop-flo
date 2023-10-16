@@ -210,7 +210,7 @@ export const useAuthentication = async (
   const redirectUser = async (redirectTo: string) => {
     return router.currentRoute.value.fullPath === redirectTo
       ? window.location.reload()
-      : await router.push(toLocalePath(redirectTo))
+      : await localizedNavigateTo(redirectTo)
   }
 
   return {

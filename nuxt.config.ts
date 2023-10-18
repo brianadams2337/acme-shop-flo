@@ -134,8 +134,12 @@ export default defineNuxtConfig({
     '@storyblok/nuxt',
     'nuxt-viewport',
     '@zadigetvoltaire/nuxt-gtm',
+    'nuxt-vitest',
   ],
 
+  build: {
+    transpile: ['@scayle/storefront-nuxt'],
+  },
   storefront: storefrontBuildtimeConfig,
 
   // https://github.com/storyblok/storyblok-nuxt#options

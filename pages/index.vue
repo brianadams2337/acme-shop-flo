@@ -24,11 +24,6 @@ useHead({
   ],
 })
 
+defineOptions({ name: 'HomePage' })
 definePageMeta({ pageType: 'homepage' })
-</script>
-
-<script lang="ts">
-export default {
-  name: 'HomePage',
-}
 </script>

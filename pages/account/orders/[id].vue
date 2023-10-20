@@ -67,11 +67,6 @@ const itemCount = computed(() => orderDetails.value?.items?.length || 0)
 const packages = computed(() => orderDetails.value?.packages)
 const orderItems = computed(() => (orderDetails.value as Order)?.items)
 
+defineOptions({ name: 'OrderDetailsView' })
 definePageMeta({ pageType: 'account_area:order_id' })
-</script>
-
-<script lang="ts">
-export default {
-  name: 'OrderDetailsView',
-}
 </script>

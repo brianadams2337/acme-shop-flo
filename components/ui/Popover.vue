@@ -40,10 +40,6 @@ const emit = defineEmits<{
   (e: 'mouseenter'): void
   (e: 'mouseleave'): void
 }>()
-</script>
 
-<script lang="ts">
-export default {
-  name: 'AppPopover',
-}
+defineOptions({ name: 'AppPopover' })
 </script>

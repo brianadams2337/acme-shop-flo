@@ -50,10 +50,6 @@ defineProps({
     required: true,
   },
 })
-</script>
 
-<script lang="ts">
-export default {
-  name: 'CmsParagraph',
-}
+defineOptions({ name: 'CmsParagraph' })
 </script>

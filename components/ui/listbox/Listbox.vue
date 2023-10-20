@@ -30,10 +30,6 @@ onClickOutside(listboxRef, () => {
 })
 
 watch(activeValue, (value) => props.beforeInput(value) && emit('input', value))
-</script>
 
-<script lang="ts">
-export default {
-  name: 'AppListbox',
-}
+defineOptions({ name: 'AppListbox' })
 </script>

@@ -25,10 +25,6 @@ useSeoMeta({
   ogDescription: cmsSeoContent?.og_description,
   ogImage: cmsSeoContent?.og_image,
 })
-</script>
 
-<script lang="ts">
-export default {
-  name: 'CmsStory',
-}
+defineOptions({ name: 'CmsStory' })
 </script>

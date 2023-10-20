@@ -473,10 +473,6 @@ useHead(() => {
     ],
   }
 })
-</script>
 
-<script lang="ts">
-export default {
-  name: 'ProductDetailPage',
-}
+defineOptions({ name: 'ProductDetailPage' })
 </script>

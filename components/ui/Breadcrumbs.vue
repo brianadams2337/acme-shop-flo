@@ -17,6 +17,7 @@
 
 <script setup lang="ts">
 import { RouteLocationRaw } from '#vue-router'
+
 type Link = { value: string; to: RouteLocationRaw }
 
 defineProps({
@@ -25,10 +26,6 @@ defineProps({
     required: true,
   },
 })
-</script>
 
-<script lang="ts">
-export default {
-  name: 'AppBreadcrumbs',
-}
+defineOptions({ name: 'AppBreadcrumbs' })
 </script>

@@ -3,11 +3,6 @@
 </template>
 
 <script setup lang="ts">
+defineOptions({ name: 'SigninPage' })
 definePageMeta({ pageType: 'signin_page' })
-</script>
-
-<script lang="ts">
-export default {
-  name: 'SigninPage',
-}
 </script>

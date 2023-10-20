@@ -20,9 +20,6 @@ const resetErrorState = async () => {
   const redirect = toLocalePath(routeList.home).toString()
   await clearError({ redirect })
 }
-</script>
-<script lang="ts">
-export default {
-  name: 'GlobalError',
-}
+
+defineOptions({ name: 'GlobalError' })
 </script>

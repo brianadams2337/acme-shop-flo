@@ -42,12 +42,8 @@ defineProps({
 })
 
 const swiperRef = ref()
-</script>
 
-<script lang="ts">
-export default {
-  name: 'AppSlideshow',
-}
+defineOptions({ name: 'AppSlideshow' })
 </script>
 
 <style lang="css" scoped>

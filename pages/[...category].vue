@@ -378,11 +378,6 @@ useHead(() => ({
       ],
 }))
 
+defineOptions({ name: 'ProductListPage' })
 definePageMeta({ pageType: 'category_page' })
-</script>
-
-<script lang="ts">
-export default {
-  name: 'ProductListingPage',
-}
 </script>

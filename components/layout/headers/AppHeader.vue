@@ -16,7 +16,7 @@
             <IconBurger v-else class="h-6 w-6" />
           </AppButton>
         </div>
-        <Logo class="ml-4 flex-initial" :width="138" :height="32" />
+        <AppLogo class="ml-4 flex-initial" :width="138" :height="32" />
         <div class="flex flex-1 justify-end">
           <HeaderMainMenu v-if="!isCheckoutPage" />
         </div>

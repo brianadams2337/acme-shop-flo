@@ -223,11 +223,6 @@ const selectedSort = computed(() => getSortByValue(route.query.sort || '').name)
 const resultsCount = computed(() => pagination.value?.total)
 const filteredCount = computed(() => productCountData.value?.count ?? 0)
 
+defineOptions({ name: 'SearchPage' })
 definePageMeta({ pageType: 'search_result_page' })
-</script>
-
-<script lang="ts">
-export default {
-  name: 'SearchPage',
-}
 </script>

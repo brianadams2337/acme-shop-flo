@@ -85,10 +85,6 @@ const {
   lastPage,
   visiblePages: visible,
 })
-</script>
 
-<script lang="ts">
-export default {
-  name: 'AppPagination',
-}
+defineOptions({ name: 'AppPagination' })
 </script>

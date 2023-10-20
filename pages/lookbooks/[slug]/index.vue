@@ -114,11 +114,7 @@ const trackViewListing = () => {
     paginationOffset: positionOffset > -1 ? positionOffset : -1,
   })
 }
-definePageMeta({ pageType: 'lookbooks' })
-</script>
 
-<script lang="ts">
-export default {
-  name: 'LookbookPLP',
-}
+defineOptions({ name: 'LookbookPLP' })
+definePageMeta({ pageType: 'lookbooks' })
 </script>

@@ -41,10 +41,6 @@ const { stop } = useIntersectionObserver(
   },
   usePick(props, ['threshold', 'root', 'rootMargin']),
 )
-</script>
 
-<script lang="ts">
-export default {
-  name: 'IntersectionObserver',
-}
+defineOptions({ name: 'IntersectionObserver' })
 </script>

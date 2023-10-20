@@ -44,10 +44,6 @@ const badgeLabel = computed(() =>
     isSoldOut: props.product.isSoldOut,
   }),
 )
-</script>
 
-<script lang="ts">
-export default {
-  name: 'CmsProduct',
-}
+defineOptions({ name: 'CmsProduct' })
 </script>

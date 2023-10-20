@@ -51,10 +51,6 @@ onMounted(() => {
 })
 
 onUnmounted(() => timeout && clearTimeout(timeout))
-</script>
 
-<script lang="ts">
-export default {
-  name: 'AppToast',
-}
+defineOptions({ name: 'AppToast' })
 </script>

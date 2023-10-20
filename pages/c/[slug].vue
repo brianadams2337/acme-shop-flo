@@ -42,11 +42,7 @@ const {
 if (status.value === 'idle') {
   await fetchLazy(fetchBySlug(`c/${slug.value}`))
 }
-definePageMeta({ pageType: 'content_pages' })
-</script>
 
-<script lang="ts">
-export default {
-  name: 'ContentPage',
-}
+defineOptions({ name: 'ContentPage' })
+definePageMeta({ pageType: 'content_pages' })
 </script>

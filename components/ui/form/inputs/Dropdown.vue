@@ -8,9 +8,7 @@
         {{ modelValue }}
         <IconDropdown
           class="ml-0.5 mt-0.5 h-4 w-4 transition"
-          :class="{
-            'rotate-180': isDropdownVisible,
-          }" />
+          :class="{ 'rotate-180': isDropdownVisible }" />
       </AppButton>
     </div>
     <Teleport to="body">
@@ -74,10 +72,6 @@ watch(isDropdownVisible, () => {
     width: `${button.value!.offsetWidth}px`,
   }
 })
-</script>
 
-<script lang="ts">
-export default {
-  name: 'AppDropdown',
-}
+defineOptions({ name: 'AppDropdown' })
 </script>

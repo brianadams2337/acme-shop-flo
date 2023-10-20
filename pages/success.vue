@@ -132,11 +132,6 @@ const deliveryDate = computed(() => {
   return pkg?.deliveryDate
 })
 
+defineOptions({ name: 'OrderSuccessPage' })
 definePageMeta({ pageType: 'osp' })
-</script>
-
-<script lang="ts">
-export default {
-  name: 'OrderSuccessPage',
-}
 </script>

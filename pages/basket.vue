@@ -176,11 +176,6 @@ useSeoMeta({
   robots: 'noindex,follow',
 })
 
+defineOptions({ name: 'BasketPage' })
 definePageMeta({ pageType: 'basket_page' })
-</script>
-
-<script lang="ts">
-export default {
-  name: 'BasketPage',
-}
 </script>

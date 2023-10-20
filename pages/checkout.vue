@@ -61,11 +61,6 @@ const handleError = (payload = {}) => {
   })
 }
 
+defineOptions({ name: 'CheckoutPage' })
 definePageMeta({ pageType: 'checkout' })
-</script>
-
-<script lang="ts">
-export default {
-  name: 'CheckoutPage',
-}
 </script>

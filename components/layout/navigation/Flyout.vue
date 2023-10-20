@@ -20,10 +20,6 @@ defineProps({
     default: false,
   },
 })
-</script>
 
-<script lang="ts">
-export default {
-  name: 'AppFlyout',
-}
+defineOptions({ name: 'AppFlyout' })
 </script>

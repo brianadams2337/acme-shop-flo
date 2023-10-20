@@ -34,10 +34,6 @@ const sizes = computed(() => {
 
   return `xs:100vw sm:100vw md:100vw lg:${vw}vw  xl:${vw}vw  xxl:${vw}vw 2xl:${vw}vw `
 })
-</script>
 
-<script lang="ts">
-export default {
-  name: 'CmsGrid',
-}
+defineOptions({ name: 'CmsGrid' })
 </script>

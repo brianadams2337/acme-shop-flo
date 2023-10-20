@@ -117,10 +117,6 @@ const onIntersect = (_: IntersectionObserverEntry, stop: () => void) => {
   trackPromotion('view_promotion', props.blok)
   stop()
 }
-</script>
 
-<script lang="ts">
-export default {
-  name: 'CmsBanner',
-}
+defineOptions({ name: 'CmsBanner' })
 </script>

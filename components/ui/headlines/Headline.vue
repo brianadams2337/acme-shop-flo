@@ -62,10 +62,6 @@ const classes = computed(() => [
     'font-bold': props.isBold,
   },
 ])
-</script>
 
-<script lang="ts">
-export default {
-  name: 'AppHeadline',
-}
+defineOptions({ name: 'AppHeadline' })
 </script>

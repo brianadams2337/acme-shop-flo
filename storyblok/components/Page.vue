@@ -21,10 +21,6 @@ defineProps({
     required: true,
   },
 })
-</script>
 
-<script lang="ts">
-export default {
-  name: 'CmsPage',
-}
+defineOptions({ name: 'CmsPage' })
 </script>

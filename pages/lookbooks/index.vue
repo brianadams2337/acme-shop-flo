@@ -50,11 +50,7 @@ if (status.value === 'idle') {
   await fetchLazy(fetchByFolder('lookbooks', { per_page: 5 }))
 }
 const prepareForUrl = (path: string) => slugify(path)
-definePageMeta({ pageType: 'lookbooks' })
-</script>
 
-<script lang="ts">
-export default {
-  name: 'LookbooksPage',
-}
+defineOptions({ name: 'LookbooksPage' })
+definePageMeta({ pageType: 'lookbooks' })
 </script>

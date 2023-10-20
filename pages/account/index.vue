@@ -28,11 +28,6 @@ const { user } = await useUser()
 
 const orderCount = computed(() => user.value?.orderSummary?.length || 0)
 
+defineOptions({ name: 'AccountOverview' })
 definePageMeta({ pageType: 'account_area' })
-</script>
-
-<script lang="ts">
-export default {
-  name: 'AccountOverview',
-}
 </script>

@@ -79,10 +79,6 @@ useHead({
         : '',
   }),
 })
-</script>
 
-<script lang="ts">
-export default {
-  name: 'AppDefault',
-}
+defineOptions({ name: 'AppDefault' })
 </script>

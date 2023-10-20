@@ -94,7 +94,7 @@
 
     <FilterGroup v-if="isSaleActive" :label="$t('filter.only_sale')">
       <template #action>
-        <Toggle v-model="state.sale" />
+        <InputToggle v-model="state.sale" />
       </template>
     </FilterGroup>
   </div>

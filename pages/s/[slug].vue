@@ -39,10 +39,6 @@ if (status.value === 'idle') {
 if (error.value) {
   throw error.value
 }
-</script>
 
-<script lang="ts">
-export default {
-  name: 'ServicesPage',
-}
+defineOptions({ name: 'ServicesPage' })
 </script>

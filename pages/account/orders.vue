@@ -24,11 +24,6 @@ const getBreadcrumbTitle = (id: number) => {
     : $i18n.t('my_account.orders.overview')
 }
 
+defineOptions({ name: 'OrderHistoryPage' })
 definePageMeta({ pageType: 'account_area:orders' })
-</script>
-
-<script lang="ts">
-export default {
-  name: 'OrderHistoryPage',
-}
 </script>

@@ -14,11 +14,6 @@
 <script setup lang="ts">
 await useUser()
 
+defineOptions({ name: 'UserAccountDetailsPage' })
 definePageMeta({ pageType: 'account_area:user' })
-</script>
-
-<script lang="ts">
-export default {
-  name: 'UserAccountDetailsPage',
-}
 </script>

@@ -73,10 +73,6 @@ onUnmounted(() => {
   toggle(false)
   useKeyupEventListener(true)
 })
-</script>
 
-<script lang="ts">
-export default {
-  name: 'AppModal',
-}
+defineOptions({ name: 'AppModal' })
 </script>

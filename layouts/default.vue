@@ -1,6 +1,7 @@
 <template>
   <div
     class="flex min-h-screen flex-col text-primary antialiased anchor-scrolling-none">
+    <PromotionBanner />
     <HeaderMetaBar />
     <AppHeader v-bind="{ rootCategories, fetchingCategories }" />
     <ToastContainer />

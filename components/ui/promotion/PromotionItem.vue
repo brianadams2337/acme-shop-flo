@@ -1,0 +1,59 @@
+<template>
+  <div class="w-80 min-w-xs rounded-md border p-2">
+    <div class="mb-2 flex flex-col items-start rounded-md bg-blue p-4">
+      <Headline tag="h2" size="base" class="whitespace-pre-wrap">
+        {{ customData.headerText }}
+      </Headline>
+      <PromotionCountdown :until="schedule.to" class="mt-2" />
+    </div>
+
+    <div class="my-1 text-gray-500">
+      <AppButton
+        type="raw"
+        class="flex items-center justify-between text-xs font-semibold text-gray-500"
+        is-full-width
+        size="xs"
+        @click="toggleTerms">
+        {{ $t('promotion.terms') }}
+        <template #append-icon="{ _class }">
+          <IconChevronUp v-if="areTermsShown" :class="_class" />
+          <IconChevronDown v-else :class="_class" />
+        </template>
+      </AppButton>
+
+      <FadeInFromBottomTransition>
+        <div v-if="areTermsShown" class="text-2xs">
+          Lorem Ipsum is simply dummy text of the printing and typesetting
+          industry. Lorem Ipsum has been the industry's standard dummy text ever
+          since the 1500s, when an unknown printer took a galley of type and
+          scrambled it to make a type specimen book
+        </div>
+      </FadeInFromBottomTransition>
+    </div>
+  </div>
+</template>
+
+<script setup lang="ts">
+import { Promotion } from '@scayle/storefront-nuxt'
+
+const props = defineProps({
+  id: {
+    type: String as PropType<Promotion['id']>,
+    required: true,
+  },
+  customData: {
+    type: Object as PropType<Promotion['customData']>,
+    required: true,
+  },
+  schedule: {
+    type: Object as PropType<Promotion['schedule']>,
+    required: true,
+  },
+})
+
+const areTermsShown = useState(`terms-${props.id}`, () => false)
+
+const toggleTerms = () => {
+  areTermsShown.value = !areTermsShown.value
+}
+</script>

@@ -185,7 +185,11 @@ if (error.value) {
   throw error.value
 }
 
-const { fetching: basketIdle, addItem: addBasketItem } = await useBasket({
+const {
+  fetching: basketIdle,
+  data: basketData,
+  addItem: addBasketItem,
+} = await useBasket({
   options: { lazy: true, autoFetch: true },
 })
 const { addGroupToBasket } = await useBasketGroup()
@@ -325,7 +329,13 @@ const addItemToBasket = async () => {
             })),
           ],
         })
-      : await addBasketItem({ variantId: activeVariant.value.id, quantity: 1 })
+      : await addBasketItem({
+          promotionId: '65327bbae74de6e4b61dd68f',
+          variantId: activeVariant.value.id,
+          quantity: 1,
+        })
+
+    console.log({ basketData: basketData.value })
     openBasketFlyout()
 
     showAddToBasketToast(true, product.value)

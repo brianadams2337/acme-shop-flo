@@ -1,7 +1,7 @@
 <template>
   <div
-    class="w-full overflow-hidden bg-secondary-450"
-    :class="{ ...heightClasses, 'rounded-md': rounded }">
+    class="w-full overflow-hidden"
+    :class="[{ ...heightClasses, 'rounded-md': rounded }, backgroundColor]">
     <div
       :class="colorClasses"
       :style="{ width: `${progress}%` }"
@@ -17,7 +17,9 @@ const props = defineProps({
   },
   type: {
     type: String,
-    validator: (type: string) => ['success', 'warn', 'danger'].includes(type),
+    validator: (type: string) => {
+      return ['success', 'warn', 'danger', 'neutral'].includes(type)
+    },
     default: 'success',
   },
   fullWidth: {
@@ -33,6 +35,10 @@ const props = defineProps({
     validator: (height: string) => ['xs', 'sm', 'md'].includes(height),
     default: 'sm',
   },
+  backgroundColor: {
+    type: String,
+    default: 'bg-secondary-450',
+  },
 })
 
 const heightClasses = computed(() => ({
@@ -45,5 +51,6 @@ const colorClasses = computed(() => ({
   'bg-green-500': props.type === 'success',
   'bg-yellow-400': props.type === 'warn',
   'bg-red-500': props.type === 'danger',
+  'bg-white': props.type === 'neutral',
 }))
 </script>

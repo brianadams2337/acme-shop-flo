@@ -63,6 +63,7 @@ export const ButtonType = {
   SECONDARY: 'secondary',
   TERTIARY: 'tertiary',
   GHOST: 'ghost',
+  RAW: 'raw',
 } as const
 
 export type ButtonType = ValuesType<typeof ButtonType>

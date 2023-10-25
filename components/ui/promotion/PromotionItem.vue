@@ -10,14 +10,17 @@
       <PromotionCountdown :until="schedule.to" class="mt-2" />
     </div>
 
-    <div class="my-1 text-gray-500">
+    <div class="mt-1 text-gray-500">
       <AppButton
         type="raw"
         class="flex items-center justify-between text-xs font-semibold text-gray-500"
         is-full-width
         size="xs"
         @click="toggleTerms">
-        {{ $t('promotion.terms') }}
+        <span class="inline-flex items-center">
+          <IconInfoOutline class="mr-1 h-4 w-4" />
+          {{ $t('promotion.terms') }}
+        </span>
         <template #append-icon="{ _class }">
           <IconChevronUp v-if="areTermsShown" :class="_class" />
           <IconChevronDown v-else :class="_class" />

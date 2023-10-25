@@ -60,11 +60,8 @@ const formatValue = (value: number) => {
 }
 
 onMounted(() => {
-  console.log({ jej: props.until })
   update()
   intervalId = setInterval(update, 1000)
-
-  console.log({ intervalId })
 })
 
 onUnmounted(() => clearInterval(intervalId))

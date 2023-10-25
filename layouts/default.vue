@@ -79,10 +79,12 @@ const { isOpen: isModalOpen } = useModal()
 
 useHead({
   bodyAttrs: () => ({
-    class:
+    class: [
+      'relative',
       isSideNavigationOpen.value || isModalOpen.value
         ? 'overflow-hidden h-full'
         : '',
+    ],
   }),
 })
 

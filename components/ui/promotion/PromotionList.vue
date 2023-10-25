@@ -1,9 +1,7 @@
 <template>
-  <FadeInFromBottomTransition :duration="500">
-    <div
-      v-if="isShown"
-      class="absolute top-[3.25rem] z-50 h-[100vh] w-full bg-primary/50">
-      <div ref="promotionListRef" class="relative bg-primary p-5 text-white">
+  <SlideInFromTopTransition>
+    <div v-if="isShown" class="fixed right-0 top-[3.25rem] z-60 w-full">
+      <div class="relative bg-primary p-5 text-white">
         <div class="flex w-full items-start justify-center overflow-x-scroll">
           <PromotionItem
             v-for="item in items"
@@ -16,7 +14,7 @@
           size="xs"
           fab
           no-padding
-          class="absolute -bottom-3 right-[50%] z-[200] bg-black !p-1"
+          class="absolute -bottom-3 right-[50%] z-[200] bg-primary !p-1"
           @click="toggle()">
           <template #icon="{ _class }">
             <IconCloseBold :class="_class" class="text-white" />
@@ -24,13 +22,14 @@
         </AppButton>
       </div>
     </div>
-  </FadeInFromBottomTransition>
+  </SlideInFromTopTransition>
+  <Overlay v-if="isShown" />
 </template>
 
 <script setup lang="ts">
 import { Promotion } from '@scayle/storefront-nuxt'
 
-defineProps({
+const props = defineProps({
   items: {
     type: Array as PropType<Promotion[]>,
     required: true,
@@ -40,5 +39,5 @@ defineProps({
 const { isPromotionListShown: isShown, togglePromotionList: toggle } =
   usePromotionActions()
 
-const promotionListRef = ref()
+onServerPrefetch(() => props.items.length > 1 && toggle())
 </script>

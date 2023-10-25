@@ -2,8 +2,8 @@
   <div class="relative w-80 min-w-xs overflow-hidden rounded-md border p-2">
     <PromotionActiveChip v-if="isActive" />
     <div
-      class="mb-2 flex flex-col items-start rounded-md p-4"
-      :class="colorClass">
+      class="mb-2 flex flex-col items-start rounded-md bg-blue p-4"
+      :style="colorStyle">
       <Headline tag="h2" size="base" class="whitespace-pre-wrap">
         {{ customData.headerText }}
       </Headline>
@@ -63,8 +63,10 @@ const props = defineProps({
 
 const areTermsShown = useState(`terms-${props.id}`, () => false)
 
-const colorClass = computed(() => {
-  return props.customData.cardBackgroundClass || 'bg-blue'
+const colorStyle = computed(() => {
+  const cardColorHex = props.customData.cardColorHex
+
+  return { ...(!!cardColorHex && { backgroundColor: String(cardColorHex) }) }
 })
 
 const toggleTerms = () => {

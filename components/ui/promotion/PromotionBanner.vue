@@ -6,6 +6,7 @@
     <PromotionHeadline
       v-if="firstPromotion.customData.headlineChunks"
       :headline-chunks="firstPromotion.customData.headlineChunks"
+      is-all-uppercased
       show-info-icon />
     <div class="flex">
       <PromotionProgressBar

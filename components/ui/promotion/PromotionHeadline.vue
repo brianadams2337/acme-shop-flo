@@ -1,14 +1,16 @@
 <template>
-  <div class="flex items-center text-white">
-    <h1 class="mr-1" :class="{ 'flex flex-col': isColumn }">
+  <div
+    class="flex items-center text-white"
+    :class="{ uppercase: isAllUppercased }">
+    <h1 class="mr-1 flex items-center" :class="{ 'flex-col': isColumn }">
       <span
         class="mr-2 font-bold uppercase"
-        :class="size !== 'sm' ? 'text-lg' : 'text-sm'">
+        :class="size !== 'sm' ? 'text-lg' : 'text-md'">
         {{ headline.offerText }}
       </span>
       <span
         class="text-base font-semibold"
-        :class="size !== 'sm' ? 'text-md' : 'text-xs'">
+        :class="size !== 'sm' ? 'text-sm' : 'text-xs'">
         {{ headline.conditionText }}
       </span>
     </h1>
@@ -31,6 +33,10 @@ const props = defineProps({
     default: 'base',
   },
   isColumn: {
+    type: Boolean,
+    default: false,
+  },
+  isAllUppercased: {
     type: Boolean,
     default: false,
   },

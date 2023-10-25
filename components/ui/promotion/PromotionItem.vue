@@ -7,8 +7,8 @@
       <PromotionHeadline
         v-if="customData.headlineChunks"
         :headline-chunks="customData.headlineChunks"
-        is-column
-        size="sm" />
+        size="sm"
+        is-column />
       <PromotionCountdown :until="schedule.to" class="mt-2" />
     </div>
 

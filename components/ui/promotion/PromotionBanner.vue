@@ -3,7 +3,10 @@
     class="sticky top-0 z-[80] flex h-[3.25rem] cursor-pointer items-center justify-between gap-1 overflow-hidden bg-blue px-4 py-2 text-sm text-white"
     @click="togglePromotionList()">
     <PromotionCountdown :until="firstPromotion.schedule.to" />
-    <PromotionHeadline :title="String(firstPromotion.customData.headerText)" />
+    <PromotionHeadline
+      v-if="firstPromotion.customData.headlineChunks"
+      :headline-chunks="firstPromotion.customData.headlineChunks"
+      show-info-icon />
     <div class="flex">
       <PromotionProgressBar
         v-if="firstPromotion.customData.minOrderValue"

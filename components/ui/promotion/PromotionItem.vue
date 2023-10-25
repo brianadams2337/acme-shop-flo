@@ -4,9 +4,11 @@
     <div
       class="mb-2 flex flex-col items-start rounded-md bg-blue p-4"
       :style="colorStyle">
-      <Headline tag="h2" size="base" class="whitespace-pre-wrap">
-        {{ customData.headerText }}
-      </Headline>
+      <PromotionHeadline
+        v-if="customData.headlineChunks"
+        :headline-chunks="customData.headlineChunks"
+        is-column
+        size="sm" />
       <PromotionCountdown :until="schedule.to" class="mt-2" />
     </div>
 
@@ -29,10 +31,7 @@
 
       <FadeInFromBottomTransition>
         <div v-if="areTermsShown" class="text-2xs">
-          Lorem Ipsum is simply dummy text of the printing and typesetting
-          industry. Lorem Ipsum has been the industry's standard dummy text ever
-          since the 1500s, when an unknown printer took a galley of type and
-          scrambled it to make a type specimen book
+          {{ customData.terms }}
         </div>
       </FadeInFromBottomTransition>
     </div>

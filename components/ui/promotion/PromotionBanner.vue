@@ -18,7 +18,7 @@
           :min-order-value="+firstPromotion.customData.minOrderValue" />
         <ShowDealsButton
           v-else-if="firstPromotion.customData.category"
-          :category="firstPromotion.customData.category"
+          :category="String(firstPromotion.customData.category)"
           class="mr-3" />
       </div>
     </div>

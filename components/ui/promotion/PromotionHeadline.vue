@@ -5,14 +5,10 @@
     <h1
       class="mr-1 flex flex-wrap items-center"
       :class="{ 'flex-col !items-start': isColumn }">
-      <span
-        class="mr-2 font-bold uppercase"
-        :class="size !== 'sm' ? 'text-lg' : 'text-md'">
+      <span class="mr-2 font-bold uppercase" :class="offerTextClass">
         {{ headline.offerText }}
       </span>
-      <span
-        class="text-base font-semibold"
-        :class="size !== 'sm' ? 'text-sm' : 'text-xs'">
+      <span class="text-base font-semibold" :class="conditionTextClass">
         {{ headline.conditionText }}
       </span>
     </h1>
@@ -21,18 +17,23 @@
 </template>
 
 <script setup lang="ts">
+import { PromotionHeadlineSize } from '#imports'
+
 const props = defineProps({
   headlineParts: {
     type: Array as PropType<string[]>,
     required: true,
   },
+  size: {
+    type: String as PropType<PromotionHeadlineSize>,
+    default: PromotionHeadlineSize.BASE,
+    validator: (val: PromotionHeadlineSize) => {
+      return Object.values(PromotionHeadlineSize).includes(val)
+    },
+  },
   showInfoIcon: {
     type: Boolean,
     default: false,
-  },
-  size: {
-    type: String as PropType<'base' | 'sm'>,
-    default: 'base',
   },
   isColumn: {
     type: Boolean,
@@ -47,5 +48,13 @@ const props = defineProps({
 const headline = computed(() => {
   const [offerText, conditionText] = props.headlineParts
   return { offerText, conditionText }
+})
+
+const offerTextClass = computed(() => {
+  return props.size !== PromotionHeadlineSize.SM ? 'text-lg' : 'text-md'
+})
+
+const conditionTextClass = computed(() => {
+  return props.size !== PromotionHeadlineSize.SM ? 'text-sm' : 'text-xs'
 })
 </script>

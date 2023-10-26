@@ -1,15 +1,21 @@
 <template>
-  <ClientOnly>
-    <template #fallback>
-      <SkeletonLoader class="h-6 !w-[8.875rem]" />
-    </template>
-    <FadeInTransition>
-      <div class="inline-flex items-center rounded border p-[1px]">
-        <IconClockOutline class="ml-1.5 h-5 w-5 text-white" />
+  <div class="inline-flex h-6 items-center rounded border p-px">
+    <IconClockOutline class="ml-1.5 h-5 w-5 text-white" />
+    <ClientOnly>
+      <template #fallback>
+        <div class="mx-0.5 flex">
+          <SkeletonLoader
+            v-for="n in 4"
+            :key="n"
+            type="custom"
+            class="mx-1.5 h-3 !w-3.5 rounded-md" />
+        </div>
+      </template>
+      <FadeInTransition>
         <Countdown :until="until" />
-      </div>
-    </FadeInTransition>
-  </ClientOnly>
+      </FadeInTransition>
+    </ClientOnly>
+  </div>
 </template>
 
 <script setup lang="ts">

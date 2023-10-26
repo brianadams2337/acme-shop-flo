@@ -12,18 +12,13 @@
       is-all-uppercased
       show-info-icon
       class="flex-1 justify-center" />
-    <div class="flex-1">
-      <div class="mr-[7.25rem] flex h-full justify-end">
-        <PromotionProgress
-          v-if="minOrderValue"
-          :min-order-value="minOrderValue" />
-        <ShowDealsButton
-          v-else-if="category"
-          :category="category"
-          class="mr-3" />
-      </div>
+    <div class="flex h-full flex-1 justify-end">
+      <PromotionProgress
+        v-if="minOrderValue"
+        :min-order-value="minOrderValue" />
+      <ShowDealsButton v-else-if="category" :category="category" class="mr-3" />
+      <MyDealsButton class="self-center" />
     </div>
-    <MyDealsButton class="absolute right-0 top-0" />
   </div>
   <PromotionList :items="promotions" />
 </template>

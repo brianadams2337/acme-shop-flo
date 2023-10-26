@@ -21,15 +21,15 @@
     "sign_in_label": "Anmelden"
   },
   "promotion": {
-    "progress_left": "{amount} left",
-    "terms": "Promotion Terms & Conditions",
-    "active_label": "Active",
-    "show_deals_label": "Show deal items",
-    "my_deals_label": "My deals",
+    "progress_left": "{amount} übrig",
+    "terms": "Allgemeine Geschäftsbedingungen für Werbeaktionen",
+    "active_label": "Aktiv",
+    "show_deals_label": "Deal-Artikel anzeigen",
+    "my_deals_label": "Meine Angebote",
     "full_progress_message": {
-      "first_part": "You are",
-      "middle_part": "saving {amount}",
-      "last_part": "on your order"
+      "first_part": "Sie",
+      "middle_part": "sparen {amount}",
+      "last_part": "bei Ihrer Bestellung"
     }
   },
   "validation": {

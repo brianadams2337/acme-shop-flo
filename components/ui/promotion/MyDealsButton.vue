@@ -2,7 +2,7 @@
   <AppButton
     type="raw"
     size="sm"
-    class="h-full rounded-none border-l border-l-primary/25 text-xs font-semibold"
+    class="h-[3.25rem] rounded-none border-l border-l-primary/25 text-xs font-semibold"
     :class="{ 'bg-primary/10': isPromotionListShown }"
     is-uppercase
     @click="togglePromotionList()">

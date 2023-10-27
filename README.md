@@ -19,6 +19,9 @@ Should you encounter any errors, please reach out to your Scayle representative 
 - Order Success Page
 - Order Detail Page
 - Login / Logout (token-based only)
+- Account Area
+- Storyblok CMS Integration
+- Page Caching using Route Rules
 
 ## Prerequisites
 
@@ -35,7 +38,7 @@ If not already done, see "Common Issues / Troubleshooting" section > [## Adding 
 ### Software
 
 - `nvm`
-- `node` >= 18.17.1
+- `node` >= 20.7.0
 - `yarn` (v1)
 - `redis`
 
@@ -44,7 +47,7 @@ If not already done, see "Common Issues / Troubleshooting" section > [## Adding 
 #### Install supported Node.js Version
 
 To install the supported `Node.js` version, we recommend the usage of the **Node Version Manager**, short `nvm`.
-After successful setup of `nvm`, run `nvm install 18.17.1` or `nvm install lts/hydrogen` for to download and install the latest supported `Node.js` version.
+After successful setup of `nvm`, run `nvm install 20.7` or `nvm install lts/*` for to download and install the latest supported `Node.js` version.
 
 #### Using Redis locally
 
@@ -318,6 +321,8 @@ http_proxy=http://127.0.0.1:8080
 
 After starting both `mitmproxy` and our shop, we should be able to now see all relevant HTTP(S) requests and API calls in the `mitmweb` tab.
 
-# Testing
+## Testing
 
-For testing in Nuxt 3 we can use [Nuxt-Vitest](https://github.com/danielroe/nuxt-vitest). It is a Nuxt 3 module that allows us to use Nuxt environment in [Vitest](https://vitest.dev/). For ease of use we use `.nuxt.test.ts` or `.nuxt.spec.ts` file suffix for our tests to use nuxt env.
+For testing in Nuxt 3 we can use [Nuxt-Vitest](https://github.com/danielroe/nuxt-vitest).
+It is a Nuxt 3 module that allows us to use Nuxt environment in [Vitest](https://vitest.dev/).
+For ease of use we use `.nuxt.test.ts` or `.nuxt.spec.ts` file suffix for our tests to use nuxt env.

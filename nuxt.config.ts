@@ -93,6 +93,8 @@ export default defineNuxtConfig({
         id: process.env.NUXT_PUBLIC_GTM_ID,
         debug: !isProd,
       },
+      // Following keys are Overrideable using prefix NUXT_PUBLIC_IMAGE_BASE_URL
+      imageBaseUrl: 'https://brb-demo.cdn.aboutyou.cloud/',
       // Following keys are Overrideable using prefix NUXT_PUBLIC_
       ...(storefrontRuntimeConfigPublic as any), // TODO: Extend SFC runtimeConfig type
     },

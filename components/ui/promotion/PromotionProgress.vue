@@ -4,6 +4,7 @@
       <ProgressBar
         :progress="progress"
         rounded
+        slanted
         type="neutral"
         background-color="bg-white/20"
         class="mr-2 !max-w-[12.5rem]" />

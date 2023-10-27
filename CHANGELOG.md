@@ -1,5 +1,19 @@
 # @scayle/storefront-boilerplate-nuxt
 
+## 1.0.0-rc.04
+
+### Major Changes
+
+- ...
+
+### Minor Changes
+
+- ...
+
+### Patch Changes
+
+- ...
+
 ## 1.0.0-rc.03
 
 ### Major Changes
@@ -8,7 +22,6 @@
 - Introduced page caching using [Route Rules](https://nuxt.com/docs/guide/concepts/rendering#route-rules)
 - Replacing AuthGuard component with router middleware
 - Use `defineOptions` for `vue` component naming
-
 
 ### Minor Changes
 
@@ -32,7 +45,6 @@
 ### Minor Changes
 
 - Upgrade to Nuxt 3.7.4
-
 
 ### Patch Changes
 

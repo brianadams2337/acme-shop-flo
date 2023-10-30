@@ -7,7 +7,7 @@ services:
       - '6379:6379'
     restart: always
 
-  nginx:
+  web:
     build:
       context: ./
       dockerfile: docker/nginx/Dockerfile
@@ -34,6 +34,8 @@ services:
     environment:
       - HTTPS_KEY=
       - HTTPS_CERT=
+      - NITRO_HOST=node
+      - NITRO_PORT=3000
       - NUXT_STOREFRONT_REDIS_HOST=redis
       - NUXT_STOREFRONT_REDIS_PORT=6379
       - NUXT_STOREFRONT_REDIS_PREFIX=redis://

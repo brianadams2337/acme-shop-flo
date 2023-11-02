@@ -26,7 +26,7 @@
     "cy:run": "cypress run",
     "start:node": "node .output/server/index.mjs",
     "storyblok:download": "env-cmd -f .env.storyblok -x storyblok pull-components --space \\$STORYBLOK_SPACE_ID",
-    "storyblok:generate": "node scripts/storyblok-generate.cjs",
+    "storyblok:generate": "node scripts/storyblok-generate.cjs && prettier --write cms/storyblok/types/storyblok.gen.d.ts",
     "storyblok:login": "env-cmd -f .env.storyblok -x storyblok login --token \\$STORYBLOK_PERSONAL_TOKEN --region eu",
     "storyblok:unused": "node scripts/storyblok-unused.cjs",
     "test": "vitest",
@@ -34,7 +34,6 @@
     "coverage": "vitest run --coverage"
   },
   "devDependencies": {
-    "@aboutyou/storyblok-generate-ts": "1.14.0",
     "@crowdin/cli": "3.15.0",
     "@nuxt/devtools": "latest",
     "@nuxt/image": "1.0.0",
@@ -67,6 +66,7 @@
     "prettier": "3.0.3",
     "prettier-plugin-tailwindcss": "0.5.6",
     "storyblok": "3.25.3",
+    "storyblok-generate-ts": "1.16.0",
     "stylelint": "15.11.0",
     "stylelint-config-prettier": "9.0.5",
     "stylelint-config-standard": "34.0.0",

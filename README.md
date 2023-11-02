@@ -30,11 +30,6 @@ Before starting with this Boilerplate, we recommend to get familiar with Nuxt 3 
 - [Nuxt 3 Introduction](https://nuxt.com/docs/getting-started/introduction)
 - [Vue 3 Introduction](https://vuejs.org/guide/introduction.html)
 
-### Access
-
-Make sure you have access to the private package registry to access packages like `@scayle/storefront-nuxt` and `@scayle/storefront-core`.
-If not already done, see "Common Issues / Troubleshooting" section > [## Adding @aboutyou package registry](#adding-aboutyou-package-registry).
-
 ### Software
 
 - `nvm`
@@ -175,33 +170,6 @@ yarn start
 ```
 
 Use http://localhost:3000/ to open the shop
-
-## Adding @scayle and @aboutyou package registry
-
-Certain NPM package prefixed with `@aboutyou` and `@scayle` are not publicly available through `npmjs.org`,
-or other public package registries, but will be installed from our own internal package registry.
-Therefore we need to create a personal deploy token to get access to this registry.
-
-The deploy token will be created for you.
-
-Afterwards, please configure your local `npm` setup to allow access to the private `@aboutyou` package registry.
-The following command should be executed in your terminal and will modify your local `~/.npmrc` file but not the projects `.npmrc` file:
-
-- [Gitlab Docs: Project Level NPM Endpoint](https://docs.gitlab.com/ee/user/packages/npm_registry/#project-level-npm-endpoint)
-
-```sh
-npm config set @aboutyou:registry https://gitlab.com/api/v4/projects/29746107/packages/npm/
-npm config set -- '//gitlab.com/api/v4/packages/npm/:_authToken' "<TOKEN>"
-npm config set -- '//gitlab.com/api/v4/projects/29746107/packages/npm/:_authToken' "<TOKEN>"
-```
-
-Your global local `~/.npmrc` file should look similar to this afterwards:
-
-```ini
-@aboutyou:registry=https://gitlab.com/api/v4/projects/29746107/packages/npm/
-//gitlab.com/api/v4/packages/npm/:_authToken=<TOKEN>
-//gitlab.com/api/v4/projects/29746107/packages/npm/:_authToken=<TOKEN>
-```
 
 ## Using @scayle/storefront-nuxt package locally
 

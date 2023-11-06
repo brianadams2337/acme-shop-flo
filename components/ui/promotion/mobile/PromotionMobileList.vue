@@ -1,7 +1,8 @@
 <template>
   <div
     ref="promotionList"
-    class="fixed bottom-0 right-0 z-60 w-full overflow-hidden rounded-t-xl md:hidden">
+    class="fixed bottom-0 right-0 z-60 w-full overflow-hidden rounded-t-xl md:hidden"
+  >
     <div class="relative flex flex-col bg-primary px-4 pb-4 text-white">
       <div class="flex justify-center p-4">
         <Headline tag="h2" size="lg">
@@ -14,7 +15,8 @@
           v-for="item in items"
           :key="item.id"
           v-bind="item"
-          class="mr-4" />
+          class="mr-4"
+        />
       </div>
     </div>
   </div>

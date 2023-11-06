@@ -27,7 +27,7 @@
 <script setup lang="ts">
 const props = defineProps({
   promotions: {
-    type: Object as PropType<Promotion[]>,
+    type: Array as PropType<Promotion[]>,
     required: true,
   },
 })

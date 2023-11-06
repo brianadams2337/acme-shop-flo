@@ -15,7 +15,7 @@
     <div class="flex h-full flex-1 justify-end">
       <PromotionProgress
         v-if="minOrderValue"
-        :min-order-value="minOrderValue"
+        v-bind="{ minOrderValue, currentPromotion }"
         class="mr-2.5" />
       <ShowDealsButton v-else-if="category" :category="category" class="mr-3" />
       <MyDealsButton class="self-center" />
@@ -27,7 +27,7 @@
 <script setup lang="ts">
 const props = defineProps({
   promotions: {
-    type: Object as PropType<Promotion[]>,
+    type: Array as PropType<Promotion[]>,
     required: true,
   },
 })

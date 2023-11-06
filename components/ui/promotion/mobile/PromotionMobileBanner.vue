@@ -8,17 +8,20 @@
       @click="togglePromotionList()">
       <div class="mb-2.5 flex w-full justify-between">
         <PromotionHeadline
-          v-if="headlineParts"
+          v-if="headlineParts && (!isFullProgress || isGreaterOrEquals('md'))"
           :headline-parts="headlineParts"
           size="sm"
           is-all-uppercased
           show-info-icon
           class="mr-4 flex-1" />
+        <PromotionFullProgressLabel
+          v-if="isFullProgress && isLessThan('md')"
+          v-bind="{ minOrderValue, currentPromotion }" />
         <PromotionCountdown :until="currentPromotion.schedule.to" />
       </div>
       <PromotionProgress
         v-if="minOrderValue"
-        :min-order-value="minOrderValue"
+        v-bind="{ minOrderValue, currentPromotion }"
         is-full-width />
     </div>
   </FadeInTransition>
@@ -27,12 +30,15 @@
 <script setup lang="ts">
 const props = defineProps({
   promotions: {
-    type: Object as PropType<Promotion[]>,
+    type: Array as PropType<Promotion[]>,
     required: true,
   },
 })
 
+const { isGreaterOrEquals, isLessThan } = useViewport()
 const { currentPromotion } = usePromotionChange(props.promotions)
+const { isFullProgress } = await usePromotionProgress(currentPromotion.value)
+
 const { togglePromotionList, isPromotionListShown } = usePromotionActions()
 
 const headlineParts = computed(() => {

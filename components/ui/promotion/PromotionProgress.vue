@@ -1,8 +1,8 @@
 <template>
   <div
     class="flex items-center justify-center"
-    :class="isFullWidth ? 'w-full' : 'w-[19.5rem]'">
-    <template v-if="!isFullProgress">
+    :class="isFullWidth ? 'w-full !justify-start' : 'w-[19.5rem]'">
+    <template v-if="!isFullProgress || isLessThan('md')">
       <ProgressBar
         :progress="progress"
         rounded
@@ -15,18 +15,9 @@
         {{ $t('promotion.progress_left', { amount: formattedAmount }) }}
       </span>
     </template>
-    <p v-else class="font-medium">
-      🎉
-      {{ $t('promotion.full_progress_message.first_part') }}
-      <span class="font-bold">
-        {{
-          $t('promotion.full_progress_message.middle_part', {
-            amount: formattedAmount,
-          })
-        }}
-      </span>
-      {{ $t('promotion.full_progress_message.last_part') }}
-    </p>
+    <PromotionFullProgressLabel
+      v-if="isFullProgress && isGreaterOrEquals('md')"
+      v-bind="{ minOrderValue, currentPromotion }" />
   </div>
 </template>
 
@@ -40,18 +31,14 @@ const props = defineProps({
     type: Boolean,
     default: false,
   },
+  currentPromotion: {
+    type: Object as PropType<Promotion>,
+    required: true,
+  },
 })
 
-const { isGreaterOrEquals } = useViewport()
+const { isGreaterOrEquals, isLessThan } = useViewport()
 
-const { data: basketData } = await useBasket()
-
-const minOrderAmount = computed(() => divideWithHundred(props.minOrderValue))
-const formattedAmount = computed(() => toCurrency(props.minOrderValue))
-
-const progress = computed(() => {
-  return Math.ceil(basketData.value.cost.withTax / minOrderAmount.value)
-})
-
-const isFullProgress = computed(() => progress.value >= 100)
+const { progress, isFullProgress, formattedAmount } =
+  await usePromotionProgress(props.currentPromotion)
 </script>

@@ -15,12 +15,12 @@
         @clear-error="resetErrorState" />
       <slot v-else />
     </div>
-    <PromotionMobileBanner
-      v-if="!isPromotionDataFetching && isLessThan('md')"
-      :promotions="promotionData.entities" />
     <NuxtLazyHydrate placeholder-ratio="16/9" when-visible>
       <AppFooter class="mt-16" />
     </NuxtLazyHydrate>
+    <PromotionMobileBanner
+      v-if="!isPromotionDataFetching && isLessThan('md')"
+      :promotions="promotionData.entities" />
   </div>
 </template>
 

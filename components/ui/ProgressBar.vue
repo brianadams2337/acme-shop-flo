@@ -59,7 +59,7 @@ const colorClasses = computed(() => ({
 }))
 
 const slantedBarClass = computed(() => {
-  if (!props.progress) {
+  if (props.progress > 100) {
     return ''
   }
   if (!props.slanted) {

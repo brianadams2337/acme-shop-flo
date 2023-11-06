@@ -7,6 +7,9 @@ export default async (currentPromotion: Promotion) => {
   const minOrderAmount = computed(() => divideWithHundred(minOrderValue.value))
 
   const progress = computed(() => {
+    if (!minOrderValue.value) {
+      return
+    }
     return basketData.value.cost.withTax / minOrderAmount.value
   })
 

@@ -1,5 +1,3 @@
-const SHOW_PROMOTIONS_DELAY = 5000
-
 export default (promotions: Promotion[]) => {
   const currentPromotion = useState<Promotion>(
     'current-promotion',
@@ -14,7 +12,7 @@ export default (promotions: Promotion[]) => {
       const idx = isLast ? 0 : currentIdx + 1
       currentPromotion.value = promotions[idx]
       showNextPromotion(idx)
-    }, SHOW_PROMOTIONS_DELAY)
+    }, PROMOTIONS_CHANGE_DELAY)
   }
 
   onMounted(() => showNextPromotion())

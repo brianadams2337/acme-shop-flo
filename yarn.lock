@@ -1243,7 +1243,7 @@
   optionalDependencies:
     ipx "^2.0.0"
 
-"@nuxt/kit@3.7.4", "@nuxt/kit@^3.3.2", "@nuxt/kit@^3.4.0", "@nuxt/kit@^3.5.1", "@nuxt/kit@^3.5.3", "@nuxt/kit@^3.6.5", "@nuxt/kit@^3.7.0", "@nuxt/kit@^3.7.4":
+"@nuxt/kit@3.7.4", "@nuxt/kit@^3.3.2", "@nuxt/kit@^3.4.0", "@nuxt/kit@^3.5.1", "@nuxt/kit@^3.5.3", "@nuxt/kit@^3.7.0", "@nuxt/kit@^3.7.4":
   version "3.7.4"
   resolved "https://registry.yarnpkg.com/@nuxt/kit/-/kit-3.7.4.tgz#31c0bd57397cc56a1098af5d6504353cc2e855a2"
   integrity sha512-/S5abZL62BITCvC/TY3KWA6N721U1Osln3cQdBb56XHIeafZCBVqTi92Xb0o7ovl72mMRhrKwRu7elzvz9oT/g==
@@ -1827,16 +1827,16 @@
   dependencies:
     storyblok-js-client "^5.14.2"
 
-"@storyblok/nuxt@5.7.4":
-  version "5.7.4"
-  resolved "https://registry.yarnpkg.com/@storyblok/nuxt/-/nuxt-5.7.4.tgz#29667312c09786f0eac2a179936f36ab44128079"
-  integrity sha512-8ge3HO+B7bHFFNKmMkPJ35ctwQvxokwQx/x/xe95alD3aaD+cqMxjpOeEKi3K3szPEn+pp44AKmQeiIPAHv3KQ==
+"@storyblok/nuxt@5.7.5":
+  version "5.7.5"
+  resolved "https://registry.yarnpkg.com/@storyblok/nuxt/-/nuxt-5.7.5.tgz#6bc7a752a23d6a2e21dc4ee6d0c3aee1fbdcff91"
+  integrity sha512-ebfvheYmrZOPuuBft622g1xQ0d5aif+JHEy1P7WSavsv2NwVmJsiRRHKOp4M2dY7slL43bMM2DFcpVS5sZhwmg==
   dependencies:
-    "@nuxt/kit" "^3.6.5"
-    "@storyblok/vue" "^7.1.11"
-    prettier "^3.0.0"
+    "@nuxt/kit" "^3.8.0"
+    "@storyblok/vue" "^7.3.1"
+    prettier "^3.0.3"
 
-"@storyblok/vue@^7.1.11":
+"@storyblok/vue@^7.3.1":
   version "7.3.1"
   resolved "https://registry.yarnpkg.com/@storyblok/vue/-/vue-7.3.1.tgz#da435ee52afced53d510e53c4b6c3058ec0ebc1d"
   integrity sha512-13XdbE7RGzUU/efHL4R/OsUFw7iLTZ+2ZjeDW+mhJUKCF/HiwHYwAY1cJX1dXxGD6rOkKoV16XPehoJdpSA3+A==
@@ -8925,7 +8925,7 @@ prettier-plugin-tailwindcss@0.5.6:
   resolved "https://registry.yarnpkg.com/prettier-plugin-tailwindcss/-/prettier-plugin-tailwindcss-0.5.6.tgz#8e511857a49bf127f078985f52b04a70e8e92285"
   integrity sha512-2Xgb+GQlkPAUCFi3sV+NOYcSI5XgduvDBL2Zt/hwJudeKXkyvRS65c38SB0yb9UB40+1rL83I6m0RtlOQ8eHdg==
 
-prettier@3.0.3, prettier@^3.0.0:
+prettier@3.0.3, prettier@^3.0.3:
   version "3.0.3"
   resolved "https://registry.yarnpkg.com/prettier/-/prettier-3.0.3.tgz#432a51f7ba422d1469096c0fdc28e235db8f9643"
   integrity sha512-L/4pUDMxcNa8R/EthV08Zt42WBO4h1rarVtK0K+QJG0X187OLo7l699jWw0GKuwzkPQ//jMFA/8Xm6Fh3J/DAg==

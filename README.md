@@ -19,6 +19,9 @@ Should you encounter any errors, please reach out to your Scayle representative 
 - Order Success Page
 - Order Detail Page
 - Login / Logout (token-based only)
+- Account Area
+- Storyblok CMS Integration
+- Page Caching using Route Rules
 
 ## Prerequisites
 
@@ -27,15 +30,10 @@ Before starting with this Boilerplate, we recommend to get familiar with Nuxt 3 
 - [Nuxt 3 Introduction](https://nuxt.com/docs/getting-started/introduction)
 - [Vue 3 Introduction](https://vuejs.org/guide/introduction.html)
 
-### Access
-
-Make sure you have access to the private package registry to access packages like `@scayle/storefront-nuxt` and `@scayle/storefront-core`.
-If not already done, see "Common Issues / Troubleshooting" section > [## Adding @aboutyou package registry](#adding-aboutyou-package-registry).
-
 ### Software
 
 - `nvm`
-- `node` >= 18.17.1
+- `node` >= 20.7.0
 - `yarn` (v1)
 - `redis`
 
@@ -44,7 +42,7 @@ If not already done, see "Common Issues / Troubleshooting" section > [## Adding 
 #### Install supported Node.js Version
 
 To install the supported `Node.js` version, we recommend the usage of the **Node Version Manager**, short `nvm`.
-After successful setup of `nvm`, run `nvm install 18.17.1` or `nvm install lts/hydrogen` for to download and install the latest supported `Node.js` version.
+After successful setup of `nvm`, run `nvm install 20.7` or `nvm install lts/*` for to download and install the latest supported `Node.js` version.
 
 #### Using Redis locally
 
@@ -173,35 +171,6 @@ yarn start
 
 Use http://localhost:3000/ to open the shop
 
-## Adding @scayle and @aboutyou package registry
-
-Certain NPM package prefixed with `@aboutyou` and `@scayle` are not publicly available through `npmjs.org`,
-or other public package registries, but will be installed from our own internal package registry.
-Therefore we need to create a personal deploy token to get access to this registry.
-
-The deploy token will be created for you.
-
-Afterwards, please configure your local `npm` setup to allow access to the private `@aboutyou` and `@scayle` package registry.
-The following command should be executed in your terminal and will modify your local `~/.npmrc` file but not the projects `.npmrc` file:
-
-- [Gitlab Docs: Project Level NPM Endpoint](https://docs.gitlab.com/ee/user/packages/npm_registry/#project-level-npm-endpoint)
-
-```sh
-npm config set @aboutyou:registry https://gitlab.com/api/v4/projects/29746107/packages/npm/
-npm config set @scayle:registry https://gitlab.com/api/v4/projects/29746107/packages/npm/
-npm config set -- '//gitlab.com/api/v4/packages/npm/:_authToken' "<TOKEN>"
-npm config set -- '//gitlab.com/api/v4/projects/29746107/packages/npm/:_authToken' "<TOKEN>"
-```
-
-Your global local `~/.npmrc` file should look similar to this afterwards:
-
-```ini
-@aboutyou:registry=https://gitlab.com/api/v4/projects/29746107/packages/npm/
-@scayle:registry=https://gitlab.com/api/v4/projects/29746107/packages/npm/
-//gitlab.com/api/v4/packages/npm/:_authToken=<TOKEN>
-//gitlab.com/api/v4/projects/29746107/packages/npm/:_authToken=<TOKEN>
-```
-
 ## Using @scayle/storefront-nuxt package locally
 
 ```sh
@@ -318,6 +287,8 @@ http_proxy=http://127.0.0.1:8080
 
 After starting both `mitmproxy` and our shop, we should be able to now see all relevant HTTP(S) requests and API calls in the `mitmweb` tab.
 
-# Testing
+## Testing
 
-For testing in Nuxt 3 we can use [Nuxt-Vitest](https://github.com/danielroe/nuxt-vitest). It is a Nuxt 3 module that allows us to use Nuxt environment in [Vitest](https://vitest.dev/). For ease of use we use `.nuxt.test.ts` or `.nuxt.spec.ts` file suffix for our tests to use nuxt env.
+For testing in Nuxt 3 we can use [Nuxt-Vitest](https://github.com/danielroe/nuxt-vitest).
+It is a Nuxt 3 module that allows us to use Nuxt environment in [Vitest](https://vitest.dev/).
+For ease of use we use `.nuxt.test.ts` or `.nuxt.spec.ts` file suffix for our tests to use nuxt env.

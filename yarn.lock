@@ -7998,10 +7998,10 @@ nuxt-viewport@2.0.6:
     ua-parser-js "^1.0.35"
     vue-demi "^0.14.5"
 
-nuxt-vitest@0.11.2:
-  version "0.11.2"
-  resolved "https://registry.yarnpkg.com/nuxt-vitest/-/nuxt-vitest-0.11.2.tgz#ab37f981bf713ad5037d0b2c4aaad6f2ddcc319d"
-  integrity sha512-iPMpkMAUeQcpIdKvL6NrH0xmHF87V6ztbAKypxqNXNbxYVbqHylJvwPqFGf9hbTGQWpKScb+71/ISt21JgUt/Q==
+nuxt-vitest@0.11.3:
+  version "0.11.3"
+  resolved "https://registry.yarnpkg.com/nuxt-vitest/-/nuxt-vitest-0.11.3.tgz#80cb0376c780d9390351a32a1b2c7cfd1564d015"
+  integrity sha512-jGyrOXbgwlakVaDsQCLtdttXXY2bX4J5r22rr0CTXqIFO3jhnf8e3kAU+zCQe/WSp/xtM+2HZEwrU+jqy5zuDQ==
   dependencies:
     "@nuxt/kit" "^3.7.4"
     "@vitest/ui" "^0.33.0"
@@ -8009,7 +8009,7 @@ nuxt-vitest@0.11.2:
     get-port-please "^3.1.1"
     perfect-debounce "^1.0.0"
     std-env "^3.4.3"
-    vitest-environment-nuxt "0.11.2"
+    vitest-environment-nuxt "0.11.3"
 
 nuxt@3.7.4, nuxt@^3.7.4:
   version "3.7.4"
@@ -11235,10 +11235,10 @@ vite-plugin-vue-inspector@^4.0.0:
   optionalDependencies:
     fsevents "~2.3.2"
 
-vitest-environment-nuxt@0.11.2:
-  version "0.11.2"
-  resolved "https://registry.yarnpkg.com/vitest-environment-nuxt/-/vitest-environment-nuxt-0.11.2.tgz#32e62193f79c69938493fbd66714e10f46bbdaf8"
-  integrity sha512-/X3l1nGZ6CX4mZx1kYm2aBl8DPG+JqU2OXSHvd8CM+6XTdt2Ap/KglkL7yMtAo8zgKHEwuVFzeZjOfEhnQyv8w==
+vitest-environment-nuxt@0.11.3:
+  version "0.11.3"
+  resolved "https://registry.yarnpkg.com/vitest-environment-nuxt/-/vitest-environment-nuxt-0.11.3.tgz#99183a1491cd71af77841243880856f4da41ef6e"
+  integrity sha512-HJzT3g3/g99D2h7nfGgo+7yaWKOnAtI1PxsptmKhJrD0oa6RcNjfBbMYY+hQVh+2ecSIRUaqykdUPKocOW01yA==
   dependencies:
     "@nuxt/kit" "^3.7.4"
     "@vue/test-utils" "^2.4.1"

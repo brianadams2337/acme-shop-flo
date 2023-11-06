@@ -8,7 +8,8 @@
             v-for="n in 4"
             :key="n"
             type="custom"
-            class="mx-1.5 h-3 !w-3.5 rounded-md" />
+            class="mx-1.5 h-3 !w-3.5 rounded-md"
+          />
         </div>
       </template>
       <FadeInTransition :duration="300">

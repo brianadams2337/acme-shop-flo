@@ -1,10 +1,12 @@
 <template>
   <div
     class="flex items-center text-white"
-    :class="{ uppercase: isAllUppercased, '!items-start': isColumn }">
+    :class="{ uppercase: isAllUppercased, '!items-start': isColumn }"
+  >
     <h1
       class="mr-1 flex flex-wrap items-center"
-      :class="{ 'flex-col !items-start': isColumn }">
+      :class="{ 'flex-col !items-start': isColumn }"
+    >
       <span class="mr-2 font-bold uppercase" :class="offerTextClass">
         {{ headline.offerText }}
       </span>

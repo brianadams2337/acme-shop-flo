@@ -3,19 +3,22 @@
     <PromotionActiveChip v-if="isActive" />
     <div
       class="mb-2 flex flex-col items-start rounded-md bg-blue p-4"
-      :style="getBackgroundColorStyle(customData.colorHex)">
+      :style="getBackgroundColorStyle(customData.colorHex)"
+    >
       <PromotionHeadline
         v-if="headlineParts"
         :headline-parts="headlineParts"
         size="sm"
         is-column
-        class="mb-2" />
+        class="mb-2"
+      />
       <PromotionCountdown :until="schedule.to" />
     </div>
     <PromotionItemTerms
       v-if="customData.terms"
       :content="customData.terms"
-      :promotion-id="id" />
+      :promotion-id="id"
+    />
   </div>
 </template>
 

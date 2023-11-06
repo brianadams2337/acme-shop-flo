@@ -3,7 +3,8 @@
     type="secondary"
     size="xs"
     class="pr-1 text-xs"
-    @click="goToCategory()">
+    @click="goToCategory()"
+  >
     <template #append-icon="{ _class }">
       {{ $t('promotion.show_deals_label') }}
       <IconChevronRight :class="_class" />

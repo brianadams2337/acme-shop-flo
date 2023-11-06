@@ -8,7 +8,7 @@ export default async (currentPromotion: Promotion) => {
 
   const progress = computed(() => {
     if (!minOrderValue.value) {
-      return
+      return 0
     }
     return basketData.value.cost.withTax / minOrderAmount.value
   })

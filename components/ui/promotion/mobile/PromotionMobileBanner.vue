@@ -5,7 +5,8 @@
       v-if="!isPromotionListShown"
       class="sticky bottom-0 z-[80] flex max-h-32 cursor-pointer flex-col items-center justify-start overflow-hidden rounded-t-xl bg-blue p-4 text-sm text-white md:hidden"
       :style="getBackgroundColorStyle(currentPromotion.customData.colorHex)"
-      @click="togglePromotionList()">
+      @click="togglePromotionList()"
+    >
       <div class="mb-2.5 flex w-full justify-between">
         <PromotionHeadline
           v-if="headlineParts && (!isFullProgress || isGreaterOrEquals('md'))"
@@ -13,16 +14,19 @@
           size="sm"
           is-all-uppercased
           show-info-icon
-          class="mr-4 flex-1" />
+          class="mr-4 flex-1"
+        />
         <PromotionFullProgressLabel
           v-if="isFullProgress && isLessThan('md')"
-          v-bind="{ minOrderValue, currentPromotion }" />
+          v-bind="{ minOrderValue, currentPromotion }"
+        />
         <PromotionCountdown :until="currentPromotion.schedule.to" />
       </div>
       <PromotionProgress
         v-if="minOrderValue"
         v-bind="{ minOrderValue, currentPromotion }"
-        is-full-width />
+        is-full-width
+      />
     </div>
   </FadeInTransition>
 </template>

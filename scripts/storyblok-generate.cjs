@@ -6,7 +6,7 @@ require('dotenv').config({ path: '.env.storyblok' })
 const path = require('node:path')
 const fs = require('node:fs')
 const storyblokToTypescript =
-  require('@aboutyou/storyblok-generate-ts/dist/index').default
+  require('storyblok-generate-ts/dist/index').default
 
 const schemaFile = path.join(
   __dirname,

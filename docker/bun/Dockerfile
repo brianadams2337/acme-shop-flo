@@ -1,4 +1,4 @@
-# Nuxt 3-based Storefront-Boilerplate (DemoShop) Dockerfile
+# Nuxt 3-based Storefront-Boilerplate (DemoShop) Dockerfile for Bun
 
 # Build
 FROM node:20.7.0-alpine3.18 as build
@@ -12,13 +12,13 @@ RUN yarn install --frozen-lockfile
 
 COPY . /app
 
-RUN yarn nuxt build
+RUN NITRO_PRESET=bun yarn nuxt build
 
 # Run
-FROM node:20.7.0-alpine3.18
+FROM oven/bun:1.0
 
 WORKDIR /app
 
 COPY --from=build /app/.output /app/.output
 
-CMD ["node", "--env-file=.env", "./.output/server/index.mjs"]
+CMD ["bun", "run", "./.output/server/index.mjs"]

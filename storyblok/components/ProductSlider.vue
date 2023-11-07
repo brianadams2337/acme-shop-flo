@@ -72,7 +72,7 @@ const store = useStore()
 const { trackSelectItem, trackViewItemList } = useTrackingEvents()
 
 const productIds = computed(() => {
-  return props.blok.product_ids?.split(',').map((id: string) => parseInt(id))
+  return props.blok.product_ids?.split(',').map((id: string) => parseInt(id)).filter((val) => !!val)
 })
 
 const { data, fetching } = await useProductsByIds({

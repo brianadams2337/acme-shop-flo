@@ -37,7 +37,7 @@ const minOrderAmount = computed(() => divideWithHundred(props.minOrderValue))
 const formattedAmount = computed(() => toCurrency(props.minOrderValue))
 
 const progress = computed(() => {
-  return Math.ceil(basketData.value.cost.withTax / minOrderAmount.value)
+  return basketData.value.cost.withTax / minOrderAmount.value
 })
 
 const isFullProgress = computed(() => progress.value >= 100)

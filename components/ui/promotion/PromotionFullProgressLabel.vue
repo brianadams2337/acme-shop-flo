@@ -14,12 +14,7 @@
 </template>
 
 <script setup lang="ts">
-const props = defineProps({
-  currentPromotion: {
-    type: Object as PropType<Promotion>,
-    required: true,
-  },
-})
+const props = defineProps<{ currentPromotion: Promotion }>()
 
 const { formattedAmount } = await usePromotionProgress(props.currentPromotion)
 </script>

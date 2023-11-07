@@ -12,39 +12,25 @@
 </template>
 
 <script setup lang="ts">
-const props = defineProps({
-  progress: {
-    type: Number,
-    required: true,
-  },
-  type: {
-    type: String,
-    validator: (type: string) => {
-      return ['success', 'warn', 'danger', 'neutral'].includes(type)
-    },
-    default: 'success',
-  },
-  fullWidth: {
-    type: Boolean,
-    default: true,
-  },
-  rounded: {
-    type: Boolean,
-    default: false,
-  },
-  height: {
-    type: String,
-    validator: (height: string) => ['xs', 'sm', 'md'].includes(height),
-    default: 'sm',
-  },
-  backgroundColor: {
-    type: String,
-    default: 'bg-secondary-450',
-  },
-  slanted: {
-    type: Boolean,
-    default: false,
-  },
+import { ProgressType } from '#imports'
+
+type Props = {
+  progress: number
+  type?: ProgressType
+  height?: 'xs' | 'sm' | 'md'
+  backgroundColor?: string
+  fullWidth?: boolean
+  rounded?: boolean
+  slanted?: boolean
+}
+
+const props = withDefaults(defineProps<Props>(), {
+  type: 'success',
+  height: 'sm',
+  backgroundColor: 'bg-secondary-450',
+  fullWidth: true,
+  rounded: false,
+  slanted: false,
 })
 
 const heightClasses = computed(() => ({
@@ -54,10 +40,10 @@ const heightClasses = computed(() => ({
 }))
 
 const colorClasses = computed(() => ({
-  'bg-green-500': props.type === 'success',
-  'bg-yellow-400': props.type === 'warn',
-  'bg-red-500': props.type === 'danger',
-  'bg-white': props.type === 'neutral',
+  'bg-green-500': props.type === ProgressType.SUCCESS,
+  'bg-yellow-400': props.type === ProgressType.WARN,
+  'bg-red-500': props.type === ProgressType.DANGER,
+  'bg-white': props.type === ProgressType.NEUTRAL,
 }))
 
 const slantedBarClass = computed(() => {

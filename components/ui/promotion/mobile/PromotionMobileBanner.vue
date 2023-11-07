@@ -32,12 +32,7 @@
 </template>
 
 <script setup lang="ts">
-const props = defineProps({
-  promotions: {
-    type: Array as PropType<Promotion[]>,
-    required: true,
-  },
-})
+const props = defineProps<{ promotions: Promotion[] }>()
 
 const { isGreaterOrEquals, isLessThan } = useViewport()
 const { currentPromotion } = usePromotionChange(props.promotions)

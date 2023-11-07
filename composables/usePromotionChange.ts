@@ -6,11 +6,11 @@ export default (promotions: Promotion[]) => {
 
   const timeoutId = ref<NodeJS.Timeout>()
 
-  const showNextPromotion = (currentIdx = 0) => {
+  const showNextPromotion = (currentIndex = 0) => {
     timeoutId.value = setTimeout(() => {
-      const isLast = currentIdx === promotions.length - 1
-      const idx = isLast ? 0 : currentIdx + 1
-      currentPromotion.value = promotions[idx]
+      const isLast = currentIndex === promotions.length - 1
+      const idx = isLast ? 0 : currentIndex + 1
+      currentPromotion.value = promotions[currentIndex]
       showNextPromotion(idx)
     }, PROMOTIONS_CHANGE_DELAY)
   }

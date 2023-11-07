@@ -12,4 +12,5 @@ export type PromotionHeadlineSize = ValuesType<typeof PromotionHeadlineSize>
 
 /* eslint-enable @typescript-eslint/no-redeclare */
 
+export const COUNTDOWN_LOADER_UNITS = 4
 export const PROMOTIONS_CHANGE_DELAY = 5000

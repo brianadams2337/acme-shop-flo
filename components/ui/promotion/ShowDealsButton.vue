@@ -13,12 +13,7 @@
 </template>
 
 <script setup lang="ts">
-const props = defineProps({
-  category: {
-    type: String as PropType<string>,
-    required: true,
-  },
-})
+const props = defineProps<{ category: string }>()
 
 const { isPromotionListShown, togglePromotionList } = usePromotionActions()
 

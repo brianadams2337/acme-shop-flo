@@ -25,20 +25,13 @@
 </template>
 
 <script setup lang="ts">
-const props = defineProps({
-  minOrderValue: {
-    type: Number,
-    required: true,
-  },
-  isFullWidth: {
-    type: Boolean,
-    default: false,
-  },
-  currentPromotion: {
-    type: Object as PropType<Promotion>,
-    required: true,
-  },
-})
+type Props = {
+  currentPromotion: Promotion
+  minOrderValue: number
+  isFullWidth?: boolean
+}
+
+const props = withDefaults(defineProps<Props>(), { isFullWidth: false })
 
 const { isGreaterOrEquals, isLessThan } = useViewport()
 

@@ -4,15 +4,17 @@
 
 ### Major Changes
 
-- ...
+- Use public npmjs.org package registry for `@scayle` packages and remove the need for a local `.npmrc` file
+- Use public `storyblok-generate-ts` package instead of private fork
 
 ### Minor Changes
 
-- ...
+- Updated to latest `@scayle/storefront-nuxt` package using `v7.37.2`
+- Improved Dockerfiles for build and deployments
 
 ### Patch Changes
 
-- ...
+- Updated various dependencies to latest versions
 
 ## 1.0.0-rc.03
 

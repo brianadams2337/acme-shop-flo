@@ -19,30 +19,19 @@
 <script setup lang="ts">
 import { PromotionHeadlineSize } from '#imports'
 
-const props = defineProps({
-  headlineParts: {
-    type: Array as PropType<string[]>,
-    required: true,
-  },
-  size: {
-    type: String as PropType<PromotionHeadlineSize>,
-    default: PromotionHeadlineSize.BASE,
-    validator: (val: PromotionHeadlineSize) => {
-      return Object.values(PromotionHeadlineSize).includes(val)
-    },
-  },
-  showInfoIcon: {
-    type: Boolean,
-    default: false,
-  },
-  isColumn: {
-    type: Boolean,
-    default: false,
-  },
-  isAllUppercased: {
-    type: Boolean,
-    default: false,
-  },
+type Props = {
+  headlineParts: string[]
+  size?: PromotionHeadlineSize
+  showInfoIcon?: boolean
+  isColumn?: boolean
+  isAllUppercased?: boolean
+}
+
+const props = withDefaults(defineProps<Props>(), {
+  size: PromotionHeadlineSize.BASE,
+  showInfoIcon: false,
+  isColumn: false,
+  isAllUppercased: false,
 })
 
 const headline = computed(() => {

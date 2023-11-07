@@ -24,16 +24,10 @@
 </template>
 
 <script setup lang="ts">
-const props = defineProps({
-  promotionId: {
-    type: String as PropType<Promotion['id']>,
-    required: true,
-  },
-  content: {
-    type: String,
-    required: true,
-  },
-})
+const props = defineProps<{
+  promotionId: Promotion['id']
+  content: string
+}>()
 
 const areTermsShown = useState(`terms-${props.promotionId}`, () => false)
 

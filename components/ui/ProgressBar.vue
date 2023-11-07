@@ -1,11 +1,13 @@
 <template>
   <div
     class="relative w-full overflow-hidden"
-    :class="[{ ...heightClasses, 'rounded-md': rounded }, backgroundColor]">
+    :class="[{ ...heightClasses, 'rounded-md': rounded }, backgroundColor]"
+  >
     <div
       :class="[colorClasses, slantedBarClass]"
       :style="{ width: `${progress}%` }"
-      class="h-full max-w-full" />
+      class="h-full max-w-full"
+    />
   </div>
 </template>
 
@@ -59,10 +61,7 @@ const colorClasses = computed(() => ({
 }))
 
 const slantedBarClass = computed(() => {
-  if (!props.progress) {
-    return ''
-  }
-  if (!props.slanted) {
+  if (!props.progress || !props.slanted) {
     return ''
   }
   return '!h-0 border-t-[14px] border-r-[14px] border-white border-r-transparent bg-white/0'

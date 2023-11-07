@@ -1,23 +1,19 @@
 <template>
   <Transition
-    :appear="appear"
     :enter-active-class="easeLinearClass"
     :leave-active-class="easeLinearClass"
     enter-from-class="opacity-0"
     enter-to-class="opacity-100"
     leave-from-class="opacity-100"
     leave-to-class="opacity-0"
-    mode="out-in">
+    mode="out-in"
+  >
     <slot />
   </Transition>
 </template>
 
 <script setup lang="ts">
 const props = defineProps({
-  appear: {
-    type: Boolean,
-    default: true,
-  },
   duration: {
     type: Number,
     default: 200,

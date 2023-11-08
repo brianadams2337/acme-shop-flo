@@ -12,10 +12,5 @@
 </template>
 
 <script setup lang="ts">
-defineProps({
-  duration: {
-    type: Number,
-    default: 200,
-  },
-})
+withDefaults(defineProps<{ duration?: number }>(), { duration: 200 })
 </script>

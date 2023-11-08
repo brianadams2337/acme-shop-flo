@@ -13,11 +13,8 @@
 </template>
 
 <script setup lang="ts">
-const props = defineProps({
-  duration: {
-    type: Number,
-    default: 200,
-  },
+const props = withDefaults(defineProps<{ duration?: number }>(), {
+  duration: 200,
 })
 
 const easeLinearClass = computed(() => {

@@ -21,16 +21,12 @@
 <script setup lang="ts">
 type CountdownUnit = 'days' | 'hours' | 'minutes' | 'seconds'
 
-const props = defineProps({
-  until: {
-    type: String,
-    required: true,
-  },
-  showUnits: {
-    type: Boolean,
-    default: false,
-  },
-})
+type Props = {
+  until: string
+  showUnits?: boolean
+}
+
+const props = withDefaults(defineProps<Props>(), { showUnits: false })
 
 const emit = defineEmits(['finished'])
 

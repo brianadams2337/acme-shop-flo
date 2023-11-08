@@ -5,11 +5,13 @@
       {{ $t('promotion.automatic_discount_headline.another_label') }}
     </span>
     <span class="mx-1 font-bold">{{ formattedAmountLeft }}</span>
-    {{ $t('promotion.automatic_discount_headline.save_indicator_label') }}
-    <span v-if="discount" class="mx-1 font-bold uppercase">
+    <span class="mr-1">
+      {{ $t('promotion.automatic_discount_headline.save_indicator_label') }}
+    </span>
+    <span v-if="discount" class="font-bold uppercase">
       {{ $t('promotion.automatic_discount_headline.offer', { discount }) }}
     </span>
-    <IconInfoOutline class="h-4 w-4" />
+    <IconInfoOutline class="ml-1 h-4 w-4" />
   </h1>
 </template>
 

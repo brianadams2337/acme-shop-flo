@@ -1,8 +1,8 @@
 <template>
-  <PromotionMobileList v-if="isPromotionListShown" :items="promotions" />
   <FadeInTransition>
+    <PromotionMobileList v-if="isPromotionListShown" :items="promotions" />
     <div
-      v-if="!isPromotionListShown"
+      v-else
       class="fixed bottom-0 z-[80] flex max-h-32 w-full cursor-pointer flex-col items-center justify-start overflow-hidden rounded-t-xl bg-blue p-4 text-sm text-white md:hidden"
       :style="getBackgroundColorStyle(currentPromotion.customData.colorHex)"
       @click="togglePromotionList()"

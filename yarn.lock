@@ -1756,10 +1756,10 @@
   optionalDependencies:
     redis "4"
 
-"@scayle/storefront-nuxt@7.37.2":
-  version "7.37.2"
-  resolved "https://registry.yarnpkg.com/@scayle/storefront-nuxt/-/storefront-nuxt-7.37.2.tgz#d1ce889979bf612993203444fec086137578262a"
-  integrity sha512-KchrStCIFHviqCz2NN33kMQg6PTlkyNxar7hchmhcBNh581auUvzT1y5AB10McednuHka4txO6by2cf4lzNoBA==
+"@scayle/storefront-nuxt@7.38.0":
+  version "7.38.0"
+  resolved "https://registry.yarnpkg.com/@scayle/storefront-nuxt/-/storefront-nuxt-7.38.0.tgz#6e8cd8225ea92f2e8734190ccffe44f26760af48"
+  integrity sha512-jWNPlUGHjDT2Gd5aKwT9BQ5nYlWpENKSfzIpr8CbwI19DNVTFlPHmIU1ZIgAlK2J5t4GlA0K0oATtHnfhol+Bw==
   dependencies:
     "@nuxt/kit" "3.7.4"
     "@scayle/h3-session" "0.3.4"
@@ -1827,10 +1827,10 @@
   dependencies:
     storyblok-js-client "^5.14.2"
 
-"@storyblok/nuxt@5.7.5":
-  version "5.7.5"
-  resolved "https://registry.yarnpkg.com/@storyblok/nuxt/-/nuxt-5.7.5.tgz#6bc7a752a23d6a2e21dc4ee6d0c3aee1fbdcff91"
-  integrity sha512-ebfvheYmrZOPuuBft622g1xQ0d5aif+JHEy1P7WSavsv2NwVmJsiRRHKOp4M2dY7slL43bMM2DFcpVS5sZhwmg==
+"@storyblok/nuxt@5.7.6":
+  version "5.7.6"
+  resolved "https://registry.yarnpkg.com/@storyblok/nuxt/-/nuxt-5.7.6.tgz#463eadcd6be9a301b932902ed5cfaa81615b19b5"
+  integrity sha512-zhGRmZz//e+blQqGdrQzgrOlAv6ZP5eXwZ9N06W79klHCXlsiqlxKwK15oN+go6Zwnswco2v2SwGT1ZS0ajztQ==
   dependencies:
     "@nuxt/kit" "^3.8.0"
     "@storyblok/vue" "^7.3.1"
@@ -1919,10 +1919,10 @@
   resolved "https://registry.yarnpkg.com/@types/color-name/-/color-name-1.1.1.tgz#1c1261bbeaa10a8055bbc5d8ab84b7b2afc846a0"
   integrity sha512-rr+OQyAjxze7GgWrSaJwydHStIhHq2lvY3BOC2Mj7KnzI7XK0Uw1TOOdI9lDoajEbSWLiYgoo4f1R51erQfhPQ==
 
-"@types/color@3.0.5":
-  version "3.0.5"
-  resolved "https://registry.yarnpkg.com/@types/color/-/color-3.0.5.tgz#658fd9286a44c21dabaa56c2e2f63da3ac15f063"
-  integrity sha512-T9yHCNtd8ap9L/r8KEESu5RDMLkoWXHo7dTureNoI1dbp25NsCN054vOu09iniIjR21MXUL+LU9bkIWrbyg8gg==
+"@types/color@3.0.6":
+  version "3.0.6"
+  resolved "https://registry.yarnpkg.com/@types/color/-/color-3.0.6.tgz#29c27a99d4de2975e1676712679a0bd7f646a3fb"
+  integrity sha512-NMiNcZFRUAiUUCCf7zkAelY8eV3aKqfbzyFQlXpPIEeoNDbsEHGpb854V3gzTsGKYj830I5zPuOwU/TP5/cW6A==
   dependencies:
     "@types/color-convert" "*"
 
@@ -1983,10 +1983,10 @@
   dependencies:
     undici-types "~5.25.1"
 
-"@types/node@20.8.10":
-  version "20.8.10"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-20.8.10.tgz#a5448b895c753ae929c26ce85cab557c6d4a365e"
-  integrity sha512-TlgT8JntpcbmKUFzjhsyhGfP2fsiz1Mv56im6enJ905xG1DAYesxJaeSbGqQmAw8OWPdhyJGhGSQGKRNJ45u9w==
+"@types/node@20.9.0":
+  version "20.9.0"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-20.9.0.tgz#bfcdc230583aeb891cf51e73cfdaacdd8deae298"
+  integrity sha512-nekiGu2NDb1BcVofVcEKMIwzlx4NjHlcjhoxxKBNLtz15Y1z7MYf549DFvkHSId02Ax6kGwWntIBPC3l/JZcmw==
   dependencies:
     undici-types "~5.26.4"
 
@@ -3883,10 +3883,10 @@ cypress-real-events@1.11.0:
   resolved "https://registry.yarnpkg.com/cypress-real-events/-/cypress-real-events-1.11.0.tgz#292fe5281c5b6e955524e766ab7fec46930c7763"
   integrity sha512-4LXVRsyq+xBh5TmlEyO1ojtBXtN7xw720Pwb9rEE9rkJuXmeH3VyoR1GGayMGr+Itqf11eEjfDewtDmcx6PWPQ==
 
-cypress@13.4.0:
-  version "13.4.0"
-  resolved "https://registry.yarnpkg.com/cypress/-/cypress-13.4.0.tgz#7d91069983ba7c664c505abde84d3e3e20484344"
-  integrity sha512-KeWNC9xSHG/ewZURVbaQsBQg2mOKw4XhjJZFKjWbEjgZCdxpPXLpJnfq5Jns1Gvnjp6AlnIfpZfWFlDgVKXdWQ==
+cypress@13.5.0:
+  version "13.5.0"
+  resolved "https://registry.yarnpkg.com/cypress/-/cypress-13.5.0.tgz#8c149074186130972f08b2cdce6ded41f014bacd"
+  integrity sha512-oh6U7h9w8wwHfzNDJQ6wVcAeXu31DlIYlNOBvfd6U4CcB8oe4akawQmH+QJVOMZlM42eBoCne015+svVqdwdRQ==
   dependencies:
     "@cypress/request" "^3.0.0"
     "@cypress/xvfb" "^1.2.4"

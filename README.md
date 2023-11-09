@@ -1,27 +1,10 @@
 # SCAYLE Storefront Boilerplate Nuxt (Demo Shop)
 
-The SCAYLE Storefront Boilerplate Nuxt is based on the [ Nuxt 3 framework](https://nuxt.com/docs/getting-started/introduction).
+The SCAYLE Storefront Boilerplate Nuxt is based on the [Nuxt 3 framework](https://nuxt.com/docs/getting-started/introduction).
 Compared to the [Nuxt 2](https://v2.nuxt.com/) based DemoShop, there have been a multitude of changes due to the difference in overall framework architecture and more modern best practices,
 while trying to keep the most possible similarities / compatibilities with the old Nuxt 2 based DemoShop.
 
-PLEASE NOTE: The SCAYLE Storefront Boilerplate Nuxt and Storefront Core Nuxt have been newly developed and does not yet support all extended features as the Nuxt 2 based DemoShop currently does.
-
 Should you encounter any errors, please reach out to your Scayle representative or the Storefront Core team for quick support.
-
-## Current feature set
-
-- Homepage / Landing page
-- Product Listing Page
-- Product Detail Page
-- Basket
-- Wishlist
-- Checkout
-- Order Success Page
-- Order Detail Page
-- Login / Logout (token-based only)
-- Account Area
-- Storyblok CMS Integration
-- Page Caching using Route Rules
 
 ## Prerequisites
 

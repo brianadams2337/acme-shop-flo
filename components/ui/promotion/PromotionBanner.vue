@@ -26,7 +26,9 @@
   </div>
   <PromotionList :items="promotions" />
   <Overlay v-if="isPromotionListShown" />
-  <PromotionMobileBanner :promotions="promotions" />
+  <PromotionMobileBanner
+    v-bind="{ promotions, currentPromotion, headlineParts, minOrderValue }"
+  />
 </template>
 
 <script setup lang="ts">

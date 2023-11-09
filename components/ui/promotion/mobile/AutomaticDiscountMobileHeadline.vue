@@ -16,6 +16,8 @@
 </template>
 
 <script setup lang="ts">
+import { PromotionEffectType } from '@scayle/storefront-nuxt'
+
 const props = defineProps<{ currentPromotion: Promotion }>()
 
 const { progress, formattedAmountLeft } = await usePromotionProgress(
@@ -24,7 +26,7 @@ const { progress, formattedAmountLeft } = await usePromotionProgress(
 
 const discount = computed(() => {
   const type = props.currentPromotion.effect.type
-  if (type === 'automatic_discount') {
+  if (type === PromotionEffectType.AUTOMATIC_DISCOUNT) {
     return props.currentPromotion.effect.additionalData.value
   }
 })

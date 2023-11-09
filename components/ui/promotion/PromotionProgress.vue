@@ -13,13 +13,14 @@
         :class="!isFullWidth && '!max-w-[12.5rem]'"
         background-color="bg-white/20"
       />
-      <span v-if="isGreaterOrEquals('lg')" class="ml-2 w-28 font-semibold">
+      <span class="ml-2 hidden w-28 font-semibold lg:inline-block">
         {{ $t('promotion.progress_left', { amount: formattedAmountLeft }) }}
       </span>
     </template>
     <PromotionFullProgressLabel
-      v-if="isFullProgress && isGreaterOrEquals('lg')"
+      v-if="isFullProgress"
       v-bind="{ minOrderValue, currentPromotion }"
+      class="hidden lg:block"
     />
   </div>
 </template>
@@ -33,7 +34,7 @@ type Props = {
 
 const props = withDefaults(defineProps<Props>(), { isFullWidth: false })
 
-const { isGreaterOrEquals, isLessThan } = useViewport()
+const { isLessThan } = useViewport()
 
 const { progress, isFullProgress, formattedAmountLeft } =
   await usePromotionProgress(props.currentPromotion)

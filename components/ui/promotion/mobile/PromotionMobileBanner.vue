@@ -36,22 +36,26 @@
 </template>
 
 <script setup lang="ts">
-const props = defineProps<{ promotions: Promotion[] }>()
+import { PromotionEffectType } from '@scayle/storefront-nuxt'
 
-const { currentPromotion } = usePromotionChange(props.promotions)
-const { isFullProgress } = await usePromotionProgress(currentPromotion)
+type Props = {
+  promotions: Promotion[]
+  currentPromotion: Promotion
+  headlineParts?: string[]
+  minOrderValue?: number
+}
+
+const props = withDefaults(defineProps<Props>(), {
+  headlineParts: undefined,
+  minOrderValue: undefined,
+})
+
+const { isFullProgress } = await usePromotionProgress(props.currentPromotion)
 
 const { togglePromotionList, isPromotionListShown } = usePromotionActions()
 
 const isAutomaticDiscount = computed(() => {
-  return currentPromotion.value.effect.type === 'automatic_discount'
-})
-
-const headlineParts = computed(() => {
-  return currentPromotion.value.customData.headlineParts
-})
-
-const minOrderValue = computed(() => {
-  return currentPromotion.value.customData.minOrderValue
+  const type = props.currentPromotion.effect.type
+  return type === PromotionEffectType.AUTOMATIC_DISCOUNT
 })
 </script>

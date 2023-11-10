@@ -7,7 +7,10 @@
       :style="backgroundColorStyle"
       @click="togglePromotionList()"
     >
-      <div class="mb-2.5 flex w-full justify-between">
+      <div
+        class="flex w-full justify-between"
+        :class="isAutomaticDiscount && 'mb-2.5'"
+      >
         <PromotionFullProgressLabel v-if="isFullProgress" is-small />
         <AutomaticDiscountMobileHeadline v-else-if="isAutomaticDiscount" />
         <PromotionHeadline

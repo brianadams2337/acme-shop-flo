@@ -3,7 +3,7 @@ import { PromotionEffectType } from '@scayle/storefront-nuxt'
 export default (promotions: Promotion[] = []) => {
   const promotion = useState<Promotion | null>(
     'current-promotion',
-    () => promotions[1] || null,
+    () => promotions[0] || null,
   )
 
   const setCurrentPromotion = (newPromotion: Promotion) => {

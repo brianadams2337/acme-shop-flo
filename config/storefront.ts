@@ -41,12 +41,6 @@ declare module '@scayle/storefront-nuxt' {
 // TODO: Make sure BAPI and CO can work with multiple shops
 const shops = [
   {
-    locale: 'en-US',
-    path: 'en',
-    shopId: 1028,
-    currency: 'USD',
-  },
-  {
     locale: 'de-DE',
     path: 'de',
     shopId: 1001,
@@ -64,6 +58,12 @@ const shops = [
     shopId: 1019,
     currency: 'EUR',
   },
+  {
+    locale: 'en-US',
+    path: 'en',
+    shopId: 1028,
+    currency: 'USD',
+  },
 ]
 
 export const storefrontRuntimeConfigPrivate: Partial<ModuleOptions> = {
@@ -78,7 +78,6 @@ export const storefrontRuntimeConfigPrivate: Partial<ModuleOptions> = {
   session: {
     sameSite: 'none',
     maxAge: 2419200, // four weeks in seconds
-    provider: 'redis',
   },
   bapi: {
     host: '', // Override: NUXT_STOREFRONT_BAPI_HOST,
@@ -133,13 +132,26 @@ export const storefrontRuntimeConfigPrivate: Partial<ModuleOptions> = {
     }),
     {},
   ),
-  redis: {
-    host: 'localhost', // Override: NUXT_STOREFRONT_REDIS_HOST,
-    port: 6379, // Override: NUXT_STOREFRONT_REDIS_PORT,
-    prefix: '', // Override: NUXT_STOREFRONT_REDIS_PREFIX,
-    user: '', // Override: NUXT_STOREFRONT_REDIS_USER,
-    password: '', // Override: NUXT_STOREFRONT_REDIS_PASSWORD,
-    sslTransit: false, // Override: NUXT_STOREFRONT_REDIS_SSL_TRANSIT),
+  storage: {
+    cache: {
+      driver: 'redis', // Override: NUXT_STOREFRONT_STORAGE_CACHE_PROVIDER
+      host: 'localhost', // Override: NUXT_STOREFRONT_STORAGE_CACHE_HOST
+      port: 6379, // Override: NUXT_STOREFRONT_STORAGE_CACHE_PORT
+      prefix: '', // Override: NUXT_STOREFRONT_STORAGE_CACHE_PREFIX
+      user: '', // Override: NUXT_STOREFRONT_STORAGE_CACHE_USER
+      password: '', // Override: NUXT_STOREFRONT_STORAGE_CACHE_PASSWORD
+      sslTransit: false, // Override: NUXT_STOREFRONT_STORAGE_CACHE_SSL_TRANSIT
+    },
+    session: {
+      driver: 'redis', // Override: NUXT_STOREFRONT_STORAGE_SESSION_PROVIDER
+      host: 'localhost', // Override: NUXT_STOREFRONT_STORAGE_SESSION_HOST
+      port: 6379, // Override: NUXT_STOREFRONT_STORAGE_SESSION_PORT
+      prefix: '', // Override: NUXT_STOREFRONT_STORAGE_SESSION_PREFIX
+      user: '', // Override: NUXT_STOREFRONT_STORAGE_SESSION_USER
+      db: 1, // Override: NUXT_STOREFRONT_STORAGE_SESSION_DB
+      password: '', // Override: NUXT_STOREFRONT_STORAGE_SESSION_PASSWORD
+      sslTransit: false, // Override: NUXT_STOREFRONT_STORAGE_SESSION_SSL_TRANSIT
+    },
   },
   // Following keys are Overrideable using prefix NUXT_STOREFRONT_CACHE
   cache: {

@@ -7,11 +7,11 @@ import {
 import breakpoints from './config/breakpoints'
 
 const domains = {
-  en: process.env.NUXT_STOREFRONT_STORES_1028_DOMAIN!,
+  default: process.env.NUXT_STOREFRONT_DOMAIN_DEFAULT!,
   de: process.env.NUXT_STOREFRONT_STORES_1001_DOMAIN!,
   'de-at': process.env.NUXT_STOREFRONT_STORES_1018_DOMAIN!,
   'de-ch': process.env.NUXT_STOREFRONT_STORES_1019_DOMAIN!,
-  default: process.env.NUXT_STOREFRONT_DOMAIN_DEFAULT!,
+  en: process.env.NUXT_STOREFRONT_STORES_1028_DOMAIN!,
 }
 
 const DOMAIN_PER_LOCALE = false
@@ -20,32 +20,28 @@ const DE_DOMAIN_FILE = 'de-DE.json'
 
 const locales = [
   {
-    code: 'en',
-    iso: 'en-GB',
-    // TODO: Investigate runtimeConfig behaviour, as we want build independence
-    domain: DOMAIN_PER_LOCALE ? domains.en : domains.default,
-    file: 'en-GB.json',
-  },
-  {
     code: 'de',
     iso: 'de-DE',
-    // TODO: Investigate runtimeConfig behaviour, as we want build independence
     domain: DOMAIN_PER_LOCALE ? domains.de : domains.default,
     file: DE_DOMAIN_FILE,
   },
   {
     code: 'at',
     iso: 'de-AT',
-    // TODO: Investigate runtimeConfig behaviour, as we want build independence
     domain: DOMAIN_PER_LOCALE ? domains['de-at'] : domains.default,
     file: DE_DOMAIN_FILE,
   },
   {
     code: 'ch',
     iso: 'de-CH',
-    // TODO: Investigate runtimeConfig behaviour, as we want build independence
     domain: DOMAIN_PER_LOCALE ? domains['de-ch'] : domains.default,
     file: DE_DOMAIN_FILE,
+  },
+  {
+    code: 'en',
+    iso: 'en-GB',
+    domain: DOMAIN_PER_LOCALE ? domains.en : domains.default,
+    file: 'en-GB.json',
   },
 ]
 
@@ -61,7 +57,7 @@ export default defineNuxtConfig({
       accessHeader: undefined, // Override: NUXT_CHECKOUT_ACCESS_HEADER
     },
     // Following keys are Overrideable using prefix NUXT_$STOREFRONT_
-    storefront: storefrontRuntimeConfigPrivate as any, // TODO: Extend SFC runtimeConfig type
+    storefront: storefrontRuntimeConfigPrivate as any,
     // Following keys are Overrideable using prefix NUXT_PUBLIC_
     public: {
       domains,
@@ -83,16 +79,16 @@ export default defineNuxtConfig({
         'purchase',
       ],
       gtm: {
-        id: process.env.NUXT_PUBLIC_GTM_ID,
-        debug: process.env.NUXT_PUBLIC_GTM_DEBUG,
+        id: process.env.NUXT_PUBLIC_GTM_ID, // Override: NUXT_PUBLIC_GTM_ID
+        debug: process.env.NUXT_PUBLIC_GTM_DEBUG, // Override: NUXT_PUBLIC_GTM_DEBUG
       },
       promotionEngineFeatureEnabled: yn(
-        process.env.PROMOTION_ENGINE_FEATURE_ENABLED,
+        process.env.PROMOTION_ENGINE_FEATURE_ENABLED, // Override: NUXT_PUBLIC_PROMOTION_ENGINE_FEATURE_ENABLED
       ),
       // Following keys are Overrideable using prefix NUXT_PUBLIC_IMAGE_BASE_URL
       imageBaseUrl: 'https://brb-demo.cdn.aboutyou.cloud/',
       // Following keys are Overrideable using prefix NUXT_PUBLIC_
-      ...(storefrontRuntimeConfigPublic as any), // TODO: Extend SFC runtimeConfig type
+      ...(storefrontRuntimeConfigPublic as any),
       // Following keys are Overrideable using prefix NUXT_PUBLIC_STORYBLOK_
       storyblok: {
         accessToken: '', // Override: NUXT_PUBLIC_STORYBLOK_ACCESS_TOKEN
@@ -263,7 +259,17 @@ export default defineNuxtConfig({
 
     return {
       // Page generated on-demand, revalidates in background
-      '/**': { swr: true },
+      '/*': {
+        cache: {
+          swr: true, // Enable stale-while-revalidate
+          // base: "redis", // Define nitro.storage.redis as cache driver
+          maxAge: 60 * 60, // Default: 1h
+          staleMaxAge: 60 * 60 * 24, // Default: 24h / 1d
+          group: 'ssr', // Cache group name
+          name: 'page',
+          base: 'storefront-cache',
+        },
+      },
       // Don't cache API routes.
       '**/api/**': { cache: false, swr: false },
       // Do not cache pages with user-specific information

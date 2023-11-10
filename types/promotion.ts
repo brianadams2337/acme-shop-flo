@@ -7,6 +7,7 @@ import {
 // change the types here so that it reflects the `customData` response payload
 type CustomData = PromotionCustomData &
   Partial<{
+    productPromotionId: number
     headlineParts: string[]
     terms: string
     minOrderValue: number

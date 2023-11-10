@@ -6,13 +6,15 @@
     <PageContent v-if="products" class="sm:flex">
       <div
         v-show="viewport.isGreaterOrEquals('md')"
-        class="-ml-4 w-1/3 lg:w-1/5">
+        class="-ml-4 w-1/3 lg:w-1/5"
+      >
         <SideNavigation
           v-if="categories && 'children' in categories && categories.children"
           :categories="categories.children"
           :fetching="categoriesFetching"
           :root-category="categories"
-          show-nested-categories />
+          show-nested-categories
+        />
       </div>
       <div class="w-full">
         <template v-if="preListingContent && isFirstPage">
@@ -20,29 +22,35 @@
             :is="preContent.component"
             v-for="preContent in preListingContent"
             :key="preContent._uid"
-            :blok="preContent" />
+            :blok="preContent"
+          />
         </template>
 
         <NuxtLazyHydrate>
           <div
-            class="flex flex-col items-start justify-between overflow-x-hidden">
+            class="flex flex-col items-start justify-between overflow-x-hidden"
+          >
             <ProductListBreadcrumbs />
             <div
-              class="mt-2 flex w-full flex-col justify-between space-y-2 md:flex-row">
+              class="mt-2 flex w-full flex-col justify-between space-y-2 md:flex-row"
+            >
               <ProductQuickFilters
                 :filters="quickFilters"
                 :loading="filtersFetching"
                 :total-count="unfilteredCount"
-                @click:selected-filter="applyFilter($event, true)" />
+                @click:selected-filter="applyFilter($event, true)"
+              />
               <div class="order-1 flex items-center space-x-4 text-sm">
                 <SortingMenu
                   :selected="selectedSort.name"
-                  :values="sortingValues" />
+                  :values="sortingValues"
+                />
                 <AppButton
                   data-test-id="filter-toggle-button"
                   type="tertiary"
                   size="sm"
-                  @click="toggleFilter">
+                  @click="toggleFilter"
+                >
                   <template #icon="{ _class }">
                     <IconFilter :class="_class" />
                   </template>
@@ -59,14 +67,16 @@
           :refreshing="productsFetching"
           class="mt-8 grid w-auto grid-cols-12 gap-1"
           @click:product="trackProductClick"
-          @intersect:row="trackViewListing" />
+          @intersect:row="trackViewListing"
+        />
         <NuxtLazyHydrate :when-visible="{ rootMargin: '100px' }">
           <Pagination
             v-if="pagination"
             class="mt-16"
             :current-page="pagination.page"
             :first-page="pagination.first"
-            :last-page="pagination.last" />
+            :last-page="pagination.last"
+          />
         </NuxtLazyHydrate>
 
         <template v-if="postListingContent && isFirstPage">
@@ -74,7 +84,8 @@
             :is="preContent.component"
             v-for="preContent in postListingContent"
             :key="preContent._uid"
-            :blok="preContent" />
+            :blok="preContent"
+          />
         </template>
       </div>
       <FilterSlideIn
@@ -82,7 +93,8 @@
         v-bind="{ activeFilters, filters, filteredCount, unfilteredCount }"
         :fetching-filtered-count="productCountFetching"
         @filter:apply="applyFilter"
-        @filter:state-changed="updateFilterCount($event)" />
+        @filter:state-changed="updateFilterCount($event)"
+      />
     </PageContent>
   </div>
 </template>
@@ -150,7 +162,13 @@ const {
     with: {
       product: {
         attributes: {
-          withKey: ['color', 'brand', 'name', ...SUSTAINABILITY_ATTRIBUTES],
+          withKey: [
+            'color',
+            'brand',
+            'name',
+            'promotion',
+            ...SUSTAINABILITY_ATTRIBUTES,
+          ],
         },
         variants: {
           attributes: {

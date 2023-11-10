@@ -2,7 +2,8 @@
   <div
     :data-product-card-id="product.id"
     :class="{ 'animate-pulse': loading }"
-    class="group relative">
+    class="group relative"
+  >
     <slot>
       <Intersect @enter="emit('intersect:product', props.product.id)">
         <article :id="`product-${product.id}`" class="flex h-full flex-col">
@@ -10,13 +11,15 @@
             <div
               class="group aspect-h-4 aspect-w-3 relative flex max-h-md items-center justify-center bg-gray-200"
               @mouseover="onMouseOver"
-              @mouseleave="onMouseLeave">
+              @mouseleave="onMouseLeave"
+            >
               <slot v-if="product" name="header-actions">
                 <ClientOnly>
                   <ProductCardHeaderActions
                     v-bind="{ product, wishlistRemoveIcon, listingMetaData }"
                     :class="headerActionsClass"
-                    class="opacity-100 transition" />
+                    class="opacity-100 transition"
+                  />
                 </ClientOnly>
               </slot>
               <slot
@@ -29,12 +32,14 @@
                   hoverImage,
                   loadHoverImage,
                   name,
-                }">
+                }"
+              >
                 <slot name="button"> </slot>
                 <DefaultLink
                   :to="link"
                   raw
-                  @click.capture="$emit('click:product')">
+                  @click.capture="$emit('click:product')"
+                >
                   <ProductImage
                     v-if="image"
                     v-bind="{ image, imageLoading }"
@@ -43,10 +48,12 @@
                     fit="contain"
                     sizes="sm:100vw"
                     is-centered
-                    class="absolute inset-0 transition duration-200" />
+                    class="absolute inset-0 transition duration-200"
+                  />
                   <div
                     v-if="hoverImage && loadHoverImage"
-                    class="opacity-0 transition duration-300 group-hover:opacity-100">
+                    class="opacity-0 transition duration-300 group-hover:opacity-100"
+                  >
                     <FadeInTransition :duration="300">
                       <ProductImage
                         :image="hoverImage"
@@ -54,33 +61,51 @@
                         :alt="name"
                         sizes="sm:100vw"
                         fit="cover"
-                        class="absolute inset-0" />
+                        class="absolute inset-0"
+                      />
                     </FadeInTransition>
                   </div>
                 </DefaultLink>
               </slot>
+              <slot
+                name="promotion-badge"
+                :label="promotionLabel"
+                :product-promotion-id="productPromotionId"
+              >
+                <ProductPromotionBadge
+                  v-if="promotionLabel && productPromotionId"
+                  :label="promotionLabel"
+                  :product-promotion-id="productPromotionId"
+                  class="absolute bottom-3 left-3 top-auto"
+                />
+              </slot>
+
               <slot name="header-badge" :label="badgeLabel">
                 <DefaultLink
                   v-if="badgeLabel"
                   :to="link"
                   raw
-                  @click.capture="$emit('click:product')">
+                  @click.capture="$emit('click:product')"
+                >
                   <ProductBadge
                     :badge-label="badgeLabel"
-                    class="absolute left-0 top-0" />
+                    class="absolute left-0 top-0"
+                  />
                 </DefaultLink>
               </slot>
             </div>
           </slot>
           <slot
             name="description"
-            v-bind="{ ...$props, name, price, title, lowestPriorPrice }">
+            v-bind="{ ...$props, name, price, title, lowestPriorPrice }"
+          >
             <div class="my-2 px-2.5 md:my-2.5">
               <DefaultLink
                 :to="link"
                 raw
                 class="flex flex-col whitespace-pre-line break-words text-2xs font-medium uppercase leading-tight text-primary opacity-50 sm:leading-4 md:text-xs"
-                @click.capture="$emit('click:product')">
+                @click.capture="$emit('click:product')"
+              >
                 <p class="overflow-hidden uppercase">{{ title }}</p>
                 <p data-test-id="product-card-product-name">{{ name }}</p>
                 <slot name="description-price" :price="price">
@@ -89,7 +114,8 @@
                     v-bind="{ price, lowestPriorPrice }"
                     :applied-reductions="price?.appliedReductions"
                     :size="isGreaterOrEquals('md') ? 'sm' : 'xs'"
-                    type="whisper" />
+                    type="whisper"
+                  />
                 </slot>
               </DefaultLink>
               <div class="mt-2">
@@ -97,17 +123,20 @@
                   <ProductSiblingPicker
                     :items="siblings"
                     :spacing="siblingSpacing"
-                    class="flex pb-1">
+                    class="flex pb-1"
+                  >
                     <template #item="{ item }">
                       <DefaultLink
                         :to="getProductDetailRoute(product, item.id)"
-                        raw>
+                        raw
+                      >
                         <ColorChip
                           v-if="item.colors.length"
                           data-test-id="product-card-color-circle"
                           :color="asProductColor(item.colors[0])"
                           :size="colorChipSize"
-                          :rounded="colorChipRoundedSize" />
+                          :rounded="colorChipRoundedSize"
+                        />
                       </DefaultLink>
                     </template>
                   </ProductSiblingPicker>
@@ -213,6 +242,14 @@ const colors = computed(() => {
 
 const image = computed(() => {
   return getImageFromList(props.product.images, ProductImageType.BUST, 'front')
+})
+
+const promotionLabel = computed(() => {
+  return getFirstAttributeValue(props.product.attributes, 'promotion')?.label
+})
+
+const productPromotionId = computed(() => {
+  return getFirstAttributeValue(props.product.attributes, 'promotion')?.id
 })
 
 const imageLoading = computed<'eager' | 'lazy'>(() =>

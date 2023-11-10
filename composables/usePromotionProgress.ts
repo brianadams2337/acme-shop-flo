@@ -1,10 +1,10 @@
-export default async (promotion: MaybeRefOrGetter<Promotion>) => {
+export default async () => {
   const { data: basketData } = await useBasket()
 
-  const currentPromotion = toRef(promotion)
+  const { currentPromotion } = useCurrentPromotion()
 
   const minOrderValue = computed(() => {
-    return currentPromotion.value.customData?.minOrderValue || 0
+    return currentPromotion.value?.customData?.minOrderValue || 0
   })
   const minOrderAmount = computed(() => divideWithHundred(minOrderValue.value))
 

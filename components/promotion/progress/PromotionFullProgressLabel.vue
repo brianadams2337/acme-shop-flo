@@ -14,11 +14,7 @@
 </template>
 
 <script setup lang="ts">
-type Props = {
-  currentPromotion: Promotion
-  isSmall?: boolean
-}
-const props = withDefaults(defineProps<Props>(), { isSmall: false })
+withDefaults(defineProps<{ isSmall?: boolean }>(), { isSmall: false })
 
-const { formattedAmount } = await usePromotionProgress(props.currentPromotion)
+const { formattedAmount } = await usePromotionProgress()
 </script>

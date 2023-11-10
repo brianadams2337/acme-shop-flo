@@ -17,25 +17,15 @@
         {{ $t('promotion.progress_left', { amount: formattedAmountLeft }) }}
       </span>
     </template>
-    <PromotionFullProgressLabel
-      v-if="isFullProgress"
-      v-bind="{ minOrderValue, currentPromotion }"
-      class="hidden lg:block"
-    />
+    <PromotionFullProgressLabel v-if="isFullProgress" class="hidden lg:block" />
   </div>
 </template>
 
 <script setup lang="ts">
-type Props = {
-  currentPromotion: Promotion
-  minOrderValue: number
-  isFullWidth?: boolean
-}
-
-const props = withDefaults(defineProps<Props>(), { isFullWidth: false })
-
-const { isLessThan } = useViewport()
+withDefaults(defineProps<{ isFullWidth?: boolean }>(), { isFullWidth: false })
 
 const { progress, isFullProgress, formattedAmountLeft } =
-  await usePromotionProgress(props.currentPromotion)
+  await usePromotionProgress()
+
+const { isLessThan } = useViewport()
 </script>

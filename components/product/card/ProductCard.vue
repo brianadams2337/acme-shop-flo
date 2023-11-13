@@ -75,7 +75,7 @@
               <slot name="header-badge" :label="badgeLabel">
                 <DefaultLink
                   v-if="badgeLabel"
-                  :to="route"
+                  :to="link"
                   raw
                   @click.capture="$emit('click:product')"
                 >
@@ -125,7 +125,7 @@
                         <ColorChip
                           v-if="item.colors.length"
                           data-test-id="product-card-color-circle"
-                          :color="asProductColor(item.colors[0])"
+                          :color="item.colors[0] as ProductColor"
                           :size="colorChipSize"
                           :rounded="colorChipRoundedSize"
                         />
@@ -143,51 +143,33 @@
 </template>
 
 <script setup lang="ts">
-import { ProductColor, Product, Value } from '@scayle/storefront-nuxt'
+import type { ProductColor, Product } from '@scayle/storefront-nuxt'
 
-const props = defineProps({
-  index: {
-    type: Number,
-    default: -1,
-  },
-  product: {
-    type: Object as PropType<Product>,
-    default: () => ({}),
-  },
-  loading: {
-    type: Boolean,
-  },
-  badgeLabel: {
-    type: String,
-    default: null,
-  },
-  isAvailable: {
-    type: Boolean,
-    default: true,
-  },
-  isWishlistCard: {
-    type: Boolean,
-  },
-  wishlistRemoveIcon: {
-    type: String as PropType<'heart' | 'close'>,
-    default: undefined,
-  },
-  colorChipSize: {
-    type: String as PropType<'sm' | 'md'>,
-    default: 'md',
-  },
-  colorChipRoundedSize: {
-    type: String as PropType<'sm' | 'md'>,
-    default: 'md',
-  },
-  siblingSpacing: {
-    type: String as PropType<'default' | 'narrow'>,
-    default: 'default',
-  },
-  listingMetaData: {
-    type: Object as PropType<ListItem>,
-    default: () => ({}),
-  },
+type Props = {
+  product: Product
+  index?: number
+  loading?: boolean
+  isAvailable?: boolean
+  badgeLabel?: string
+  isWishlistCard?: boolean
+  wishlistRemoveIcon?: 'heart' | 'close'
+  colorChipSize?: 'sm' | 'md'
+  colorChipRoundedSize?: 'sm' | 'md'
+  siblingSpacing?: 'default' | 'narrow'
+  listingMetaData?: ListItem
+}
+
+const props = withDefaults(defineProps<Props>(), {
+  index: -1,
+  loading: false,
+  badgeLabel: undefined,
+  isAvailable: true,
+  isWishlistCard: false,
+  wishlistRemoveIcon: undefined,
+  colorChipSize: 'md',
+  colorChipRoundedSize: 'md',
+  siblingSpacing: 'default',
+  listingMetaData: undefined,
 })
 
 const loadHoverImage = ref(false)
@@ -244,8 +226,6 @@ const headerActionsClass = computed(() => ({
   'lg:opacity-0':
     props.isWishlistCard && !shouldHoverImage && props.isAvailable,
 }))
-
-const asProductColor = (value: Value) => value as ProductColor
 
 const emit = defineEmits<{
   (e: 'intersect:product', value: number): void

@@ -1,12 +1,7 @@
 import type { Product, FetchProductsParams } from '@scayle/storefront-nuxt'
 
-const listingMetaData = {
-  name: 'PDP',
-  id: 'PDP',
-}
-
 export default async () => {
-  const { product, id: productId } = await useProductDetails()
+  const { product, id: productId, listingMetaData } = await useProductDetails()
 
   const { trackSelectItem } = useTrackingEvents()
 

@@ -31,7 +31,7 @@
               class="text-xs font-semibold text-secondary"
               data-test-id="pdp-product-brand"
             >
-              {{ brandName }}
+              {{ brand }}
             </div>
             <div class="flex items-start justify-between md:flex-col">
               <Headline
@@ -170,10 +170,6 @@ import {
   isInStock,
 } from '@scayle/storefront-nuxt'
 
-const listingMetaData = {
-  name: 'PDP',
-  id: 'PDP',
-}
 const route = useRoute()
 
 const store = useStore()
@@ -186,7 +182,7 @@ const {
   quantity,
   availableQuantity,
   hasOneSizeVariantOnly,
-  brand: brandName,
+  brand,
   name: productName,
   images,
   breadcrumbs,
@@ -196,6 +192,7 @@ const {
   handleSelectedSize,
   lowestPriorPrice,
   fetching,
+  listingMetaData,
 } = await useProductDetails()
 
 const { addItemToBasket, basketIdle } = await useProductDetailsBasketActions()
@@ -252,8 +249,7 @@ useJsonld(() =>
   generateProductSchema({
     price: formatPrice(price.value?.withTax || 0),
     productName: productName.value || '',
-    brandName:
-      getFirstAttributeValue(product.value?.attributes, 'brand')?.label || '',
+    brandName: brand.value || '',
     url: sanitizedCanonicalURL,
     isInStock: product.value?.variants?.some(isInStock),
     images: images.value,

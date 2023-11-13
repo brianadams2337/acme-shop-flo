@@ -9,6 +9,11 @@ import {
   getVariantBySize,
 } from '@scayle/storefront-nuxt'
 
+const listingMetaData = {
+  name: 'PDP',
+  id: 'PDP',
+}
+
 export default async () => {
   const route = useRoute()
 
@@ -124,5 +129,6 @@ export default async () => {
     breadcrumbs,
     fetching,
     product,
+    listingMetaData,
   }
 }

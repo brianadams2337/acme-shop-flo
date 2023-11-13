@@ -75,7 +75,7 @@
               <slot name="header-badge" :label="badgeLabel">
                 <DefaultLink
                   v-if="badgeLabel"
-                  :to="link"
+                  :to="route"
                   raw
                   @click.capture="$emit('click:product')"
                 >
@@ -86,7 +86,6 @@
                 </DefaultLink>
               </slot>
             </div>
-            NuxtPicture
           </slot>
           <slot
             name="description"
@@ -144,14 +143,7 @@
 </template>
 
 <script setup lang="ts">
-import {
-  ProductColor,
-  Product,
-  getProductAndSiblingsColors,
-  getProductSiblings,
-  getFirstAttributeValue,
-  Value,
-} from '@scayle/storefront-nuxt'
+import { ProductColor, Product, Value } from '@scayle/storefront-nuxt'
 
 const props = defineProps({
   index: {
@@ -214,28 +206,16 @@ const onMouseLeave = () => {
   emit('productimage:mouseleave')
 }
 
-const title = computed(() => {
-  return getFirstAttributeValue(props.product.attributes, 'brand')?.label
-})
-
-const name = computed(() => {
-  return getFirstAttributeValue(props.product.attributes, 'name')?.label ?? ''
-})
-
-const price = computed(() => {
-  return getLowestPriceBetweenVariants(props.product)
-})
-const lowestPriorPrice = computed(() => {
-  return getVariantWithLowestPrice(props.product.variants)?.lowestPriorPrice
-})
-
-const colors = computed(() => {
-  return getProductAndSiblingsColors(props.product, 'color')
-})
-
-const image = computed(() => {
-  return getImageFromList(props.product.images, ProductImageType.BUST, 'front')
-})
+const {
+  brand: title,
+  name,
+  price,
+  lowestPriorPrice,
+  colors,
+  image,
+  siblings,
+  link,
+} = useProductBaseInfo(props.product)
 
 const imageLoading = computed<'eager' | 'lazy'>(() =>
   !props.index ? 'eager' : 'lazy',
@@ -254,12 +234,6 @@ const hoverImage = computed(() => {
   }
   return modelImageOrFirstAvailable
 })
-
-const siblings = computed(
-  () => getProductSiblings(props.product, 'color') || [],
-)
-
-const link = computed(() => getProductDetailRoute(props.product))
 
 const imageClasses = computed(() => ({
   'group-hover:opacity-0': hoverImage.value && props.isAvailable,

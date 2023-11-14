@@ -18,9 +18,8 @@ export default async () => {
   const route = useRoute()
 
   const productId = computed(() => {
-    return String(route.params.slug)?.substring(
-      route.params.slug.lastIndexOf('-') + 1,
-    )
+    const id = String(route.params.slug).split('-').pop() as string
+    return parseInt(id, 10)
   })
 
   const {
@@ -29,11 +28,8 @@ export default async () => {
     fetching,
   } = await useProduct({
     params: {
-      id: parseInt(productId.value),
+      id: productId.value,
       with: PRODUCT_WITH_PARAMS,
-    },
-    options: {
-      lazy: true,
     },
     key: `useProduct-${productId.value}`,
   })
@@ -42,8 +38,7 @@ export default async () => {
     throw error.value
   }
 
-  const { id, brand, name, variantWithLowestPrice } =
-    useProductBaseInfo(product)
+  const { brand, name, variantWithLowestPrice } = useProductBaseInfo(product)
 
   const activeVariant = useState<Variant | undefined>('active-variant')
   const quantity = useState<number>('product-quantity', () => 1)
@@ -86,15 +81,15 @@ export default async () => {
   })
 
   const img = useImage()
-  const imageOptions = {
-    sizes: 'sm:100vw md:100vw',
-    modifiers: { quality: '75' },
-    provider: 'default',
-  }
 
   const images = computed(() => {
+    const options = {
+      sizes: 'sm:100vw md:100vw',
+      modifiers: { quality: '75' },
+      provider: 'default',
+    }
     const images = product.value?.images
-    return images.map(({ hash }) => img?.getImage(hash, imageOptions).url) || []
+    return images.map(({ hash }) => img?.getImage(hash, options).url) || []
   })
 
   const siblings = computed(() => {
@@ -112,7 +107,7 @@ export default async () => {
   const breadcrumbs = computed(() => getBreadcrumbs(categories.value))
 
   return {
-    id,
+    productId,
     brand,
     name,
     price,

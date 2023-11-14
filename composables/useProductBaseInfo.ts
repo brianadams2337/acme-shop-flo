@@ -8,8 +8,6 @@ import {
 export default (productItem: MaybeRefOrGetter<Product>) => {
   const product = toRef(productItem)
 
-  const id = computed(() => product.value.id)
-
   const brand = computed(() => {
     return getFirstAttributeValue(product.value.attributes, 'brand')?.label
   })
@@ -49,7 +47,6 @@ export default (productItem: MaybeRefOrGetter<Product>) => {
   const link = computed(() => getProductDetailRoute(product.value))
 
   return {
-    id,
     brand,
     name,
     price,

@@ -171,9 +171,7 @@ import {
 } from '@scayle/storefront-nuxt'
 
 const route = useRoute()
-
 const store = useStore()
-
 const { $i18n, $config } = useNuxtApp()
 
 const {

@@ -1,7 +1,7 @@
 import type { Product, FetchProductsParams } from '@scayle/storefront-nuxt'
 
 export default async () => {
-  const { product, id: productId, listingMetaData } = await useProductDetails()
+  const { product, productId, listingMetaData } = await useProductDetails()
 
   const { trackSelectItem } = useTrackingEvents()
 
@@ -12,6 +12,7 @@ export default async () => {
     product: product.value,
     property: 'combineWith',
   })
+
   const combineWithProductIds = computed(() =>
     combineWithProductValues
       ? combineWithProductValues

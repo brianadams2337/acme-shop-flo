@@ -1,5 +1,5 @@
 <template>
-  <transition
+  <Transition
     enter-from-class="opacity-0"
     enter-to-class="opacity-100"
     enter-active-class="transition ease-linear duration-200"
@@ -13,7 +13,7 @@
         @click="toggle"
       />
 
-      <transition
+      <Transition
         :enter-from-class="slideTypes[slideType].enterClasses"
         :enter-to-class="slideTypes[slideType].enterToClasses"
         enter-active-class="transform transition-all duration-200 delay-75"
@@ -38,9 +38,9 @@
             </slot>
           </div>
         </div>
-      </transition>
+      </Transition>
     </div>
-  </transition>
+  </Transition>
 </template>
 
 <script setup lang="ts">
@@ -61,12 +61,10 @@ const emit = defineEmits(['open', 'close'])
 
 const { isOpen, toggle } = useSlideIn(props.name)
 
-type SlideTypeClasses = {
-  enterClasses: string
-  enterToClasses: string
-  leaveClasses: string
-  leaveToClasses: string
-}
+type SlideTypeClasses = Record<
+  'enterClasses' | 'enterToClasses' | 'leaveClasses' | 'leaveToClasses',
+  string
+>
 
 const slideTypes: Record<SlideInType, SlideTypeClasses> = {
   [SlideInType.DEFAULT]: {
@@ -83,7 +81,5 @@ const slideTypes: Record<SlideInType, SlideTypeClasses> = {
   },
 }
 
-watch(isOpen, (newValue) => {
-  emit(newValue ? 'open' : 'close')
-})
+watch(isOpen, (newValue) => emit(newValue ? 'open' : 'close'))
 </script>

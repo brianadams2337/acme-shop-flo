@@ -5,7 +5,8 @@
         <SkeletonLoader
           v-for="n in filters.length + 1"
           :key="n"
-          type="button" />
+          type="button"
+        />
       </slot>
     </template>
     <template v-else>
@@ -17,7 +18,8 @@
             :badge="totalCount"
             type="tertiary"
             size="sm"
-            @click="emit('click:selected-filter')">
+            @click="onFilterApply()"
+          >
             <slot name="filters-button-default-label">
               {{ $t('filter.all_label') }}
             </slot>
@@ -26,19 +28,16 @@
         <slot
           v-for="(filter, idx) in filters"
           name="buttons"
-          v-bind="{
-            filter,
-            totalCount,
-          }">
+          v-bind="{ filter, totalCount }"
+        >
           <AppButton
             :key="idx"
             class="text-sm"
             :badge="filter.count"
             type="tertiary"
             size="sm"
-            @click="
-              emit('click:selected-filter', { [filter.key]: filter.value })
-            ">
+            @click="onFilterApply({ [filter.key]: filter.value })"
+          >
             {{ filter.displayName }}
           </AppButton>
         </slot>
@@ -48,28 +47,23 @@
 </template>
 
 <script setup lang="ts">
-import { TransformedFilter } from '@scayle/storefront-nuxt'
-
 defineProps({
   loading: {
     type: Boolean,
     default: false,
   },
-  filters: {
-    type: Array<TransformedFilter>,
-    default: () => [],
-  },
   totalCount: {
     type: Number,
     default: 0,
   },
-  activeFilters: {
-    type: Object as PropType<Record<string, any>>,
-    default: () => {},
-  },
 })
 
-const emit = defineEmits<{
-  (e: 'click:selected-filter', value?: any): void
-}>()
+const { applyFilters, quickFilters: filters } = await useFilter()
+
+const onFilterApply = (filters?: Record<string, any>) => {
+  applyFilters({
+    preserveAttributeFilters: true,
+    ...(filters && { quickFilters: filters }),
+  })
+}
 </script>

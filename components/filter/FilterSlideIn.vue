@@ -3,7 +3,8 @@
     name="FilterSlideIn"
     slide-class="mt-[7rem] border-t border-l border-primary xl:inset-y-0"
     @open="onSlideInOpen"
-    @close="trackFilterFlyout('close', 'true')">
+    @close="trackFilterFlyout('close', 'true')"
+  >
     <template #slideInHeader="{ toggle: toggleItem }">
       <div class="flex w-full items-center justify-between">
         <Headline size="xl" tag="p">{{ $t('filter.title') }} </Headline>
@@ -11,7 +12,8 @@
           type="ghost"
           size="xs"
           data-test-id="closeCross"
-          @click="toggleItem">
+          @click="toggleItem"
+        >
           <template #icon="{ _class }">
             <IconClose :class="_class" />
           </template>
@@ -19,8 +21,7 @@
       </div>
     </template>
     <template #slideInBody>
-      <FilterSlideInBody :active-filters="activeFilters" :filters="filters" />
-      <div>Hallo</div>
+      <FilterSlideInBody />
     </template>
 
     <template #slideInActions>
@@ -37,7 +38,8 @@
           is-full-width
           type="primary"
           class="text-sm !capitalize"
-          @click="applyFilters">
+          @click="applyFilters()"
+        >
           {{
             filteredCount !== unfilteredCount
               ? $t('filter.show_results_count', { count: filteredCount })
@@ -50,17 +52,7 @@
 </template>
 
 <script setup lang="ts">
-import { Filter, ProductFilter } from '@scayle/storefront-nuxt'
-
-const props = defineProps({
-  filters: {
-    type: Array as PropType<ProductFilter[]>,
-    default: () => [],
-  },
-  activeFilters: {
-    type: Object as PropType<Filter>,
-    default: () => {},
-  },
+defineProps({
   filteredCount: {
     type: Number,
     default: 0,
@@ -75,20 +67,6 @@ const props = defineProps({
   },
 })
 
-const { filters: filterableValues, activeFilters } = toRefs(props)
-
-const emit = defineEmits<{
-  (e: 'filter:apply', filter: Record<string, any>): void
-  (e: 'filter:state-changed', filter: Record<string, any>): void
-  (e: 'filter:reset'): void
-}>()
-
 const { onSlideInOpen, trackFilterFlyout, resetFilters, applyFilters } =
-  useFilterSlideIn({
-    filterableValues,
-    activeFilters,
-    onFilterApply: (filter) => emit('filter:apply', filter),
-    onFilterReset: () => emit('filter:reset'),
-    onStateChange: (filter) => emit('filter:state-changed', filter),
-  })
+  await useFilter()
 </script>

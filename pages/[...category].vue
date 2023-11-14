@@ -35,10 +35,8 @@
               class="mt-2 flex w-full flex-col justify-between space-y-2 md:flex-row"
             >
               <ProductQuickFilters
-                :filters="quickFilters"
                 :loading="filtersFetching"
                 :total-count="unfilteredCount"
-                @click:selected-filter="applyFilter($event, true)"
               />
               <div class="order-1 flex items-center space-x-4 text-sm">
                 <SortingMenu
@@ -89,30 +87,24 @@
       </div>
       <FilterSlideIn
         v-if="filters"
-        v-bind="{ activeFilters, filters, filteredCount, unfilteredCount }"
+        v-bind="{ filteredCount, unfilteredCount }"
         :fetching-filtered-count="productCountFetching"
-        @filter:apply="applyFilter"
-        @filter:state-changed="updateFilterCount($event)"
       />
     </PageContent>
   </div>
 </template>
 
 <script setup lang="ts">
-import {
-  type Product,
-  groupFilterableValuesByKey,
-  transformToWhereCondition,
-} from '@scayle/storefront-nuxt'
+import type { Product } from '@scayle/storefront-nuxt'
 import { SbCmsImage, SbListingPage } from '../storyblok/types/storyblok'
 
 const route = useRoute()
 const store = useStore()
+const { $i18n, $config } = useNuxtApp()
 
 const { toggle: toggleFilter } = useSlideIn('FilterSlideIn')
 
-const { trackViewItemList, trackSelectItem, trackFilterApply } =
-  useTrackingEvents()
+const { trackViewItemList, trackSelectItem } = useTrackingEvents()
 
 const {
   products,
@@ -129,7 +121,6 @@ const {
   filtersFetching,
   unfilteredCount,
   productCountData,
-  refreshProductCount,
   productCountFetching,
   productError,
   filterError,
@@ -140,11 +131,7 @@ const {
 
 const { selectedSort, sortingValues } = useProductListSort(selectedCategory)
 
-const {
-  applyFilters: _applyFilter,
-  productConditions,
-  activeFilters,
-} = useQueryFilterState({ defaultSort: DEFAULT_SORTING_KEY })
+const { isFiltered } = await useFilter()
 
 const trackViewListing = ({ items }: { row: number; items: Product[] }) => {
   const paginationOffset = ((pagination.value?.page || 1) - 1) * 24
@@ -189,12 +176,6 @@ if (error.value) {
 
 const viewport = useViewport()
 
-const updateFilterCount = async (filter: Record<string, any>) => {
-  await refreshProductCount({
-    where: transformToWhereCondition(filter),
-  })
-}
-
 watch(
   () => route.query,
   async () => await fetchProducts(fetchParameters.value),
@@ -211,51 +192,6 @@ const trackProductClick = (product: Product) => {
     },
   })
 }
-
-const applyFilter = (
-  filter: Record<string, any>,
-  preserveAttributeFilters = false,
-) => {
-  const attributeFilters: Record<string, any> =
-    route.query.value && preserveAttributeFilters
-      ? parseAndPreserveAttributeFilters()
-      : {}
-  const combinedFilters = { ...filter, ...attributeFilters }
-  if (!isEmpty(combinedFilters)) {
-    Object.keys(combinedFilters).forEach((key: string) => {
-      const values = Array.isArray(combinedFilters[key])
-        ? combinedFilters[key].join('|')
-        : combinedFilters[key]
-      trackFilterApply(key, values)
-    })
-  }
-
-  _applyFilter(combinedFilters)
-}
-
-// TODO: Refactor to consolidate logic and remove non-presentation logic to helpers
-const parseAndPreserveAttributeFilters = () => {
-  // Attribute filters such as color should be preserved
-  const attributeFilters: Record<string, any> = {}
-  const keysToExclude = quickFilters.value.map((filter) => filter.key)
-  const filtersFromQueryParams = JSON.parse(
-    (route.query.value as any).filters || '{}',
-  )
-  for (const key of Object.keys(filtersFromQueryParams)) {
-    if (!keysToExclude.includes(key.toLowerCase())) {
-      attributeFilters[key] = filtersFromQueryParams[key]
-    }
-  }
-  return attributeFilters
-}
-
-const quickFilters = computed(() =>
-  filters.value
-    ? groupFilterableValuesByKey(filters.value, INCLUDED_QUICK_FILTERS).filter(
-        (filter) => !!filter.count,
-      )
-    : [],
-)
 
 const { content, hasTeaserImage, postListingContent, preListingContent } =
   useCmsListingContent(cmsData)
@@ -276,10 +212,6 @@ watch(
   { immediate: true },
 )
 
-const { $i18n, $config } = useNuxtApp()
-const isFiltered = computed(
-  () => !!productConditions.value.where?.attributes?.length,
-)
 const robots = computed(() =>
   isFiltered.value ? 'noindex,follow' : 'index,follow',
 )

@@ -15,7 +15,7 @@
         {{ toCurrency(price.withTax) }}
         <span
           v-if="totalReductions.absoluteWithTax"
-          class="text-primary text-sm font-medium line-through"
+          class="text-sm font-medium text-primary line-through"
           data-test-id="initialProductPrice">
           {{ toCurrency(price.withTax + totalReductions.absoluteWithTax) }}
         </span>

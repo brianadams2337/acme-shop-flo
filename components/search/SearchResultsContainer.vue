@@ -1,7 +1,7 @@
 <template>
   <div
     id="search-results"
-    class="border-primary absolute top-12 mt-2 w-full overflow-y-auto overscroll-none rounded border bg-white p-5">
+    class="absolute top-12 mt-2 w-full overflow-y-auto overscroll-none rounded border border-primary bg-white p-5">
     <FadeInTransition>
       <SearchResultSkeleton v-if="fetching" />
       <div v-else>
@@ -12,7 +12,7 @@
           <DefaultLink
             :to="getSearchRoute(searchTerm)"
             raw
-            class="hover:bg-secondary-450 mx-auto rounded px-4 py-2 text-xs font-semibold underline transition-all duration-200 ease-in-out hover:font-bold"
+            class="mx-auto rounded px-4 py-2 text-xs font-semibold underline transition-all duration-200 ease-in-out hover:bg-secondary-450 hover:font-bold"
             @click="emit('close')">
             {{ $t('search.more') }}
           </DefaultLink>

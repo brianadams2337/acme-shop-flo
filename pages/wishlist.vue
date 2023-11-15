@@ -1,12 +1,12 @@
 <template>
   <div class="container">
     <div class="mt-8">
-      <Headline size="xl" class="text-primary font-semibold">
+      <Headline size="xl" class="font-semibold text-primary">
         {{ $t('wishlist.heading') }}
       </Headline>
       <p
         data-test-id="wishlist-count"
-        class="text-secondary mt-4 text-xs font-semibold">
+        class="mt-4 text-xs font-semibold text-secondary">
         {{ $t('wishlist.products_count', count) }}
       </p>
     </div>

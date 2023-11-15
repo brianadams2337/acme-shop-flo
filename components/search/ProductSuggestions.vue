@@ -20,11 +20,11 @@
           :image-url="getImageUrl(productSuggestion)"
           @click:result="emit('click:result', productSuggestion)">
           <div class="w-full overflow-hidden">
-            <div class="text-2xs text-secondary truncate font-medium">
+            <div class="truncate text-2xs font-medium text-secondary">
               {{ getCategoryName(productSuggestion) }}
             </div>
             <div
-              class="text-primary flex overflow-hidden text-sm font-semibold">
+              class="flex overflow-hidden text-sm font-semibold text-primary">
               <div class="shrink truncate">
                 {{ productSuggestion.suggestion }}
               </div>

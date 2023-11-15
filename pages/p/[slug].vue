@@ -26,7 +26,7 @@
               <ProductDetailBreadcrumbs :links="breadcrumbs" />
             </div>
             <div
-              class="text-secondary text-xs font-semibold"
+              class="text-xs font-semibold text-secondary"
               data-test-id="pdp-product-brand"
             >
               {{ brandName }}
@@ -109,7 +109,7 @@
               </AppButton>
               <client-only>
                 <WishlistToggle
-                  class="border-gray-350 ml-2 box-border h-full border !px-2"
+                  class="ml-2 box-border h-full border border-gray-350 !px-2"
                   :product="product"
                 />
               </client-only>

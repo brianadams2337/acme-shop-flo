@@ -4,7 +4,7 @@
     :is="componentName"
     :raw="componentName === Component.DEFAULT_LINK"
     data-test-id="back-button"
-    class="text-primary absolute z-30 flex items-center gap-2"
+    class="absolute z-30 flex items-center gap-2 text-primary"
     v-on="backClickEventHandling">
     <IconBack class="h-4 w-4" />
     <span class="text-xs font-semibold">{{ $t('global.back') }}</span>

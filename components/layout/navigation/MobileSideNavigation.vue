@@ -50,7 +50,7 @@
       </ul>
       <DefaultLink
         v-if="rootCategory && rootCategory.path !== '/sale'"
-        class="text-pink-neon px-12 !text-xl"
+        class="px-12 !text-xl text-pink-neon"
         only-exact-active
         to="/sale">
         Sale

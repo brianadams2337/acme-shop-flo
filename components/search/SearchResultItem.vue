@@ -1,6 +1,6 @@
 <template>
   <li
-    class="hover:border-primary hover:bg-secondary-450 h-auto break-all rounded border p-2 transition-colors">
+    class="h-auto break-all rounded border p-2 transition-colors hover:border-primary hover:bg-secondary-450">
     <DefaultLink
       class="flex w-full flex-1 items-center transition-colors duration-100 ease-in-out"
       :to="to"

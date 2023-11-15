@@ -3,7 +3,7 @@
     <div
       v-if="state === 'default'"
       data-test-id="basket-card"
-      class="border-gray-350 w-full rounded border p-4 text-sm lg:p-5">
+      class="w-full rounded border border-gray-350 p-4 text-sm lg:p-5">
       <div class="flex w-full" :class="{ 'opacity-50': !inStock }">
         <div
           class="flex w-28 items-center pr-3 lg:w-48 lg:p-0 lg:pr-6"

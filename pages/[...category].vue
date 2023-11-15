@@ -89,7 +89,7 @@
 
 <script setup lang="ts">
 import type { Product } from '@scayle/storefront-nuxt'
-import { SbCmsImage, SbListingPage } from '../storyblok/types/storyblok'
+import type { SbCmsImage, SbListingPage } from '../storyblok/types/storyblok'
 
 const route = useRoute()
 const store = useStore()

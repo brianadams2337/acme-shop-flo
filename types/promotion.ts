@@ -1,4 +1,4 @@
-import {
+import type {
   Promotion as CorePromotion,
   PromotionCustomData,
 } from '@scayle/storefront-nuxt'
@@ -19,14 +19,4 @@ export {}
 
 declare global {
   type Promotion = CorePromotion & { customData: CustomData }
-
-  type AutomaticDiscountAdditionalData = {
-    type: 'absolute' | 'relative'
-    value: number
-  }
-
-  type BuyXGetYAdditonalData = {
-    maxCount: number
-    variantIds: number[]
-  }
 }

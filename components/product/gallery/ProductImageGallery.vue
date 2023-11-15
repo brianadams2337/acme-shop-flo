@@ -80,15 +80,13 @@
 <script setup lang="ts">
 import type { Product } from '@scayle/storefront-nuxt'
 
-const props = defineProps({
-  product: {
-    type: Object as PropType<Product>,
-    default: () => ({}),
-  },
-  imagesPerRow: {
-    type: Array as PropType<number[]>,
-    default: () => [2, 2, 2, 3, 3],
-  },
+type Props = {
+  product: Product
+  imagesPerRow?: number[]
+}
+
+const props = withDefaults(defineProps<Props>(), {
+  imagesPerRow: () => [2, 2, 2, 3, 3],
 })
 
 const emit = defineEmits<{

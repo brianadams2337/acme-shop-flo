@@ -89,6 +89,7 @@
               />
 
               <Dropdown
+                v-if="!availableAddOns.length && !hasOneSizeVariantOnly"
                 :model-value="quantity"
                 :items="availableQuantity"
                 :disabled="!activeVariant"
@@ -370,7 +371,9 @@ const addItemToBasket = async () => {
       : await addBasketItem({
           variantId: activeVariant.value.id,
           quantity: quantity.value,
-          promotionId: applicablePromotion.value.id,
+          ...(applicablePromotion.value && {
+            promotionId: applicablePromotion.value.id,
+          }),
         })
 
     openBasketFlyout()

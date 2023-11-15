@@ -3,27 +3,31 @@
     <AppButton
       data-test-id="reset-filter-button"
       type="tertiary"
-      class="text-sm !capitalize"
-      @click="resetFilters"
-      >{{ $t('filter.reset_all') }}
+      class="!capitalize"
+      @click="resetFilters()"
+    >
+      {{ $t('filter.reset_all') }}
     </AppButton>
     <AppButton
       data-test-id="apply-filter-button"
       is-full-width
-      type="primary"
-      class="text-sm !capitalize"
+      class="!capitalize"
       @click="applyFilters()"
     >
-      {{
-        filteredCount !== unfilteredCount
-          ? $t('filter.show_results_count', { count: filteredCount })
-          : $t('filter.show_results')
-      }}
+      {{ showResultsLabel }}
     </AppButton>
   </div>
 </template>
 
 <script setup lang="ts">
+const { $i18n } = useNuxtApp()
+
 const { resetFilters, applyFilters, unfilteredCount, filteredCount } =
   await useFilter()
+
+const showResultsLabel = computed(() => {
+  return filteredCount.value !== unfilteredCount.value
+    ? $i18n.t('filter.show_results_count', { count: filteredCount })
+    : $i18n.t('filter.show_results')
+})
 </script>

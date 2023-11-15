@@ -87,7 +87,7 @@ interface FilterState {
   brand: []
   size: []
   color: []
-  prices: [CentAmount | undefined, CentAmount | undefined]
+  prices: [CentAmount, CentAmount]
   sale: boolean
 }
 ```
@@ -215,7 +215,7 @@ interface FilterState {
   brand: []
   size: []
   color: []
-  prices: [CentAmount | undefined, CentAmount | undefined]
+  prices: [CentAmount, CentAmount]
   sale: boolean
   // add new key
   gender: []

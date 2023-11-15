@@ -89,9 +89,7 @@
     <FilterGroup
       v-if="hasPriceRange"
       :label="$t('filter.price')"
-      :show-action="
-        !!(activeFilters.maxPrice || activeFilters.minPrice) && priceChanged
-      "
+      :show-action="hasActivePrices && priceChanged"
       @click:reset="resetFilter('prices')"
     >
       <RangeSlider
@@ -120,9 +118,12 @@ const {
   priceChanged,
   maxPrice,
   minPrice,
-  currencyCode,
-  locale,
   isSaleActive,
-  activeFilters,
+  hasActivePrices,
 } = await useFilter()
+
+const currentShop = useCurrentShop()
+
+const locale = currentShop.value!.locale?.replace('_', '-')
+const currencyCode = currentShop.value!.currency
 </script>

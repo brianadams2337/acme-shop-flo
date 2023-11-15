@@ -20,7 +20,6 @@
         </AppButton>
       </slot>
     </div>
-
     <div class="mt-4">
       <slot />
     </div>

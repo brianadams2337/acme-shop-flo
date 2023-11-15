@@ -11,11 +11,13 @@ import {
   transformStateToFilters,
 } from '@scayle/storefront-nuxt'
 
+const SUPPORTED_FILTERS = ['brand', 'size', 'color', 'prices', 'sale']
+
 export type FilterState = {
   brand: []
   size: []
   color: []
-  prices: [CentAmount | undefined, CentAmount | undefined]
+  prices: [CentAmount, CentAmount]
   sale: boolean
 }
 
@@ -24,9 +26,7 @@ type Options = {
 }
 
 export default async (
-  {
-    supportedFilters = ['brand', 'size', 'color', 'prices', 'sale'],
-  }: Options = {},
+  { supportedFilters = SUPPORTED_FILTERS }: Options = {},
   key = 'filter',
 ) => {
   const route = useRoute()
@@ -39,6 +39,29 @@ export default async (
     unfilteredCount,
     productCountData,
   } = await useProductList()
+
+  const initialState = useState<FilterState>(key, () => ({
+    size: [],
+    brand: [],
+    color: [],
+    prices: [minPrice.value, maxPrice.value],
+    sale: false,
+  }))
+
+  const state = useState<FilterState>(`state-${key}`, () => ({
+    ...initialState.value,
+  }))
+
+  const { toggle } = useSlideIn('FilterSlideIn')
+  const { trackFilterApply, trackFilterFlyout } = useTrackingEvents()
+
+  const {
+    applyFilters: _applyFilters,
+    activeFilters,
+    productConditions,
+  } = useQueryFilterState({
+    defaultSort: DEFAULT_SORTING_KEY,
+  })
 
   const availableFilterValues = computed(() => {
     // TODO fix in core
@@ -67,33 +90,25 @@ export default async (
 
   const hasPriceRange = computed(() => minPrice.value !== maxPrice.value)
 
-  // initial result subset
-  const initialState = useState<FilterState>(key, () => ({
-    size: [],
-    brand: [],
-    color: [],
-    prices: [minPrice.value, maxPrice.value],
-    sale: false,
-  }))
-
-  // user's selected conditions
-  const state = useState<FilterState>(`state-${key}`, () => ({
-    ...initialState.value,
-  }))
-
-  const { toggle } = useSlideIn('FilterSlideIn')
-  // const { trackFilterFlyout } = useTrackingEvents()
-  const trackFilterFlyout = (..._args: any) => {}
-
-  const { trackFilterApply } = useTrackingEvents()
-
-  const {
-    applyFilters: _applyFilter,
-    activeFilters,
-    productConditions,
-  } = useQueryFilterState({
-    defaultSort: DEFAULT_SORTING_KEY,
+  const hasActivePrices = computed(() => {
+    return !!(activeFilters.value.maxPrice || activeFilters.value.minPrice)
   })
+
+  const priceChanged = computed(() => {
+    return !isEqual(initialState.value.prices, state.value.prices)
+  })
+
+  const isSaleActive = computed(() => {
+    const sale = availableFilterValues.value.sale || []
+    const saleCount = !!availableFilterValues.value.sale[0].count
+    return sale.length && saleCount
+  })
+
+  const isFiltered = computed(() => {
+    return !!productConditions.value.where?.attributes?.length
+  })
+
+  const filteredCount = computed(() => productCountData.value?.count || 0)
 
   const applyFilter = (
     preserveAttributeFilters = false,
@@ -117,7 +132,7 @@ export default async (
       })
     }
 
-    _applyFilter(combinedFilters)
+    _applyFilters(combinedFilters)
   }
 
   // TODO: Refactor to consolidate logic and remove non-presentation logic to helpers
@@ -177,19 +192,15 @@ export default async (
       getActiveFilters(availableFilterValues.value, activeFilters.value),
     )
 
-    if (activeFilters.value.minPrice || activeFilters.value.maxPrice) {
+    if (hasActivePrices.value) {
       return setActivePriceRangeInState(
-        // TODO: fix types
+        // TODO: Fix types
         parseInt(activeFilters.value.minPrice as any) as CentAmount,
         parseInt(activeFilters.value.maxPrice as any) as CentAmount,
       )
     }
     state.value.prices = [minPrice.value, maxPrice.value]
   }
-
-  const priceChanged = computed(() => {
-    return !isEqual(initialState.value.prices, state.value.prices)
-  })
 
   const applyFilters = ({
     preserveAttributeFilters = false,
@@ -226,17 +237,6 @@ export default async (
     applyFilter()
   }
 
-  const currentShop = useCurrentShop()
-
-  const locale = currentShop.value!.locale?.replace('_', '-')
-  const currencyCode = currentShop.value!.currency
-
-  const isSaleActive = computed(() => {
-    const sale = availableFilterValues.value.sale || []
-    const saleCount = !!availableFilterValues.value.sale[0].count
-    return sale.length && saleCount
-  })
-
   const onSlideInOpen = () => {
     setStateFromUrlParams()
     trackFilterFlyout('open', 'true')
@@ -247,20 +247,13 @@ export default async (
     await refreshProductCount({ where: transformToWhereCondition(filters) })
   }
 
-  const isFiltered = computed(() => {
-    return !!productConditions.value.where?.attributes?.length
-  })
-
-  const filteredCount = computed(() => productCountData.value?.count || 0)
-
   return {
     onSlideInOpen,
     resetFilter,
     resetFilters,
     applyFilters,
     state,
-    locale,
-    currencyCode,
+    hasActivePrices,
     hasPriceRange,
     priceChanged,
     minPrice,

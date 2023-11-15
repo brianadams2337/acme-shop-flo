@@ -12,45 +12,29 @@
 </template>
 
 <script setup lang="ts">
-import { ProductImage, getAttributeValue } from '@scayle/storefront-nuxt'
+import { type ProductImage, getAttributeValue } from '@scayle/storefront-nuxt'
 
-const props = defineProps({
-  sizes: {
-    type: String,
-    default: '',
-  },
-  image: {
-    type: Object as PropType<ProductImage>,
-    required: true,
-  },
-  shouldTrim: {
-    type: Boolean,
-    default: false,
-  },
-  fit: {
-    type: String,
-    default: 'contain',
-  },
-  isCentered: {
-    type: Boolean,
-    default: false,
-  },
-  alt: {
-    type: String,
-    default: undefined,
-  },
-  quality: {
-    type: Number,
-    default: 75,
-  },
-  load: {
-    type: Function as PropType<() => void>,
-    default: () => {},
-  },
-  imageLoading: {
-    type: String as PropType<'lazy' | 'eager'>,
-    default: 'lazy',
-  },
+type Props = {
+  image: ProductImage
+  sizes?: string
+  fit?: string
+  alt?: string
+  imageLoading: 'lazy' | 'eager'
+  quality?: number
+  load?: () => void
+  shouldTrim?: boolean
+  isCentered?: boolean
+}
+
+const props = withDefaults(defineProps<Props>(), {
+  sizes: '',
+  shouldTrim: false,
+  isCentered: false,
+  fit: 'contain',
+  imageLoading: 'lazy',
+  alt: undefined,
+  quality: 75,
+  load: () => {},
 })
 
 const imageBackground = computed(() => {

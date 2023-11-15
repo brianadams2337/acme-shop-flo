@@ -177,11 +177,11 @@
 
 <script setup lang="ts">
 import {
-  LowestPriorPrice,
-  Price,
-  Product,
-  Value,
-  Variant,
+  type LowestPriorPrice,
+  type Price,
+  type Product,
+  type Value,
+  type Variant,
   getAttributeValue,
   getLowestPrice,
   getSizeFromVariant,

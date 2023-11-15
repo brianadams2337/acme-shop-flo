@@ -1,4 +1,4 @@
-import { ProductWith } from '@scayle/storefront-nuxt'
+import type { ProductWith } from '@scayle/storefront-nuxt'
 
 export const PRODUCTS_PER_PAGE = 24
 export const MINIMUM_QUANTITY_IMMEDIATE_AVAILABILITY = 5

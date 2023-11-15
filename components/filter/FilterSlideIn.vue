@@ -6,7 +6,7 @@
     @close="trackFilterFlyout('close', 'true')"
   >
     <template #slide-in-header="{ toggle: toggleItem }">
-      <FiltersHeader :toggle-item="toggleItem" />
+      <FilterHeader :toggle-item="toggleItem" />
     </template>
     <template #slide-in-body>
       <FilterSlideInBody />

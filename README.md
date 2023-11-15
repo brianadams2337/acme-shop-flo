@@ -157,8 +157,8 @@ The script is taken from <https://www.storyblok.com/faq/how-to-get-all-unused-co
 
 ## Viewing Storefront API calls for debugging
 
-Depending on the task at hand its necessary to intercept and debug api calls from SFC.
-For this purpose it is recommended to use an interactive HTTP(S) proxy that allows to inspect the made api calls.
+Depending on the task at hand its necessary to intercept and debug API calls from SFC.
+For this purpose it is recommended to use an interactive HTTP(S) proxy that allows to inspect the made API calls.
 
 ### Recommendation: mitmproxy
 

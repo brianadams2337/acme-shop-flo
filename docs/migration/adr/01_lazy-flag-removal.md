@@ -21,7 +21,7 @@ will be resolved before the navigation.
 
 ```ts
 // Before:
-const { data } = useProduct('', { options: { lazy: true } })
+const { data } = useProduct({ options: { lazy: true } })
 
 // After:
 const { data } = useProduct() // Lazy is `false` by default

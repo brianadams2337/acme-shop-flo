@@ -30,13 +30,13 @@ export default async (productItem: MaybeRefOrGetter<Product>) => {
   })
 
   const isAutomaticDiscount = computed(() => {
-    const type = applicablePromotion.value?.effect.type
-    return type === PromotionEffectType.AUTOMATIC_DISCOUNT
+    const effectType = applicablePromotion.value?.effect.type
+    return effectType === PromotionEffectType.AUTOMATIC_DISCOUNT
   })
 
   const isBuyXGetY = computed(() => {
-    const type = applicablePromotion.value?.effect.type
-    return type === PromotionEffectType.BUY_X_GET_Y
+    const effectType = applicablePromotion.value?.effect.type
+    return effectType === PromotionEffectType.BUY_X_GET_Y
   })
 
   return {

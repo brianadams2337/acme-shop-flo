@@ -1,4 +1,5 @@
-import { HashAlgorithm, type ModuleOptions } from '@scayle/storefront-nuxt'
+import { HashAlgorithm } from '@scayle/storefront-nuxt'
+import type { IDPConfig, ModuleOptions } from '@scayle/storefront-nuxt'
 import * as customRpcMethods from '../rpcMethods'
 import withParams from '../constants/withParams'
 
@@ -12,11 +13,13 @@ declare module '@scayle/storefront-nuxt' {
     paymentProviders: string[]
     appKeys: typeof DEFAULT_APP_KEYS
     isLowestPreviousPriceActive?: boolean
+    idp?: IDPConfig
   }
   // Extend PublicShopConfig to make types available on currentShop
   export interface PublicShopConfig {
     isLowestPreviousPriceActive?: boolean
     paymentProviders: string[]
+    idp?: IDPConfig
   }
 }
 

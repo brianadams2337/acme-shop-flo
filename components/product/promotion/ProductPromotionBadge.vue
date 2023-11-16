@@ -1,6 +1,6 @@
 <template>
   <div
-    v-if="promotionLabel && productPromotionId"
+    v-if="promotionLabel && productPromotionId && promotionEngineFeatureEnabled"
     class="h-fit w-fit rounded-md bg-blue p-1 px-2 text-xs font-semibold text-white"
     :style="backgroundColorStyle"
   >
@@ -15,4 +15,6 @@ const props = defineProps<{ product: Product }>()
 
 const { backgroundColorStyle, promotionLabel, productPromotionId } =
   await useProductPromotion(props.product)
+
+const { promotionEngineFeatureEnabled } = useRuntimeConfig().public
 </script>

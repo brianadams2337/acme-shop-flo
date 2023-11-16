@@ -95,7 +95,7 @@ export const storefrontRuntimeConfigPrivate: Partial<ModuleOptions> = {
   idp: {
     enabled: true,
     idpKeys: ['google', 'facebook', 'apple'],
-    idpRedirectURL: `${protocol}localhost:3000/signin/`,
+    idpRedirectURL: `https://localhost:3000/signin/`,
   },
   shopSelector: 'path', // Override: NUXT_STOREFRONT_SHOP_SELECTOR
   // Following keys are Overrideable using prefix NUXT_STOREFRONT_STORES
@@ -127,7 +127,7 @@ export const storefrontRuntimeConfigPrivate: Partial<ModuleOptions> = {
         idp: {
           enabled: true,
           idpKeys: ['google', 'facebook', 'apple'],
-          idpRedirectURL: `${protocol}${shop.locale}/signin/`,
+          idpRedirectURL: `https://${shop.locale}/signin/`,
         },
         checkout: {
           shopId: shop.shopId, // Override: NUXT_STOREFRONT_STORES_{UNIQUE_IDENTIFIER}_CHECKOUT_SHOP_ID

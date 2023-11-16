@@ -9,11 +9,11 @@
       v-if="variants"
       class="rounded-b-md border border-gray-350 bg-white px-3.5 py-4"
     >
-      <div class="max-h-96 overflow-y-scroll">
+      <div class="max-h-64 overflow-y-scroll">
         <div
           v-for="variant in variantsWithProducts"
           :key="variant.id"
-          class="mb-4 flex items-center"
+          class="mb-4 flex items-center last-of-type:mb-0"
         >
           <RadioItem
             v-if="hasMultipleFreeGifts"

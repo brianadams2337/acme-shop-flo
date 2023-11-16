@@ -14,7 +14,7 @@
         @click:close-zoom-gallery="toggleZoomGallery(false)"
       />
       <div
-        class="sticky right-0 top-0 mt-5 w-full md:w-1/2 md:pl-4 lg:px-9 xl:w-1/3"
+        class="sticky right-0 top-0 mt-5 w-full md:w-1/2 md:pl-4 xl:w-1/3 xl:pl-6"
       >
         <div class="w-full bg-white">
           <div v-if="product.isSoldOut" class="left-0 top-0">

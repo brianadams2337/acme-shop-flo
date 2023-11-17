@@ -158,6 +158,9 @@ export default {
     aspectRatioPlugin,
     plugin(({ addUtilities }) => {
       const utilities = {
+        '.top-white-shadow': {
+          boxShadow: '0 -22px 10px 0 #fff',
+        },
         '.anchor-scrolling-none': {
           overflowAnchor: 'none',
         },

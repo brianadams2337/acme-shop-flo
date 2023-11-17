@@ -7,31 +7,28 @@
         :key="item.value"
         v-model="value"
         v-bind="item"
-        class="mr-2" />
+        class="mr-2"
+      />
     </div>
   </div>
 </template>
 
 <script setup lang="ts" generic="Item extends { label: string; value: any }">
-const props = defineProps({
-  modelValue: {
-    type: String,
-    default: undefined,
-  },
-  items: {
-    type: Array as PropType<Item[]>,
-    default: undefined,
-  },
-  title: {
-    type: String,
-    default: undefined,
-  },
+type Props = {
+  modelValue?: string | number
+  items?: Item[]
+  title?: string
+}
+const props = withDefaults(defineProps<Props>(), {
+  modelValue: undefined,
+  items: undefined,
+  title: undefined,
 })
 
 const emit = defineEmits(['update:model-value'])
 
 const value = computed({
   get: () => props.modelValue,
-  set: (value: string | undefined) => emit('update:model-value', value),
+  set: (value?: string | number) => emit('update:model-value', value),
 })
 </script>

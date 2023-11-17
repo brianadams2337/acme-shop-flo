@@ -14,7 +14,7 @@
         @click:close-zoom-gallery="toggleZoomGallery(false)"
       />
       <div
-        class="sticky right-0 top-0 mt-5 w-full md:w-1/2 md:pl-4 lg:px-9 xl:w-1/3"
+        class="sticky right-0 top-0 mt-5 w-full md:w-1/2 md:pl-4 xl:w-1/3 xl:pl-6"
       >
         <div class="w-full bg-white">
           <div v-if="product.isSoldOut" class="left-0 top-0">
@@ -23,12 +23,12 @@
               :badge-label="getBadgeLabel({ isSoldOut: product.isSoldOut })"
             />
           </div>
-          <div class="my-2 max-w-xs md:mt-1">
+          <div class="my-2 md:mt-1">
             <div class="mb-2">
               <ProductDetailBreadcrumbs :links="breadcrumbs" />
             </div>
             <div
-              class="text-xs font-semibold text-secondary"
+              class="max-w-xs text-xs font-semibold text-secondary"
               data-test-id="pdp-product-brand"
             >
               {{ brand }}
@@ -42,18 +42,28 @@
               >
                 {{ productName }}
               </Headline>
-              <ProductPrice
-                v-if="price"
-                size="xl"
-                class="md:mt-6"
-                :type="isGreaterOrEquals('md') ? 'normal' : 'loud'"
-                :price="price"
-                :lowest-prior-price="lowestPriorPrice"
-                :applied-reductions="price?.appliedReductions"
-                show-tax-info
-                :show-price-from="hasSpecial"
-                :show-price-reduction-badge="hasSpecial"
+              <ProductAutomaticDiscountBanner
+                :product="product"
+                class="mt-2 xs:hidden md:flex"
               />
+              <div class="flex flex-col">
+                <ProductPromotionBadge
+                  :product="product"
+                  class="mb-2 md:hidden"
+                />
+                <ProductPrice
+                  v-if="price"
+                  size="xl"
+                  class="md:mt-6"
+                  :type="isGreaterOrEquals('md') ? 'normal' : 'loud'"
+                  :price="price"
+                  :lowest-prior-price="lowestPriorPrice"
+                  :applied-reductions="price?.appliedReductions"
+                  show-tax-info
+                  :show-price-from="hasSpecial"
+                  :show-price-reduction-badge="hasSpecial"
+                />
+              </div>
             </div>
           </div>
           <div class="w-full">

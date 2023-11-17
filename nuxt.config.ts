@@ -1,3 +1,4 @@
+import yn from 'yn'
 import {
   storefrontRuntimeConfigPrivate,
   storefrontRuntimeConfigPublic,
@@ -85,6 +86,9 @@ export default defineNuxtConfig({
         id: process.env.NUXT_PUBLIC_GTM_ID,
         debug: process.env.NUXT_PUBLIC_GTM_DEBUG,
       },
+      promotionEngineFeatureEnabled: yn(
+        process.env.PROMOTION_ENGINE_FEATURE_ENABLED,
+      ),
       // Following keys are Overrideable using prefix NUXT_PUBLIC_IMAGE_BASE_URL
       imageBaseUrl: 'https://brb-demo.cdn.aboutyou.cloud/',
       // Following keys are Overrideable using prefix NUXT_PUBLIC_
@@ -226,10 +230,13 @@ export default defineNuxtConfig({
   },
 
   devServer: {
-    https: !process.env.HTTPS_KEY || !process.env.HTTPS_CERT ? false : {
-      key: process.env.HTTPS_KEY,
-      cert: process.env.HTTPS_CERT,
-    },
+    https:
+      !process.env.HTTPS_KEY || !process.env.HTTPS_CERT
+        ? false
+        : {
+            key: process.env.HTTPS_KEY,
+            cert: process.env.HTTPS_CERT,
+          },
   },
 
   // https://nuxt.com/docs/guide/concepts/rendering#hybrid-rendering

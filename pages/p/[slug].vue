@@ -1,10 +1,10 @@
 <template>
   <ProductDetailSkeleton v-if="fetching" />
   <PageContent v-else-if="product">
-    <GoBackLink use-window-history class="mt-4 md:ml-7 md:mt-7" />
+    <GoBackLink use-window-history class="ml-1 mt-4 md:ml-4 md:mt-7" />
     <div class="flex flex-1 flex-col items-start md:flex-row md:gap-3">
       <ProductImageGallery
-        :images="product?.images"
+        :product="product"
         @click:image="toggleZoomGallery(true, $event)"
       />
       <ZoomGallery
@@ -13,7 +13,9 @@
         :active-index="zoomGallery.index"
         @click:close-zoom-gallery="toggleZoomGallery(false)"
       />
-      <div class="sticky right-0 top-0 mt-5 w-full md:w-1/2 md:px-9 xl:w-1/3">
+      <div
+        class="sticky right-0 top-0 mt-5 w-full md:w-1/2 md:pl-4 xl:w-1/3 xl:pl-6"
+      >
         <div class="w-full bg-white">
           <div v-if="product.isSoldOut" class="left-0 top-0">
             <ProductBadge
@@ -21,12 +23,12 @@
               :badge-label="getBadgeLabel({ isSoldOut: product.isSoldOut })"
             />
           </div>
-          <div class="my-2 max-w-xs md:mt-1">
+          <div class="my-2 md:mt-1">
             <div class="mb-2">
               <ProductDetailBreadcrumbs :links="breadcrumbs" />
             </div>
             <div
-              class="text-xs font-semibold text-secondary"
+              class="max-w-xs text-xs font-semibold text-secondary"
               data-test-id="pdp-product-brand"
             >
               {{ brandName }}
@@ -40,21 +42,31 @@
               >
                 {{ productName }}
               </Headline>
-              <ProductPrice
-                v-if="price"
-                size="xl"
-                class="md:mt-6"
-                :type="isGreaterOrEquals('md') ? 'normal' : 'loud'"
-                :price="price"
-                :lowest-prior-price="lowestPriorPrice"
-                :applied-reductions="price?.appliedReductions"
-                show-tax-info
-                :show-price-from="hasSpecial"
-                :show-price-reduction-badge="hasSpecial"
+              <ProductAutomaticDiscountBanner
+                :product="product"
+                class="mt-2 xs:hidden md:flex"
               />
+              <div class="flex flex-col">
+                <ProductPromotionBadge
+                  :product="product"
+                  class="mb-2 md:hidden"
+                />
+                <ProductPrice
+                  v-if="price"
+                  size="xl"
+                  class="md:mt-6"
+                  :type="isGreaterOrEquals('md') ? 'normal' : 'loud'"
+                  :price="price"
+                  :lowest-prior-price="lowestPriorPrice"
+                  :applied-reductions="price?.appliedReductions"
+                  show-tax-info
+                  :show-price-from="hasSpecial"
+                  :show-price-reduction-badge="hasSpecial"
+                />
+              </div>
             </div>
           </div>
-          <div class="w-full md:w-3/4">
+          <div class="w-full">
             <ProductDetailGroup class="mt-6">
               <ProductSiblingPicker :items="productSiblings" with-values>
                 <template #item="{ item }">
@@ -73,16 +85,29 @@
               </ProductSiblingPicker>
             </ProductDetailGroup>
 
-            <ProductSizePicker
-              v-if="!hasOneSizeVariantOnly"
-              :id="product.id"
-              :value="
-                getFirstAttributeValue(activeVariant?.attributes, 'size')?.value
-              "
-              class="mt-8"
-              :variants="product.variants ?? []"
-              @select-size="handleSelectedSize"
-            />
+            <div class="mt-8 flex">
+              <ProductSizePicker
+                v-if="!hasOneSizeVariantOnly"
+                :id="product.id"
+                :value="
+                  getFirstAttributeValue(activeVariant?.attributes, 'size')
+                    ?.value
+                "
+                :variants="product.variants ?? []"
+                class="mr-2"
+                @select-size="handleSelectedSize"
+              />
+
+              <Dropdown
+                v-if="!availableAddOns.length && !hasOneSizeVariantOnly"
+                :model-value="quantity"
+                :items="availableQuantity"
+                :disabled="!activeVariant"
+                is-large
+                class="h-full"
+                @update:model-value="quantity = $event"
+              />
+            </div>
 
             <!-- ComputedAddOns == [] -->
             <AddOnsSelector
@@ -102,7 +127,6 @@
                 :title="product.isSoldOut ? $t('badge_labels.sold_out') : ''"
                 :loading="basketIdle"
                 class="text-sm !normal-case"
-                border-sm
                 @click="addItemToBasket"
               >
                 {{ $t('pdp.add_label') }}
@@ -114,6 +138,13 @@
                 />
               </client-only>
             </div>
+
+            <ProductPromotionGifts
+              v-if="isBuyXGetY"
+              :product="product"
+              class="mt-6"
+            />
+
             <div class="mt-3">
               <ProductDetailGroup
                 v-if="sliderProducts.length"
@@ -199,14 +230,18 @@ if (error.value) {
   throw error.value
 }
 
-const {
-  fetching: basketIdle,
-  data: basketData,
-  addItem: addBasketItem,
-} = await useBasket({
+const { fetching: basketIdle, addItem: addBasketItem } = await useBasket({
   options: { lazy: true, autoFetch: true },
 })
 const { addGroupToBasket } = await useBasketGroup()
+
+const { applicablePromotion, isBuyXGetY } = await useProductPromotion(product)
+
+const quantity = ref(1)
+
+const availableQuantity = computed(() => {
+  return getQuantitySelectionList(activeVariant.value?.stock.quantity, true)
+})
 
 const { openBasketFlyout } = useFlyouts()
 
@@ -323,7 +358,7 @@ const addItemToBasket = async () => {
     activeVariant.value = product.value?.variants[0]
   }
 
-  if (activeVariant.value === undefined) {
+  if (!activeVariant.value) {
     $alert.show($i18n.t('basket.notification.select_size'), 'CONFIRM')
     return
   }
@@ -343,9 +378,14 @@ const addItemToBasket = async () => {
             })),
           ],
         })
-      : await addBasketItem({ variantId: activeVariant.value.id, quantity: 1 })
+      : await addBasketItem({
+          variantId: activeVariant.value.id,
+          quantity: quantity.value,
+          ...(applicablePromotion.value && {
+            promotionId: applicablePromotion.value.id,
+          }),
+        })
 
-    console.log({ basketData: basketData.value })
     openBasketFlyout()
 
     showAddToBasketToast(true, product.value)

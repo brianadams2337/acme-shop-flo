@@ -6,7 +6,7 @@
       </Headline>
     </div>
     <div class="rounded-b-md border border-gray-350 bg-white py-4">
-      <div class="max-h-44 overflow-y-scroll px-3.5" @scroll="onScroll">
+      <div class="max-h-72 overflow-y-scroll px-3.5" @scroll="onScroll">
         <div
           v-for="variant in variantsWithProducts"
           :key="variant.id"
@@ -55,7 +55,7 @@ const shadowClass = computed(() => {
   return (
     hasMultipleFreeGifts.value &&
     !hasScrolledToBottom.value &&
-    'shadow-[0_-22px_10px_0_#fff]'
+    'top-white-shadow'
   )
 })
 

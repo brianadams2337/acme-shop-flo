@@ -127,7 +127,9 @@ export const storefrontRuntimeConfigPrivate: Partial<ModuleOptions> = {
         idp: {
           enabled: true,
           idpKeys: ['google', 'facebook', 'apple'],
-          idpRedirectURL: `https://${shop.locale}/signin/`,
+          idpRedirectURL: `https://localhost:3000/${
+            shop.locale.split('-')[0]
+          }/signin`,
         },
         checkout: {
           shopId: shop.shopId, // Override: NUXT_STOREFRONT_STORES_{UNIQUE_IDENTIFIER}_CHECKOUT_SHOP_ID

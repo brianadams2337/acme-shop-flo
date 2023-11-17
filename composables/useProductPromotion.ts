@@ -1,5 +1,6 @@
 import {
   type Product,
+  type BuyXGetYEffect,
   PromotionEffectType,
   getFirstAttributeValue,
 } from '@scayle/storefront-nuxt'
@@ -10,11 +11,11 @@ export default async (productItem: MaybeRefOrGetter<Product>) => {
   const product = toRef(productItem)
 
   const promotionLabel = computed(() => {
-    return getFirstAttributeValue(product.value.attributes, 'promotion')?.label
+    return getFirstAttributeValue(product.value?.attributes, 'promotion')?.label
   })
 
   const productPromotionId = computed(() => {
-    return getFirstAttributeValue(product.value.attributes, 'promotion')?.id
+    return getFirstAttributeValue(product.value?.attributes, 'promotion')?.id
   })
 
   const applicablePromotion = computed<Promotion>(() => {
@@ -30,13 +31,21 @@ export default async (productItem: MaybeRefOrGetter<Product>) => {
   })
 
   const isAutomaticDiscount = computed(() => {
-    const type = applicablePromotion.value?.effect.type
-    return type === PromotionEffectType.AUTOMATIC_DISCOUNT
+    const effectType = applicablePromotion.value?.effect.type
+    return effectType === PromotionEffectType.AUTOMATIC_DISCOUNT
   })
 
   const isBuyXGetY = computed(() => {
-    const type = applicablePromotion.value?.effect.type
-    return type === PromotionEffectType.BUY_X_GET_Y
+    const effectType = applicablePromotion.value?.effect.type
+    return effectType === PromotionEffectType.BUY_X_GET_Y
+  })
+
+  const hasMultipleFreeGifts = computed(() => {
+    if (!isBuyXGetY.value) {
+      return false
+    }
+    const effect = applicablePromotion.value?.effect as BuyXGetYEffect
+    return effect.additionalData.variantIds.length > 1
   })
 
   return {
@@ -46,5 +55,6 @@ export default async (productItem: MaybeRefOrGetter<Product>) => {
     backgroundColorStyle,
     isAutomaticDiscount,
     isBuyXGetY,
+    hasMultipleFreeGifts,
   }
 }

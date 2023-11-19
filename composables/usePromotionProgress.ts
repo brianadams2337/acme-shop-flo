@@ -10,13 +10,8 @@ export default async () => {
 
   const basketTotalForPromotion = computed(() => {
     return basketData.value.items
-      .filter((it) => {
-        return it.promotionId === currentPromotion.value?.id
-      })
-      .reduce((total, it) => {
-        total += it.price.total.withTax
-        return total
-      }, 0)
+      .filter((it) => it.promotionId === currentPromotion.value?.id)
+      .reduce((total, it) => total + it.price.total.withTax, 0)
   })
 
   const progress = computed(() => {

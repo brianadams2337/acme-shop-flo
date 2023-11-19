@@ -1,8 +1,7 @@
 <template>
   <component
     :is="componentName"
-    v-bind="{ to, disabled }"
-    raw
+    v-bind="{ to, disabled, ...(to && { raw: true }) }"
     :class="baseClasses"
     class="group inline-flex items-center justify-center gap-2 truncate whitespace-nowrap rounded-md text-sm transition duration-100 ease-linear disabled:opacity-50"
     @click.prevent="emit('click')"

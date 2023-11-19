@@ -40,8 +40,13 @@ export default async () => {
 
   const { brand, name, variantWithLowestPrice } = useProductBaseInfo(product)
 
-  const activeVariant = useState<Variant | undefined>('active-variant')
-  const quantity = useState<number>('product-quantity', () => 1)
+  const activeVariant = useState<Variant | undefined>(
+    `active-variant-${productId.value}`,
+  )
+  const quantity = useState<number>(
+    `product-quantity-${productId.value}`,
+    () => 1,
+  )
 
   const lowestPriorPrice = computed(
     () =>

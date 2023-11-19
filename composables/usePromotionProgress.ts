@@ -8,11 +8,23 @@ export default async () => {
   })
   const minOrderAmount = computed(() => divideWithHundred(minOrderValue.value))
 
+  const basketTotalForPromotion = computed(() => {
+    return basketData.value.items
+      .filter((it) => {
+        return it.promotionId === currentPromotion.value?.id
+      })
+      .reduce((total, it) => {
+        total += it.price.total.withTax
+        return total
+      }, 0)
+  })
+
   const progress = computed(() => {
     if (!minOrderValue.value) {
       return 0
     }
-    return basketData.value.cost.withTax / minOrderAmount.value
+
+    return basketTotalForPromotion.value / minOrderAmount.value
   })
 
   const isFullProgress = computed(() => {
@@ -22,7 +34,7 @@ export default async () => {
   const formattedAmount = computed(() => toCurrency(minOrderValue.value))
 
   const formattedAmountLeft = computed(() => {
-    return toCurrency(minOrderValue.value - basketData.value.cost.withTax)
+    return toCurrency(minOrderValue.value - basketTotalForPromotion.value)
   })
 
   return {

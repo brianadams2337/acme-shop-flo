@@ -1,12 +1,12 @@
 <template>
   <article v-editable="blok" class="box-border w-4/5 shrink-0 sm:w-1/4">
-    <Intersect class="aspect-h-4 aspect-w-3" @enter="onIntersect">
+    <Intersect @enter="onIntersect">
       <NuxtImg
         v-if="isInViewport"
         :src="blok.image.filename"
         sizes="xs:80vw sm:25vw md:25vw lg:25vw xl:25vw xxl:25vw 2xl:25vw"
         provider="storyblok"
-        class="w-full"
+        class="aspect-[4/3] w-full"
       />
     </Intersect>
     <div class="mt-4 flex flex-col">

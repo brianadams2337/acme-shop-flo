@@ -9,6 +9,7 @@ import {
 
 export default async (productItem?: MaybeRefOrGetter<Product>) => {
   const promotionData = await useCurrentPromotions()
+  const basket = await useBasket()
 
   const product = toRef(productItem)
 
@@ -62,6 +63,18 @@ export default async (productItem?: MaybeRefOrGetter<Product>) => {
     return price.withTax - discount
   }
 
+  const isProductAddedToBasket = computed(() => {
+    return basket.items.value.some((it) => it.product.id === product.value?.id)
+  })
+
+  const isGiftAddedToBasket = computed(() => {
+    return basket.items.value.some((it) => {
+      const effect = buyXGetYPromotion.value?.effect as BuyXGetYEffect
+      const { variantIds } = effect.additionalData
+      return variantIds.includes(it.variant.id)
+    })
+  })
+
   return {
     promotionLabel,
     productPromotionId,
@@ -71,5 +84,7 @@ export default async (productItem?: MaybeRefOrGetter<Product>) => {
     applicablePromotions,
     buyXGetYPromotion,
     getAppliedAutomaticDiscountPrice,
+    isProductAddedToBasket,
+    isGiftAddedToBasket,
   }
 }

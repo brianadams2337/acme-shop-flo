@@ -181,7 +181,7 @@ const isWishlistToggling = ref(false)
 const index = toRef(props, 'index')
 
 const { buyXGetYPromotion, automaticDiscountPromotion } =
-  await useProductPromotions()
+  await useProductPromotions(props.item?.product)
 
 const product = computed(() => mainItem.value!.product)
 const variant = computed(() => mainItem.value!.variant)

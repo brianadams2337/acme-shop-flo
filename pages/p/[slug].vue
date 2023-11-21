@@ -144,7 +144,7 @@
             </div>
 
             <ProductPromotionGifts
-              v-if="hasBuyXGetY"
+              v-if="hasBuyXGetY && !isGiftAddedToBasket"
               :product="product"
               class="mt-6"
             />
@@ -210,7 +210,7 @@ const {
 
 const { addItemToBasket, basketIdle } = await useProductDetailsBasketActions()
 
-const { hasBuyXGetY } = await useProductPromotions(product)
+const { hasBuyXGetY, isGiftAddedToBasket } = await useProductPromotions(product)
 
 const {
   sliderProducts,

@@ -7,21 +7,12 @@
     </div>
     <div class="rounded-b-md border border-gray-350 bg-white py-4">
       <div class="max-h-72 overflow-y-scroll px-3.5" @scroll="onScroll">
-        <div
+        <ProductPromotionGiftItem
           v-for="variant in variantsWithProducts"
           :key="variant.id"
-          class="mb-4 flex items-center last-of-type:mb-0"
-        >
-          <RadioItem
-            v-if="hasMultipleFreeGifts"
-            v-model="selectedVariantId"
-            :value="variant.id"
-            class="mr-3"
-          />
-          <ProductPromotionGiftItem
-            v-bind="{ variant, backgroundColorStyle }"
-          />
-        </div>
+          v-bind="{ variant, backgroundColorStyle }"
+          class="mb-4 last-of-type:mb-0"
+        />
       </div>
       <div
         class="relative z-20 mx-3.5 mt-4 rounded-md bg-secondary-450 px-4 py-2 text-center"
@@ -36,7 +27,7 @@
 </template>
 
 <script setup lang="ts">
-import type { Variant, Product, BuyXGetYEffect } from '@scayle/storefront-nuxt'
+import type { Product, BuyXGetYEffect } from '@scayle/storefront-nuxt'
 
 const props = defineProps<{ product: Product }>()
 
@@ -73,11 +64,6 @@ const { data: variants } = await useVariant({
   params: { ids: variantIds.value },
   key: `promotion-variants-${buyXGetYPromotion.value?.id}`,
 })
-
-const selectedVariantId = useState<Variant['id']>(
-  'selected-gift',
-  () => variants.value[0].id,
-)
 
 const { data: products } = await useProductsByIds({
   params: { ids: variants.value.map((it) => it.productId) },

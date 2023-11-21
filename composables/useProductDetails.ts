@@ -14,7 +14,7 @@ const listingMetaData = {
   id: 'PDP',
 }
 
-export default async () => {
+export default async (key = 'product-details') => {
   const route = useRoute()
 
   const productId = computed(() => {
@@ -41,10 +41,10 @@ export default async () => {
   const { brand, name, variantWithLowestPrice } = useProductBaseInfo(product)
 
   const activeVariant = useState<Variant | undefined>(
-    `active-variant-${productId.value}`,
+    `active-variant-${key}-${productId.value}`,
   )
   const quantity = useState<number>(
-    `product-quantity-${productId.value}`,
+    `product-quantity-${key}-${productId.value}`,
     () => 1,
   )
 

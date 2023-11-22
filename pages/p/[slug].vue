@@ -242,6 +242,11 @@ onMounted(async () => {
   trackViewItem({ product: product.value })
 })
 
+onUnmounted(() => {
+  activeVariant.value = null
+  quantity.value = 0
+})
+
 definePageMeta({ pageType: 'pdp' })
 
 const metaDescription = computed(() =>

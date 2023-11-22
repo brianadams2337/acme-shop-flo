@@ -1,5 +1,5 @@
 <template>
-  <Modal v-if="isGiftSelectionShown" @close="toggleGiftSelection()">
+  <Modal v-if="isGiftSelectionShown" @close="close">
     <PageContent>
       <div class="flex flex-1 flex-row items-start gap-8">
         <ProductPromotionGiftImageGallery :images="images" class="w-1/2" />
@@ -120,6 +120,11 @@ const {
   toggleGiftSelection,
   isGiftSelectionShown,
 } = await usePromotionGift(props.product)
+
+const close = () => {
+  activeVariant.value = null
+  toggleGiftSelection()
+}
 
 const addToBasket = async () => {
   await addItemToBasket()

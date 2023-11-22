@@ -1,6 +1,6 @@
 <template>
   <Teleport to="body">
-    <FadeInTransition>
+    <FadeInFromBottomTransition>
       <div
         v-if="isGiftSelectionShown"
         ref="sizeSelection"
@@ -31,7 +31,8 @@
             :key="size.value"
             :model-value="activeVariant?.id"
             v-bind="size"
-            class="rounded-md bg-secondary-450 p-4"
+            :class="activeVariant?.id === size.value && 'bg-secondary-450'"
+            class="rounded-md p-4"
             @update:model-value="onSelectSize"
           />
         </div>
@@ -48,7 +49,7 @@
           </AppButton>
         </div>
       </div>
-    </FadeInTransition>
+    </FadeInFromBottomTransition>
   </Teleport>
   <Overlay v-if="isGiftSelectionShown" />
 </template>

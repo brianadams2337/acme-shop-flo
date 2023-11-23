@@ -1,5 +1,4 @@
 import plugin from 'tailwindcss/plugin'
-import aspectRatioPlugin from '@tailwindcss/aspect-ratio'
 import colors from 'tailwindcss/colors'
 import breakpoints from './config/breakpoints'
 
@@ -155,7 +154,6 @@ export default {
     },
   },
   plugins: [
-    aspectRatioPlugin,
     plugin(({ addUtilities }) => {
       const utilities = {
         '.top-white-shadow': {

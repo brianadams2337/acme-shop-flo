@@ -244,7 +244,7 @@ onMounted(async () => {
 
 onUnmounted(() => {
   activeVariant.value = null
-  quantity.value = 0
+  quantity.value = 1
 })
 
 definePageMeta({ pageType: 'pdp' })

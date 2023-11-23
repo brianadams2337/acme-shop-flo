@@ -76,7 +76,7 @@ const emit = defineEmits<{
 
 const baseClasses = computed(() => ({
   'p-3': !props.noPadding && isSize('md'),
-  'px-3 py-1': !props.noPadding && isSize('sm'),
+  'px-3 py-2': !props.noPadding && isSize('sm'),
   'px-3 py-1.5': !props.noPadding && isSize('xs'),
   'px-0': isRaw.value,
   'px-0 text-primary-400 hover:text-primary': isGhost.value,

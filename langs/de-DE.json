@@ -35,9 +35,11 @@
       "add_label": "Fügen Sie",
       "another_label": "weitere",
       "save_indicator_label": "hinzu, um",
-      "offer": "{discount}% zusätzlich zu sparen",
-      "hurry_to_save": "Beeilen Sie sich, um zu sparen"
-    }
+      "offer": "{discount}% zusätzlich zu sparen"
+    },
+    "hurry_to_save": "Beeilen Sie sich, um zu sparen",
+    "save_your_free_gift": "Speichern Sie Ihr kostenloses Geschenk",
+    "highest_priority": "Höchste Priorität"
   },
   "validation": {
     "email": "Das Feld {field} muss eine gültige E-Mail Adresse sein",
@@ -222,6 +224,7 @@
     "trousers_length": "Länge",
     "skirt_length": "Länge",
     "trousers_cut": "Cut",
+    "details_label": "Einzelheiten",
     "shipping": {
       "general_info": "Das Porto für den Versand und die Rücksendung der Artikel sowie die Kosten für die Verpackung trägt ABOUT YOU. Bei Bestellungen mit mehreren Produkten kann es zu Teillieferungen kommen.",
       "dhl_headline": "DHL Standard Versand - 0,00 EUR",
@@ -237,8 +240,10 @@
     "promotion": {
       "free_gift_headline": "Ihr kostenloses Geschenk",
       "free_label": "Frei",
-      "free_gift_hint": "Wird Ihrer Tasche hinzugefügt, wenn die Bedingungen erfüllt sind",
-      "gift_added_label": "Bereits zur Tasche hinzugefügt"
+      "add_for_free_label": "Hinzufügen",
+      "select_size_label": "Wählen Sie Ihre Größe",
+      "select_size_add_label": "Hinzufügen",
+      "select_size_cancel": "Stornieren"
     }
   },
   "price": {

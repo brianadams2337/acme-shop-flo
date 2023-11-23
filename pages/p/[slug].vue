@@ -36,13 +36,16 @@
               >
                 {{ productName }}
               </Headline>
-              <ProductAutomaticDiscountBanner
+              <ProductPromotionBanners
                 :product="product"
                 class="mt-2 xs:hidden md:flex"
               />
               <div class="flex flex-col">
                 <div class="flex gap-2 xs:flex-col-reverse md:flex-col">
-                  <ProductPromotionBadge :product="product" class="md:hidden" />
+                  <ProductPromotionBadges
+                    :product="product"
+                    class="md:hidden"
+                  />
                   <ProductBadge
                     v-if="product.isSoldOut"
                     :badge-label="
@@ -53,6 +56,7 @@
 
                 <ProductPrice
                   v-if="price"
+                  :product="product"
                   size="xl"
                   class="mt-3"
                   :type="isGreaterOrEquals('md') ? 'normal' : 'loud'"
@@ -139,11 +143,13 @@
               </ClientOnly>
             </div>
 
-            <ProductPromotionGifts
-              v-if="isBuyXGetY"
-              :product="product"
-              class="mt-6"
-            />
+            <FadeInTransition>
+              <ProductPromotionGifts
+                v-if="hasBuyXGetY && !isGiftAddedToBasket"
+                :product="product"
+                class="mt-6"
+              />
+            </FadeInTransition>
 
             <div class="mt-3">
               <ProductDetailGroup
@@ -206,7 +212,7 @@ const {
 
 const { addItemToBasket, basketIdle } = await useProductDetailsBasketActions()
 
-const { isBuyXGetY } = await useProductPromotion(product)
+const { hasBuyXGetY, isGiftAddedToBasket } = await useProductPromotions(product)
 
 const {
   sliderProducts,
@@ -234,6 +240,11 @@ onMounted(async () => {
   }
   await useSleep(1000)
   trackViewItem({ product: product.value })
+})
+
+onUnmounted(() => {
+  activeVariant.value = null
+  quantity.value = 1
 })
 
 definePageMeta({ pageType: 'pdp' })

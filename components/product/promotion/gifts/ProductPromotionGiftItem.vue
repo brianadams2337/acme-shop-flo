@@ -22,13 +22,13 @@
     <div class="flex w-full flex-col justify-between">
       <Headline size="base" tag="h3" class="mt-2">{{ name }}</Headline>
       <div class="flex items-center justify-between">
-        <ProductSizePicker
-          :id="variant.id"
-          :value="size"
-          :variants="[]"
-          disabled
-          class="mr-4 !w-auto"
-        />
+        <AppButton
+          size="sm"
+          :disabled="!isProductAddedToBasket"
+          @click="toggleGiftSelection()"
+        >
+          {{ $t('pdp.promotion.add_for_free_label') }}
+        </AppButton>
         <div class="flex flex-col items-end">
           <span class="text-xs text-gray-600 line-through">
             {{ toCurrency(variant.price.withTax) }}
@@ -36,23 +36,30 @@
           <span class="text-base font-bold text-black">
             {{ toCurrency(0) }}
           </span>
+          <span class="text-xs text-gray-700">
+            {{ $t('price.including_vat') }}
+          </span>
         </div>
       </div>
     </div>
+    <ProductPromotionGiftSelectionModal
+      v-if="isGreaterOrEquals('md')"
+      :product="variant.product"
+    />
+    <ProductPromotionGiftSizeSelection v-else :product="variant.product" />
   </div>
 </template>
 
 <script setup lang="ts">
-import { getFirstAttributeValue } from '@scayle/storefront-nuxt'
-
 const props = defineProps<{
   variant: VariantWithProduct
   backgroundColorStyle: { backgroundColor?: string }
+  isProductAddedToBasket: boolean
 }>()
 
-const { name, image } = useProductBaseInfo(props.variant.product)
+const { toggleGiftSelection } = await usePromotionGift(props.variant.product)
 
-const size = computed(() => {
-  return getFirstAttributeValue(props.variant.attributes, 'size')?.value
-})
+const { isGreaterOrEquals } = useViewport()
+
+const { name, image } = useProductBaseInfo(props.variant.product)
 </script>

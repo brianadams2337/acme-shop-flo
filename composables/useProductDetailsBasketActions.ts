@@ -8,7 +8,7 @@ export default async () => {
     options: { lazy: true },
   })
 
-  const { applicablePromotion } = await useProductPromotion(product)
+  const { highestPriorityPromotion } = await useProductPromotions(product)
 
   const { addGroupToBasket } = await useBasketGroup()
 
@@ -30,6 +30,7 @@ export default async () => {
     }
 
     const productName = brand.value || $i18n.t('wishlist.product')
+    const promotionId = highestPriorityPromotion.value?.id
 
     try {
       isAnyAddOnSelected.value
@@ -45,9 +46,7 @@ export default async () => {
         : await addBasketItem({
             variantId: activeVariant.value.id,
             quantity: quantity.value,
-            ...(applicablePromotion.value && {
-              promotionId: applicablePromotion.value.id,
-            }),
+            ...(promotionId && { promotionId }),
           })
 
       openBasketFlyout()

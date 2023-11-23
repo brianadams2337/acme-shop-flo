@@ -45,7 +45,6 @@
                     v-bind="{ image, imageLoading }"
                     :alt="name"
                     :class="imageClasses"
-                    fit="contain"
                     sizes="sm:100vw"
                     is-centered
                     class="absolute inset-0 transition duration-200"
@@ -67,7 +66,7 @@
                   </div>
                 </DefaultLink>
               </slot>
-              <ProductPromotionBadge
+              <ProductPromotionBadges
                 :product="product"
                 class="absolute bottom-3 left-3 top-auto"
               />
@@ -103,7 +102,7 @@
                 <slot name="description-price" :price="price">
                   <ProductPrice
                     v-if="price"
-                    v-bind="{ price, lowestPriorPrice }"
+                    v-bind="{ price, lowestPriorPrice, product }"
                     :applied-reductions="price?.appliedReductions"
                     :size="isGreaterOrEquals('md') ? 'sm' : 'xs'"
                     type="whisper"

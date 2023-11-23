@@ -5,45 +5,32 @@
         {{ $t('pdp.promotion.free_gift_headline') }}
       </Headline>
     </div>
-    <div class="rounded-b-md border border-gray-350 bg-white py-4">
+    <div class="rounded-b-md border border-gray-350 bg-white pt-4">
       <div class="max-h-72 overflow-y-scroll px-3.5" @scroll="onScroll">
-        <div
+        <ProductPromotionGiftItem
           v-for="variant in variantsWithProducts"
           :key="variant.id"
-          class="mb-4 flex items-center last-of-type:mb-0"
-        >
-          <RadioItem
-            v-if="hasMultipleFreeGifts"
-            v-model="selectedVariantId"
-            :value="variant.id"
-            class="mr-3"
-          />
-          <ProductPromotionGiftItem
-            v-bind="{ variant, backgroundColorStyle }"
-          />
-        </div>
+          v-bind="{ variant, backgroundColorStyle, isProductAddedToBasket }"
+          class="mb-4 last-of-type:mb-0"
+        />
       </div>
       <div
-        class="relative z-20 mx-3.5 mt-4 rounded-md bg-secondary-450 px-4 py-2 text-center"
+        class="relative z-20 mt-4 px-4 py-2 text-center"
         :class="shadowClass"
-      >
-        <p class="text-2xs font-medium uppercase text-gray-750">
-          {{ $t('pdp.promotion.free_gift_hint') }}
-        </p>
-      </div>
+      />
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import type { Variant, Product, BuyXGetYEffect } from '@scayle/storefront-nuxt'
+import type { Product, BuyXGetYEffect } from '@scayle/storefront-nuxt'
 
 const props = defineProps<{ product: Product }>()
 
 const { promotionEngineFeatureEnabled } = useRuntimeConfig().public
 
-const { backgroundColorStyle, applicablePromotion, hasMultipleFreeGifts } =
-  await useProductPromotion(props.product)
+const { buyXGetYPromotion, hasMultipleFreeGifts, isProductAddedToBasket } =
+  await useProductPromotions(props.product)
 
 const hasScrolledToBottom = ref(false)
 
@@ -60,19 +47,18 @@ const shadowClass = computed(() => {
 })
 
 const variantIds = computed(() => {
-  const { additionalData } = applicablePromotion.value.effect as BuyXGetYEffect
+  const { additionalData } = buyXGetYPromotion.value?.effect as BuyXGetYEffect
   return additionalData.variantIds.slice(0, additionalData.maxCount)
+})
+
+const backgroundColorStyle = computed(() => {
+  return getBackgroundColorStyle(buyXGetYPromotion.value?.customData.colorHex)
 })
 
 const { data: variants } = await useVariant({
   params: { ids: variantIds.value },
-  key: `promotion-variants-${applicablePromotion.value.id}`,
+  key: `promotion-variants-${buyXGetYPromotion.value?.id}`,
 })
-
-const selectedVariantId = useState<Variant['id']>(
-  'selected-gift',
-  () => variants.value[0].id,
-)
 
 const { data: products } = await useProductsByIds({
   params: { ids: variants.value.map((it) => it.productId) },

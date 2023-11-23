@@ -38,7 +38,8 @@
       "offer": "{discount}% extra"
     },
     "hurry_to_save": "Hurry to save",
-    "save_your_free_gift": "Save your free gift"
+    "save_your_free_gift": "Save your free gift",
+    "highest_priority": "Highest priority"
   },
   "validation": {
     "email": "The {field} field must be a valid email",

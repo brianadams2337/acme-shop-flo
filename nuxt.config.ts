@@ -241,7 +241,10 @@ export default defineNuxtConfig({
 
   // https://nuxt.com/docs/guide/concepts/rendering#hybrid-rendering
   routeRules: (() => {
-    if (process.env.NITRO_PRESET === 'vercel') {
+    if (
+      process.env.NITRO_PRESET &&
+      process.env.NITRO_PRESET.includes('vercel')
+    ) {
       // We need some different route definitions for vercel which uses a regex syntax when you want to match `**/`
       return {
         // Page generated on-demand, revalidates in background

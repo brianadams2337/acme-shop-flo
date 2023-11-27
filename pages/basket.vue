@@ -22,24 +22,28 @@
       v-else
       class="flex flex-col-reverse gap-8 md:flex-row xl:gap-32 2xl:gap-64"
     >
-      <div class="flex-1 space-y-4">
+      <div class="max-w-xl flex-1 space-y-4">
         <Headline size="2xl" class="mb-6">
           {{ $t('basket.heading') }} ({{ basketCount }})
         </Headline>
+
         <template v-if="orderedItems.standAlone">
-          <SwipeDelete
+          <template
             v-for="(item, index) in orderedItems.standAlone"
             :key="item.key"
-            @delete="removeItem(item)"
           >
-            <BasketCard
-              class="w-full"
-              :item="item"
-              :index="index"
-              @item:remove="removeItem(item)"
-              @item:select="trackProductClick(item)"
-            />
-          </SwipeDelete>
+            <SwipeDelete @delete="removeItem(item)">
+              <BasketCard
+                class="w-full"
+                :item="item"
+                :index="index"
+                @item:remove="removeItem(item)"
+                @item:select="trackProductClick(item)"
+              />
+            </SwipeDelete>
+            <BasketPromotionGifts :basket-item="item" />
+            <BasketPromotionCategoryProducts :basket-item="item" />
+          </template>
         </template>
 
         <div>
@@ -63,12 +67,12 @@
 <script setup lang="ts">
 import {
   type BasketItem,
-  getFirstAttributeValue,
   type Product,
+  getFirstAttributeValue,
 } from '@scayle/storefront-nuxt'
 
-const basket = await useBasket({ options: { lazy: true } })
-const wishlist = await useWishlist({ options: { lazy: true } })
+const basket = await useBasket()
+const wishlist = await useWishlist()
 
 if (basket.error.value) {
   throw basket.error.value

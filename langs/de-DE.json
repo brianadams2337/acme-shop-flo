@@ -149,7 +149,14 @@
       "add_to_basket": "{productName} wurde Ihrem Warenkorb hinzugefügt"
     },
     "to_checkout": "Zur Kasse",
-    "no_items_info": "Sie haben keine Produkte in Ihrem Warenkorb."
+    "no_items_info": "Sie haben keine Produkte in Ihrem Warenkorb.",
+    "promotion": {
+      "choose_free_gift": "Wählen Sie ein kostenloses Geschenk",
+      "add_free_gift": "Hinzufügen"
+    },
+    "product": {
+      "add": "Hinzufügen"
+    }
   },
   "basket_card": {
     "size_label": "Größe",

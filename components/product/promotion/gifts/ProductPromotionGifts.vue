@@ -8,9 +8,10 @@
     <div class="rounded-b-md border border-gray-350 bg-white pt-4">
       <div class="max-h-72 overflow-y-scroll px-3.5" @scroll="onScroll">
         <ProductPromotionGiftItem
-          v-for="variant in variantsWithProducts"
-          :key="variant.id"
-          v-bind="{ variant, backgroundColorStyle, isProductAddedToBasket }"
+          v-for="item in products"
+          :key="item.id"
+          v-bind="{ backgroundColorStyle, isProductAddedToBasket }"
+          :product="item"
           class="mb-4 last-of-type:mb-0"
         />
       </div>
@@ -23,14 +24,16 @@
 </template>
 
 <script setup lang="ts">
-import type { Product, BuyXGetYEffect } from '@scayle/storefront-nuxt'
+import type { Product } from '@scayle/storefront-nuxt'
 
 const props = defineProps<{ product: Product }>()
 
 const { promotionEngineFeatureEnabled } = useRuntimeConfig().public
 
-const { buyXGetYPromotion, hasMultipleFreeGifts, isProductAddedToBasket } =
-  await useProductPromotions(props.product)
+const { isProductAddedToBasket } = await useProductPromotions(props.product)
+
+const { backgroundColorStyle, products, hasMultipleFreeGifts } =
+  await usePromotionGifts(props.product)
 
 const hasScrolledToBottom = ref(false)
 
@@ -44,30 +47,5 @@ const shadowClass = computed(() => {
     !hasScrolledToBottom.value &&
     'top-white-shadow'
   )
-})
-
-const variantIds = computed(() => {
-  const { additionalData } = buyXGetYPromotion.value?.effect as BuyXGetYEffect
-  return additionalData.variantIds.slice(0, additionalData.maxCount)
-})
-
-const backgroundColorStyle = computed(() => {
-  return getBackgroundColorStyle(buyXGetYPromotion.value?.customData.colorHex)
-})
-
-const { data: variants } = await useVariant({
-  params: { ids: variantIds.value },
-  key: `promotion-variants-${buyXGetYPromotion.value?.id}`,
-})
-
-const { data: products } = await useProductsByIds({
-  params: { ids: variants.value.map((it) => it.productId) },
-})
-
-const variantsWithProducts = computed(() => {
-  return variants.value.map((variant) => ({
-    ...variant,
-    product: products.value.find((it) => it.id === variant.productId),
-  })) as VariantWithProduct[]
 })
 </script>

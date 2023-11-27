@@ -78,8 +78,7 @@ export default async (productItem?: MaybeRefOrGetter<Product>) => {
   const isGiftAddedToBasket = computed(() => {
     return basket.items.value.some((it) => {
       const effect = buyXGetYPromotion.value?.effect as BuyXGetYEffect
-      const { variantIds } = effect.additionalData
-      return variantIds.includes(it.variant.id)
+      return effect?.additionalData?.variantIds?.includes(it.variant.id)
     })
   })
 

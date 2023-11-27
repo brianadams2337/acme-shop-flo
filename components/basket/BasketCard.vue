@@ -12,7 +12,7 @@
         >
           <DefaultLink
             :to="getProductDetailRoute(product)"
-            class="relative h-full rounded-md bg-gray-200 p-1"
+            class="relative h-full rounded-md bg-gray-200 p-2"
           >
             <ProductImage
               v-if="image"
@@ -20,6 +20,11 @@
               :alt="name"
               fit="cover"
               sizes="xl:100vw lg:100vw lg:100vw lg:100vw xs:100vw"
+            />
+            <ProductPromotionFreeGiftBadge
+              v-if="isFreeGift"
+              v-bind="{ backgroundColorStyle }"
+              class="absolute bottom-2 left-2"
             />
           </DefaultLink>
         </div>
@@ -187,6 +192,16 @@ const { highestPriorityPromotion } = await useProductPromotions(
   props.item?.product,
 )
 
+const mainItem = computed(() => {
+  const basketItem = props.itemsGroup
+    ? props.itemsGroup.find((item) => item.itemGroup?.isMainItem)
+    : props.item
+
+  return basketItem as BasketItem
+})
+
+const { isFreeGift, backgroundColorStyle } = useBasketItemPromotion(mainItem)
+
 const product = computed(() => mainItem.value!.product)
 const variant = computed(() => mainItem.value!.variant)
 const inStock = computed(() => isInStock(variant.value))
@@ -210,12 +225,6 @@ const image = computed(() =>
     'front',
   ),
 )
-
-const mainItem = computed(() => {
-  return props.itemsGroup
-    ? props.itemsGroup.find((item) => item.itemGroup?.isMainItem)
-    : props.item
-})
 
 const addOnItems = computed(() =>
   props.itemsGroup

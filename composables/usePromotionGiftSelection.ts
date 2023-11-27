@@ -110,6 +110,8 @@ export default async (productGift: Product) => {
         }),
       })
 
+      toggleGiftSelection()
+
       openBasketFlyout()
 
       showAddToBasketToast(true, gift.value)

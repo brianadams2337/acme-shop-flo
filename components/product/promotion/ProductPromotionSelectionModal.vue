@@ -72,7 +72,7 @@
                 :title="product.isSoldOut ? $t('badge_labels.sold_out') : ''"
                 :loading="basketIdle"
                 class="text-sm !normal-case"
-                @click="addToBasket"
+                @click="addItemToBasket()"
               >
                 {{ $t('pdp.add_label') }}
               </AppButton>
@@ -119,15 +119,10 @@ const {
   siblings,
   toggleGiftSelection,
   isGiftSelectionShown,
-} = await usePromotionGift(props.product)
+} = await usePromotionGiftSelection(props.product)
 
 const close = () => {
   activeVariant.value = null
-  toggleGiftSelection()
-}
-
-const addToBasket = async () => {
-  await addItemToBasket()
   toggleGiftSelection()
 }
 </script>

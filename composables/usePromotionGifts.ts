@@ -4,8 +4,11 @@ export default async (product: Product) => {
   const { buyXGetYPromotion, hasBuyXGetY } = await useProductPromotions(product)
 
   const variantIds = computed(() => {
-    const { additionalData } = buyXGetYPromotion.value?.effect as BuyXGetYEffect
-    return additionalData.variantIds.slice(0, additionalData.maxCount)
+    const effect = buyXGetYPromotion.value?.effect as BuyXGetYEffect
+    return effect?.additionalData?.variantIds?.slice(
+      0,
+      effect?.additionalData?.maxCount,
+    )
   })
 
   const backgroundColorStyle = computed(() => {
@@ -25,19 +28,23 @@ export default async (product: Product) => {
     key: `promotion-variants-${buyXGetYPromotion.value?.id}`,
   })
 
-  const { data: products } = await useProductsByIds({
-    params: { ids: variants.value.map((it) => it.productId) },
+  const { data } = await useProductsByIds({
+    params: { ids: variants.value?.map((it) => it.productId) },
   })
 
-  const variantsWithProducts = computed(() => {
-    return variants.value.map((variant) => ({
-      ...variant,
-      product: products.value.find((it) => it.id === variant.productId),
-    })) as VariantWithProduct[]
+  const products = computed(() => {
+    const items = useUnique(data.value, (it) => it.id)
+    return items.map((it) => {
+      const filteredVariants = it.variants?.filter(({ id }) => {
+        return variantIds.value.includes(id)
+      })
+      return { ...it, variants: filteredVariants }
+    })
   })
 
   return {
-    variantsWithProducts,
+    variantIds,
+    products,
     backgroundColorStyle,
     hasMultipleFreeGifts,
   }

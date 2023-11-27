@@ -16,7 +16,7 @@
       v-if="isPriorityBadgeShown"
       class="absolute bottom-3 right-4 rounded-md border px-2 py-1 text-2xs font-semibold uppercase"
     >
-      Highest priority
+      {{ $t('promotion.highest_priority') }}
     </div>
   </div>
 </template>

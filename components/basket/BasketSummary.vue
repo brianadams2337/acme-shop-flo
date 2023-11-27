@@ -54,23 +54,15 @@
           v-if="sellingPoints?.length"
           class="flex flex-col gap-2 rounded bg-secondary-450 p-4 text-xs"
         >
-          <p class="flex justify-center gap-1 text-2xs text-gray-750">
+          <p
+            v-for="{ text } in sellingPoints"
+            :key="text"
+            class="flex justify-center gap-1 text-2xs text-gray-750"
+          >
             <IconCheckmark
               class="h-4 w-4 rounded-full border border-gray-750"
             />
-            {{ $t('promises.pay_with_invoice') }}
-          </p>
-          <p class="flex justify-center gap-1 text-2xs text-gray-750">
-            <IconCheckmark
-              class="h-4 w-4 rounded-full border border-gray-750"
-            />
-            {{ $t('promises.free_return_and_shipping') }}
-          </p>
-          <p class="flex justify-center gap-1 text-2xs text-gray-750">
-            <IconCheckmark
-              class="h-4 w-4 rounded-full border border-gray-750"
-            />
-            {{ $t('promises.return_policy') }}
+            {{ text }}
           </p>
         </div>
       </div>

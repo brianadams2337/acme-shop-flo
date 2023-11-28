@@ -37,24 +37,6 @@
               </div>
             </div>
             <div class="w-full">
-              <ProductDetailGroup class="mt-6">
-                <ProductSiblingPicker :items="siblings" with-values>
-                  <template #item="{ item }">
-                    <DefaultLink
-                      raw
-                      class="flex items-center justify-center"
-                      :to="getProductDetailRoute(product, item.id)"
-                    >
-                      <ColorChip
-                        :is-active="item.id === product.id"
-                        :size="Size.LG"
-                        :color="item.colors[0] as ProductColor"
-                      />
-                    </DefaultLink>
-                  </template>
-                </ProductSiblingPicker>
-              </ProductDetailGroup>
-
               <ProductSizePicker
                 v-if="!hasOneSizeVariantOnly"
                 :id="product.id"
@@ -99,7 +81,7 @@
 </template>
 
 <script setup lang="ts">
-import type { ProductColor, Product } from '@scayle/storefront-nuxt'
+import type { Product } from '@scayle/storefront-nuxt'
 
 const props = defineProps<{ product: Product }>()
 
@@ -116,7 +98,6 @@ const {
   addItemToBasket,
   hasSpecial,
   images,
-  siblings,
   toggleGiftSelection,
   isGiftSelectionShown,
 } = await usePromotionGiftSelection(props.product)

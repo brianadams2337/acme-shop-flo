@@ -32,15 +32,17 @@ export default async (productItem?: MaybeRefOrGetter<Product>) => {
   })
 
   const buyXGetYPromotion = computed(() => {
-    return applicablePromotions.value.find((it) => {
+    const items = applicablePromotions.value.filter((it) => {
       return it.effect.type === PromotionEffectType.BUY_X_GET_Y
     })
+    return useMin(items, (it) => it.priority)
   })
 
   const automaticDiscountPromotion = computed(() => {
-    return applicablePromotions.value.find((it) => {
+    const items = applicablePromotions.value.filter((it) => {
       return it.effect.type === PromotionEffectType.AUTOMATIC_DISCOUNT
     })
+    return useMin(items, (it) => it.priority)
   })
 
   const highestPriorityPromotion = computed(() => {

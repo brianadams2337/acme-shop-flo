@@ -6,7 +6,6 @@ import {
   getFirstAttributeValue,
   getPrice,
   getVariantBySize,
-  getProductSiblings,
 } from '@scayle/storefront-nuxt'
 
 export default async (productGift: Product) => {
@@ -83,10 +82,6 @@ export default async (productGift: Product) => {
     )
   })
 
-  const siblings = computed(() => {
-    return getProductSiblings(gift.value, 'color') || []
-  })
-
   const images = computed(() => gift.value.images)
 
   const addItemToBasket = async () => {
@@ -135,7 +130,6 @@ export default async (productGift: Product) => {
     basketIdle,
     productName,
     brand,
-    siblings,
     images,
     hasSpecial,
     addItemToBasket,

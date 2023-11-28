@@ -24,7 +24,7 @@ export default (basketItem: Ref<BasketItem>) => {
   })
 
   const hasFailedConditions = computed(() => {
-    return !!basketItem.value?.promotion?.failedConditions?.length
+    return !!promotion.value?.failedConditions?.length
   })
 
   return {

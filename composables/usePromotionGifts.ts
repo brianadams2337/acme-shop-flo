@@ -30,6 +30,7 @@ export default async (product: Product) => {
 
   const { data } = await useProductsByIds({
     params: { ids: variants.value?.map((it) => it.productId) },
+    key: `promotion-products-${buyXGetYPromotion.value?.id}`,
   })
 
   const products = computed(() => {

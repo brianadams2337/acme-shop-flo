@@ -31,17 +31,6 @@ const props = withDefaults(defineProps<Props>(), {
   isPriorityLabelShown: false,
 })
 
-const {
-  productPromotionId,
-  applicablePromotions,
-  highestPriorityPromotion,
-  hasMultipleApplicablePromotions,
-} = await useProductPromotions(props.product)
-
-const isHighestPriority = (priority: number) => {
-  return (
-    hasMultipleApplicablePromotions.value &&
-    highestPriorityPromotion.value?.priority === priority
-  )
-}
+const { productPromotionId, applicablePromotions, isHighestPriority } =
+  await useProductPromotions(props.product)
 </script>

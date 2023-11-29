@@ -9,6 +9,7 @@
         v-if="image"
         :image="image"
         :alt="name"
+        :image-loading="eagerImageLoading ? 'eager' : 'lazy'"
         sizes="xl:100vw lg:100vw lg:100vw lg:100vw xs:100vw"
         fit="cover"
       />
@@ -60,6 +61,7 @@ const props = defineProps<{
   product: Product
   backgroundColorStyle: { backgroundColor?: string }
   isProductAddedToBasket: boolean
+  eagerImageLoading: boolean
 }>()
 
 const { product: promotedProduct } = await useProductDetails()

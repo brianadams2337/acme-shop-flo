@@ -47,12 +47,12 @@
                   class="mt-2 xs:hidden md:flex"
                 />
               </FadeInTransition>
-              <div class="flex flex-col">
+              <div class="flex flex-col items-end">
                 <div class="flex gap-2 xs:flex-col-reverse md:flex-col">
                   <ProductPromotionBadges
                     :product="product"
                     is-priority-label-shown
-                    class="md:hidden"
+                    class="items-end md:hidden"
                   />
                   <ProductBadge
                     v-if="product.isSoldOut"

@@ -1,6 +1,6 @@
 <template>
   <div v-if="productPromotionId" class="flex h-fit flex-col">
-    <template v-for="{ id, customData, priority } in applicablePromotions">
+    <template v-for="{ id, customData, priority } in orderedPromotions">
       <div
         v-if="customData.product?.badgeLabel"
         :key="id"
@@ -33,4 +33,8 @@ const props = withDefaults(defineProps<Props>(), {
 
 const { productPromotionId, applicablePromotions, isHighestPriority } =
   await useProductPromotions(props.product)
+
+const orderedPromotions = computed(() => {
+  return useSort(applicablePromotions.value, (it) => it.priority, true)
+})
 </script>

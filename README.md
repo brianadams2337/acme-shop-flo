@@ -82,7 +82,7 @@ For more in-depth explanations and How-to guides, please consult the [SCAYLE Res
 ## How to turn on local HTTPS
 
 To generate a certificate and key we recommend using the [mkcert](https://github.com/FiloSottile/mkcert) tool.  
-First follow the installation instructions on the Github repository, and afterwards you can run:
+Follow the [mkcert installation instructions (Github)](https://github.com/FiloSottile/mkcert/blob/master/README.md#installation) and afterwards run:
 
 ```sh
 mkcert --key-file localhost.pem --cert-file localhost.crt localhost

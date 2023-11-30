@@ -16,7 +16,7 @@ export const useLastLoggedInUser = async () => {
   const { user, isLoggedIn, fetching } = await useUser()
   const lastLoggedInUser = useState(USER_KEY, setUserDefault)
 
-  const storage = useStorage<LastLoggedInUser>(
+  const localStorage = useStorage<LastLoggedInUser>(
     USER_KEY,
     setUserDefault(),
     window.localStorage,
@@ -29,7 +29,7 @@ export const useLastLoggedInUser = async () => {
   )
 
   const removeLastLoggedInUser = () => {
-    storage.value = setUserDefault()
+    localStorage.value = setUserDefault()
     lastLoggedInUser.value = setUserDefault()
   }
 
@@ -46,7 +46,7 @@ export const useLastLoggedInUser = async () => {
         return
       }
 
-      storage.value = {
+      localStorage.value = {
         firstName: user.value!.firstName,
         email: user.value!.email || '',
       }
@@ -54,13 +54,12 @@ export const useLastLoggedInUser = async () => {
   )
 
   tryOnBeforeMount(() => {
-    lastLoggedInUser.value = storage.value
+    lastLoggedInUser.value = localStorage.value
   })
 
   return {
     lastLoggedInUser,
     removeLastLoggedInUser,
-    user,
     isLoggedIn,
     isFetching: fetching,
   }

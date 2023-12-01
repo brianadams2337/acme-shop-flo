@@ -129,7 +129,7 @@ const {
 
 const { isFreeGift, backgroundColorStyle } = useBasketItemPromotion(mainItem)
 
-const addOnItems = computed(() => {
-  return props.items.filter((item) => !item.itemGroup?.isMainItem)
-})
+const addOnItems = computed(() =>
+  props.items.filter((item) => item.itemGroup && !item.itemGroup.isMainItem),
+)
 </script>

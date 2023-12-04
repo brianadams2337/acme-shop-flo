@@ -25,7 +25,6 @@
                   <ProductPrice
                     v-if="price"
                     v-bind="{ product, price, lowestPriorPrice }"
-                    :applied-reductions="price?.appliedReductions"
                     :show-price-from="hasSpecial"
                     :show-price-reduction-badge="hasSpecial"
                     size="xl"
@@ -37,24 +36,6 @@
               </div>
             </div>
             <div class="w-full">
-              <ProductDetailGroup class="mt-6">
-                <ProductSiblingPicker :items="siblings" with-values>
-                  <template #item="{ item }">
-                    <DefaultLink
-                      raw
-                      class="flex items-center justify-center"
-                      :to="getProductDetailRoute(product, item.id)"
-                    >
-                      <ColorChip
-                        :is-active="item.id === product.id"
-                        :size="Size.LG"
-                        :color="item.colors[0] as ProductColor"
-                      />
-                    </DefaultLink>
-                  </template>
-                </ProductSiblingPicker>
-              </ProductDetailGroup>
-
               <ProductSizePicker
                 v-if="!hasOneSizeVariantOnly"
                 :id="product.id"
@@ -72,7 +53,7 @@
                 :title="product.isSoldOut ? $t('badge_labels.sold_out') : ''"
                 :loading="basketIdle"
                 class="text-sm !normal-case"
-                @click="addToBasket"
+                @click="addItemToBasket(promotion.id)"
               >
                 {{ $t('pdp.add_label') }}
               </AppButton>
@@ -99,9 +80,13 @@
 </template>
 
 <script setup lang="ts">
-import type { ProductColor, Product } from '@scayle/storefront-nuxt'
+import type { Product } from '@scayle/storefront-nuxt'
 
-const props = defineProps<{ product: Product }>()
+const props = defineProps<{
+  product: Product
+  promotedProduct: Product
+  promotion: Promotion
+}>()
 
 const {
   basketIdle,
@@ -116,18 +101,12 @@ const {
   addItemToBasket,
   hasSpecial,
   images,
-  siblings,
   toggleGiftSelection,
   isGiftSelectionShown,
-} = await usePromotionGift(props.product)
+} = await usePromotionGiftSelection(props.product, props.promotedProduct)
 
 const close = () => {
   activeVariant.value = null
-  toggleGiftSelection()
-}
-
-const addToBasket = async () => {
-  await addItemToBasket()
   toggleGiftSelection()
 }
 </script>

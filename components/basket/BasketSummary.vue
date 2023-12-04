@@ -1,10 +1,11 @@
 <template>
-  <div class="xl:w-[32rem]">
-    <div class="rounded border-primary p-6 md:border">
-      <Headline tag="div" size="xl">
-        {{ $t('basket.total') }}
-      </Headline>
-      <div class="mt-6 space-y-4">
+  <div>
+    <div class="rounded border-primary p-0 md:border md:p-6">
+      <Headline tag="h1" size="xl">{{ $t('basket.total') }}</Headline>
+      <FadeInTransition>
+        <PromotionHurryToSaveBanners v-if="hasAppliedPromotions" class="mt-4" />
+      </FadeInTransition>
+      <div class="mt-4 space-y-4">
         <div
           class="flex flex-col justify-between gap-2 text-sm font-bold text-gray-800"
         >
@@ -54,23 +55,15 @@
           v-if="sellingPoints?.length"
           class="flex flex-col gap-2 rounded bg-secondary-450 p-4 text-xs"
         >
-          <p class="flex justify-center gap-1 text-2xs text-gray-750">
+          <p
+            v-for="{ text } in sellingPoints"
+            :key="text"
+            class="flex justify-center gap-1 text-2xs text-gray-750"
+          >
             <IconCheckmark
               class="h-4 w-4 rounded-full border border-gray-750"
             />
-            {{ $t('promises.pay_with_invoice') }}
-          </p>
-          <p class="flex justify-center gap-1 text-2xs text-gray-750">
-            <IconCheckmark
-              class="h-4 w-4 rounded-full border border-gray-750"
-            />
-            {{ $t('promises.free_return_and_shipping') }}
-          </p>
-          <p class="flex justify-center gap-1 text-2xs text-gray-750">
-            <IconCheckmark
-              class="h-4 w-4 rounded-full border border-gray-750"
-            />
-            {{ $t('promises.return_policy') }}
+            {{ text }}
           </p>
         </div>
       </div>
@@ -100,6 +93,8 @@ const onClickToCheckoutOrder = async () => {
 
   await localizedNavigateTo({ name: routeName })
 }
+
+const { hasAppliedPromotions } = await useBasketPromotions()
 
 const sellingPoints = computed(() => [
   { icon: 'IconInvoice', text: $i18n.t('promises.pay_with_invoice') },

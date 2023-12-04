@@ -43,7 +43,7 @@
           <AppButton
             :disabled="!activeVariant"
             is-full-width
-            @click="addItemToBasket()"
+            @click="addItemToBasket(promotion.id)"
           >
             {{ $t('pdp.promotion.select_size_add_label') }}
           </AppButton>
@@ -57,7 +57,11 @@
 <script setup lang="ts">
 import type { Product } from '@scayle/storefront-nuxt'
 
-const props = defineProps<{ product: Product }>()
+const props = defineProps<{
+  product: Product
+  promotedProduct: Product
+  promotion: Promotion
+}>()
 
 const {
   handleSelectedSize,
@@ -65,7 +69,7 @@ const {
   addItemToBasket,
   toggleGiftSelection,
   isGiftSelectionShown,
-} = await usePromotionGift(props.product)
+} = await usePromotionGiftSelection(props.product, props.promotedProduct)
 
 const sizeSelection = ref()
 

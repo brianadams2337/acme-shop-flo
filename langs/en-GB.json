@@ -149,7 +149,14 @@
       "add_to_basket": "{productName} has been added to your basket"
     },
     "to_checkout": "to checkout",
-    "no_items_info": "You have no products in your basket."
+    "no_items_info": "You have no products in your basket.",
+    "promotion": {
+      "choose_free_gift": "Choose free gift",
+      "add_free_gift": "Add for free"
+    },
+    "product": {
+      "add": "Add"
+    }
   },
   "basket_card": {
     "size_label": "Size",

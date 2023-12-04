@@ -1,29 +1,33 @@
-import { PromotionEffectType } from '@scayle/storefront-nuxt'
-
 export default async () => {
   const basket = await useBasket()
 
   const appliedPromotions = computed(() => {
     return basket.items.value
-      .filter((it) => it.promotion?.isValid)
-      .map((it) => it.promotion) as Promotion[]
+      .filter(({ promotion, variant }) => {
+        const variantIds = getVariantIds(promotion)
+        const isFreeGift = variantIds.includes(variant.id)
+        return !isFreeGift && !promotion?.failedConditions.length
+      })
+      .map(({ promotion, product }) => ({
+        ...promotion,
+        productId: product.id,
+      })) as (Promotion & { productId: number })[]
   })
 
   const buyXGetYPromotions = computed(() => {
-    return appliedPromotions.value.filter((it) => {
-      return it.effect.type === PromotionEffectType.BUY_X_GET_Y
-    })
+    return appliedPromotions.value.filter(isBuyXGetYType)
   })
 
   const automaticDiscountPromotions = computed(() => {
-    return appliedPromotions.value.filter((it) => {
-      return it.effect.type === PromotionEffectType.AUTOMATIC_DISCOUNT
-    })
+    return appliedPromotions.value.filter(isAutomaticDiscountType)
   })
+
+  const hasAppliedPromotions = computed(() => !!appliedPromotions.value.length)
 
   return {
     appliedPromotions,
     buyXGetYPromotions,
     automaticDiscountPromotions,
+    hasAppliedPromotions,
   }
 }

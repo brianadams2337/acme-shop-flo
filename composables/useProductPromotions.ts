@@ -1,15 +1,14 @@
 import {
   type Product,
-  type BuyXGetYEffect,
-  type AutomaticDiscountEffect,
   type Price,
   getFirstAttributeValue,
-  PromotionEffectType,
 } from '@scayle/storefront-nuxt'
 
 export default async (productItem?: MaybeRefOrGetter<Product>) => {
   const promotionData = await useCurrentPromotions()
   const basket = await useBasket()
+
+  const { appliedPromotions } = await useBasketPromotions()
 
   const product = toRef(productItem)
 
@@ -23,28 +22,33 @@ export default async (productItem?: MaybeRefOrGetter<Product>) => {
 
   const applicablePromotions = computed<Promotion[]>(() => {
     const promotions = promotionData.data.value.entities
-    return promotions.filter((it) => {
-      if (!productPromotionId.value || !it.customData.product?.promotionId) {
+    return promotions.filter(({ customData }) => {
+      if (!productPromotionId.value || !customData.product?.promotionId) {
         return false
       }
-      return it.customData.product?.promotionId === productPromotionId.value
+      return customData.product?.promotionId === productPromotionId.value
     })
   })
 
   const buyXGetYPromotion = computed(() => {
-    return applicablePromotions.value.find((it) => {
-      return it.effect.type === PromotionEffectType.BUY_X_GET_Y
-    })
+    const items = applicablePromotions.value.filter(isBuyXGetYType)
+    return useMin(items, ({ priority }) => priority)
   })
 
   const automaticDiscountPromotion = computed(() => {
-    return applicablePromotions.value.find((it) => {
-      return it.effect.type === PromotionEffectType.AUTOMATIC_DISCOUNT
-    })
+    const items = applicablePromotions.value.filter(isAutomaticDiscountType)
+    return useMin(items, ({ priority }) => priority)
   })
 
   const highestPriorityPromotion = computed(() => {
-    return useMin(applicablePromotions.value, (it) => it.priority)
+    return useMin(applicablePromotions.value, (promotion) => promotion.priority)
+  })
+
+  const isHighestPriorityPromotionApplied = computed(() => {
+    return appliedPromotions.value.some(({ id, productId }) => {
+      const isSameProduct = productId === product.value?.id
+      return id === highestPriorityPromotion.value?.id && isSameProduct
+    })
   })
 
   const hasMultipleApplicablePromotions = computed(() => {
@@ -54,34 +58,51 @@ export default async (productItem?: MaybeRefOrGetter<Product>) => {
   const hasBuyXGetY = computed(() => !!buyXGetYPromotion.value)
 
   const isBuyXGetYPrioritized = computed(() => {
-    return (
-      highestPriorityPromotion.value?.effect.type ===
-      PromotionEffectType.BUY_X_GET_Y
+    return isBuyXGetYType(highestPriorityPromotion.value)
+  })
+
+  const isProductAddedToBasket = computed(() => {
+    return basket.items.value.some(
+      (item) => item.product.id === product.value?.id,
     )
   })
 
-  const getAppliedAutomaticDiscountPrice = (price: Price) => {
-    if (!automaticDiscountPromotion.value) {
-      return
-    }
-    const { additionalData } = automaticDiscountPromotion.value
-      ?.effect as AutomaticDiscountEffect
-    const discount =
-      divideWithHundred(price.withTax) * divideWithHundred(additionalData.value)
-    return price.withTax - discount
-  }
-
-  const isProductAddedToBasket = computed(() => {
-    return basket.items.value.some((it) => it.product.id === product.value?.id)
-  })
-
   const isGiftAddedToBasket = computed(() => {
-    return basket.items.value.some((it) => {
-      const effect = buyXGetYPromotion.value?.effect as BuyXGetYEffect
-      const { variantIds } = effect.additionalData
-      return variantIds.includes(it.variant.id)
+    if (!isBuyXGetYPrioritized.value) {
+      return false
+    }
+    return basket.items.value.some(({ promotion, variant }) => {
+      const variantIds = getVariantIds(buyXGetYPromotion.value)
+      const hasVariantId = variantIds.includes(variant.id)
+      return isBuyXGetYType(promotion) && hasVariantId
     })
   })
+
+  const isHighestPriority = (priority: number): boolean => {
+    return (
+      hasMultipleApplicablePromotions.value &&
+      highestPriorityPromotion.value?.priority === priority
+    )
+  }
+
+  const areHurryToSaveBannersShown = computed(() => {
+    return (
+      (!isBuyXGetYPrioritized.value &&
+        isHighestPriorityPromotionApplied.value) ||
+      (isHighestPriorityPromotionApplied.value && isGiftAddedToBasket.value)
+    )
+  })
+
+  const getAppliedAutomaticDiscountPrice = (
+    price: Price,
+  ): number | undefined => {
+    const value = getAdditionalDataValue(automaticDiscountPromotion.value)
+    if (!value) {
+      return
+    }
+    const discount = divideWithHundred(price.withTax) * divideWithHundred(value)
+    return price.withTax - discount
+  }
 
   return {
     promotionLabel,
@@ -96,5 +117,8 @@ export default async (productItem?: MaybeRefOrGetter<Product>) => {
     highestPriorityPromotion,
     hasMultipleApplicablePromotions,
     isBuyXGetYPrioritized,
+    isHighestPriorityPromotionApplied,
+    isHighestPriority,
+    areHurryToSaveBannersShown,
   }
 }

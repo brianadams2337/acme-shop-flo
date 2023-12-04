@@ -1,4 +1,3 @@
-import yn from 'yn'
 import {
   storefrontRuntimeConfigPrivate,
   storefrontRuntimeConfigPublic,
@@ -93,10 +92,6 @@ export default defineNuxtConfig({
         id: process.env.NUXT_PUBLIC_GTM_ID, // Override: NUXT_PUBLIC_GTM_ID
         debug: process.env.NUXT_PUBLIC_GTM_DEBUG, // Override: NUXT_PUBLIC_GTM_DEBUG
       },
-
-      promotionEngineFeatureEnabled: yn(
-        process.env.PROMOTION_ENGINE_FEATURE_ENABLED, // Override: NUXT_PUBLIC_PROMOTION_ENGINE_FEATURE_ENABLED
-      ),
       /** Storyblok Runtime Configuration
        * https://scayle.dev/en/dev/storefront-core/module-configuration */
       storyblok: {

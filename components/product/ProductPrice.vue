@@ -15,7 +15,10 @@
         </template>
         {{ totalPrice }}
         <span
-          v-if="totalReductions.absoluteWithTax || automaticDiscountPromotion"
+          v-if="
+            totalReductions.absoluteWithTax ||
+            isAutomaticDiscountPriceApplicable
+          "
           class="text-sm font-medium text-primary line-through"
           data-test-id="initialProductPrice"
         >
@@ -46,7 +49,6 @@
 import {
   type Price,
   type LowestPriorPrice,
-  type AppliedReduction,
   type Product,
   getTotalAppliedReductions,
 } from '@scayle/storefront-nuxt'
@@ -55,17 +57,16 @@ import { Size } from '#imports'
 type Props = {
   product: Product
   price: Price
-  appliedReductions?: AppliedReduction[]
   lowestPriorPrice?: LowestPriorPrice
   showTaxInfo?: boolean
   showPriceFrom?: boolean
+  showAutomaticDiscount?: boolean
   showPriceReductionBadge?: boolean
   size?: Size
   type?: 'normal' | 'whisper' | 'loud'
 }
 
 const props = withDefaults(defineProps<Props>(), {
-  appliedReductions: () => [],
   lowestPriorPrice: () => ({
     withTax: null,
     relativeDifferenceToPrice: null,
@@ -77,13 +78,13 @@ const props = withDefaults(defineProps<Props>(), {
   type: 'loud',
 })
 
-const { promotionEngineFeatureEnabled } = useRuntimeConfig().public
+const appliedReductions = computed(() => props.price?.appliedReductions)
 
 const { automaticDiscountPromotion, getAppliedAutomaticDiscountPrice } =
   await useProductPromotions(props.product)
 
 const totalPrice = computed(() => {
-  return automaticDiscountPromotion.value && promotionEngineFeatureEnabled
+  return automaticDiscountPromotion.value
     ? toCurrency(getAppliedAutomaticDiscountPrice(props.price) as number)
     : toCurrency(props.price.withTax)
 })
@@ -91,7 +92,7 @@ const totalPrice = computed(() => {
 const totalReductions = computed(() => getTotalAppliedReductions(props.price))
 
 const showBadge = computed(() => {
-  return props.appliedReductions && props.showPriceReductionBadge
+  return appliedReductions.value && props.showPriceReductionBadge
 })
 
 const hasLowestPriorPrice = computed(() => {
@@ -99,6 +100,10 @@ const hasLowestPriorPrice = computed(() => {
     props.lowestPriorPrice?.withTax &&
     props.lowestPriorPrice?.relativeDifferenceToPrice
   )
+})
+
+const isAutomaticDiscountPriceApplicable = computed(() => {
+  return props.showAutomaticDiscount && automaticDiscountPromotion.value
 })
 
 const classes = computed(() => ({
@@ -111,7 +116,6 @@ const classes = computed(() => ({
   'font-bold': props.type === 'loud',
   'font-semibold': props.type === 'whisper',
   'text-red-500':
-    props.appliedReductions.length ||
-    (automaticDiscountPromotion.value && promotionEngineFeatureEnabled),
+    appliedReductions.value.length || isAutomaticDiscountPriceApplicable.value,
 }))
 </script>

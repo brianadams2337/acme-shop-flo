@@ -18,28 +18,39 @@
         />
       </div>
     </div>
-    <div
-      v-else
-      class="flex flex-col-reverse gap-8 md:flex-row xl:gap-32 2xl:gap-64"
-    >
-      <div class="flex-1 space-y-4">
+    <div v-else class="flex flex-col-reverse gap-8 md:flex-row xl:gap-16">
+      <div class="w-full flex-1 space-y-4 md:w-3/5 2xl:w-2/3">
         <Headline size="2xl" class="mb-6">
           {{ $t('basket.heading') }} ({{ basketCount }})
         </Headline>
+
         <template v-if="orderedItems.standAlone">
-          <SwipeDelete
+          <template
             v-for="(item, index) in orderedItems.standAlone"
             :key="item.key"
-            @delete="removeItem(item)"
           >
-            <BasketCard
-              class="w-full"
-              :item="item"
-              :index="index"
-              @item:remove="removeItem(item)"
-              @item:select="trackProductClick(item)"
-            />
-          </SwipeDelete>
+            <SwipeDelete @delete="removeItem(item)">
+              <BasketCard
+                class="w-full"
+                :item="item"
+                :index="index"
+                @item:remove="removeItem(item)"
+                @item:select="trackProductClick(item)"
+              />
+            </SwipeDelete>
+            <FadeInTransition>
+              <BasketAutomaticDiscountBanner
+                v-if="isAutomaticDiscountType(item.promotion)"
+                :basket-item="item"
+              />
+            </FadeInTransition>
+            <FadeInTransition>
+              <BasketPromotionGifts
+                v-if="isBuyXGetYType(item.promotion) && !isFreeGift(item)"
+                :basket-item="item"
+              />
+            </FadeInTransition>
+          </template>
         </template>
 
         <div>
@@ -55,7 +66,7 @@
         </div>
       </div>
 
-      <BasketSummary />
+      <BasketSummary class="w-full md:w-2/5 2xl:w-1/3" />
     </div>
   </div>
 </template>
@@ -63,12 +74,12 @@
 <script setup lang="ts">
 import {
   type BasketItem,
-  getFirstAttributeValue,
   type Product,
+  getFirstAttributeValue,
 } from '@scayle/storefront-nuxt'
 
-const basket = await useBasket({ options: { lazy: true } })
-const wishlist = await useWishlist({ options: { lazy: true } })
+const basket = await useBasket()
+const wishlist = await useWishlist()
 
 if (basket.error.value) {
   throw basket.error.value
@@ -92,6 +103,11 @@ const {
 } = useTrackingEvents()
 
 const { bundleByGroup } = await useBasketGroup()
+
+const isFreeGift = (basketItem: BasketItem) => {
+  const variantIds = getVariantIds(basketItem.promotion)
+  return variantIds.includes(basketItem.variant.id)
+}
 
 onMounted(() => {
   if (basket.items.value) {

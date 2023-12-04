@@ -1,8 +1,5 @@
 <template>
-  <div
-    v-if="promotionEngineFeatureEnabled"
-    class="flex w-full max-w-sm flex-col"
-  >
+  <div class="flex w-full flex-col">
     <PromotionItemContent
       v-for="{ id, customData, schedule, priority } in applicablePromotions"
       :key="id"
@@ -18,18 +15,7 @@ import type { Product } from '@scayle/storefront-nuxt'
 
 const props = defineProps<{ product: Product }>()
 
-const {
-  applicablePromotions,
-  highestPriorityPromotion,
-  hasMultipleApplicablePromotions,
-} = await useProductPromotions(props.product)
-
-const { promotionEngineFeatureEnabled } = useRuntimeConfig().public
-
-const isHighestPriority = (priority: number) => {
-  return (
-    hasMultipleApplicablePromotions.value &&
-    highestPriorityPromotion.value?.priority === priority
-  )
-}
+const { applicablePromotions, isHighestPriority } = await useProductPromotions(
+  props.product,
+)
 </script>

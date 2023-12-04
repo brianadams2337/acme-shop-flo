@@ -9,7 +9,7 @@
       } in automaticDiscountPromotions"
       v-show="shouldShowBanner(productId)"
       :key="`automatic-discount-banner-${id}`"
-      class="mb-2 flex h-fit items-center justify-between rounded-md bg-blue px-2 py-1 text-xs font-semibold text-white"
+      class="mb-1 flex h-fit items-center justify-between rounded-md bg-blue px-2 py-1 text-xs font-semibold text-white"
       :style="getBackgroundColorStyle(customData.colorHex)"
     >
       <Headline tag="h2" size="xs" is-bold is-uppercase>

@@ -189,17 +189,17 @@ export const storefrontRuntimeConfigPrivate: Partial<ModuleOptions> = {
       port: 6379, // Override: NUXT_STOREFRONT_STORAGE_CACHE_PORT
       username: '', // Override: NUXT_STOREFRONT_STORAGE_CACHE_USERNAME
       password: '', // Override: NUXT_STOREFRONT_STORAGE_CACHE_PASSWORD
-      tls: false, // Override: NUXT_STOREFRONT_STORAGE_CACHE_TLS
+      tls: false, // Override: NUXT_STOREFRONT_STORAGE_CACHE_TLS,
     },
     session: {
       // Redis Options: https://redis.github.io/ioredis/index.html#RedisOptions
       driver: 'redis', // Override: NUXT_STOREFRONT_STORAGE_SESSION_PROVIDER
       host: 'localhost', // Override: NUXT_STOREFRONT_STORAGE_SESSION_HOST
       port: 6379, // Override: NUXT_STOREFRONT_STORAGE_SESSION_PORT
-      username: '', // Override: NUXT_STOREFRONT_STORAGE_SESSION_USERNAME
       db: 1, // Override: NUXT_STOREFRONT_STORAGE_SESSION_DB
+      username: '', // Override: NUXT_STOREFRONT_STORAGE_SESSION_USERNAME
       password: '', // Override: NUXT_STOREFRONT_STORAGE_SESSION_PASSWORD
-      tls: false, // Override: NUXT_STOREFRONT_STORAGE_SESSION_TLS
+      tls: false, // Override: NUXT_STOREFRONT_STORAGE_SESSION_TLS,
     },
   },
   /** [OPTIONAL] Storefront Core - Internal cache behaviour configurations

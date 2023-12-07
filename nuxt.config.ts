@@ -303,14 +303,14 @@ export default defineNuxtConfig({
         },
       },
       // Don't cache API routes.
-      '**/api/**': { cache: false },
+      '**/api/**': { cache: false, swr: false },
       // Don't cache pages with user-specific information
-      '**/wishlist': { cache: false },
-      '**/basket': { cache: false },
-      '**/checkout': { cache: false },
-      '**/signin': { cache: false },
-      '**/account/**': { cache: false },
-      '**/orders/**': { cache: false },
+      '**/wishlist': { cache: false, swr: false },
+      '**/basket': { cache: false, swr: false },
+      '**/checkout': { cache: false, swr: false },
+      '**/signin': { cache: false, swr: false },
+      '**/account/**': { cache: false, swr: false },
+      '**/orders/**': { cache: false, swr: false },
     }
   })(),
 })

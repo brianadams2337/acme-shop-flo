@@ -1,3 +1,5 @@
+import { shopSelectorBasedPath } from '../test-helpers'
+
 // import { TrackingEvent } from '@scayle/storefront-nuxt'
 const _get = Cypress._.get // Cypress has lodash available
 // some tracking events are not mapped in the core type but used in this shop
@@ -119,15 +121,17 @@ export function getBySelectorLike(selector: string, ...args: any) {
 }
 
 Cypress.Commands.add('visitAndWait', (url: string) => {
+  const normalizedUrl = shopSelectorBasedPath(url)
+
   if (Cypress.env().mobile === true) {
-    cy.visit(url, {
+    cy.visit(normalizedUrl, {
       onBeforeLoad: (win) => {
         // @ts-ignore
         win.ontouchstart = true
       },
     })
   } else {
-    cy.visit(url)
+    cy.visit(normalizedUrl)
   }
 })
 
@@ -320,9 +324,7 @@ const verifyDataLayerHasEcommerceNullBefore = (
   event: DemoShopTrackingEvent,
 ) => {
   return cy
-    .log(
-      "verify that there's a null ecommerce evevent before a ecommerce event",
-    )
+    .log("verify that there's a null ecommerce event before a ecommerce event")
     .window({ log: false })
     .then(({ dataLayer }) => {
       let ecommerceNull

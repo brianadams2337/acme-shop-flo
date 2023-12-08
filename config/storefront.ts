@@ -190,6 +190,8 @@ export const storefrontRuntimeConfigPrivate: Partial<ModuleOptions> = {
       username: '', // Override: NUXT_STOREFRONT_STORAGE_CACHE_USERNAME
       password: '', // Override: NUXT_STOREFRONT_STORAGE_CACHE_PASSWORD
       tls: false, // Override: NUXT_STOREFRONT_STORAGE_CACHE_TLS,
+      // Required to resolve connection issues with AWS ElastiCache
+      checkServerIdentity: undefined, // Override: NUXT_STOREFRONT_STORAGE_CACHE_CHECK_SERVER_INTEGRITY,
     },
     session: {
       // Redis Options: https://redis.github.io/ioredis/index.html#RedisOptions
@@ -200,6 +202,8 @@ export const storefrontRuntimeConfigPrivate: Partial<ModuleOptions> = {
       username: '', // Override: NUXT_STOREFRONT_STORAGE_SESSION_USERNAME
       password: '', // Override: NUXT_STOREFRONT_STORAGE_SESSION_PASSWORD
       tls: false, // Override: NUXT_STOREFRONT_STORAGE_SESSION_TLS,
+      // Required to resolve connection issues with AWS ElastiCache
+      checkServerIdentity: undefined, // Override: NUXT_STOREFRONT_STORAGE_SESSION_CHECK_SERVER_INTEGRITY,
     },
   },
   /** [OPTIONAL] Storefront Core - Internal cache behaviour configurations

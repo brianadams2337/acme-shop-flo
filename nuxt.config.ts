@@ -105,7 +105,7 @@ export default defineNuxtConfig({
 
   /**
    * NOTE: Configuration outside of runtimeConfig is being filled in during
-   *  build time and will be serialized as part of the bundling process.
+   * build time and will be serialized as part of the bundling process.
    * Execution of functions, etc during runtime is not possible.
    */
 

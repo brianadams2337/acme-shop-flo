@@ -21,7 +21,7 @@ export default async (basketItem: Ref<BasketItem>) => {
     )?.id
     return applicablePromotions.value.find((promotion) => {
       const isFreeGift = isBuyXGetYType(promotion)
-      return isFreeGift && promotion.customData?.product?.promotionId === id
+      return isFreeGift && promotion?.customData?.product?.promotionId === id
     })
   })
 
@@ -33,8 +33,8 @@ export default async (basketItem: Ref<BasketItem>) => {
 
   const backgroundColorStyle = computed(() => {
     const color =
-      promotion.value?.customData.colorHex ||
-      giftPromotion.value.customData.colorHex
+      promotion.value?.customData?.colorHex ||
+      giftPromotion.value?.customData?.colorHex
     return getBackgroundColorStyle(color)
   })
 

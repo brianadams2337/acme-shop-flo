@@ -14,10 +14,7 @@
       />
     </div>
     <div class="p-4">
-      <BasketPromotionProductsSlider
-        v-bind="{ basketItem, products }"
-        is-free
-      />
+      <BasketPromotionGiftsSlider v-bind="{ basketItem, products }" />
     </div>
   </div>
 </template>
@@ -27,20 +24,12 @@ import type { BasketItem } from '@scayle/storefront-nuxt'
 
 const props = defineProps<{ basketItem: BasketItem }>()
 
-const { items: basketItems } = await useBasket()
-
 const basketItem = computed(() => props.basketItem)
 
 const { giftPromotion, backgroundColorStyle } =
   await useBasketItemPromotion(basketItem)
 
-const { products, variantIds } = await usePromotionGifts(
+const { products, isGiftAlreadyAdded } = await usePromotionGifts(
   props.basketItem.product,
 )
-
-const isGiftAlreadyAdded = computed(() => {
-  return basketItems.value.some((item) => {
-    return variantIds.value?.includes(item.variant.id)
-  })
-})
 </script>

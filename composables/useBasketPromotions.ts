@@ -1,17 +1,16 @@
 export default async () => {
   const basket = await useBasket()
+  const promotionData = await useCurrentPromotions()
+
+  const allCurrentPromotions = computed(() => promotionData.data.value.entities)
 
   const appliedPromotions = computed(() => {
     return basket.items.value
-      .filter(({ promotion, variant }) => {
-        const variantIds = getVariantIds(promotion)
-        const isFreeGift = variantIds.includes(variant.id)
-        return !isFreeGift && !promotion?.failedConditions.length
-      })
+      .filter(({ promotion }) => promotion?.isValid)
       .map(({ promotion, product }) => ({
         ...promotion,
         productId: product.id,
-      })) as (Promotion & { productId: number })[]
+      })) as (BasketPromotion & { productId: number })[]
   })
 
   const buyXGetYPromotions = computed(() => {
@@ -29,5 +28,6 @@ export default async () => {
     buyXGetYPromotions,
     automaticDiscountPromotions,
     hasAppliedPromotions,
+    allCurrentPromotions,
   }
 }

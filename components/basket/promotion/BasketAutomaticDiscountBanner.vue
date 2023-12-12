@@ -4,9 +4,11 @@
     class="flex justify-between rounded-md px-4 py-2 text-white"
     :style="backgroundColorStyle"
   >
-    <Headline size="xs" is-bold>
-      {{ $t('basket.promotion.choose_free_gift') }}
-    </Headline>
+    <PromotionHeadline
+      v-if="headlineParts"
+      :headline-parts="headlineParts"
+      size="sm"
+    />
     <PromotionCountdown
       v-if="promotion"
       :until="promotion.schedule.to"
@@ -22,6 +24,6 @@ const props = defineProps<{ basketItem: BasketItem }>()
 
 const basketItem = computed(() => props.basketItem)
 
-const { promotion, backgroundColorStyle, hasFailedConditions } =
-  useBasketItemPromotion(basketItem)
+const { promotion, backgroundColorStyle, hasFailedConditions, headlineParts } =
+  await useBasketItemPromotion(basketItem)
 </script>

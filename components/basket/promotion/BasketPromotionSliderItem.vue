@@ -13,7 +13,6 @@
         class="h-44 w-32 p-1"
       />
       <ProductPromotionFreeGiftBadge
-        v-if="isFree"
         :background-color-style="backgroundColorStyle"
         class="absolute bottom-2 left-2"
       />
@@ -26,24 +25,20 @@
     <Headline tag="h1" size="sm" class="mb-1 font-semibold">
       {{ name }}
     </Headline>
-    <ProductPrice
-      v-if="price && !isFree"
-      v-bind="{ product, price, lowestPriorPrice }"
-      size="xs"
-      type="whisper"
-    />
   </div>
   <AppButton size="sm" class="mt-2" @click="toggleGiftSelection()">
     {{ toggleGiftSelectionLabel }}
   </AppButton>
-  <template v-if="promotion">
+  <template v-if="giftPromotion">
     <ProductPromotionSelectionModal
       v-if="isGreaterOrEquals('md')"
-      v-bind="{ product, promotion, promotedProduct }"
+      v-bind="{ product, promotedProduct }"
+      :promotion="giftPromotion"
     />
     <ProductPromotionSizeSelection
       v-else
-      v-bind="{ product, promotion, promotedProduct }"
+      v-bind="{ product, promotedProduct }"
+      :promotion="giftPromotion"
     />
   </template>
 </template>
@@ -55,10 +50,9 @@ type Props = {
   product: Product
   basketItem: BasketItem
   index: number
-  isFree?: boolean
 }
 
-const props = withDefaults(defineProps<Props>(), { isFree: false })
+const props = defineProps<Props>()
 
 const i18n = useI18n()
 
@@ -71,17 +65,13 @@ const { toggleGiftSelection } = await usePromotionGiftSelection(
 
 const { isGreaterOrEquals } = useViewport()
 
-const { backgroundColorStyle, promotion } = useBasketItemPromotion(
+const { giftPromotion, backgroundColorStyle } = await useBasketItemPromotion(
   toRef(props.basketItem),
 )
 
 const toggleGiftSelectionLabel = computed(() => {
-  return i18n.t(
-    props.isFree ? 'basket.promotion.add_free_gift' : 'basket.product.add',
-  )
+  return i18n.t('basket.promotion.add_free_gift')
 })
 
-const { image, price, brand, name, lowestPriorPrice } = useProductBaseInfo(
-  props.product,
-)
+const { image, brand, name } = useProductBaseInfo(props.product)
 </script>

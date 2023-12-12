@@ -7,7 +7,7 @@
     >
       <BasketPromotionSliderItem
         v-if="product"
-        v-bind="{ product, index, isFree, basketItem }"
+        v-bind="{ product, index, basketItem }"
       />
     </div>
   </HorizontalItemsSlider>
@@ -19,8 +19,7 @@ import type { Product, BasketItem } from '@scayle/storefront-nuxt'
 type Props = {
   products: Product[]
   basketItem: BasketItem
-  isFree?: boolean
 }
 
-withDefaults(defineProps<Props>(), { isFree: false })
+defineProps<Props>()
 </script>

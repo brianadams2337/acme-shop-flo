@@ -2,8 +2,15 @@ import type { Product } from '@scayle/storefront-nuxt'
 
 export default async (product: Product) => {
   const { buyXGetYPromotion } = await useProductPromotions(product)
+  const basketData = await useBasket()
 
   const variantIds = computed(() => getVariantIds(buyXGetYPromotion.value))
+
+  const isGiftAlreadyAdded = computed(() => {
+    return basketData.data.value.items.some((item) => {
+      return variantIds.value?.includes(item.variant.id)
+    })
+  })
 
   const backgroundColorStyle = computed(() => {
     return getBackgroundColorStyle(buyXGetYPromotion.value?.customData.colorHex)
@@ -36,5 +43,6 @@ export default async (product: Product) => {
     products,
     backgroundColorStyle,
     hasMultipleFreeGifts,
+    isGiftAlreadyAdded,
   }
 }

@@ -29,15 +29,20 @@
             v-for="(item, index) in orderedItems.standAlone"
             :key="item.key"
           >
-            <SwipeDelete @delete="removeItem(item)">
-              <BasketCard class="w-full" v-bind="{ item, index }" />
-            </SwipeDelete>
             <FadeInTransition>
               <BasketAutomaticDiscountBanner
                 v-if="isAutomaticDiscountType(item.promotion)"
                 :basket-item="item"
               />
+              <BasketGiftBanner
+                v-if="isGiftApplicableItem(item)"
+                :basket-item="item"
+              />
             </FadeInTransition>
+
+            <SwipeDelete @delete="removeItem(item)">
+              <BasketCard class="w-full" v-bind="{ item, index }" />
+            </SwipeDelete>
             <FadeInTransition>
               <BasketItemPromotionGifts
                 v-if="isGiftApplicableItem(item)"

@@ -14,6 +14,10 @@ export default async (basketItem: Ref<BasketItem>) => {
     return basketItem.value?.promotion
   })
 
+  const headlineParts = computed(() => {
+    return promotion.value?.customData.headlineParts
+  })
+
   const giftPromotion = computed<Promotion>(() => {
     const id = getFirstAttributeValue(
       basketItem.value.product?.attributes,
@@ -23,6 +27,10 @@ export default async (basketItem: Ref<BasketItem>) => {
       const isFreeGift = isBuyXGetYType(promotion)
       return isFreeGift && promotion?.customData?.product?.promotionId === id
     })
+  })
+
+  const giftConditions = computed(() => {
+    return giftPromotion.value.customData.giftConditions
   })
 
   const isBuyXGetY = computed(() => isBuyXGetYType(promotion.value))
@@ -58,5 +66,7 @@ export default async (basketItem: Ref<BasketItem>) => {
     promotion,
     hasFailedConditions,
     giftPromotion,
+    headlineParts,
+    giftConditions,
   }
 }

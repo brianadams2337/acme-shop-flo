@@ -152,7 +152,8 @@
     "no_items_info": "Sie haben keine Produkte in Ihrem Warenkorb.",
     "promotion": {
       "choose_free_gift": "Wählen Sie ein kostenloses Geschenk",
-      "add_free_gift": "Hinzufügen"
+      "add_free_gift": "Hinzufügen",
+      "gift_conditional_label": "Fügen Sie {quantityLeft} weitere hinzu, um ein kostenloses Geschenk zu erhalten"
     },
     "product": {
       "add": "Hinzufügen"

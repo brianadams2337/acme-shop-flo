@@ -147,6 +147,7 @@
 
 <script setup lang="ts">
 import { type BasketItem } from '@scayle/storefront-nuxt'
+import { useRouteHelpers } from '~/utils/route'
 
 type Props = {
   index: number
@@ -158,7 +159,7 @@ const props = withDefaults(defineProps<Props>(), {
   item: undefined,
   itemsGroup: undefined,
 })
-
+const { getProductDetailRoute } = useRouteHelpers()
 const mainItem = computed(() => {
   const basketItem = props.itemsGroup
     ? props.itemsGroup.find((item) => item.itemGroup?.isMainItem)

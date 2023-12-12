@@ -45,6 +45,7 @@
 
 <script setup lang="ts">
 import type { Product, BasketItem } from '@scayle/storefront-nuxt'
+import { useRouteHelpers } from '~/utils/route'
 
 type Props = {
   product: Product
@@ -55,6 +56,7 @@ type Props = {
 const props = defineProps<Props>()
 
 const i18n = useI18n()
+const { getProductDetailRoute } = useRouteHelpers()
 
 const promotedProduct = computed(() => props.basketItem.product)
 

@@ -36,6 +36,7 @@ import type {
   TypeaheadBrandOrCategorySuggestion,
   TypeaheadProductSuggestion,
 } from '@scayle/storefront-nuxt'
+import { useRouteHelpers } from '~/utils/route'
 
 defineProps({
   fetching: {
@@ -67,4 +68,5 @@ defineProps({
 const emit = defineEmits<{
   (e: 'close'): void
 }>()
+const { getSearchRoute } = useRouteHelpers()
 </script>

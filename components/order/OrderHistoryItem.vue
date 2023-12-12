@@ -49,6 +49,7 @@
 
 <script setup lang="ts">
 import type { OrderSummary } from '@scayle/storefront-nuxt'
+import { useRouteHelpers } from '~/utils/route'
 
 const props = defineProps({
   id: {
@@ -79,6 +80,7 @@ const props = defineProps({
 
 const route = useRoute()
 const paramId = computed(() => +route.params.id)
+const { getOrderDetailsRoute } = useRouteHelpers()
 
 const progressLevel = computed<number>(() => {
   // @ts-ignore

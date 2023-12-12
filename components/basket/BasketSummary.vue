@@ -72,12 +72,14 @@
 </template>
 
 <script lang="ts" setup>
+import { useRouteHelpers } from '~/utils/route'
+
 const basket = await useBasket()
 const { isLoggedIn } = await useUser()
 const { $i18n } = useNuxtApp()
 
 const { trackBeginCheckout } = useTrackingEvents()
-
+const { localizedNavigateTo } = useRouteHelpers()
 const totalCost = computed(() => basket.data.value?.cost.withTax)
 const shippingCost = computed(() => 0)
 

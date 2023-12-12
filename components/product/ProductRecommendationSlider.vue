@@ -61,6 +61,7 @@ import {
   type Product,
 } from '@scayle/storefront-nuxt'
 import { Size } from '#imports'
+import { useRouteHelpers } from '~/utils/route'
 
 const props = defineProps({
   loading: {
@@ -87,7 +88,7 @@ const emit = defineEmits<{
 }>()
 
 const { isGreaterOrEquals } = useViewport()
-
+const { getProductDetailRoute } = useRouteHelpers()
 const trackingCollector = ref<Product[]>([])
 const carousel = ref<HTMLDivElement>()
 const carouselStyles = ref({

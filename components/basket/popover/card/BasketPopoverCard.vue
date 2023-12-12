@@ -29,6 +29,7 @@
 
 <script setup lang="ts">
 import { type BasketItem } from '@scayle/storefront-nuxt'
+import { useRouteHelpers } from '~/utils/route'
 
 type Props = {
   items: BasketItem[]
@@ -55,7 +56,7 @@ const mainItem = computed(() => {
 
   return basketItem as BasketItem
 })
-
+const { getProductDetailRoute } = useRouteHelpers()
 const { isSoldOut } = await useBasketItem(mainItem)
 
 const addOnItems = computed(() =>

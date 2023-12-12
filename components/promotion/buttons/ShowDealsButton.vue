@@ -13,10 +13,12 @@
 </template>
 
 <script setup lang="ts">
+import { useRouteHelpers } from '~/utils/route'
+
 const props = defineProps<{ category: string }>()
 
 const { isPromotionListShown, togglePromotionList } = usePromotionActions()
-
+const { localizedNavigateTo } = useRouteHelpers()
 const goToCategory = async () => {
   await localizedNavigateTo(props.category)
   isPromotionListShown.value && togglePromotionList()

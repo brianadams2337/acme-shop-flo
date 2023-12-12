@@ -1,4 +1,5 @@
 import type { Product } from '@scayle/storefront-nuxt'
+import { useRouteHelpers } from '~/utils/route'
 
 const collectProductListItems = (
   items: Product[],
@@ -20,6 +21,8 @@ const useProductEvents = (
   track: (event: TrackingEvent, payload: TrackingPayload) => any,
 ) => {
   const currencyCode = useCurrentShop().value!.currency
+  const localePath = useLocalePath()
+  const { getProductDetailRoute } = useRouteHelpers()
 
   return {
     trackSelectItem: ({
@@ -35,7 +38,7 @@ const useProductEvents = (
     }: TrackSelectItemEventParams) => {
       const payload: any = {
         product,
-        destinationUrl: toLocalePath(getProductDetailRoute(product)),
+        destinationUrl: localePath(getProductDetailRoute(product)),
         destination: `product|${product.id}`,
         quantity,
       }
@@ -99,7 +102,7 @@ const useProductEvents = (
                 ? positionOffset + product.index + 1
                 : undefined,
             destinationUrl: String(
-              toLocalePath(getProductDetailRoute(product as Product)),
+              localePath(getProductDetailRoute(product as Product)),
             ),
             destination: `product|${product.id}`,
             source:

@@ -192,10 +192,12 @@ import {
   getBadgeLabel,
   isInStock,
 } from '@scayle/storefront-nuxt'
+import { useRouteHelpers } from '~/utils/route'
 
 const route = useRoute()
 const store = useStore()
 const { $i18n, $config } = useNuxtApp()
+const { getProductDetailRoute } = useRouteHelpers()
 
 const {
   product,

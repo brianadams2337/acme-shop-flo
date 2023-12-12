@@ -16,83 +16,90 @@ const getCategoryPath = (category: Category) => {
   return `${category.path}`
 }
 
-export const toLocalePath = (route: RouteLocationRaw): RouteLocationRaw => {
-  const router = useRouter()
+export const useRouteHelpers = () => {
   const localePath = useLocalePath()
-  return localePath(router.resolve(route)) || route
-}
 
-export const localizedNavigateTo = (
-  route: RouteLocationRaw,
-  options?: NavigateToOptions,
-) => {
-  const routePath = toLocalePath(route)
-  return navigateTo(routePath, options)
-}
-
-export const getProductDetailRoute = (
-  product: Product,
-  id?: number,
-): RouteLocationRaw => {
-  const name = getFirstAttributeValue(product.attributes, 'name')?.label
-  return toLocalePath({
-    name: 'p-slug',
-    params: {
-      slug: `${slugify(name)}-${id || product.id}`,
-    },
-  })
-}
-
-export const getOrderProductDetailRoute = (
-  product: OrderProduct,
-  id?: number,
-): RouteLocationRaw => {
-  const name = product.attributes.name.label
-  return toLocalePath({
-    name: 'p-slug',
-    params: {
-      slug: `${slugify(name)}-${id || product.id}`,
-    },
-  })
-}
-
-export const getProductDetailPath = (product: Product, id?: number) => {
-  const name = getFirstAttributeValue(product.attributes, 'name')?.label
-  return toLocalePath(`/p/${slugify(name)}-${id || product.id}`)
-}
-
-export const getSearchRoute = (term: string): RouteLocationRaw => {
-  return toLocalePath({
-    name: 'search',
-    query: { term },
-  })
-}
-
-export const getSearchSuggestionPath = (
-  suggestion: ProductSuggestion | BrandOrCategorySuggestion,
-) => {
-  if (!suggestion) {
-    return
+  const localizedNavigateTo = (
+    route: RouteLocationRaw,
+    options?: NavigateToOptions,
+  ) => {
+    const routePath = localePath(route)
+    return navigateTo(routePath, options)
   }
 
-  if ('product' in suggestion) {
-    return getProductDetailPath(suggestion.product)
+  const getProductDetailRoute = (
+    product: Product,
+    id?: number,
+  ): RouteLocationRaw => {
+    const name = getFirstAttributeValue(product.attributes, 'name')?.label
+    return localePath({
+      name: 'p-slug',
+      params: {
+        slug: `${slugify(name)}-${id || product.id}`,
+      },
+    })
   }
 
-  const { category, brand } = suggestion
-  const route =
-    category && brand
-      ? `${getCategoryPath(category)}?brand=${brand?.id}`
-      : getCategoryPath(category)
+  const getOrderProductDetailRoute = (
+    product: OrderProduct,
+    id?: number,
+  ): RouteLocationRaw => {
+    const name = product.attributes.name.label
+    return localePath({
+      name: 'p-slug',
+      params: {
+        slug: `${slugify(name)}-${id || product.id}`,
+      },
+    })
+  }
 
-  return route && toLocalePath(route)
-}
+  const getProductDetailPath = (product: Product, id?: number) => {
+    const name = getFirstAttributeValue(product.attributes, 'name')?.label
+    return localePath(`/p/${slugify(name)}-${id || product.id}`)
+  }
 
-export const getOrderDetailsRoute = (id: number): RouteLocationRaw => {
-  return toLocalePath({
-    name: routeList.orderDetail.name,
-    params: { id },
-  })
+  const getSearchRoute = (term: string): RouteLocationRaw => {
+    return localePath({
+      name: 'search',
+      query: { term },
+    })
+  }
+
+  const getSearchSuggestionPath = (
+    suggestion: ProductSuggestion | BrandOrCategorySuggestion,
+  ) => {
+    if (!suggestion) {
+      return
+    }
+
+    if ('product' in suggestion) {
+      return getProductDetailPath(suggestion.product)
+    }
+
+    const { category, brand } = suggestion
+    const route =
+      category && brand
+        ? `${getCategoryPath(category)}?brand=${brand?.id}`
+        : getCategoryPath(category)
+
+    return route && localePath(route)
+  }
+
+  const getOrderDetailsRoute = (id: number): RouteLocationRaw => {
+    return localePath({
+      name: routeList.orderDetail.name,
+      params: { id },
+    })
+  }
+
+  return {
+    localizedNavigateTo,
+    getProductDetailRoute,
+    getOrderProductDetailRoute,
+    getSearchRoute,
+    getSearchSuggestionPath,
+    getOrderDetailsRoute,
+  }
 }
 
 type Link =

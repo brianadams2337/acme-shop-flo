@@ -4,9 +4,11 @@ import {
   getProductAndSiblingsColors,
   getProductSiblings,
 } from '@scayle/storefront-nuxt'
+import { useRouteHelpers } from '~/utils/route'
 
 export default (productItem: MaybeRefOrGetter<Product>) => {
   const product = toRef(productItem)
+  const { getProductDetailRoute } = useRouteHelpers()
 
   const brand = computed(() => {
     return getFirstAttributeValue(product.value.attributes, 'brand')?.label

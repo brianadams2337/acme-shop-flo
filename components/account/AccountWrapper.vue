@@ -53,6 +53,7 @@
 
 <script setup lang="ts">
 import type { OrderSummary } from '@scayle/storefront-nuxt'
+import { useRouteHelpers } from '~/utils/route'
 
 const props = defineProps({
   title: {
@@ -78,6 +79,7 @@ const { user } = await useUser()
 const currentPage = ref<number>(1)
 
 const { isGreaterOrEquals } = useViewport()
+const { getOrderDetailsRoute, localizedNavigateTo } = useRouteHelpers()
 
 const orders = computed(() => user?.value?.orderSummary ?? [])
 const currentOrderId = computed(() => {

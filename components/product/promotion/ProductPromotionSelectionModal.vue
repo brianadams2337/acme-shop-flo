@@ -81,6 +81,7 @@
 
 <script setup lang="ts">
 import type { Product } from '@scayle/storefront-nuxt'
+import { useRouteHelpers } from '~/utils/route'
 
 const props = defineProps<{
   product: Product
@@ -104,7 +105,7 @@ const {
   toggleGiftSelection,
   isGiftSelectionShown,
 } = await usePromotionGiftSelection(props.product, props.promotedProduct)
-
+const { getProductDetailRoute } = useRouteHelpers()
 const close = () => {
   activeVariant.value = null
   toggleGiftSelection()

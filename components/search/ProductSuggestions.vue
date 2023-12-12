@@ -53,6 +53,7 @@ import type {
   ProductSuggestion,
   TypeaheadProductSuggestion,
 } from '@scayle/storefront-nuxt'
+import { useRouteHelpers } from '~/utils/route'
 
 const props = defineProps({
   label: {
@@ -72,6 +73,7 @@ const props = defineProps({
     default: false,
   },
 })
+const { getProductDetailRoute } = useRouteHelpers()
 
 const getCategoryName = (productSuggestion: ProductSuggestion) => {
   return productSuggestion.product.categories?.[0]?.at(-1)?.categoryName

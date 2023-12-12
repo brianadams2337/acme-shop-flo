@@ -83,6 +83,8 @@
 </template>
 
 <script setup lang="ts">
+import { useRouteHelpers } from '~/utils/route'
+
 const { isLessThan } = useViewport()
 
 const route = useRoute()
@@ -99,6 +101,7 @@ const { data: orderData, fetching } = await useOrderConfirmation<
 const user = await useUser()
 
 const { trackPurchaseEvent } = useTrackingEvents()
+const { getOrderDetailsRoute } = useRouteHelpers()
 
 watch(
   fetching,

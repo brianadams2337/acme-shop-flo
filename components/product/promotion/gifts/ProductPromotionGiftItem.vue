@@ -59,6 +59,7 @@
 
 <script setup lang="ts">
 import type { Product } from '@scayle/storefront-nuxt'
+import { useRouteHelpers } from '~/utils/route'
 
 const props = defineProps<{
   product: Product
@@ -78,6 +79,7 @@ const { toggleGiftSelection } = await usePromotionGiftSelection(
 )
 
 const { isGreaterOrEquals } = useViewport()
+const { getProductDetailRoute } = useRouteHelpers()
 
 const { name, image, variantWithLowestPrice } = useProductBaseInfo(
   props.product,

@@ -142,6 +142,7 @@
 
 <script setup lang="ts">
 import type { ProductColor, Product } from '@scayle/storefront-nuxt'
+import { useRouteHelpers } from '~/utils/route'
 
 type Props = {
   product: Product
@@ -174,6 +175,7 @@ const loadHoverImage = ref(false)
 const shouldHoverImage = ref(false)
 
 const { isGreaterOrEquals } = useViewport()
+const { getProductDetailRoute } = useRouteHelpers()
 
 const onMouseOver = () => {
   loadHoverImage.value = true

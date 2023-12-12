@@ -2,6 +2,7 @@ import type {
   BrandOrCategorySuggestion,
   ProductSuggestion,
 } from '@scayle/storefront-nuxt'
+import { useRouteHelpers } from '~/utils/route'
 
 const useSearchEvents = (
   track: (event: TrackingEvent, payload: TrackingPayload) => any,
@@ -19,7 +20,8 @@ const useSearchEvents = (
       search_destination: searchDestination,
     })
   }
-
+  const localePath = useLocalePath()
+  const { getSearchSuggestionPath } = useRouteHelpers()
   return {
     trackSearch,
 
@@ -37,7 +39,7 @@ const useSearchEvents = (
         suggestion: suggestion.suggestion,
         searchAction: product ? 'suggested_product' : 'suggested_category',
         searchDestination: String(
-          toLocalePath(getSearchSuggestionPath(suggestion) || ''),
+          localePath(getSearchSuggestionPath(suggestion) || ''),
         ),
       })
     },

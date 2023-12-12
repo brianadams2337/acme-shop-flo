@@ -66,6 +66,7 @@ import {
   getFirstAttributeValue,
   getTotalAppliedReductions,
 } from '@scayle/storefront-nuxt'
+import { useRouteHelpers } from '~/utils/route'
 
 const props = defineProps({
   product: {
@@ -89,7 +90,7 @@ const props = defineProps({
     default: 1,
   },
 })
-
+const { getOrderProductDetailRoute } = useRouteHelpers()
 const name = computed(() => props.product.name)
 
 const color = computed(

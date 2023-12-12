@@ -61,6 +61,7 @@ import {
   type Product,
 } from '@scayle/storefront-nuxt'
 import { Size } from '#imports'
+import { useRouteHelpers } from '~/utils/route'
 
 // TODO use computed property for dynamic class bindings on line 24
 const props = defineProps({
@@ -88,6 +89,7 @@ const emit = defineEmits<{
 }>()
 
 const { isGreaterOrEquals } = useViewport()
+const { getProductDetailRoute } = useRouteHelpers()
 
 const trackingCollector = ref<Product[]>([])
 const carousel = ref<HTMLDivElement>()

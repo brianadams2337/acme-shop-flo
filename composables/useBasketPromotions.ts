@@ -1,5 +1,8 @@
 export default async () => {
   const basket = await useBasket()
+  const promotionData = await useCurrentPromotions()
+
+  const allCurrentPromotions = computed(() => promotionData.data.value.entities)
 
   const appliedPromotions = computed(() => {
     return basket.items.value
@@ -25,5 +28,6 @@ export default async () => {
     buyXGetYPromotions,
     automaticDiscountPromotions,
     hasAppliedPromotions,
+    allCurrentPromotions,
   }
 }

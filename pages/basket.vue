@@ -39,7 +39,7 @@
               />
             </FadeInTransition>
             <FadeInTransition>
-              <BasketPromotionGifts
+              <BasketItemPromotionGifts
                 v-if="isGiftApplicableItem(item)"
                 :basket-item="item"
               />
@@ -98,12 +98,11 @@ const {
   collectProductListItems,
 } = useTrackingEvents()
 
-const promotionData = await useCurrentPromotions()
+const { allCurrentPromotions } = await useBasketPromotions()
 
 const isGiftApplicableItem = ({ product }: BasketItem) => {
   const id = getFirstAttributeValue(product?.attributes, 'promotion')?.id
-  const promotions = promotionData.data.value.entities
-  return promotions.some((promotion) => {
+  return allCurrentPromotions.value.some((promotion) => {
     const isFreeGift = isBuyXGetYType(promotion)
     return isFreeGift && promotion.customData?.product?.promotionId === id
   })

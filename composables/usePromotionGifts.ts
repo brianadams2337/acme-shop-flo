@@ -17,17 +17,17 @@ export default async (product: Product) => {
   })
 
   const { data } = await useProductsByIds({
-    params: { ids: variants.value?.map((it) => it.productId) },
+    params: { ids: variants.value?.map(({ productId }) => productId) },
     key: `promotion-products-${buyXGetYPromotion.value?.id}`,
   })
 
   const products = computed(() => {
-    const items = useUnique(data.value, (it) => it.id)
-    return items.map((it) => {
-      const filteredVariants = it.variants?.filter(({ id }) => {
+    const items = useUnique(data.value, ({ id }) => id)
+    return items.map((item) => {
+      const filteredVariants = item.variants?.filter(({ id }) => {
         return variantIds.value.includes(id)
       })
-      return { ...it, variants: filteredVariants }
+      return { ...item, variants: filteredVariants }
     })
   })
 

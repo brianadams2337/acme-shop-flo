@@ -1,20 +1,12 @@
 import { defineConfig } from 'cypress'
-import { url, cleanEnv, email, str } from 'envalid'
 import * as dotenv from 'dotenv'
 
 dotenv.config()
 
-const { BASE_URL, CYPRESS_TEST_USERNAME, CYPRESS_TEST_PASSWORD } = cleanEnv(
-  process.env,
-  {
-    BASE_URL: url(),
-    CYPRESS_TEST_USERNAME: email(),
-    CYPRESS_TEST_PASSWORD: str(),
-  },
-)
-
 const USER_AGENT =
   'Mozilla/5.0 (iPhone; CPU iPhone OS 11_0 like Mac OS X) AppleWebKit/604.1.38 (KHTML, like Gecko) Version/11.0 Mobile/15A372 Safari/604.1'
+
+const BASE_URL = process.env.BASE_URL ?? 'https://localhost:3000' // Try to use local .env BASE_URL or fallback
 
 const DefaultViewport = {
   WIDTH: 1440,
@@ -36,10 +28,11 @@ export default defineConfig({
   projectId: 'fzuayb',
   viewportWidth: DefaultViewport.WIDTH,
   viewportHeight: DefaultViewport.HEIGHT,
+  // Cypress - Environment Variables
+  // https://docs.cypress.io/guides/guides/environment-variables
   env: {
-    lang: 'en-EN',
-    username: CYPRESS_TEST_USERNAME,
-    password: CYPRESS_TEST_PASSWORD,
+    lang: 'de-DE',
+    shop_selector: 'path',
   },
   e2e: {
     setupNodeEvents(_on, config) {
@@ -56,8 +49,11 @@ export default defineConfig({
             viewportHeight: DefaultViewport.HEIGHT,
           }
     },
-    baseUrl: BASE_URL,
+    // https://docs.cypress.io/guides/references/best-practices#Cypress-configuration-file
+    baseUrl: BASE_URL, // Overridable in CI with CYPRESS_BASE_URL
+    // https://docs.cypress.io/guides/references/experiments#End-to-End-Testing
     experimentalRunAllSpecs: true,
+    // https://docs.cypress.io/guides/references/experiments#Experimental-Skip-Domain-Injection
     experimentalModifyObstructiveThirdPartyCode: true,
     includeShadowDom: true,
   },

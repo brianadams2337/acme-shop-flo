@@ -4,11 +4,14 @@
       <Headline is-uppercase>
         {{ $t('search.result', { term, resultsCount }) }}
       </Headline>
-      <div v-if="true" class="order-1 flex items-center space-x-4 text-sm">
+      <div
+        v-if="filters?.length"
+        class="order-1 flex items-center space-x-4 text-sm"
+      >
         <section>
           <SortingMenu :selected="selectedSort" :values="sortingValues" />
         </section>
-        <AppButton type="tertiary" @click="toggleFilter">
+        <AppButton type="tertiary" size="sm" @click="toggleFilter">
           {{ $t('plp.filter') }}
           <template #icon="{ _class }">
             <IconFilter :class="_class" />
@@ -31,7 +34,7 @@
       :last-page="pagination.last"
     />
     <FilterSlideIn
-      v-if="true"
+      v-if="filters?.length"
       v-bind="{
         activeFilters,
         filters,

@@ -16,10 +16,9 @@ class WishlistPage extends BasePage {
       '[class="hidden lg:block"] [data-test-id="wishlist-card-add-to-cart"]',
     wishlistCardAddToCartMobileButton:
       '[data-test-id="wishlist-card-add-to-cart-mobile"]',
-    removeFromListButton:
-      '[data-test-id="product-card-action-remove-item-from-wishlist-button"]',
-    continueShoppingButton: '[href="/"]',
-    signInButton: '[href="/signin"]',
+    removeFromListButton: '[data-test-id="remove-item-from-wishlist-button"]',
+    continueShoppingButton: 'a[href="/de"]',
+    signInButton: 'a[href*="/signin"]',
     wishlistCount: '[data-test-id="wishlist-count"]',
     emptyWishlistButtons: '.px-8 > .mt-8',
   }

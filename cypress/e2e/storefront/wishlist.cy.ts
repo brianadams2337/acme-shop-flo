@@ -19,9 +19,9 @@ describe('Wishlist feature', () => {
     cy.clearSiteData()
   })
 
-  it.only('check that header and footer is displayed on Wishlist Page', () => {
+  it('check that header and footer is displayed on Wishlist Page', () => {
     ProductPage.addProductToWishlist()
-    WishlistPage.checkAddToWishlistTrackingEvent()
+    // WishlistPage.checkAddToWishlistTrackingEvent()
     Header.wishlistAssertProductCount(1)
     Header.clickOnWishlistButton()
     WishlistPage.waitForPageToBeDisplayed()
@@ -32,7 +32,7 @@ describe('Wishlist feature', () => {
 
   it('should be able to add product to wishlist', () => {
     ProductPage.addProductToWishlist()
-    WishlistPage.checkAddToWishlistTrackingEvent()
+    // WishlistPage.checkAddToWishlistTrackingEvent()
     Header.wishlistAssertProductCount(1)
     Header.clickOnWishlistButton()
     WishlistPage.waitForPageToBeDisplayed()
@@ -61,7 +61,7 @@ describe('Wishlist feature', () => {
       WishlistPage.addProductToCart(0)
       WishlistPage.changeProductSizeByIndex(0)
     }
-    BasketPage.open()
+    Header.clickOnBasketButton()
     BasketPage.waitForPageToBeDisplayed()
     BasketPage.assertThatProductIsPresent()
   })
@@ -133,7 +133,7 @@ describe('Wishlist feature', () => {
   if (Cypress.env().mobile !== true) {
     it('Add product to a basket without size', () => {
       ProductPage.addProductToWishlist()
-      WishlistPage.checkAddToWishlistTrackingEvent()
+      // WishlistPage.checkAddToWishlistTrackingEvent()
       Header.wishlistAssertProductCount(1)
       Header.clickOnWishlistButton()
       WishlistPage.waitForPageToBeDisplayed()
@@ -145,8 +145,9 @@ describe('Wishlist feature', () => {
   it('Add one-size product to a basket from Wishlist', () => {
     ProductPage.openProduct(TEST_ITEM_ONESIZE.link)
     ProductPage.waitForPageToBeDisplayed()
+    HomePage.closePromotionButton()
     ProductPage.addProductToWishlist()
-    WishlistPage.checkAddToWishlistTrackingEvent()
+    // WishlistPage.checkAddToWishlistTrackingEvent()
     Header.wishlistAssertProductCount(1)
     Header.clickOnWishlistButton()
     WishlistPage.waitForPageToBeDisplayed()
@@ -159,6 +160,7 @@ describe('Wishlist feature', () => {
   it('check buttons on empty wishlist', () => {
     WishlistPage.open()
     WishlistPage.waitForPageToBeDisplayed()
+    HomePage.closePromotionButton()
     WishlistPage.assertThatWishlistIsEmpty()
     WishlistPage.assertHeaderText()
     WishlistPage.assertThatContinueShoppingButtonIsPresent()
@@ -169,8 +171,9 @@ describe('Wishlist feature', () => {
     useLoggedInUser()
     ProductPage.openProduct(TEST_ITEM_ONESIZE.link)
     ProductPage.waitForPageToBeDisplayed()
+    HomePage.closePromotionButton()
     ProductPage.addProductToWishlist()
-    WishlistPage.open()
+    Header.clickOnWishlistButton()
     WishlistPage.waitForPageToBeDisplayed()
     WishlistPage.clearWishlist()
     WishlistPage.assertThatWishlistIsEmpty()

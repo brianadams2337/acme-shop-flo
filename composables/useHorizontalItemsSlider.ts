@@ -69,6 +69,10 @@ export default () => {
 
   const isPrevEnabled = computed(() => !arrivedLeft.value)
 
+  const isNotScrollable = computed(() => {
+    return !isNextEnabled.value && !isPrevEnabled.value
+  })
+
   return {
     sliderRef,
     onScroll,
@@ -77,5 +81,6 @@ export default () => {
     isNextEnabled,
     isPrevEnabled,
     scrollImageIntoView,
+    isNotScrollable,
   }
 }

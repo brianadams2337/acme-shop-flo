@@ -8,7 +8,8 @@ export default async (product: Product) => {
 
   const isGiftAlreadyAdded = computed(() => {
     return basketData.data.value.items.some((item) => {
-      return variantIds.value?.includes(item.variant.id)
+      const isGift = variantIds.value?.includes(item.variant.id)
+      return isGift && item.promotionId
     })
   })
 
@@ -29,7 +30,7 @@ export default async (product: Product) => {
   })
 
   const products = computed(() => {
-    const items = useUnique(data.value, ({ id }) => id)
+    const items = useUnique(data.value || [], ({ id }) => id)
     return items.map((item) => {
       const filteredVariants = item.variants?.filter(({ id }) => {
         return variantIds.value.includes(id)

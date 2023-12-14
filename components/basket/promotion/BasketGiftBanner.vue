@@ -1,6 +1,6 @@
 <template>
   <div
-    v-if="isGiftAlreadyAdded && quantityLeft"
+    v-if="isGiftAlreadyAdded && hasQuantityLeft"
     class="flex justify-between rounded-md px-4 py-2 text-white"
     :style="backgroundColorStyle"
   >
@@ -30,6 +30,10 @@ const quantityLeft = computed(() => {
     return
   }
   return giftConditions.value.minQuantity - basketItem.value.quantity
+})
+
+const hasQuantityLeft = computed(() => {
+  return quantityLeft.value && quantityLeft.value > 0
 })
 
 const { isGiftAlreadyAdded } = await usePromotionGifts(props.basketItem.product)

@@ -45,6 +45,7 @@ export default async () => {
         : await addBasketItem({
             variantId: activeVariant.value.id,
             quantity: quantity.value,
+            ...(!promotionId && { promotionId: null }),
             ...(promotionId && !isBuyXGetYPrioritized.value && { promotionId }),
           })
 

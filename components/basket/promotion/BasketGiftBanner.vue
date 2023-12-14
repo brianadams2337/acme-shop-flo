@@ -1,8 +1,8 @@
 <template>
   <div
-    v-if="isGiftAlreadyAdded && quantityLeft"
+    v-if="isGiftAlreadyAdded && hasQuantityLeft"
     class="flex justify-between rounded-md px-4 py-2 text-white"
-    :style="backgroundColorStyle"
+    :style="giftBackgroundColorStyle"
   >
     <Headline size="xs" is-bold>
       {{ $t('basket.promotion.gift_conditional_label', { quantityLeft }) }}
@@ -22,7 +22,7 @@ const props = defineProps<{ basketItem: BasketItem }>()
 
 const basketItem = computed(() => props.basketItem)
 
-const { giftPromotion, backgroundColorStyle, giftConditions } =
+const { giftPromotion, giftBackgroundColorStyle, giftConditions } =
   await useBasketItemPromotion(basketItem)
 
 const quantityLeft = computed(() => {
@@ -30,6 +30,10 @@ const quantityLeft = computed(() => {
     return
   }
   return giftConditions.value.minQuantity - basketItem.value.quantity
+})
+
+const hasQuantityLeft = computed(() => {
+  return quantityLeft.value && quantityLeft.value > 0
 })
 
 const { isGiftAlreadyAdded } = await usePromotionGifts(props.basketItem.product)

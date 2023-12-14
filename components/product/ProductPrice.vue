@@ -83,8 +83,12 @@ const appliedReductions = computed(() => props.price?.appliedReductions)
 const { automaticDiscountPromotion, getAppliedAutomaticDiscountPrice } =
   await useProductPromotions(props.product)
 
+const isAutomaticDiscountPriceApplicable = computed(() => {
+  return props.showAutomaticDiscount && automaticDiscountPromotion.value
+})
+
 const totalPrice = computed(() => {
-  return automaticDiscountPromotion.value
+  return isAutomaticDiscountPriceApplicable.value
     ? toCurrency(getAppliedAutomaticDiscountPrice(props.price) as number)
     : toCurrency(props.price.withTax)
 })
@@ -100,10 +104,6 @@ const hasLowestPriorPrice = computed(() => {
     props.lowestPriorPrice?.withTax &&
     props.lowestPriorPrice?.relativeDifferenceToPrice
   )
-})
-
-const isAutomaticDiscountPriceApplicable = computed(() => {
-  return props.showAutomaticDiscount && automaticDiscountPromotion.value
 })
 
 const classes = computed(() => ({

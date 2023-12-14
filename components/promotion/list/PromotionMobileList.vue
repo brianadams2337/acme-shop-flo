@@ -10,7 +10,9 @@
         </Headline>
         <ClosePromotionListButton position-class="right-5 top-4" />
       </div>
-      <div class="flex w-full items-start justify-center overflow-x-scroll">
+      <div
+        class="flex w-full items-start justify-center overflow-x-scroll scrollbar-hide"
+      >
         <PromotionItem
           v-for="item in items"
           :key="item.id"

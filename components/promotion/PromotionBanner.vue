@@ -1,5 +1,6 @@
 <template>
   <div
+    :ref="(element) => setBannerRef(element as HTMLElement)"
     class="sticky top-0 z-[80] hidden h-[3.25rem] cursor-pointer items-center justify-between gap-1 overflow-hidden bg-blue py-2 pl-4 text-sm text-white lg:flex"
     :style="backgroundColorStyle"
     @click="togglePromotionList()"
@@ -20,7 +21,6 @@
       <MyDealsButton class="self-center" />
     </div>
   </div>
-
   <SlideInFromTopTransition>
     <PromotionList v-if="isPromotionListShown" :items="promotions" />
   </SlideInFromTopTransition>
@@ -43,7 +43,8 @@ const {
   headlineParts,
 } = useCurrentPromotion()
 
-const { togglePromotionList, isPromotionListShown } = usePromotionActions()
+const { togglePromotionList, isPromotionListShown, setBannerRef } =
+  usePromotionActions()
 
 onServerPrefetch(() => props.promotions.length > 1 && togglePromotionList())
 </script>

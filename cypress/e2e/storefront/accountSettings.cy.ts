@@ -10,6 +10,7 @@ describe(`Account settings:`, () => {
     useLoggedInUser()
     HomePage.open()
     HomePage.waitForPageToBeDisplayed()
+    HomePage.closePromotionButton()
     Header.clickOnAccountSettingsButton()
     AccountSettingsPage.assertAccountSettingPageIsDisplayed()
   })

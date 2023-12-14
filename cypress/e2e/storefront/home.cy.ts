@@ -9,6 +9,7 @@ describe(`my orders`, () => {
   beforeEach(() => {
     HomePage.open()
     HomePage.waitForPageToBeDisplayed()
+    HomePage.closePromotionButton()
     cy.scrollTo('bottom', { duration: 4000 })
   })
 

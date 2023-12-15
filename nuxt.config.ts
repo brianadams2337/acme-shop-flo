@@ -305,7 +305,6 @@ export default defineNuxtConfig({
     const NO_CACHE = { swr: false, cache: false } as const
 
     // Default routeRules for using SWR and `storefront-cache` storage for page caching setup
-    // TODO: Test
     return DOMAIN_PER_LOCALE
       ? {
           // Cache most pages by default

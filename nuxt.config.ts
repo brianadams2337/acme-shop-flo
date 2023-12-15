@@ -291,15 +291,17 @@ export default defineNuxtConfig({
 
     // Page generated on-demand, revalidates in background
     const CACHE_PAGE = {
-      swr: true, // Enable stale-while-revalidate
-      maxAge: 10 * 60, // Default: 10min
-      staleMaxAge: 10 * 60, // Default: 10min
-      group: 'ssr', // Cache group name
-      name: 'page', // Set prefix name
-      // Use storefront storage mount
-      // Depending on your configuration this might be `redis` or another database driver
-      // https://scayle.dev/en/dev/storefront-core/module-configuration#storage
-      base: 'storefront-cache',
+      cache: {
+        swr: true, // Enable stale-while-revalidate
+        maxAge: 10 * 60, // Default: 10min
+        staleMaxAge: 10 * 60, // Default: 10min
+        group: 'ssr', // Cache group name
+        name: 'page', // Set prefix name
+        // Use storefront storage mount
+        // Depending on your configuration this might be `redis` or another database driver
+        // https://scayle.dev/en/dev/storefront-core/module-configuration#storage
+        base: 'storefront-cache',
+      },
     } as const
 
     const NO_CACHE = { swr: false, cache: false } as const

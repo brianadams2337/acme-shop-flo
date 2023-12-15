@@ -202,6 +202,7 @@ watch(
   async () => {
     resetFilters()
     await applyFilters({ shouldToggle: false })
+    await fetchProducts(fetchParameters.value)
   },
   { immediate: true },
 )

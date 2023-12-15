@@ -112,7 +112,7 @@ createFilterContext({
   unfilteredCount,
 })
 
-const { applyFilters: _applyFilter, productConditions } = useQueryFilterState()
+const { productConditions } = useQueryFilterState()
 
 await fetchLazy(
   fetchProducts({

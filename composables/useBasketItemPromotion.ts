@@ -4,11 +4,7 @@ import {
 } from '@scayle/storefront-nuxt'
 
 export default async (basketItem: Ref<BasketItem>) => {
-  const promotionData = await useCurrentPromotions()
-
-  const applicablePromotions = computed(() => {
-    return promotionData.data.value.entities
-  })
+  const { allCurrentPromotions } = await useBasketPromotions()
 
   const promotion = computed<BasketPromotion | undefined>(() => {
     return basketItem.value?.promotion
@@ -23,7 +19,12 @@ export default async (basketItem: Ref<BasketItem>) => {
       basketItem.value.product?.attributes,
       'promotion',
     )?.id
-    return applicablePromotions.value.find((promotion) => {
+
+    if (isBuyXGetY.value) {
+      return promotion.value
+    }
+
+    return allCurrentPromotions.value.find((promotion) => {
       const isFreeGift = isBuyXGetYType(promotion)
       return isFreeGift && promotion?.customData?.product?.promotionId === id
     })
@@ -40,10 +41,12 @@ export default async (basketItem: Ref<BasketItem>) => {
   })
 
   const backgroundColorStyle = computed(() => {
-    const color =
-      promotion.value?.customData?.colorHex ||
-      giftPromotion.value?.customData?.colorHex
+    const color = promotion.value?.customData?.colorHex
     return getBackgroundColorStyle(color)
+  })
+
+  const giftBackgroundColorStyle = computed(() => {
+    return getBackgroundColorStyle(giftPromotion.value?.customData?.colorHex)
   })
 
   const hasFailedConditions = computed(() => {
@@ -68,5 +71,6 @@ export default async (basketItem: Ref<BasketItem>) => {
     giftPromotion,
     headlineParts,
     giftConditions,
+    giftBackgroundColorStyle,
   }
 }

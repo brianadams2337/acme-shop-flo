@@ -8,7 +8,16 @@ export default async (product: Product) => {
 
   const isGiftAlreadyAdded = computed(() => {
     return basketData.data.value.items.some((item) => {
-      return variantIds.value?.includes(item.variant.id)
+      const isGift = variantIds.value?.includes(item.variant.id)
+      return isGift && item.promotionId && isBuyXGetYType(item.promotion)
+    })
+  })
+
+  const isGiftApplied = computed(() => {
+    return basketData.data.value.items.some((item) => {
+      const isGift = variantIds.value?.includes(item.variant.id)
+      const isValid = item.promotion?.isValid
+      return isGift && isBuyXGetYType(item.promotion) && isValid
     })
   })
 
@@ -29,7 +38,7 @@ export default async (product: Product) => {
   })
 
   const products = computed(() => {
-    const items = useUnique(data.value, ({ id }) => id)
+    const items = useUnique(data.value || [], ({ id }) => id)
     return items.map((item) => {
       const filteredVariants = item.variants?.filter(({ id }) => {
         return variantIds.value.includes(id)
@@ -44,5 +53,6 @@ export default async (product: Product) => {
     backgroundColorStyle,
     hasMultipleFreeGifts,
     isGiftAlreadyAdded,
+    isGiftApplied,
   }
 }

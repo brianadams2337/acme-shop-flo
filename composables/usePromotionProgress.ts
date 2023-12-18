@@ -9,12 +9,29 @@ export default async () => {
 
   const minOrderAmount = computed(() => divideWithHundred(minOrderValue.value))
 
+  const basketTotalWithoutPromotionReductions = computed(() => {
+    return useSum(
+      basketData.value.items.map((item) => {
+        const withTax = item.price.total.withTax
+        const promotionReduction = item.price.total.appliedReductions.find(
+          ({ category }) => category === 'promotion',
+        )
+        if (!promotionReduction) {
+          return withTax
+        }
+        return withTax + promotionReduction?.amount.absoluteWithTax
+      }),
+    )
+  })
+
   const basketTotalForPromotion = computed(() => {
     const isBasketItemPromoted = basketData.value.items.some((it) => {
       return it.promotionId === currentPromotion.value?.id
     })
 
-    return isBasketItemPromoted ? basketData.value.cost.withTax : 0
+    return isBasketItemPromoted
+      ? basketTotalWithoutPromotionReductions.value
+      : 0
   })
 
   const progress = computed(() => {
@@ -32,6 +49,9 @@ export default async () => {
   const formattedAmount = computed(() => toCurrency(minOrderValue.value))
 
   const formattedAmountLeft = computed(() => {
+    if (!minOrderValue.value) {
+      return
+    }
     return toCurrency(minOrderValue.value - basketTotalForPromotion.value)
   })
 

@@ -30,5 +30,12 @@ class HomePage extends BasePage {
   selectCountryByIndex(index = 0) {
     cy.get(this.pageElements.languageOption).eq(index).click()
   }
+
+  closePromotionButton() {
+    // cy.intercept('GET', 'builds/meta/dev.json').as('getPromotions')
+    cy.intercept('**/Countdown.vue.7c965c28.js').as('getPromotions')
+    cy.wait('@getPromotions')
+    cy.get('[data-test-id="close-promotion-button"]').click()
+  }
 }
 export default new HomePage()

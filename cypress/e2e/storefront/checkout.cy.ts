@@ -3,6 +3,7 @@ import { TEST_ITEM_REGULAR } from '../../support/constants'
 import ProductPage from '../../pageObjects/productPage'
 import Header from '../../pageObjects/components/header'
 import BasketPage from '../../pageObjects/basketPage'
+import HomePage from '../../pageObjects/homePage'
 
 describe('Checkout:', function () {
   beforeEach(function () {
@@ -13,6 +14,7 @@ describe('Checkout:', function () {
     it('Check that checkout is opened in Iframe', function () {
       ProductPage.openProduct(TEST_ITEM_REGULAR.link)
       ProductPage.waitForPageToBeDisplayed()
+      HomePage.closePromotionButton()
       ProductPage.selectAvailableSize()
       ProductPage.addToCart()
       Header.clickOnBasketButton()

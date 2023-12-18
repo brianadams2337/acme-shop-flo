@@ -10,6 +10,7 @@ describe(`my orders`, () => {
     useLoggedInUser()
     HomePage.open()
     HomePage.waitForPageToBeDisplayed()
+    HomePage.closePromotionButton()
     MyOrdersPage.open()
   })
 

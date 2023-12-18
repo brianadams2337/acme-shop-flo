@@ -16,19 +16,21 @@ if (Cypress.env().mobile !== true) {
   expectedColumnsCount = 12
 }
 
+beforeEach(() => {
+  HomePage.open()
+  HomePage.closePromotionButton()
+  cy.contains('Women').trigger('mouseenter')
+  ProductListingPage.openTestCategory()
+  ProductListingPage.waitForPageToBeDisplayed()
+  cy.scrollTo('bottom', { duration: 2000 })
+})
+
+afterEach(() => {
+  cy.clearSiteData()
+})
+
 const productCount = expectedRowsCount * expectedColumnsCount
 describe('Product Listing Page: products visibility', () => {
-  beforeEach(() => {
-    HomePage.open()
-    ProductListingPage.openTestCategory()
-    ProductListingPage.waitForPageToBeDisplayed()
-    cy.scrollTo('bottom', { duration: 4000 })
-  })
-
-  afterEach(() => {
-    cy.clearSiteData()
-  })
-
   it('Click on a product image > Product details page opens', () => {
     ProductListingPage.openProductByClickingOnImage(0)
     ProductPage.waitForPageToBeDisplayed()
@@ -36,17 +38,6 @@ describe('Product Listing Page: products visibility', () => {
 })
 
 describe('Product Listing Page', { testIsolation: false }, () => {
-  before(() => {
-    HomePage.open()
-    ProductListingPage.openTestCategory()
-    ProductListingPage.waitForPageToBeDisplayed()
-    cy.scrollTo('bottom', { duration: 4000 })
-  })
-
-  afterEach(() => {
-    cy.clearSiteData()
-  })
-
   it('check count of the Columns', () => {
     const arr: any[] = []
     cy.get(ProductListingPage.pageElements.productItem)
@@ -136,7 +127,7 @@ describe('Product Listing Page', { testIsolation: false }, () => {
   })
 
   it('Open product by color sibling', () => {
-    HomePage.open()
+    cy.contains('Women').trigger('mouseenter')
     ProductListingPage.openTestCategory()
     ProductListingPage.waitForPageToBeDisplayed()
     ProductListingPage.openProductBySiblingColor(
@@ -148,8 +139,10 @@ describe('Product Listing Page', { testIsolation: false }, () => {
 })
 
 describe('Filters', { testIsolation: false }, () => {
-  before(() => {
+  beforeEach(() => {
     HomePage.open()
+    HomePage.closePromotionButton()
+    cy.contains('Women').trigger('mouseenter')
     ProductListingPage.openTestCategory()
     ProductListingPage.waitForPageToBeDisplayed()
     cy.scrollTo('bottom', { duration: 4000 })
@@ -272,7 +265,6 @@ describe('Filters', { testIsolation: false }, () => {
     })
   })
 })
-
 describe('Sorting', { testIsolation: false }, () => {
   before(() => {
     HomePage.open()
@@ -341,10 +333,6 @@ describe('Sorting', { testIsolation: false }, () => {
 
 if (Cypress.env().mobile !== true) {
   describe('Scroll', () => {
-    afterEach(() => {
-      cy.clearSiteData()
-    })
-
     it('Check scroll position when going back from PDP to PLP', () => {
       const productIndex = 12
       HomePage.open()
@@ -363,15 +351,7 @@ if (Cypress.env().mobile !== true) {
 }
 
 describe('canonical URl check', () => {
-  afterEach(() => {
-    cy.clearSiteData()
-  })
-
   it('Check canonical tag to lead to PLP', () => {
-    HomePage.open()
-    ProductListingPage.openTestCategory()
-    ProductListingPage.waitForPageToBeDisplayed()
-    cy.scrollTo('bottom', { duration: 2000 })
     const credentials = Cypress.config('baseUrl')!.split('@')[0] + '@'
     cy.get(ProductListingPage.pageElements.canonicalTag)
       .invoke('attr', 'href')
@@ -383,9 +363,6 @@ describe('canonical URl check', () => {
   })
 
   it('Check canonical tag to lead to PLP with filters applied', () => {
-    HomePage.open()
-    ProductListingPage.openTestCategory()
-    ProductListingPage.waitForPageToBeDisplayed()
     ProductListingPage.openFilters()
     ProductListingPage.selectTestColour()
     ProductListingPage.clickApplyFilters()

@@ -13,7 +13,7 @@
             class="mr-4 last-of-type:mr-0"
           />
         </div>
-        <ClosePromotionListButton />
+        <ClosePromotionListButton data-test-id="close-promotion-button" />
       </div>
     </div>
   </div>

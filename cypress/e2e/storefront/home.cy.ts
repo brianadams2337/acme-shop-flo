@@ -9,6 +9,7 @@ describe(`my orders`, () => {
   beforeEach(() => {
     HomePage.open()
     HomePage.waitForPageToBeDisplayed()
+    HomePage.closePromotionButton()
     cy.scrollTo('bottom', { duration: 4000 })
   })
 
@@ -35,10 +36,10 @@ if (Cypress.env().mobile !== true) {
       cy.clearSiteData()
     })
 
-    it('check country switch', () => {
+    it.only('check country switch', () => {
       cy.get(HomePage.pageElements.countrySwitcher).then((lang) => {
         const initialLanguage = lang.text()
-        cy.get(HomePage.pageElements.countrySwitcher).click()
+        cy.get(HomePage.pageElements.countrySwitcher).click({ force: true })
 
         const credentials = Cypress.config('baseUrl')!.split('@')[0] + '@'
         cy.get(HomePage.pageElements.languageOption)

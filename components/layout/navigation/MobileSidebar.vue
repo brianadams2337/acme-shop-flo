@@ -94,9 +94,9 @@ defineProps({
   },
 })
 
-const { isLessThan } = useViewport()
+const { isSmaller } = useDefaultBreakpoints()
 
-const isLessThanMdBreakpoint = computed(() => isLessThan('md'))
+const isLessThanMdBreakpoint = computed(() => isSmaller('md'))
 
 const {
   closeSideNavigation,

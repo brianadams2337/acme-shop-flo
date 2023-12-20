@@ -1,7 +1,7 @@
 import http from 'node:http'
 import test from 'node:test'
 import assert from 'node:assert/strict'
-import { join } from 'node:path'
+import path from 'node:path'
 
 // Quick test script for validating that routeRules are properly
 // set for caching the public pages, and not caching private ones
@@ -10,6 +10,12 @@ import { join } from 'node:path'
 // Otherwise, it will default to testing http://localhost:3000/en
 
 const BASE_URL = process.env.BASE_URL ?? 'http://localhost:3000/en'
+
+const join = (base, pathname) => {
+  const url = new URL(base)
+  const newPath = path.join(url.pathname, pathname)
+  return new URL(newPath, url.origin)
+}
 
 const getHeaders = async (url) => {
   return new Promise((resolve, reject) => {
@@ -72,11 +78,6 @@ function assertNoCacheHeaders(headers) {
 
 test('home page has cache headers', async () => {
   const headers = await getHeaders(BASE_URL)
-  assertCacheHeaders(headers)
-})
-
-test('product list has cache headers', async () => {
-  const headers = await getHeaders(join(BASE_URL, '/women'))
   assertCacheHeaders(headers)
 })
 

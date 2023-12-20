@@ -148,12 +148,10 @@ const {
 } = useCms<SbListingPage>(`ListingPage-${route.path}`)
 
 const fetchData = async () => {
-  await Promise.all([
-    fetchProducts(fetchParameters.value),
-    ...(selectedCategory.value?.id
-      ? [fetchBySlug(`categories/${selectedCategory.value?.id}`)]
-      : []),
-  ])
+  await fetchProducts(fetchParameters.value)
+  if (selectedCategory.value?.id) {
+    await fetchBySlug(`categories/${selectedCategory.value?.id}`)
+  }
 }
 
 if (
@@ -206,7 +204,7 @@ watch(
     await applyFilters({ shouldToggle: false })
     await fetchProducts(fetchParameters.value)
   },
-  { immediate: true },
+  { immediate: false },
 )
 
 watch(

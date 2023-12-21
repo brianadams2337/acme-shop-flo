@@ -101,6 +101,11 @@ export const storefrontRuntimeConfigPrivate: Partial<ModuleOptions> = {
     clientId: '', // Override: NUXT_STOREFRONT_OAUTH_CLIENT_ID
     clientSecret: '', // Override: NUXT_STOREFRONT_OAUTH_CLIENT_SECRET
   },
+  idp: {
+    enabled: true,
+    idpKeys: ['auth-dev-fielmann'],
+    idpRedirectURL: `https://localhost:3000/signin`,
+  },
 
   /** Storefront Core - Configure shop switching based on selected routing option (`domain` or `path`-based)
    * https://scayle.dev/en/dev/storefront-core/module-configuration#path-and-domain  */
@@ -123,6 +128,11 @@ export const storefrontRuntimeConfigPrivate: Partial<ModuleOptions> = {
        * Example if `[shop.locale]` is used -> Overrideable environment variable: NUXT_STOREFRONT_STORES_EN_US_CHECKOUT_USER.
        * Example if `[shop.shopId]` is used -> Overrideable environment variable: NUXT_STOREFRONT_STORES_1001_CHECKOUT_USER. */
       [shop.shopId]: {
+        idp: {
+          enabled: true,
+          idpKeys: ['auth-dev-fielmann'],
+          idpRedirectURL: `https://${shop.path}.localhost:3000/signin`,
+        },
         /** Storefront Core - Numeric SCAYLE ShopId (usually 5 digits) */
         shopId: shop.shopId, // Override: NUXT_STOREFRONT_STORES_{UNIQUE_IDENTIFIER}_SHOP_ID
 

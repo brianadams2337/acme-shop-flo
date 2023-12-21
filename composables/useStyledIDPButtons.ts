@@ -10,7 +10,7 @@ export function useStyledIDPButtons(classes?: Record<string, string>) {
   const idpClasses = { ...defaultClasses, ...classes }
 
   const getIDPButtonClass = (idp: keyof typeof idpClasses) =>
-    idpClasses[idp] || ''
+    idpClasses[idp] ?? 'bg-primary text-white hover:bg-primary focus:bg-primary'
 
   return {
     getIDPButtonClass,

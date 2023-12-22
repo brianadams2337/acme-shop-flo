@@ -27,7 +27,11 @@
 const { isGreaterOrEquals } = useViewport()
 
 const { openUserFlyout, closeUserFlyout, isUserFlyoutOpen } = useFlyouts()
-const { user } = await useUser()
+const { user, fetch } = await useUser({ autoFetch: false })
+
+onMounted(() => {
+  fetch()
+})
 
 const link = computed(() => (user.value ? routeList.account : routeList.signin))
 </script>

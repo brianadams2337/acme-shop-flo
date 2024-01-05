@@ -1872,10 +1872,10 @@
   dependencies:
     prettier-config-standard "^7.0.0"
 
-"@scayle/storefront-core@7.34.0":
-  version "7.34.0"
-  resolved "https://registry.yarnpkg.com/@scayle/storefront-core/-/storefront-core-7.34.0.tgz#fb6ea4d2295a4a3b9cc92d76a1abbd010021498d"
-  integrity sha512-Mq4VvalBrn9duoFs4mj7ROPUZRuks9aDA6BVIop6MXfPpEcIjFVH26NlYDFlzWkGmzwXS9CooGsIM5PNEj4EAA==
+"@scayle/storefront-core@7.34.1":
+  version "7.34.1"
+  resolved "https://registry.yarnpkg.com/@scayle/storefront-core/-/storefront-core-7.34.1.tgz#7fa0b6a470cfc7a27e5a88a25f1d206eba7d9838"
+  integrity sha512-SK+vIt4o2JviAP8Ebb9geUX2JDl571tPy5VqKUz4SKTjsCcQ/F/4YNEyH+3xhMzPpp79kSMeNFnkgMwNVrqt8Q==
   dependencies:
     "@aboutyou/backbone" "16.0.1"
     crypto-js "4.2.0"
@@ -1888,18 +1888,18 @@
   optionalDependencies:
     redis "4"
 
-"@scayle/storefront-nuxt@7.48.0":
-  version "7.48.0"
-  resolved "https://registry.yarnpkg.com/@scayle/storefront-nuxt/-/storefront-nuxt-7.48.0.tgz#033c504fae1c9e9820c26cb42e4c0029bb88f185"
-  integrity sha512-Tq8Tku72tE45yKRDjhwiATaGg0gN1f8rsx7iIupCHOtZtKPMOTUlvkmNkJ61/xpgpE6WhJtFCxjVRXfAdocuEw==
+"@scayle/storefront-nuxt@7.48.1":
+  version "7.48.1"
+  resolved "https://registry.yarnpkg.com/@scayle/storefront-nuxt/-/storefront-nuxt-7.48.1.tgz#fa702f6061eaa205675fcacfd09d7c2f291747c0"
+  integrity sha512-/EoEF3b10q/IlDi5x4gOYpKpMfQgQhca6uE8pYmNBnXSyupFaaQNongiXfTmyS3D0eo0rDTEE5N6JqirWx41Zg==
   dependencies:
     "@nuxt/kit" "3.8.2"
     "@scayle/h3-session" "0.3.4"
-    "@scayle/storefront-core" "7.34.0"
+    "@scayle/storefront-core" "7.34.1"
     "@scayle/unstorage-compression-driver" "0.1.1"
-    "@vueuse/core" "10.7.0"
+    "@vueuse/core" "10.7.1"
     consola "3.2.3"
-    core-js "3.34.0"
+    core-js "3.35.0"
     defu "6.1.3"
     h3 "1.9.0"
     jose "4.15.4"
@@ -2582,16 +2582,6 @@
   dependencies:
     vue-demi "^0.13.11"
 
-"@vueuse/core@10.7.0":
-  version "10.7.0"
-  resolved "https://registry.yarnpkg.com/@vueuse/core/-/core-10.7.0.tgz#34f2f02f179dc0dcffc2be70d6b1233e011404b9"
-  integrity sha512-4EUDESCHtwu44ZWK3Gc/hZUVhVo/ysvdtwocB5vcauSV4B7NiGY5972WnsojB3vRNdxvAt7kzJWE2h9h7C9d5w==
-  dependencies:
-    "@types/web-bluetooth" "^0.0.20"
-    "@vueuse/metadata" "10.7.0"
-    "@vueuse/shared" "10.7.0"
-    vue-demi ">=0.14.6"
-
 "@vueuse/core@10.7.1":
   version "10.7.1"
   resolved "https://registry.yarnpkg.com/@vueuse/core/-/core-10.7.1.tgz#b4bfe3355dbb0ec17d34d737385e1c8a0156ccf1"
@@ -2601,11 +2591,6 @@
     "@vueuse/metadata" "10.7.1"
     "@vueuse/shared" "10.7.1"
     vue-demi ">=0.14.6"
-
-"@vueuse/metadata@10.7.0":
-  version "10.7.0"
-  resolved "https://registry.yarnpkg.com/@vueuse/metadata/-/metadata-10.7.0.tgz#7b05e6cfd376aa9bb339a81e16a89c12f3e88c03"
-  integrity sha512-GlaH7tKP2iBCZ3bHNZ6b0cl9g0CJK8lttkBNUX156gWvNYhTKEtbweWLm9rxCPIiwzYcr/5xML6T8ZUEt+DkvA==
 
 "@vueuse/metadata@10.7.1":
   version "10.7.1"
@@ -2622,13 +2607,6 @@
     "@vueuse/metadata" "10.7.1"
     local-pkg "^0.5.0"
     nuxt "^3.9.0"
-    vue-demi ">=0.14.6"
-
-"@vueuse/shared@10.7.0":
-  version "10.7.0"
-  resolved "https://registry.yarnpkg.com/@vueuse/shared/-/shared-10.7.0.tgz#21e425cc5ede421e0cda38ac59a0beee6da86b1b"
-  integrity sha512-kc00uV6CiaTdc3i1CDC4a3lBxzaBE9AgYNtFN87B5OOscqeWElj/uza8qVDmk7/U8JbqoONLbtqiLJ5LGRuqlw==
-  dependencies:
     vue-demi ">=0.14.6"
 
 "@vueuse/shared@10.7.1":
@@ -3770,10 +3748,10 @@ cookies@~0.9.0:
     depd "~2.0.0"
     keygrip "~1.1.0"
 
-core-js@3.34.0:
-  version "3.34.0"
-  resolved "https://registry.yarnpkg.com/core-js/-/core-js-3.34.0.tgz#5705e6ad5982678612e96987d05b27c6c7c274a5"
-  integrity sha512-aDdvlDder8QmY91H88GzNi9EtQi2TjvQhpCX6B1v/dAZHU1AuLgHvRh54RiOerpEhEW46Tkf+vgAViB/CWC0ag==
+core-js@3.35.0:
+  version "3.35.0"
+  resolved "https://registry.yarnpkg.com/core-js/-/core-js-3.35.0.tgz#58e651688484f83c34196ca13f099574ee53d6b4"
+  integrity sha512-ntakECeqg81KqMueeGJ79Q5ZgQNR+6eaE8sxGCx62zMbAIj65q+uYvatToew3m6eAGdU4gNZwpZ34NMe4GYswg==
 
 core-util-is@1.0.2:
   version "1.0.2"

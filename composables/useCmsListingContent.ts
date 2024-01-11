@@ -16,3 +16,5 @@ export function useCmsListingContent(data: Ref<StoryblokStory<SbListingPage>>) {
     ),
   }
 }
+
+export default useCMSListingContent

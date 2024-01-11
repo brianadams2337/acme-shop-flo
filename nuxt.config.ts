@@ -153,6 +153,10 @@ export default defineNuxtConfig({
     '@nuxt/test-utils/module',
   ],
 
+  cms: {
+    provider: 'storyblok',
+  },
+
   // https://nuxt.com/docs/api/nuxt-config#build
   build: {
     // https://nuxt.com/docs/api/nuxt-config#transpile

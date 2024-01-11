@@ -140,12 +140,11 @@ const trackViewListing = ({ items }: { row: number; items: Product[] }) => {
   })
 }
 
-// CMS
 const {
   fetchBySlug,
   data: cmsData,
   status: cmsStatus,
-} = useCms<SbListingPage>(`ListingPage-${route.path}`)
+} = useCMS<SbListingPage>(`ListingPage-${route.path}`)
 
 const fetchData = async () => {
   await fetchProducts(fetchParameters.value)
@@ -191,7 +190,7 @@ const trackProductClick = (product: Product) => {
 }
 
 const { content, hasTeaserImage, postListingContent, preListingContent } =
-  useCmsListingContent(cmsData)
+  useCMSListingContent(cmsData)
 
 const cmsContent = content as unknown as SbCmsImage
 

@@ -1781,10 +1781,10 @@
   dependencies:
     storyblok-js-client "^6.4.1"
 
-"@storyblok/nuxt@6.0.0":
-  version "6.0.0"
-  resolved "https://registry.yarnpkg.com/@storyblok/nuxt/-/nuxt-6.0.0.tgz#006ef51d34a1007c383f15e8a57f0e3e60f9c612"
-  integrity sha512-lsujj0ayAjS/K/0z4jiw4wTZBUZ1nH4Vzz9D6tIYj0huq8713DhKsiGU83QCBmhD5HldJ5WsOT/Gg6WY7jMxEA==
+"@storyblok/nuxt@6.0.1":
+  version "6.0.1"
+  resolved "https://registry.yarnpkg.com/@storyblok/nuxt/-/nuxt-6.0.1.tgz#126349a0e43d15f19b902e81a2b58fb91de42f17"
+  integrity sha512-1zFkOnjQhWiEIz5VE8bl4Qhols3evnzsfhgPg9b5TyP9EmQYnU1VKZiw35+VvY9/vnzGKcVjiSHvTeWaxqV46A==
   dependencies:
     "@storyblok/vue" "^8.0.0"
 

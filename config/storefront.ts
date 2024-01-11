@@ -102,9 +102,9 @@ export const storefrontRuntimeConfigPrivate: Partial<ModuleOptions> = {
     clientSecret: '', // Override: NUXT_STOREFRONT_OAUTH_CLIENT_SECRET
   },
   idp: {
-    enabled: true,
-    idpKeys: ['auth-dev-fielmann'],
-    idpRedirectURL: `https://localhost:3000/signin`,
+    enabled: false,
+    idpKeys: [''],
+    idpRedirectURL: '',
   },
 
   /** Storefront Core - Configure shop switching based on selected routing option (`domain` or `path`-based)
@@ -129,9 +129,9 @@ export const storefrontRuntimeConfigPrivate: Partial<ModuleOptions> = {
        * Example if `[shop.shopId]` is used -> Overrideable environment variable: NUXT_STOREFRONT_STORES_1001_CHECKOUT_USER. */
       [shop.shopId]: {
         idp: {
-          enabled: true,
-          idpKeys: ['auth-dev-fielmann'],
-          idpRedirectURL: `https://${shop.path}.localhost:3000/signin`,
+          enabled: false,
+          idpKeys: [''],
+          idpRedirectURL: '',
         },
         /** Storefront Core - Numeric SCAYLE ShopId (usually 5 digits) */
         shopId: shop.shopId, // Override: NUXT_STOREFRONT_STORES_{UNIQUE_IDENTIFIER}_SHOP_ID

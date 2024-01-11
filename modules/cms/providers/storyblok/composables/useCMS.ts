@@ -9,8 +9,8 @@ const handleCmsError = (error: any): NuxtError => {
   return createError({ statusCode: status, statusMessage: message })
 }
 
-export default <T = unknown>(key: string) => {
-  const log = useLog(`useCms ${key}`)
+export default function useCMS<T = unknown>(key: string) {
+  const log = useLog(`useCMS ${key}`)
   const data = useState<StoryblokStory<T>>(`cms-data-${key}`)
   const fetching = useState<boolean>(`fetching-${key}`)
   const status = useState<Status>(`status-${key}`, () => 'idle')

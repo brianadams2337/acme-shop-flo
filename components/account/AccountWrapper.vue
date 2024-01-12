@@ -85,6 +85,13 @@ const currentOrderId = computed(() => {
   return +route.params.id || (orders.value.length && orders.value[0].id)
 })
 
+const slicedOrders = computed(() => {
+  return orders.value?.slice(
+    (currentPage.value - 1) * ORDERS_PER_PAGE,
+    (currentPage.value - 1) * ORDERS_PER_PAGE + ORDERS_PER_PAGE,
+  )
+})
+
 if (currentOrderId.value) {
   const index =
     (orders.value?.findIndex(
@@ -95,31 +102,17 @@ if (currentOrderId.value) {
   }
 }
 
-const slicedOrders = ref<OrderSummary[] | undefined>()
-
-const updateSlicedOrders = () => {
-  slicedOrders.value = orders.value?.slice(
-    (currentPage.value - 1) * ORDERS_PER_PAGE,
-    (currentPage.value - 1) * ORDERS_PER_PAGE + ORDERS_PER_PAGE,
-  )
-}
 const changePage = (page: number): void => {
   currentPage.value = page
-  updateSlicedOrders()
 }
 
-const shouldDisplayOrderOverview = computed(
-  () => Boolean(orders?.value?.length) && Boolean(slicedOrders?.value?.length),
-)
-
-// in case the orders are not yet fetchen when mounting, we need to later
-// set these values. Use Case: client-side navigation to the page
-watch(orders, () => updateSlicedOrders())
+const shouldDisplayOrderOverview = computed(() => {
+  return !!orders?.value?.length && !!slicedOrders?.value?.length
+})
 
 // when mounted determines the first order that should be shown - if possible
 // this can only happen when order data is loaded before mounting.
 // usually this means: being rendered on the server
-
 onMounted(async () => {
   if (
     !route.params?.id &&
@@ -129,6 +122,5 @@ onMounted(async () => {
   ) {
     await localizedNavigateTo(getOrderDetailsRoute(currentOrderId.value))
   }
-  updateSlicedOrders()
 })
 </script>

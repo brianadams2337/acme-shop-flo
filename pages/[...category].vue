@@ -153,7 +153,9 @@ const fetchData = async () => {
       execute: _fetchBySlug,
       data,
     } = await fetchBySlug(`categories/${selectedCategory.value?.id}`)
+
     await _fetchBySlug()
+
     cmsStatus.value = status.value
     cmsData.value = data.value
   }

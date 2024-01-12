@@ -103,7 +103,7 @@ export const storefrontRuntimeConfigPrivate: Partial<ModuleOptions> = {
   },
   idp: {
     enabled: false,
-    idpKeys: [''],
+    idpKeys: [],
     idpRedirectURL: '',
   },
 
@@ -130,7 +130,7 @@ export const storefrontRuntimeConfigPrivate: Partial<ModuleOptions> = {
       [shop.shopId]: {
         idp: {
           enabled: false,
-          idpKeys: [''],
+          idpKeys: [],
           idpRedirectURL: '',
         },
         /** Storefront Core - Numeric SCAYLE ShopId (usually 5 digits) */

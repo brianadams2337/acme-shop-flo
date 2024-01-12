@@ -22,7 +22,13 @@
 </template>
 
 <script setup lang="ts">
-const { getIDPButtonClass } = useStyledIDPButtons()
+const idpClasses: Record<string, string> = {
+  google: 'bg-[#4285F4] text-white hover:bg-[#3869c1] focus:bg-[#3869c1]',
+  facebook: 'bg-[#1877F2] text-white hover:bg-[#165dbb] focus:bg-[#165dbb]',
+  keycloak: 'bg-[#C43A31] text-white hover:bg-[#a32b26] focus:bg-[#a32b26]',
+  apple: 'bg-black text-white hover:bg-[#333333] focus:bg-[#333333]',
+  okta: 'bg-[#0061F2] text-white hover:bg-[#004ecb] focus:bg-[#004ecb]',
+}
 
 const props = defineProps<{
   redirects: Record<string, string>
@@ -34,7 +40,9 @@ const providers = computed<{ title: string; url: string; classes: string }[]>(
       return {
         title: idpKey,
         url: props.redirects?.[idpKey] ?? '',
-        classes: getIDPButtonClass(idpKey),
+        classes:
+          idpClasses[idpKey] ??
+          'bg-primary text-white hover:bg-primary focus:bg-primary',
       }
     })
   },

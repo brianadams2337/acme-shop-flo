@@ -36,7 +36,7 @@ const { items } = await useBasket()
 const { bundleByGroup } = await useBasketGroup()
 
 const basketItems = computed(() => {
-  const { standAlone, groups } = items.value?.reduce(
+  const { standAlone, groups } = (items.value || []).reduce(
     (acc: Record<'standAlone' | 'groups', BasketItem[]>, item: BasketItem) => {
       item.itemGroup?.id ? acc.groups.push(item) : acc.standAlone.push(item)
       return acc

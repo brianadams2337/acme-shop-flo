@@ -1,8 +1,6 @@
 <template>
   <Transition
-    :style="{ 'transition-duration': `${duration}ms` }"
-    enter-active-class="transform transition ease-in-out"
-    leave-active-class="transform transition ease-in-out"
+    v-bind="activeClasses"
     enter-from-class="-translate-y-full"
     enter-to-class="translate-y-0"
     leave-from-class="translate-y-0"
@@ -13,5 +11,12 @@
 </template>
 
 <script setup lang="ts">
-withDefaults(defineProps<{ duration?: number }>(), { duration: 500 })
+const props = withDefaults(defineProps<{ duration?: number }>(), {
+  duration: 500,
+})
+
+const activeClasses = computed(() => ({
+  enterActiveClass: `transform transition duration-${props.duration} ease-in-out`,
+  leaveActiveClass: `transform transition duration-${props.duration} ease-in-out`,
+}))
 </script>

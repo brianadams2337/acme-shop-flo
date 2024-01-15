@@ -5420,10 +5420,10 @@ h3@1.10.0, h3@^1.10.0, h3@^1.8.2, h3@^1.9.0:
     uncrypto "^0.1.3"
     unenv "^1.8.0"
 
-happy-dom@13.0.2:
-  version "13.0.2"
-  resolved "https://registry.yarnpkg.com/happy-dom/-/happy-dom-13.0.2.tgz#2efebadacfa2a1a1404d09f3bb42d60f82742d0d"
-  integrity sha512-wnVGP+gmn0usJ3Ruh8DAoqneusJojWfL0q5PSeV9qXt6/iZVC+F2edeRKNXpEy/bU3ECIQ4BS8YayMxyNMVGQg==
+happy-dom@13.0.4:
+  version "13.0.4"
+  resolved "https://registry.yarnpkg.com/happy-dom/-/happy-dom-13.0.4.tgz#cc95db715b873111537e400d82b6cfead9cb33cf"
+  integrity sha512-f2qxUhnj1y8nnuHOhoKCE1L8XjsdhYoMit/KMf5Me3coi+JrkS8UJ9hLEnuHE0/y5xcBt+OPWvFTAiUrgdntpw==
   dependencies:
     css.escape "^1.5.1"
     entities "^4.5.0"

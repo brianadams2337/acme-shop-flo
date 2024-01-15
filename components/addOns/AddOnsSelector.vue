@@ -38,7 +38,7 @@ const props = defineProps<{ addOnVariantIds: number[] }>()
 const emit = defineEmits(['click:service-selection'])
 
 const variantsIds = computed(() => {
-  return props.addOnVariantIds.map((addOn) => parseInt(addOn.toString()))
+  return props.addOnVariantIds.map((id) => parseInt(id.toString()))
 })
 
 const keyPostfix = computed(() => props.addOnVariantIds.join('-'))

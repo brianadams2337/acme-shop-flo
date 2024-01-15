@@ -1,8 +1,8 @@
 <template>
   <div>
     <AccountHeader :title="title" />
-    <div class="container px-5 md:mt-6 md:px-4">
-      <div class="flex flex-col md:flex-row md:pt-5">
+    <PageContent>
+      <div class="flex flex-col md:flex-row">
         <div
           class="mt-6 w-full pb-10 md:mt-0 md:w-1/3 lg:w-1/4"
           :class="{ 'hidden md:block': route.params.id || isAccountPage }"
@@ -43,30 +43,26 @@
             />
           </div>
         </div>
-        <div class="w-full md:w-2/3 md:pl-28 lg:w-3/4">
+        <div class="w-full md:w-2/3 md:pl-14 lg:w-3/4 lg:pl-28">
           <slot />
         </div>
       </div>
-    </div>
+    </PageContent>
   </div>
 </template>
 
 <script setup lang="ts">
 import type { OrderSummary } from '@scayle/storefront-nuxt'
 
-const props = defineProps({
-  title: {
-    type: String,
-    required: true,
-  },
-  icon: {
-    type: String,
-    default: '',
-  },
-  isAccountPage: {
-    type: Boolean,
-    default: false,
-  },
+type Props = {
+  title: string
+  icon?: string
+  isAccountPage?: boolean
+}
+
+const props = withDefaults(defineProps<Props>(), {
+  icon: '',
+  isAccountPage: false,
 })
 
 const ORDERS_PER_PAGE = 8

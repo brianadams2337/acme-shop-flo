@@ -2,12 +2,12 @@
   <div class="flex flex-col justify-between md:flex-row">
     <div class="flex flex-row-reverse items-center md:flex-row">
       <IconDelivery class="mr-0 h-6 w-14 md:mr-4" />
-      <div class="grow">
+      <div class="mr-2 flex grow flex-col">
         <Headline tag="h2" size="sm" is-bold class="mb-1">
           {{ $t('my_account.orders.delivery') }} {{ index + 1 }}
         </Headline>
-        <Headline tag="h3" size="xs" class="!font-normal">
-          {{ $t('my_account.orders.expected_delivery_from') }}:
+        <Headline tag="h3" size="xs" class="flex flex-wrap !font-normal">
+          <span>{{ $t('my_account.orders.expected_delivery_from') }}:</span>
           <span class="font-semibold">
             {{
               ` ${localeFormattedDate(deliveryDate.minimum)}

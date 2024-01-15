@@ -1,7 +1,8 @@
 <template>
   <Transition
-    :enter-active-class="easeLinearClass"
-    :leave-active-class="easeLinearClass"
+    :style="{ 'transition-duration': `${duration}ms` }"
+    enter-active-class="transition-all ease-linear"
+    leave-active-class="transition-all ease-linear"
     enter-from-class="opacity-0"
     enter-to-class="opacity-100"
     leave-from-class="opacity-100"
@@ -13,11 +14,5 @@
 </template>
 
 <script setup lang="ts">
-const props = withDefaults(defineProps<{ duration?: number }>(), {
-  duration: 200,
-})
-
-const easeLinearClass = computed(() => {
-  return `transition-all duration-${props.duration} ease-linear`
-})
+withDefaults(defineProps<{ duration?: number }>(), { duration: 200 })
 </script>

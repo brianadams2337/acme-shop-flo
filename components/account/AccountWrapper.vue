@@ -8,16 +8,13 @@
           :class="{ 'hidden md:block': route.params.id || isAccountPage }"
         >
           <OrderOverviewHeader :orders-count="orders.length" />
-          <div
-            v-if="shouldDisplayOrderOverview"
-            class="rounded-md border border-gray-350"
-          >
+          <div v-if="shouldDisplayOrderOverview">
             <OrderHistoryItem
               v-for="(order, idx) in slicedOrders"
               :key="order.id"
               v-bind="order"
               :is-latest-order="!idx"
-              :class="{ 'border-t border-t-gray-350': idx }"
+              class="border border-gray-350 first-of-type:rounded-t-md last-of-type:rounded-b-md hover:border hover:border-primary"
             />
           </div>
           <div v-else class="bg-slate-100 p-10 text-center">

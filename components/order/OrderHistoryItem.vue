@@ -1,9 +1,7 @@
 <template>
   <div
-    class="cursor-pointer border border-transparent bg-white p-5 transition-all ease-in-out hover:rounded-md hover:border hover:border-primary"
-    :class="{
-      'rounded-md !border-primary': id === paramId,
-    }"
+    class="cursor-pointer bg-white p-5 transition-all ease-in-out"
+    :class="{ '!border-primary': id === paramId }"
   >
     <DefaultLink
       raw

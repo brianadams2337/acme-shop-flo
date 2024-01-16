@@ -1674,14 +1674,14 @@
   dependencies:
     prettier-config-standard "^7.0.0"
 
-"@scayle/storefront-core@7.36.0":
-  version "7.36.0"
-  resolved "https://registry.yarnpkg.com/@scayle/storefront-core/-/storefront-core-7.36.0.tgz#84fb7d28e60b9b6b68b8e20b76a23760c6e31aa2"
-  integrity sha512-BjHrQkVX84mfNrlxfIbBfQ+M9w3/DY1PxNC6mFYUcUR7WRZqvoMp4iOLV9ypSizioaZR3SU54wp2nHke3gIBsA==
+"@scayle/storefront-core@7.37.0":
+  version "7.37.0"
+  resolved "https://registry.yarnpkg.com/@scayle/storefront-core/-/storefront-core-7.37.0.tgz#77f2533cb219b602b558c07057abfa1b68d93483"
+  integrity sha512-oUhcQkl1tOxldLNUQN7GK1K6LtqWXYzETE8jp5EQtvg2EeLptIfSxK8f1/bkvPpsOA79EWSVOndegFtpvfYZGA==
   dependencies:
     "@aboutyou/backbone" "16.0.2"
     crypto-js "4.2.0"
-    jose "^4.14.4"
+    jose "^5.2.0"
     radash "^11.0.0"
     slugify "^1.6.0"
     ufo "^1.1.1"
@@ -1690,21 +1690,21 @@
   optionalDependencies:
     redis "4"
 
-"@scayle/storefront-nuxt@7.50.1":
-  version "7.50.1"
-  resolved "https://registry.yarnpkg.com/@scayle/storefront-nuxt/-/storefront-nuxt-7.50.1.tgz#5ee4f46c3123210d9c155e895352c5951f3ad3b0"
-  integrity sha512-Gtd+W5CdwUmp6PKvIC3ltD31/cfgh3jJFdaFvWlduPOS0+lHp2t/5ZU0Omf+mkO0BZBCvzqBfPQAmcCm331iWg==
+"@scayle/storefront-nuxt@7.51.0":
+  version "7.51.0"
+  resolved "https://registry.yarnpkg.com/@scayle/storefront-nuxt/-/storefront-nuxt-7.51.0.tgz#2034d1e5679c7fdcc0e4151f46b5f0b057610ca5"
+  integrity sha512-k/pqDG43GY1opeKnqjfAo6SSsbyShqoT6V+JuDSkp0zFX+GNPpt4BUbeOs3xWjARHGpCkllWwxlGuu8ORQ9ixw==
   dependencies:
     "@nuxt/kit" "3.9.1"
     "@scayle/h3-session" "0.3.5"
-    "@scayle/storefront-core" "7.36.0"
+    "@scayle/storefront-core" "7.37.0"
     "@scayle/unstorage-compression-driver" "0.1.1"
-    "@vueuse/core" "10.7.1"
+    "@vueuse/core" "10.7.2"
     consola "3.2.3"
     core-js "3.35.0"
     defu "6.1.4"
     h3 "1.10.0"
-    jose "4.15.4"
+    jose "^5.2.0"
     knitwork "1.0.0"
     nitropack "2.8.1"
     ofetch "1.3.3"
@@ -2379,16 +2379,6 @@
   dependencies:
     vue-demi "^0.13.11"
 
-"@vueuse/core@10.7.1":
-  version "10.7.1"
-  resolved "https://registry.yarnpkg.com/@vueuse/core/-/core-10.7.1.tgz#b4bfe3355dbb0ec17d34d737385e1c8a0156ccf1"
-  integrity sha512-74mWHlaesJSWGp1ihg76vAnfVq9NTv1YT0SYhAQ6zwFNdBkkP+CKKJmVOEHcdSnLXCXYiL5e7MaewblfiYLP7g==
-  dependencies:
-    "@types/web-bluetooth" "^0.0.20"
-    "@vueuse/metadata" "10.7.1"
-    "@vueuse/shared" "10.7.1"
-    vue-demi ">=0.14.6"
-
 "@vueuse/core@10.7.2":
   version "10.7.2"
   resolved "https://registry.yarnpkg.com/@vueuse/core/-/core-10.7.2.tgz#78917803a29a0bca1803a6521fdf7ff873f6e72c"
@@ -2398,11 +2388,6 @@
     "@vueuse/metadata" "10.7.2"
     "@vueuse/shared" "10.7.2"
     vue-demi ">=0.14.6"
-
-"@vueuse/metadata@10.7.1":
-  version "10.7.1"
-  resolved "https://registry.yarnpkg.com/@vueuse/metadata/-/metadata-10.7.1.tgz#190a8d0e97216941cc95120c89dfa2c4228b2a53"
-  integrity sha512-jX8MbX5UX067DYVsbtrmKn6eG6KMcXxLRLlurGkZku5ZYT3vxgBjui2zajvUZ18QLIjrgBkFRsu7CqTAg18QFw==
 
 "@vueuse/metadata@10.7.2":
   version "10.7.2"
@@ -2418,13 +2403,6 @@
     "@vueuse/core" "10.7.2"
     "@vueuse/metadata" "10.7.2"
     local-pkg "^0.5.0"
-    vue-demi ">=0.14.6"
-
-"@vueuse/shared@10.7.1":
-  version "10.7.1"
-  resolved "https://registry.yarnpkg.com/@vueuse/shared/-/shared-10.7.1.tgz#b9892fc31784d685619015fba287cde53873485d"
-  integrity sha512-v0jbRR31LSgRY/C5i5X279A/WQjD6/JsMzGa+eqt658oJ75IvQXAeONmwvEMrvJQKnRElq/frzBR7fhmWY5uLw==
-  dependencies:
     vue-demi ">=0.14.6"
 
 "@vueuse/shared@10.7.2":
@@ -6220,10 +6198,10 @@ jiti@^1.19.1, jiti@^1.21.0:
   resolved "https://registry.yarnpkg.com/jiti/-/jiti-1.21.0.tgz#7c97f8fe045724e136a397f7340475244156105d"
   integrity sha512-gFqAIbuKyyso/3G2qhiO2OM6shY6EPP/R0+mkDbyspxKazh8BXDC5FiFsUjlczgdNz/vfra0da2y+aHrusLG/Q==
 
-jose@4.15.4, jose@^4.14.4:
-  version "4.15.4"
-  resolved "https://registry.yarnpkg.com/jose/-/jose-4.15.4.tgz#02a9a763803e3872cf55f29ecef0dfdcc218cc03"
-  integrity sha512-W+oqK4H+r5sITxfxpSU+MMdr/YSWGvgZMQDIsNoBDGGy4i7GBPTtvFKibQzW06n3U3TqHjhvBJsirShsEJ6eeQ==
+jose@^5.2.0:
+  version "5.2.0"
+  resolved "https://registry.yarnpkg.com/jose/-/jose-5.2.0.tgz#d0ffd7f7e31253f633eefb190a930cd14a916995"
+  integrity sha512-oW3PCnvyrcm1HMvGTzqjxxfnEs9EoFOFWi2HsEGhlFVOXxTE3K9GKWVMFoFw06yPUqwpvEWic1BmtUZBI/tIjw==
 
 joycon@^3.0.1:
   version "3.1.1"

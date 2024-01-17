@@ -36,25 +36,14 @@ const { items } = await useBasket()
 const { bundleByGroup } = await useBasketGroup()
 
 const basketItems = computed(() => {
-  const { standAlone, groups } = (items.value || []).reduce(
-    (acc: Record<'standAlone' | 'groups', BasketItem[]>, item: BasketItem) => {
-      item.itemGroup?.id ? acc.groups.push(item) : acc.standAlone.push(item)
-      return acc
-    },
-    { standAlone: [], groups: [] },
-  )
-
+  const data = getPartitionedBasketItems(items.value)
   return {
-    standAlone: sortBasketItems(standAlone),
-    groups: bundleByGroup(sortBasketItems(groups)),
+    standAlone: sortBasketItemsByIsSoldOut(data.standAlone),
+    groups: bundleByGroup(sortBasketItemsByIsSoldOut(data.groupedItems)),
   }
 })
 
 const getBasketItemsFromGroup = (groupId: string) => {
   return basketItems.value.groups[groupId] as BasketItem[]
-}
-
-const sortBasketItems = (items: BasketItem[]) => {
-  return useSort(items, ({ product }) => Number(product.isSoldOut))
 }
 </script>

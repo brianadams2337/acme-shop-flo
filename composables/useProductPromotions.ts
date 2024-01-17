@@ -48,6 +48,27 @@ export default async (productItem?: MaybeRefOrGetter<Product>) => {
     return useMin(applicablePromotions.value, (promotion) => promotion.priority)
   })
 
+  const addedProductBasketItem = computed(() => {
+    return basket.items.value.find(
+      (item) => item.product.id === product.value?.id,
+    )
+  })
+
+  const areGiftConditionsMet = computed(() => {
+    if (!isBuyXGetYPrioritized.value) {
+      return false
+    }
+
+    const minPromotionQuantity =
+      buyXGetYPromotion.value?.customData?.giftConditions?.minQuantity
+
+    if (!minPromotionQuantity || !addedProductBasketItem.value) {
+      return false
+    }
+
+    return addedProductBasketItem.value?.quantity >= minPromotionQuantity
+  })
+
   const isHighestPriorityPromotionApplied = computed(() => {
     return appliedPromotions.value.some((promotion) => {
       const isValid = promotion.isValid
@@ -73,11 +94,7 @@ export default async (productItem?: MaybeRefOrGetter<Product>) => {
     return isBuyXGetYType(highestPriorityPromotion.value)
   })
 
-  const isProductAddedToBasket = computed(() => {
-    return basket.items.value.some(
-      (item) => item.product.id === product.value?.id,
-    )
-  })
+  const isProductAddedToBasket = computed(() => !!addedProductBasketItem.value)
 
   const isGiftAddedToBasket = computed(() => {
     if (!isBuyXGetYPrioritized.value) {
@@ -86,7 +103,11 @@ export default async (productItem?: MaybeRefOrGetter<Product>) => {
     return basket.items.value.some(({ promotion, variant }) => {
       const variantIds = getVariantIds(buyXGetYPromotion.value)
       const hasVariantId = variantIds.includes(variant.id)
-      return isBuyXGetYType(promotion) && hasVariantId
+      return (
+        isBuyXGetYType(promotion) &&
+        hasVariantId &&
+        buyXGetYPromotion.value?.id === promotion?.id
+      )
     })
   })
 
@@ -132,5 +153,6 @@ export default async (productItem?: MaybeRefOrGetter<Product>) => {
     isHighestPriorityPromotionApplied,
     isHighestPriority,
     areHurryToSaveBannersShown,
+    areGiftConditionsMet,
   }
 }

@@ -46,11 +46,11 @@
     </div>
     <template v-if="promotion">
       <ProductPromotionSelectionModal
-        class="max-sm:hidden"
+        v-if="isGreaterThanMd"
         v-bind="{ product, promotion, promotedProduct }"
       />
       <ProductPromotionSizeSelection
-        class="md:hidden"
+        v-else
         v-bind="{ product, promotion, promotedProduct }"
       />
     </template>
@@ -69,6 +69,8 @@ const props = defineProps<{
 
 const { product: promotedProduct } = await useProductDetails()
 const { formatCurrency } = useFormatHelpers()
+
+const { md: isGreaterThanMd } = useDefaultBreakpoints()
 
 const { buyXGetYPromotion: promotion } =
   await useProductPromotions(promotedProduct)

@@ -3,7 +3,7 @@
     class="flex items-center justify-center"
     :class="isFullWidth ? 'w-full !justify-start' : 'w-[19.5rem]'"
   >
-    <template :class="!isFullProgress ? '' : 'lg:hidden'">
+    <template v-if="!isFullProgress || isSmaller('lg')">
       <ProgressBar
         :progress="progress"
         rounded
@@ -26,4 +26,6 @@ withDefaults(defineProps<{ isFullWidth?: boolean }>(), { isFullWidth: false })
 
 const { progress, isFullProgress, formattedAmountLeft } =
   await usePromotionProgress()
+
+const { isSmaller } = useDefaultBreakpoints()
 </script>

@@ -5,7 +5,7 @@
       :key="key"
       class="flex text-center font-semibold"
     >
-      <span v-if="value !== undefined" class="min-w-4">
+      <span v-if="typeof value !== 'undefined'" class="min-w-4">
         {{ formatValue(value) }}
       </span>
       <span class="mx-1">
@@ -41,10 +41,10 @@ const start = () => {
   const remaining = until.value - Date.now()
 
   countdown.value = {
-    days: Math.floor(remaining / (1000 * 60 * 60 * 24)),
-    hours: Math.floor((remaining / (1000 * 60 * 60)) % 24),
-    minutes: Math.floor((remaining / 1000 / 60) % 60),
-    seconds: Math.floor((remaining / 1000) % 60),
+    days: Math.floor(remaining / (SECOND * MINUTE * HOURS * DAY)),
+    hours: Math.floor((remaining / (SECOND * MINUTE * HOURS)) % DAY),
+    minutes: Math.floor((remaining / SECOND / MINUTE) % HOURS),
+    seconds: Math.floor((remaining / SECOND) % MINUTE),
   }
 
   if (remaining <= 0) {
@@ -52,7 +52,7 @@ const start = () => {
   }
 }
 
-useIntervalFn(start, 1000, { immediateCallback: true })
+useIntervalFn(start, SECOND, { immediateCallback: true })
 
 defineOptions({ name: 'AppCountdown' })
 </script>

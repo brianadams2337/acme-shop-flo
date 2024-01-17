@@ -9,7 +9,7 @@ import {
   isInStock,
 } from '@scayle/storefront-nuxt'
 
-export default async (basketItem: Ref<BasketItem>) => {
+export async function useBasketItem(basketItem: Ref<BasketItem>) {
   const product = computed(() => basketItem.value.product)
   const { highestPriorityPromotion, isBuyXGetYPrioritized } =
     await useProductPromotions(product.value)
@@ -117,6 +117,8 @@ export default async (basketItem: Ref<BasketItem>) => {
         !isBuyXGetYPrioritized.value &&
         !isFreeGift.value && { promotionId }),
     })
+
+    await nextTick()
   }
 
   const isLowestPreviousPriceActive = computed(() => {

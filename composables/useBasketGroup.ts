@@ -12,6 +12,8 @@ type AggregateGroupParams = {
   items: AddOrUpdateItemType[]
 }
 
+export type BundledBasketItems<T = unknown> = Partial<Record<string, T[]>>
+
 export async function useBasketGroup(
   withParams?: MaybeRefOrGetter<BasketWithOptions>,
 ) {
@@ -55,7 +57,9 @@ export async function useBasketGroup(
     await refreshBasket()
   }
 
-  const bundleByGroup = (items: BasketItem[] = []) => {
+  const bundleByGroup = (
+    items: BasketItem[] = [],
+  ): BundledBasketItems<BasketItem> => {
     return useGroup(items, (item: BasketItem) => item.itemGroup?.id ?? '-1')
   }
 

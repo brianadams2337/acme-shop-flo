@@ -1674,14 +1674,14 @@
   dependencies:
     prettier-config-standard "^7.0.0"
 
-"@scayle/storefront-core@7.36.0":
-  version "7.36.0"
-  resolved "https://registry.yarnpkg.com/@scayle/storefront-core/-/storefront-core-7.36.0.tgz#84fb7d28e60b9b6b68b8e20b76a23760c6e31aa2"
-  integrity sha512-BjHrQkVX84mfNrlxfIbBfQ+M9w3/DY1PxNC6mFYUcUR7WRZqvoMp4iOLV9ypSizioaZR3SU54wp2nHke3gIBsA==
+"@scayle/storefront-core@7.37.0":
+  version "7.37.0"
+  resolved "https://registry.yarnpkg.com/@scayle/storefront-core/-/storefront-core-7.37.0.tgz#77f2533cb219b602b558c07057abfa1b68d93483"
+  integrity sha512-oUhcQkl1tOxldLNUQN7GK1K6LtqWXYzETE8jp5EQtvg2EeLptIfSxK8f1/bkvPpsOA79EWSVOndegFtpvfYZGA==
   dependencies:
     "@aboutyou/backbone" "16.0.2"
     crypto-js "4.2.0"
-    jose "^4.14.4"
+    jose "^5.2.0"
     radash "^11.0.0"
     slugify "^1.6.0"
     ufo "^1.1.1"
@@ -1690,21 +1690,21 @@
   optionalDependencies:
     redis "4"
 
-"@scayle/storefront-nuxt@7.50.1":
-  version "7.50.1"
-  resolved "https://registry.yarnpkg.com/@scayle/storefront-nuxt/-/storefront-nuxt-7.50.1.tgz#5ee4f46c3123210d9c155e895352c5951f3ad3b0"
-  integrity sha512-Gtd+W5CdwUmp6PKvIC3ltD31/cfgh3jJFdaFvWlduPOS0+lHp2t/5ZU0Omf+mkO0BZBCvzqBfPQAmcCm331iWg==
+"@scayle/storefront-nuxt@7.51.0":
+  version "7.51.0"
+  resolved "https://registry.yarnpkg.com/@scayle/storefront-nuxt/-/storefront-nuxt-7.51.0.tgz#2034d1e5679c7fdcc0e4151f46b5f0b057610ca5"
+  integrity sha512-k/pqDG43GY1opeKnqjfAo6SSsbyShqoT6V+JuDSkp0zFX+GNPpt4BUbeOs3xWjARHGpCkllWwxlGuu8ORQ9ixw==
   dependencies:
     "@nuxt/kit" "3.9.1"
     "@scayle/h3-session" "0.3.5"
-    "@scayle/storefront-core" "7.36.0"
+    "@scayle/storefront-core" "7.37.0"
     "@scayle/unstorage-compression-driver" "0.1.1"
-    "@vueuse/core" "10.7.1"
+    "@vueuse/core" "10.7.2"
     consola "3.2.3"
     core-js "3.35.0"
     defu "6.1.4"
     h3 "1.10.0"
-    jose "4.15.4"
+    jose "^5.2.0"
     knitwork "1.0.0"
     nitropack "2.8.1"
     ofetch "1.3.3"
@@ -1778,10 +1778,10 @@
   dependencies:
     storyblok-js-client "^6.5.0"
 
-"@storyblok/nuxt@6.0.2":
-  version "6.0.2"
-  resolved "https://registry.yarnpkg.com/@storyblok/nuxt/-/nuxt-6.0.2.tgz#db468fb5cd1ab8d1b88e580f608d868973c4eeb9"
-  integrity sha512-DXgLT3YgXDZf46FTezN13Qy+5wVwSQXIhLHoQjq5fJmVf4DvGdiDPH+Y1SrpPyWxvIdka1CbhTQrDdxYU5VYuw==
+"@storyblok/nuxt@6.0.3":
+  version "6.0.3"
+  resolved "https://registry.yarnpkg.com/@storyblok/nuxt/-/nuxt-6.0.3.tgz#741246617528aaca9cae8ab1ec4986f745c42a20"
+  integrity sha512-jZNxi6LEgM+16O7Xijs3UhjDIqCOurVozMVTUwdLW75Zg0FxFqhzSnIcwTkkWjYutCeC40GlW6ID609EcLun3g==
   dependencies:
     "@storyblok/vue" "^8.0.0"
 
@@ -1905,10 +1905,10 @@
   dependencies:
     undici-types "~5.26.4"
 
-"@types/node@20.11.1":
-  version "20.11.1"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-20.11.1.tgz#6a93f94abeda166f688d3d2aca18012afbe5f850"
-  integrity sha512-DsXojJUES2M+FE8CpptJTKpg+r54moV9ZEncPstni1WHFmTcCzeFLnMFfyhCVS8XNOy/OQG+8lVxRLRrVHmV5A==
+"@types/node@20.11.5":
+  version "20.11.5"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-20.11.5.tgz#be10c622ca7fcaa3cf226cf80166abc31389d86e"
+  integrity sha512-g557vgQjUUfN76MZAN/dt1z3dzcUsimuysco0KeluHgrPdJXkP/XdAURgyO2W9fZWHRtRBiVKzKn8vyOAwlG+w==
   dependencies:
     undici-types "~5.26.4"
 
@@ -1916,13 +1916,6 @@
   version "14.18.63"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-14.18.63.tgz#1788fa8da838dbb5f9ea994b834278205db6ca2b"
   integrity sha512-fAtCfv4jJg+ExtXhvCkCqUKZ+4ok/JQk01qDKhL5BDDoS3AxKXhV5/MAVUZyQnSEd2GT92fkgZl0pz0Q0AzcIQ==
-
-"@types/node@^18.17.5":
-  version "18.19.6"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-18.19.6.tgz#537beece2c8ad4d9abdaa3b0f428e601eb57dac8"
-  integrity sha512-X36s5CXMrrJOs2lQCdDF68apW4Rfx9ixYMawlepwmE4Anezv/AV2LSpKD1Ub8DAc+urp5bk0BGZ6NtmBitfnsg==
-  dependencies:
-    undici-types "~5.26.4"
 
 "@types/normalize-package-data@^2.4.0":
   version "2.4.4"
@@ -2104,10 +2097,10 @@
   dependencies:
     crypto-js "^4.2.0"
 
-"@upstash/redis@1.28.0":
-  version "1.28.0"
-  resolved "https://registry.yarnpkg.com/@upstash/redis/-/redis-1.28.0.tgz#f04aefc93b12652fc2a087e9aafefdd8e1ad89f2"
-  integrity sha512-vvFMUHGA5jUAXQHuAzFHNLD2TND/2aaf1BUPYBeg73CkQ9X+jorWVi7VGxZtRXPDEFJR9KvzuwCacbSproOKcw==
+"@upstash/redis@1.28.1":
+  version "1.28.1"
+  resolved "https://registry.yarnpkg.com/@upstash/redis/-/redis-1.28.1.tgz#8db0ff81a7382ae08c6349241fe389f01c4dc584"
+  integrity sha512-px7x2ZP/Tn5HZg0GbM4sf/+LMExrR8zmGAAGeOvptB/5wgTvaease7RdyoEmsb/PwL5GjlJy3xWmy4TsGk9s4w==
   dependencies:
     crypto-js "^4.2.0"
 
@@ -2379,16 +2372,6 @@
   dependencies:
     vue-demi "^0.13.11"
 
-"@vueuse/core@10.7.1":
-  version "10.7.1"
-  resolved "https://registry.yarnpkg.com/@vueuse/core/-/core-10.7.1.tgz#b4bfe3355dbb0ec17d34d737385e1c8a0156ccf1"
-  integrity sha512-74mWHlaesJSWGp1ihg76vAnfVq9NTv1YT0SYhAQ6zwFNdBkkP+CKKJmVOEHcdSnLXCXYiL5e7MaewblfiYLP7g==
-  dependencies:
-    "@types/web-bluetooth" "^0.0.20"
-    "@vueuse/metadata" "10.7.1"
-    "@vueuse/shared" "10.7.1"
-    vue-demi ">=0.14.6"
-
 "@vueuse/core@10.7.2":
   version "10.7.2"
   resolved "https://registry.yarnpkg.com/@vueuse/core/-/core-10.7.2.tgz#78917803a29a0bca1803a6521fdf7ff873f6e72c"
@@ -2398,11 +2381,6 @@
     "@vueuse/metadata" "10.7.2"
     "@vueuse/shared" "10.7.2"
     vue-demi ">=0.14.6"
-
-"@vueuse/metadata@10.7.1":
-  version "10.7.1"
-  resolved "https://registry.yarnpkg.com/@vueuse/metadata/-/metadata-10.7.1.tgz#190a8d0e97216941cc95120c89dfa2c4228b2a53"
-  integrity sha512-jX8MbX5UX067DYVsbtrmKn6eG6KMcXxLRLlurGkZku5ZYT3vxgBjui2zajvUZ18QLIjrgBkFRsu7CqTAg18QFw==
 
 "@vueuse/metadata@10.7.2":
   version "10.7.2"
@@ -2418,13 +2396,6 @@
     "@vueuse/core" "10.7.2"
     "@vueuse/metadata" "10.7.2"
     local-pkg "^0.5.0"
-    vue-demi ">=0.14.6"
-
-"@vueuse/shared@10.7.1":
-  version "10.7.1"
-  resolved "https://registry.yarnpkg.com/@vueuse/shared/-/shared-10.7.1.tgz#b9892fc31784d685619015fba287cde53873485d"
-  integrity sha512-v0jbRR31LSgRY/C5i5X279A/WQjD6/JsMzGa+eqt658oJ75IvQXAeONmwvEMrvJQKnRElq/frzBR7fhmWY5uLw==
-  dependencies:
     vue-demi ">=0.14.6"
 
 "@vueuse/shared@10.7.2":
@@ -3700,14 +3671,13 @@ cypress-real-events@1.11.0:
   resolved "https://registry.yarnpkg.com/cypress-real-events/-/cypress-real-events-1.11.0.tgz#292fe5281c5b6e955524e766ab7fec46930c7763"
   integrity sha512-4LXVRsyq+xBh5TmlEyO1ojtBXtN7xw720Pwb9rEE9rkJuXmeH3VyoR1GGayMGr+Itqf11eEjfDewtDmcx6PWPQ==
 
-cypress@13.6.2:
-  version "13.6.2"
-  resolved "https://registry.yarnpkg.com/cypress/-/cypress-13.6.2.tgz#c70df09db0a45063298b3cecba2fa21109768e08"
-  integrity sha512-TW3bGdPU4BrfvMQYv1z3oMqj71YI4AlgJgnrycicmPZAXtvywVFZW9DAToshO65D97rCWfG/kqMFsYB6Kp91gQ==
+cypress@13.6.3:
+  version "13.6.3"
+  resolved "https://registry.yarnpkg.com/cypress/-/cypress-13.6.3.tgz#54f03ca07ee56b2bc18211e7bd32abd2533982ba"
+  integrity sha512-d/pZvgwjAyZsoyJ3FOsJT5lDsqnxQ/clMqnNc++rkHjbkkiF2h9s0JsZSyyH4QXhVFW3zPFg82jD25roFLOdZA==
   dependencies:
     "@cypress/request" "^3.0.0"
     "@cypress/xvfb" "^1.2.4"
-    "@types/node" "^18.17.5"
     "@types/sinonjs__fake-timers" "8.1.1"
     "@types/sizzle" "^2.3.2"
     arch "^2.2.0"
@@ -4489,10 +4459,10 @@ eslint-plugin-sonarjs@0.23.0:
   resolved "https://registry.yarnpkg.com/eslint-plugin-sonarjs/-/eslint-plugin-sonarjs-0.23.0.tgz#0265bad801ea210951672ee3cafbcf5d456ada96"
   integrity sha512-z44T3PBf9W7qQ/aR+NmofOTyg6HLhSEZOPD4zhStqBpLoMp8GYhFksuUBnCxbnf1nfISpKBVkQhiBLFI/F4Wlg==
 
-eslint-plugin-tailwindcss@3.13.1:
-  version "3.13.1"
-  resolved "https://registry.yarnpkg.com/eslint-plugin-tailwindcss/-/eslint-plugin-tailwindcss-3.13.1.tgz#40b26aa7cbde3dfe55b1a343258b5b495628dc06"
-  integrity sha512-2Nlgr9doO6vFAG9w4iGU0sspWXuzypfng10HTF+dFS2NterhweWtgdRvf/f7aaoOUUxVZM8wMIXzazrZ7CxyeA==
+eslint-plugin-tailwindcss@3.14.0:
+  version "3.14.0"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-tailwindcss/-/eslint-plugin-tailwindcss-3.14.0.tgz#634edcbd5a3989a68bca5b41b9627172b86489d2"
+  integrity sha512-SGy4JmZoP5m1bXCbcsPfQg1/axOdriJf9L22HghNMyDTM5mybg2XEkaMwgax4aR13zZJRRB1nWmkuYUn+SV6/Q==
   dependencies:
     fast-glob "^3.2.5"
     postcss "^8.4.4"
@@ -6220,10 +6190,10 @@ jiti@^1.19.1, jiti@^1.21.0:
   resolved "https://registry.yarnpkg.com/jiti/-/jiti-1.21.0.tgz#7c97f8fe045724e136a397f7340475244156105d"
   integrity sha512-gFqAIbuKyyso/3G2qhiO2OM6shY6EPP/R0+mkDbyspxKazh8BXDC5FiFsUjlczgdNz/vfra0da2y+aHrusLG/Q==
 
-jose@4.15.4, jose@^4.14.4:
-  version "4.15.4"
-  resolved "https://registry.yarnpkg.com/jose/-/jose-4.15.4.tgz#02a9a763803e3872cf55f29ecef0dfdcc218cc03"
-  integrity sha512-W+oqK4H+r5sITxfxpSU+MMdr/YSWGvgZMQDIsNoBDGGy4i7GBPTtvFKibQzW06n3U3TqHjhvBJsirShsEJ6eeQ==
+jose@^5.2.0:
+  version "5.2.0"
+  resolved "https://registry.yarnpkg.com/jose/-/jose-5.2.0.tgz#d0ffd7f7e31253f633eefb190a930cd14a916995"
+  integrity sha512-oW3PCnvyrcm1HMvGTzqjxxfnEs9EoFOFWi2HsEGhlFVOXxTE3K9GKWVMFoFw06yPUqwpvEWic1BmtUZBI/tIjw==
 
 joycon@^3.0.1:
   version "3.1.1"
@@ -9366,10 +9336,10 @@ storyblok-generate-ts@2.0.1:
     ts-command-line-args "^2.3.1"
     tsup "^6.4.0"
 
-storyblok-js-client@6.6.1:
-  version "6.6.1"
-  resolved "https://registry.yarnpkg.com/storyblok-js-client/-/storyblok-js-client-6.6.1.tgz#c89e9ac8d9531e1b69618432268bdc47197f8791"
-  integrity sha512-bPFXrxiWwDIdGNEMqgnXoFXcZkrBcoSS142+qY6P10M4NdlkMl4A552ctROEZVmmwrFg1iPFYdwTABjR554RFw==
+storyblok-js-client@6.6.2:
+  version "6.6.2"
+  resolved "https://registry.yarnpkg.com/storyblok-js-client/-/storyblok-js-client-6.6.2.tgz#62fef3fd42523283b31ce3d8f220efc801586a4b"
+  integrity sha512-+ypSy9WYGnA/JbBExlmh2YDVEdd39f44N5tEsrlFJ0MPwIdUUBTWB+8RAE+++Q2o6/hAKMWibcT3wvYNI/IELw==
 
 storyblok-js-client@^5.14.0:
   version "5.14.4"

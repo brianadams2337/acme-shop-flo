@@ -31,7 +31,16 @@ export default async (basketItem: Ref<BasketItem>) => {
   })
 
   const giftConditions = computed(() => {
-    return giftPromotion.value?.customData.giftConditions
+    return giftPromotion.value?.customData?.giftConditions
+  })
+
+  const areGiftConditionsMet = computed(() => {
+    const minQuantity = giftConditions.value?.minQuantity
+    if (!minQuantity) {
+      return false
+    }
+
+    return basketItem.value?.quantity >= minQuantity
   })
 
   const isBuyXGetY = computed(() => isBuyXGetYType(promotion.value))
@@ -72,5 +81,6 @@ export default async (basketItem: Ref<BasketItem>) => {
     headlineParts,
     giftConditions,
     giftBackgroundColorStyle,
+    areGiftConditionsMet,
   }
 }

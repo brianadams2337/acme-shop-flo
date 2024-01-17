@@ -1,14 +1,16 @@
-import {
-  type BasketItem,
-  getFirstAttributeValue,
-} from '@scayle/storefront-nuxt'
+import { type BasketItem } from '@scayle/storefront-nuxt'
 
 const listingMetaData = {
   id: BasketListingMetadata.ID,
   name: BasketListingMetadata.NAME,
 }
 
-export default async () => {
+type OrderedItems<T> = {
+  standAlone: T[]
+  groupedItems: BundledBasketItems<T>
+}
+
+export async function useBasketActions() {
   const basket = await useBasket()
   const { bundleByGroup } = await useBasketGroup()
 
@@ -27,34 +29,32 @@ export default async () => {
     )
   }
 
-  // Remove this to use bapi default: order by updated quantity
-  const orderedItems = computed(() => {
-    const items = basket.items.value || []
-    const standAlone: BasketItem[] = []
-    const itemsWithGroups: BasketItem[] = []
-
-    items.forEach((item: BasketItem) =>
-      item.itemGroup?.id ? itemsWithGroups.push(item) : standAlone.push(item),
-    )
-
-    return {
-      standAlone: sortBasketItems(standAlone),
-      groupedItems: bundleByGroup(sortBasketItems(itemsWithGroups)),
-    }
+  const orderedItems = ref<OrderedItems<BasketItem>>({
+    standAlone: [],
+    groupedItems: {},
   })
 
-  const sortBasketItems = (items: BasketItem[]) => {
-    const sortedAlphabetically = useAlphabetical(
-      items,
-      (item: BasketItem) =>
-        getFirstAttributeValue(item.product.attributes, 'name')?.label ?? '',
+  const updateBasketItems = (items: BasketItem[]) => {
+    const data = items.reduce<
+      Record<'standAlone' | 'groupedItems', BasketItem[]>
+    >(
+      (acc, item: BasketItem) => {
+        item.itemGroup?.id
+          ? acc.groupedItems.push(item)
+          : acc.standAlone.push(item)
+        return acc
+      },
+      { standAlone: [], groupedItems: [] },
     )
-    return useSort(
-      sortedAlphabetically,
-      (item: BasketItem) =>
-        getFirstAttributeValue(item.variant?.attributes, 'size')?.id ?? 0,
-    )
+    return {
+      standAlone: sortBasketItems(data.standAlone),
+      groupedItems: bundleByGroup(sortBasketItems(data.groupedItems)),
+    }
   }
+
+  watchPostEffect(() => {
+    orderedItems.value = updateBasketItems(basket.items.value)
+  })
 
   const fetching = basket.fetching
   const isBasketEmpty = basket.isEmpty

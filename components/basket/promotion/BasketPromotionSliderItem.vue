@@ -31,12 +31,12 @@
   </AppButton>
   <template v-if="giftPromotion">
     <ProductPromotionSelectionModal
-      class="max-sm:hidden"
+      v-if="isGreaterThanMd"
       v-bind="{ product, promotedProduct }"
       :promotion="giftPromotion"
     />
     <ProductPromotionSizeSelection
-      class="md:hidden"
+      v-else
       v-bind="{ product, promotedProduct }"
       :promotion="giftPromotion"
     />
@@ -56,6 +56,8 @@ const props = defineProps<Props>()
 
 const i18n = useI18n()
 const { getProductDetailRoute } = useRouteHelpers()
+
+const { md: isGreaterThanMd } = useDefaultBreakpoints()
 
 const promotedProduct = computed(() => props.basketItem.product)
 

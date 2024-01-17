@@ -1,5 +1,8 @@
 <template>
-  <div v-if="!isGiftAlreadyAdded" class="rounded-md border">
+  <div
+    v-if="!isGiftAlreadyAdded && areGiftConditionsMet"
+    class="rounded-md border"
+  >
     <div
       class="flex justify-between rounded-t-md px-4 py-2 text-white"
       :style="giftBackgroundColorStyle"
@@ -26,7 +29,7 @@ const props = defineProps<{ basketItem: BasketItem }>()
 
 const basketItem = computed(() => props.basketItem)
 
-const { giftPromotion, giftBackgroundColorStyle } =
+const { giftPromotion, giftBackgroundColorStyle, areGiftConditionsMet } =
   await useBasketItemPromotion(basketItem)
 
 const { products, isGiftAlreadyAdded } = await usePromotionGifts(

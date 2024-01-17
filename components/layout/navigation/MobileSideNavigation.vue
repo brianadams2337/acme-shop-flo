@@ -13,7 +13,7 @@
       "
     >
       <div class="mb-5 ml-5 mt-6 flex items-center text-xs">
-        <IconBack class="mr-1 h-3 w-3" />
+        <IconBack class="mr-1 size-3" />
         <p>Back to "{{ activeParentCategory.name }}"</p>
       </div>
       <ul class="my-4">

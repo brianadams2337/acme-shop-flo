@@ -5,7 +5,7 @@
       :key="key"
       class="flex text-center font-semibold"
     >
-      <span v-if="value !== undefined" class="px-[1px]">
+      <span v-if="value !== undefined" class="min-w-4">
         {{ formatValue(value) }}
       </span>
       <span class="mx-1">

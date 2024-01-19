@@ -41,7 +41,7 @@ type Props = {
 const props = defineProps<Props>()
 
 const orderItems = computed(() => {
-  return useUnique(props.orderData?.items || [], (it) => it.variant.id)
+  return _unique(props.orderData?.items || [], (it) => it.variant.id)
 })
 
 const getItemQuantity = (variantId: number): number | undefined => {

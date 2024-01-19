@@ -16,14 +16,14 @@ export async function useBasketPromotions() {
   })
 
   const buyXGetYPromotions = computed(() => {
-    return useUnique(
+    return _unique(
       appliedPromotions.value.filter(isBuyXGetYType),
       ({ id }) => id,
     )
   })
 
   const automaticDiscountPromotions = computed(() => {
-    return useUnique(
+    return _unique(
       appliedPromotions.value.filter(isAutomaticDiscountType),
       ({ id }) => id,
     )

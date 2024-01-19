@@ -38,16 +38,16 @@ export async function useProductPromotions(
 
   const buyXGetYPromotion = computed(() => {
     const items = applicablePromotions.value.filter(isBuyXGetYType)
-    return useMin(items, ({ priority }) => priority)
+    return _min(items, ({ priority }) => priority)
   })
 
   const automaticDiscountPromotion = computed(() => {
     const items = applicablePromotions.value.filter(isAutomaticDiscountType)
-    return useMin(items, ({ priority }) => priority)
+    return _min(items, ({ priority }) => priority)
   })
 
   const highestPriorityPromotion = computed(() => {
-    return useMin(applicablePromotions.value, (promotion) => promotion.priority)
+    return _min(applicablePromotions.value, (promotion) => promotion.priority)
   })
 
   const addedProductBasketItem = computed(() => {

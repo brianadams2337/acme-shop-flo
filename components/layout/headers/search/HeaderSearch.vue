@@ -95,7 +95,7 @@ watch(inputActive, (val) => !val && resetSearch())
 
 const { products, categories, brands } = useTypeaheadSuggestions(data)
 
-const debouncedSearch = useDebounce(
+const debouncedSearch = _debounce(
   { delay: DEBOUNCED_SEARCH_DURATION },
   async (value: string) => {
     if (value === '' || value.length < MIN_CHARS_FOR_SEARCH) {

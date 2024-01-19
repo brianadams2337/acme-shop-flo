@@ -98,7 +98,7 @@ const totalDiscount = computed(() => {
   const discounts = basket.data.value.cost.appliedReductions.map(
     ({ amount }) => amount.absoluteWithTax,
   )
-  return useSum(discounts)
+  return _sum(discounts)
 })
 
 const { hasAppliedPromotions } = await useBasketPromotions()

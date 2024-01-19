@@ -28,12 +28,12 @@ export const showAddToBasketToast = (
 export const sortBasketItemsByNameAndSize = (
   items: BasketItem[],
 ): BasketItem[] => {
-  const sortedAlphabetically = useAlphabetical(
+  const sortedAlphabetically = _alphabetical(
     items,
     (item: BasketItem) =>
       getFirstAttributeValue(item.product.attributes, 'name')?.label ?? '',
   )
-  return useSort(
+  return _sort(
     sortedAlphabetically,
     (item: BasketItem) =>
       getFirstAttributeValue(item.variant?.attributes, 'size')?.id ?? 0,
@@ -43,7 +43,7 @@ export const sortBasketItemsByNameAndSize = (
 export const sortBasketItemsByIsSoldOut = (
   items: BasketItem[],
 ): BasketItem[] => {
-  return useSort(items, ({ product }) => Number(product.isSoldOut))
+  return _sort(items, ({ product }) => Number(product.isSoldOut))
 }
 
 export const getPartitionedBasketItems = (items: BasketItem[] = []) => {
@@ -61,5 +61,5 @@ export const getPartitionedBasketItems = (items: BasketItem[] = []) => {
 export const bundleBasketItemsByGroup = (
   items: BasketItem[] = [],
 ): BundledBasketItems<BasketItem> => {
-  return useGroup(items, (item: BasketItem) => item.itemGroup?.id ?? '-1')
+  return _group(items, (item: BasketItem) => item.itemGroup?.id ?? '-1')
 }

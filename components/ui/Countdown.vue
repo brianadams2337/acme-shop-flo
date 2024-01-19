@@ -35,7 +35,7 @@ const formatValue = (value: number) => {
   return value <= 9 && value >= 0 ? `0${value}` : value
 }
 
-const isSeconds = (key: string) => key === useLast(Object.keys(countdown.value))
+const isSeconds = (key: string) => key === _last(Object.keys(countdown.value))
 
 const start = () => {
   const remaining = until.value - Date.now()

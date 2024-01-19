@@ -141,7 +141,7 @@ const validInput = computed(() => {
   return (searchQuery.value?.length || 0) >= MIN_CHARS_FOR_SEARCH
 })
 
-const debouncedSearch = useDebounce(
+const debouncedSearch = _debounce(
   { delay: DEBOUNCED_SEARCH_DURATION },
   async () => {
     if (!validInput.value) {

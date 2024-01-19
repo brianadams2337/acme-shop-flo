@@ -116,7 +116,7 @@ const updateUserPassword = async () => {
     $alert.show(msg, 'CONFIRM')
     isUpdating.value = false
 
-    await useSleep(500)
+    await _sleep(500)
     resetState.value = false
   }
 }

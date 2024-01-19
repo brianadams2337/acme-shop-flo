@@ -103,7 +103,7 @@ const _sizes = computed(() => {
   if (!variants.value?.length) {
     return []
   }
-  return useSort([...props.variants], ({ attributes }) => {
+  return _sort([...props.variants], ({ attributes }) => {
     return Number(getFirstAttributeValue(attributes, 'sort')?.value || '0')
   }).map(getSizeFromVariant)
 })

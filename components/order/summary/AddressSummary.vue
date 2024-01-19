@@ -52,12 +52,12 @@ const isShippingSameAsBillingAddress = computed(() => {
     'lastName',
   ] as RecipientProps[]
   const shippingAddressProps = {
-    ...usePick(props.shippingAddress, propertiesToCheck),
-    ...usePick(props.shippingAddress.recipient, recipientPropertiesToCheck),
+    ..._pick(props.shippingAddress, propertiesToCheck),
+    ..._pick(props.shippingAddress.recipient, recipientPropertiesToCheck),
   }
   const billingAddressProps = {
-    ...usePick(props.billingAddress, propertiesToCheck),
-    ...usePick(props.billingAddress.recipient, recipientPropertiesToCheck),
+    ..._pick(props.billingAddress, propertiesToCheck),
+    ..._pick(props.billingAddress.recipient, recipientPropertiesToCheck),
   }
   return isEqual(shippingAddressProps, billingAddressProps)
 })

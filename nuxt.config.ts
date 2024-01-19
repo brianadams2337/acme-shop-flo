@@ -154,6 +154,12 @@ export default defineNuxtConfig({
     '@nuxt/test-utils/module',
   ],
 
+  // https://github.com/lukasaric/radash-nuxt
+  radash: {
+    prefix: '_',
+    upperAfterPrefix: false,
+  },
+
   // https://nuxt.com/docs/api/nuxt-config#build
   build: {
     // https://nuxt.com/docs/api/nuxt-config#transpile

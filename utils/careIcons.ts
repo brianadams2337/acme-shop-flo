@@ -39,5 +39,5 @@ export const getCareIconComponent = (iconId?: number): string | undefined => {
   if (!iconId || !(iconId in CareIconSymbolMap)) {
     return undefined
   }
-  return `IconCare${usePascal(CareIconSymbolMap[iconId])}`
+  return `IconCare${_pascal(CareIconSymbolMap[iconId])}`
 }

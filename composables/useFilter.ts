@@ -195,7 +195,7 @@ export function useFilter(
     }
   }
 
-  const debouncedStateChangedEvent = useDebounce(
+  const debouncedStateChangedEvent = _debounce(
     { delay: 50 },
     async () => await updateFilterCount(),
   )
@@ -203,7 +203,7 @@ export function useFilter(
   watch(state, () => debouncedStateChangedEvent(), { deep: true })
 
   const prepareFilterData = () => ({
-    ...transformStateToFilters(useOmit(state.value, ['prices', 'sale'])),
+    ...transformStateToFilters(_omit(state.value, ['prices', 'sale'])),
     ...(priceChanged.value &&
       transformMinAndMaxPriceToFilter(state.value.prices)),
     ...(state.value.sale && { sale: true }),

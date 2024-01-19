@@ -125,7 +125,7 @@ const addItemToCart = async (itemKey: string, index: number) => {
 }
 
 const orderedItems = computed(() => {
-  const sortedItems = useAlphabetical(
+  const sortedItems = _alphabetical(
     wishlist.items.value || [],
     (item: WishlistItem) => {
       return (

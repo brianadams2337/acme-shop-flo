@@ -47,11 +47,11 @@ export function useValidationRules() {
 
   const withI18nMessage = createI18nMessage({
     t: $i18n.t.bind($i18n),
-    messagePath: ({ $validator }) => `validation.${useSnake($validator)}`,
+    messagePath: ({ $validator }) => `validation.${_snake($validator)}`,
     messageParams: ({ field, max, otherName, property, ...params }) => ({
       ...params,
       property,
-      field: $i18n.t(`form_fields.${useSnake(field || property)}`),
+      field: $i18n.t(`form_fields.${_snake(field || property)}`),
       max,
       otherField: otherName,
     }),

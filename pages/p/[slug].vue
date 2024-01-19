@@ -256,7 +256,7 @@ onMounted(async () => {
   if (!product.value) {
     return
   }
-  await useSleep(1000)
+  await _sleep(1000)
   trackViewItem({ product: product.value })
 })
 

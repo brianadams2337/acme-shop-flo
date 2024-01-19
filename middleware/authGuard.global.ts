@@ -8,7 +8,7 @@ export default defineNuxtRouteMiddleware(async (to) => {
 
   const getProtectedRoutes = (exclude: (keyof LinkList)[] = []) => {
     const routes = Object.entries(
-      usePick(routeList, [
+      _pick(routeList, [
         'account',
         'orders',
         'orderDetail',

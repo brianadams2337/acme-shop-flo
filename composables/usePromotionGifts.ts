@@ -35,7 +35,7 @@ export async function usePromotionGifts(product: Product) {
   })
 
   const products = computed(() => {
-    const items = useUnique(data.value || [], ({ id }) => id)
+    const items = _unique(data.value || [], ({ id }) => id)
     return items.map((item) => {
       const filteredVariants = item.variants?.filter(({ id }) => {
         return variantIds.value.includes(id)

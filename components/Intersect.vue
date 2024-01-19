@@ -39,7 +39,7 @@ const { stop } = useIntersectionObserver(
       ? emit('enter', observerEntry, stop)
       : emit('leave', observerEntry)
   },
-  usePick(props, ['threshold', 'root', 'rootMargin']),
+  _pick(props, ['threshold', 'root', 'rootMargin']),
 )
 
 defineOptions({ name: 'IntersectionObserver' })

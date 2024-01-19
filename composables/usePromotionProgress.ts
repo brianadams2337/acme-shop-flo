@@ -11,7 +11,7 @@ export async function usePromotionProgress() {
   const minOrderAmount = computed(() => divideWithHundred(minOrderValue.value))
 
   const basketTotalWithoutPromotionReductions = computed(() => {
-    return useSum(
+    return _sum(
       basketData.value.items.map((item) => {
         const withTax = item.price.total.withTax
         const promotionReduction = item.price.total.appliedReductions.find(

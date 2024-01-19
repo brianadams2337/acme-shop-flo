@@ -70,7 +70,7 @@ export default defineNuxtPlugin(() => {
     queue.length = 0
   }
 
-  const flushDebounced = useDebounce({ delay: WAIT_TIME }, flush)
+  const flushDebounced = _debounce({ delay: WAIT_TIME }, flush)
 
   useEventListener('beforeunload', flush)
 

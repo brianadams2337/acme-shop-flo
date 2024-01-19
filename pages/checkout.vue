@@ -35,7 +35,7 @@ const accessToken = computed(() => {
 
 onMounted(async () => {
   try {
-    await useRetry({ times: 5, delay: 100 }, fetchCampaignKey)
+    await _retry({ times: 5, delay: 100 }, fetchCampaignKey)
   } catch (error: any) {
     log.error('[checkout.vue] Error getting campaign key', error)
   }

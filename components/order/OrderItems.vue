@@ -37,7 +37,7 @@ type CarrierMap = Record<
 const { orderVariants, orderItems, packages } = await useOrders()
 
 const uniqueItems = computed(() => {
-  return useUnique(orderItems.value, (it) => it.variant.id)
+  return _unique(orderItems.value, (it) => it.variant.id)
 })
 
 const carrierBundledItemsMap = computed<CarrierMap | undefined>(() => {

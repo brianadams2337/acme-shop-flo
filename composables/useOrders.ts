@@ -10,7 +10,7 @@ export async function useOrders() {
   const variantIds = computed(() => {
     const ids =
       orderDetails.value?.items?.map((it) => it.variant.id as number) ?? []
-    return useUnique(ids)
+    return _unique(ids)
   })
 
   const { data: orderVariants } = await useVariant({

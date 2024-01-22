@@ -5,7 +5,9 @@ import {
 } from '@scayle/storefront-nuxt'
 
 export function useWishlistActions() {
-  const { $alert, $i18n } = useNuxtApp()
+  const { $i18n } = useNuxtApp()
+
+  const notification = useNotification()
 
   const { trackRemoveFromWishlist, trackAddToWishlist } = useTrackingEvents()
   const route = useRoute()
@@ -35,11 +37,9 @@ export function useWishlistActions() {
 
     const action = isAddedToWishlist ? 'ROUTE' : 'CONFIRM'
 
-    $alert.show(
-      message,
-      action,
-      isAddedToWishlist ? routeList.wishlist : undefined,
-    )
+    notification.show(message, action, {
+      ...(isAddedToWishlist && { to: routeList.wishlist }),
+    })
   }
 
   const trackWishlistEvent = (

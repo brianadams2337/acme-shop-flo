@@ -1,6 +1,6 @@
 <template>
   <TransitionGroup
-    name="alert"
+    name="notification"
     tag="div"
     enter-class="opacity-0 translate-y-8"
     leave-to-class="opacity-0 -z-10 -translate-y-8"
@@ -9,9 +9,9 @@
     class="fixed right-0 top-[5%] z-60 flex flex-col items-end"
   >
     <Toast
-      v-for="alert in alerts"
-      :key="alert.id"
-      :alert="alert"
+      v-for="notification in notifications"
+      :key="notification.id"
+      :notification="notification"
       data-test-id="toast-info"
       class="right-0 transition-all duration-500"
     />
@@ -19,6 +19,5 @@
 </template>
 
 <script setup lang="ts">
-const { $alert } = useNuxtApp()
-const alerts = computed(() => $alert.alerts.value)
+const { notifications } = useNotification()
 </script>

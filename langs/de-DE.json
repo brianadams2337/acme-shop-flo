@@ -21,6 +21,11 @@
     "sign_in_label": "Anmelden",
     "or": "Oder"
   },
+  "notification": {
+    "ok": "OK",
+    "view": "Sicht",
+    "loaded_again": "Erneut laden"
+  },
   "promotion": {
     "progress_left": "{amount} übrig",
     "terms": "Allgemeine Geschäftsbedingungen für Werbeaktionen",

@@ -62,8 +62,10 @@
 import useVuelidate from '@vuelidate/core'
 
 const { updatePassword, fetch: refresh } = await useUser()
-const { $alert, $i18n } = useNuxtApp()
+const { $i18n } = useNuxtApp()
 const validationRules = useValidationRules()
+
+const notification = useNotification()
 
 const initPayload = () => ({
   oldPassword: '',
@@ -113,7 +115,7 @@ const updateUserPassword = async () => {
   } catch (err) {
     msg = $i18n.t('my_account.user.password_update_error')
   } finally {
-    $alert.show(msg, 'CONFIRM')
+    notification.show(msg, 'CONFIRM')
     isUpdating.value = false
 
     await _sleep(500)

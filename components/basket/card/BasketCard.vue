@@ -193,9 +193,11 @@ const {
   listingMetaData,
 } = await useBasketItem(mainItem)
 
-const { $i18n, $alert } = useNuxtApp()
+const { $i18n } = useNuxtApp()
 const wishlist = await useWishlist()
 const { trackRemoveFromWishlist, trackAddToWishlist } = useTrackingEvents()
+
+const notification = useNotification()
 
 const { pageState } = usePageState()
 const route = useRoute()
@@ -244,7 +246,7 @@ const addToWishlist = async () => {
   const message = $i18n.t('wishlist.notification.add_to_wishlist', {
     productName: name.value || $i18n.t('wishlist.product'),
   })
-  $alert.show(message, 'ROUTE', '/wishlist')
+  notification.show(message, 'ROUTE', { to: '/wishlist' })
 }
 
 const removeFromWishlist = async () => {
@@ -271,6 +273,6 @@ const removeFromWishlist = async () => {
 
   await wishlist.removeItem(data)
 
-  $alert.show(message, 'CONFIRM')
+  notification.show(message, 'CONFIRM')
 }
 </script>

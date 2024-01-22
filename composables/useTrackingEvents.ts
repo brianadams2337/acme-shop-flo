@@ -20,7 +20,7 @@ import {
  * Higher order composable which serves as a single entry point to unify different ecommerce tracking events
  */
 export function useTrackingEvents() {
-  const { $tracking } = useNuxtApp()
+  const tracking = useTracking()
 
   const { pageState } = usePageState()
   const track = (event: TrackingEvent, payload: TrackingPayload) => {
@@ -40,7 +40,7 @@ export function useTrackingEvents() {
       eventData.page_type_id = pageState.value.typeId
     }
 
-    return $tracking.push(eventData)
+    return tracking.push(eventData)
   }
 
   /**

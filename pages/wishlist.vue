@@ -59,7 +59,9 @@ const listingMetaData = {
 
 const wishlist = await useWishlist({ options: { lazy: true } })
 const basket = await useBasket({ options: { lazy: true } })
-const { $alert, $i18n } = useNuxtApp()
+const { $i18n } = useNuxtApp()
+
+const notification = useNotification()
 
 const { openBasketFlyout } = useFlyouts()
 
@@ -97,7 +99,7 @@ const addItemToCart = async (itemKey: string, index: number) => {
   }
 
   if (!entry.variant?.id) {
-    $alert.show($i18n.t('basket.notification.select_size'), 'CONFIRM')
+    notification.show($i18n.t('basket.notification.select_size'), 'CONFIRM')
     return
   }
 

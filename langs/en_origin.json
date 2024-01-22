@@ -21,6 +21,11 @@
     "sign_in_label": "Sign in",
     "or": "Or"
   },
+  "notification": {
+    "ok": "OK",
+    "view": "View",
+    "loaded_again": "Loaded again"
+  },
   "promotion": {
     "progress_left": "{amount} left",
     "terms": "Promotion Terms & Conditions",

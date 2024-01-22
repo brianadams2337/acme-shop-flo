@@ -1,7 +1,9 @@
 <template>
-  <div class="m-2 flex w-max max-w-[90vw] space-x-2 bg-black p-2 text-white">
-    <span>{{ alert.message }}</span>
-    <template v-for="action in alert.actions">
+  <div
+    class="m-2 flex w-max max-w-[90vw] space-x-2 rounded-md bg-black p-2 text-white"
+  >
+    <span>{{ notification.message }}</span>
+    <template v-for="action in notification.actions">
       <DefaultLink
         v-if="action.href"
         :key="`link-${action.text}`"
@@ -16,8 +18,8 @@
       <div
         v-else
         :key="action.text"
-        :class="['cursor-pointer', action.class || '']"
-        class="underline"
+        :class="action.class"
+        class="cursor-pointer underline"
         @click="onClick($event, action)"
       >
         {{ action.text }}
@@ -27,32 +29,22 @@
 </template>
 
 <script setup lang="ts">
-const props = defineProps({
-  alert: {
-    type: Object as PropType<Alert>,
-    required: true,
-  },
-})
+const props = defineProps<{ notification: AppNotification }>()
 
-const { $alert } = useNuxtApp()
+const { close: closeNotification } = useNotification()
 
-const close = () => $alert.close(props.alert.id)
+const close = () => closeNotification(props.notification.id)
 
-const onClick = (event: Event, action: ActionHandler) => {
+const onClick = (event: Event, action: NotificationActionHandler) => {
   if (!action?.onClick) {
     return
   }
   event.preventDefault()
   event.stopImmediatePropagation()
-  action?.onClick(event, { ...props.alert, close })
+  action?.onClick(event, { ...props.notification, close })
 }
-let timeout: NodeJS.Timeout
 
-onMounted(() => {
-  timeout = setTimeout(() => close(), props.alert.duration || 100000)
-})
-
-onUnmounted(() => timeout && clearTimeout(timeout))
+useTimeoutFn(close, props.notification.duration)
 
 defineOptions({ name: 'AppToast' })
 </script>

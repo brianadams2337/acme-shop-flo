@@ -1,5 +1,7 @@
 export async function useProductDetailsBasketActions() {
-  const { $alert, $i18n } = useNuxtApp()
+  const { $i18n } = useNuxtApp()
+
+  const notification = useNotification()
 
   const { product, hasOneSizeVariantOnly, activeVariant, quantity, brand } =
     await useProductDetails()
@@ -26,7 +28,7 @@ export async function useProductDetailsBasketActions() {
     }
 
     if (!activeVariant.value) {
-      $alert.show($i18n.t('basket.notification.select_size'), 'CONFIRM')
+      notification.show($i18n.t('basket.notification.select_size'), 'CONFIRM')
       return
     }
 
@@ -63,7 +65,7 @@ export async function useProductDetailsBasketActions() {
         })
       }
     } catch {
-      $alert.show(
+      notification.show(
         $i18n.t('basket.notification.add_to_basket_error', { productName }),
         'CONFIRM',
       )

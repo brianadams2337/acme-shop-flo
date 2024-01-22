@@ -47,12 +47,14 @@ import {
 
 const route = useRoute()
 
-const { $i18n, $alert } = useNuxtApp()
+const { $i18n } = useNuxtApp()
 const { pageState } = usePageState()
 const term = computed(() => route.query.term || '')
 const { toggle: toggleFilter } = useSlideIn('FilterSlideIn')
 
 const wishlist = await useWishlist()
+
+const notification = useNotification()
 
 const { trackAddToWishlist, trackRemoveFromWishlist } = useTrackingEvents()
 
@@ -180,11 +182,9 @@ const toggleItem = (product: Product) => {
       })
 
   const action = !wasInWishlist ? 'ROUTE' : 'CONFIRM'
-  $alert.show(
-    message,
-    action,
-    !wasInWishlist ? localePath(routeList.wishlist) : undefined,
-  )
+  notification.show(message, action, {
+    to: !wasInWishlist ? localePath(routeList.wishlist) : undefined,
+  })
 }
 
 const sortingValues = Object.values(getSortingValues())

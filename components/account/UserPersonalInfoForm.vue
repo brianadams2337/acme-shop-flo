@@ -57,9 +57,11 @@ import useVuelidate from '@vuelidate/core'
 
 const { user, updateUser } = await useUser()
 
-const { $alert, $i18n } = useNuxtApp()
+const { $i18n } = useNuxtApp()
 const currentShop = useCurrentShop()
 const validationRules = useValidationRules()
+
+const notification = useNotification()
 
 const dobFormat = computed(() => {
   const locale = currentShop.value?.locale.replace('-', '_')
@@ -127,9 +129,9 @@ const update = async () => {
       ...payload,
       birthDate: getPayloadDate(payload.birthDate),
     })
-    $alert.show($i18n.t('my_account.user.save_message'), 'CONFIRM')
+    notification.show($i18n.t('my_account.user.save_message'), 'CONFIRM')
   } catch {
-    $alert.show(saveError, 'CONFIRM')
+    notification.show(saveError, 'CONFIRM')
   } finally {
     isUpdating.value = false
   }

@@ -20,9 +20,11 @@ export async function useAuthentication(
   event: AuthTrackingEvent,
   method: AuthenticationType = 'email',
 ) {
-  const { $alert, $i18n } = useNuxtApp()
+  const { $i18n } = useNuxtApp()
   const route = useRoute()
   const router = useRouter()
+
+  const notification = useNotification()
 
   const { auth: authConfig } = useRuntimeConfig().public
 
@@ -96,7 +98,7 @@ export async function useAuthentication(
 
     try {
       await session.forgetPassword({ email })
-      $alert.show(successMessage.value, 'CONFIRM')
+      notification.show(successMessage.value, 'CONFIRM')
     } catch (error) {
       handleError(error)
       hasSuccess = false
@@ -175,7 +177,7 @@ export async function useAuthentication(
       await redirectUser(redirectTo)
     }
 
-    $alert.show(successMessage.value, 'CONFIRM')
+    notification.show(successMessage.value, 'CONFIRM')
   }
 
   const trackFailedAuthentication = async (email: string) => {
@@ -196,7 +198,7 @@ export async function useAuthentication(
         const errorMessage = $i18n.t(
           `login_page.${event}.status.error.${httpErrorMessages[status]}`,
         )
-        $alert.show(errorMessage, 'CONFIRM')
+        notification.show(errorMessage, 'CONFIRM')
       }
     }
     // remove user data (email, password) from the error object, before logging it

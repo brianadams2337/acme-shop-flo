@@ -9,44 +9,41 @@ const handleNonInitializedTracking = (log: Log) => ({
   },
 })
 
-export default defineNuxtPlugin(() => {
+export function useTracking() {
   // NOTE: use gtm will only return a gtm instance on client side.
   const gtm = useGtm()
   const log = useLog('tracking')
 
   if (!gtm) {
-    return {
-      provide: { tracking: handleNonInitializedTracking(log) },
-    }
+    return handleNonInitializedTracking(log)
   }
+
+  const { pageState } = usePageState()
+
+  const { trackingEventOrder } = useRuntimeConfig().public
 
   type Push = typeof gtm.push
 
   let lastIndex = -1
-  const queue: Array<{ data: any; index: number }> = []
 
-  const tracking: { push: Push } = {
-    /**
-     * Push data to GTM considering the "trackingEventOrder"
-     */
-    push: (data) => {
-      const { trackingEventOrder } = useRuntimeConfig().public
-      const index = data.event
-        ? trackingEventOrder.indexOf(data.event) ?? -1
-        : -1
-      if (index === -1) {
-        return queue.push({ data, index: lastIndex })
-      }
-      queue.push({ data, index })
-      lastIndex = index
-      flushDebounced()
-    },
+  const queue = useState<{ data: any; index: number }[]>(
+    'tracking-queue',
+    () => [],
+  )
+
+  const push: Push = (data) => {
+    const index = data.event ? trackingEventOrder.indexOf(data.event) ?? -1 : -1
+    if (index === -1) {
+      return queue.value.push({ data, index: lastIndex })
+    }
+    queue.value.push({ data, index })
+    lastIndex = index
+    flushDebounced()
   }
 
   const flush = () => {
-    const { pageState } = usePageState()
-    const sorted = queue.sort((a, b) => a.index - b.index)
-    sorted.forEach((item) => {
+    const sortedEvents = queue.value.sort((a, b) => a.index - b.index)
+    sortedEvents.forEach((item) => {
       if ('ecommerce' in item.data) {
         gtm.push({ ecommerce: null }) // Clear the previous ecommerce object.
       }
@@ -67,14 +64,12 @@ export default defineNuxtPlugin(() => {
         ...data,
       })
     })
-    queue.length = 0
+    queue.value.length = 0
   }
 
   const flushDebounced = _debounce({ delay: WAIT_TIME }, flush)
 
   useEventListener('beforeunload', flush)
 
-  return {
-    provide: { tracking },
-  }
-})
+  return { push }
+}

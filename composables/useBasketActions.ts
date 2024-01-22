@@ -15,8 +15,8 @@ type OrderedItems<T> = {
 }
 
 export async function useBasketActions() {
-  const { $alert, $i18n } = useNuxtApp()
-
+  const { $i18n } = useNuxtApp()
+  const notification = useNotification()
   const basket = await useBasket()
 
   const { trackRemoveFromBasket, trackBasket, collectBasketItems } =
@@ -36,7 +36,9 @@ export async function useBasketActions() {
 
     const action = isAddedToBasket ? 'ROUTE' : 'CONFIRM'
 
-    $alert.show(message, action, isAddedToBasket ? routeList.basket : undefined)
+    notification.show(message, action, {
+      ...(isAddedToBasket && { to: routeList.basket }),
+    })
   }
 
   const removeItem = async (item: BasketItem) => {

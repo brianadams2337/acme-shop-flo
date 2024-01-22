@@ -13,7 +13,8 @@ export async function usePromotionGiftSelection(
   gift: Product,
   promotedProduct: Product,
 ) {
-  const { $alert, $i18n } = useNuxtApp()
+  const { $i18n } = useNuxtApp()
+  const notification = useNotification()
 
   const route = useRoute()
 
@@ -93,7 +94,7 @@ export async function usePromotionGiftSelection(
     }
 
     if (!activeVariant.value) {
-      $alert.show($i18n.t('basket.notification.select_size'), 'CONFIRM')
+      notification.show($i18n.t('basket.notification.select_size'), 'CONFIRM')
       return
     }
 
@@ -121,7 +122,7 @@ export async function usePromotionGiftSelection(
         })
       }
     } catch {
-      $alert.show(
+      notification.show(
         $i18n.t('basket.notification.add_to_basket_error', { productName }),
         'CONFIRM',
       )

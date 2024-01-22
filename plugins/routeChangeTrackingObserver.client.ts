@@ -1,10 +1,10 @@
 export default defineNuxtPlugin(() => {
   const router = useRouter()
   const { pageState } = usePageState()
-  const { $tracking } = useNuxtApp()
+  const tracking = useTracking()
 
   router?.afterEach((to, from) => {
-    $tracking.push(
+    tracking.push(
       mapTrackingDataForEvent('content_view', {
         content_name: to.path,
         title: (typeof document !== 'undefined' && document.title) || '',

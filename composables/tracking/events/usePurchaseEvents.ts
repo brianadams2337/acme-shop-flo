@@ -61,7 +61,7 @@ const usePurchaseEvents = (): {
   trackPurchaseEvent: (orderData: Order) => void
 } => {
   const { pageState } = usePageState()
-  const { $tracking } = useNuxtApp()
+  const tracking = useTracking()
 
   return {
     trackPurchaseEvent: (orderData: Order) => {
@@ -111,7 +111,7 @@ const usePurchaseEvents = (): {
         items,
       }
 
-      $tracking.push({
+      tracking.push({
         event: 'purchase',
         ecommerce,
         content_name: document.location.pathname,

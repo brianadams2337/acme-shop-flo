@@ -75,7 +75,7 @@
     "vue-tsc": "1.8.27"
   },
   "dependencies": {
-    "@scayle/storefront-nuxt": "7.51.2",
+    "@scayle/storefront-nuxt": "7.52.0",
     "@storyblok/nuxt": "6.0.4",
     "@tailwindcss/forms": "0.5.7",
     "@tailwindcss/typography": "0.5.10",

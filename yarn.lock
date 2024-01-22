@@ -7,10 +7,10 @@
   resolved "https://registry.yarnpkg.com/@aashutoshrathi/word-wrap/-/word-wrap-1.2.6.tgz#bd9154aec9983f77b3a034ecaa015c2e4201f6cf"
   integrity sha512-1Yjs2SvM8TflER/OD3cOjhWWOZb58A2t7wpE2S9XfBYTiIl+XFhQG2bjy4Pu1I+EAlCNUzRDYDdFwFYUKvXcIA==
 
-"@aboutyou/backbone@16.0.2":
-  version "16.0.2"
-  resolved "https://registry.yarnpkg.com/@aboutyou/backbone/-/backbone-16.0.2.tgz#77fe00c14e04452c7f47b7afebb9b8974985eade"
-  integrity sha512-nH4HmWbd+9Wn1uYcgucVRNtthaw7g5bZAUEuNVWwWQFGuacTD6umF3wVw0+UcUtQLKls+8Akqr30a7br1WwJlg==
+"@aboutyou/backbone@16.1.0":
+  version "16.1.0"
+  resolved "https://registry.yarnpkg.com/@aboutyou/backbone/-/backbone-16.1.0.tgz#e6893764d0090d9eda9b8f45e2fabd8e2d2b36e0"
+  integrity sha512-ExS4eVc4q+qtXc3kZKaX6j8CTzUIGvkdw0R1qC5EkdWfj3Uig+mFXV+TYA0pt3kVOzGrlhxuX33TPRhSSHFCkw==
   dependencies:
     query-string "^6.2.0"
 
@@ -1794,34 +1794,34 @@
   dependencies:
     prettier-config-standard "^7.0.0"
 
-"@scayle/storefront-core@7.37.0":
-  version "7.37.0"
-  resolved "https://registry.yarnpkg.com/@scayle/storefront-core/-/storefront-core-7.37.0.tgz#77f2533cb219b602b558c07057abfa1b68d93483"
-  integrity sha512-oUhcQkl1tOxldLNUQN7GK1K6LtqWXYzETE8jp5EQtvg2EeLptIfSxK8f1/bkvPpsOA79EWSVOndegFtpvfYZGA==
+"@scayle/storefront-core@7.38.0":
+  version "7.38.0"
+  resolved "https://registry.yarnpkg.com/@scayle/storefront-core/-/storefront-core-7.38.0.tgz#61de95250e0aa5d4e0bf123f3e8fa6cb2c623b67"
+  integrity sha512-gHWU0R+ISOCu99O/x8LfTQUaWIZUvxnNZ1HkofKpsY6zr4yeM3GIxY6hSzaHoSRJEuM3d4B8MCYeIX1+Q0jaeQ==
   dependencies:
-    "@aboutyou/backbone" "16.0.2"
+    "@aboutyou/backbone" "16.1.0"
     crypto-js "4.2.0"
-    jose "^5.2.0"
-    radash "^11.0.0"
-    slugify "^1.6.0"
-    ufo "^1.1.1"
-    uncrypto "^0.1.3"
-    utility-types "^3.10.0"
+    jose "5.2.0"
+    radash "11.0.0"
+    slugify "1.6.6"
+    ufo "1.3.2"
+    uncrypto "0.1.3"
+    utility-types "3.11.0"
   optionalDependencies:
     redis "4"
 
-"@scayle/storefront-nuxt@7.51.2":
-  version "7.51.2"
-  resolved "https://registry.yarnpkg.com/@scayle/storefront-nuxt/-/storefront-nuxt-7.51.2.tgz#91f697b4168721f78af9cc645290027bfcca3b0e"
-  integrity sha512-VMdnghqmOHMdU2pB5+RBWUwGmXPAjHQdInq70ANzxPMZDUET2tuVg9dmZM7h5sNHrJgr+gJtYxQkhp7f2YEXDw==
+"@scayle/storefront-nuxt@7.52.0":
+  version "7.52.0"
+  resolved "https://registry.yarnpkg.com/@scayle/storefront-nuxt/-/storefront-nuxt-7.52.0.tgz#9c7a971744f98abf6285053c1a9a1ebfdaf34ee9"
+  integrity sha512-qLIpTghG1kJGm1eh4eKk2//Aqf098H+tlI+o89HuR/JkNSid0JQJn4NhrL+BNTtXl5ta6wFMKRhoB3s21rJlQw==
   dependencies:
     "@nuxt/kit" "3.9.3"
     "@scayle/h3-session" "0.3.5"
-    "@scayle/storefront-core" "7.37.0"
+    "@scayle/storefront-core" "7.38.0"
     "@scayle/unstorage-compression-driver" "0.1.1"
     "@vueuse/core" "10.7.2"
     consola "3.2.3"
-    core-js "3.35.0"
+    core-js "3.35.1"
     defu "6.1.4"
     h3 "1.10.0"
     jose "^5.2.0"
@@ -3634,10 +3634,10 @@ cookies@~0.9.0:
     depd "~2.0.0"
     keygrip "~1.1.0"
 
-core-js@3.35.0:
-  version "3.35.0"
-  resolved "https://registry.yarnpkg.com/core-js/-/core-js-3.35.0.tgz#58e651688484f83c34196ca13f099574ee53d6b4"
-  integrity sha512-ntakECeqg81KqMueeGJ79Q5ZgQNR+6eaE8sxGCx62zMbAIj65q+uYvatToew3m6eAGdU4gNZwpZ34NMe4GYswg==
+core-js@3.35.1:
+  version "3.35.1"
+  resolved "https://registry.yarnpkg.com/core-js/-/core-js-3.35.1.tgz#9c28f8b7ccee482796f8590cc8d15739eaaf980c"
+  integrity sha512-IgdsbxNyMskrTFxa9lWHyMwAJU5gXOPP+1yO+K59d50VLVAIDAbs7gIv705KzALModfK3ZrSZTPNpC0PQgIZuw==
 
 core-util-is@1.0.2:
   version "1.0.2"
@@ -6292,7 +6292,7 @@ jiti@^1.19.1, jiti@^1.21.0:
   resolved "https://registry.yarnpkg.com/jiti/-/jiti-1.21.0.tgz#7c97f8fe045724e136a397f7340475244156105d"
   integrity sha512-gFqAIbuKyyso/3G2qhiO2OM6shY6EPP/R0+mkDbyspxKazh8BXDC5FiFsUjlczgdNz/vfra0da2y+aHrusLG/Q==
 
-jose@^5.2.0:
+jose@5.2.0, jose@^5.2.0:
   version "5.2.0"
   resolved "https://registry.yarnpkg.com/jose/-/jose-5.2.0.tgz#d0ffd7f7e31253f633eefb190a930cd14a916995"
   integrity sha512-oW3PCnvyrcm1HMvGTzqjxxfnEs9EoFOFWi2HsEGhlFVOXxTE3K9GKWVMFoFw06yPUqwpvEWic1BmtUZBI/tIjw==
@@ -9247,7 +9247,7 @@ slice-ansi@^7.0.0:
     ansi-styles "^6.2.1"
     is-fullwidth-code-point "^5.0.0"
 
-slugify@^1.6.0:
+slugify@1.6.6:
   version "1.6.6"
   resolved "https://registry.yarnpkg.com/slugify/-/slugify-1.6.6.tgz#2d4ac0eacb47add6af9e04d3be79319cbcc7924b"
   integrity sha512-h+z7HKHYXj6wJU+AnS/+IH8Uh9fdcX1Lrhg1/VMdf9PwoBQXFcXiAdsy2tSK0P6gKwJLXp02r90ahUCqHk9rrw==
@@ -10111,7 +10111,7 @@ typical@^5.2.0:
   resolved "https://registry.yarnpkg.com/typical/-/typical-5.2.0.tgz#4daaac4f2b5315460804f0acf6cb69c52bb93066"
   integrity sha512-dvdQgNDNJo+8B2uBQoqdb11eUCE1JQXhvjC/CZtgvZseVd5TYMXnq0+vuUemXbd/Se29cTaUuPX3YIc2xgbvIg==
 
-ufo@1.3.2, ufo@^1.1.1, ufo@^1.1.2, ufo@^1.2.0, ufo@^1.3.0, ufo@^1.3.1, ufo@^1.3.2:
+ufo@1.3.2, ufo@^1.1.2, ufo@^1.2.0, ufo@^1.3.0, ufo@^1.3.1, ufo@^1.3.2:
   version "1.3.2"
   resolved "https://registry.yarnpkg.com/ufo/-/ufo-1.3.2.tgz#c7d719d0628a1c80c006d2240e0d169f6e3c0496"
   integrity sha512-o+ORpgGwaYQXgqGDwd+hkS4PuZ3QnmqMMxRuajK/a38L6fTpcE5GPIfrf+L/KemFzfUpeUQc1rRS1iDBozvnFA==
@@ -10379,7 +10379,7 @@ util@^0.10.3:
   dependencies:
     inherits "2.0.3"
 
-utility-types@3.11.0, utility-types@^3.10.0:
+utility-types@3.11.0:
   version "3.11.0"
   resolved "https://registry.yarnpkg.com/utility-types/-/utility-types-3.11.0.tgz#607c40edb4f258915e901ea7995607fdf319424c"
   integrity sha512-6Z7Ma2aVEWisaL6TvBCy7P8rm2LQoPv6dJ7ecIaIixHcwfbJ0x7mWdbcwlIM5IGQxPZSFYeqRCqlOOeKoJYMkw==

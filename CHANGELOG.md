@@ -72,14 +72,14 @@ This release focuses on stabilization and refactoring, to improve the technical 
 - Updated to `autoprefixer@10.4.17`
 - Updated to `cypress@13.6.3`
 - Updated to `eslint-plugin-tailwindcss@3.14.0`
-- Updated to `happy-dom@13.2.1`
+- Updated to `happy-dom@13.2.2`
 - Updated to `nuxt@3.9.3` (*​For detailed changes see [Release Notes for Nuxt](https://github.com/nuxt/nuxt/releases)*​)
 - Updated to `utility-types@3.11.0`
 - Updated to `vitest@1.2.1`
 
 #### 🏠 dependencies
 
-- Updated to `@scayle/storefront-nuxt@7.52.0`
+- Updated to `@scayle/storefront-nuxt@7.53.1`
 - Updated to `@storyblok/nuxt@6.0.4`
 - Updated to `dotenv@16.3.2`
 - Updated to `storyblok-js-client@6.6.3`

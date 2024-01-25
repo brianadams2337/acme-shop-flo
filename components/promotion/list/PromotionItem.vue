@@ -24,7 +24,7 @@ type Props = {
 const { togglePromotionList } = usePromotionActions()
 const props = withDefaults(defineProps<Props>(), { customData: () => ({}) })
 
-const to = computed(() => props.customData.category)
+const to = computed(() => props.customData.category?.to)
 
 const componentName = computed(() => {
   return to.value ? resolveComponent('DefaultLink') : 'div'

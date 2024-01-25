@@ -5,8 +5,8 @@
       :key="id"
     >
       <component
-        :is="getComponentName(customData.category)"
-        v-bind="getAttributes(customData.category)"
+        :is="getComponentName(customData)"
+        v-bind="getAttributes(customData)"
       >
         <PromotionItemContent
           :key="id"
@@ -28,9 +28,11 @@ const { applicablePromotions, isHighestPriority } = await useProductPromotions(
   props.product,
 )
 
-const getComponentName = (to?: string) => {
-  return to ? resolveComponent('DefaultLink') : 'div'
+const getComponentName = ({ category }: Promotion['customData']) => {
+  return category?.to ? resolveComponent('DefaultLink') : 'div'
 }
 
-const getAttributes = (to?: string) => ({ ...(to && { raw: true, to }) })
+const getAttributes = ({ category }: Promotion['customData']) => ({
+  ...(category?.to && { raw: true, to: category?.to }),
+})
 </script>

@@ -6,21 +6,24 @@
     @click="goToCategory()"
   >
     <template #append-icon="{ _class }">
-      {{ $t('promotion.show_deals_label') }}
+      {{ props.category?.ctaLabel || $t('promotion.show_deals_label') }}
       <IconChevronRight :class="_class" />
     </template>
   </AppButton>
 </template>
 
 <script setup lang="ts">
-const props = defineProps<{ category: string }>()
+const props = defineProps<{ category: Promotion['customData']['category'] }>()
 
 const { isPromotionListShown, togglePromotionList } = usePromotionActions()
 
 const { localizedNavigateTo } = useRouteHelpers()
 
 const goToCategory = async () => {
-  await localizedNavigateTo(normalizePathRoute(props.category))
+  if (!props.category?.to) {
+    return
+  }
+  await localizedNavigateTo(normalizePathRoute(props.category.to))
   isPromotionListShown.value && togglePromotionList()
 }
 </script>

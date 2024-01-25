@@ -10,11 +10,11 @@ export async function usePromotionProgress() {
 
   const minOrderAmount = computed(() => divideByHundred(minOrderValue.value))
 
-  const basketTotalWithoutPromotionReductions = computed(() => {
+  const basketTotal = computed(() => {
     return _sum(
       basketData.value.items.map((item) => {
         const withTax = item.price.total.withTax
-        const promotionReduction = item.price.total.appliedReductions.find(
+        const promotionReduction = basketData.value.cost.appliedReductions.find(
           ({ category }) => category === 'promotion',
         )
         if (!promotionReduction) {
@@ -25,22 +25,12 @@ export async function usePromotionProgress() {
     )
   })
 
-  const basketTotalForPromotion = computed(() => {
-    const isBasketItemPromoted = basketData.value.items.some((it) => {
-      return it.promotionId === currentPromotion.value?.id
-    })
-
-    return isBasketItemPromoted
-      ? basketTotalWithoutPromotionReductions.value
-      : 0
-  })
-
   const progress = computed(() => {
     if (!minOrderValue.value) {
       return 0
     }
 
-    return basketTotalForPromotion.value / minOrderAmount.value
+    return basketTotal.value / minOrderAmount.value
   })
 
   const isFullProgress = computed(() => {
@@ -53,7 +43,7 @@ export async function usePromotionProgress() {
     if (!minOrderValue.value) {
       return
     }
-    return formatCurrency(minOrderValue.value - basketTotalForPromotion.value)
+    return formatCurrency(minOrderValue.value - basketTotal.value)
   })
 
   return {

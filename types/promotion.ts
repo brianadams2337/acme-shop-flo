@@ -17,10 +17,13 @@ type CustomData = PromotionCustomData &
       productId: number
       minQuantity: number
     }>
+    category: {
+      ctaLabel: string
+      to: string
+    }
     headlineParts: string[]
     terms: string
     minOrderValue: number
-    category: string
     colorHex: string
   }>
 

@@ -1,22 +1,38 @@
 <template>
-  <div class="relative w-80 min-w-xs overflow-hidden rounded-md border p-2">
-    <PromotionActiveBadge v-if="isActive" class="absolute left-0 top-0 z-20" />
+  <component
+    :is="componentName"
+    v-bind="attributes"
+    class="relative w-80 min-w-xs overflow-hidden rounded-md border p-2"
+    @click="closePromotionList"
+  >
     <PromotionItemContent v-bind="{ customData, schedule }" class="mb-2" />
     <PromotionItemTerms
       v-if="customData.terms"
       :content="customData.terms"
       :promotion-id="id"
     />
-  </div>
+  </component>
 </template>
 
 <script setup lang="ts">
 type Props = {
   id: Promotion['id']
-  isActive: Promotion['isActive']
   customData?: Promotion['customData']
   schedule: Promotion['schedule']
 }
 
-withDefaults(defineProps<Props>(), { customData: () => ({}) })
+const { togglePromotionList } = usePromotionActions()
+const props = withDefaults(defineProps<Props>(), { customData: () => ({}) })
+
+const to = computed(() => props.customData.category?.to)
+
+const componentName = computed(() => {
+  return to.value ? resolveComponent('DefaultLink') : 'div'
+})
+
+const attributes = computed(() => {
+  return { ...(to.value && { raw: true, to: to.value }) }
+})
+
+const closePromotionList = () => to.value && togglePromotionList()
 </script>

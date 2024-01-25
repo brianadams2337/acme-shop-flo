@@ -4,6 +4,24 @@
 
 This release focuses on stabilization and refactoring, to improve the technical foundation and developer experience.
 
+### 🚀 Major Changes
+
+- **BREAKING:** Nested public Storefront-specific `runtimeConfig` properties under the `storefront` key
+  - Replaced `useRuntimeConfig().public.log` and `useRuntimeConfig().public.auth`
+    with `useRuntimeConfig().public.storefront.log` and `useRuntimeConfig().public.storefront.log`
+  - Changed `(...storefrontRuntimeConfigPublic as any),` to `storefront: storefrontRuntimeConfigPublic as any,` in `nuxt.config.ts`
+- **BREAKING**: Allow the session of an `RpcContext` to be `undefined`
+  - This changes the structure of the `RpcContext`, so it may be a breaking change if you have written custom RPC methods.
+    The affected properties on the `RpcContext` are `sessionId`, `wishlistKey` and `basketKey` and
+    the affected methods are `destroySession`, `createUserBoundSession`, `updateUser`, and `updateTokens`.
+    If you use these methods or properties in a custom RPC method, make sure that you handle the case where they might be undefined.
+    TypeScript will also catch these cases if you have `strictNullChecks` enabled.
+    You can check `context.sessionId` (or another session-dependent property) to determine if the session is present.
+    If one of these properties is present, all will be. Alternatively, you can call `assertSession(context)`
+    before referencing any properties on the context. If the session is not present,
+    an error will be thrown. For any usage of `context` after `assertSession` is called,
+    TypeScript will understand that the session properties are present.
+
 ### 💅 Minor Changes
 
 - Extracted sorting and grouping basket helpers to `utils`
@@ -16,7 +34,8 @@ This release focuses on stabilization and refactoring, to improve the technical 
 - Renamed `localeFormattedDate` date utility to `formatLocaleDate`
 - Enforced using tracking sub-composables through the `useTrackingEvents` by turning off auto-import for sub-composables
 - Simplified `Countdown` component logic by using `useIntervalFn` from `vueuse`
-- Changed `radash` utils prefix to be underscore (`_`) instead of `use`, to avoid confusion between `radash` utilities and Vue composables. Resulting in e.g. `useSleep` to become `_sleep`.
+- Changed `radash` utils prefix to be underscore (`_`) instead of `use`, to avoid confusion between `radash`
+  utilities and Vue composables. Resulting in e.g. `useSleep` to become `_sleep`.
 - Used radash `_sort` (`useSort`) instead of native `sort` to avoid side effects
 - Export composables as named functions
 - Refactored components to use `withDefaults` and type generics to define component properties
@@ -57,7 +76,8 @@ This release focuses on stabilization and refactoring, to improve the technical 
 - Use object for lookup of headline sizes instead of `computed` property in `components/ui/headlines/Headline.vue`
 - Fixed desktop sidebar overlapping navigation in `pages/[...category].vue`
 - Added `time` constants in `constants/time.ts` and used it in `components/ui/Countdown.vue`
-- Refactored `PromotionBanner` to be displayed on `onNuxtReady` instead of `onServerPrefetch` to avoid missing interactivity during page load and hydration
+- Refactored `PromotionBanner` to be displayed on `onNuxtReady` instead of `onServerPrefetch`
+  to avoid missing interactivity during page load and hydration
 - Removed `runtimeConfig.public.storyblok.webhookSecret` from `nuxt.config.ts`, as it is not supported by the `storyblok-nuxt` module
 - Use `yn` to typecast potential build value of `runtimeConfig.public.gtm.debug` via `yn(process.env.NUXT_PUBLIC_GTM_DEBUG)` in `nuxt.config.ts`
 

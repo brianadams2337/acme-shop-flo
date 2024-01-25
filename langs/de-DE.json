@@ -29,7 +29,6 @@
   "promotion": {
     "progress_left": "{amount} übrig",
     "terms": "Allgemeine Geschäftsbedingungen für Werbeaktionen",
-    "active_label": "Aktiv",
     "show_deals_label": "Deal-Artikel anzeigen",
     "my_deals_label": "Meine Angebote",
     "full_progress_message": {

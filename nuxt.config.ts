@@ -55,7 +55,7 @@ export default defineNuxtConfig({
   telemetry: false,
 
   // https://nuxt.com/docs/api/nuxt-config#debug
-  debug: false,
+  debug: true,
 
   // Any key/value pair outside of the `public` key are private/server-side only
   // https://nuxt.com/docs/guide/going-further/runtime-config
@@ -220,7 +220,7 @@ export default defineNuxtConfig({
     locales,
     differentDomains: DOMAIN_PER_LOCALE,
     detectBrowserLanguage: false,
-    defaultLocale: 'en',
+    defaultLocale: 'de',
     langDir: 'langs/',
     lazy: true,
     strategy: 'prefix',

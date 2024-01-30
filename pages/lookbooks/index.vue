@@ -41,7 +41,7 @@
 
 <script setup lang="ts">
 import { slugify } from '@scayle/storefront-nuxt'
-import type { SbListingPage } from '~/storyblok/types/storyblok.gen'
+import type { SbListingPage } from '~/modules/cms/providers/storyblok/types/storyblok.gen'
 
 const { fetchByFolder } = useCMS<SbListingPage>('lookbooks')
 const lookbooksData = ref()

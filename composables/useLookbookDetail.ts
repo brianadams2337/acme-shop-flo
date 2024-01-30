@@ -1,7 +1,7 @@
 import type {
   SbDetailImage,
   SbListingPage,
-} from '~/storyblok/types/storyblok.gen'
+} from '~/modules/cms/providers/storyblok/types/storyblok.gen'
 
 // TODO: Improve types as nodes can be falsy
 const findElement = (

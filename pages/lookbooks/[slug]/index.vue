@@ -42,7 +42,7 @@
 </template>
 
 <script setup lang="ts">
-import type { SbListingPage } from '~/storyblok/types/storyblok.gen'
+import type { SbListingPage } from '~/modules/cms/providers/storyblok/types/storyblok.gen'
 
 const route = useRoute()
 const lookbookCategoryCategoryPath = computed(

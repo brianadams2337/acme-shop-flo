@@ -82,7 +82,10 @@
 
 <script setup lang="ts">
 import type { Product } from '@scayle/storefront-nuxt'
-import type { SbCmsImage, SbListingPage } from '../storyblok/types/storyblok'
+import type {
+  SbCmsImage,
+  SbListingPage,
+} from '~/modules/cms/providers/storyblok/types/storyblok'
 
 const route = useRoute()
 const { pageState, setPageState } = usePageState()

@@ -1,8 +1,6 @@
 <template>
   <div>
     <div data-test-id="home-page-content">
-      <pre>{{ JSON.stringify(data2) }}</pre>
-
       <Story v-if="data" :story="data" />
     </div>
   </div>

@@ -21,7 +21,7 @@
 </template>
 
 <script setup lang="ts">
-import type { SbContentPage } from '~/storyblok/types/storyblok.gen'
+import type { SbContentPage } from '~/modules/cms/providers/storyblok/types/storyblok.gen'
 
 const route = useRoute()
 const slug = computed(() => route.params.slug)

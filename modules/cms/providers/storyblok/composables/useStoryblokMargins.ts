@@ -1,4 +1,4 @@
-import type { MarginKey } from '~/storyblok/types/storyblok'
+import type { MarginKey } from '~/modules/cms/providers/storyblok/types/storyblok'
 
 export function useStoryblokMargins(
   content: Partial<{ margin_top: MarginKey }>,

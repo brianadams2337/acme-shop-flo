@@ -1,7 +1,7 @@
 import type { StoryblokStory } from 'storyblok-generate-ts'
 import type { SbListingPage } from './../types/storyblok.gen'
 
-export function useCmsListingContent(data: Ref<StoryblokStory<SbListingPage>>) {
+export function useCMSListingContent(data: Ref<StoryblokStory<SbListingPage>>) {
   const content = computed(() => data.value?.content)
   return {
     content,

@@ -34,4 +34,8 @@ const areTermsShown = useState(`terms-${props.promotionId}`, () => false)
 const toggleTerms = () => {
   areTermsShown.value = !areTermsShown.value
 }
+
+onUnmounted(() => {
+  areTermsShown.value = false
+})
 </script>

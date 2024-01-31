@@ -33,7 +33,7 @@
           class="w-full border-gray-350 bg-white p-3 text-xs font-semibold transition"
           :class="isAddToBasketButtonShown ? 'opacity-1' : 'opacity-0'"
           data-test-id="wishlist-card-add-to-cart"
-          @click="emit('click:add-to-cart')"
+          @click="addToBasket"
         >
           {{ $t('pdp.add_label') }}
         </AppButton>
@@ -106,7 +106,7 @@
               :disabled="sizeSavingId === product.id"
               data-test-id="wishlist-card-add-to-cart"
               class="mt-4"
-              @click="emit('click:add-to-cart')"
+              @click="addToBasket"
             >
               {{ $t('pdp.add_label') }}
             </AppButton>
@@ -177,13 +177,21 @@ const basket = await useBasket()
 
 const { showAddToBasketToast } = await useBasketActions()
 
+const { highestPriorityPromotion, isBuyXGetYPrioritized } =
+  await useProductPromotions(props.product)
+
+const promotionId = computed(() => highestPriorityPromotion.value?.id)
+
 const { trackAddToBasket } = useTrackingEvents()
 
 const { toggle: toggleFilter } = useSlideIn(`wishlistcard_${props.product.id}`)
 
 const emit = defineEmits<{
   (e: 'click:change-size', value: Value): void
-  (e: 'click:add-to-cart'): void
+  (
+    e: 'click:add-to-cart',
+    promotionOptions: { promotionId?: string; isBuyXGetYPrioritized?: boolean },
+  ): void
 }>()
 
 const isAddToBasketButtonShown = ref(false)
@@ -245,6 +253,8 @@ const changeSizeAndAddToBasket = async (
   await basket.addItem({
     variantId: newVariant!.id,
     quantity: 1,
+    ...(promotionId.value &&
+      !isBuyXGetYPrioritized.value && { promotionId: promotionId.value }),
   })
 
   trackAddToBasket({
@@ -285,5 +295,12 @@ const onSelectSize = (size: Value): void => {
     changeSize(props.product, size)
   }
   isChangingSize.value = false
+}
+
+const addToBasket = () => {
+  emit('click:add-to-cart', {
+    promotionId: promotionId.value,
+    isBuyXGetYPrioritized: isBuyXGetYPrioritized.value,
+  })
 }
 </script>

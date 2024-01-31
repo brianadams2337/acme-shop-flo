@@ -29,7 +29,7 @@
           :key="`product-${key}`"
           data-test-id="wishlist-card"
           class="mb-4"
-          @click:add-to-cart="addItemToCart(key, +index)"
+          @click:add-to-cart="addItemToCart(key, +index, $event)"
         />
       </div>
       <div v-if="count === 0" class="mt-8 space-y-8">
@@ -76,7 +76,14 @@ if (wishlist.error.value) {
   throw wishlist.error.value
 }
 
-const addItemToCart = async (itemKey: string, index: number) => {
+const addItemToCart = async (
+  itemKey: string,
+  index: number,
+  {
+    promotionId,
+    isBuyXGetYPrioritized,
+  }: { promotionId?: string; isBuyXGetYPrioritized?: boolean },
+) => {
   const entry = wishlist.data.value?.items.find((el) => el.key === itemKey)
 
   if (!entry || !entry.product) {
@@ -106,6 +113,7 @@ const addItemToCart = async (itemKey: string, index: number) => {
   await basket.addItem({
     variantId: entry.variant.id,
     quantity: 1,
+    ...(promotionId && !isBuyXGetYPrioritized && { promotionId }),
   })
 
   openBasketFlyout()

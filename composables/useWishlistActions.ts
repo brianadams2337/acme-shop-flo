@@ -4,12 +4,18 @@ import {
   type Variant,
 } from '@scayle/storefront-nuxt'
 
+export const wishlistListingMetadata = {
+  id: WishlistListingMetadata.ID,
+  name: WishlistListingMetadata.NAME,
+} as const
+
 export function useWishlistActions() {
   const { $i18n } = useNuxtApp()
 
   const notification = useNotification()
 
   const { trackRemoveFromWishlist, trackAddToWishlist } = useTrackingEvents()
+
   const route = useRoute()
   const { pageState } = usePageState()
 

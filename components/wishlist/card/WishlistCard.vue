@@ -1,7 +1,8 @@
 <template>
   <ProductCard
-    v-bind="{ index, product, isAvailable }"
-    :id="product.id"
+    v-bind="{ index, isAvailable }"
+    :id="item.product.id"
+    :product="item.product"
     :loading="isWishlistFetching"
     class="col-span-6 md:col-span-4 2xl:col-span-3"
     wishlist-remove-icon="close"
@@ -10,7 +11,7 @@
     @productimage:mouseleave="isAddToBasketButtonShown = false"
   >
     <template #badge>
-      <ProductBadges :product="product" class="absolute bottom-2 left-2" />
+      <ProductBadges :product="item.product" class="absolute bottom-2 left-2" />
     </template>
     <template #header-image="{ link, image, imageLoading, name }">
       <DefaultLink :to="link" raw>
@@ -33,7 +34,7 @@
           class="w-full border-gray-350 bg-white p-3 text-xs font-semibold transition"
           :class="isAddToBasketButtonShown ? 'opacity-1' : 'opacity-0'"
           data-test-id="wishlist-card-add-to-cart"
-          @click="addToBasket"
+          @click="addItemToCart(index)"
         >
           {{ $t('pdp.add_label') }}
         </AppButton>
@@ -53,7 +54,7 @@
         <div
           class="flex size-8 cursor-pointer items-center justify-center rounded-full border border-gray-100 bg-white"
           data-test-id="wishlist-card-add-to-cart-mobile"
-          @click="showSizePicker"
+          @click="showSizePicker(index)"
         >
           <IconAddToCart class="size-5" />
         </div>
@@ -71,7 +72,8 @@
           <div>
             <ProductPrice
               data-test-id="wishlist-product-price"
-              v-bind="{ price, lowestPriorPrice, product }"
+              v-bind="{ price, lowestPriorPrice }"
+              :product="item.product"
               type="whisper"
               size="sm"
               class="text-primary"
@@ -80,15 +82,15 @@
           <div v-if="isAvailable" class="hidden lg:block">
             <div
               v-if="!hasOneSizeVariantOnly && isChangingSize"
-              :key="product.id"
+              :key="item.product.id"
               class="items-center space-x-2 py-4"
             >
               <ProductSizePicker
-                :id="product.id"
+                :id="item.product.id"
                 class="justify-center"
-                :variants="product?.variants || []"
+                :variants="item.product?.variants || []"
                 :value="selectedSize?.value"
-                @select-size="onSelectSize"
+                @select-size="selectPickerSize"
                 @click:outside="isChangingSize = false"
               />
             </div>
@@ -103,10 +105,10 @@
             </AppButton>
             <AppButton
               v-if="!isChangingSize"
-              :disabled="sizeSavingId === product.id"
+              :disabled="sizeSavingId === item.product.id"
               data-test-id="wishlist-card-add-to-cart"
               class="mt-4"
-              @click="addToBasket"
+              @click="addItemToCart(index)"
             >
               {{ $t('pdp.add_label') }}
             </AppButton>
@@ -115,7 +117,7 @@
       </div>
       <SlideIn
         class="lg:hidden"
-        :name="`wishlistcard_${product.id}`"
+        :name="`wishlistcard_${item.product.id}`"
         slide-type="fromBottom"
         slide-class="w-full xl:max-w-none h-auto xl:max-h-none top-auto left-0 p-0 pt-0"
       >
@@ -140,7 +142,10 @@
               </div>
             </div>
             <div class="px-5 pt-4">
-              <RadioGroup :items="sizes" @update:model-value="sizeSelected" />
+              <RadioGroup
+                :items="sizes"
+                @update:model-value="selectRadioSize"
+              />
             </div>
           </div>
         </template>
@@ -150,157 +155,38 @@
 </template>
 
 <script setup lang="ts">
-import {
-  type LowestPriorPrice,
-  type Price,
-  type Product,
-  type Value,
-  type Variant,
-  getAttributeValue,
-  getLowestPrice,
-  getSizeFromVariant,
-  getVariantBySize,
-} from '@scayle/storefront-nuxt'
+import type { Product, WishlistItem } from '@scayle/storefront-nuxt'
 
 type Props = {
   index: number
-  product: Product
-  variant?: Variant
+  item: WishlistItem & { product: Product }
 }
 
-const props = withDefaults(defineProps<Props>(), { variant: undefined })
+const props = defineProps<Props>()
 
 const { formatCurrency } = useFormatHelpers()
-const { fetching: isWishlistFetching, replaceItem: replaceWishlistItem } =
-  await useWishlist()
-const basket = await useBasket()
+const { fetching: isWishlistFetching } = await useWishlist()
 
-const { showAddToBasketToast } = await useBasketActions()
+const wishlistItem = computed(() => props.item)
 
-const { highestPriorityPromotion, isBuyXGetYPrioritized } =
-  await useProductPromotions(props.product)
+const {
+  hasOneSizeVariantOnly,
+  price,
+  isAvailable,
+  selectedSize,
+  sizes,
+  lowestPriorPrice,
+} = useWishlistItem(wishlistItem)
 
-const promotionId = computed(() => highestPriorityPromotion.value?.id)
-
-const { trackAddToBasket } = useTrackingEvents()
-
-const { toggle: toggleFilter } = useSlideIn(`wishlistcard_${props.product.id}`)
-
-const emit = defineEmits<{
-  (e: 'click:change-size', value: Value): void
-  (
-    e: 'click:add-to-cart',
-    promotionOptions: { promotionId?: string; isBuyXGetYPrioritized?: boolean },
-  ): void
-}>()
+const {
+  addItemToCart,
+  toggleFilter,
+  showSizePicker,
+  selectRadioSize,
+  selectPickerSize,
+  isChangingSize,
+  sizeSavingId,
+} = await useWishlistItemActions(wishlistItem)
 
 const isAddToBasketButtonShown = ref(false)
-
-const hasOneSizeVariantOnly = computed(() => {
-  const variants = props.product?.variants
-  return (
-    variants?.length === 1 &&
-    getAttributeValue(variants[0].attributes, 'size') === ONE_SIZE_KEY
-  )
-})
-
-const price = computed<Price>(() => {
-  return props.variant
-    ? props.variant.price
-    : getLowestPrice(props.product.variants || [])
-})
-
-const isAvailable = computed<boolean>(() => {
-  return props.product.isActive || !props.product.isSoldOut
-})
-
-const selectedSize = computed<Value | undefined>(() => {
-  return props.variant && getSizeFromVariant(props.variant, 'size')
-})
-
-const lowestPriorPrice = computed<LowestPriorPrice | undefined>(() => {
-  const variants = props.product.variants
-  const variant = getVariantWithLowestPrice(variants)
-  return variant?.lowestPriorPrice
-})
-
-const sizes = computed(() => getVariantSizes(props.product.variants))
-
-const getSize = (value: string): VariantSize | undefined => {
-  return sizes.value.find((size) => size.value === value)
-}
-
-const sizeSelected = (value: string) => {
-  const size = getSize(value)
-
-  if (size) {
-    changeSizeAndAddToBasket(props.product, size)
-    toggleFilter()
-  }
-}
-
-const changeSizeAndAddToBasket = async (
-  product: Product,
-  size: VariantSize,
-) => {
-  const newVariant = getVariantBySize(product.variants || [], size, 'size')
-  if (isEmpty(newVariant)) {
-    return
-  }
-  sizeSavingId.value = product.id
-  replaceWishlistItem({ productId: product.id }, { variantId: newVariant!.id })
-
-  await basket.addItem({
-    variantId: newVariant!.id,
-    quantity: 1,
-    ...(promotionId.value &&
-      !isBuyXGetYPrioritized.value && { promotionId: promotionId.value }),
-  })
-
-  trackAddToBasket({
-    product: props.product,
-    variant: newVariant,
-    index: props.index,
-    list: {
-      id: WishlistListingMetadata.ID,
-      name: WishlistListingMetadata.NAME,
-    },
-  })
-
-  showAddToBasketToast(true, product)
-
-  sizeSavingId.value = null
-}
-
-const showSizePicker = () => {
-  const oneSize = getSize(ONE_SIZE_KEY)
-
-  oneSize ? changeSizeAndAddToBasket(props.product, oneSize) : toggleFilter()
-}
-const isChangingSize = ref(false)
-const sizeSavingId = ref<number | null>(null)
-
-const changeSize = async ({ id, variants }: Product, size: Value) => {
-  const newVariant = getVariantBySize(variants || [], size, 'size')
-  if (isEmpty(newVariant)) {
-    return
-  }
-  sizeSavingId.value = id
-  await replaceWishlistItem({ productId: id }, { variantId: newVariant!.id })
-  sizeSavingId.value = null
-}
-
-const onSelectSize = (size: Value): void => {
-  if (size.value !== selectedSize.value?.value) {
-    changeSize(props.product, size)
-  }
-  isChangingSize.value = false
-}
-
-const addToBasket = () => {
-  emit('click:add-to-cart', {
-    promotionId: promotionId.value,
-    isBuyXGetYPrioritized: isBuyXGetYPrioritized.value,
-  })
-}
 </script>

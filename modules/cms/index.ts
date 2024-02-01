@@ -1,12 +1,13 @@
 import { defineNuxtModule } from '@nuxt/kit'
 import { setupStoryblok } from './providers/storyblok/setup'
 import type { ModuleOptions } from './types'
+import { isProviderStoryblok } from './utils/helpers'
 
 export default defineNuxtModule<ModuleOptions>({
   meta: {
     name: '@scayle/storefront-cms',
     configKey: 'cms',
-    version: '0.0.1',
+    version: '1.0.0',
     compatibility: {
       bridge: false,
       nuxt: '>=3.9',
@@ -16,7 +17,7 @@ export default defineNuxtModule<ModuleOptions>({
     provider: 'storyblok',
   },
   async setup(options, nuxt) {
-    if (options.provider === 'storyblok') {
+    if (isProviderStoryblok(options)) {
       await setupStoryblok(options, nuxt)
     }
   },

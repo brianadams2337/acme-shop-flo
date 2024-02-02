@@ -11,7 +11,7 @@
         {{ $t('wishlist.products_count', count) }}
       </p>
     </div>
-    <template v-if="fetchingBasket">
+    <template v-if="fetching">
       <div class="mt-8 flex flex-wrap">
         <SkeletonLoader
           v-for="index in count"
@@ -44,63 +44,7 @@
 </template>
 
 <script setup lang="ts">
-import {
-  type WishlistItem,
-  getFirstAttributeValue,
-  type Product,
-} from '@scayle/storefront-nuxt'
-
-const wishlist = await useWishlist({ options: { lazy: true } })
-const basket = await useBasket({ options: { lazy: true } })
-const { $i18n } = useNuxtApp()
-
-const { trackViewItemList, trackWishlist, collectProductListItems } =
-  useTrackingEvents()
-
-if (wishlist.error.value) {
-  throw wishlist.error.value
-}
-
-const orderedItems = computed(() => {
-  const sortedItems = _alphabetical(
-    wishlist.items.value || [],
-    (item: WishlistItem) => {
-      return (
-        getFirstAttributeValue(item.product?.attributes, 'name')?.label ?? ''
-      )
-    },
-  )
-  return sortedItems.filter(
-    (item: WishlistItem): item is WishlistItem & { product: Product } => {
-      return !!item.product
-    },
-  )
-})
-
-useSeoMeta({
-  robots: 'noindex,follow',
-  title: $i18n.t('navigation.wishlist'),
-})
-
-onMounted(() => {
-  if (!wishlist.data.value) {
-    return
-  }
-  trackWishlist(
-    collectProductListItems(wishlist.products.value, {
-      listId: wishlistListingMetadata.id,
-      listName: wishlistListingMetadata.name,
-    }),
-  )
-  trackViewItemList({
-    items: wishlist.products.value,
-    listingMetaData: wishlistListingMetadata,
-    source: 'wishlist',
-  })
-})
-
-const count = wishlist.count
-const fetchingBasket = basket.fetching
+const { count, fetching, orderedItems } = await useWishlistPage()
 
 defineOptions({ name: 'WishlistPage' })
 definePageMeta({ pageType: 'wishlist_page' })

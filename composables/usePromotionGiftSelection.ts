@@ -3,7 +3,6 @@ import {
   type Product,
   type Value,
   ExistingItemHandling,
-  getAttributeValue,
   getFirstAttributeValue,
   getPrice,
   getVariantBySize,
@@ -73,11 +72,7 @@ export async function usePromotionGiftSelection(
   })
 
   const hasOneSizeVariantOnly = computed(() => {
-    const variants = gift.variants
-    return (
-      variants?.length === 1 &&
-      getAttributeValue(variants[0].attributes, 'size') === ONE_SIZE_KEY
-    )
+    return hasOneSizeProductVariantOnly(gift)
   })
 
   const hasSpecial = computed(() => {

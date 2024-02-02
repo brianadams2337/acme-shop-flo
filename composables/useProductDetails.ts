@@ -3,7 +3,6 @@ import {
   type Value,
   getCategoriesByRoute,
   getBreadcrumbs,
-  getAttributeValue,
   getPrice,
   getProductSiblings,
   getVariantBySize,
@@ -73,11 +72,7 @@ export async function useProductDetails(key = 'product-details') {
   }
 
   const hasOneSizeVariantOnly = computed(() => {
-    const variants = product.value?.variants
-    return (
-      variants?.length === 1 &&
-      getAttributeValue(variants[0].attributes, 'size') === ONE_SIZE_KEY
-    )
+    return hasOneSizeProductVariantOnly(product.value)
   })
 
   const hasSpecial = computed(() => {

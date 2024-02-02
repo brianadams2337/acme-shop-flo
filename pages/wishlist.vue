@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="container max-sm:max-w-none">
     <div class="mt-8">
       <Headline size="xl" class="font-semibold text-primary">
         {{ $t('wishlist.heading') }}
@@ -11,7 +11,7 @@
         {{ $t('wishlist.products_count', count) }}
       </p>
     </div>
-    <template v-if="fetchingBasket">
+    <template v-if="fetching">
       <div class="mt-8 flex flex-wrap">
         <SkeletonLoader
           v-for="index in count"
@@ -24,12 +24,11 @@
     <template v-else>
       <div v-if="count" class="mt-8 grid w-auto grid-cols-12 gap-2">
         <WishlistCard
-          v-for="({ key, product, variant }, index) in orderedItems"
-          v-bind="{ product, variant, index }"
-          :key="`product-${key}`"
+          v-for="(item, index) in orderedItems"
+          :key="`product-${item.key}-${item.product}`"
+          v-bind="{ item, index }"
           data-test-id="wishlist-card"
           class="mb-4"
-          @click:add-to-cart="addItemToCart(key, +index, $event)"
         />
       </div>
       <div v-if="count === 0" class="mt-8 space-y-8">
@@ -45,135 +44,7 @@
 </template>
 
 <script setup lang="ts">
-import {
-  type WishlistItem,
-  getFirstAttributeValue,
-  type Product,
-  getAttributeValue,
-} from '@scayle/storefront-nuxt'
-
-const listingMetaData = {
-  id: WishlistListingMetadata.ID,
-  name: WishlistListingMetadata.NAME,
-} as const
-
-const wishlist = await useWishlist({ options: { lazy: true } })
-const basket = await useBasket({ options: { lazy: true } })
-const { $i18n } = useNuxtApp()
-
-const notification = useNotification()
-
-const { openBasketFlyout } = useFlyouts()
-
-const {
-  trackViewItemList,
-  trackWishlist,
-  trackAddToBasket,
-  collectProductListItems,
-} = useTrackingEvents()
-
-if (wishlist.error.value) {
-  throw wishlist.error.value
-}
-
-const addItemToCart = async (
-  itemKey: string,
-  index: number,
-  {
-    promotionId,
-    isBuyXGetYPrioritized,
-  }: { promotionId?: string; isBuyXGetYPrioritized?: boolean } = {},
-) => {
-  const entry = wishlist.data.value?.items.find((el) => el.key === itemKey)
-
-  if (!entry || !entry.product) {
-    return
-  }
-
-  // @ts-ignore
-  if (!entry.variant && entry.variantId) {
-    // @ts-ignore
-    entry.variant = getVariant(entry.product.variants!, entry.variantId)
-  }
-
-  if (
-    !entry.variant &&
-    entry.product?.variants?.length === 1 &&
-    getAttributeValue(entry.product?.variants[0]?.attributes, 'size') ===
-      ONE_SIZE_KEY
-  ) {
-    entry.variant = entry.product?.variants[0]
-  }
-
-  if (!entry.variant?.id) {
-    notification.show($i18n.t('basket.notification.select_size'), 'CONFIRM')
-    return
-  }
-
-  await basket.addItem({
-    variantId: entry.variant.id,
-    quantity: 1,
-    ...(promotionId && !isBuyXGetYPrioritized && { promotionId }),
-  })
-
-  openBasketFlyout()
-
-  const { product } = entry
-  let { variant = undefined } = entry
-  if (!variant && product && product.variants?.length) {
-    variant = product.variants[0]
-  }
-
-  if (product) {
-    trackAddToBasket({
-      product,
-      variant,
-      index,
-      list: listingMetaData,
-    })
-  }
-}
-
-const orderedItems = computed(() => {
-  const sortedItems = _alphabetical(
-    wishlist.items.value || [],
-    (item: WishlistItem) => {
-      return (
-        getFirstAttributeValue(item.product?.attributes, 'name')?.label ?? ''
-      )
-    },
-  )
-  return sortedItems.filter(
-    (item: WishlistItem): item is WishlistItem & { product: Product } => {
-      return !!item.product
-    },
-  )
-})
-
-useSeoMeta({
-  robots: 'noindex,follow',
-  title: $i18n.t('navigation.wishlist'),
-})
-
-onMounted(() => {
-  if (!wishlist.data.value) {
-    return
-  }
-  trackWishlist(
-    collectProductListItems(wishlist.products.value, {
-      listId: listingMetaData.id,
-      listName: listingMetaData.name,
-    }),
-  )
-  trackViewItemList({
-    items: wishlist.products.value,
-    listingMetaData,
-    source: 'wishlist',
-  })
-})
-
-const count = wishlist.count
-const fetchingBasket = basket.fetching
+const { count, fetching, orderedItems } = await useWishlistPage()
 
 defineOptions({ name: 'WishlistPage' })
 definePageMeta({ pageType: 'wishlist_page' })

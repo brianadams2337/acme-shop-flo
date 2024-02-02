@@ -1,6 +1,8 @@
 import {
   getFirstAttributeValue,
   isInStock,
+  getAttributeValue,
+  type Product,
   type Variant,
 } from '@scayle/storefront-nuxt'
 
@@ -32,4 +34,13 @@ export const getVariantSizes = (variants: Variant[] = []) => {
       isAvailable: isInStock(variant),
     }
   })
+}
+
+export const hasOneSizeProductVariantOnly = ({ variants }: Product) => {
+  const hasOneVariant = variants?.length === 1
+  if (!hasOneVariant) {
+    return false
+  }
+  const sizeAttribute = getAttributeValue(variants[0].attributes, 'size')
+  return sizeAttribute === ONE_SIZE_KEY
 }

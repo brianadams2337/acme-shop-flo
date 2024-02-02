@@ -4,7 +4,6 @@ import {
   type LowestPriorPrice,
   type Product,
   type Value,
-  getAttributeValue,
   getLowestPrice,
   getSizeFromVariant,
 } from '@scayle/storefront-nuxt'
@@ -13,11 +12,7 @@ export function useWishlistItem(
   item: Ref<WishlistItem & { product: Product }>,
 ) {
   const hasOneSizeVariantOnly = computed(() => {
-    const variants = item.value.product?.variants
-    return (
-      variants?.length === 1 &&
-      getAttributeValue(variants[0].attributes, 'size') === ONE_SIZE_KEY
-    )
+    return hasOneSizeProductVariantOnly(item.value.product)
   })
 
   const price = computed<Price>(() => {
@@ -26,9 +21,7 @@ export function useWishlistItem(
       : getLowestPrice(item.value.product.variants || [])
   })
 
-  const isAvailable = computed<boolean>(() => {
-    return item.value.product.isActive || !item.value.product.isSoldOut
-  })
+  const isAvailable = computed<boolean>(() => item.value.product.isActive)
 
   const selectedSize = computed<Value | undefined>(() => {
     return item.value.variant && getSizeFromVariant(item.value.variant, 'size')

@@ -37,6 +37,11 @@ export async function useWishlistItemActions(
     () => null,
   )
 
+  const isAddToBasketButtonShown = useState(
+    `is-add-to-basket-button-shown-${product.id}`,
+    () => false,
+  )
+
   const promotionId = computed(() => highestPriorityPromotion.value?.id)
 
   const addItemToCart = async (index: number) => {
@@ -169,5 +174,6 @@ export async function useWishlistItemActions(
     selectRadioSize,
     isChangingSize,
     sizeSavingId,
+    isAddToBasketButtonShown,
   }
 }

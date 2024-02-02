@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="container max-sm:max-w-none">
     <div class="mt-8">
       <Headline size="xl" class="font-semibold text-primary">
         {{ $t('wishlist.heading') }}

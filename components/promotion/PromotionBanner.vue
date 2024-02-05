@@ -52,9 +52,8 @@ const { togglePromotionList, isPromotionListShown, setBannerRef } =
 
 onNuxtReady(() => {
   const isOrderSuccessPage = route.path === localePath(routeList.osp.path)
-  if (isOrderSuccessPage) {
-    return
+  if (!isOrderSuccessPage && props.promotions.length > 1) {
+    togglePromotionList()
   }
-  props.promotions.length > 1 && togglePromotionList()
 })
 </script>

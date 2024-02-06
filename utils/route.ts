@@ -22,6 +22,7 @@ type Link =
   | 'wishlist'
   | 'basket'
   | 'signin'
+  | 'signup'
   | 'user'
   | 'orders'
   | 'account'
@@ -33,7 +34,12 @@ type Link =
 
 export type LinkList = Record<
   Link,
-  { name: string; path: string; parameter?: string }
+  {
+    name: string
+    path: string
+    parameter?: string
+    query?: { [key: string]: string }
+  }
 >
 
 export const routeList: LinkList = {
@@ -43,6 +49,7 @@ export const routeList: LinkList = {
   wishlist: { name: 'wishlist', path: '/wishlist' },
   basket: { name: 'basket', path: '/basket' },
   signin: { name: 'signin', path: '/signin' },
+  signup: { name: 'signin', path: '/signin', query: { register: 'true' } },
   orders: { name: 'account-orders', path: '/account/orders' },
   user: { name: 'account-user', path: '/account/user' },
   account: { name: 'account', path: '/account' },

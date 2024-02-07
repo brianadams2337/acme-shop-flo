@@ -21,14 +21,14 @@
 </template>
 
 <script setup lang="ts">
-defineProps({
-  tabs: {
-    type: Array<string>,
-    default: () => [],
-  },
-})
+type Props = {
+  tabs: Array<string>
+  initialIndex?: number
+}
 
-const activeIndex = ref(0)
+const props = withDefaults(defineProps<Props>(), { initialIndex: 0 })
+
+const activeIndex = ref(props.initialIndex)
 
 const changeActiveTab = (value: number) => {
   activeIndex.value = value

@@ -6,7 +6,7 @@
           {{ $t('global.sign_in') }}
         </DefaultLink>
         <span>/</span>
-        <DefaultLink :to="routeList.signin" @click="closeSideNavigation">
+        <DefaultLink :to="routeList.signup" @click="closeSideNavigation">
           {{ $t('global.register') }}
         </DefaultLink>
       </div>

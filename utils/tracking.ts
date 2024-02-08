@@ -13,6 +13,7 @@ import {
   type ProductCategory,
   type Variant,
   type WishlistResponseData,
+  type BasketResponseData,
 } from '@scayle/storefront-nuxt'
 
 // TODO: Add tests
@@ -163,14 +164,17 @@ const getTotalPriceInfo = (
 export const mapCustomerInfoToTrackingPayload = ({
   method,
   eh,
+  status,
+  login_method: loginMethod,
   customer_id: customerId,
   customer_type: customerType = 'new',
-  status,
+  content_name: contentName,
 }: CustomerData): CustomerInfo => {
   const mappedPayload: CustomerInfo = {
-    method,
+    ...(loginMethod ? { login_method: loginMethod } : { method }),
     eh: eh || '',
     customer_type: customerType,
+    content_name: contentName,
     status,
   }
   if (customerId) {
@@ -255,10 +259,15 @@ export const mapTrackingDataForEvent = (
         }),
       },
     }
-  } else if (isEcommerceTrackingEvent(event) && 'product' in payload) {
-    const currency = (payload as typeof payload & { currencyCode: string })
-      .currencyCode
+  } else if (
+    isEcommerceTrackingEvent(event) &&
+    'product' &&
+    'currencyCode' in payload &&
+    payload.product
+  ) {
+    const currency = payload.currencyCode
     const { pagePayload } = payload
+
     data = {
       ...(pagePayload || {}),
       ecommerce: {
@@ -274,9 +283,8 @@ export const mapTrackingDataForEvent = (
         ],
       },
     }
-  } else if ('product' in payload) {
-    const currency = (payload as typeof payload & { currencyCode: string })
-      .currencyCode
+  } else if ('product' && 'currencyCode' in payload && payload.product) {
+    const currency = payload.currencyCode
     const price =
       'variant' in payload && payload.variant
         ? getPrice(payload.variant)
@@ -294,6 +302,20 @@ export const mapTrackingDataForEvent = (
             tax: divideByHundred(price?.tax.vat.amount || 0),
           },
         ],
+      },
+    }
+  } else if ('products' && 'currencyCode' in payload && payload.products) {
+    const currency = payload.currencyCode
+    const { pagePayload } = payload
+
+    data = {
+      ...(pagePayload || {}),
+      ecommerce: {
+        items: payload.products.map((product) => ({
+          ...(currency ? { currency } : {}),
+          ...mapProductToTrackingPayload(product),
+          ...mapAdditionalInfo({ product }),
+        })),
       },
     }
   } else {
@@ -346,14 +368,14 @@ export const getDeepestCategoryForTracking = (
 }
 
 /**
- * Compares data of type WishlistResponseData (wishlist or basket)
+ * Compares data of type WishlistResponseData or BasketResponseData (wishlist or basket)
  * @param oldData previous data state (eg wishlist data {items, key})
  * @param newData new data state (eg wishlist data {items, key})
  * @returns boolean if a tracking significant change is detected
  */
 export const didWishlistOrBasketDataChange = (
-  oldData: WishlistResponseData | null,
-  newData: WishlistResponseData | null,
+  oldData?: WishlistResponseData | BasketResponseData<Product, Variant> | null,
+  newData?: WishlistResponseData | BasketResponseData<Product, Variant> | null,
 ): boolean => {
   return !isEqual(
     {

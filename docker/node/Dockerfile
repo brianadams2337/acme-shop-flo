@@ -1,7 +1,7 @@
 # Nuxt 3-based Storefront-Boilerplate (DemoShop) Dockerfile
 
 # Build
-FROM node:20.7.0-alpine3.18 as build
+FROM node:20.11.0-alpine3.19 as build
 
 WORKDIR /app
 
@@ -15,7 +15,7 @@ COPY . /app
 RUN yarn nuxt build
 
 # Run
-FROM node:20.7.0-alpine3.18
+FROM node:20.11.0-alpine3.19
 
 WORKDIR /app
 

@@ -367,23 +367,17 @@ export const getDeepestCategoryForTracking = (
   }
 }
 
-/**
- * Compares data of type WishlistResponseData or BasketResponseData (wishlist or basket)
- * @param oldData previous data state (eg wishlist data {items, key})
- * @param newData new data state (eg wishlist data {items, key})
- * @returns boolean if a tracking significant change is detected
- */
-export const didWishlistOrBasketDataChange = (
-  oldData?: WishlistResponseData | BasketResponseData<Product, Variant> | null,
-  newData?: WishlistResponseData | BasketResponseData<Product, Variant> | null,
-): boolean => {
+export const didBasketDataChange = (
+  oldData: BasketResponseData | null,
+  newData: BasketResponseData | null,
+) => {
   return !isEqual(
     {
       items: oldData?.items.map((item) => ({
         productId: item.product?.id,
         variantId: item.variant?.id,
         price: item.product?.priceRange,
-        quantity: (item as any).quantity,
+        quantity: item.quantity,
         soldOut: item.product?.isSoldOut,
       })),
       key: oldData?.key,
@@ -393,7 +387,31 @@ export const didWishlistOrBasketDataChange = (
         productId: item.product?.id,
         variantId: item.variant?.id,
         price: item.product?.priceRange,
-        quantity: (item as any).quantity,
+        quantity: item.quantity,
+        soldOut: item.product?.isSoldOut,
+      })),
+      key: newData?.key,
+    },
+  )
+}
+
+export const didWishlistDataChange = (
+  oldData: WishlistResponseData | null,
+  newData: WishlistResponseData | null,
+) => {
+  return !isEqual(
+    {
+      items: oldData?.items.map((item) => ({
+        productId: item.product?.id,
+        variantId: item.variant?.id,
+        soldOut: item.product?.isSoldOut,
+      })),
+      key: oldData?.key,
+    },
+    {
+      items: newData?.items.map((item) => ({
+        productId: item.product?.id,
+        variantId: item.variant?.id,
         soldOut: item.product?.isSoldOut,
       })),
       key: newData?.key,

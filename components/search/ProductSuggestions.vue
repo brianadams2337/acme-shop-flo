@@ -71,7 +71,5 @@ const getImageUrl = (productSuggestion: ProductSuggestion) => {
     : ''
 }
 
-const emit = defineEmits<{
-  (e: 'click:result', value: ProductSuggestion): void
-}>()
+const emit = defineEmits<{ 'click:result': [value: ProductSuggestion] }>()
 </script>

@@ -31,5 +31,5 @@ type Props = {
 
 withDefaults(defineProps<Props>(), { term: '', imageUrl: '', to: '' })
 
-const emit = defineEmits<{ (e: 'click:result'): void }>()
+const emit = defineEmits<{ 'click:result': [] }>()
 </script>

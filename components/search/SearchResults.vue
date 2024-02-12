@@ -52,5 +52,5 @@ withDefaults(defineProps<Props>(), {
   categories: () => [],
 })
 
-const emit = defineEmits<{ (e: 'click:result', event: Suggestion): void }>()
+const emit = defineEmits<{ 'click:result': [value: Suggestion] }>()
 </script>

@@ -43,6 +43,6 @@ type Props = {
 withDefaults(defineProps<Props>(), { items: () => [], searchTerm: '' })
 
 const emit = defineEmits<{
-  (e: 'click:result', value: BrandOrCategorySuggestion): void
+  'click:result': [value: BrandOrCategorySuggestion]
 }>()
 </script>

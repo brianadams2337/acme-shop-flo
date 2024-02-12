@@ -61,8 +61,8 @@ withDefaults(defineProps<Props>(), {
 })
 
 const emit = defineEmits<{
-  (e: 'close'): void
-  (e: 'click:result', event: Suggestion): void
+  close: []
+  'click:result': [event: Suggestion]
 }>()
 const { getSearchRoute } = useRouteHelpers()
 </script>

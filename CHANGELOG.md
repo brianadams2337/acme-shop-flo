@@ -37,10 +37,11 @@ The included tracking implementation has been refactored and received various im
 
 ### 🚀 Major Changes
 
-- **BREAKING:** Added support for runtimeConfig with `@nuxt/image`
-  - Added patch files for automatic dependency patching with [`patch-package`](https://www.npmjs.com/package/patch-package).
-    The tool will run in `postinstall` and apply any patches present in the `patches/` directory to the respective dependency.
-  - Extended `README.md` with a section regarding `Patches` to explain the details and currently applied patches
+- **BREAKING:** Added patch files for automatic dependency patching with [`patch-package`](https://www.npmjs.com/package/patch-package).
+    The tool will run in `postinstall` and apply any patches present in the `patches/` directory to the respective dependency. Extended `README.md` with a section regarding `Patches` to explain the details and currently applied patches
+  - Patched support for runtimeConfig with `@nuxt/image`
+  - Patched missing (`undefined`) driver name in `unstorage` if using `VercelKV` as caching driver
+  - Patches `nitro` (`nitropack`) to resolve session issues with page caching enabled
 - Added full support for an easy way of running the application through docker compose
 
 ### 💅 Minor Changes

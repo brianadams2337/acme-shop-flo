@@ -5,7 +5,7 @@
     <span class="font-bold">
       {{
         $t('promotion.full_progress_message.middle_part', {
-          amount: formattedAmount,
+          amount: formattedDiscount,
         })
       }}
     </span>
@@ -16,5 +16,5 @@
 <script setup lang="ts">
 withDefaults(defineProps<{ isSmall?: boolean }>(), { isSmall: false })
 
-const { formattedAmount } = await usePromotionProgress()
+const { formattedDiscount } = await usePromotionProgress()
 </script>

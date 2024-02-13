@@ -41,7 +41,7 @@ export async function usePromotionProgress() {
 
   const formattedDiscount = computed(() => {
     const promotedItem = basketData.value.items.find(
-      (item) => item.promotionId === currentPromotion.value.id,
+      (item) => item.promotionId === currentPromotion.value?.id,
     )
 
     const reduction = promotedItem?.price.total.appliedReductions.find(

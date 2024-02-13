@@ -32,8 +32,6 @@ export async function usePromotionProgress() {
     return !!progress.value && progress.value >= 100
   })
 
-  const formattedAmount = computed(() => formatCurrency(minOrderValue.value))
-
   const formattedAmountLeft = computed(() => {
     if (!minOrderValue.value) {
       return
@@ -41,11 +39,27 @@ export async function usePromotionProgress() {
     return formatCurrency(minOrderValue.value - basketTotal.value)
   })
 
+  const formattedDiscount = computed(() => {
+    const promotedItem = basketData.value.items.find(
+      (item) => item.promotionId === currentPromotion.value?.id,
+    )
+
+    const reduction = promotedItem?.price.total.appliedReductions.find(
+      ({ category }) => category === 'promotion',
+    )
+
+    if (!reduction) {
+      return
+    }
+
+    return formatCurrency(reduction?.amount.absoluteWithTax)
+  })
+
   return {
     minOrderAmount,
     progress,
     isFullProgress,
-    formattedAmount,
     formattedAmountLeft,
+    formattedDiscount,
   }
 }

@@ -31,11 +31,8 @@
     "terms": "Allgemeine Geschäftsbedingungen für Werbeaktionen",
     "show_deals_label": "Deal-Artikel anzeigen",
     "my_deals_label": "Meine Angebote",
-    "full_progress_message": {
-      "first_part": "Sie",
-      "middle_part": "sparen {amount}",
-      "last_part": "bei Ihrer Bestellung"
-    },
+    "cart_reached": "Warenkorb erreicht! Fügen Sie Promotion Produkte hinzu und erhalten Sie {discount}% Rabatt darauf",
+    "full_progress_message": "Sie sparen {amount} bei Ihrer Bestellung",
     "automatic_discount_headline": {
       "add_label": "Fügen Sie",
       "another_label": "weitere",

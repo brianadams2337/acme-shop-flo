@@ -164,6 +164,7 @@ export default defineNuxtConfig({
   // https://nuxt.com/docs/api/nuxt-config#modules-1
   modules: [
     '@scayle/storefront-nuxt/module',
+    '@scayle/omnichannel-nuxt/module',
     '@nuxtjs/tailwindcss',
     'nuxt-svgo',
     '@nuxt/image',

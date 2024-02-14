@@ -17,7 +17,11 @@
     />
     <div class="flex h-full flex-1 justify-end">
       <PromotionProgress v-if="minOrderValue" class="mr-2.5" />
-      <ShowDealsButton v-else-if="category" :category="category" class="mr-3" />
+      <ShowDealsButton
+        v-if="showDealsButton"
+        :category="category"
+        class="mr-3"
+      />
       <MyDealsButton class="self-center" />
     </div>
   </div>
@@ -48,6 +52,16 @@ const {
 
 const { togglePromotionList, isPromotionListShown, setBannerRef } =
   usePromotionActions()
+
+const { isMOVPromotionApplied, isFullProgress } = await usePromotionProgress()
+
+const showDealsButton = computed<boolean>(() => {
+  return Boolean(
+    category.value &&
+      (!minOrderValue.value ||
+        (!isMOVPromotionApplied.value && isFullProgress.value)),
+  )
+})
 
 onNuxtReady(() => {
   const isOrderSuccessPage = route.path === localePath(routeList.osp.path)

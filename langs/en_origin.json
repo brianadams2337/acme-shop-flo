@@ -91,9 +91,13 @@
   },
   "navigation": {
     "my_account": "My Account",
+    "my_orders": "My Orders",
+    "user_settings": "User Settings",
     "sign_in": "Sign in",
+    "search": "Search",
     "wishlist": "Wishlist",
-    "basket": "Basket"
+    "basket": "Basket",
+    "home": "Home"
   },
   "search": {
     "placeholder": "Search for product, category or brand",
@@ -106,7 +110,8 @@
     "search_try_again_description": "Search for items or brands",
     "product": "Produkt",
     "categories": "Kategorie",
-    "more": "More"
+    "more": "More",
+    "seo_title": "Your search for \"{term}\" has {count} results"
   },
   "promises": {
     "pay_with_invoice": "Pay with invoice",

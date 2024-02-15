@@ -263,17 +263,9 @@ onUnmounted(() => {
   quantity.value = 1
 })
 
-definePageMeta({ pageType: 'pdp' })
-
 const metaDescription = computed(() =>
   $i18n.t('pdp.seo.description', { productName: productName.value }),
 )
-
-useSeoMeta(() => ({
-  robots: 'index,follow',
-  title: `${productName.value} ${$i18n.t('pdp.seo.buy_online')}`,
-  description: metaDescription.value,
-}))
 
 const currentShop = useCurrentShop()
 const { formatCurrency } = useFormatHelpers()
@@ -294,11 +286,15 @@ useJsonld(() =>
   }),
 )
 
+useSeoMeta(() => ({ robots: 'index,follow' }))
+
 useHead(() => {
   if (!product.value) {
     return {}
   }
   return {
+    title: `${productName.value} ${$i18n.t('pdp.seo.buy_online')}`,
+    meta: [{ name: 'description', content: metaDescription.value }],
     link: [
       {
         rel: 'canonical',
@@ -312,4 +308,5 @@ useHead(() => {
 })
 
 defineOptions({ name: 'ProductDetailPage' })
+definePageMeta({ pageType: 'pdp' })
 </script>

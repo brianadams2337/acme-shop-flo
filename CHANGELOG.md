@@ -98,7 +98,7 @@ The included tracking implementation has been refactored and received various im
 
 #### 🏠 dependencies
 
-- Updated to `@scayle/storefront-nuxt@7.57.0`
+- Updated to `@scayle/storefront-nuxt@7.57.1`
 - Updated to `citty@0.1.5`
 - Updated to `dotenv@16.4.3`
 - Updated to `nanoid@5.0.5`

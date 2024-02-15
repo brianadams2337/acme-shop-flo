@@ -6,9 +6,9 @@ This release focuses on stabilization and modularization, to improve the technic
 
 ### 🔥 Highlights
 
-#### ✨ Update to Nuxt 3.10.1 and Vue 3.4.19
+#### ✨ Update to Nuxt 3.10.2 and Vue 3.4.19
 
-Storefront Boilerplate now runs on both the latest Nuxt `v3.10.1` and Vue `v3.4.19` and benefits from a multitude of improvements.
+Storefront Boilerplate now runs on both the latest Nuxt `v3.10.2` and Vue `v3.4.19` and benefits from a multitude of improvements.
 To get more details about all the changes see the [Official Nuxt 3.10 Announcement Blog](https://nuxt.com/blog/v3-10)
 and the [Official Vue 3.4.19 Changelogs](https://github.com/vuejs/core/blob/main/CHANGELOG.md#3419-2024-02-13).
 
@@ -37,8 +37,10 @@ The included tracking implementation has been refactored and received various im
 
 ### 🚀 Major Changes
 
+- **BREAKING:** The Image CDN config key has now moved to runtimeConfig under `public.cdnUrl`
+  - The environment variable `NUXT_PUBLIC_IMAGE_BASE_URL` has been replaced by `NUXT_PUBLIC_CDN_URL`
 - **BREAKING:** Added patch files for automatic dependency patching with [`patch-package`](https://www.npmjs.com/package/patch-package).
-    The tool will run in `postinstall` and apply any patches present in the `patches/` directory to the respective dependency. Extended `README.md` with a section regarding `Patches` to explain the details and currently applied patches
+  The tool will run in `postinstall` and apply any patches present in the `patches/` directory to the respective dependency. Extended `README.md` with a section regarding `Patches` to explain the details and currently applied patches
   - Patched support for runtimeConfig with `@nuxt/image`
   - Patched missing (`undefined`) driver name in `unstorage` if using `VercelKV` as caching driver
   - Patches `nitro` (`nitropack`) to resolve session issues with page caching enabled

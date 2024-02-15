@@ -21,7 +21,11 @@ const localePath = useLocalePath()
 
 const resetErrorState = async () => {
   const redirect = localePath(routeList.home).toString()
-  await clearError({ redirect })
+  if (useCurrentShop().value) {
+    await clearError({ redirect })
+  }
+
+  window.location.href = redirect
 }
 
 defineOptions({ name: 'GlobalError' })

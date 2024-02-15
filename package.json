@@ -60,7 +60,7 @@
     "postcss": "8.4.35",
     "postcss-custom-properties": "13.3.4",
     "postcss-html": "1.6.0",
-    "postcss-import": "16.0.0",
+    "postcss-import": "16.0.1",
     "postinstall-postinstall": "2.1.0",
     "prettier": "3.0.3",
     "prettier-plugin-tailwindcss": "0.5.11",

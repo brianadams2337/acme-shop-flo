@@ -190,10 +190,11 @@ const error = computed(() => {
   return productError.value || filterError.value || categoriesError.value
 })
 
+if (!categoryNotFound.value) {
+  throw createError({ statusCode: 404, fatal: true })
+}
+
 if (error.value) {
-  if (!categoryNotFound.value) {
-    throw createError({ statusCode: 404, fatal: true })
-  }
   throw error.value
 }
 

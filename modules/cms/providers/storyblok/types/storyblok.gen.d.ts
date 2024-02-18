@@ -798,6 +798,12 @@ export interface SbProductSlider {
   cta_url?: string
   product_ids?: string
   margin_top?: '' | 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl'
+  products?: {
+    id?: string
+    referenceKey?: string
+    name?: string
+    imageUrl?: string
+  }[]
   _uid: string
   component: 'ProductSlider'
 }

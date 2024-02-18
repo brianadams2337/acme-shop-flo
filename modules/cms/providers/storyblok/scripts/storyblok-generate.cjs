@@ -83,6 +83,30 @@ storyblokToTypescript({
             },
           },
         }
+      case 'scayle-plugin':
+      case 'scayle-plugin2': // TODO: Remove this once the plugin is renamed correctly
+        return {
+          [key]: {
+            type: 'array',
+            items: {
+              type: 'object',
+              properties: {
+                id: {
+                  type: 'string',
+                },
+                referenceKey: {
+                  type: 'string',
+                },
+                name: {
+                  type: 'string',
+                },
+                imageUrl: {
+                  type: 'string',
+                },
+              },
+            },
+          },
+        }
       default:
         return {}
     }

@@ -82,17 +82,41 @@
 
 <script setup lang="ts">
 import type { Product } from '@scayle/storefront-nuxt'
+import { rpcCall } from '@scayle/storefront-nuxt'
 import type {
   SbCmsImage,
   SbListingPage,
 } from '~/modules/cms/providers/storyblok/types/storyblok'
 
+const STORYBLOK_CATEGORIES_FOLDER = 'categories'
+
 const route = useRoute()
 const { pageState, setPageState } = usePageState()
 const { $i18n, $config } = useNuxtApp()
+const app = useNuxtApp()
+const currentShop = useCurrentShop()
 const { toggle: toggleFilter } = useSlideIn('FilterSlideIn')
 
 const { trackViewItemList, trackSelectItem } = useTrackingEvents()
+
+let path = Array.isArray(route.params.category)
+  ? route.params.category.join('/')
+  : route.params.category
+
+// Handle path if it is a category page from inside Storyblok. In this case, first resolve the
+// category id to a slug and then render the correct category page.
+if (path.startsWith(`${STORYBLOK_CATEGORIES_FOLDER}/`)) {
+  const id = parseInt(path.replace(`${STORYBLOK_CATEGORIES_FOLDER}/`, ''))
+  const category = await rpcCall(
+    app,
+    'getCategoryById',
+    currentShop.value,
+  )({ id })
+
+  if (category) {
+    path = category.slug
+  }
+}
 
 const {
   products,
@@ -115,7 +139,7 @@ const {
   productCountData,
   refreshProductCount,
   unfilteredCount,
-} = await useProductList()
+} = await useProductList(path)
 
 createFilterContext({
   filterableValues: filters,
@@ -157,7 +181,7 @@ const fetchData = async () => {
     await _fetchBySlug()
 
     cmsStatus.value = status.value
-    cmsData.value = data.value
+    cmsData.value = data.value?.data.story
   }
 }
 

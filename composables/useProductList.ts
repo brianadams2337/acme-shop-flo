@@ -6,17 +6,22 @@ const listingMetaData = {
   name: CategoryListingMetadata.NAME,
 }
 
-export async function useProductList() {
+export async function useProductList(
+  categoryPath: string | undefined = undefined,
+) {
   const route = useRoute()
 
-  const categoryPath = computed(() => {
+  const _categoryPath = computed(() => {
+    if (categoryPath) {
+      return categoryPath
+    }
     return Array.isArray(route.params.category)
       ? `/${route.params.category.join('/')}`
       : `/${route.params.category}`
   })
 
   const facetData = await useFacet({
-    key: `useFacet-${categoryPath.value}`,
+    key: `useFacet-${_categoryPath.value}`,
     params: {
       with: {
         product: {
@@ -70,7 +75,7 @@ export async function useProductList() {
   const { selectedSort } = useProductListSort(facetData.selectedCategory)
 
   const fetchParameters = computed(() => ({
-    path: categoryPath.value,
+    path: _categoryPath.value,
     ...productConditions.value,
     where: {
       ...productConditions?.value?.where,
@@ -79,7 +84,7 @@ export async function useProductList() {
     perPage: PRODUCTS_PER_PAGE,
     cache: {
       ttl: CACHE_TTL,
-      cacheKeyPrefix: `PLP:${categoryPath}`,
+      cacheKeyPrefix: `PLP:${_categoryPath}`,
     },
     sort: {
       ...selectedSort.value,
@@ -89,7 +94,7 @@ export async function useProductList() {
   return {
     ...facetData,
     fetchParameters,
-    categoryPath,
+    categoryPath: _categoryPath,
     listingMetaData,
   }
 }

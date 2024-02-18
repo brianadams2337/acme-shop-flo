@@ -79,33 +79,60 @@ const productIds = computed(() => {
   return props.blok.product_ids?.split(',').map(Number).filter(Boolean)
 })
 
-const { data, fetching } = await useProductsByIds({
-  params: {
-    ids: productIds.value || [],
-    with: {
-      attributes: {
-        withKey: ['color', 'brand', 'name'],
-      },
-      variants: {
-        attributes: {
-          withKey: ['price', 'size'],
-        },
-        lowestPriorPrice: true,
-      },
-      images: {
-        attributes: {
-          withKey: ['imageType', 'imageView', 'imageBackground', 'imageKind'],
-        },
-      },
-      priceRange: true,
-      lowestPriorPrice: true,
-    },
-  },
-  key: `productSlider-${props.blok._uid}`,
+const productReferenceKeys = computed(() => {
+  return props.blok.products?.map((elm) => elm.referenceKey).filter(Boolean)
 })
 
+const withParams = {
+  attributes: {
+    withKey: ['color', 'brand', 'name'],
+  },
+  variants: {
+    attributes: {
+      withKey: ['price', 'size'],
+    },
+    lowestPriorPrice: true,
+  },
+  images: {
+    attributes: {
+      withKey: ['imageType', 'imageView', 'imageBackground', 'imageKind'],
+    },
+  },
+  priceRange: true,
+  lowestPriorPrice: true,
+}
+
+const { data, fetching } =
+  props.blok.products && props.blok.products.length > 0
+    ? await useProductsByReferenceKeys({
+        params: {
+          referenceKeys: productReferenceKeys.value || [],
+          with: withParams,
+        },
+        key: `productSlider-${props.blok._uid}`,
+      })
+    : await useProductsByIds({
+        params: {
+          ids: productIds.value || [],
+          with: withParams,
+        },
+        key: `productSlider-${props.blok._uid}`,
+      })
+
 const trackingCollector = ref<Product[]>([])
-const products = computed(() => data.value)
+const products = computed(() => {
+  if (props.blok.products && props.blok.products.length > 0) {
+    // If products are fetched by reference keys, maintain the same order
+    return productReferenceKeys.value
+      ?.map(
+        (referenceKey) =>
+          data.value?.find((product) => product.referenceKey === referenceKey),
+      )
+      .filter(Boolean) as Product[]
+  }
+
+  return data.value
+})
 const sliderOffset = computed(() => (isGreaterOrEqual('md') ? 56 : 20))
 const columns = computed(() => (isGreaterOrEqual('md') ? 5 : 2))
 

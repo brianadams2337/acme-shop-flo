@@ -13,13 +13,16 @@ const data = await useAsyncStoryblok('home', storyblokOptions)
 const config = useRuntimeConfig()
 const route = useRoute()
 
+const { $i18n } = useNuxtApp()
+
 const wishlist = await useWishlist()
 
 const { hasEventInQueue } = useTracking()
 
 const { trackWishlist, collectProductListItems } = useTrackingEvents()
 
-useSeoMeta({ robots: 'index,follow' })
+useSeoMeta({ robots: 'index,follow', title: $i18n.t('navigation.home') })
+
 useHead({
   link: [
     {

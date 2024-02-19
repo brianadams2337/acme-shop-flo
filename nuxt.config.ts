@@ -115,7 +115,7 @@ export default defineNuxtConfig({
        * https://github.com/zadigetvoltaire/nuxt-gtm#readme */
       gtm: {
         id: process.env.NUXT_PUBLIC_GTM_ID ?? '', // Override: NUXT_PUBLIC_GTM_ID
-        debug: yn(process.env.NUXT_PUBLIC_GTM_DEBUG), // Override: NUXT_PUBLIC_GTM_DEBUG
+        debug: process.env.NUXT_PUBLIC_GTM_DEBUG, // Override: NUXT_PUBLIC_GTM_DEBUG
       },
       /** Storyblok Runtime Configuration
        * https://scayle.dev/en/dev/storefront-core/module-configuration */
@@ -318,7 +318,9 @@ export default defineNuxtConfig({
     // Page generated on-demand, revalidates in background
     const CACHE_PAGE = {
       cache: {
-        swr: true, // Enable stale-while-revalidate
+        // SWR currently leads to some bugs in the Nitro caching implementation that it will continue to serve outdated data in case the SSR handler crashes
+        // We recommend to keep this disabled currently.
+        swr: false, // Disable stale-while-revalidate
         maxAge: 10 * 60, // Default: 10min
         staleMaxAge: 10 * 60, // Default: 10min
         group: 'ssr', // Cache group name

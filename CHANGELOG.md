@@ -77,6 +77,7 @@ The included tracking implementation has been refactored and received various im
 - Fixed UX / UI issues for Order details page in `pages/account/orders.vue`
 - Fixed UX / UI issues with login and registration forms
 - Fixed window scrolling on PLP pagination in `components/ui/pagination/PaginationButton.vue`
+- Disabled `swr` for page caching by default to mitigate potential broken pages and hydration issues
 
 ### 🏡 Dependency Updates
 
@@ -98,7 +99,7 @@ The included tracking implementation has been refactored and received various im
 
 #### 🏠 dependencies
 
-- Updated to `@scayle/storefront-nuxt@7.57.0`
+- Updated to `@scayle/storefront-nuxt@7.57.1`
 - Updated to `citty@0.1.5`
 - Updated to `dotenv@16.4.3`
 - Updated to `nanoid@5.0.5`

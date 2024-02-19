@@ -91,9 +91,15 @@
   },
   "navigation": {
     "my_account": "Mein Konto",
+    "my_orders": "Meine Bestellungen",
+    "user_settings": "Benutzereinstellungen",
     "sign_in": "Einloggen",
     "wishlist": "Wunschliste",
-    "basket": "Warenkorb"
+    "basket": "Warenkorb",
+    "home": "Home",
+    "search": "Suchen",
+    "checkout": "Kasse",
+    "osp": "Bestellbestätigung"
   },
   "search": {
     "placeholder": "Suche Produkte, Kategorien oder Marken",
@@ -106,7 +112,8 @@
     "result": "Deine Suche nach \"{term}\" ergab {resultsCount} Treffer.",
     "product": "Produkt",
     "categories": "Kategorie",
-    "more": "Mehr"
+    "more": "Mehr",
+    "seo_title": "Ihre Suche nach \"{term}\" ergab {count} Ergebnisse"
   },
   "promises": {
     "pay_with_invoice": "Per Rechnung bezahlen",
@@ -262,10 +269,6 @@
     "including_vat": "inkl. Mwst.",
     "best_price_30d": "30-Tage-Bestpreis**:",
     "best_price_hint": "**niedrigster Gesamtpreis der letzten 30 Tage vor der Preisermäßigung"
-  },
-  "lookbooks": {
-    "back": "Zurück",
-    "products": "Produkte"
   },
   "plp": {
     "filter": "Filter",

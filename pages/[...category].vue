@@ -155,7 +155,7 @@ const rootCategories = computed(() => {
     ? rootCategoriesData.value.categories
     : [rootCategoriesData.value.categories]
 })
-const categoryNotFound = computed(() => {
+const foundCategoryByPath = computed(() => {
   return rootCategories.value.find(
     (category) => localPath(category.path) === route.path,
   )
@@ -190,7 +190,7 @@ const error = computed(() => {
   return productError.value || filterError.value || categoriesError.value
 })
 
-if (!categoryNotFound.value) {
+if (!foundCategoryByPath.value) {
   throw createError({ statusCode: HttpStatusCode.NOT_FOUND, fatal: true })
 }
 

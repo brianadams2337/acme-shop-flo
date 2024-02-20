@@ -23,11 +23,7 @@
           class="text-sm font-medium text-primary line-through"
           data-test-id="initialProductPrice"
         >
-          {{
-            formatCurrency(
-              props.price.withTax + totalReductions.absoluteWithTax,
-            )
-          }}
+          {{ formatCurrency(priceWithTax + totalReductions.absoluteWithTax) }}
         </span>
       </p>
       <slot name="tax-info">
@@ -87,6 +83,7 @@ const props = withDefaults(defineProps<Props>(), {
 
 const { formatCurrency } = useFormatHelpers()
 const appliedReductions = computed(() => props.price?.appliedReductions)
+const priceWithTax = computed(() => props.price?.withTax)
 
 const { automaticDiscountPromotion, getAppliedAutomaticDiscountPrice } =
   await useProductPromotions(props.product)
@@ -98,7 +95,7 @@ const isAutomaticDiscountApplied = computed(() => {
     return false
   }
 
-  return basketData.value.items.some(({ promotion, promotionId, product }) => {
+  return basketData.value?.items.some(({ promotion, promotionId, product }) => {
     return (
       props.product.id === product.id &&
       promotionId === automaticDiscountPromotion.value?.id &&

@@ -14,12 +14,16 @@ declare module '@scayle/storefront-nuxt' {
     appKeys: typeof DEFAULT_APP_KEYS
     isLowestPreviousPriceActive?: boolean
     idp?: IDPConfig
+    navigationTreeHeader?: string
+    navigationTreeFooter?: string
   }
   // Extend PublicShopConfig to make types available on currentShop
   export interface PublicShopConfig {
     isLowestPreviousPriceActive?: boolean
     paymentProviders: string[]
     idp?: IDPConfig
+    navigationTreeHeader?: string
+    navigationTreeFooter?: string
   }
 }
 
@@ -138,6 +142,9 @@ export const storefrontRuntimeConfigPrivate: Partial<ModuleOptions> = {
           idpKeys: [],
           idpRedirectURL: '',
         },
+
+        navigationTreeHeader: 'header',
+        navigationTreeFooter: 'footer',
 
         /** Storefront Core - Numeric SCAYLE ShopId (usually 5 digits) */
         shopId: shop.shopId, // Override: NUXT_STOREFRONT_STORES_{UNIQUE_IDENTIFIER}_SHOP_ID

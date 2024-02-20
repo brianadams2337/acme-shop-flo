@@ -7,9 +7,9 @@
       :promotions="promotionData.entities"
     />
     <HeaderMetaBar />
-    <AppHeader v-bind="{ rootCategories, fetchingCategories }" />
+    <AppHeader />
     <ToastContainer />
-    <MobileSidebar v-bind="{ rootCategories, fetchingCategories }" />
+    <MobileSidebar />
     <div class="mt-4 grow">
       <NuxtPage />
     </div>
@@ -21,23 +21,12 @@
 // Initialize data
 await useWishlist()
 await useBasket()
-const categoryData = await useCategories({
-  params: { path: '/' },
-  key: 'categoryNavigation',
-})
+await useRootCategories()
 
 const { data: promotionData } = await useCurrentPromotions()
 
-const { data: rootCategoriesData, fetching: fetchingCategories } = categoryData
-
 const { trackShopInit, listenToUserItemsChanges, listenToCustomerDataChanges } =
   useTrackingEvents()
-
-const rootCategories = computed(() => {
-  return Array.isArray(rootCategoriesData.value.categories)
-    ? rootCategoriesData.value.categories
-    : [rootCategoriesData.value.categories]
-})
 
 trackShopInit()
 await listenToUserItemsChanges()

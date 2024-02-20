@@ -91,8 +91,7 @@ const route = useRoute()
 const { pageState, setPageState } = usePageState()
 const { $i18n, $config } = useNuxtApp()
 const { toggle: toggleFilter } = useSlideIn('FilterSlideIn')
-const localPath = useLocalePath()
-
+const currentShop = useCurrentShop()
 const { trackViewItemList, trackSelectItem } = useTrackingEvents()
 
 const {
@@ -145,20 +144,16 @@ const { fetchBySlug } = useCMS<SbListingPage>(`ListingPage-${route.path}`)
 
 const cmsStatus = ref('')
 const cmsData = ref()
-const { data: rootCategoriesData } = await useCategories({
-  params: { path: route.path },
-  key: 'categoryNavigation',
-})
 
-const rootCategories = computed(() => {
-  return Array.isArray(rootCategoriesData.value.categories)
-    ? rootCategoriesData.value.categories
-    : [rootCategoriesData.value.categories]
+const pathWithoutLocale = hasLocalePrefix(route.path, currentShop.value?.path)
+  ? route.path.split('/')[2]
+  : route.path
+const { data: category } = await useCategoryByPath({
+  params: { path: normalizePathRoute(pathWithoutLocale), children: 0 },
+  key: 'category',
 })
 const foundCategoryByPath = computed(() => {
-  return rootCategories.value.find(
-    (category) => localPath(category.path) === route.path,
-  )
+  return !!category.value
 })
 
 const fetchData = async () => {

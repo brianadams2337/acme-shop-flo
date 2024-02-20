@@ -81,7 +81,11 @@
 </template>
 
 <script setup lang="ts">
-import { HttpStatusCode, type Product } from '@scayle/storefront-nuxt'
+import {
+  HttpStatusCode,
+  type Product,
+  stripShopLocaleFromPath,
+} from '@scayle/storefront-nuxt'
 import type {
   SbCmsImage,
   SbListingPage,
@@ -145,15 +149,14 @@ const { fetchBySlug } = useCMS<SbListingPage>(`ListingPage-${route.path}`)
 const cmsStatus = ref('')
 const cmsData = ref()
 
-const pathWithoutLocale = hasLocalePrefix(route.path, currentShop.value?.path)
-  ? route.path.split('/')[2]
-  : route.path
+const pathWithoutLocale =
+  hasLocalePrefix(route.path, currentShop.value?.path) &&
+  currentShop.value?.path
+    ? stripShopLocaleFromPath(currentShop.value?.path, route.path)
+    : route.path
 const { data: category } = await useCategoryByPath({
   params: { path: normalizePathRoute(pathWithoutLocale), children: 0 },
   key: 'category',
-})
-const foundCategoryByPath = computed(() => {
-  return !!category.value
 })
 
 const fetchData = async () => {
@@ -185,7 +188,7 @@ const error = computed(() => {
   return productError.value || filterError.value || categoriesError.value
 })
 
-if (!foundCategoryByPath.value) {
+if (!category.value) {
   throw createError({ statusCode: HttpStatusCode.NOT_FOUND, fatal: true })
 }
 

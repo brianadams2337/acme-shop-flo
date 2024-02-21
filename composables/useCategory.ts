@@ -1,7 +1,7 @@
 export async function useCategory() {
   const route = useRoute()
 
-  const categoryPath = computed(() => {
+  const categoryPath = computed<string>(() => {
     const { category } = route.params
     const path = Array.isArray(category) ? category.join('/') : category
     return normalizePathRoute(path)

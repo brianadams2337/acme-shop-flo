@@ -1,3 +1,5 @@
+import type { Category } from '@scayle/storefront-nuxt'
+
 export async function useRootCategories() {
   const categoryData = await useCategories({
     params: { path: '/' },
@@ -7,7 +9,7 @@ export async function useRootCategories() {
   const { data: rootCategoriesData, fetching: fetchingCategories } =
     categoryData
 
-  const rootCategories = computed(() => {
+  const rootCategories = computed<Category[]>(() => {
     return Array.isArray(rootCategoriesData.value.categories)
       ? rootCategoriesData.value.categories
       : [rootCategoriesData.value.categories]

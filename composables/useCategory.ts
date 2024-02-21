@@ -1,4 +1,4 @@
-export async function useCategory() {
+export async function useCategory(autoFetch = false) {
   const route = useRoute()
 
   const categoryPath = computed<string>(() => {
@@ -10,6 +10,7 @@ export async function useCategory() {
   const { data: category, fetch } = await useCategoryByPath({
     params: { path: categoryPath.value, children: 0 },
     key: 'category',
+    options: { autoFetch },
   })
 
   return { category, categoryPath, fetch }

@@ -81,11 +81,7 @@
 </template>
 
 <script setup lang="ts">
-import {
-  HttpStatusCode,
-  type Product,
-  stripShopLocaleFromPath,
-} from '@scayle/storefront-nuxt'
+import { HttpStatusCode, type Product } from '@scayle/storefront-nuxt'
 import type {
   SbCmsImage,
   SbListingPage,
@@ -95,7 +91,6 @@ const route = useRoute()
 const { pageState, setPageState } = usePageState()
 const { $i18n, $config } = useNuxtApp()
 const { toggle: toggleFilter } = useSlideIn('FilterSlideIn')
-const currentShop = useCurrentShop()
 const { trackViewItemList, trackSelectItem } = useTrackingEvents()
 
 const {
@@ -120,6 +115,8 @@ const {
   refreshProductCount,
   unfilteredCount,
 } = await useProductList()
+
+const { category } = await useCategory()
 
 createFilterContext({
   filterableValues: filters,
@@ -148,14 +145,6 @@ const { fetchBySlug } = useCMS<SbListingPage>(`ListingPage-${route.path}`)
 
 const cmsStatus = ref('')
 const cmsData = ref()
-
-const pathWithoutLocale = currentShop.value?.path
-  ? stripShopLocaleFromPath(currentShop.value?.path, route.path)
-  : route.path
-const { data: category } = await useCategoryByPath({
-  params: { path: normalizePathRoute(pathWithoutLocale), children: 0 },
-  key: 'category',
-})
 
 const fetchData = async () => {
   await fetchProducts(fetchParameters.value)

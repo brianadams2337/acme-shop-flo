@@ -24,12 +24,12 @@
         <p class="mb-5 text-sm">{{ $t('store_locator.subline') }}</p>
         <div class="mt-3 flex items-center justify-evenly">
           <AppButton
-            class="flex size-12 cursor-pointer items-center justify-center"
+            class="mr-2 flex size-12 cursor-pointer items-center justify-center border-2 border-black"
             type="ghost"
             :disabled="searching"
             @click="findStoresInUserLocation()"
           >
-            <IconLocation />
+            <IconLocation class="size-8" />
           </AppButton>
 
           <TextInput
@@ -48,6 +48,7 @@
             class="ml-auto rounded border-4 border-black p-2 text-xs !normal-case"
             rounded
             :disabled="!searchAddress.length || searching"
+            :loading="searching"
             @click="searchForStores()"
           >
             {{ $t('store_locator.buttons.search') }}
@@ -89,21 +90,20 @@ const { storesData, refreshStores } = useStoreLocator()
 const stores = computed(() => storesData.value ?? [])
 
 const selectedStoreId = ref<number | undefined>(undefined)
-const searching = ref(false)
+const searching = ref<boolean>(false)
 
 const searchAddress = ref('')
 const searchRadius = ref(5000)
 
-onMounted(() =>
-  refreshStores({
-    filters: { address: searchAddress.value, radius: searchRadius.value },
-  }),
-)
+const searchForStores = async () => {
+  searching.value = true
+  try {
+    await refreshStores({
+      filters: { address: searchAddress.value, radius: searchRadius.value },
+    })
+  } catch {}
 
-const searchForStores = () => {
-  refreshStores({
-    filters: { address: searchAddress.value, radius: searchRadius.value },
-  })
+  searching.value = false
 }
 
 const getClientLocation = (): Promise<GeolocationPosition> =>
@@ -127,15 +127,17 @@ const findStoresInUserLocation = async () => {
   searchAddress.value = ''
   searching.value = true
 
-  await refreshStores({
-    filters: {
-      radius: 10000,
-      geoPoint: {
-        lat: coords.latitude,
-        lng: coords.longitude,
+  try {
+    await refreshStores({
+      filters: {
+        radius: 10000,
+        geoPoint: {
+          lat: coords.latitude,
+          lng: coords.longitude,
+        },
       },
-    },
-  })
+    })
+  } catch {}
   searching.value = false
 }
 </script>

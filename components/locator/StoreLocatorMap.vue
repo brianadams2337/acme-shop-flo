@@ -5,13 +5,7 @@
 <script setup lang="ts">
 import { Loader } from '@googlemaps/js-api-loader'
 
-const currentShop = useCurrentShop()
-const formatter = new Intl.NumberFormat(currentShop.value.locale, {
-  maximumSignificantDigits: 3,
-})
-const formatDistance = (num: number): string => {
-  return num < 2000 ? num + ' m' : formatter.format(num / 1000) + ' km'
-}
+const formatDistance = useFormatDistance()
 
 const props = defineProps({
   stores: {
@@ -22,10 +16,11 @@ const props = defineProps({
     type: String,
     default: '',
   },
-  selectedStoreId: {
-    type: Number,
-    default: undefined,
-  },
+})
+
+const selectedStoreId = defineModel('selectedStoreId', {
+  type: Number,
+  default: undefined,
 })
 
 const mapSettings = {
@@ -72,7 +67,7 @@ onMounted(async () => {
   )
 
   watch(
-    () => props.selectedStoreId,
+    () => selectedStoreId.value,
     (storeId) => {
       if (storeId) {
         selectStoreMarker(storeId)
@@ -106,7 +101,12 @@ const setMarkers = () => {
     })
 
     marker.addListener('click', () => {
-      infoWindow.open(map.value, marker)
+      selectedStoreId.value = store.id
+    })
+
+    infoWindow.addListener('closeclick', () => {
+      // @ts-ignore
+      selectedStoreId.value = undefined
     })
 
     // set the position of the google map, to make all markers visible
@@ -134,13 +134,13 @@ const getInfoWindowMarkup = (title: string, distance: number) =>
 
 const selectStoreMarker = (storeId: number) => {
   const infoWindow = infoWindows.value[storeId]
-  const advancedMarkerElement = markers.value[storeId]
+  const marker = markers.value[storeId]
 
   // close all info windows
   Object.values(infoWindows.value).forEach((infoWindow) => infoWindow.close())
 
-  if (infoWindow && advancedMarkerElement) {
-    infoWindow.open({ anchor: advancedMarkerElement, map: map.value })
+  if (infoWindow && marker) {
+    infoWindow.open({ anchor: marker, map: map.value })
   }
 }
 </script>

@@ -87,29 +87,15 @@ import type {
   SbListingPage,
 } from '~/modules/cms/providers/storyblok/types/storyblok'
 
-const STORYBLOK_CATEGORIES_FOLDER = 'categories'
-
 const route = useRoute()
 const { pageState, setPageState } = usePageState()
 const { $i18n, $config } = useNuxtApp()
 const { toggle: toggleFilter } = useSlideIn('FilterSlideIn')
 const { trackViewItemList, trackSelectItem } = useTrackingEvents()
+const { category } = await useCategory(true)
 
-let path = Array.isArray(route.params.category)
-  ? route.params.category.join('/')
-  : route.params.category
-
-const { getCategoryById } = await useCategories()
-
-// Handle path if it is a category page from inside Storyblok. In this case, first resolve the
-// category id to a slug and then render the correct category page.
-if (path.startsWith(`${STORYBLOK_CATEGORIES_FOLDER}/`)) {
-  const id = parseInt(path.replace(`${STORYBLOK_CATEGORIES_FOLDER}/`, ''))
-  const category = await getCategoryById(id)
-
-  if (category) {
-    path = category.slug
-  }
+if (!category.value) {
+  throw createError({ statusCode: HttpStatusCode.NOT_FOUND, fatal: true })
 }
 
 const {
@@ -133,7 +119,7 @@ const {
   productCountData,
   refreshProductCount,
   unfilteredCount,
-} = await useProductList(path)
+} = await useProductList(category.value.path)
 
 createFilterContext({
   filterableValues: filters,
@@ -191,14 +177,6 @@ if (
 const error = computed(() => {
   return productError.value || filterError.value || categoriesError.value
 })
-
-const { category, fetch: fetchCategory } = await useCategory()
-
-await fetchCategory()
-
-if (!category.value) {
-  throw createError({ statusCode: HttpStatusCode.NOT_FOUND, fatal: true })
-}
 
 if (error.value) {
   throw error.value

@@ -6,7 +6,7 @@
         <div class="inline-flex size-full items-center justify-center">
           <DefaultLink
             data-test-id="store-location-link"
-            :to="{ name: 'location' }"
+            :to="routeList.location"
             type="loud"
           >
             <IconLocationMenu class="size-6 cursor-pointer" />

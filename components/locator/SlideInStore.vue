@@ -71,41 +71,7 @@
         </div>
       </div>
     </div>
-    <div class="mt-5 rounded bg-secondary-450 px-2">
-      <AppButton
-        type="ghost"
-        class="flex-row-reverse text-xs !normal-case"
-        rounded
-        @click="openingHoursOpen = !openingHoursOpen"
-      >
-        <template #icon="{ _class }">
-          <IconDropdown :class="_class" class="!h-4 !w-4" />
-        </template>
-        {{ $t('store_locator.buttons.opening_hours') }}
-      </AppButton>
-      <div v-if="openingHoursOpen">
-        <FadeInTransition>
-          <div class="pb-2">
-            <div v-for="day in daysOfWeek" :key="day" class="mb-1">
-              <div class="flex items-center justify-between">
-                <div class="grow">
-                  <!-- TODO: add bold for current day -->
-                  {{ $t(`store_locator.opening_times.${day}`) }}
-                </div>
-                <div class="flex w-24 flex-col text-justify">
-                  <div v-if="!openingTimes[day].length">Closed</div>
-                  <div v-else>
-                    <div v-for="(time, idx) in openingTimes[day]" :key="idx">
-                      {{ time.timeFrom }} - {{ time.timeUntil }}
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </FadeInTransition>
-      </div>
-    </div>
+    <StoreOpeningTimesSummary :opening-times="openingTimes" />
   </div>
 </template>
 
@@ -147,23 +113,6 @@ const props = defineProps({
 
 const formatDistance = useFormatDistance()
 
-const currentShop = useCurrentShop()
-
-const DAYS = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun']
-
-const daysOfWeek = computed(() => {
-  const locale = new Intl.Locale(currentShop.value.locale)
-  const result = DAYS.slice()
-  const startIndex =
-    'getWeekInfo' in locale && typeof locale.getWeekInfo === 'function'
-      ? locale.getWeekInfo().firstDay - 1
-      : 0
-  const begin = result.slice(startIndex)
-  result.splice(startIndex)
-  result.unshift(...begin)
-  return result
-})
-
 const favoriteStoreId = useFavoriteStore()
 const isFavoriteStore = computed(() => favoriteStoreId.value === props.id)
 
@@ -177,6 +126,4 @@ const closesInTime = (totalMinutes: number) => {
 
   return { hours, minutes }
 }
-
-const openingHoursOpen = ref(false)
 </script>

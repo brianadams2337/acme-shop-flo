@@ -8,10 +8,10 @@
       />
     </div>
     <div
-      class="absolute z-50 w-[480px] overflow-auto rounded"
+      class="absolute inset-10 z-50 w-[480px] overflow-auto rounded"
       :class="{
-        'inset-0 m-auto h-[230px]': !stores.length,
-        'inset-10 bg-secondary-400': stores.length,
+        'm-auto h-[230px]': !stores.length,
+        'bg-secondary-400': stores.length,
       }"
     >
       <div

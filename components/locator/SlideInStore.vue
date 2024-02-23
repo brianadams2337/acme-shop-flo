@@ -25,16 +25,7 @@
               : $t('store_locator.labels.available')
           }}
         </div>
-        <button
-          v-if="isFavoriteStore"
-          class="cursor-pointer"
-          @click="favoriteStoreId = null"
-        >
-          <IconSelectionActive class="size-4" />
-        </button>
-        <button v-else class="cursor-pointer" @click="favoriteStoreId = id">
-          <IconSelection class="size-4" />
-        </button>
+        <StoreFavoriteToggle :store-id="id" />
       </div>
     </div>
     <div class="mt-5 flex flex-col space-y-2 text-xs">
@@ -112,9 +103,6 @@ const props = defineProps({
 })
 
 const formatDistance = useFormatDistance()
-
-const favoriteStoreId = useFavoriteStore()
-const isFavoriteStore = computed(() => favoriteStoreId.value === props.id)
 
 const nameWithIndex = computed(() =>
   props.index > 0 ? `${props.index}. ${props.name}` : `${props.name}`,

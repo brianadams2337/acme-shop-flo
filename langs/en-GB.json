@@ -436,5 +436,8 @@
       "sat": "Saturday",
       "sun": "Sunday"
     }
+  },
+  "intl": {
+    "firstDay": "1"
   }
 }

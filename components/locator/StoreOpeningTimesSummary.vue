@@ -43,21 +43,16 @@ defineProps<Props>()
 
 const openingHoursOpen = ref(false)
 
-const currentShop = useCurrentShop()
+const firstDay = useFirstDayOfWeek()
 
 type DayOfWeek = 'mon' | 'tue' | 'wed' | 'thu' | 'fri' | 'sat' | 'sun'
 
 const DAYS: DayOfWeek[] = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun']
 
 const daysOfWeek = computed<DayOfWeek[]>(() => {
-  const locale = new Intl.Locale(currentShop.value.locale)
   const result = DAYS.slice()
-  const startIndex =
-    'getWeekInfo' in locale && typeof locale.getWeekInfo === 'function'
-      ? locale.getWeekInfo().firstDay - 1
-      : 0
-  const begin = result.slice(startIndex)
-  result.splice(startIndex)
+  const begin = result.slice(firstDay - 1)
+  result.splice(firstDay - 1)
   result.unshift(...begin)
   return result
 })

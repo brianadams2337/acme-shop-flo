@@ -45,6 +45,7 @@
                 <ProductPromotionGiftConditionBanner
                   v-else-if="!areGiftConditionsMet && isGiftAddedToBasket"
                   :product="product"
+                  class="mt-2"
                 />
                 <ProductPromotionBanners
                   v-else

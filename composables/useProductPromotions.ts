@@ -62,6 +62,27 @@ export async function useProductPromotions(
     return buyXGetYPromotion.value?.customData?.giftConditions
   })
 
+  const giftMov = computed(() => {
+    return buyXGetYPromotion.value?.customData?.minOrderValue
+  })
+
+  const isMovReached = computed(() => {
+    if (!giftMov.value) {
+      return false
+    }
+    const basketTotal = getBasketTotalWithoutPromotions(basket.data.value.cost)
+    return basketTotal >= giftMov.value
+  })
+
+  const movLeft = computed(() => {
+    if (!giftMov.value) {
+      return 0
+    }
+    const basketTotal = getBasketTotalWithoutPromotions(basket.data.value.cost)
+    const valueLeft = giftMov.value - basketTotal
+    return valueLeft >= 0 ? valueLeft : 0
+  })
+
   const areGiftConditionsMet = computed(() => {
     if (!isBuyXGetYPrioritized.value) {
       return false
@@ -76,16 +97,11 @@ export async function useProductPromotions(
     const quantityCondition =
       addedProductBasketItem.value?.quantity >= minPromotionQuantity
 
-    const mov = buyXGetYPromotion.value?.customData?.minOrderValue
-
-    if (!mov) {
+    if (!giftMov.value) {
       return quantityCondition
     }
 
-    const basketTotal = getBasketTotalWithoutPromotions(basket.data.value.cost)
-    const isBasketReached = basketTotal >= mov
-
-    return isBasketReached && quantityCondition
+    return isMovReached.value && quantityCondition
   })
 
   const quantityLeftForGiftConditions = computed(() => {
@@ -94,13 +110,6 @@ export async function useProductPromotions(
     }
     return (
       giftConditions.value.minQuantity - addedProductBasketItem.value.quantity
-    )
-  })
-
-  const hasQuantityLeftForGiftConditions = computed(() => {
-    return (
-      quantityLeftForGiftConditions.value &&
-      quantityLeftForGiftConditions.value > 0
     )
   })
 
@@ -192,6 +201,6 @@ export async function useProductPromotions(
     giftConditions,
     addedProductBasketItem,
     quantityLeftForGiftConditions,
-    hasQuantityLeftForGiftConditions,
+    movLeft,
   }
 }

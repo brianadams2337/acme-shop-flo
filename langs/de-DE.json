@@ -164,9 +164,9 @@
     "promotion": {
       "choose_free_gift": "Wählen Sie ein kostenloses Geschenk",
       "add_free_gift": "Hinzufügen",
-      "quantity_left": "Fügen Sie {quantityLeft} weitere hinzu, um ein kostenloses Geschenk zu erhalten",
-      "mov": "Geben Sie {cost} mehr aus, um ein kostenloses Geschenk zu erhalten",
-      "quantity_and_mov": "Fügen Sie {quantityLeft} hinzu und geben Sie {cost} mehr aus, um ein kostenloses Geschenk zu erhalten"
+      "quantity": "Fügen Sie {quantityLeft} weitere hinzu, um ein kostenloses Geschenk zu erhalten",
+      "mov": "Geben Sie {movLeft} mehr aus, um ein kostenloses Geschenk zu erhalten",
+      "quantity_and_mov": "Fügen Sie {quantityLeft} hinzu und geben Sie {movLeft} mehr aus, um ein kostenloses Geschenk zu erhalten"
     },
     "product": {
       "add": "Hinzufügen"

@@ -18,9 +18,6 @@ import type { BasketItem } from '@scayle/storefront-nuxt'
 
 const props = defineProps<{ basketItem: BasketItem }>()
 
-const { t } = useI18n()
-const { formatCurrency } = useFormatHelpers()
-
 const basketItem = computed(() => props.basketItem)
 
 const {
@@ -31,22 +28,5 @@ const {
   areGiftConditionsMet,
 } = await useBasketItemPromotion(basketItem)
 
-const label = computed(() => {
-  const cost = formatCurrency(movLeft.value)
-
-  const quantityLabel = t('basket.promotion.quantity_left', {
-    quantityLeft: quantityLeft.value,
-  })
-  const movLabel = t('basket.promotion.mov', { cost })
-  const quantityAndCostLabels = t('basket.promotion.quantity_and_mov', {
-    quantityLeft: quantityLeft.value,
-    cost,
-  })
-
-  if (movLeft.value && quantityLeft.value) {
-    return quantityAndCostLabels
-  }
-
-  return movLeft.value ? movLabel : quantityLabel
-})
+const { label } = usePromotionConditionBanner(movLeft, quantityLeft)
 </script>

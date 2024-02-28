@@ -73,7 +73,19 @@ export async function useProductPromotions(
       return false
     }
 
-    return addedProductBasketItem.value?.quantity >= minPromotionQuantity
+    const quantityCondition =
+      addedProductBasketItem.value?.quantity >= minPromotionQuantity
+
+    const mov = buyXGetYPromotion.value?.customData?.minOrderValue
+
+    if (!mov) {
+      return quantityCondition
+    }
+
+    const basketTotal = getBasketTotalWithoutPromotions(basket.data.value.cost)
+    const isBasketReached = basketTotal >= mov
+
+    return isBasketReached && quantityCondition
   })
 
   const quantityLeftForGiftConditions = computed(() => {

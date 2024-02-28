@@ -13,13 +13,7 @@ export async function usePromotionProgress() {
   })
 
   const basketTotal = computed<number>(() => {
-    const promotionReductions = _sum(
-      basketData.value.cost.appliedReductions
-        .filter(({ category }) => category === 'promotion')
-        .map(({ amount }) => amount.absoluteWithTax),
-    )
-
-    return basketData.value.cost.withTax + promotionReductions
+    return getBasketTotalWithoutPromotions(basketData.value.cost)
   })
 
   const progress = computed<number>(() => {

@@ -4,6 +4,7 @@ import {
 } from '@scayle/storefront-nuxt'
 
 export async function useBasketItemPromotion(basketItem: Ref<BasketItem>) {
+  const basket = await useBasket()
   const { allCurrentPromotions } = await useBasketPromotions()
 
   const promotion = computed<BasketPromotion | undefined>(() => {
@@ -40,7 +41,18 @@ export async function useBasketItemPromotion(basketItem: Ref<BasketItem>) {
       return false
     }
 
-    return basketItem.value?.quantity >= minQuantity
+    const quantityCondition = basketItem.value?.quantity >= minQuantity
+
+    const mov = promotion.value?.customData?.minOrderValue
+
+    if (!mov) {
+      return quantityCondition
+    }
+
+    const basketTotal = getBasketTotalWithoutPromotions(basket.data.value.cost)
+    const isBasketReached = basketTotal >= mov
+
+    return isBasketReached && quantityCondition
   })
 
   const isBuyXGetY = computed(() => isBuyXGetYType(promotion.value))

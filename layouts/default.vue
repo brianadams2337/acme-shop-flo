@@ -18,6 +18,11 @@
 </template>
 
 <script setup lang="ts">
+// Initialize data
+await useWishlist()
+await useBasket()
+await useRootCategories()
+
 const { data: promotionData } = await useCurrentPromotions()
 
 const { trackShopInit, listenToUserItemsChanges, listenToCustomerDataChanges } =

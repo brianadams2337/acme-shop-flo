@@ -62,6 +62,27 @@ export async function useProductPromotions(
     return buyXGetYPromotion.value?.customData?.giftConditions
   })
 
+  const minimumOrderValueForGift = computed(() => {
+    return buyXGetYPromotion.value?.customData?.minOrderValue
+  })
+
+  const isMinOrderValueReached = computed(() => {
+    if (!minimumOrderValueForGift.value) {
+      return false
+    }
+    const basketTotal = getBasketTotalWithoutPromotions(basket.data.value.cost)
+    return basketTotal >= minimumOrderValueForGift.value
+  })
+
+  const minOrderValueLeft = computed(() => {
+    if (!minimumOrderValueForGift.value) {
+      return 0
+    }
+    const basketTotal = getBasketTotalWithoutPromotions(basket.data.value.cost)
+    const valueLeft = minimumOrderValueForGift.value - basketTotal
+    return valueLeft >= 0 ? valueLeft : 0
+  })
+
   const areGiftConditionsMet = computed(() => {
     if (!isBuyXGetYPrioritized.value) {
       return false
@@ -73,7 +94,14 @@ export async function useProductPromotions(
       return false
     }
 
-    return addedProductBasketItem.value?.quantity >= minPromotionQuantity
+    const quantityCondition =
+      addedProductBasketItem.value?.quantity >= minPromotionQuantity
+
+    if (!minimumOrderValueForGift.value) {
+      return quantityCondition
+    }
+
+    return isMinOrderValueReached.value && quantityCondition
   })
 
   const quantityLeftForGiftConditions = computed(() => {
@@ -82,13 +110,6 @@ export async function useProductPromotions(
     }
     return (
       giftConditions.value.minQuantity - addedProductBasketItem.value.quantity
-    )
-  })
-
-  const hasQuantityLeftForGiftConditions = computed(() => {
-    return (
-      quantityLeftForGiftConditions.value &&
-      quantityLeftForGiftConditions.value > 0
     )
   })
 
@@ -180,6 +201,6 @@ export async function useProductPromotions(
     giftConditions,
     addedProductBasketItem,
     quantityLeftForGiftConditions,
-    hasQuantityLeftForGiftConditions,
+    minOrderValueLeft,
   }
 }

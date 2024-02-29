@@ -19,14 +19,21 @@ export const useCustomerDataChangeWatcher = async () => {
   )
 
   onNuxtReady(() => {
-    if (isLoggedIn.value) {
-      return
-    }
-    console.log('track nuxt ready')
-    console.log(fetching.value)
-    trackCustomerData({
-      isLoggedIn: false,
-      customerType: 'guest',
-    })
+    watch(
+      () => fetching.value,
+      (newFetching) => {
+        if (newFetching || isLoggedIn.value) {
+          return
+        }
+
+        console.log('track nuxt ready')
+        console.log(fetching.value)
+        trackCustomerData({
+          isLoggedIn: false,
+          customerType: 'guest',
+        })
+      },
+      { once: true },
+    )
   })
 }

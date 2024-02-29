@@ -1,16 +1,10 @@
 <template>
-  <div
-    v-if="!areGiftConditionsMet"
-    class="flex items-center justify-between rounded-md px-4 py-2 text-white"
-    :style="giftBackgroundColorStyle"
-  >
-    <Headline size="xs" is-bold>{{ label }}</Headline>
-    <PromotionCountdown
-      v-if="giftPromotion"
-      :until="giftPromotion.schedule.to"
-      borderless
-    />
-  </div>
+  <PromotionGiftConditionBanner
+    v-if="giftPromotion && !areGiftConditionsMet"
+    :background-color="giftBackgroundColorStyle.backgroundColor"
+    :schedule-to="giftPromotion.schedule.to"
+    :label="label"
+  />
 </template>
 
 <script setup lang="ts">

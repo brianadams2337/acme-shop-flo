@@ -9,7 +9,7 @@ export const useCustomerDataChangeWatcher = async () => {
       if (!isLoggedIn.value) {
         return
       }
-
+      console.log('track watcher')
       trackCustomerData({
         isLoggedIn: isLoggedIn.value,
         customerType: customerType.value,
@@ -22,7 +22,7 @@ export const useCustomerDataChangeWatcher = async () => {
     if (isLoggedIn.value) {
       return
     }
-
+    console.log('track nuxt ready')
     trackCustomerData({
       isLoggedIn: false,
       customerType: 'guest',

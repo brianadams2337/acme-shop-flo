@@ -17,6 +17,8 @@ export const useCustomerDataChangeWatcher = async () => {
     },
   )
 
+  // TODO: This is just a workaround. On Latest and Test user is not fetched yet. So long term solution will be initializing user data much earlier.
+  // Remove the watcher and test this again after another solution is implemented.
   onNuxtReady(() => {
     watch(
       () => fetching.value,

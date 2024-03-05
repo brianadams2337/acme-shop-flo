@@ -62,8 +62,10 @@
 <script setup lang="ts">
 import useVuelidate from '@vuelidate/core'
 
-const { data: externalIDPRedirects, handleIDPLoginCallback } = await useIDP()
-const { login, isSubmitting } = await useAuthentication('login')
+const scope = effectScope()
+
+const { data: externalIDPRedirects } = await useIDP()
+const { login, isSubmitting, loginIDP } = await useAuthentication('login')
 const { lastLoggedInUser } = await useLastLoggedInUser()
 
 const validationRules = useValidationRules()
@@ -87,15 +89,31 @@ const rules = {
 
 const v = useVuelidate(rules, editableUser)
 
-watch(
-  () => route.query,
-  async (query) => {
-    if (query.code && isString(query.code)) {
-      await handleIDPLoginCallback(query.code)
-    }
-  },
-  { immediate: true },
-)
+scope.run(() => {
+  watch(editableUser, () => {
+    v.value.$touch()
+  })
+
+  watch(
+    () => route.query.code,
+    async (code) => {
+      if (isSubmitting.value) {
+        return
+      }
+
+      console.log(code, isSubmitting.value)
+      if (isString(code)) {
+        await loginIDP(code)
+      }
+    },
+    { immediate: true },
+  )
+
+  watch(lastLoggedInUser, (user) => {
+    editableUser.email = user.email
+  })
+})
+
 const onSubmit = async () => {
   const isValid = await v.value.$validate()
   if (!isValid) {
@@ -104,8 +122,4 @@ const onSubmit = async () => {
 
   await login(editableUser)
 }
-
-watch(lastLoggedInUser, (user) => {
-  editableUser.email = user.email
-})
 </script>

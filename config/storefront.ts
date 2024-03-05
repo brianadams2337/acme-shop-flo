@@ -139,7 +139,7 @@ export const storefrontRuntimeConfigPrivate: Partial<ModuleOptions> = {
          * https://scayle.dev/en/dev/storefront-core/authentication#support-for-identity-provider */
         idp: {
           enabled: false,
-          idpKeys: [],
+          idpKeys: ['google'],
           idpRedirectURL: '',
         },
 

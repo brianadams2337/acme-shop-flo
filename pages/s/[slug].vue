@@ -1,5 +1,5 @@
 <template>
-  <div v-if="fetching" class="container space-y-2 py-4">
+  <div v-if="pending" class="container space-y-2 py-4">
     <SkeletonLoader type="headline" class="mb-10" />
 
     <SkeletonLoader type="custom" class="h-6 w-72" />
@@ -7,16 +7,16 @@
     <SkeletonLoader type="custom" class="h-6 w-96" />
     <SkeletonLoader type="custom" class="h-6 w-72" />
   </div>
-  <div v-else-if="story" class="container">
+  <div v-else-if="data?.data.story" class="container">
     <div class="py-4">
       <Breadcrumbs
         :items="[
           { value: 'Home', to: routeList.home },
-          { value: story.name, to: story.slug },
+          { value: data?.data.story.name, to: data?.data.story.slug },
         ]"
       />
     </div>
-    <Story :story="story" />
+    <Story :story="data?.data.story" />
   </div>
 </template>
 
@@ -26,24 +26,15 @@ import type { SbContentPage } from '~/modules/cms/providers/storyblok/types/stor
 const route = useRoute()
 const slug = computed(() => route.params.slug)
 const { fetchBySlug } = useCMS<SbContentPage>(`services-page-${slug.value}`)
-const fetching = ref()
-const status = ref()
-const story = ref()
-const error = ref()
-if (status.value === 'idle') {
-  const {
-    data,
-    pending,
-    status: _status,
-    error: _error,
-    execute: _fetchBySlug,
-  } = await fetchBySlug(`s/${slug.value}`)
-  story.value = data.value
-  fetching.value = pending.value
-  status.value = _status.value
-  error.value = _error.value
-  await fetchLazy(_fetchBySlug())
-}
+
+const {
+  data,
+  pending,
+  error,
+  execute: _fetchBySlug,
+} = await fetchBySlug(`s/${slug.value}`)
+
+await fetchLazy(_fetchBySlug())
 
 if (error.value) {
   throw error.value

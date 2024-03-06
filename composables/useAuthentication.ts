@@ -61,6 +61,19 @@ export async function useAuthentication(
     isSubmitting.value = false
   }
 
+  const loginIDP = async (code: string) => {
+    isSubmitting.value = true
+
+    try {
+      await session.loginWithIDP({ code })
+      await authenticated()
+    } catch (error) {
+      handleError(error)
+    }
+
+    isSubmitting.value = false
+  }
+
   const guestLogin = async (data: Omit<GuestRequest, 'shop_id'>) => {
     isSubmitting.value = true
 
@@ -159,13 +172,8 @@ export async function useAuthentication(
         user.value.email,
       )
 
-      const isSignInPathWithoutRedirect =
-        route.fullPath === localePath(routeList.signin.path)
+      let redirectTo = localePath(routeList.home.path)
 
-      let redirectTo = route.path
-      if (isSignInPathWithoutRedirect) {
-        redirectTo = routeList.home.path
-      }
       if (route.query.redirectUrl) {
         redirectTo = route.query.redirectUrl as string
       }
@@ -221,5 +229,6 @@ export async function useAuthentication(
     forgotPassword,
     resetPasswordByHash,
     isSubmitting,
+    loginIDP,
   }
 }

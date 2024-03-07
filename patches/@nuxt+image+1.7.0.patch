@@ -1,5 +1,5 @@
 diff --git a/node_modules/@nuxt/image/dist/module.d.ts b/node_modules/@nuxt/image/dist/module.d.ts
-index 94e5231..253d290 100644
+index 88a40f7..79a6ece 100644
 --- a/node_modules/@nuxt/image/dist/module.d.ts
 +++ b/node_modules/@nuxt/image/dist/module.d.ts
 @@ -1,5 +1,5 @@

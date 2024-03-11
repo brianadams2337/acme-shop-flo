@@ -5930,10 +5930,10 @@ h3@^1.10.0, h3@^1.10.1, h3@^1.10.2, h3@^1.11.1, h3@^1.8.2:
     uncrypto "^0.1.3"
     unenv "^1.9.0"
 
-happy-dom@13.7.3:
-  version "13.7.3"
-  resolved "https://registry.yarnpkg.com/happy-dom/-/happy-dom-13.7.3.tgz#20c04d9ff944b661fab4b6a3599e58999e5141ae"
-  integrity sha512-xMwilTgO34BGEX0TAoM369wwwAy0fK/Jq6BGaRYhSjxLtfQ740nqxHfjFyBqPjCVmKiPUS4npBnMrGLii7eCOg==
+happy-dom@13.7.6:
+  version "13.7.6"
+  resolved "https://registry.yarnpkg.com/happy-dom/-/happy-dom-13.7.6.tgz#11a1f372d637b89776d28158d6dcdfb558a6d8e4"
+  integrity sha512-LY60EGWFgjgQPf/3yx+js4VMFTe3soa/afV9zzAIr9teShJB2iO7iWViPhuZPLKBEAdWwDppKassbxikkudlZw==
   dependencies:
     entities "^4.5.0"
     webidl-conversions "^7.0.0"

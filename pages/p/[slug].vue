@@ -22,7 +22,7 @@
               <ProductDetailBreadcrumbs :links="breadcrumbs" />
             </div>
             <div
-              class="text-secondary max-w-xs text-xs font-semibold"
+              class="max-w-xs text-xs font-semibold text-secondary"
               data-test-id="pdp-product-brand"
             >
               {{ brand }}
@@ -41,7 +41,7 @@
                 <PromotionHurryToSaveBanners
                   v-if="areHurryToSaveBannersShown"
                   :product="product"
-                  class="xs:hidden mt-2 w-full md:flex"
+                  class="mt-2 w-full xs:hidden md:flex"
                 />
                 <ProductPromotionGiftConditionBanner
                   v-else-if="!areGiftConditionsMet && isGiftAddedToBasket"
@@ -51,12 +51,12 @@
                 <ProductPromotionBanners
                   v-else
                   :product="product"
-                  class="xs:hidden mt-2 md:flex"
+                  class="mt-2 xs:hidden md:flex"
                 />
               </FadeInTransition>
 
               <div class="flex flex-col items-end">
-                <div class="xs:flex-col-reverse flex gap-2 md:flex-col">
+                <div class="flex gap-2 xs:flex-col-reverse md:flex-col">
                   <ProductPromotionBadges
                     :product="product"
                     is-priority-label-shown
@@ -157,7 +157,7 @@
               </AppButton>
               <ClientOnly>
                 <WishlistToggle
-                  class="border-gray-350 ml-2 box-border h-full border !px-2"
+                  class="ml-2 box-border h-full border border-gray-350 !px-2"
                   :product="product"
                 />
               </ClientOnly>
@@ -305,7 +305,7 @@ useJsonld(() =>
   }),
 )
 
-useSeoMeta(() => ({ robots: 'index,follow' }))
+useServerSeoMeta({ robots: 'index,follow' })
 
 useHead(() => {
   if (!product.value) {

@@ -4,12 +4,15 @@
 
 <script setup lang="ts">
 import { Loader } from '@googlemaps/js-api-loader'
-import type { Store } from '@scayle/omnichannel-nuxt'
+import type { StoreLocation } from '@scayle/omnichannel-nuxt'
+import { h, render, getCurrentInstance } from 'vue'
 
-const formatDistance = useFormatDistance()
+import StoreDetailsComponent from './StoreDetails.vue'
+
+const appContext = getCurrentInstance()?.appContext
 
 interface Props {
-  stores: Store[]
+  stores: StoreLocation[]
   apiKey: string
 }
 
@@ -94,7 +97,7 @@ const setMarkers = () => {
 
     // infoWindow is a tooltip above the map marker, which shows the name of the store
     const infoWindow = new google.maps.InfoWindow({
-      content: getInfoWindowMarkup(store.name, store.distance),
+      content: getInfoWindowMarkup(store),
     })
 
     marker.addListener('click', () => {
@@ -129,15 +132,16 @@ const getMarkerIconElement = () => {
   return markerIcon
 }
 
-const getInfoWindowMarkup = (title: string, distance: number) =>
-  `<div class="font-medium">
-    <span class="ml-2">
-      ${title}
-    </span>
-    <span class="ml-4 inline-block bg-gray-100 py-2 px-3 rounded-3xl">
-      ${formatDistance(distance)}
-    </span>
-  </div>`
+const getInfoWindowMarkup = (store: StoreLocation) => {
+  const child = h(StoreDetailsComponent, { store })
+  child.appContext = appContext ?? null
+  const el = document.createElement('div')
+  render(child, el)
+  const html = el.innerHTML
+  render(null, el)
+
+  return html
+}
 
 const selectStoreMarker = (storeId: number | undefined) => {
   // close all info windows

@@ -1794,17 +1794,17 @@
     vite-plugin-checker "^0.6.4"
     vue-bundle-renderer "^2.0.0"
 
-"@nuxtjs/i18n@8.1.1":
-  version "8.1.1"
-  resolved "https://registry.yarnpkg.com/@nuxtjs/i18n/-/i18n-8.1.1.tgz#b2ba52d75e66ae26cfd1430b006d1fa1fe70ff7b"
-  integrity sha512-woq2gdXv+soVRc2yeE2pwWODiLnF7fx1eAEXi5Zx+StQDxHegAHTbKX/ZqcsW8VZ3mqlcpzfqN399KCZ9qXJ8g==
+"@nuxtjs/i18n@8.2.0":
+  version "8.2.0"
+  resolved "https://registry.yarnpkg.com/@nuxtjs/i18n/-/i18n-8.2.0.tgz#d5a4cb5aa7330f6ae626b24b65a125067faf290c"
+  integrity sha512-t37aF/WOD1g8CA/iCyCJrURXocjPy7diZG+kJcHLkLmJh1v4/2Zhe0AeUsjXubGgvQKLSL3b5w8rZuPkG4yhUw==
   dependencies:
     "@intlify/h3" "^0.5.0"
     "@intlify/shared" "^9.9.0"
     "@intlify/unplugin-vue-i18n" "^2.0.0"
     "@intlify/utils" "^0.12.0"
     "@miyaneee/rollup-plugin-json5" "^1.1.2"
-    "@nuxt/kit" "^3.7.4"
+    "@nuxt/kit" "^3.10.3"
     "@rollup/plugin-yaml" "^4.1.2"
     "@vue/compiler-sfc" "^3.3.4"
     debug "^4.3.4"
@@ -1815,6 +1815,7 @@
     magic-string "^0.30.4"
     mlly "^1.4.2"
     pathe "^1.1.1"
+    scule "^1.1.1"
     sucrase "^3.34.0"
     ufo "^1.3.1"
     unplugin "^1.5.0"

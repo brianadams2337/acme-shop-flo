@@ -6840,6 +6840,26 @@ json-schema-to-typescript@^11.0.1:
     mz "^2.7.0"
     prettier "^2.6.2"
 
+json-schema-to-typescript@^13.1.2:
+  version "13.1.2"
+  resolved "https://registry.yarnpkg.com/json-schema-to-typescript/-/json-schema-to-typescript-13.1.2.tgz#d8794faba3464c763c4fbff1318f3d4c4a08492a"
+  integrity sha512-17G+mjx4nunvOpkPvcz7fdwUwYCEwyH8vR3Ym3rFiQ8uzAL3go+c1306Kk7iGRk8HuXBXqy+JJJmpYl0cvOllw==
+  dependencies:
+    "@bcherny/json-schema-ref-parser" "10.0.5-fork"
+    "@types/json-schema" "^7.0.11"
+    "@types/lodash" "^4.14.182"
+    "@types/prettier" "^2.6.1"
+    cli-color "^2.0.2"
+    get-stdin "^8.0.0"
+    glob "^7.1.6"
+    glob-promise "^4.2.2"
+    is-glob "^4.0.3"
+    lodash "^4.17.21"
+    minimist "^1.2.6"
+    mkdirp "^1.0.4"
+    mz "^2.7.0"
+    prettier "^2.6.2"
+
 json-schema-traverse@^0.4.1:
   version "0.4.1"
   resolved "https://registry.yarnpkg.com/json-schema-traverse/-/json-schema-traverse-0.4.1.tgz#69f6a87d9513ab8bb8fe63bdb0979c448e684660"
@@ -10026,15 +10046,10 @@ storyblok-js-client@6.7.1, storyblok-js-client@^6.7.1:
   resolved "https://registry.yarnpkg.com/storyblok-js-client/-/storyblok-js-client-6.7.1.tgz#9b9ac8221d7e16dc9e63e5ddf547c1493d3f9cae"
   integrity sha512-VOobZkor6BESji2MJUuO5jTIZeCWMUMR2LZtdSEEAtUDUfKwA88lGqDVMQqtWZ8nD7NzhZ6S7qvdv5Or9HZXRw==
 
-storyblok-js-client@^5.14.0:
-  version "5.14.4"
-  resolved "https://registry.yarnpkg.com/storyblok-js-client/-/storyblok-js-client-5.14.4.tgz#bfc69995bc4ca40a9bd1e5745a651b4eca591b08"
-  integrity sha512-9yY33tvfO3Cbe25h/l6K0T3IxJeOOyGl/pCwsd55woT0ZEBhIiEZoMumpRsyLjD5AedW9KXLbLjMXhHazkepCA==
-
-storyblok@3.27.0:
-  version "3.27.0"
-  resolved "https://registry.yarnpkg.com/storyblok/-/storyblok-3.27.0.tgz#d82097837e601bc885cac44439b47f900420d85f"
-  integrity sha512-dDo2yBfsf1ifJoMqj/UoULr3IdFnCz0a9Iij0XUD9xvLSRKtSmYCJksXMs5f6Fq7pHdvA+Y+oWTK4N1ntK0fag==
+storyblok@3.29.1:
+  version "3.29.1"
+  resolved "https://registry.yarnpkg.com/storyblok/-/storyblok-3.29.1.tgz#94ba2664adb5e2de9228428568acb6103e377107"
+  integrity sha512-hxqdcxHkpXE5dglWGwdwWcV1jQT2gy8ma/h8FTANp3YvKeGRS/BF5IbT84M3XcRpZp9BQALtR5QytnpNhHbpxw==
   dependencies:
     "@storyblok/region-helper" "^1.0.0"
     axios "^0.27.2"
@@ -10047,6 +10062,7 @@ storyblok@3.27.0:
     fs-extra "^9.0.1"
     git-clone "^0.1.0"
     inquirer "^7.3.2"
+    json-schema-to-typescript "^13.1.2"
     lodash "^4.17.21"
     netrc "0.1.4"
     on-change "^2.0.1"
@@ -10054,7 +10070,7 @@ storyblok@3.27.0:
     p-series "^2.1.0"
     path "^0.12.7"
     simple-uuid "^0.0.1"
-    storyblok-js-client "^5.14.0"
+    storyblok-js-client "^6.7.1"
     update-notifier "^5.1.0"
     xml-js "^1.6.11"
 

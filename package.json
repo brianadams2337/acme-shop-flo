@@ -104,7 +104,7 @@
     "redis": "4.6.13",
     "schema-dts": "1.1.2",
     "storyblok-js-client": "6.7.1",
-    "ufo": "1.4.0",
+    "ufo": "1.5.2",
     "vue": "3.4.21",
     "vue-slider-component": "4.1.0-beta.7",
     "yn": "5.0.0"

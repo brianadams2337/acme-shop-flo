@@ -235,6 +235,7 @@ const {
   lowestPriorPrice,
   fetching,
   listingMetaData,
+  productId,
 } = await useProductDetails()
 
 const favoriteStoreId = useFavoriteStore()
@@ -257,7 +258,10 @@ const {
   trackRecommendationClick,
 } = await useProductRecommendations()
 
-const { availableAddOns, onAddOnSelected } = useProductDetailsAddOns(product)
+const { availableAddOns, onAddOnSelected } = useProductDetailsAddOns(
+  productId.value,
+  product,
+)
 
 const { state: zoomGallery, toggle: toggleZoomGallery } =
   useZoomGalleryActions()
@@ -269,10 +273,10 @@ const trackViewListing = ({ items }: { row: number; items: Product[] }) => {
 }
 
 onMounted(async () => {
-  setPageState('typeId', String(product.value.id))
   if (!product.value) {
     return
   }
+  setPageState('typeId', String(product.value.id))
   await _sleep(1000)
   trackViewItem({ product: product.value })
 })

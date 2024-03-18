@@ -3,8 +3,14 @@ export async function useProductDetailsBasketActions() {
 
   const notification = useNotification()
 
-  const { product, hasOneSizeVariantOnly, activeVariant, quantity, brand } =
-    await useProductDetails()
+  const {
+    product,
+    productId,
+    hasOneSizeVariantOnly,
+    activeVariant,
+    quantity,
+    brand,
+  } = await useProductDetails()
 
   const {
     fetching: basketIdle,
@@ -20,7 +26,7 @@ export async function useProductDetailsBasketActions() {
   const { addGroupToBasket } = await useBasketGroup()
 
   const { selectedAddOnVariantIds, isAnyAddOnSelected } =
-    useProductDetailsAddOns(product)
+    useProductDetailsAddOns(productId.value, product)
 
   const { trackAddToBasket } = useTrackingEvents()
 
@@ -38,6 +44,9 @@ export async function useProductDetailsBasketActions() {
   }
 
   const addItemToBasket = async () => {
+    if (!product.value) {
+      return
+    }
     if (hasOneSizeVariantOnly.value && product.value.variants) {
       activeVariant.value = product.value.variants[0]
     }

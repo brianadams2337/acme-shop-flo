@@ -275,7 +275,9 @@
   },
   "plp": {
     "filter": "Filter",
-    "seo_description": "Kaufen Sie in der Kategorie {categoryName} online im Demo Shop ein. Entdecken Sie das große Sortiment in der Kategorie {categoryName}"
+    "seo_description": "Kaufen Sie in der Kategorie {categoryName} online im Demo Shop ein. Entdecken Sie das große Sortiment in der Kategorie {categoryName}",
+    "no_products": "Für diese Kategorie gibt es keine Produkte",
+    "no_results": "Keine Ergebnisse"
   },
   "sorting_select": {
     "topseller": "Empfehlungen",

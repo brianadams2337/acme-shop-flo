@@ -8,10 +8,12 @@ export async function useProductRecommendations() {
   const route = useRoute()
   const { pageState } = usePageState()
 
-  const combineWithProductValues = getAdvancedAttributes({
-    product: product.value,
-    property: 'combineWith',
-  })
+  const combineWithProductValues = product.value
+    ? getAdvancedAttributes({
+        product: product.value,
+        property: 'combineWith',
+      })
+    : ''
 
   const combineWithProductIds = computed(() =>
     combineWithProductValues

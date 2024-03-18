@@ -3,7 +3,13 @@
     <div v-if="hasTeaserImage">
       <CmsImage :blok="cmsContent" is-teaser />
     </div>
-    <PageContent v-if="products" class="sm:flex">
+    <PageContent v-if="products?.length === 0">
+      <Headline class="!block" size="xl">{{ $t('plp.no_results') }}</Headline>
+      <Headline size="sm" class="mt-4 !block text-gray-700">
+        {{ $t('plp.no_products') }}
+      </Headline>
+    </PageContent>
+    <PageContent v-else class="sm:flex">
       <div class="-ml-4 hidden w-1/3 md:block md:w-2/5 lg:w-3/12">
         <SideNavigation
           v-if="categories && 'children' in categories && categories.children"
@@ -75,7 +81,7 @@
           />
         </template>
       </div>
-      <FilterSlideIn v-if="filters" />
+      <FilterSlideIn v-if="filters && products" />
     </PageContent>
   </div>
 </template>

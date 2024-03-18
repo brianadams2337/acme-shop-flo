@@ -29,10 +29,22 @@
 
 <script setup lang="ts">
 const { user } = await useUser()
+const wishlist = await useWishlist()
+
+const { trackWishlist, collectProductListItems } = useTrackingEvents()
 
 const { $i18n } = useNuxtApp()
 
 const orderCount = computed(() => user.value?.orderSummary?.length || 0)
+
+onMounted(() => {
+  trackWishlist(
+    collectProductListItems(wishlist.products.value, {
+      listId: wishlistListingMetadata.id,
+      listName: wishlistListingMetadata.name,
+    }),
+  )
+})
 
 useSeoMeta({ robots: 'index,follow', title: $i18n.t('navigation.my_account') })
 

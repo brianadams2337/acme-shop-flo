@@ -84,7 +84,7 @@
     "@storyblok/nuxt": "6.0.6",
     "@tailwindcss/forms": "0.5.7",
     "@tailwindcss/typography": "0.5.10",
-    "@types/google.maps": "3.55.4",
+    "@types/google.maps": "3.55.5",
     "@vercel/kv": "1.0.1",
     "@vuelidate/core": "2.0.3",
     "@vuelidate/validators": "2.0.4",

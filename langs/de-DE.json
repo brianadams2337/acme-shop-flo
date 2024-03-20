@@ -19,7 +19,13 @@
     "back": "Zurück",
     "continue_shopping_label": "Weiter einkaufen",
     "sign_in_label": "Anmelden",
-    "or": "Oder"
+    "or": "Oder",
+    "ordinal_suffixes": {
+      "one": ".",
+      "two": ".",
+      "few": ".",
+      "other": "."
+    }
   },
   "notification": {
     "ok": "OK",
@@ -156,7 +162,8 @@
       "select_size": "Bitte Größe wählen, um zum Warenkorb hinzuzufügen.",
       "add_to_basket_success": "{productName} wurde zum Warenkorb hinzugefügt",
       "add_to_basket_error": "{productName} konnte nicht zum Warenkorb hinzugefügt werden",
-      "add_to_basket": "{productName} wurde Ihrem Warenkorb hinzugefügt"
+      "add_to_basket": "{productName} wurde Ihrem Warenkorb hinzugefügt",
+      "subscription_already_in_basket_error": "{productName} befindet sich bereits im Warenkorb. Ein Artikel kann nicht mehr als einmal als Abonnement in einer Bestellung enthalten sein."
     },
     "discount": "Rabatt",
     "to_checkout": "Zur Kasse",
@@ -446,5 +453,17 @@
   },
   "intl": {
     "firstDay": "1"
+  },
+  "subscription": {
+    "one_time_purchase": "Einmalige Lieferung",
+    "subscribe": "Abonnieren & Sparen",
+    "subscribe_with_reduction": "Abonnieren & Sparen bis zu {percentage}%",
+    "interval": "Interval",
+    "choose_interval": "Interval wählen",
+    "follow_up_delivery": "Folgelieferung",
+    "day_of_month_selection_caption": "Jeden {dayOfMonth} des Monats",
+    "or": "----- oder -----",
+    "select_size_message": "Wählen Sie eine andere Größe für weitere Optionen",
+    "not_eligible_message": "Die ausgewählte Größe ist nicht für ein Abonnement geeignet."
   }
 }

@@ -39,7 +39,7 @@ export async function useProductDetails(key = 'product-details') {
 
   const { brand, name, variantWithLowestPrice } = useProductBaseInfo(product)
 
-  const activeVariant = useState<Variant | null | undefined>(
+  const activeVariant = useState<Variant | undefined>(
     `active-variant-${key}-${productId.value}`,
   )
 

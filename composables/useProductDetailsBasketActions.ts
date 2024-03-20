@@ -1,3 +1,6 @@
+import type { AddOrUpdateItemType } from '@scayle/storefront-nuxt'
+import { isSubscriptionAlreadyInBasket } from '~/modules/subscription/helpers/subscription'
+
 export async function useProductDetailsBasketActions() {
   const { $i18n } = useNuxtApp()
 
@@ -9,7 +12,7 @@ export async function useProductDetailsBasketActions() {
     hasOneSizeVariantOnly,
     activeVariant,
     quantity,
-    brand,
+    name,
   } = await useProductDetails()
 
   const {
@@ -43,7 +46,7 @@ export async function useProductDetailsBasketActions() {
     )
   }
 
-  const addItemToBasket = async () => {
+  const addItemToBasket = async (priorItemToAdd?: AddOrUpdateItemType) => {
     if (!product.value) {
       return
     }
@@ -56,26 +59,45 @@ export async function useProductDetailsBasketActions() {
       return
     }
 
-    const productName = brand.value || $i18n.t('wishlist.product')
+    if (
+      isSubscriptionAlreadyInBasket(
+        !!priorItemToAdd,
+        activeVariant.value.id,
+        basketItems.value,
+      )
+    ) {
+      notification.show(
+        $i18n.t('basket.notification.subscription_already_in_basket_error', {
+          productName: name.value,
+        }),
+        'CONFIRM',
+      )
+      return
+    }
+
     const promotionId = highestPriorityPromotion.value?.id
 
     try {
-      isAnyAddOnSelected.value
-        ? await addGroupToBasket({
-            mainItem: { variantId: activeVariant.value.id, quantity: 1 },
-            items: [
-              ...selectedAddOnVariantIds.value.map((variantId) => ({
-                variantId,
-                quantity: 1,
-              })),
-            ],
-          })
-        : await addBasketItem({
-            variantId: activeVariant.value.id,
-            quantity: quantity.value,
-            ...(!promotionId && { promotionId: null }),
-            ...(promotionId && !isBuyXGetYPrioritized.value && { promotionId }),
-          })
+      if (priorItemToAdd) {
+        await addBasketItem(priorItemToAdd)
+      } else if (isAnyAddOnSelected.value) {
+        await addGroupToBasket({
+          mainItem: { variantId: activeVariant.value.id, quantity: 1 },
+          items: [
+            ...selectedAddOnVariantIds.value.map((variantId) => ({
+              variantId,
+              quantity: 1,
+            })),
+          ],
+        })
+      } else {
+        await addBasketItem({
+          variantId: activeVariant.value.id,
+          quantity: quantity.value,
+          ...(!promotionId && { promotionId: null }),
+          ...(promotionId && !isBuyXGetYPrioritized.value && { promotionId }),
+        })
+      }
 
       openBasketFlyout()
 
@@ -99,7 +121,9 @@ export async function useProductDetailsBasketActions() {
       }
     } catch {
       notification.show(
-        $i18n.t('basket.notification.add_to_basket_error', { productName }),
+        $i18n.t('basket.notification.add_to_basket_error', {
+          productName: name.value,
+        }),
         'CONFIRM',
       )
     }

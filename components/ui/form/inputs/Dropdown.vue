@@ -8,7 +8,7 @@
         :class="isLarge && 'py-[0.825rem]'"
         @click="isDropdownVisible = !isDropdownVisible"
       >
-        {{ modelValue }}
+        <slot name="default">{{ modelValue }}</slot>
         <IconDropdown
           class="ml-0.5 mt-0.5 size-3 transition"
           :class="{ 'rotate-180': isDropdownVisible }"

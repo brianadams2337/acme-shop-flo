@@ -190,6 +190,12 @@
             </div>
           </div>
         </div>
+        <ProductSubscription
+          v-if="isProductSubscriptionEligible(product)"
+          :product="product"
+          :variant="activeVariant"
+          @add-item-to-basket="addItemToBasket($event)"
+        />
       </div>
     </div>
     <div class="w-full">
@@ -281,10 +287,9 @@ onMounted(async () => {
   trackViewItem({ product: product.value })
 })
 
-onUnmounted(() => {
-  activeVariant.value = null
-  quantity.value = 1
-})
+activeVariant.value = hasOneSizeVariantOnly.value
+  ? product.value?.variants?.[0]
+  : undefined
 
 const metaDescription = computed(() =>
   $i18n.t('pdp.seo.description', { productName: productName.value }),

@@ -306,24 +306,12 @@ export default defineNuxtConfig({
       process.env.NITRO_PRESET &&
       process.env.NITRO_PRESET.includes('vercel')
     ) {
-      // Disable routeRules for Vercel edge
-      if (process.env.NITRO_PRESET === 'vercel_edge') {
-        return {}
-      }
-      // We need some different route definitions for vercel which uses a regex syntax when you want to match `**/`
-      return {
-        // Page generated on-demand, revalidates in background
-        '/**': { isr: true },
-        // Don't cache API routes.
-        '.*/api/**': { isr: false },
-        // Don't cache pages with user-specific information
-        '.*/wishlist': { isr: false },
-        '.*/basket': { isr: false },
-        '.*/checkout': { isr: false },
-        '.*/signin': { isr: false },
-        '.*/account/**': { isr: false },
-        '.*/orders/**': { isr: false },
-      }
+      // Disable route rules for any vercel deployment
+      //
+      // Vercel Edge currently doesn't work at all with route rules,
+      // the normal Vercel Serverless function has some issues with caching + session handling
+      // so we for now need to disable caching completely.
+      return {}
     }
 
     // Page generated on-demand, revalidates in background

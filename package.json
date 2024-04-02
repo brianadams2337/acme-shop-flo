@@ -27,7 +27,7 @@
     "cy:open": "yarn --cwd ./cypress cy:open",
     "cy:run:mobile": "yarn --cwd ./cypress cy:run:mobile",
     "cy:run": "yarn --cwd ./cypress cy:run",
-    "start:node": "node .output/server/index.mjs",
+    "start:node": "node --env-file .env .output/server/index.mjs",
     "storyblok:download": "env-cmd -f .env.storyblok -x storyblok pull-components --space \\$STORYBLOK_SPACE_ID",
     "storyblok:generate": "node modules/cms/providers/storyblok/scripts/storyblok-generate.cjs && prettier --write modules/cms/providers/storyblok/types/storyblok.gen.d.ts",
     "storyblok:login": "env-cmd -f .env.storyblok -x storyblok login --token \\$STORYBLOK_PERSONAL_TOKEN --region eu",
@@ -83,6 +83,13 @@
   "dependencies": {
     "@contentful/rich-text-html-renderer": "16.3.5",
     "@googlemaps/js-api-loader": "1.16.6",
+    "@opentelemetry/api": "1.8.0",
+    "@opentelemetry/auto-instrumentations-node": "0.44.0",
+    "@opentelemetry/exporter-trace-otlp-proto": "0.50.0",
+    "@opentelemetry/instrumentation": "0.50.0",
+    "@opentelemetry/resources": "1.23.0",
+    "@opentelemetry/sdk-node": "0.50.0",
+    "@opentelemetry/semantic-conventions": "1.23.0",
     "@scayle/omnichannel-nuxt": "3.0.0",
     "@scayle/storefront-nuxt": "7.66.2",
     "@storyblok/nuxt": "6.0.10",
@@ -91,6 +98,7 @@
     "@tailwindcss/typography": "0.5.12",
     "@types/google.maps": "3.55.7",
     "@vercel/kv": "1.0.1",
+    "@vercel/otel": "1.8.1",
     "@vuelidate/core": "2.0.3",
     "@vuelidate/validators": "2.0.4",
     "@vueuse/core": "10.9.0",
@@ -106,6 +114,7 @@
     "dotenv": "16.4.5",
     "global": "4.4.0",
     "globby": "14.0.1",
+    "knitwork": "1.1.0",
     "maska": "2.1.11",
     "nanoid": "5.0.7",
     "nuxi": "3.11.1",
@@ -129,5 +138,8 @@
   },
   "volta": {
     "node": "20.12.2"
+  },
+  "resolutions": {
+    "import-in-the-middle": "1.7.3"
   }
 }

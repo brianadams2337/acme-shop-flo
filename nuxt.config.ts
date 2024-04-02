@@ -258,6 +258,10 @@ export default defineNuxtConfig({
     modules: ['navigation', 'autoplay', 'pagination'],
   },
 
+  opentelemetry: {
+    enabled: yn(process.env.OTEL_ENABLED),
+  },
+
   // https://nuxt.com/docs/api/nuxt-config#imports
   imports: {
     // https://nuxt.com/docs/api/nuxt-config#dirs
@@ -379,19 +383,20 @@ export default defineNuxtConfig({
       preserveSymlinks: true,
     },
   },
-  // This hook enables build-time configuration logging, controlled by the feature flag ENABLE_CONFIG_LOG_BUILD.
-  hooks: yn(process.env.ENABLE_CONFIG_LOG_BUILD)
-    ? {
-        'nitro:init': (nitroConfig) => {
-          const configToPrint = yn(process.env.ENABLE_CONFIG_LOG_PRETTIER)
-            ? JSON.stringify(nitroConfig.options.runtimeConfig, null, 2)
-            : JSON.stringify(nitroConfig.options.runtimeConfig)
 
-          console.log(
-            '[storefront-boilerplate] runtimeConfig after nitro initialisation:',
-            configToPrint,
-          )
-        },
+  hooks: {
+    'nitro:init'(nitro) {
+      // This hook enables build-time configuration logging, controlled by the feature flag ENABLE_CONFIG_LOG_BUILD.
+      if (yn(process.env.ENABLE_CONFIG_LOG_BUILD)) {
+        const configToPrint = yn(process.env.ENABLE_CONFIG_LOG_PRETTIER)
+          ? JSON.stringify(nitro.options.runtimeConfig, null, 2)
+          : JSON.stringify(nitro.options.runtimeConfig)
+
+        console.log(
+          '[storefront-boilerplate] runtimeConfig after nitro initialisation:',
+          configToPrint,
+        )
       }
-    : {},
+    },
+  },
 })

@@ -213,4 +213,14 @@ In some cases, patches to third-party packages are required. The Storefront Boil
 ### Current applied patches
 
 - `@nuxt/image` - Support providing the base URL through runtime configuration
-- `unstorage` - Log the driver name instead of `undefined` when VercelKV is used
+- `import-in-the-middle` - Ignore broken modules instead of crashing
+
+## OpenTelemetry
+
+The Storefront Boilerplate includes an experimental integration with OpenTelemetry.
+
+To enable OpenTelemetry, set the buildtime environment variable `ENABLE_OTEL` to true. This will inject additional code into your application's entrypoint which will initialize the OpenTelemetry SDK. Automatic instrumentations as well as instrumentations from `storefront-nuxt` will be captured and exported via the OTLP protocol.
+
+Currently, Vercel and Node are the only supported platforms for the OpenTelemetry integration. Setting `ENABLE_OTEL` to true when building for other platforms will have no effect.
+
+You should also set the runtime variable `OTEL_SERVICE_NAME` to configure the service name used in traces. e.g. `OTEL_SERVICE_NAME=storefront-boilerplate` Note: this variable is used directly by the OpenTelemetry libraries and is not available in the Nuxt `runtimeConfiguration`.

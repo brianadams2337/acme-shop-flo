@@ -1,0 +1,96 @@
+diff --git a/node_modules/import-in-the-middle/hook.js b/node_modules/import-in-the-middle/hook.js
+index aa22356..239bc21 100644
+--- a/node_modules/import-in-the-middle/hook.js
++++ b/node_modules/import-in-the-middle/hook.js
+@@ -22,6 +22,51 @@ if (NODE_MAJOR >= 20 || (NODE_MAJOR === 18 && NODE_MINOR >= 19)) {
+   getExports = ({ url }) => import(url).then(Object.keys)
+ }
+ 
++function shouldIgnore (url) {
++  // In short, some packages are not compatible with this hook.
++  // I have attempted to patch this hook to work with every package, but that just sent me down a rabbit hole.
++  // See attempts and related issues here:
++  // * https://github.com/DataDog/import-in-the-middle/issues/60
++  // * https://github.com/DataDog/import-in-the-middle/issues/59
++  //
++  // However, for this hook to be useful, it does not need to work with every package.
++  // It just needs to work with the packages that we want OpenTelemetry to instrument.
++  const patterns = [
++    'vue',
++    'vue/server-renderer',
++    'vue-slider-component',
++    '@envelop/core',
++    '@floating-ui/react-dom-interactions',
++    'dataloader',
++    'graphql-yoga',
++    // Does not get patched properly.
++    // Produces errors such as:
++    // > TypeError: Cannot read properties of undefined (reading 'sendCommand')
++    // > at instrumentation_1.InstrumentationNodeModuleDefinition.moduleExports [as patch] (/Users/x/Developer/contra/gaia/node_modules/.pnpm/@opentelemetry+instrumentation-ioredis@0.36.1_@opentelemetry+api@1.7.0/node_modules/@opentelemetry/instrumentation-ioredis/build/src/instrumentation.js:40:78)
++    'ioredis',
++    'openai',
++    'playwright-chromium',
++    'styled-components',
++  ];
++
++  for (const pattern of patterns) {
++    if (url === pattern || url.startsWith(pattern + '/') || url.includes('/' + pattern + '/')) {
++      return true;
++    }
++  }
++
++  // If you miss a pattern, then you will get an error along the lines of:
++  //
++  // > Error: ENOENT: no such file or directory, open '/Users/x/Developer/contra/gaia/packages/styled-components/dist/styled-components'
++  //
++  // Usually, it is easy to tell what package is causing the issue by just looking at the path (e.g. 'styled-components' in the above example).
++  // However, other times, it is not so obvious. In those cases, you can uncomment the following line to get everything that was attempted up to the point of failure.
++  //
++  // console.log('url', url)
++
++  return false;
++}
++
+ function hasIitm (url) {
+   try {
+     return new URL(url).searchParams.has('iitm')
+@@ -230,6 +275,9 @@ function addIitm (url) {
+ 
+ function createHook (meta) {
+   async function resolve (specifier, context, parentResolve) {
++    if (shouldIgnore(specifier)) {
++      return parentResolve(specifier)
++    }
+     const { parentURL = '' } = context
+     const newSpecifier = deleteIitm(specifier)
+     if (isWin && parentURL.indexOf('file:node') === 0) {
+@@ -264,6 +312,9 @@ function createHook (meta) {
+ 
+   const iitmURL = new URL('lib/register.js', meta.url).toString()
+   async function getSource (url, context, parentGetSource) {
++    if (shouldIgnore(url)) {
++      return parentGetSource(url)
++    }
+     if (hasIitm(url)) {
+       const realUrl = deleteIitm(url)
+       const { imports, namespaces, setters: mapSetters } = await processModule({
+@@ -303,7 +354,8 @@ import { register } from '${iitmURL}'
+ ${imports.join('\n')}
+ 
+ const namespaces = [${namespaces.join(', ')}]
+-const _ = {}
++// Mimic a Module object (https://tc39.es/ecma262/#sec-module-namespace-objects).
++const _ = Object.create(null, { [Symbol.toStringTag]: { value: 'Module' } })
+ const set = {}
+ 
+ const primary = namespaces.shift()
+@@ -330,6 +382,9 @@ register(${JSON.stringify(realUrl)}, _, set, ${JSON.stringify(specifiers.get(rea
+ 
+   // For Node.js 16.12.0 and higher.
+   async function load (url, context, parentLoad) {
++    if (shouldIgnore(url)) {
++      return parentLoad(url) 
++    }
+     if (hasIitm(url)) {
+       const { source } = await getSource(url, context, parentLoad)
+       return {

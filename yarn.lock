@@ -563,10 +563,10 @@
   dependencies:
     mime "^3.0.0"
 
-"@crowdin/cli@3.19.1":
-  version "3.19.1"
-  resolved "https://registry.yarnpkg.com/@crowdin/cli/-/cli-3.19.1.tgz#2c83889cc55ec64f02e22c62a86faa14addcce9f"
-  integrity sha512-Xmhl4FoDsRCFHjftC/Pl+Nlv/5dIdhWNNVK82OHTgAhfKq+9SpoSrUVf2e+zC4iOe5idsRtMvvQhBn2jYlgbJA==
+"@crowdin/cli@3.19.2":
+  version "3.19.2"
+  resolved "https://registry.yarnpkg.com/@crowdin/cli/-/cli-3.19.2.tgz#d81d85c78d7235c6c273bae72c93631dc0aedab6"
+  integrity sha512-eO/BFcLl2m96dRlEth3hsbbPJNsiTZaLqsAkot27eE4DS5+IpkV0NbcBgMsja+t0ugPAPYQ7Crc+AruO5ywvmg==
   dependencies:
     command-exists-promise "^2.0.2"
     node-fetch "2.7.0"

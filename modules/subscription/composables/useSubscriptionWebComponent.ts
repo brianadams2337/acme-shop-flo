@@ -2,18 +2,18 @@ const isSubscriptionWebComponentLoaded = ref(false)
 
 export default () => {
   const runtimeConfig = useRuntimeConfig()
-  const { webHost, apiUrl } = runtimeConfig.public.subscription
+  const { overviewWebHost, apiUrl } = runtimeConfig.public.subscription
 
   const log = useLog('useSubscriptionWebComponent')
 
-  if (webHost?.length) {
+  if (overviewWebHost?.length) {
     useHead({
       script: [
         {
           key: 'subscription-wc',
           defer: true,
           async: true,
-          src: webHost,
+          src: overviewWebHost,
           onload() {
             isSubscriptionWebComponentLoaded.value = true
           },

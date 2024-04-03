@@ -136,8 +136,8 @@ export default defineNuxtConfig({
       appEnv: process.env.APP_ENV, // Override: NUXT_PUBLIC_APP_ENV,
 
       subscription: {
-        webHost: process.env.NUXT_PUBLIC_SUBSCRIPTION_OVERVIEW_WEB_HOST ?? '', // Override: NUXT_PUBLIC_SUBSCRIPTION_OVERVIEW_WEB_HOST
-        apiUrl: process.env.NUXT_PUBLIC_SUBSCRIPTION_API_URL ?? '', // Override: NUXT_PUBLIC_SUBSCRIPTION_API_URL
+        overviewWebHost: '', // Override: NUXT_PUBLIC_SUBSCRIPTION_OVERVIEW_WEB_HOST
+        apiUrl: '', // Override: NUXT_PUBLIC_SUBSCRIPTION_API_URL
       },
     },
   },

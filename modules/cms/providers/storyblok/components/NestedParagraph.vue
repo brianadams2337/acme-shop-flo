@@ -2,11 +2,18 @@
   <div
     :id="blok.anchor_id"
     v-editable="blok"
-    class="prose mb-10 flex w-full flex-col"
-    :class="{ 'scroll-mt-8': blok.anchor_id }"
+    class="prose mb-10 flex w-full flex-col last:mb-0"
+    :class="{
+      'scroll-mt-8': blok.anchor_id,
+      '': blok.nested_items?.length,
+    }"
     :style="style"
   >
-    <Headline size="xs" tag="h3">{{ blok.headline }}</Headline>
+    <Headline
+      :tag="blok.headline_tag ? blok.headline_tag : 'h3'"
+      :size="getHeadlineSize(blok.headline_tag)"
+      >{{ blok.headline }}</Headline
+    >
     <div
       v-if="blok.cta?.linktype === 'email'"
       class="grid grid-cols-2 justify-items-start gap-8"
@@ -17,6 +24,14 @@
       </div>
     </div>
     <CmsText v-else :blok="{ ...blok, component: 'CmsText' }" />
+    <template v-if="blok.nested_items">
+      <component
+        :is="nestedItem.component"
+        v-for="nestedItem in blok.nested_items"
+        :key="nestedItem._uid"
+        :blok="nestedItem"
+      ></component>
+    </template>
     <div class="flex flex-row space-x-8">
       <div
         v-for="paragraphImage in blok.images"
@@ -53,11 +68,11 @@
 </template>
 
 <script setup lang="ts">
-import type { SbParagraph } from '../types/storyblok'
+import type { SbNestedParagraph } from '../types/storyblok'
 
 const props = defineProps({
   blok: {
-    type: Object as PropType<SbParagraph>,
+    type: Object as PropType<SbNestedParagraph>,
     required: true,
   },
 })
@@ -67,6 +82,24 @@ const style = computed(() =>
     ? { backgroundColor: props.blok?.background_color }
     : undefined,
 )
+
+function getHeadlineSize(size: string | undefined) {
+  if (!size) {
+    return 'sm'
+  }
+  switch (size) {
+    case 'h2':
+      return 'xl'
+    case 'h3':
+      return 'lg'
+    case 'h4':
+      return 'md'
+    case 'h5':
+      return 'sm'
+    default:
+      return 'sm'
+  }
+}
 
 defineOptions({ name: 'CmsParagraph' })
 </script>

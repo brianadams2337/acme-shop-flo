@@ -11,22 +11,18 @@
 </template>
 
 <script setup lang="ts">
-import type { SbCmsImage } from '../types/storyblok'
-
-type Props = {
-  blok: SbCmsImage
-  preload?: boolean
-  isTeaser?: boolean
-  sizes?: string
-}
-
-const props = withDefaults(defineProps<Props>(), {
+import type { CMSImageProps } from '~/modules/cms/providers/storyblok/types'
+import {
+  useStoryblokImageSanitizer,
+  getTeaserImage,
+} from '~/modules/cms/providers/storyblok/composables/useStoryblokImage'
+const props = withDefaults(defineProps<CMSImageProps>(), {
   preload: false,
   isTeaser: false,
   sizes: 'xs:100vw sm:100vw md:100vw lg:100vw xl:100vw xxl:100vw 2xl:100vw',
 })
 
-const { trackPromotion } = useTrackingEvents()
+const tracking = useStorefrontTracking()
 const { sanitize } = useStoryblokImageSanitizer()
 
 const imageSource = computed(() =>
@@ -37,7 +33,9 @@ const onIntersect = (_: IntersectionObserverEntry, stop: () => void) => {
   if (!props.blok.promotion_id) {
     return
   }
-  trackPromotion('view_promotion', props.blok)
+  tracking && tracking.trackPromotion('view_promotion', props.blok)
   stop()
 }
+
+defineOptions({ name: 'CMSImage' })
 </script>

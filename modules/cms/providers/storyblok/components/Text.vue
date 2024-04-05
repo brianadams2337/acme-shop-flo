@@ -10,17 +10,10 @@
 </template>
 
 <script lang="ts" setup>
-import type { SbCmsText } from '../types/storyblok'
+import type { CMSTextProps } from '~/modules/cms/providers/storyblok/types'
 
-const props = defineProps({
-  blok: {
-    type: Object as PropType<SbCmsText>,
-    required: true,
-  },
-  noMarginTop: {
-    type: Boolean,
-    default: false,
-  },
+const props = withDefaults(defineProps<CMSTextProps>(), {
+  noMarginTop: false,
 })
 
 const content = computed(() =>
@@ -28,6 +21,7 @@ const content = computed(() =>
   // TODO: Fix types / override `renderRichText` definition
   props.blok.body ? renderRichText(props.blok.body) : null,
 )
+defineOptions({ name: 'CMSText' })
 </script>
 
 <style>

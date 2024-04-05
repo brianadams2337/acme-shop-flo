@@ -1,7 +1,7 @@
 <template>
   <div>
     <component
-      :is="getCmsComponentName(image)"
+      :is="getSlideComponent(image)"
       v-for="image in blok.image"
       :key="image._uid"
       class="aspect-[1/1] md:aspect-[9/4]"
@@ -47,7 +47,11 @@
 </template>
 
 <script setup lang="ts">
-import type { SbCmsImage, SbSlide, SbVideo } from '../types/storyblok'
+import type {
+  SbCmsImage,
+  SbSlide,
+  SbVideo,
+} from '~/modules/cms/providers/storyblok/types'
 
 const props = defineProps({
   blok: {
@@ -62,11 +66,16 @@ const props = defineProps({
 
 const { justify, align } = useCMSAlignment(props.blok)
 
-// TODO Rename "Video" to "CmsVideo" inside storyblok
-const getCmsComponentName = (img: SbVideo | SbCmsImage) => {
-  if (img.component === 'Video') {
-    return 'CmsVideo'
+const getSlideComponent = (file: SbVideo | SbCmsImage) => {
+  if (!file) {
+    return 'div'
   }
-  return img.component
+  if (file.component === 'Video') {
+    return 'CMSVideo'
+  }
+  if (file.component === 'CmsImage') {
+    return 'CMSImage'
+  }
 }
+defineOptions({ name: 'CMSSlide' })
 </script>

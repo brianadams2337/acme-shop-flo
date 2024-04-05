@@ -16,14 +16,10 @@
 </template>
 
 <script setup lang="ts">
-import type { SbVideo } from '../types/storyblok'
+import type { CMSVideoProps } from '~/modules/cms/providers/storyblok/types'
+import { useStoryblokMargins } from '~/modules/cms/providers/storyblok/composables/useStoryblokMargins'
 
-const props = defineProps({
-  blok: {
-    type: Object as PropType<SbVideo>,
-    required: true,
-  },
-})
+const props = defineProps<CMSVideoProps>()
 
 const { isSmaller } = useDefaultBreakpoints()
 
@@ -66,4 +62,6 @@ const { stop } = useIntersectionObserver(
 const clickObserver = props.blok.promotion_id
   ? () => trackPromotion('select_promotion', props.blok)
   : () => {}
+
+defineOptions({ name: 'CMSVideo' })
 </script>

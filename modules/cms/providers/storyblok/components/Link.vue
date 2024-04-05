@@ -1,22 +1,18 @@
 <template>
-  <StoryblokLink
+  <CMSStoryblokLink
     v-if="url"
     :to="url"
     :target="blok.open_in_new_tab ? '_blank' : '_self'"
   >
     {{ blok.label }}
-  </StoryblokLink>
+  </CMSStoryblokLink>
 </template>
 
 <script lang="ts" setup>
-import type { SbLink } from '../types/storyblok'
+import type { CMSLinkTypeProps } from '~/modules/cms/providers/storyblok/types'
 
-const props = defineProps({
-  blok: {
-    type: Object as PropType<SbLink>,
-    required: true,
-  },
-})
+const props = defineProps<CMSLinkTypeProps>()
 
 const url = props.blok?.cta_url?.cached_url ?? null
+defineOptions({ name: 'CMSLink' })
 </script>

@@ -44,7 +44,7 @@
         />
       </div>
     </div>
-    <div v-if="footerContent.socialMedia" class="container pb-8">
+    <div v-if="footerContent?.socialMedia" class="container pb-8">
       <div class="flex justify-end gap-4">
         <DefaultLink
           v-for="social in footerContent.socialMedia"

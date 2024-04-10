@@ -1506,30 +1506,6 @@
   optionalDependencies:
     ipx "^3.0.0"
 
-"@nuxt/kit@3.10.3":
-  version "3.10.3"
-  resolved "https://registry.yarnpkg.com/@nuxt/kit/-/kit-3.10.3.tgz#911bc431d9b7541a7269e9e63333f70c8ecb5fd6"
-  integrity sha512-PUjYB9Mvx0qD9H1QZBwwtY4fLlCLET+Mm9BVqUOtXCaGoXd6u6BE4e/dGFPk2UEKkIcDGrUMSbqkHYvsEuK9NQ==
-  dependencies:
-    "@nuxt/schema" "3.10.3"
-    c12 "^1.9.0"
-    consola "^3.2.3"
-    defu "^6.1.4"
-    globby "^14.0.1"
-    hash-sum "^2.0.0"
-    ignore "^5.3.1"
-    jiti "^1.21.0"
-    knitwork "^1.0.0"
-    mlly "^1.6.0"
-    pathe "^1.1.2"
-    pkg-types "^1.0.3"
-    scule "^1.3.0"
-    semver "^7.6.0"
-    ufo "^1.4.0"
-    unctx "^2.3.1"
-    unimport "^3.7.1"
-    untyped "^1.4.2"
-
 "@nuxt/kit@3.11.1":
   version "3.11.1"
   resolved "https://registry.yarnpkg.com/@nuxt/kit/-/kit-3.11.1.tgz#342335f1cbf7422a3e65be67f3ff975e6075decf"
@@ -1575,23 +1551,6 @@
     semver "^7.6.0"
     ufo "^1.5.3"
     unctx "^2.3.1"
-    unimport "^3.7.1"
-    untyped "^1.4.2"
-
-"@nuxt/schema@3.10.3":
-  version "3.10.3"
-  resolved "https://registry.yarnpkg.com/@nuxt/schema/-/schema-3.10.3.tgz#b9bdcced298b64f280f12936e518fe4f32c90328"
-  integrity sha512-a4cYbeskEVBPazgAhvUGkL/j7ho/iPWMK3vCEm6dRMjSqHVEITRosrj0aMfLbRrDpTrMjlRs0ZitxiaUfE/p5Q==
-  dependencies:
-    "@nuxt/ui-templates" "^1.3.1"
-    consola "^3.2.3"
-    defu "^6.1.4"
-    hookable "^5.5.3"
-    pathe "^1.1.2"
-    pkg-types "^1.0.3"
-    scule "^1.3.0"
-    std-env "^3.7.0"
-    ufo "^1.4.0"
     unimport "^3.7.1"
     untyped "^1.4.2"
 
@@ -2169,12 +2128,12 @@
     unstorage "1.10.1"
     zod "3.22.4"
 
-"@scayle/omnichannel-nuxt@2.1.3":
-  version "2.1.3"
-  resolved "https://registry.yarnpkg.com/@scayle/omnichannel-nuxt/-/omnichannel-nuxt-2.1.3.tgz#f92702b289516ccea68e8c45f1d9a3ed7edf4df0"
-  integrity sha512-0txAuMuMpfRRenDXoGVP71JiRUMUnNL+LF54IaipnVb55d/vBoWoQDu+uTs8PA71HIMHPC1Uj0LcS/J8NBnrmg==
+"@scayle/omnichannel-nuxt@2.1.4":
+  version "2.1.4"
+  resolved "https://registry.yarnpkg.com/@scayle/omnichannel-nuxt/-/omnichannel-nuxt-2.1.4.tgz#76064b5e3af26365c79a13f0c440b407aa67e298"
+  integrity sha512-5DlV1EOst+kOaSMpKGOTBMswZCH9OgVrsiPOhzh/BVK8dKo3uxAvgn/7/nV2sLvxq+cEcQNHXmEaBu9Yfep+bQ==
   dependencies:
-    "@nuxt/kit" "3.10.3"
+    "@nuxt/kit" "3.11.1"
     body-parser "1.20.2"
     qs "6.12.0"
     utility-types "3.11.0"
@@ -3669,7 +3628,7 @@ bytes@3.1.2:
   resolved "https://registry.yarnpkg.com/bytes/-/bytes-3.1.2.tgz#8b0beeb98605adf1b128fa4386403c009e0221a5"
   integrity sha512-/Nf7TyzTx6S3yRJObOAV7956r8cr2+Oj8AC5dt8wSP3BQAoeX58NoHyCU8P8zGkNXStjTSi6fzO6F0pBdcYbEg==
 
-c12@^1.10.0, c12@^1.9.0:
+c12@^1.10.0:
   version "1.10.0"
   resolved "https://registry.yarnpkg.com/c12/-/c12-1.10.0.tgz#e1936baa26fd03a9427875554aa6aeb86077b7fb"
   integrity sha512-0SsG7UDhoRWcuSvKWHaXmu5uNjDCDN3nkQLRL4Q42IlFy+ze58FcCoI3uPwINXinkz7ZinbhEgyzYFw9u9ZV8g==
@@ -8349,7 +8308,7 @@ mkdirp@^2.0.0, mkdirp@^2.1.6:
   resolved "https://registry.yarnpkg.com/mkdirp/-/mkdirp-2.1.6.tgz#964fbcb12b2d8c5d6fbc62a963ac95a273e2cc19"
   integrity sha512-+hEnITedc8LAtIP9u3HJDFIdcLV2vXP33sqLLIzkv1Db1zO/1OxbvYf0Y1OC/S/Qo5dxHXepofhmxL02PsKe+A==
 
-mlly@^1.2.0, mlly@^1.3.0, mlly@^1.4.2, mlly@^1.6.0, mlly@^1.6.1:
+mlly@^1.2.0, mlly@^1.3.0, mlly@^1.4.2, mlly@^1.6.1:
   version "1.6.1"
   resolved "https://registry.yarnpkg.com/mlly/-/mlly-1.6.1.tgz#0983067dc3366d6314fc5e12712884e6978d028f"
   integrity sha512-vLgaHvaeunuOXHSmEbZ9izxPx3USsk8KCQ8iC+aTlp5sKRSoZvwhHh5L9VbKSaVC6sJDqbyohIS76E2VmHIPAA==

@@ -13,8 +13,9 @@
 </template>
 
 <script setup lang="ts">
+import type { CheckoutEvent } from '@scayle/storefront-nuxt'
 useCheckoutWebComponent()
-const { data: basketData, fetch: fetchBasket } = await useBasket()
+const { data: basketData, fetch: fetchBasket, fetching } = await useBasket()
 
 const { user, fetch: fetchUser } = await useUser()
 
@@ -34,6 +35,28 @@ const showCheckout = ref(false)
 const accessToken = computed(() => {
   return user.value?.authentication?.storefrontAccessToken
 })
+
+const onCheckoutUpdate = async (
+  event: MessageEvent<CheckoutEvent>,
+  fetching: Boolean,
+  fetchCallback: () => Promise<void>,
+) => {
+  if (fetching) {
+    return
+  } // prevent multiple fetches
+  if (event?.data?.type === 'tracking') {
+    const actionType = event.data.event?.event
+
+    if (actionType === 'add_to_cart' || actionType === 'remove_from_cart') {
+      await fetchCallback()
+    }
+  }
+}
+
+// Refresh basket if the user changes quantity or removes an item at checkout
+useEventListener('message', (event) =>
+  onCheckoutUpdate(event, fetching.value, fetchBasket),
+)
 
 onMounted(async () => {
   try {

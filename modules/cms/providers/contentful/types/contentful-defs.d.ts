@@ -136,6 +136,15 @@ export type CMSParagraphProps = CMSComponentProps<
   }
 >
 
+type NestedParagraphProps =
+  BlokProps<Contentful.TypeNestedParagraphWithoutUnresolvableLinksResponse>
+export type CMSNestedParagraphProps = CMSComponentProps<
+  NestedParagraphProps,
+  {
+    sizes?: string
+  }
+>
+
 type TextProps = BlokProps<Document>
 export type CMSTextProps = CMSComponentProps<
   TextProps,

@@ -49,3 +49,6 @@ export const formatter = new Intl.ListFormat('en', {
 export const formattedProvidersKeys = formatter.format(
   Object.values(CMSProvidersMap),
 )
+
+export const EMAIL_REGEX_PATTERN =
+  /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/

@@ -241,12 +241,6 @@ const {
 
 const { addItemToBasket, basketIdle } = await useProductDetailsBasketActions()
 
-if (process.server) {
-  console.log('server', basketIdle.value)
-}
-if (process.client) {
-  console.log('client', basketIdle.value)
-}
 const {
   isBuyXGetYPrioritized,
   areHurryToSaveBannersShown,

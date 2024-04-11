@@ -10,6 +10,8 @@ import type { TypeParagraphSkeleton } from './TypeParagraph'
 export interface TypeNestedParagraphFields {
   uid?: EntryFieldTypes.Symbol
   headline?: EntryFieldTypes.Symbol
+  headlineTag?: EntryFieldTypes.Symbol<'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6'>
+  anchorId?: EntryFieldTypes.Symbol
   cta?: EntryFieldTypes.Symbol
   body?: EntryFieldTypes.RichText
   nestedItems?: EntryFieldTypes.Array<
@@ -20,7 +22,6 @@ export interface TypeNestedParagraphFields {
   >
   subTitle?: EntryFieldTypes.Text
   images?: EntryFieldTypes.Array<EntryFieldTypes.AssetLink>
-  anchorId?: EntryFieldTypes.Symbol
   backgroundColor?: EntryFieldTypes.Symbol
   fullWidth?: EntryFieldTypes.Boolean
 }

@@ -233,7 +233,7 @@ declare global {
 
   interface SearchData {
     search_term: string
-    search_term_completed: String
+    search_term_completed: string
     search_action: SearchAction
     search_destination: string
   }

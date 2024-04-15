@@ -9,7 +9,7 @@
         <article :id="`product-${product.id}`" class="flex h-full flex-col">
           <slot name="header">
             <div
-              class="group relative flex aspect-[3/4] max-h-md items-center justify-center bg-gray-200"
+              class="max-h-md group relative flex aspect-[3/4] items-center justify-center bg-gray-200"
               @mouseover="onMouseOver"
               @mouseleave="onMouseLeave"
             >
@@ -89,7 +89,7 @@
               <DefaultLink
                 :to="link"
                 raw
-                class="flex flex-col whitespace-pre-line break-words text-2xs font-medium uppercase leading-tight text-primary opacity-50 sm:leading-4 md:text-xs"
+                class="text-2xs text-primary flex flex-col whitespace-pre-line break-words font-medium uppercase leading-tight opacity-50 sm:leading-4 md:text-xs"
                 @click.capture="$emit('click:product')"
               >
                 <p class="overflow-hidden uppercase">{{ title }}</p>
@@ -220,13 +220,13 @@ const imageClasses = computed(() => ({
 
 const headerActionsClass = computed(() => ({
   'lg:opacity-0':
-    props.isWishlistCard && !shouldHoverImage && props.isAvailable,
+    props.isWishlistCard && !shouldHoverImage.value && props.isAvailable,
 }))
 
 const emit = defineEmits<{
   (e: 'intersect:product', value: number): void
-  (e: 'productimage:mouseover'): void
-  (e: 'productimage:mouseleave'): void
-  (e: 'click:product'): void
+  (
+    e: 'productimage:mouseover' | 'productimage:mouseleave' | 'click:product',
+  ): void
 }>()
 </script>

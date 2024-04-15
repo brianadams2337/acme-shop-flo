@@ -1,7 +1,7 @@
 <template>
   <div>
     <slot :items="items">
-      <div v-if="withValues" class="mb-3 text-xs font-semibold text-secondary">
+      <div v-if="withValues" class="text-secondary mb-3 text-xs font-semibold">
         {{ colorLabel }}
       </div>
       <div
@@ -32,7 +32,7 @@
 </template>
 
 <script setup lang="ts">
-import { getProductSiblings } from '@scayle/storefront-nuxt'
+import type { getProductSiblings } from '@scayle/storefront-nuxt'
 // TODO: Expose the type in SFC
 type ProductSiblings = ReturnType<typeof getProductSiblings>
 

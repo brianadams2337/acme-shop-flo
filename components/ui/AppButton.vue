@@ -70,8 +70,7 @@ const componentName = computed(() => {
 })
 
 const emit = defineEmits<{
-  (e: 'click'): void
-  (e: 'click:stop'): void
+  (e: 'click' | 'click:stop'): void
 }>()
 
 const baseClasses = computed(() => ({

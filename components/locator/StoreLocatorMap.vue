@@ -46,7 +46,7 @@ const markers = ref<{
 }>({})
 
 onMounted(async () => {
-  // import all required goolge map api classes
+  // import all required google map api classes
   await new Loader({
     apiKey: props.apiKey,
     libraries: ['marker', 'maps', 'core'],
@@ -58,7 +58,7 @@ onMounted(async () => {
   watch(
     () => props.stores,
     () => {
-      if (!process.server && window.google) {
+      if (!import.meta.server && window.google) {
         removeOldMarkers()
         setMarkers()
       }
@@ -109,7 +109,6 @@ const setMarkers = () => {
     })
 
     infoWindow.addListener('closeclick', () => {
-      // @ts-ignore
       selectedStoreId.value = undefined
     })
 

@@ -49,7 +49,6 @@
 defineProps<{ name: string; imageHash: string }>()
 
 const emit = defineEmits<{
-  (e: 'click:confirm'): void
-  (e: 'click:cancel'): void
+  (e: 'click:confirm' | 'click:cancel'): void
 }>()
 </script>

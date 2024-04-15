@@ -18,7 +18,7 @@
     >
       <template #dot>
         <button
-          class="flex size-4 cursor-pointer rounded-full bg-primary focus:outline-none"
+          class="bg-primary flex size-4 cursor-pointer rounded-full focus:outline-none"
         >
           <div class="m-auto size-2 rounded-full bg-white" />
         </button>
@@ -36,7 +36,7 @@
         }"
         @update:model-value="changeRangeAtIndex($event, 0)"
       />
-      <div class="mx-auto text-center text-xs font-semibold text-secondary">
+      <div class="text-secondary mx-auto text-center text-xs font-semibold">
         {{ $t('filter.to') }}
       </div>
       <PriceInput
@@ -61,7 +61,7 @@ We can work around this by importing js and styles separately
 
 https://nightcatsama.github.io/vue-slider-component/#/?hash=server-side-rendering-ssr
 */
-// @ts-ignore
+// @ts-expect-error
 import VueSlider from 'vue-slider-component/dist-css/vue-slider-component.umd.min.js'
 import 'vue-slider-component/dist-css/vue-slider-component.css'
 import '@/assets/css/slider/default.css'
@@ -84,11 +84,7 @@ const props = withDefaults(defineProps<Props>(), {
 
 const emit = defineEmits<{
   (e: 'update:model-value', value: RangeTuple): void
-  (e: 'change'): void
-  (e: 'drag-start'): void
-  (e: 'drag-end'): void
-  (e: 'dragging'): void
-  (e: 'error'): void
+  (e: 'change' | 'drag-start' | 'drag-end' | 'dragging' | 'error'): void
 }>()
 
 const range = computed({

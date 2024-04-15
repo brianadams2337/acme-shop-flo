@@ -12,7 +12,7 @@
 
 <script setup lang="ts">
 import type { NavigationTreeItem } from '@scayle/storefront-nuxt'
-import { LinkVariant } from '#imports'
+import type { LinkVariant } from '#imports'
 
 type Props = {
   navigationItem: NavigationTreeItem | null

@@ -1,4 +1,4 @@
-import { Log } from '@scayle/storefront-nuxt'
+import type { Log } from '@scayle/storefront-nuxt'
 
 const WAIT_TIME = 1000
 

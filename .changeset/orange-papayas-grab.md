@@ -2,4 +2,4 @@
 '@scayle/storefront-boilerplate-nuxt': patch
 ---
 
-Fix store locator map covering navigation flyout
+Fix StoreLocator map covering navigation flyout

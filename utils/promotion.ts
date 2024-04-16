@@ -26,14 +26,14 @@ export const getVariantIds = (promotion?: Promotion | null): number[] => {
   return additionalData.variantIds
 }
 
-export const getAdditionalDataValue = (
+export const getAdditionalData = (
   promotion?: Promotion | null,
-): number | undefined => {
+): AutomaticDiscountEffect['additionalData'] | undefined => {
   if (!isAutomaticDiscountType(promotion) || !promotion) {
     return
   }
   const { additionalData } = promotion.effect as AutomaticDiscountEffect
-  return additionalData.value
+  return additionalData
 }
 
 export const getBasketTotalWithoutPromotions = (

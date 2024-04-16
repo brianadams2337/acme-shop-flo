@@ -177,12 +177,25 @@ export async function useProductPromotions(
   const getAppliedAutomaticDiscountPrice = (
     price: Price,
   ): number | undefined => {
-    const value = getAdditionalDataValue(automaticDiscountPromotion.value)
-    if (!value) {
+    const additionalData = getAdditionalData(automaticDiscountPromotion.value)
+    if (!additionalData?.value) {
       return
     }
-    const discount = divideByHundred(price.withTax) * divideByHundred(value)
-    return price.withTax - discount
+    const { type, value: discountValue } = additionalData
+    const priceWithTax = divideByHundred(price.withTax)
+
+    let priceTotal = 0
+
+    if (type === 'absolute') {
+      priceTotal = priceWithTax - divideByHundred(discountValue)
+    }
+
+    if (type === 'relative') {
+      const discount = priceWithTax * discountValue
+      priceTotal = price.withTax - discount
+    }
+
+    return priceTotal >= 0 ? priceTotal : 0
   }
 
   return {

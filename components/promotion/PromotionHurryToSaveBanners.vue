@@ -16,7 +16,6 @@
         tag="h2"
         size="xs"
         is-bold
-        is-uppercase
         class="text-balance lg:basis-5/12 xl:basis-7/12"
       >
         {{ $t('promotion.hurry_to_save') }}
@@ -39,7 +38,6 @@
         tag="h2"
         size="xs"
         is-bold
-        is-uppercase
         class="text-balance lg:basis-5/12 xl:basis-7/12"
       >
         {{ $t('promotion.save_your_free_gift') }}

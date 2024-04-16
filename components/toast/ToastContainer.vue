@@ -6,7 +6,7 @@
     leave-to-class="opacity-0 -z-10 -translate-y-8"
     leave-active-class="absolute"
     move-class="transition-all duration-500"
-    class="fixed right-0 top-[5%] z-60 flex flex-col items-end"
+    class="fixed right-0 top-[5%] z-[90] flex flex-col items-end"
   >
     <Toast
       v-for="notification in notifications"

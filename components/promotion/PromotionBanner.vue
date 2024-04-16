@@ -32,7 +32,7 @@
   <FadeInTransition>
     <PromotionMobileBanner
       :promotions="promotions"
-      :show-deals-button-visible="showDealsButton"
+      :show-deals-button-visible="showMobileDealsButton"
       :category="category"
     />
   </FadeInTransition>
@@ -63,4 +63,12 @@ const showDealsButton = computed<boolean>(() => {
         (!isMOVPromotionApplied.value && isFullProgress.value)),
   )
 })
+
+const showMobileDealsButton = computed(
+  () =>
+    category.value &&
+    !isMOVPromotionApplied.value &&
+    isFullProgress.value &&
+    minOrderValue.value,
+)
 </script>

@@ -18,7 +18,7 @@
     >
       <template #dot>
         <button
-          class="bg-primary flex size-4 cursor-pointer rounded-full focus:outline-none"
+          class="flex size-4 cursor-pointer rounded-full bg-primary focus:outline-none"
         >
           <div class="m-auto size-2 rounded-full bg-white" />
         </button>
@@ -36,7 +36,7 @@
         }"
         @update:model-value="changeRangeAtIndex($event, 0)"
       />
-      <div class="text-secondary mx-auto text-center text-xs font-semibold">
+      <div class="mx-auto text-center text-xs font-semibold text-secondary">
         {{ $t('filter.to') }}
       </div>
       <PriceInput

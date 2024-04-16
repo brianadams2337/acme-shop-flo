@@ -2,7 +2,6 @@
 '@scayle/storefront-boilerplate-nuxt': patch
 ---
 
-
 - Added `@scayle/eslint-plugin-vue-composable@0.1.1`
 - Updated to `@crowdin/cli@3.19.2"`
 - Updated to `@nuxt/test-utils@3.12.0`

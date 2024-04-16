@@ -192,7 +192,7 @@ export default defineNuxtConfig({
   ],
 
   cms: {
-    provider: 'contentful',
+    provider: 'storyblok',
   },
   // https://github.com/lukasaric/radash-nuxt
   radash: {

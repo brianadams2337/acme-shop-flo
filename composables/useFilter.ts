@@ -11,6 +11,8 @@ import {
   transformStateToFilters,
 } from '@scayle/storefront-nuxt'
 
+export const INCLUDED_QUICK_FILTERS = ['sale', 'isNew', 'styleGroup']
+
 const SUPPORTED_FILTERS = ['brand', 'size', 'color', 'prices', 'sale']
 
 export type FilterState = {

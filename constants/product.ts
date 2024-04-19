@@ -1,5 +1,6 @@
 import type { ProductWith } from '@scayle/storefront-nuxt'
 
+export const FETCH_PRODUCTS_CACHE_TTL = 1000
 export const PRODUCTS_PER_PAGE = 24
 export const MINIMUM_QUANTITY_IMMEDIATE_AVAILABILITY = 5
 export const PRODUCT_WITH_PARAMS: ProductWith = {

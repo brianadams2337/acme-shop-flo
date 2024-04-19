@@ -12,3 +12,8 @@ export const CategoryListingMetadata = {
   ID: 'CategoryProductList',
   NAME: 'Category Product List',
 } as const
+
+export const categoryListingMetaData = {
+  id: CategoryListingMetadata.ID,
+  name: CategoryListingMetadata.NAME,
+}

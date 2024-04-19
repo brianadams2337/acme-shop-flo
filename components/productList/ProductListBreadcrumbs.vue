@@ -33,13 +33,14 @@ import { getBreadcrumbsFromPath } from '@scayle/storefront-nuxt'
 
 const route = useRoute()
 const currentShop = useCurrentShop()
+const { getLocalizedRoute } = useRouteHelpers()
 
 const breadcrumbs = computed(() => {
   return getBreadcrumbsFromPath(route.path, currentShop.value?.path)
 })
 
 const isActive = (url: string) => {
-  const { isExactActive } = useLink({ to: url })
+  const { isExactActive } = useLink({ to: getLocalizedRoute(url) })
   return isExactActive.value
 }
 

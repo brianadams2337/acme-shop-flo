@@ -97,6 +97,7 @@
 
 <script setup lang="ts">
 import { HttpStatusCode, type Product } from '@scayle/storefront-nuxt'
+
 const route = useRoute()
 const { pageState, setPageState } = usePageState()
 const { $i18n, $config } = useNuxtApp()
@@ -109,6 +110,8 @@ await fetchCategory()
 if (!category.value) {
   throw createError({ statusCode: HttpStatusCode.NOT_FOUND, fatal: true })
 }
+
+const categoryPath = computed(() => category.value?.path ?? '')
 
 const {
   products,
@@ -123,13 +126,37 @@ const {
   productError,
   filterError,
   categoriesError,
-  fetchParameters,
-  listingMetaData,
   filtersFetching,
   productCountData,
   refreshProductCount,
   unfilteredCount,
-} = await useProductList(category.value.path)
+} = await useFacet({
+  key: `useFacet-${categoryPath.value}`,
+  params: FACET_PARAMS,
+})
+
+const { selectedSort, sortingValues } = useProductListSort(selectedCategory)
+
+const { productConditions } = useQueryFilterState({
+  defaultSort: DEFAULT_SORTING_KEY,
+})
+
+const fetchParameters = computed(() => ({
+  path: categoryPath.value,
+  perPage: PRODUCTS_PER_PAGE,
+  ...productConditions.value,
+  where: {
+    ...productConditions.value.where,
+    term: String(route.query.term || ''),
+  },
+  cache: {
+    ttl: FETCH_PRODUCTS_CACHE_TTL,
+    cacheKeyPrefix: `PLP:${categoryPath.value}`,
+  },
+  sort: {
+    ...selectedSort.value,
+  },
+}))
 
 await fetchProducts(fetchParameters.value)
 
@@ -142,15 +169,13 @@ createFilterContext({
   unfilteredCount,
 })
 
-const { selectedSort, sortingValues } = useProductListSort(selectedCategory)
-
 const { isFiltered, resetFilters, applyFilters } = useFilter()
 
 const trackViewListing = ({ items }: { row: number; items: Product[] }) => {
   const paginationOffset = ((pagination.value?.page || 1) - 1) * 24
   trackViewItemList({
     items,
-    listingMetaData,
+    listingMetaData: categoryListingMetaData,
     paginationOffset,
     source: `category|${selectedCategory.value?.id}`,
   })
@@ -172,7 +197,7 @@ watch(
 const trackProductClick = (product: Product) => {
   trackSelectItem({
     product,
-    listingMetaData,
+    listingMetaData: categoryListingMetaData,
     pagePayload: {
       content_name: route.fullPath,
       page_type: pageState.value.type,

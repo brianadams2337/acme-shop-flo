@@ -1,7 +1,9 @@
 # Nuxt 3-based Storefront-Boilerplate (DemoShop) Dockerfile
 
 # Build
-FROM node:20.12.1-alpine3.19 as build
+FROM node:20.12.1-alpine3.19 AS build
+
+ARG CMS_PROVIDER
 
 WORKDIR /app
 
@@ -12,6 +14,8 @@ COPY patches /app/patches
 RUN yarn install --frozen-lockfile
 
 COPY . /app
+
+ENV CMS_PROVIDER=$CMS_PROVIDER
 
 RUN yarn nuxt build
 

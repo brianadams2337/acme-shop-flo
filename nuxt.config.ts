@@ -192,8 +192,10 @@ export default defineNuxtConfig({
   ],
 
   cms: {
-    provider: 'storyblok',
+    // @ts-expect-error provider here expects either `storyblok` or `contentful` but the env variable is typed as string
+    provider: process.env.CMS_PROVIDER ?? 'storyblok',
   },
+
   // https://github.com/lukasaric/radash-nuxt
   radash: {
     prefix: '_',

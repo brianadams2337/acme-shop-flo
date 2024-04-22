@@ -1,13 +1,32 @@
 <template>
-  <div v-if="productPromotionId" class="flex h-fit flex-col">
+  <div v-if="productPromotionId" class="flex flex-col">
     <template v-for="{ id, customData, priority } in orderedPromotions">
       <div
         v-if="customData.product?.badgeLabel"
         :key="id"
-        class="z-10 mb-1 flex size-max flex-wrap items-center rounded-md bg-blue p-1 px-2 text-xs font-semibold text-white last-of-type:mb-0"
+        class="z-10 mb-1 flex flex-nowrap items-center justify-center gap-[1ch] bg-blue px-2 py-[.375rem] text-center text-xs text-white last-of-type:mb-0"
+        :class="{
+          'last-of-type:rounded-b-md': isFullWidth,
+          rounded: !isFullWidth,
+        }"
         :style="getBackgroundColorStyle(customData.colorHex)"
       >
-        {{ customData.product?.badgeLabel }}
+        <span
+          v-if="customData.headlineParts?.length"
+          class="hidden truncate font-bold"
+          :class="{
+            'md:inline-block': !isBasket,
+            'inline-block': !customData.product?.badgeLabel,
+          }"
+        >
+          {{ getOfferText(customData) }}</span
+        >
+        <span
+          v-if="customData.product?.badgeLabel"
+          class="truncate font-medium"
+        >
+          {{ customData.product?.badgeLabel }}</span
+        >
         <template v-if="isPriorityLabelShown && isHighestPriority(priority)">
           <IconForward class="mx-2 size-2" />
           <span class="text-2xs font-semibold uppercase">
@@ -25,11 +44,21 @@ import type { Product } from '@scayle/storefront-nuxt'
 type Props = {
   product: Product
   isPriorityLabelShown?: boolean
+  isFullWidth?: boolean
 }
+
+const route = useRoute()
+
+const isBasket = computed(() => route.meta.pageType === 'basket_page')
 
 const props = withDefaults(defineProps<Props>(), {
   isPriorityLabelShown: false,
+  isFullWidth: true,
 })
+
+function getOfferText(customData: Promotion['customData']) {
+  return customData.headlineParts?.at(0) ?? ''
+}
 
 const { productPromotionId, applicablePromotions, isHighestPriority } =
   await useProductPromotions(props.product)

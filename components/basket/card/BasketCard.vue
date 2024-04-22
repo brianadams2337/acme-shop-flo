@@ -21,6 +21,11 @@
               fit="cover"
               sizes="xl:100vw lg:100vw lg:100vw lg:100vw xs:100vw"
             />
+            <ProductBadges
+              :product="product"
+              :is-promotion-badge-full-width="false"
+              class="absolute"
+            />
             <FadeInTransition>
               <ProductPromotionFreeGiftBadge
                 v-if="isFreeGift"

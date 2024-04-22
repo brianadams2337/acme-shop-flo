@@ -1,4 +1,5 @@
 import { useLocalStorage } from '@vueuse/core'
+import { getCurrentInstance } from 'vue'
 
 export interface LastLoggedInUser {
   firstName: string
@@ -14,7 +15,8 @@ export const setUserDefault = (): LastLoggedInUser => ({
 
 export async function useLastLoggedInUser() {
   const scope = getCurrentScope()
-  const { user, isLoggedIn, fetching } = await useUser()
+  const instance = getCurrentInstance()
+
   const lastLoggedInUser = useState(USER_KEY, setUserDefault)
 
   const localStorage = useLocalStorage<LastLoggedInUser>(
@@ -28,6 +30,7 @@ export async function useLastLoggedInUser() {
     },
   )
 
+  const { user, isLoggedIn, fetching } = await useUser()
   const removeLastLoggedInUser = () => {
     localStorage.value = setUserDefault()
     lastLoggedInUser.value = setUserDefault()
@@ -55,9 +58,9 @@ export async function useLastLoggedInUser() {
     )
   })
 
-  tryOnBeforeMount(() => {
+  onBeforeMount(() => {
     lastLoggedInUser.value = localStorage.value
-  })
+  }, instance)
 
   return {
     lastLoggedInUser,

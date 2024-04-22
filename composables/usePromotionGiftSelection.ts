@@ -17,10 +17,6 @@ export async function usePromotionGiftSelection(
 
   const route = useRoute()
 
-  const { fetching: basketIdle, addItem: addBasketItem } = await useBasket()
-
-  const { showAddToBasketToast } = await useBasketActions()
-
   const { trackAddToBasket } = useTrackingEvents()
   const localePath = useLocalePath()
 
@@ -35,17 +31,22 @@ export async function usePromotionGiftSelection(
     () => false,
   )
 
-  const toggleGiftSelection = () => {
-    isSelectionShown.value = !isSelectionShown.value
-  }
-
-  const isGiftSelectionShown = computed(() => isSelectionShown.value)
-
   const {
     brand,
     name: productName,
     variantWithLowestPrice,
   } = useProductBaseInfo(gift)
+
+  const [
+    { fetching: basketIdle, addItem: addBasketItem },
+    { showAddToBasketToast },
+  ] = await Promise.all([useBasket(), useBasketActions()])
+
+  const toggleGiftSelection = () => {
+    isSelectionShown.value = !isSelectionShown.value
+  }
+
+  const isGiftSelectionShown = computed(() => isSelectionShown.value)
 
   const lowestPriorPrice = computed(
     () =>

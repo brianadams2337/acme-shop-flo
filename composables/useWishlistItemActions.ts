@@ -10,20 +10,8 @@ import {
 export async function useWishlistItemActions(item: Ref<WishlistItem>) {
   const { $i18n } = useNuxtApp()
 
-  const { replaceItem: replaceWishlistItem } = await useWishlist()
-
-  const basket = await useBasket()
-
-  const { sizes, selectedSize } = useWishlistItem(item)
-
-  const product = item.value.product
-
   const notification = useNotification()
-
-  const { showAddToBasketToast } = await useBasketActions()
-
-  const { highestPriorityPromotion, isBuyXGetYPrioritized } =
-    await useProductPromotions(product)
+  const product = item.value.product
 
   const { openBasketFlyout } = useFlyouts()
   const { trackAddToBasket } = useTrackingEvents()
@@ -39,6 +27,22 @@ export async function useWishlistItemActions(item: Ref<WishlistItem>) {
     `is-add-to-basket-button-shown-${product.id}`,
     () => false,
   )
+
+  const { toggle: toggleFilter } = useSlideIn(`wishlistcard_${product.id}`)
+
+  const [
+    { replaceItem: replaceWishlistItem },
+    { sizes, selectedSize },
+    { showAddToBasketToast },
+    { highestPriorityPromotion, isBuyXGetYPrioritized },
+    basket,
+  ] = await Promise.all([
+    useWishlist(),
+    useWishlistItem(item),
+    useBasketActions(),
+    useProductPromotions(product),
+    useBasket(),
+  ])
 
   const promotionId = computed(() => highestPriorityPromotion.value?.id)
 
@@ -82,8 +86,6 @@ export async function useWishlistItemActions(item: Ref<WishlistItem>) {
       list: wishlistListingMetadata,
     })
   }
-
-  const { toggle: toggleFilter } = useSlideIn(`wishlistcard_${product.id}`)
 
   const getSize = (value: string): VariantSize | undefined => {
     return sizes.value.find((size) => size.value === value)

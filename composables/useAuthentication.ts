@@ -28,14 +28,6 @@ export async function useAuthentication(
 
   const { trackAuthenticated, trackLogout } = useTrackingEvents()
 
-  const { user, fetch: refreshUser, customerType } = await useUser()
-  const { fetch: refreshWishlist } = await useWishlist()
-  const { fetch: refreshBasket } = await useBasket()
-
-  const refresh = async () => {
-    await Promise.all([refreshUser(), refreshWishlist(), refreshBasket()])
-  }
-
   const session = useSession()
   const localePath = useLocalePath()
   const { localizedNavigateTo } = useRouteHelpers()
@@ -46,6 +38,16 @@ export async function useAuthentication(
   const successMessage = computed(() =>
     $i18n.t(`login_page.${event}.status.success`),
   )
+
+  const [
+    { fetch: refreshWishlist },
+    { fetch: refreshBasket },
+    { user, fetch: refreshUser, customerType },
+  ] = await Promise.all([useWishlist(), useBasket(), useUser()])
+
+  const refresh = async () => {
+    await Promise.all([refreshUser(), refreshWishlist(), refreshBasket()])
+  }
 
   const login = async (data: Omit<LoginRequest, 'shop_id'>) => {
     isSubmitting.value = true

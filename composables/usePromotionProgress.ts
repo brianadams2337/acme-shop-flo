@@ -1,8 +1,8 @@
 export async function usePromotionProgress() {
-  const { data: basketData } = await useBasket()
-
   const { currentPromotion } = useCurrentPromotion()
   const { formatCurrency } = useFormatHelpers()
+
+  const { data: basketData } = await useBasket()
 
   const minOrderValue = computed<number>(() => {
     return currentPromotion.value?.customData?.minOrderValue || 0

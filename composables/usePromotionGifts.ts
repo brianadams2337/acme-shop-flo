@@ -1,8 +1,12 @@
 import type { Product } from '@scayle/storefront-nuxt'
 
 export async function usePromotionGifts(product: Product) {
-  const { buyXGetYPromotion } = await useProductPromotions(product)
-  const basketData = await useBasket()
+  const app = useNuxtApp()
+
+  const [basketData, { buyXGetYPromotion }] = await Promise.all([
+    useBasket(),
+    useProductPromotions(product),
+  ])
 
   const variantIds = computed(() => getVariantIds(buyXGetYPromotion.value))
 
@@ -24,18 +28,22 @@ export async function usePromotionGifts(product: Product) {
 
   const hasMultipleFreeGifts = computed(() => variantIds.value.length > 1)
 
-  const { data: variants } = await useVariant({
-    params: { ids: variantIds.value },
-    key: `promotion-variants-${buyXGetYPromotion.value?.id}`,
-  })
+  const { data: variants } = await app.runWithContext(() =>
+    useVariant({
+      params: { ids: variantIds.value },
+      key: `promotion-variants-${buyXGetYPromotion.value?.id}`,
+    }),
+  )
 
-  const { data } = await useProductsByIds({
-    params: { ids: variants.value?.map(({ productId }) => productId) ?? [] },
-    key: `promotion-products-${buyXGetYPromotion.value?.id}`,
-  })
+  const { data: productsData } = await app.runWithContext(() =>
+    useProductsByIds({
+      params: { ids: variants.value?.map(({ productId }) => productId) ?? [] },
+      key: `promotion-products-${buyXGetYPromotion.value?.id}`,
+    }),
+  )
 
   const products = computed(() => {
-    const items = _unique(data.value || [], ({ id }) => id)
+    const items = _unique(productsData.value || [], ({ id }) => id)
     return items.map((item) => {
       const filteredVariants = item.variants?.filter(({ id }) => {
         return variantIds.value.includes(id)

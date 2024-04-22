@@ -9,10 +9,14 @@ export const wishlistListingMetadata = {
 } as const
 
 export async function useWishlistPage() {
-  const wishlist = await useWishlist()
-  const basket = await useBasket()
+  const app = useNuxtApp()
 
-  const { $i18n } = useNuxtApp()
+  useSeoMeta({
+    robots: 'noindex,follow',
+    title: app.$i18n.t('navigation.wishlist'),
+  })
+
+  const [wishlist, basket] = await Promise.all([useWishlist(), useBasket()])
 
   if (wishlist.error.value) {
     throw wishlist.error.value
@@ -20,15 +24,9 @@ export async function useWishlistPage() {
 
   const orderedItems = computed(() => {
     return _alphabetical(wishlist.items.value || [], (item: WishlistItem) => {
-      return (
-        getFirstAttributeValue(item.product?.attributes, 'name')?.label ?? ''
-      )
+      const attributes = item.product?.attributes
+      return getFirstAttributeValue(attributes, 'name')?.label ?? ''
     })
-  })
-
-  useSeoMeta({
-    robots: 'noindex,follow',
-    title: $i18n.t('navigation.wishlist'),
   })
 
   const count = wishlist.count

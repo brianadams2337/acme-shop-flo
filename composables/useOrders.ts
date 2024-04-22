@@ -1,4 +1,5 @@
 export async function useOrders() {
+  const app = useNuxtApp()
   const route = useRoute()
   const paramId = computed(() => +route.params.id)
 
@@ -13,10 +14,12 @@ export async function useOrders() {
     return _unique(ids)
   })
 
-  const { data: orderVariants } = await useVariant({
-    params: { ids: variantIds.value },
-    key: `variant-${paramId.value}`,
-  })
+  const { data: orderVariants } = await app.runWithContext(() =>
+    useVariant({
+      params: { ids: variantIds.value },
+      key: `variant-${paramId.value}`,
+    }),
+  )
 
   const totalAmount = computed(() => orderDetails.value?.cost.withTax ?? 0)
 

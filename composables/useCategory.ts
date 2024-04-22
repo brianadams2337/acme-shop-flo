@@ -1,34 +1,35 @@
 const STORYBLOK_CATEGORIES_FOLDER = '/categories'
+
 export async function useCategory(autoFetch = false) {
   const route = useRoute()
+  const { getCategoryPath } = useRouteHelpers()
 
-  const categoryPath = computed<string>(() => {
-    const { category } = route.params
-    if (!category) {
-      return '/'
-    }
-    const path = Array.isArray(category) ? category.join('/') : category
-    return normalizePathRoute(path)
-  })
+  const categoryPath = computed<string>(() => getCategoryPath(route.params))
 
-  if (categoryPath.value.startsWith(`${STORYBLOK_CATEGORIES_FOLDER}/`)) {
-    const id = parseInt(
-      categoryPath.value.replace(`${STORYBLOK_CATEGORIES_FOLDER}/`, ''),
-    )
-    const { fetch, data: categoryById } = await useCategoryById({
-      params: { id },
-      key: 'category',
-      options: { autoFetch },
-    })
+  const isStoryblokCategoryPath = categoryPath.value.startsWith(
+    `${STORYBLOK_CATEGORIES_FOLDER}/`,
+  )
 
-    return { category: categoryById, categoryPath, fetch }
-  }
-
-  const { data: category, fetch } = await useCategoryByPath({
-    params: { path: categoryPath.value, children: 0 },
+  const baseOptions = {
     key: 'category',
     options: { autoFetch },
-  })
+  }
+
+  const useResolvedCategory = isStoryblokCategoryPath
+    ? useCategoryById({
+        params: {
+          id: parseInt(
+            categoryPath.value.replace(`${STORYBLOK_CATEGORIES_FOLDER}/`, ''),
+          ),
+        },
+        ...baseOptions,
+      })
+    : useCategoryByPath({
+        params: { path: categoryPath.value, children: 0 },
+        ...baseOptions,
+      })
+
+  const { data: category, fetch } = await useResolvedCategory
 
   return { category, categoryPath, fetch }
 }

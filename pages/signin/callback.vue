@@ -9,4 +9,6 @@ const idpCode = computed(() => {
   const code = route.query.code
   return isString(code) ? code : undefined
 })
+
+defineOptions({ name: 'CallbackPage' })
 </script>

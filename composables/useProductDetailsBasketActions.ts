@@ -2,9 +2,11 @@ import type { AddOrUpdateItemType } from '@scayle/storefront-nuxt'
 import { isSubscriptionAlreadyInBasket } from '~/modules/subscription/helpers/subscription'
 
 export async function useProductDetailsBasketActions() {
-  const { $i18n } = useNuxtApp()
+  const app = useNuxtApp()
 
   const notification = useNotification()
+  const { trackAddToBasket } = useTrackingEvents()
+  const { openBasketFlyout } = useFlyouts()
 
   const {
     product,
@@ -13,27 +15,23 @@ export async function useProductDetailsBasketActions() {
     activeVariant,
     quantity,
     name,
-  } = await useProductDetails()
+  } = await app.runWithContext(() => useProductDetails())
 
-  const {
-    fetching: basketIdle,
-    addItem: addBasketItem,
-    items: basketItems,
-  } = await useBasket()
-
-  const { showAddToBasketToast } = await useBasketActions()
-
-  const { highestPriorityPromotion, isBuyXGetYPrioritized } =
-    await useProductPromotions(product)
-
-  const { addGroupToBasket } = await useBasketGroup()
-
-  const { selectedAddOnVariantIds, isAnyAddOnSelected } =
-    useProductDetailsAddOns(productId.value, product)
-
-  const { trackAddToBasket } = useTrackingEvents()
-
-  const { openBasketFlyout } = useFlyouts()
+  const [
+    { fetching: basketIdle, addItem: addBasketItem, items: basketItems },
+    { highestPriorityPromotion, isBuyXGetYPrioritized },
+    { selectedAddOnVariantIds, isAnyAddOnSelected },
+    { addGroupToBasket },
+    { showAddToBasketToast },
+  ] = await app.runWithContext(() =>
+    Promise.all([
+      useBasket(),
+      useProductPromotions(product),
+      useProductDetailsAddOns(productId.value, product),
+      useBasketGroup(),
+      useBasketActions(),
+    ]),
+  )
 
   const getBasketAddOnProducts = () => {
     return _unique(
@@ -55,7 +53,10 @@ export async function useProductDetailsBasketActions() {
     }
 
     if (!activeVariant.value) {
-      notification.show($i18n.t('basket.notification.select_size'), 'CONFIRM')
+      notification.show(
+        app.$i18n.t('basket.notification.select_size'),
+        'CONFIRM',
+      )
       return
     }
 
@@ -67,9 +68,12 @@ export async function useProductDetailsBasketActions() {
       )
     ) {
       notification.show(
-        $i18n.t('basket.notification.subscription_already_in_basket_error', {
-          productName: name.value,
-        }),
+        app.$i18n.t(
+          'basket.notification.subscription_already_in_basket_error',
+          {
+            productName: name.value,
+          },
+        ),
         'CONFIRM',
       )
       return
@@ -121,7 +125,7 @@ export async function useProductDetailsBasketActions() {
       }
     } catch {
       notification.show(
-        $i18n.t('basket.notification.add_to_basket_error', {
+        app.$i18n.t('basket.notification.add_to_basket_error', {
           productName: name.value,
         }),
         'CONFIRM',

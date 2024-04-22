@@ -14,12 +14,24 @@ const listingMetaData = {
 }
 
 export async function useProductDetails(key = 'product-details') {
+  const app = useNuxtApp()
   const route = useRoute()
 
   const productId = computed(() => {
     const id = String(route.params.slug).split('-').pop() as string
     return parseInt(id, 10)
   })
+
+  const activeVariant = useState<Variant | undefined>(
+    `active-variant-${key}-${productId.value}`,
+  )
+
+  const quantity = useState<number>(
+    `product-quantity-${key}-${productId.value}`,
+    () => 1,
+  )
+
+  const { getImage } = useImage()
 
   const {
     data: product,
@@ -37,15 +49,8 @@ export async function useProductDetails(key = 'product-details') {
     throw error.value
   }
 
-  const { brand, name, variantWithLowestPrice } = useProductBaseInfo(product)
-
-  const activeVariant = useState<Variant | undefined>(
-    `active-variant-${key}-${productId.value}`,
-  )
-
-  const quantity = useState<number>(
-    `product-quantity-${key}-${productId.value}`,
-    () => 1,
+  const { brand, name, variantWithLowestPrice } = await app.runWithContext(() =>
+    useProductBaseInfo(product),
   )
 
   const lowestPriorPrice = computed(
@@ -80,8 +85,6 @@ export async function useProductDetails(key = 'product-details') {
       !activeVariant.value && price.value?.appliedReductions.length,
     )
   })
-
-  const { getImage } = useImage()
 
   const images = computed(() => {
     const options = {

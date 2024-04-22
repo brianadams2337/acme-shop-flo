@@ -4,8 +4,10 @@ import {
 } from '@scayle/storefront-nuxt'
 
 export async function useBasketItemPromotion(basketItem: Ref<BasketItem>) {
-  const basket = await useBasket()
-  const { allCurrentPromotions } = await useBasketPromotions()
+  const [basket, { allCurrentPromotions }] = await Promise.all([
+    useBasket(),
+    useBasketPromotions(),
+  ])
 
   const promotion = computed<BasketPromotion | undefined>(() => {
     return basketItem.value?.promotion

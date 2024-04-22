@@ -2,14 +2,15 @@ export const useUserItemsTrackingWatcher = async () => {
   const scope = getCurrentScope()
   const route = useRoute()
 
-  const { data: basket } = await useBasket()
-  const { data: wishlist, products: wishlistProducts } = await useWishlist()
   const {
     trackBasket,
     trackWishlist,
     collectBasketItems,
     collectProductListItems,
   } = useTrackingEvents()
+
+  const [{ data: wishlist, products: wishlistProducts }, { data: basket }] =
+    await Promise.all([useWishlist(), useBasket()])
 
   scope?.run(() => {
     watch(

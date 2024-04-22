@@ -23,4 +23,5 @@ const accessToken = computed(
 )
 
 definePageMeta({ pageType: 'subscription' })
+defineOptions({ name: 'SubscriptionPage' })
 </script>

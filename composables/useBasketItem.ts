@@ -11,13 +11,6 @@ import {
 
 export async function useBasketItem(basketItem: Ref<BasketItem>) {
   const product = computed(() => basketItem.value.product)
-  const { highestPriorityPromotion, isBuyXGetYPrioritized } =
-    await useProductPromotions(product.value)
-
-  const { removeItem: removeBasketItem, listingMetaData } =
-    await useBasketActions()
-
-  const basket = await useBasket()
 
   const route = useRoute()
   const { pageState } = usePageState()
@@ -29,6 +22,16 @@ export async function useBasketItem(basketItem: Ref<BasketItem>) {
   const { setUiState, uiState } = useBasketItemUiState(basketItem.value.key)
 
   const { name, brand, image } = useProductBaseInfo(product.value)
+
+  const [
+    { removeItem: removeBasketItem, listingMetaData },
+    basket,
+    { highestPriorityPromotion, isBuyXGetYPrioritized },
+  ] = await Promise.all([
+    useBasketActions(),
+    useBasket(),
+    useProductPromotions(product.value),
+  ])
 
   const variant = computed(() => basketItem.value!.variant)
   const inStock = computed(() => isInStock(variant.value))

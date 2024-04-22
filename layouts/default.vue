@@ -26,10 +26,12 @@ import {
 } from '~/composables/cms/useProviderContext'
 
 // Initialize data
-await useWishlist()
-await useBasket()
-await useRootCategories()
-const { allCurrentPromotions } = await useBasketPromotions()
+const [{ allCurrentPromotions }] = await Promise.all([
+  useBasketPromotions(), // This covers basket fetch so we don't need to fetch it here
+  useWishlist(),
+  useRootCategories(),
+])
+
 const trackingEvents = useTrackingEvents()
 
 createContext(USE_TRACKING_EVENTS_KEY, trackingEvents)

@@ -16,11 +16,12 @@ type OrderedItems<T> = {
 
 export async function useBasketActions() {
   const { $i18n } = useNuxtApp()
-  const notification = useNotification()
-  const basket = await useBasket()
 
+  const notification = useNotification()
   const { trackRemoveFromBasket, trackBasket, collectBasketItems } =
     useTrackingEvents()
+
+  const basket = await useBasket()
 
   const showAddToBasketToast = (
     isAddedToBasket: boolean,

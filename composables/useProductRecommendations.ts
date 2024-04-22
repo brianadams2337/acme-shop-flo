@@ -1,6 +1,7 @@
 import type { Product, FetchProductsParams } from '@scayle/storefront-nuxt'
 
 export async function useProductRecommendations() {
+  const app = useNuxtApp()
   const scope = getCurrentScope()
 
   const { trackSelectItem } = useTrackingEvents()
@@ -25,11 +26,14 @@ export async function useProductRecommendations() {
   )
   const recommendationsFetchParams = ref<FetchProductsParams>({ ids: [] })
 
+  // TODO: Refine this when `useProductRecommendations` gets refactored
   const { data: combineWithProducts, fetching: fetchingCombineWithProducts } =
-    await useProductsByIds({
-      params: recommendationsFetchParams,
-      key: `products-pdpSlider-combineWith-${productId.value}`,
-    })
+    await app.runWithContext(() =>
+      useProductsByIds({
+        params: recommendationsFetchParams,
+        key: `products-pdpSlider-combineWith-${productId.value}`,
+      }),
+    )
 
   const combineWith = computed(() => combineWithProducts.value || [])
 

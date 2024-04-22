@@ -7,11 +7,11 @@ import {
 export async function useProductPromotions(
   productItem?: MaybeRefOrGetter<Product | undefined>,
 ) {
-  const promotionData = await useCurrentPromotions()
-
-  const basket = await useBasket()
-
-  const { appliedPromotions } = await useBasketPromotions()
+  const [basket, { appliedPromotions }, promotionData] = await Promise.all([
+    useBasket(),
+    useBasketPromotions(),
+    useCurrentPromotions(),
+  ])
 
   const product = toRef(productItem)
 

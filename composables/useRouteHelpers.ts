@@ -6,7 +6,7 @@ import {
   serializeFilters,
   getFirstAttributeValue,
 } from '@scayle/storefront-nuxt'
-import type { RouteLocationRaw } from '#vue-router'
+import type { RouteLocationRaw, RouteParams } from '#vue-router'
 import type { NavigateToOptions } from '#app/composables/router'
 
 export function useRouteHelpers() {
@@ -107,6 +107,14 @@ export function useRouteHelpers() {
       : localePath(normalizedPath)
   }
 
+  const getCategoryPath = ({ category }: RouteParams): string => {
+    if (!category) {
+      return '/'
+    }
+    const path = Array.isArray(category) ? category.join('/') : category
+    return normalizePathRoute(path)
+  }
+
   return {
     localizedNavigateTo,
     getProductDetailRoute,
@@ -116,5 +124,6 @@ export function useRouteHelpers() {
     getOrderDetailsRoute,
     getLocalizedRoute,
     buildCategorySuggestionRoute,
+    getCategoryPath,
   }
 }

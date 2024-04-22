@@ -1,16 +1,18 @@
 export async function useBasketPromotions() {
-  const basket = await useBasket()
-  const promotionData = await useCurrentPromotions()
+  const [{ items: basketItems }, promotionData] = await Promise.all([
+    useBasket(),
+    useCurrentPromotions(),
+  ])
 
   const allCurrentPromotions = computed<Promotion[]>(() => {
     return promotionData.data?.value?.entities ?? []
   })
 
   const appliedPromotions = computed(() => {
-    if (!basket.items.value) {
+    if (!basketItems.value) {
       return []
     }
-    return basket.items.value
+    return basketItems.value
       .filter(({ promotion }) => promotion?.isValid)
       .map(({ promotion, product }) => ({
         ...promotion,

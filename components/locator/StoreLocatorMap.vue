@@ -1,5 +1,5 @@
 <template>
-  <div ref="googleMapContainer" class="size-full" />
+  <div ref="googleMapContainer" class="size-full"></div>
 </template>
 
 <script setup lang="ts">

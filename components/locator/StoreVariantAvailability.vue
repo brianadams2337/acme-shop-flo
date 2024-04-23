@@ -8,7 +8,7 @@
             'bg-green-neon': selectedStoreData.available,
             'bg-red': !selectedStoreData.available,
           }"
-        />
+        ></div>
         <div class="flex flex-col">
           <div class="font-bold">
             {{

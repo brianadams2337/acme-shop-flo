@@ -58,6 +58,7 @@ export default withNuxt(
       '@typescript-eslint/no-explicit-any': 'warn',
       'eslint-comments/no-unlimited-disable': 'warn',
       '@typescript-eslint/prefer-ts-expect-error': 'warn',
+      'vue/html-self-closing': 'off',
     },
   },
 )

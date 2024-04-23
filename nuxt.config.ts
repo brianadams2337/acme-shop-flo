@@ -210,8 +210,8 @@ export default defineNuxtConfig({
     '@nuxt/test-utils/module',
     // https://eslint.nuxt.com/packages/module
     '@nuxt/eslint',
-    // https://github.com/antfu/nuxt-eslint-auto-explicit-import
-    'nuxt-eslint-auto-explicit-import',
+    // Based on https://github.com/antfu/nuxt-eslint-auto-explicit-import
+    './modules/eslint-auto-explicit-import',
   ],
 
   cms: {
@@ -423,6 +423,11 @@ export default defineNuxtConfig({
   vite: {
     resolve: {
       preserveSymlinks: true,
+    },
+    build: {
+      rollupOptions: {
+        external: ['@nuxtjs/composition-api'], // Handle incompatible dependencies of Nuxt 2-compatible @scayle/omnichannel-nuxt package
+      },
     },
   },
 

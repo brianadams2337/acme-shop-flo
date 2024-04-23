@@ -99,4 +99,9 @@ export default withNuxt(
       'vue/multi-word-component-names': 'off',
     },
   },
+  {
+    rules: {
+      'unimport/auto-insert': 'error',
+    },
+  },
 )

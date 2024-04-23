@@ -80,8 +80,8 @@ export default defineNuxtConfig({
     },
     // Configuration for the omnichannel add-on
     omnichannel: {
-      apiToken: '', // Overide: NUXT_OMNICHANNEL_API_TOKEN
-      apiHost: '', // Overide: NUXT_OMNICHANNEL_API_HOST
+      apiToken: '', // Override: NUXT_OMNICHANNEL_API_TOKEN
+      apiHost: '', // Override: NUXT_OMNICHANNEL_API_HOST
     },
     // https://scayle.dev/en/dev/storefront-core/module-configuration
     storefront: storefrontRuntimeConfigPrivate as any,
@@ -189,6 +189,7 @@ export default defineNuxtConfig({
     'radash-nuxt',
     '@zadigetvoltaire/nuxt-gtm',
     '@nuxt/test-utils/module',
+    '@nuxt/eslint',
   ],
 
   cms: {

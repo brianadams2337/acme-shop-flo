@@ -1,26 +1,41 @@
 <template>
-  <h1 class="mr-1 flex flex-wrap items-center text-xs font-medium">
-    {{ $t('promotion.automatic_discount_headline.add_label') }}
-    <span v-if="progress > 0" class="ml-1">
-      {{ $t('promotion.automatic_discount_headline.another_label') }}
-    </span>
-    <span class="mx-1 font-bold">{{ formattedAmountLeft }}</span>
-    <span class="mr-1">
-      {{ $t('promotion.automatic_discount_headline.save_indicator_label') }}
-    </span>
-    <span v-if="automaticDiscount" class="font-bold uppercase">
+  <div class="flex flex-col gap-y-1">
+    <span v-if="headline.offerText" class="mr-2 text-xs font-bold uppercase">
       {{
-        $t('promotion.automatic_discount_headline.offer', {
-          discount: automaticDiscount,
-        })
+        currentPromotion?.customData.product?.badgeLabel ?? headline.offerText
       }}
     </span>
-    <IconInfoOutline class="ml-1 size-4" />
-  </h1>
+    <h1
+      class="inline-flex flex-wrap gap-x-[0.75ch] break-all text-xs font-medium"
+    >
+      {{ $t('promotion.automatic_discount_headline.add_label') }}
+      <template v-if="progress > 0">
+        {{ $t('promotion.automatic_discount_headline.another_label') }}
+      </template>
+      <span class="font-bold">{{ formattedAmountLeft }}</span>
+      <span>
+        {{ $t('promotion.automatic_discount_headline.save_indicator_label') }}
+      </span>
+      <span v-if="automaticDiscount" class="font-bold uppercase">
+        {{
+          $t('promotion.automatic_discount_headline.offer', {
+            discount: automaticDiscount,
+          })
+        }}
+      </span>
+      <IconInfoOutline class="size-4" />
+    </h1>
+  </div>
 </template>
 
 <script setup lang="ts">
-const { automaticDiscount } = useCurrentPromotion()
+const { automaticDiscount, headlineParts, currentPromotion } =
+  useCurrentPromotion()
+
+const headline = computed(() => {
+  const [offerText, conditionText] = headlineParts.value ?? []
+  return { offerText, conditionText }
+})
 
 const { progress, formattedAmountLeft } = await usePromotionProgress()
 </script>

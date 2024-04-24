@@ -64,11 +64,12 @@ const showDealsButton = computed<boolean>(() => {
   )
 })
 
-const showMobileDealsButton = computed(
-  () =>
+const showMobileDealsButton = computed(() => {
+  return Boolean(
     category.value &&
-    !isMOVPromotionApplied.value &&
-    isFullProgress.value &&
-    minOrderValue.value,
-)
+      !isMOVPromotionApplied.value &&
+      isFullProgress.value &&
+      minOrderValue.value,
+  )
+})
 </script>

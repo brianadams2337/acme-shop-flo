@@ -7,23 +7,32 @@
     @click="togglePromotionList()"
   >
     <div
-      class="flex w-full flex-wrap items-center justify-between gap-1"
+      class="flex w-full items-center justify-between gap-1"
       :class="minOrderValue && 'mb-2.5'"
     >
-      <PromotionFullProgressLabel v-if="isFullProgress" is-small />
-      <AutomaticDiscountMobileHeadline v-else-if="minOrderValue" />
-      <PromotionHeadline
-        v-else-if="headlineParts"
-        :headline-parts="headlineParts"
-        size="xs"
-        class="mr-4 flex-1"
-      />
-      <div class="flex flex-col gap-y-3">
-        <PromotionCountdown v-if="expirationDate" :until="expirationDate" />
+      <div class="text-balance">
+        <PromotionFullProgressLabel v-if="isFullProgress" is-small />
+        <AutomaticDiscountMobileHeadline
+          v-else-if="minOrderValue"
+          class="mr-2"
+        />
+        <PromotionHeadline
+          v-else-if="headlineParts"
+          :headline-parts="headlineParts"
+          size="xs"
+          class="mr-4 flex-1"
+        />
+      </div>
+      <div class="flex w-min flex-col items-start justify-stretch gap-y-2">
+        <PromotionCountdown
+          v-if="expirationDate"
+          :until="expirationDate"
+          class="self-stretch"
+        />
         <ShowDealsButton
           v-if="showDealsButtonVisible"
-          class="w-full"
           :category="category"
+          class="self-stretch text-balance"
         />
       </div>
     </div>

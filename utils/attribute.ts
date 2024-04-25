@@ -3,7 +3,7 @@ import {
   getAttributeValueTuples,
   getFirstAttributeValue,
   type Product,
-  getFlattenAdvancedAttribute,
+  getFlattenedAdvancedAttribute,
 } from '@scayle/storefront-nuxt'
 
 export const getAdvancedAttributes = <T>({
@@ -13,7 +13,7 @@ export const getAdvancedAttributes = <T>({
   product: Product
   property: string
 }): Array<T> => {
-  const valueList = getFlattenAdvancedAttribute<{ value: T }>(
+  const valueList = getFlattenedAdvancedAttribute<{ value: T }>(
     product?.advancedAttributes?.[property]?.values || [],
   )
 

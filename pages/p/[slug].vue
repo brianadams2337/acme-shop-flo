@@ -172,20 +172,14 @@
               />
             </FadeInTransition>
 
-            <div class="mt-3">
-              <ProductDetailGroup
-                v-if="sliderProducts.length"
-                data-test-id="combine-with-slider"
-              >
+            <div v-if="combineWithProductIds.length > 0" class="mt-3">
+              <ProductDetailGroup data-test-id="combine-with-slider">
                 <template #headline>
                   {{ $t('global.product_recommendation') }}
                 </template>
                 <ProductRecommendations
                   size="4xs"
-                  :products="sliderProducts"
-                  :loading="fetchingCombineWithProducts"
-                  @intersect:column="trackViewListing"
-                  @click:recommendation="trackRecommendationClick"
+                  :combine-with-product-ids="combineWithProductIds"
                 />
               </ProductDetailGroup>
             </div>
@@ -212,7 +206,6 @@
 
 <script setup lang="ts">
 import {
-  type Product,
   type ProductColor,
   getFirstAttributeValue,
   getBadgeLabel,
@@ -235,8 +228,8 @@ const {
   handleSelectedSize,
   lowestPriorPrice,
   fetching,
-  listingMetaData,
   productId,
+  combineWithProductIds,
 } = await useProductDetails()
 
 const { addItemToBasket, basketIdle } = await useProductDetailsBasketActions()
@@ -247,12 +240,6 @@ const {
   isGiftAddedToBasket,
   areGiftConditionsMet,
 } = await useProductPromotions(product)
-
-const {
-  sliderProducts,
-  fetchingCombineWithProducts,
-  trackRecommendationClick,
-} = await useProductRecommendations()
 
 const route = useRoute()
 const { $i18n, $config } = useNuxtApp()
@@ -273,11 +260,7 @@ const { availableAddOns, onAddOnSelected } = useProductDetailsAddOns(
 const { state: zoomGallery, toggle: toggleZoomGallery } =
   useZoomGalleryActions()
 
-const { trackViewItemList, trackViewItem } = useTrackingEvents()
-
-const trackViewListing = ({ items }: { row: number; items: Product[] }) => {
-  trackViewItemList({ items, listingMetaData })
-}
+const { trackViewItem } = useTrackingEvents()
 
 onMounted(async () => {
   if (!product.value) {

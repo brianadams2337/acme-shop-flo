@@ -7,11 +7,7 @@ import {
   getProductSiblings,
   getVariantBySize,
 } from '@scayle/storefront-nuxt'
-
-const listingMetaData = {
-  name: 'PDP',
-  id: 'PDP',
-}
+import { getAdvancedAttributes } from '~/utils/attribute'
 
 export async function useProductDetails(key = 'product-details') {
   const app = useNuxtApp()
@@ -110,6 +106,17 @@ export async function useProductDetails(key = 'product-details') {
 
   const breadcrumbs = computed(() => getBreadcrumbs(categories.value))
 
+  const combineWithProductIds = computed(() => {
+    return product.value
+      ? getAdvancedAttributes<string>({
+          product: product.value,
+          property: 'combineWith',
+        })
+          .map((value) => parseInt(value))
+          .filter((value) => !isNaN(value))
+      : []
+  })
+
   return {
     productId,
     brand,
@@ -128,6 +135,6 @@ export async function useProductDetails(key = 'product-details') {
     breadcrumbs,
     fetching,
     product,
-    listingMetaData,
+    combineWithProductIds,
   }
 }

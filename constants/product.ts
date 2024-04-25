@@ -62,3 +62,8 @@ export const PRODUCT_WITH_PARAMS: ProductWith = {
 }
 
 export const PRODUCT_IMAGE_QUALITY_MODIFIER = '75'
+
+export const productListingMetaData = {
+  name: 'PDP',
+  id: 'PDP',
+} as const

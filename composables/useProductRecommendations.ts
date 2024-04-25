@@ -1,48 +1,27 @@
-import type { Product, FetchProductsParams } from '@scayle/storefront-nuxt'
+import { type Product, type FetchProductsParams } from '@scayle/storefront-nuxt'
+import { productListingMetaData } from '~/constants/product'
 
-export async function useProductRecommendations() {
-  const app = useNuxtApp()
-  const scope = getCurrentScope()
-
+export async function useProductRecommendations(
+  combineWithProductIds: Array<number>,
+) {
   const { trackSelectItem } = useTrackingEvents()
   const route = useRoute()
   const { pageState } = usePageState()
 
-  const { product, productId, listingMetaData } = await useProductDetails()
+  const recommendationsFetchParams = computed<FetchProductsParams>(() => {
+    return { ids: combineWithProductIds }
+  })
 
-  const combineWithProductValues = product.value
-    ? getAdvancedAttributes({
-        product: product.value,
-        property: 'combineWith',
-      })
-    : ''
-
-  const combineWithProductIds = computed(() =>
-    combineWithProductValues
-      ? combineWithProductValues
-          .split(',')
-          .map((productId: string) => parseInt(productId, 10))
-      : [],
-  )
-  const recommendationsFetchParams = ref<FetchProductsParams>({ ids: [] })
-
-  // TODO: Refine this when `useProductRecommendations` gets refactored
   const { data: combineWithProducts, fetching: fetchingCombineWithProducts } =
-    await app.runWithContext(() =>
-      useProductsByIds({
-        params: recommendationsFetchParams,
-        key: `products-pdpSlider-combineWith-${productId.value}`,
-      }),
-    )
-
-  const combineWith = computed(() => combineWithProducts.value || [])
+    await useProductsByIds({
+      params: recommendationsFetchParams,
+      key: `pdp-recommendations-${combineWithProductIds.join(',')}`,
+    })
 
   const sliderProducts = computed(() =>
-    combineWith.value.length
-      ? combineWith.value.filter(
-          (product) => product.isActive && !product.isSoldOut,
-        )
-      : [],
+    (combineWithProducts.value ?? []).filter(
+      (product) => product.isActive && !product.isSoldOut,
+    ),
   )
 
   const trackRecommendationClick = (product: Product, index: number) => {
@@ -51,7 +30,7 @@ export async function useProductRecommendations() {
       category: {
         ...getDeepestCategoryForTracking(product.categories),
       },
-      listingMetaData,
+      listingMetaData: productListingMetaData,
       index,
       ...(route.name && {
         source: `${String(route.name)}|RecommendationSlider`,
@@ -60,18 +39,10 @@ export async function useProductRecommendations() {
       pagePayload: {
         content_name: route.fullPath,
         page_type: pageState.value.type,
-        page_type_id: productId.value.toString() || '',
+        page_type_id: pageState.value.typeId,
       },
     })
   }
-
-  scope?.run(() => {
-    watch(
-      combineWithProductIds,
-      (ids) => Object.assign(recommendationsFetchParams.value, { ids }),
-      { immediate: true },
-    )
-  })
 
   return {
     sliderProducts,

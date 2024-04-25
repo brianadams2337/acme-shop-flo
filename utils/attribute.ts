@@ -3,25 +3,21 @@ import {
   getAttributeValueTuples,
   getFirstAttributeValue,
   type Product,
-  getFlattenedVariantCrosssellings,
+  getFlattenAdvancedAttribute,
 } from '@scayle/storefront-nuxt'
 
-const hasValueInEntry = (entry: any) => 'value' in entry
-
-export const getAdvancedAttributes = ({
+export const getAdvancedAttributes = <T>({
   product,
   property,
 }: {
   product: Product
   property: string
-}) => {
-  const valueList = getFlattenedVariantCrosssellings(
+}): Array<T> => {
+  const valueList = getFlattenAdvancedAttribute<{ value: T }>(
     product?.advancedAttributes?.[property]?.values || [],
   )
-  return valueList
-    .filter(hasValueInEntry)
-    .map((item) => 'value' in item && item.value)
-    .join(',')
+
+  return valueList.filter((entry) => entry.value).map((item) => item.value)
 }
 
 export default {

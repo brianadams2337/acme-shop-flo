@@ -10,7 +10,7 @@
         {{ label }}
       </Headline>
       <AddressInformation
-        v-bind="name === 'shipping' ? shippingAddress : billingAddress"
+        :address="name === 'shipping' ? shippingAddress : billingAddress"
       />
     </div>
   </div>

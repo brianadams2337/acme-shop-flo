@@ -6,10 +6,10 @@
     />
     <AddressTabs :items="items" tabs-class="-mx-5" class="mb-8 md:hidden">
       <template #shipping>
-        <AddressInformation v-bind="shippingAddress" />
+        <AddressInformation v-if="shippingAddress" :address="shippingAddress" />
       </template>
       <template #billing>
-        <AddressInformation v-bind="billingAddress" />
+        <AddressInformation v-if="billingAddress" :address="billingAddress" />
       </template>
     </AddressTabs>
   </div>

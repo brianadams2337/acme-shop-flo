@@ -13,7 +13,10 @@
       </div>
       <div class="mt-10 grid w-full grid-cols-2 gap-y-8 lg:grid-cols-3">
         <OspBasicOrderData v-bind="orderData" />
-        <OspAddressInformation :address="orderData.address" />
+        <OspAddressInformation
+          v-if="orderData.address"
+          :address="orderData.address.shipping"
+        />
         <div v-if="orderData.payment?.[0].key">
           <Headline size="sm" tag="h2" is-uppercase class="mb-3">
             {{ $t('osp.payment') }}

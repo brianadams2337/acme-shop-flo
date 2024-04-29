@@ -2,10 +2,10 @@
 # yarn lockfile v1
 
 
-"@aboutyou/backbone@16.2.1":
-  version "16.2.1"
-  resolved "https://registry.yarnpkg.com/@aboutyou/backbone/-/backbone-16.2.1.tgz#215848f8ae4239a19b5e200df18f82776b5be349"
-  integrity sha512-FWdUip77fSrMbPiLaU4ND7cR3QISH5sHo/lg5r6BHAcypHEa3mM4XRstUd0Iw5K8tVCQRy3kv/VBChCH8jy7DA==
+"@aboutyou/backbone@16.2.2":
+  version "16.2.2"
+  resolved "https://registry.yarnpkg.com/@aboutyou/backbone/-/backbone-16.2.2.tgz#489f57f8984a82ba1d87cb67ed817c92014e9801"
+  integrity sha512-k/NDvvfiZbKkshd4HDmk3zLJBRV7Y/PKS4sdvZ9DfB+mmBAyQsnAA5SQN3MSMnnXuJ4sRv2OI9L903VW7Kf9/g==
   dependencies:
     query-string "^6.2.0"
 
@@ -3094,12 +3094,12 @@
   dependencies:
     prettier-config-standard "^7.0.0"
 
-"@scayle/storefront-core@7.49.1":
-  version "7.49.1"
-  resolved "https://registry.yarnpkg.com/@scayle/storefront-core/-/storefront-core-7.49.1.tgz#0cb5d5fa1dc4354d06e53cf16442ca116d949847"
-  integrity sha512-i1oX0BESLO1N1TeRDtZEPGoDN9lP+fRslid+IjG94EMytG4MxYlEiLQ+mdBClQEkLkQ9SrVIYcwx6QmzG99kQA==
+"@scayle/storefront-core@7.49.2":
+  version "7.49.2"
+  resolved "https://registry.yarnpkg.com/@scayle/storefront-core/-/storefront-core-7.49.2.tgz#08446581b0ff96743f9bec793db78755a9208a61"
+  integrity sha512-rDyjAv/4p4+RIt20KIX9ZIdoiPP9ePimBmWWtWT8U07OBhm1RJeuf945CQyBOBfSttuXMtUmP4M5BMYW1ar9KA==
   dependencies:
-    "@aboutyou/backbone" "16.2.1"
+    "@aboutyou/backbone" "16.2.2"
     crypto-js "4.2.0"
     jose "5.2.4"
     radash "12.1.0"
@@ -3110,15 +3110,15 @@
   optionalDependencies:
     redis "4"
 
-"@scayle/storefront-nuxt@7.66.4":
-  version "7.66.4"
-  resolved "https://registry.yarnpkg.com/@scayle/storefront-nuxt/-/storefront-nuxt-7.66.4.tgz#5ffeeeaeb7b2f3ed66bbb9c09a0189aaac6de122"
-  integrity sha512-1oEHXlGMD0W4/frvduAFf1Zj+A2VeMe+djw8f5DSs2a5ilIEg6d8UZT75feA5Qfkz0b8TVKSD3rHceFft+QFzw==
+"@scayle/storefront-nuxt@7.67.1":
+  version "7.67.1"
+  resolved "https://registry.yarnpkg.com/@scayle/storefront-nuxt/-/storefront-nuxt-7.67.1.tgz#672f2ed5bec8a4279a112c6fde060c6d77fa7266"
+  integrity sha512-RwX1v8sw9PEGqYtyqEAxPNxFyOxbMJOJO05Z2PYqm2l7fjTTpwjXnSQoOn1wwrjGHZ3KrXgrqD1HcnRFcv5oIw==
   dependencies:
     "@nuxt/kit" "3.11.1"
     "@opentelemetry/api" "1.8.0"
     "@scayle/h3-session" "0.3.6"
-    "@scayle/storefront-core" "7.49.1"
+    "@scayle/storefront-core" "7.49.2"
     "@scayle/unstorage-compression-driver" "0.1.3"
     "@vueuse/core" "10.9.0"
     consola "3.2.3"

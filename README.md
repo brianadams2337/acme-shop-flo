@@ -97,7 +97,7 @@ Depending on your SSL setup open either <http://localhost:3000> or <https://loca
 
 ### How to turn on local HTTPS
 
-To generate a certificate and key, we recommend using the [mkcert](https://github.com/FiloSottile/mkcert) tool.  
+To generate a certificate and key, we recommend using the [mkcert](https://github.com/FiloSottile/mkcert) tool.
 Follow the [mkcert installation instructions (Github)](https://github.com/FiloSottile/mkcert/blob/master/README.md#installation) and afterward run:
 
 ```sh
@@ -210,10 +210,7 @@ After starting both `mitmproxy` and our shop, we should be able to now see all r
 
 In some cases, patches to third-party packages are required. The Storefront Boilerplate uses [`patch-package`](https://www.npmjs.com/package/patch-package) to manage patching. The tool will run in `postinstall` and apply any patches present in the `patches/` directory.
 
-### Current applied patches
-
-- `@nuxt/image` - Support providing the base URL through runtime configuration
-- `import-in-the-middle` - Ignore broken modules instead of crashing
+An overview of the currently included patches can be found [here](./patches/INFO.md).
 
 ## OpenTelemetry
 

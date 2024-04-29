@@ -12,9 +12,7 @@
         :style="getBackgroundColorStyle(customData.colorHex)"
       >
         <span
-          v-if="
-            customData.headlineParts?.length && !customData.product?.badgeLabel
-          "
+          v-if="customData.headlineParts?.length"
           class="hidden truncate font-bold"
           :class="{
             'md:inline-block': !isBasket,

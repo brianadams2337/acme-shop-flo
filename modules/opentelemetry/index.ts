@@ -1,5 +1,6 @@
 import { createResolver, defineNuxtModule } from '@nuxt/kit'
 import { genImport } from 'knitwork'
+import { addServerPlugin } from 'nuxt/kit'
 
 function getInstrumentedEntryFileForPreset(
   preset: string,
@@ -57,6 +58,8 @@ export default defineNuxtModule<ModuleOptions>({
       return
     }
     const resolver = createResolver(import.meta.url)
+
+    addServerPlugin(resolver.resolve('src/nitro-plugin'))
 
     nuxt.hooks.hook('nitro:init', (nitro) => {
       const { entry, preset } = nitro.options

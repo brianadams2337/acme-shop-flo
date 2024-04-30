@@ -3,7 +3,7 @@
     <input
       :id="placeholder"
       ref="input"
-      v-model="content"
+      v-model="modelValue"
       v-maska
       :data-maska="dataMaska"
       v-bind="{ required, readonly, type, placeholder, autocomplete }"
@@ -18,55 +18,30 @@
 <script setup lang="ts">
 import { vMaska } from 'maska'
 
-const props = defineProps({
-  modelValue: {
-    type: String,
-    default: '',
-  },
-  type: {
-    type: String,
-    default: 'text',
-  },
-  placeholder: {
-    type: String,
-    required: true,
-  },
-  autocomplete: {
-    type: String,
-    default: '',
-  },
-  mask: {
-    type: [String, Array] as PropType<string | string[]>,
-    default: '',
-  },
-  required: {
-    type: Boolean,
-    default: false,
-  },
-  readonly: {
-    type: Boolean,
-    default: false,
-  },
-  maxLength: {
-    type: Number,
-    default: undefined,
-  },
-  hint: {
-    type: String,
-    default: '',
-  },
-  hasErrors: {
-    type: Boolean,
-    default: false,
-  },
+type Props = {
+  type?: string
+  placeholder: string
+  autocomplete?: string
+  mask?: string | Array<string>
+  required?: boolean
+  readonly?: boolean
+  maxLength?: number
+  hint?: string
+  hasErrors?: boolean
+}
+
+const props = withDefaults(defineProps<Props>(), {
+  type: 'text',
+  autocomplete: '',
+  mask: '',
+  required: false,
+  readonly: false,
+  maxLength: undefined,
+  hint: '',
+  hasErrors: false,
 })
 
-const emit = defineEmits(['update:model-value'])
-
-const content = computed({
-  get: () => props.modelValue,
-  set: (newValue: string): void => emit('update:model-value', newValue),
-})
+const modelValue = defineModel()
 
 const dataMaska = computed(() => {
   // Maska don't accept array for the dynamic mask approach.
@@ -75,7 +50,7 @@ const dataMaska = computed(() => {
 })
 
 const classes = computed(() => [
-  content.value ? 'border-primary' : 'border-transparent bg-secondary-450',
+  modelValue.value ? 'border-primary' : 'border-transparent bg-secondary-450',
   {
     'bg-secondary-450': props.readonly,
     'border-red-500 text-red-500 placeholder:text-red-500 focus:border-red-500':

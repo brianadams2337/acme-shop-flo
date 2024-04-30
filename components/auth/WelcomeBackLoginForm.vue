@@ -1,8 +1,5 @@
 <template>
-  <VerticalAccordion
-    v-if="lastLoggedInUser.email"
-    :tabs="[$t('login_page.welcome_back.title', { name })]"
-  >
+  <VerticalAccordion :tabs="[$t('login_page.welcome_back.title', { name })]">
     <template #0>
       <LoginForm />
       <button

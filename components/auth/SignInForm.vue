@@ -1,7 +1,10 @@
 <template>
   <ClientOnly>
     <div v-if="!isLoggedIn && !isFetching">
-      <WelcomeBackLoginForm v-if="lastLoggedInUser.email" class="mt-10 px-2" />
+      <WelcomeBackLoginForm
+        v-if="lastLoggedInUser.email && !$route.query.register"
+        class="mt-10 px-2"
+      />
 
       <VerticalAccordion
         v-else

@@ -76,8 +76,16 @@ const idpParams = computed(() => {
 
 const { data: externalIDPRedirects } = await useIDP(idpParams)
 
+const editableUser = reactive({
+  email: '',
+  password: '',
+})
 const { login, isSubmitting } = await useAuthentication('login')
 const { lastLoggedInUser } = await useLastLoggedInUser()
+
+if (lastLoggedInUser.value) {
+  editableUser.email = lastLoggedInUser.value.email
+}
 
 const hasIDPs = computed(
   () =>
@@ -86,11 +94,6 @@ const hasIDPs = computed(
 )
 
 const validationRules = useValidationRules()
-
-const editableUser = reactive({
-  email: '',
-  password: '',
-})
 
 const rules = {
   email: {
@@ -106,10 +109,6 @@ const v = useVuelidate(rules, editableUser)
 
 watch(editableUser, () => {
   v.value.$touch()
-})
-
-watch(lastLoggedInUser, (user) => {
-  editableUser.email = user.email
 })
 
 const onSubmit = async () => {

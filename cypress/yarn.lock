@@ -1055,17 +1055,17 @@ cypress-real-events@1.12.0:
   resolved "https://registry.yarnpkg.com/cypress-real-events/-/cypress-real-events-1.12.0.tgz#ffeb2b23686ba5b16ac91dd9bc3b6785d36d38d3"
   integrity sha512-oiy+4kGKkzc2PT36k3GGQqkGxNiVypheWjMtfyi89iIk6bYmTzeqxapaLHS3pnhZOX1IEbTDUVxh8T4Nhs1tyQ==
 
-cypress-split@1.23.0:
-  version "1.23.0"
-  resolved "https://registry.yarnpkg.com/cypress-split/-/cypress-split-1.23.0.tgz#7f37d88b00a33818c4913df11dcb1d4bb578c1e1"
-  integrity sha512-tZazy4dZ4fIzsTYv1MNk6Lc0DaTAAsHUBIdfDbRGBl8QY2lvRcdYjlBs9gnOOwphjXgNTPXTT3KVbnStp0kZbQ==
+cypress-split@1.23.1:
+  version "1.23.1"
+  resolved "https://registry.yarnpkg.com/cypress-split/-/cypress-split-1.23.1.tgz#016ed27af6b9c5f1e2a28cf924fa27e9540a0a0d"
+  integrity sha512-MWMLCdzVkr8hTG2670Ip7bWjWFncZnnNSN4Q2+stzuhyqQmg0/pWNdEEVIfRlhwnbN05kRvgZD32mimPy5WP4w==
   dependencies:
     "@actions/core" "^1.10.0"
     arg "^5.0.2"
     console.table "^0.10.0"
     debug "^4.3.4"
     fast-shuffle "^6.1.0"
-    find-cypress-specs "1.43.1"
+    find-cypress-specs "1.43.2"
     globby "^11.1.0"
     humanize-duration "^3.28.0"
 
@@ -2048,10 +2048,10 @@ fill-range@^7.0.1:
   dependencies:
     to-regex-range "^5.0.1"
 
-find-cypress-specs@1.43.1:
-  version "1.43.1"
-  resolved "https://registry.yarnpkg.com/find-cypress-specs/-/find-cypress-specs-1.43.1.tgz#54a1a6c629f3894f0d155c2865753cc43018b95f"
-  integrity sha512-vJKnUL7qCrFyf8LkwIlJEHRUg+P/syBNtkxAi/vdShgA1ugAVscQKiZGqQ9ad/gXWvywmwczMVM2SP7btG5RPg==
+find-cypress-specs@1.43.2:
+  version "1.43.2"
+  resolved "https://registry.yarnpkg.com/find-cypress-specs/-/find-cypress-specs-1.43.2.tgz#0c341f9b9f455463e093f08e01fe56609baa8d21"
+  integrity sha512-SNXfIy9CuKx/tdwzzn20kc7WxoJXyXmC4vzmttRD/z4qZ8eOxbN6ywmB/fuQtDLLQXncqNA7zLYsymhhIRcvTQ==
   dependencies:
     "@actions/core" "^1.10.0"
     arg "^5.0.1"
@@ -2063,7 +2063,7 @@ find-cypress-specs@1.43.1:
     pluralize "^8.0.0"
     require-and-forget "^1.0.1"
     shelljs "^0.8.5"
-    spec-change "^1.10.0"
+    spec-change "^1.11.0"
     tsx "^4.7.1"
 
 find-test-names@1.28.18:
@@ -3918,10 +3918,10 @@ spdx-license-ids@^3.0.0:
   resolved "https://registry.yarnpkg.com/spdx-license-ids/-/spdx-license-ids-3.0.17.tgz#887da8aa73218e51a1d917502d79863161a93f9c"
   integrity sha512-sh8PWc/ftMqAAdFiBu6Fy6JUOYjqDJBJvIhpfDMyHrr0Rbp5liZqd4TjtQ/RgfLjKFZb+LMx5hpml5qOWy0qvg==
 
-spec-change@^1.10.0:
-  version "1.10.0"
-  resolved "https://registry.yarnpkg.com/spec-change/-/spec-change-1.10.0.tgz#09770b40402a06d0aac8cdb550ecaade38590d05"
-  integrity sha512-IMhfPFDbpLBBT/bjSVPLmRxPcCd43XH1MuSGgd3BxBeOLYIVvaca65C3T6cR5ouB+xKOERwsk3Y1RF46JmaquA==
+spec-change@^1.11.0:
+  version "1.11.1"
+  resolved "https://registry.yarnpkg.com/spec-change/-/spec-change-1.11.1.tgz#6882ed718a278e08ced7384086328375268ff665"
+  integrity sha512-yH38HD5KaWssNJORlvPT9+dFB9B1RCCppnSZsqSb4JXcbOboQCsqd2miGfdXyxZIywOCwnds5/fTtY5/ZuOozA==
   dependencies:
     arg "^5.0.2"
     debug "^4.3.4"

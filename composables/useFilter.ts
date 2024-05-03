@@ -157,11 +157,11 @@ export function useFilter(
   }
 
   const setActivePriceRangeInState = (min: CentAmount, max: CentAmount) => {
-    if (min && minPrice.value && minPrice.value !== min) {
+    if (min !== undefined) {
       state.value.prices[0] = min
     }
 
-    if (max && maxPrice.value && maxPrice.value !== max) {
+    if (max !== undefined) {
       state.value.prices[1] = max
     }
   }
@@ -210,14 +210,23 @@ export function useFilter(
     ...(state.value.sale && { sale: true }),
   })
 
+  function resetFilterStatePrice() {
+    state.value.prices = [minPrice.value, maxPrice.value]
+  }
+
   const resetFilter = (key: keyof FilterState) => {
     // @ts-expect-error Type 'any[]' is not assignable to type 'never'.ts(2322)
     state.value[key] = [...initialState.value[key]]
+    // TODO: Refactor filter price range so we don't need to reset it here
+    if (key === 'prices') {
+      resetFilterStatePrice()
+    }
   }
 
   const resetFilters = () => {
-    Object.assign(state.value, deepClone(initialState.value))
-    setStateFromUrlParams()
+    state.value = deepClone(initialState.value)
+    // TODO: Refactor filter price range so we don't need to reset it here
+    resetFilterStatePrice()
   }
 
   const onSlideInOpen = () => {

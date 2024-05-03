@@ -12,14 +12,13 @@
 <script setup lang="ts">
 import { HeadlineSize, HeadlineTag } from '#imports'
 
-defineProps({
-  tag: {
-    type: String as PropType<HeadlineTag>,
-    default: HeadlineTag.P,
-  },
-  size: {
-    type: String as PropType<HeadlineSize>,
-    default: HeadlineSize.SM,
-  },
+type Props = {
+  tag?: HeadlineTag
+  size?: HeadlineSize
+}
+
+withDefaults(defineProps<Props>(), {
+  tag: HeadlineTag.P,
+  size: HeadlineSize.SM,
 })
 </script>

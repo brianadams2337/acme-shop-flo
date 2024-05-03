@@ -32,7 +32,7 @@
             <IconLocation class="size-8" />
           </SFButton>
 
-          <TextInput
+          <SFTextInput
             v-model="searchAddress"
             class="mr-2"
             type="text"
@@ -63,6 +63,7 @@
     </div>
   </div>
 </template>
+
 <script setup lang="ts">
 const config = useRuntimeConfig()
 const googleMapsKey = config.public.googleMapsApiKey

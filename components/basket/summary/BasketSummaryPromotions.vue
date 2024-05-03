@@ -5,7 +5,7 @@
   >
     <div class="flex items-center justify-between">
       <div class="flex items-center justify-between">
-        <AppButton
+        <SFButton
           type="raw"
           class="flex items-center justify-between whitespace-pre-line !p-0 text-start text-sm font-semibold leading-5 text-gray-800"
           is-full-width
@@ -17,7 +17,7 @@
             <IconChevronUp v-if="showDiscountSummary" :class="_class" />
             <IconChevronDown v-else :class="_class" />
           </template>
-        </AppButton>
+        </SFButton>
       </div>
 
       <span
@@ -27,7 +27,7 @@
         {{ withNegativePrefix(formatCurrency(totalPromotionsReductions)) }}
       </span>
     </div>
-    <FadeInFromBottomTransition>
+    <SFFadeInFromBottomTransition>
       <div v-if="showDiscountSummary" class="flex flex-col gap-2">
         <template
           v-for="promotionItem in itemsWithPromotionsReductions"
@@ -65,7 +65,7 @@
           </div>
         </template>
       </div>
-    </FadeInFromBottomTransition>
+    </SFFadeInFromBottomTransition>
   </div>
 </template>
 

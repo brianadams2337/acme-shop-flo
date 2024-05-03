@@ -35,6 +35,7 @@
             <SFFadeInTransition>
               <div v-if="totalCount" class="flex justify-center">
                 <SFLink
+                  to=""
                   class="ml-4 mt-4 border-b border-b-black"
                   @click="resolveSearchAndClose"
                 >

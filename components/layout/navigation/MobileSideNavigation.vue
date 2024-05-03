@@ -13,8 +13,17 @@
       "
     >
       <div class="mb-5 ml-5 mt-6 flex items-center text-xs">
-        <IconBack class="mr-1 size-3" />
-        <p>Back to "{{ activeParentCategory.name }}"</p>
+        <SFLink to="" @click="handleGoBack">
+          <IconBack class="mr-1 size-3" />
+          <p v-if="isNestedCategoryViewActive">{{ $t('global.back') }}</p>
+          <p v-else>
+            {{
+              $t('main_nav.back_to', {
+                name: activeParentCategory.name,
+              })
+            }}
+          </p>
+        </SFLink>
       </div>
       <ul class="my-4">
         <li
@@ -84,12 +93,21 @@ const pathParts = computed(() => route.path.split('/'))
 
 const isNestedCategoryViewActive = computed(() => pathParts.value.length > 2)
 
+function handleGoBack() {
+  setActiveParentCategory(undefined)
+}
 activeParentCategory.value = props.categories.find(({ path }) => {
-  return path === `/${pathParts.value[0]}`
+  if (isNestedCategoryViewActive.value) {
+    return path === `/${pathParts.value[2]}`
+  }
+  return path === `/${pathParts.value[1]}`
 })
 
-const setActiveParentCategory = (category: Category) => {
+const setActiveParentCategory = (category?: Category) => {
   activeParentCategory.value = category
-  return !category.children?.length && emit('click:navigationItem')
+  if (category) {
+    return !category.children?.length && emit('click:navigationItem')
+  }
+  return emit('click:navigationItem')
 }
 </script>

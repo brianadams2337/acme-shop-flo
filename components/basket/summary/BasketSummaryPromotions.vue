@@ -53,12 +53,23 @@
               ),
             }"
           >
-            <span
-              v-if="promotionItem.promotion?.customData"
-              class="text-xs leading-5"
-            >
-              {{ getHeadlineParts(promotionItem?.promotion) }}</span
-            >
+            <div class="flex flex-row items-center gap-1.5">
+              <IconDiscount
+                class="size-3"
+                :style="
+                  getTextColorStyle(
+                    promotionItem.promotion?.customData.colorHex,
+                    100,
+                  )
+                "
+              />
+              <span
+                v-if="promotionItem.promotion?.customData"
+                class="text-xs leading-5"
+              >
+                {{ getHeadlineParts(promotionItem?.promotion) }}</span
+              >
+            </div>
             <span class="text-xs font-medium leading-5 text-primary">{{
               withNegativePrefix(formatCurrency(promotionItem.total))
             }}</span>

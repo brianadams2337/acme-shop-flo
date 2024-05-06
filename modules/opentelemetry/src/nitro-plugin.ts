@@ -25,7 +25,7 @@ export default defineNitroPlugin((nitro) => {
 
   // Wrap the nitro router with code which adds a span
   nitro.h3App.stack.splice(index, 1, {
-    route: '/',
+    ...router,
     handler: async (event) => {
       const url = getRequestURL(event)
 
@@ -54,14 +54,16 @@ export default defineNitroPlugin((nitro) => {
 
           // The matchedRoute exists after the handler has run
           const matchedRoute = event.context.matchedRoute?.path
+          const matchedVueRoute = event.context.matchedVueRoute?.path
 
-          // For page requests, the matched route path is '/**'
-          // That is not helpful so we ignore it
-          // TODO: Figure out how to get a better match in this case
-          // Is there an internal Nuxt router that Nitro delegates to here?
-          if (matchedRoute && matchedRoute !== '/**') {
-            span.updateName(matchedRoute)
-            span.setAttribute(SEMATTRS_HTTP_ROUTE, matchedRoute)
+          if (matchedRoute) {
+            if (matchedRoute === '/**' && matchedVueRoute) {
+              span.updateName(`${event.method} ${matchedVueRoute}`)
+              span.setAttribute(SEMATTRS_HTTP_ROUTE, matchedVueRoute)
+            } else {
+              span.updateName(`${event.method} ${matchedRoute}`)
+              span.setAttribute(SEMATTRS_HTTP_ROUTE, matchedRoute)
+            }
           }
 
           span.end()

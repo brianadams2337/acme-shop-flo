@@ -1,6 +1,11 @@
-import { createResolver, defineNuxtModule } from '@nuxt/kit'
+import {
+  createResolver,
+  defineNuxtModule,
+  addPlugin,
+  addServerPlugin,
+  addTypeTemplate,
+} from '@nuxt/kit'
 import { genImport } from 'knitwork'
-import { addServerPlugin } from 'nuxt/kit'
 
 function getInstrumentedEntryFileForPreset(
   preset: string,
@@ -60,6 +65,25 @@ export default defineNuxtModule<ModuleOptions>({
     const resolver = createResolver(import.meta.url)
 
     addServerPlugin(resolver.resolve('src/nitro-plugin'))
+    addPlugin(resolver.resolve('src/nuxt-plugin'))
+
+    // Extend the H3 context based on the data we add in our route middleware
+    const template = addTypeTemplate({
+      filename: 'types/storefront-bootstrap.d.ts',
+      getContents: () =>
+        `// Auto-generated
+        import type { RouteRecordNormalized } from '#vue-router'
+        declare module 'h3' {
+          interface H3EventContext {
+            matchedVueRoute?: RouteRecordNormalized
+          }
+        }
+        export {}`,
+    })
+
+    nuxt.hook('prepare:types', ({ references }) => {
+      references.push({ path: template.dst })
+    })
 
     nuxt.hooks.hook('nitro:init', (nitro) => {
       const { entry, preset } = nitro.options

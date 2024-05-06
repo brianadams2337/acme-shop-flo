@@ -12,7 +12,7 @@
         >
           <SFLink
             :to="getProductDetailRoute(product)"
-            class="h-full rounded-md bg-gray-200 p-2"
+            class="h-full rounded-md bg-gray-200 p-2 grid grid-cols-1 grid-rows-1"
           >
             <ProductImage
               v-if="image"
@@ -20,11 +20,12 @@
               :alt="name"
               fit="cover"
               sizes="xl:100vw lg:100vw lg:100vw lg:100vw xs:100vw"
+              class="col-start-1 col-end-1 row-start-1 row-end-1"
             />
             <ProductBadges
+              class="col-start-1 col-end-1 row-start-1 row-end-1 self-end max-w-fit"
               :product="product"
               :is-promotion-badge-full-width="false"
-              class="absolute"
             />
             <SFFadeInTransition>
               <ProductPromotionFreeGiftBadge

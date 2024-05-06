@@ -4,7 +4,7 @@
       <div
         v-if="customData.product?.badgeLabel"
         :key="id"
-        class="z-10 mb-1 flex flex-nowrap items-center justify-center gap-[1ch] bg-blue px-2 py-[.375rem] text-center text-xs text-white last-of-type:mb-0"
+        class="z-10 mb-1 flex flex-wrap items-center justify-center gap-[1ch] bg-blue px-2 py-[.375rem] text-center text-xs text-white last-of-type:mb-0"
         :class="{
           'last-of-type:rounded-b-md': isFullWidth,
           'rounded-md': !isFullWidth,
@@ -23,7 +23,7 @@
         >
         <span
           v-if="customData.product?.badgeLabel"
-          class="truncate font-medium"
+          class="font-medium truncate"
         >
           {{ customData.product?.badgeLabel }}</span
         >

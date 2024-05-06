@@ -1,40 +1,59 @@
 <template>
   <div
-    class="flex flex-col rounded"
+    class="flex flex-col rounded items-start"
     :class="{
-      'bottom-0 left-0 w-full': isPromotionBadgeFullWidth,
-      'bottom-2 left-2': !isPromotionBadgeFullWidth,
+      'bottom-0 left-0 max-w-full': isPromotionBadgeFullWidth,
+      '': !isPromotionBadgeFullWidth,
     }"
   >
     <ProductBadge
       v-if="isProductSustainable(product)"
       badge-label="sustainable"
-      class="mb-2 ml-2"
+      class="mb-2"
+      :class="{
+        'ml-2': !isBasketPage,
+        'ml-0 truncate !max-w-full': isBasketPage,
+      }"
     />
-    <ProductBadge v-if="product.isNew" badge-label="new" class="mb-2 ml-2" />
+    <ProductBadge
+      v-if="product.isNew"
+      badge-label="new"
+      class="mb-2"
+      :class="{
+        'ml-2': !isBasketPage,
+        'ml-0 truncate !max-w-full': isBasketPage,
+      }"
+    />
     <ProductBadge
       v-for="(campaign, idx) in getSalesRelativeAmountByCategory(
         product,
         'campaign',
       )"
       :key="`campaign-${idx}`"
-      class="mx-2 mb-2 w-max bg-[#ff6e17]"
+      class="mx-2 mb-2 bg-[#ff6e17] truncate"
       :badge-label="`-${campaign.amount.relative * 100}% EXTRA`"
       :translate="false"
+      :class="{
+        'ml-0 mx-0 truncate !max-w-full': isBasketPage,
+      }"
     />
     <ProductBadge
       v-for="(sale, idx) in getSalesRelativeAmountByCategory(product, 'sale')"
       :key="`sale-${idx}`"
-      class="mb-2 w-max bg-red-500"
+      class="mb-2 bg-red-500 truncate"
       :badge-label="`-${sale.amount.relative * 100}%`"
       :class="{
-        'ml-2': !isBasketPage,
+        'ml-2 ': !isBasketPage,
+        'mb-2 !max-w-full': isBasketPage,
       }"
       :translate="false"
     />
     <ProductPromotionBadges
       :product="product"
       :is-full-width="isPromotionBadgeFullWidth"
+      :class="{
+        '!max-w-full': isBasketPage,
+      }"
     />
   </div>
 </template>

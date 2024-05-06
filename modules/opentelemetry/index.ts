@@ -6,6 +6,7 @@ import {
   addTypeTemplate,
 } from '@nuxt/kit'
 import { genImport } from 'knitwork'
+import { defu } from 'defu'
 
 function getInstrumentedEntryFileForPreset(
   preset: string,
@@ -43,6 +44,7 @@ import("${baseEntry}")`
 
 type ModuleOptions = {
   enabled: boolean
+  pathBlocklist?: string | RegExp
 }
 
 export default defineNuxtModule<ModuleOptions>({
@@ -59,10 +61,13 @@ export default defineNuxtModule<ModuleOptions>({
     enabled: false,
   },
   setup(options, nuxt) {
-    if (!options.enabled) {
-      return
-    }
     const resolver = createResolver(import.meta.url)
+
+    // Private runtimeConfig
+    nuxt.options.runtimeConfig.opentelemetry = defu(
+      { pathBlocklist: undefined },
+      options,
+    )
 
     addServerPlugin(resolver.resolve('src/nitro-plugin'))
     addPlugin(resolver.resolve('src/nuxt-plugin'))

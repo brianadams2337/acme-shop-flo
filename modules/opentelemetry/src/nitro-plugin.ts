@@ -8,10 +8,29 @@ import {
 
 const tracer = trace.getTracer(
   'nitro',
-  // TODO: Add nitro version
+  // TODO: Add package version, once we have a separate package
 )
 
+function getFilter(pathBlocklist?: string | RegExp): (path: string) => boolean {
+  if (!pathBlocklist) {
+    return (_path: string) => true
+  }
+
+  if (typeof pathBlocklist === 'string') {
+    try {
+      const regex = new RegExp(pathBlocklist)
+      return (path: string) => regex.test(path)
+    } catch {
+      return (path: string) => path.includes(pathBlocklist)
+    }
+  }
+
+  return (path: string) => pathBlocklist.test(path)
+}
+
 export default defineNitroPlugin((nitro) => {
+  const config = useRuntimeConfig().opentelemetry
+
   // Find the h3 handler which is the nitro router
   const index = nitro.h3App.stack.findIndex(
     (layer) => layer.handler.__resolve__,
@@ -23,11 +42,21 @@ export default defineNitroPlugin((nitro) => {
     return
   }
 
+  if (!config.enabled) {
+    return
+  }
+
+  const filter = getFilter(config.pathBlocklist)
+
   // Wrap the nitro router with code which adds a span
   nitro.h3App.stack.splice(index, 1, {
     ...router,
     handler: async (event) => {
       const url = getRequestURL(event)
+
+      if (filter(url.pathname)) {
+        return await router?.handler(event)
+      }
 
       return await tracer.startActiveSpan(
         `${event.method} ${event.path}`,

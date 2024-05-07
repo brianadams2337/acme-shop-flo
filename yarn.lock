@@ -3936,10 +3936,10 @@
   dependencies:
     crypto-js "^4.2.0"
 
-"@upstash/redis@1.30.0":
-  version "1.30.0"
-  resolved "https://registry.yarnpkg.com/@upstash/redis/-/redis-1.30.0.tgz#b9b5b4025ec7a45421dbb606d1bb32e2e932119d"
-  integrity sha512-bkxl2n7qls27hONXNyItM6ccRT0NBJ8c6zl83wx+TlODpYXehgeiUJTkcTaXLp7hk+zy6Mqpzpeo3GX+wZSvBw==
+"@upstash/redis@1.30.1":
+  version "1.30.1"
+  resolved "https://registry.yarnpkg.com/@upstash/redis/-/redis-1.30.1.tgz#83dfbdb3e3561180e7c70da9d0300b3a01e39d5a"
+  integrity sha512-Cmk2cvm1AcD6mKLg/UFhQDzM+H1HsX/k5ufvNL4Kii8DsMTKmadMJ1rRZEGQ/SM7H51EeOL/YSa6K2EPc1SYPA==
   dependencies:
     crypto-js "^4.2.0"
 

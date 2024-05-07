@@ -45,6 +45,7 @@ import("${baseEntry}")`
 type ModuleOptions = {
   enabled: boolean
   pathBlocklist?: string
+  pathReplace?: [string, string]
 }
 
 export default defineNuxtModule<ModuleOptions>({

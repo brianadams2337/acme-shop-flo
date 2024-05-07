@@ -266,6 +266,7 @@ export default defineNuxtConfig({
   opentelemetry: {
     enabled: yn(process.env.OTEL_ENABLED),
     pathBlocklist: '^(/.*)?/api/up',
+    pathReplace: [`^/(${locales.map((l) => l.code).join('|')})/`, '/:locale/'],
   },
 
   // https://nuxt.com/docs/api/nuxt-config#imports

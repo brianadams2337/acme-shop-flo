@@ -24,6 +24,19 @@ function getFilter(pathBlocklist?: string): (path: string) => boolean {
   }
 }
 
+function getReplace(pathReplace?: string[]): (path: string) => string {
+  if (!pathReplace || pathReplace.length !== 2) {
+    return (path: string) => path
+  }
+
+  try {
+    const regex = new RegExp(pathReplace[0])
+    return (path: string) => path.replace(regex, pathReplace[1])
+  } catch {
+    return (path: string) => path.replace(pathReplace[0], pathReplace[1])
+  }
+}
+
 export default defineNitroPlugin((nitro) => {
   const config = useRuntimeConfig().opentelemetry
 
@@ -43,6 +56,7 @@ export default defineNitroPlugin((nitro) => {
   }
 
   const filter = getFilter(config.pathBlocklist)
+  const replace = getReplace(config.pathReplace)
 
   // Wrap the nitro router with code which adds a span
   nitro.h3App.stack.splice(index, 1, {
@@ -55,7 +69,7 @@ export default defineNitroPlugin((nitro) => {
       }
 
       return await tracer.startActiveSpan(
-        `${event.method} ${event.path}`,
+        `${event.method} ${replace(event.path)}`,
         {
           attributes: {
             [SEMATTRS_HTTP_HOST]: url.host,
@@ -83,11 +97,11 @@ export default defineNitroPlugin((nitro) => {
 
           if (matchedRoute) {
             if (matchedRoute === '/**' && matchedVueRoute) {
-              span.updateName(`${event.method} ${matchedVueRoute}`)
-              span.setAttribute(SEMATTRS_HTTP_ROUTE, matchedVueRoute)
+              span.updateName(`${event.method} ${replace(matchedVueRoute)}`)
+              span.setAttribute(SEMATTRS_HTTP_ROUTE, replace(matchedVueRoute))
             } else {
-              span.updateName(`${event.method} ${matchedRoute}`)
-              span.setAttribute(SEMATTRS_HTTP_ROUTE, matchedRoute)
+              span.updateName(`${event.method} ${replace(matchedRoute)}`)
+              span.setAttribute(SEMATTRS_HTTP_ROUTE, replace(matchedRoute))
             }
           }
 

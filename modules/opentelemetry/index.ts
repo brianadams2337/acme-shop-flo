@@ -64,6 +64,10 @@ export default defineNuxtModule<ModuleOptions>({
     pathReplace: undefined,
   },
   setup(options, nuxt) {
+    if (!options.enabled) {
+      return
+    }
+
     const resolver = createResolver(import.meta.url)
 
     // Private runtimeConfig

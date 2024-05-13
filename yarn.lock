@@ -3653,10 +3653,10 @@
     "@types/minimatch" "*"
     "@types/node" "*"
 
-"@types/google.maps@3.55.7":
-  version "3.55.7"
-  resolved "https://registry.yarnpkg.com/@types/google.maps/-/google.maps-3.55.7.tgz#545176fb29ab81dda154e9d6dcda3dec26efe832"
-  integrity sha512-SlWFx0vo7RSAOC63+PTz8FeqLDaRYs7PrS/L0bZSKswxIN5TnCuckbeIwZpgD/S+DWalPteXfDbg5JsUER5Cyw==
+"@types/google.maps@3.55.8":
+  version "3.55.8"
+  resolved "https://registry.yarnpkg.com/@types/google.maps/-/google.maps-3.55.8.tgz#5149d6fc388f89643da3ed909c1933e5f8945076"
+  integrity sha512-aSyvlCRXzF9Jtjqq4zmA24sczKZ0QWJnn4zRrkufCoohHulS6LCf4KsF22eAlnHBuVYwEhQoMXIufUS7kXF5uA==
 
 "@types/http-assert@*":
   version "1.5.5"

@@ -2,10 +2,10 @@
 # yarn lockfile v1
 
 
-"@aboutyou/backbone@16.2.2":
-  version "16.2.2"
-  resolved "https://registry.yarnpkg.com/@aboutyou/backbone/-/backbone-16.2.2.tgz#489f57f8984a82ba1d87cb67ed817c92014e9801"
-  integrity sha512-k/NDvvfiZbKkshd4HDmk3zLJBRV7Y/PKS4sdvZ9DfB+mmBAyQsnAA5SQN3MSMnnXuJ4sRv2OI9L903VW7Kf9/g==
+"@aboutyou/backbone@16.3.0":
+  version "16.3.0"
+  resolved "https://registry.yarnpkg.com/@aboutyou/backbone/-/backbone-16.3.0.tgz#af18c787355287d5cf03c0c68130997ce19dcbfb"
+  integrity sha512-Vhk6zX16wk5svcwEBkEW4gSvbMNPs/9iZgdtvX2kKjrYU+eL8kJGyG0vHiQQAQ4bMUumnZSet50uPglPLzh3fw==
   dependencies:
     query-string "^6.2.0"
 
@@ -3211,15 +3211,15 @@
   resolved "https://registry.yarnpkg.com/@scayle/eslint-plugin-vue-composable/-/eslint-plugin-vue-composable-0.1.1.tgz#7a4d1b59152625566716ab5866d23e2528bfcbd7"
   integrity sha512-gSww15uLssqyDvV9NM8NRAZ2pzw9M6Z3SaGZhTVP6XpmCfrlBOlzWDKIx0Je/Ep7Smb9hTZfrdsGhfrktqdBpA==
 
-"@scayle/h3-session@0.3.6":
-  version "0.3.6"
-  resolved "https://registry.yarnpkg.com/@scayle/h3-session/-/h3-session-0.3.6.tgz#a9bf52b08c63e4936d6301a1e9e7af7997104830"
-  integrity sha512-r2zSe8MHzh/cJQtRtlzQykjyb4a3XV9WNxk7RaTIvgZV68QGZxTFsPvfKCCl3zdv3w75BU5nEmaOIGI6bkW+Ug==
+"@scayle/h3-session@0.4.0":
+  version "0.4.0"
+  resolved "https://registry.yarnpkg.com/@scayle/h3-session/-/h3-session-0.4.0.tgz#e2a80abb525eb11321c53eff7ec7265f251aa598"
+  integrity sha512-fUlY6Nq0Gi4egNcKyrvFGvoOL6+2b9g/y9R0Vl2ukAYPAwzCnFZ3cDtuMVy+ovJ/xvDkk0+yPMTUlcEYaT2mtw==
   dependencies:
     defu "6.1.4"
     uncrypto "0.1.3"
     unstorage "1.10.2"
-    zod "3.22.4"
+    zod "3.23.5"
 
 "@scayle/omnichannel-nuxt@3.0.0":
   version "3.0.0"
@@ -3238,12 +3238,12 @@
   dependencies:
     prettier-config-standard "^7.0.0"
 
-"@scayle/storefront-core@7.49.2":
-  version "7.49.2"
-  resolved "https://registry.yarnpkg.com/@scayle/storefront-core/-/storefront-core-7.49.2.tgz#08446581b0ff96743f9bec793db78755a9208a61"
-  integrity sha512-rDyjAv/4p4+RIt20KIX9ZIdoiPP9ePimBmWWtWT8U07OBhm1RJeuf945CQyBOBfSttuXMtUmP4M5BMYW1ar9KA==
+"@scayle/storefront-core@7.49.3":
+  version "7.49.3"
+  resolved "https://registry.yarnpkg.com/@scayle/storefront-core/-/storefront-core-7.49.3.tgz#f18a2f1dd6a4c60d5c1d5008592df15ea58a5af8"
+  integrity sha512-LFDCICyAXtodXtTz7L/dso00yCKro+qq8wzwf40d5K9AJ6HVld4k4grY/tNtSBPO3HF9g2Da8qkNCBOlqrC7bQ==
   dependencies:
-    "@aboutyou/backbone" "16.2.2"
+    "@aboutyou/backbone" "16.3.0"
     crypto-js "4.2.0"
     jose "5.2.4"
     radash "12.1.0"
@@ -3254,15 +3254,15 @@
   optionalDependencies:
     redis "4"
 
-"@scayle/storefront-nuxt@7.67.1":
-  version "7.67.1"
-  resolved "https://registry.yarnpkg.com/@scayle/storefront-nuxt/-/storefront-nuxt-7.67.1.tgz#672f2ed5bec8a4279a112c6fde060c6d77fa7266"
-  integrity sha512-RwX1v8sw9PEGqYtyqEAxPNxFyOxbMJOJO05Z2PYqm2l7fjTTpwjXnSQoOn1wwrjGHZ3KrXgrqD1HcnRFcv5oIw==
+"@scayle/storefront-nuxt@7.68.0":
+  version "7.68.0"
+  resolved "https://registry.yarnpkg.com/@scayle/storefront-nuxt/-/storefront-nuxt-7.68.0.tgz#4c1cded20bbbdd2863d9ac93b2320a835ae3ef23"
+  integrity sha512-oj7drPR6d7xsisqMrEzpgXMIrh4dY0ZgJWs0YkOpuB++FQxnKr3LBbAFapLFs209D7b4b/FdAik6P94wrK4nhg==
   dependencies:
     "@nuxt/kit" "3.11.1"
     "@opentelemetry/api" "1.8.0"
-    "@scayle/h3-session" "0.3.6"
-    "@scayle/storefront-core" "7.49.2"
+    "@scayle/h3-session" "0.4.0"
+    "@scayle/storefront-core" "7.49.3"
     "@scayle/unstorage-compression-driver" "0.1.3"
     "@vueuse/core" "10.9.0"
     consola "3.2.3"
@@ -14483,7 +14483,7 @@ zip-stream@^6.0.1:
     compress-commons "^6.0.2"
     readable-stream "^4.0.0"
 
-zod@3.22.4:
-  version "3.22.4"
-  resolved "https://registry.yarnpkg.com/zod/-/zod-3.22.4.tgz#f31c3a9386f61b1f228af56faa9255e845cf3fff"
-  integrity sha512-iC+8Io04lddc+mVqQ9AZ7OQ2MrUKGN+oIQyq1vemgt46jwCwLfhq7/pwnBnNXXXZb8VTVLKwp9EDkx+ryxIWmg==
+zod@3.23.5:
+  version "3.23.5"
+  resolved "https://registry.yarnpkg.com/zod/-/zod-3.23.5.tgz#c7b7617d017d4a2f21852f533258d26a9a5ae09f"
+  integrity sha512-fkwiq0VIQTksNNA131rDOsVJcns0pfVUjHzLrNBiF/O/Xxb5lQyEXkhZWcJ7npWsYlvs+h0jFWXXy4X46Em1JA==

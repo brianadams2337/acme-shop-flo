@@ -130,7 +130,10 @@ const filteredOrderedItems = computed(() => {
     (previous, current) => {
       previous.push({
         ...current,
-        isGiftApplicableItemUnique: shouldRender(current, previous),
+        isGiftApplicableItemUnique: shouldRenderPromotionGift(
+          current,
+          previous,
+        ),
       })
       return previous
     },

@@ -27,6 +27,7 @@ type Link =
   | 'orders'
   | 'account'
   | 'pdp'
+  | 'plp'
   | 'orderDetail'
   | 'search'
   | 'osp'
@@ -41,6 +42,7 @@ export type LinkList = Record<
     isProtected?: boolean
     parameter?: string
     query?: { [key: string]: string }
+    meta?: { pageType?: string }
   }
 >
 
@@ -59,6 +61,11 @@ export const routeList: LinkList = {
   },
   user: { name: 'account-user', path: '/account/user', isProtected: true },
   account: { name: 'account', path: '/account', isProtected: true },
+  plp: {
+    name: 'c-category-id',
+    path: '/',
+    meta: { pageType: 'category_page' },
+  },
   pdp: { name: 'p-name-id', path: '/p/' },
   orderDetail: {
     name: 'account-orders-id',

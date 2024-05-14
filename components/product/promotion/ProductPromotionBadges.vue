@@ -1,9 +1,16 @@
 <template>
-  <div v-if="productPromotionId" class="flex flex-col">
-    <template v-for="{ id, customData, priority } in orderedPromotions">
+  <div
+    v-if="productPromotionId"
+    class="flex flex-col"
+    :class="{
+      'w-full': !isBasket,
+    }"
+  >
+    <template
+      v-for="{ id, customData, priority } in orderedPromotions"
+      :key="id"
+    >
       <div
-        v-if="customData.product?.badgeLabel"
-        :key="id"
         class="z-10 mb-1 flex flex-wrap items-center justify-center gap-[1ch] bg-blue px-2 py-[.375rem] text-center text-xs text-white last-of-type:mb-0"
         :class="{
           'last-of-type:rounded-b-md': isFullWidth,
@@ -12,20 +19,20 @@
         :style="getBackgroundColorStyle(customData.colorHex)"
       >
         <span
-          v-if="customData.headlineParts?.length"
-          class="hidden truncate font-bold"
-          :class="{
-            'md:inline-block': !isBasket,
-            'inline-block': !customData.product?.badgeLabel,
-          }"
+          v-if="getHeadlinePartsText(customData)"
+          class="truncate font-bold"
         >
-          {{ getOfferText(customData) }}</span
+          {{ getHeadlinePartsText(customData) }}</span
         >
         <span
-          v-if="customData.product?.badgeLabel"
-          class="font-medium truncate"
+          v-if="(isPLP || isWishlist) && getBasketLabel(customData)"
+          class="hidden font-medium truncate"
+          :class="{
+            'md:inline-block': !isBasket,
+            '!inline-block': !getHeadlinePartsText(customData),
+          }"
         >
-          {{ customData.product?.badgeLabel }}</span
+          {{ getBasketLabel(customData) }}</span
         >
         <template v-if="isPriorityLabelShown && isHighestPriority(priority)">
           <IconForward class="mx-2 size-2" />
@@ -51,14 +58,21 @@ const route = useRoute()
 const localePath = useLocalePath()
 
 const isBasket = computed(() => route.path === localePath(routeList.basket))
+const isWishlist = computed(() => route.path === localePath(routeList.wishlist))
+const isPLP = computed(
+  () => route.meta.pageType === routeList.plp.meta?.pageType,
+)
 
 const props = withDefaults(defineProps<Props>(), {
   isPriorityLabelShown: false,
   isFullWidth: true,
 })
 
-function getOfferText(customData: Promotion['customData']) {
-  return customData.headlineParts?.at(0) ?? ''
+function getHeadlinePartsText(customData: Promotion['customData']) {
+  return (customData.headlineParts ?? []).at(0) ?? ''
+}
+function getBasketLabel(customData: Promotion['customData']) {
+  return customData.product?.badgeLabel ?? ''
 }
 
 const { productPromotionId, applicablePromotions, isHighestPriority } =

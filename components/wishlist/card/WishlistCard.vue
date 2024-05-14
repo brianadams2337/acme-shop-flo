@@ -11,7 +11,10 @@
     @productimage:mouseleave="isAddToBasketButtonShown = false"
   >
     <template #badge>
-      <ProductBadges :product="item.product" class="absolute bottom-0 left-0" />
+      <ProductBadges
+        :product="item.product"
+        class="absolute bottom-0 left-0 w-full"
+      />
     </template>
     <template #header-image="{ link, image, imageLoading, name }">
       <WishlistCardImage

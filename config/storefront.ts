@@ -48,6 +48,7 @@ const shops = [
     path: 'de',
     shopId: 1001,
     currency: 'EUR',
+    isDefault: true,
   },
   {
     locale: 'de-AT',
@@ -116,7 +117,7 @@ export const storefrontRuntimeConfigPrivate: Partial<ModuleOptions> = {
 
   /** Storefront Core - Configure shop switching based on selected routing option (`domain` or `path`-based)
    * https://scayle.dev/en/dev/storefront-core/module-configuration#path-and-domain  */
-  shopSelector: 'path', // Override: NUXT_STOREFRONT_SHOP_SELECTOR
+  shopSelector: 'path_or_default', // Override: NUXT_STOREFRONT_SHOP_SELECTOR
 
   /** Storefront Core - Shop-specific configuration options
    * https://scayle.dev/en/dev/storefront-core/module-configuration#shops */
@@ -198,6 +199,8 @@ export const storefrontRuntimeConfigPrivate: Partial<ModuleOptions> = {
           'klarna',
           'paypal',
         ], // Override: NUXT_STOREFRONT_STORES_{UNIQUE_IDENTIFIER}_PAYMENT_PROVIDERS,
+
+        isDefault: shop.isDefault,
       },
     }),
     {},

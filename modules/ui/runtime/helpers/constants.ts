@@ -89,3 +89,11 @@ export const ProgressType = {
 } as const
 
 export type ProgressType = ValuesType<typeof ProgressType>
+
+export const ColorChipRoundedType = {
+  DEFAULT: 'default',
+  SM: 'sm',
+  MD: 'md',
+} as const
+
+export type ColorChipRoundedType = ValuesType<typeof ColorChipRoundedType>

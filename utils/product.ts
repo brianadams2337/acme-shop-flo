@@ -7,11 +7,31 @@ import {
 
 export { ProductImageType } from '@scayle/storefront-nuxt'
 
+export type ProductColorCode = string | string[]
+
+export const ProductColorMap: Record<
+  string,
+  { id: number; hex: ProductColorCode }
+> = {
+  WHITE: { id: 6, hex: '#ffffff' },
+  BLACK: { id: 7, hex: '#000000' },
+  GRAY: { id: 8, hex: '#888888' },
+  DARK_GRAY: { id: 611, hex: '#808080' },
+  RED: { id: 9, hex: '#a52a2a' },
+  BLUE: { id: 10, hex: '#0000ff' },
+  BRIGHT_GREEN: { id: 11, hex: '#00ff00' },
+  BRIGHT_YELLOW: { id: 12, hex: '#ffff00' },
+  BRIGHT_RED: { id: 13, hex: '#ff0000' },
+  DULL_PINK: { id: 62, hex: '#ffc0cb' },
+  YELLOW: { id: 594, hex: '#ffd700' },
+  MIX: { id: 1370, hex: ['#0000ff', '#ffa500', '#ff0000', '#008000'] },
+}
+
 export type VariantAvailability = {
   available: boolean
   type: 'immediate' | 'soon' | 'unavailable'
   text: string
-  textArgs?: any
+  textArgs?: unknown
 }
 
 export const getLowestPriceBetweenVariants = (product: Product) => {
@@ -29,16 +49,14 @@ export const getVariantWithLowestPrice = (
   )
 }
 
-export const getColorCodeForId = (id: number): string | string[] => {
-  const color = Object.values(ColorMap).find((it) => it.id === id)
+export const getColorCodeById = (
+  colorId: number,
+): ProductColorCode | undefined => {
+  const color = Object.values(ProductColorMap).find(({ id }) => id === colorId)
 
   if (color) {
     return color.hex
   }
-
-  console.log('No color found for', id)
-
-  return ColorMap.WHITE.hex
 }
 
 export const getSalesRelativeAmountByCategory = (

@@ -71,7 +71,7 @@
             class="appearance-none focus:outline-none"
             @click="toggleItem(item)"
           >
-            <SFColorChip
+            <ProductColorChip
               data-test-id="filter-color-circle"
               :color="{
                 id: +item.value,
@@ -110,6 +110,8 @@
 </template>
 
 <script setup lang="ts">
+import type { ProductColorChip } from '#components'
+
 const {
   state,
   resetFilter,

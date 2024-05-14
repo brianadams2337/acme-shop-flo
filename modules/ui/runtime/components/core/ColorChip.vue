@@ -1,7 +1,5 @@
 <template>
   <span
-    :key="`color-picker-color-${color.value}`"
-    :data-color-id="color.id"
     :style="backgroundColorStyle"
     class="relative col-span-1 flex items-center justify-center overflow-hidden border border-transparent bg-white"
     :class="classes"
@@ -24,54 +22,50 @@
 </template>
 
 <script setup lang="ts">
-import type { ProductColor } from '@scayle/storefront-nuxt'
 import Color from 'color'
 import { computed } from 'vue'
-import { Size, getSizeUtils } from '#storefront-ui'
+import { Size, getSizeUtils, ColorChipRoundedType } from '#storefront-ui'
 
 type Props = {
-  color: ProductColor
+  colorCode: string | string[]
   size?: Size
   isActive?: boolean
-  rounded?: 'default' | 'sm' | 'md'
+  rounded?: ColorChipRoundedType
 }
 
 const props = withDefaults(defineProps<Props>(), {
   size: Size.MD,
   isActive: false,
-  rounded: 'default',
+  rounded: ColorChipRoundedType.DEFAULT,
 })
 
 const { isSize } = getSizeUtils(props.size)
 
-const colorCode = computed<string | string[]>(() => {
-  return getColorCodeForId(props.color.id)
-})
-
-const hasMixedColors = computed(() => Array.isArray(colorCode.value))
+const hasMixedColors = computed(() => Array.isArray(props.colorCode))
 
 const isNumberOfMixColorsOdd = computed<boolean>(() => {
-  if (!hasMixedColors.value) {
+  if (!hasMixedColors.value || !props.colorCode) {
     return false
   }
-  return colorCode.value.length % 2 !== 0
+
+  return props.colorCode.length % 2 !== 0
 })
 
 const isLightColor = computed(() => {
   if (hasMixedColors.value) {
     return false
   }
-  return Color(colorCode.value).isLight()
+  return Color(props.colorCode).isLight()
 })
 
-const hasGrayBorder = computed(() => {
-  return colorCode.value === ColorMap.WHITE.hex || colorCode.value === '#f2efe9'
-})
+// Add gray border for brighter colors
+// Reference: https://www.npmjs.com/package/color#luminosity
+const hasGrayBorder = computed(() => Color(props.colorCode).luminosity() > 0.7)
 
 const backgroundColorStyle = computed(() => ({
   backgroundColor: hasMixedColors.value
     ? 'transparent'
-    : (colorCode.value as string),
+    : (props.colorCode as string),
 }))
 
 const classes = computed(() => ({
@@ -81,8 +75,9 @@ const classes = computed(() => ({
   'size-4': isSize('md'),
   'size-6': isSize('lg'),
   'size-8': isSize('xl'),
-  rounded: props.rounded === 'default',
-  'rounded-sm': props.rounded === 'sm',
+  rounded: props.rounded === ColorChipRoundedType.DEFAULT,
+  'rounded-sm': props.rounded === ColorChipRoundedType.SM,
+  'rounded-md': props.rounded === ColorChipRoundedType.MD,
   '!border-black': hasMixedColors.value,
 }))
 </script>

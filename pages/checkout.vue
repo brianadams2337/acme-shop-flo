@@ -65,13 +65,6 @@ onMounted(async () => {
     log.error('[checkout.vue] Error getting campaign key', error)
   }
   showCheckout.value = true
-
-  console.log(
-    user.value?.authentication,
-    accessToken.value,
-    basketKey.value,
-    showCheckout.value,
-  )
 })
 
 onBeforeMount(async () => {

@@ -93,7 +93,7 @@
                     class="flex items-center justify-center"
                     :to="getProductDetailRoute(product, item.id)"
                   >
-                    <SFColorChip
+                    <ProductColorChip
                       v-if="item.colors.length"
                       :is-active="item.id === product.id"
                       :size="Size.LG"
@@ -205,6 +205,8 @@
 </template>
 
 <script setup lang="ts">
+import { ProductColorChip } from '#components'
+import { Size } from '#storefront-ui'
 import {
   type ProductColor,
   getFirstAttributeValue,

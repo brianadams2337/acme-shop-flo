@@ -64,7 +64,7 @@
               </slot>
               <slot name="badge" :label="badgeLabel">
                 <SFLink
-                  v-if="badgeLabel"
+                  v-if="badgeLabel && link"
                   :to="link"
                   raw
                   @click.capture="$emit('click:product')"
@@ -83,6 +83,7 @@
           >
             <div class="my-2 px-2.5 md:my-2.5">
               <SFLink
+                v-if="link"
                 :to="link"
                 raw
                 class="flex flex-col whitespace-pre-line break-words text-2xs font-medium uppercase leading-tight text-primary opacity-50 sm:leading-4 md:text-xs"
@@ -109,7 +110,7 @@
                   >
                     <template #item="{ item }">
                       <SFLink :to="getProductDetailRoute(product, item.id)" raw>
-                        <SFColorChip
+                        <ProductColorChip
                           v-if="item.colors.length"
                           data-test-id="product-card-color-circle"
                           :color="item.colors[0] as ProductColor"

@@ -12,6 +12,7 @@ class ProductListingPage extends BasePage {
     productPageHeading: '[data-test-id="headline"]',
     paginationButtons: '[data-test-id="paginationButton"]',
     productCountButton: '[data-test-id="totalCount"] span',
+    productBadges: '[data-test-id="product-badges"]',
     productColor: (ID: number) => {
       return `[data-color-id="${ID}"]`
     },
@@ -196,6 +197,12 @@ class ProductListingPage extends BasePage {
       'include.text',
       expectedHeaderName,
     )
+  }
+
+  assetProductBadge(): void {
+    cy.get(this.pageElements.productBadges)
+      .should('be.visible')
+      .should('have.class', 'w-full')
   }
 }
 export default new ProductListingPage()

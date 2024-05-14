@@ -1,5 +1,6 @@
 <template>
   <div
+    data-test-id="product-badges"
     class="flex flex-col rounded"
     :class="{
       'bottom-0 left-0 max-w-full ': isPromotionBadgeFullWidth,

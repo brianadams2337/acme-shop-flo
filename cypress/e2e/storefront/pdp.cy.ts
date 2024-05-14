@@ -5,6 +5,7 @@ import {
   TEST_ITEM_ONESIZE,
   TEST_ITEM_COMBINE_WITH,
   TEST_ITEM_NO_COMBINE_WITH,
+  TEST_ITEM_WITH_FREE_GIFT,
 } from '../../support/constants'
 import ProductPage from '../../pageObjects/productPage'
 import HomePage from '../../pageObjects/homePage'
@@ -33,6 +34,7 @@ describe('Products testing', () => {
   it('check base fields presence on PDP page', () => {
     ProductPage.openProduct(TEST_ITEM_REGULAR.link)
     ProductPage.waitForPageToBeDisplayed()
+    ProductPage.assertTimerbox()
     const locale = getLocaleFile()
     cy.contains(locale.pdp.add_label)
     cy.contains(locale.pdp.product_info_heading)
@@ -57,6 +59,15 @@ describe('Products testing', () => {
       ProductPage.clickOnProductImage()
       ProductPage.clickCloseButton()
     }
+  })
+
+  it('Check product with free gift', () => {
+    ProductPage.openProduct(TEST_ITEM_WITH_FREE_GIFT.link)
+    ProductPage.waitForPageToBeDisplayed()
+    ProductPage.assertProductGiftItemsIfConditionsMet()
+    ProductPage.selectAvailableSize()
+    ProductPage.addToCart()
+    ProductPage.assertProductGiftIfConditionsMet()
   })
 
   const products = [

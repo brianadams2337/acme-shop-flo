@@ -76,6 +76,7 @@
             </div>
             <div
               class="flex flex-col items-end justify-start text-right font-bold"
+              data-test-id="basket-card-prices"
             >
               <template v-if="reducedPrice">
                 <div
@@ -106,6 +107,7 @@
                 <span
                   v-if="hasPromotionReduction(item)"
                   class="inline rounded p-1 text-base leading-5"
+                  data-test-id="basket-card-reduction-price"
                   :style="{
                     ...getBackgroundColorStyle(
                       item?.promotion?.customData.colorHex,

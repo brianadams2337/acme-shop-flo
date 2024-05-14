@@ -7,6 +7,7 @@ class ProductPage extends BasePage {
     tilledGallery: '[data-test-id="tilled-gallery"]',
     productImages: '[data-test-id="product-image"]',
     addToWishlistButton: '[data-test-id="add-item-to-wishlist-button"]',
+    promotionCountdown: '[data-test-id="promotion-countdown"]',
     removeFromWishlistButton:
       '[data-test-id="remove-item-from-wishlist-button"]',
     price: '[data-test-id="price"]',
@@ -19,6 +20,7 @@ class ProductPage extends BasePage {
       return `[data-color-id="${ID}"]`
     },
     sizeMenuToggle: '[data-test-id="product-size-picker-toggle"]',
+    quantityMenuToggle: '[data-test-id="product-quantity-picker-toggle"]',
     size: '[data-test-id="product-size"]',
     backButton: '[data-test-id="back-button"]',
     shopLogo: '.max-w-full',
@@ -28,6 +30,8 @@ class ProductPage extends BasePage {
     closeButton: 'button[data-test-id="close-button"]',
     combineWithSlider: '[data-test-id="combine-with-slider"]',
     combineWithSliderSoldOutProductId: '[data-product-card-id="3"]',
+    productPromotionGifts: '[data-test-id="product-promotion-gifts"]',
+    productPromotionGiftItem: '[data-test-id="product-promotion-gift-item"]',
   }
 
   openProduct(item: string): void {
@@ -130,7 +134,7 @@ class ProductPage extends BasePage {
   addToCart() {
     cy.get(this.pageElements.addToCartButton)
       .should('exist')
-      .click({ force: true })
+      .click({ force: true, multiple: true })
   }
 
   checkViewItemTrackingEvent(): void {
@@ -170,6 +174,30 @@ class ProductPage extends BasePage {
 
   clickOnProductImage(index = 1): void {
     cy.get(this.pageElements.productImages).eq(index).click()
+  }
+
+  assertTimerbox() {
+    cy.get(this.pageElements.promotionCountdown)
+      .invoke('text')
+      .should('match', /\d{2,3}[A-Z]:\d{2}[A-Z]:\d{2}[A-Z]$/g)
+  }
+
+  assertProductGiftItemsIfConditionsMet() {
+    cy.get(this.pageElements.productPromotionGifts).should('exist')
+    cy.get(this.pageElements.productPromotionGiftItem).within(() => {
+      cy.get('picture').should('have.class', 'grayscale')
+      cy.get('h3').should('have.class', 'text-secondary')
+      cy.get('button').should('be.disabled')
+    })
+  }
+
+  assertProductGiftIfConditionsMet() {
+    cy.get(this.pageElements.productPromotionGifts).should('exist')
+    cy.get(this.pageElements.productPromotionGiftItem).within(() => {
+      cy.get('picture').should('not.have.class', 'grayscale')
+      cy.get('h3').should('not.have.class', 'text-secondary')
+      cy.get('button').should('not.be.disabled')
+    })
   }
 }
 

@@ -14,6 +14,13 @@ class BasketPage extends BasePage {
       '[data-test-id="basket-remove-item-confirm-button"]',
     quantityDropdown: '[data-test-id="quantity-dropdown-amount"]',
     checkoutButton: '[data-test-id="checkout-link"]',
+    promotionBanner: '[data-test-id="promotion-banner"]',
+    promotionCountdown: '[data-test-id="promotion-countdown"]',
+    basketCardPrice: '[data-test-id="basket-card-prices"]',
+    basketCardReductionPrice: '[data-test-id="basket-card-reduction-price"]',
+    basketSummaryPromotions: '[data-test-id="basket-summary-promotions"]',
+    basketSummaryPromotionItem:
+      '[data-test-id="basket-summary-promotion-item"]',
   }
 
   open(waitForDisplayed = true): void {
@@ -92,6 +99,29 @@ class BasketPage extends BasePage {
   checkRemoveFromCartTrackingEvent(): void {
     cy.log('event remove_from_cart should be triggered')
     cy.expectTrackingEventInDatalayer('remove_from_cart')
+  }
+
+  assetTimerbox(): void {
+    cy.get(this.pageElements.promotionCountdown)
+      .invoke('text')
+      .should('match', /\d{2,3}[A-Z]:\d{2}[A-Z]:\d{2}[A-Z]/)
+  }
+
+  assertProductCardPrice(): void {
+    cy.get(this.pageElements.basketCardPrice)
+      .should('exist')
+      .within(() => {
+        cy.get(this.pageElements.basketCardReductionPrice)
+          .should('exist')
+          .should('have.attr', 'style')
+          .and('include', 'color: rgba')
+          .and('include', 'background-color: rgba')
+      })
+  }
+
+  assertBasketSummaryWithPromotion(): void {
+    cy.get(this.pageElements.basketSummaryPromotions).should('be.visible')
+    cy.get(this.pageElements.basketSummaryPromotionItem).should('be.visible')
   }
 }
 export default new BasketPage()

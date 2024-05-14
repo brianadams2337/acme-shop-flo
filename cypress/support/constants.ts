@@ -55,6 +55,22 @@ export const TEST_ITEM_NO_COMBINE_WITH = {
   category: 'women',
 }
 
+export const TEST_ITEM_WITH_FREE_GIFT = {
+  link: '/p/schneeanzug-1116',
+  name: 'Schneeanzug',
+  price: '53,00',
+  initialPrice: null,
+  category: 'kids-baby',
+}
+
+export const TEST_ITEM_WITH_PROMOTION = {
+  link: '/p/t-shirt-1109',
+  name: 'T-Shirt',
+  price: '17,00',
+  initialPrice: null,
+  category: 'men',
+}
+
 export const HEADER_TEST_CATEGORY_MEN = 'Men'
 export const PLP_CATEGORY_MEN = '/men'
 

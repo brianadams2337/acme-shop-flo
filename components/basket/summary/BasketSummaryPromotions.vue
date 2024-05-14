@@ -1,6 +1,7 @@
 <template>
   <div
     v-if="hasItemsWithPromotionReductions"
+    data-test-id="basket-summary-promotions"
     class="flex flex-col justify-between gap-[.625rem]"
   >
     <div class="flex items-center justify-between">
@@ -35,6 +36,7 @@
         >
           <div
             class="flex items-center justify-between rounded"
+            data-test-id="basket-summary-promotion-item"
             :class="[
               'px-2',
               'py-[.375rem]',

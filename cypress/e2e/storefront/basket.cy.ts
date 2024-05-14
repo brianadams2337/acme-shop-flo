@@ -1,4 +1,7 @@
-import { TEST_ITEM_REGULAR } from '../../support/constants'
+import {
+  TEST_ITEM_REGULAR,
+  TEST_ITEM_WITH_PROMOTION,
+} from '../../support/constants'
 import Header from '../../pageObjects/components/header'
 import Footer from '../../pageObjects/components/footer'
 import ProductListingPage from '../../pageObjects/productListingPage'
@@ -59,6 +62,7 @@ describe('Basket Feature', () => {
     Header.clickOnBasketButton()
     BasketPage.waitForPageToBeDisplayed()
     BasketPage.assertThatProductIsPresent()
+    BasketPage.assetTimerbox()
     Header.assertShoppingBagCounter(1)
     cy.log('assert basket card elements')
     cy.contains(locale.basket_card.size_label)
@@ -113,6 +117,23 @@ describe('Basket Feature', () => {
     cy.contains(locale.basket.empty_description)
     cy.contains(locale.global.continue_shopping_label)
     cy.contains(locale.global.sign_in_label)
+  })
+
+  it.only('should have new prices with promotions', () => {
+    ProductPage.openProduct(TEST_ITEM_WITH_PROMOTION.link)
+    ProductPage.waitForPageToBeDisplayed()
+    ProductPage.openProductSizeMenu()
+    ProductPage.selectAvailableSize()
+    Cypress._.times(4, () => {
+      cy.wait(Math.random() * 1000)
+      ProductPage.addToCart()
+      cy.wait(Math.random() * 1500)
+    })
+    Header.clickOnBasketButton()
+    BasketPage.waitForPageToBeDisplayed()
+    BasketPage.assertThatProductIsPresent()
+    BasketPage.assertProductCardPrice()
+    BasketPage.assertBasketSummaryWithPromotion()
   })
 
   // ToDo: unskip the test after fix SCPF-4398 https://aboutyou.atlassian.net/browse/SCPF-4398

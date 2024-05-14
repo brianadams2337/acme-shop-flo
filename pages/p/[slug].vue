@@ -61,6 +61,7 @@
                     :product="product"
                     is-priority-label-shown
                     class="items-end md:hidden"
+                    :is-full-width="false"
                   />
                   <ProductBadge
                     v-if="product.isSoldOut"

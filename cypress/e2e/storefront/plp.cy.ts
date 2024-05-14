@@ -103,6 +103,7 @@ describe('Product Listing Page', { testIsolation: false }, () => {
       .then(() => {
         expect(arr.length).eq(productCount)
       })
+    ProductListingPage.assetProductBadge()
   })
 
   it('check count of add to wishlist buttons on the products (should equal product count)', () => {

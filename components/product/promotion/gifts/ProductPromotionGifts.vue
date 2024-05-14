@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div data-test-id="product-promotion-gifts">
     <div :style="backgroundColorStyle" class="rounded-t-md px-3.5 py-3">
       <div class="flex items-center gap-1">
         <span class="flex h-[1.125rem] w-auto items-center justify-center">

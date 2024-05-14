@@ -1,5 +1,5 @@
 <template>
-  <div class="flex w-full">
+  <div class="flex w-full" data-test-id="product-promotion-gift-item">
     <SFLink
       :to="getProductDetailRoute(product)"
       raw

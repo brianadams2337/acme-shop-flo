@@ -2,7 +2,7 @@ import HomePage from '../../pageObjects/homePage'
 import Header from '../../pageObjects/components/header'
 import Footer from '../../pageObjects/components/footer'
 import ProductListingPage from '../../pageObjects/productListingPage'
-import { TEST_ITEM_SOLDOUT } from '../../support/constants'
+import { TEST_ITEM_REGULAR, TEST_ITEM_SOLDOUT } from '../../support/constants'
 import ProductPage from '../../pageObjects/productPage'
 
 describe(`my orders`, () => {
@@ -21,6 +21,25 @@ describe(`my orders`, () => {
     Footer.assertFooterIsDisplayed()
     ProductListingPage.openProductByID(TEST_ITEM_SOLDOUT.id)
     ProductPage.waitForPageToBeDisplayed()
+  })
+
+  it('Check promotion banner', () => {
+    HomePage.assertPromotionBannerIsDisplayed()
+    HomePage.assertTimerBox()
+  })
+  it('Banner Link should be displayed', () => {
+    ProductPage.openProduct(TEST_ITEM_REGULAR.link)
+    ProductPage.waitForPageToBeDisplayed()
+    ProductPage.selectAvailableSize()
+    Cypress._.times(10, () => {
+      cy.wait(Math.random() * 1000)
+      ProductPage.addToCart()
+    })
+    if (Cypress.env().mobile) {
+      HomePage.assertShowDealsButtonMobileIsDisplayed()
+    } else {
+      HomePage.assertShowDealsButtonIsDisplayed()
+    }
   })
 })
 

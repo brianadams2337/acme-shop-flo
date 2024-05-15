@@ -147,7 +147,7 @@ const basketItemPromotion = (item: BasketItem) => {
     'promotion',
   )?.id
 
-  const promotion = allCurrentPromotions.value.find((promotion) => {
+  return allCurrentPromotions.value.find((promotion) => {
     const isFreeGift = isBuyXGetYType(promotion)
     if (!isFreeGift) {
       return false
@@ -156,7 +156,6 @@ const basketItemPromotion = (item: BasketItem) => {
       promotion.customData?.product?.promotionId === currentBasketItemProductID
     )
   })
-  return promotion
 }
 
 const isGiftApplicableItem = ({ product, promotionId }: BasketItem) => {

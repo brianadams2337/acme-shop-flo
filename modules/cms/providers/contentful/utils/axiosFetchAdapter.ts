@@ -152,7 +152,8 @@ function createRequest(config) {
       ? decodeURI(encodeURIComponent(config.auth.password))
       : ''
 
-    headers.set('Authorization', `Basic ${btoa(`${username}:${password}`)}`)
+    const btoaCredentials = btoa(`${username}:${password}`)
+    headers.set('Authorization', `Basic ${btoaCredentials}`)
   }
 
   const method = config.method.toUpperCase()

@@ -11,7 +11,6 @@ const getBaseCategory = (): Category => ({
   path: '/men',
   name: 'Men',
   slug: 'men',
-  description: 'Men description',
   parentId: 0,
   rootlineIds: [2046],
   childrenIds: [2051, 2052, 2053],

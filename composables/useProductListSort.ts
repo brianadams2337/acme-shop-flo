@@ -1,6 +1,7 @@
 import {
   type SortValue,
   type Category,
+  type SortingValueKey,
   getSortByValue,
   getSortingValues,
 } from '@scayle/storefront-nuxt'
@@ -14,7 +15,9 @@ export function useProductListSort(
   const category = toRef(selectedCategory)
 
   const customDefaultSorting = computed(() => {
-    return category.value?.shopLevelCustomData?.defaultSorting
+    return category.value?.shopLevelCustomData?.defaultSorting as
+      | SortingValueKey
+      | undefined
   })
 
   const selectedSort = computed(() => {
@@ -24,7 +27,7 @@ export function useProductListSort(
         DEFAULT_SORTING_KEY,
       ) as SortValue
     }
-    return getSortByValue(customDefaultSorting.value)
+    return getSortByValue('', customDefaultSorting.value)
   })
 
   const sortingValues = Object.values(getSortingValues())

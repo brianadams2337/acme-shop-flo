@@ -47,7 +47,9 @@
     },
     "hurry_to_save": "Hurry to save",
     "save_your_free_gift": "Save your free gift",
-    "highest_priority": "Highest priority"
+    "highest_priority": "Highest priority",
+    "see_my_promotions": "See my promotions",
+    "hide_my_promotions": "Hide my promotions"
   },
   "validation": {
     "email": "The {field} field must be a valid email",

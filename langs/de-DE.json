@@ -47,7 +47,9 @@
     },
     "hurry_to_save": "Beeilen Sie sich, um zu sparen",
     "save_your_free_gift": "Sichern Sie sich Ihr kostenloses Geschenk",
-    "highest_priority": "Höchste Priorität"
+    "highest_priority": "Höchste Priorität",
+    "see_my_promotions": "Zeigen meine Angebote an",
+    "hide_my_promotions": "Verstecke meine Angebote"
   },
   "validation": {
     "email": "Das Feld {field} muss eine gültige E-Mail Adresse sein",

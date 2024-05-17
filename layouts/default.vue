@@ -1,19 +1,25 @@
 <template>
   <div
-    class="flex min-h-screen flex-col text-primary antialiased anchor-scrolling-none"
+    class="flex min-h-screen flex-col text-primary antialiased anchor-scrolling-none overflow-hidden"
   >
     <PromotionBanner
       v-if="allCurrentPromotions.length"
       :promotions="allCurrentPromotions"
+      @change="updateLayout"
     />
-    <HeaderMetaBar />
-    <AppHeader />
-    <SFToastContainer />
-    <MobileSidebar />
-    <div class="mt-4 grow">
-      <NuxtPage />
+    <div
+      class="translate-0 transition-transform duration-300 ease-in-out"
+      :class="{ '-translate-y-[3.25rem]': transformLayout }"
+    >
+      <HeaderMetaBar />
+      <AppHeader />
+      <SFToastContainer />
+      <MobileSidebar />
+      <div class="mt-4 grow">
+        <NuxtPage />
+      </div>
+      <CMSAppFooterData class="mt-16" />
     </div>
-    <CMSAppFooterData class="mt-16" />
   </div>
 </template>
 
@@ -31,6 +37,12 @@ const [{ allCurrentPromotions }] = await Promise.all([
   useWishlist(),
   useRootCategories(),
 ])
+
+const transformLayout = ref(false)
+
+const updateLayout = (isPromotionBannerShown: boolean) => {
+  transformLayout.value = !isPromotionBannerShown
+}
 
 const trackingEvents = useTrackingEvents()
 

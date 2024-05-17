@@ -1,30 +1,56 @@
 <template>
   <div
-    :ref="(element) => setBannerRef(element as HTMLElement)"
-    data-test-id="promotion-banner"
-    class="sticky top-0 z-[80] hidden h-[3.25rem] cursor-pointer items-center justify-between gap-1 overflow-hidden bg-blue py-2 pl-4 text-sm text-white lg:flex"
-    :style="backgroundColorStyle"
-    @click="togglePromotionList()"
+    class="relative z-[65] translate-0 transition-all duration-300 ease-in-out"
+    :class="{ '-translate-y-[3.25rem]': !isPromotionBannerShown }"
   >
-    <div class="flex-1">
-      <PromotionCountdown v-if="expirationDate" :until="expirationDate" />
-    </div>
-    <PromotionHeadline
-      v-if="headlineParts"
-      :headline-parts="headlineParts"
-      is-all-uppercased
-      class="flex-1 justify-center"
-    />
-    <div class="flex h-full flex-1 justify-end">
-      <PromotionProgress v-if="minOrderValue" class="mr-2.5" />
-      <ShowDealsButton
-        v-if="showDealsButton"
-        data-test-id="show-deals-button"
-        :category="category"
-        class="mr-3"
+    <div
+      :ref="(element) => setBannerRef(element as HTMLElement)"
+      data-test-id="promotion-banner"
+      class="sticky top-0 z-[80] hidden h-[3.25rem] cursor-pointer items-center justify-between gap-1 overflow-hidden bg-blue py-2 pl-4 text-sm text-white lg:flex"
+      :style="backgroundColorStyle"
+      @click="togglePromotionList()"
+    >
+      <div class="flex-1">
+        <PromotionCountdown v-if="expirationDate" :until="expirationDate" />
+      </div>
+      <PromotionHeadline
+        v-if="headlineParts"
+        :headline-parts="headlineParts"
+        is-all-uppercased
+        class="flex-1 justify-center"
       />
-      <MyDealsButton class="self-center" />
+      <div class="flex h-full flex-1 justify-end">
+        <PromotionProgress v-if="minOrderValue" class="mr-2.5" />
+        <ShowDealsButton
+          v-if="isDealsButtonShown"
+          data-test-id="show-deals-button"
+          :category="category"
+          class="mr-3"
+        />
+        <MyDealsButton class="self-center" />
+      </div>
     </div>
+    <SFFadeInTransition>
+      <SFButton
+        v-if="!isPromotionListShown"
+        type="raw"
+        class="absolute min-h-[1.875rem] !w-fit items-center !px-2 !py-1 text-start !rounded-none !rounded-b-md text-xs font-semibold leading-5 text-white hidden lg:inline-flex"
+        size="xs"
+        :style="backgroundColorStyle"
+        :class="{ '!border-t-[0.5px]': isPromotionBannerShown }"
+        @click="togglePromotionBanner"
+      >
+        <IconGift class="size-3" />
+        <span v-if="isPromotionBannerShown">
+          {{ $t('promotion.hide_my_promotions') }}</span
+        >
+        <span v-else> {{ $t('promotion.see_my_promotions') }}</span>
+        <template #append-icon="{ _class }">
+          <IconChevronUp v-if="isPromotionBannerShown" :class="_class" />
+          <IconChevronDown v-else :class="_class" />
+        </template>
+      </SFButton>
+    </SFFadeInTransition>
   </div>
   <SFSlideInFromTopTransition>
     <PromotionList v-if="isPromotionListShown" :items="promotions" />
@@ -32,15 +58,24 @@
   <SFOverlay v-if="isPromotionListShown" />
   <SFFadeInTransition>
     <PromotionMobileBanner
-      :promotions="promotions"
-      :show-deals-button-visible="showMobileDealsButton"
-      :category="category"
+      v-bind="{ promotions, category, isPromotionListShown }"
     />
   </SFFadeInTransition>
 </template>
 
 <script setup lang="ts">
-const props = defineProps<{ promotions: Promotion[] }>()
+const props = defineProps<{
+  promotions: Promotion[]
+}>()
+
+const emits = defineEmits<{ change: [isPromotionBannerShown: boolean] }>()
+
+const isPromotionBannerShown = ref(true)
+
+const togglePromotionBanner = () => {
+  isPromotionBannerShown.value = !isPromotionBannerShown.value
+  emits('change', isPromotionBannerShown.value)
+}
 
 usePromotionChange(props.promotions)
 
@@ -57,20 +92,11 @@ const { togglePromotionList, isPromotionListShown, setBannerRef } =
 
 const { isMOVPromotionApplied, isFullProgress } = await usePromotionProgress()
 
-const showDealsButton = computed<boolean>(() => {
+const isDealsButtonShown = computed<boolean>(() => {
   return Boolean(
     category.value &&
       (!minOrderValue.value ||
         (!isMOVPromotionApplied.value && isFullProgress.value)),
-  )
-})
-
-const showMobileDealsButton = computed(() => {
-  return Boolean(
-    category.value &&
-      !isMOVPromotionApplied.value &&
-      isFullProgress.value &&
-      minOrderValue.value,
   )
 })
 </script>

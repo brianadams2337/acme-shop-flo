@@ -130,5 +130,5 @@ export async function useProductDetailsBasketActions() {
     }
   }
 
-  return { addItemToBasket, basketIdle }
+  return { addItemToBasket, basketIdle, basketItems }
 }

@@ -2,10 +2,11 @@
   <div
     data-test-id="product-badges"
     class="flex flex-col rounded"
-    :class="{
-      'bottom-0 left-0 max-w-full ': isPromotionBadgeFullWidth,
-      'items-start w-full': !isPromotionBadgeFullWidth,
-    }"
+    :class="
+      isPromotionBadgeFullWidth
+        ? 'bottom-0 left-0 max-w-full '
+        : 'items-start w-full'
+    "
   >
     <ProductBadge
       v-if="isProductSustainable(product)"
@@ -32,12 +33,10 @@
       )"
       :key="`campaign-${idx}`"
       class="mx-2 mb-2 bg-[#ff6e17] truncate"
-      :class="{
-        'ml-0 mx-0 truncate !max-w-full': isBasketPage,
-      }"
+      :class="{ 'ml-0 mx-0 truncate !max-w-full': isBasketPage }"
       :text="
         $t('badge_labels.campaign', {
-          reduction: campaign.amount.relative * 100,
+          reduction: getRelativeReduction(campaign),
         })
       "
     />
@@ -49,32 +48,32 @@
         'ml-2 ': !isBasketPage,
         'mb-2 !max-w-full': isBasketPage,
       }"
-      :text="$t('badge_labels.sale', { reduction: sale.amount.relative * 100 })"
+      :text="$t('badge_labels.sale', { reduction: getRelativeReduction(sale) })"
     />
     <ProductPromotionBadges
       :product="product"
       :is-full-width="isPromotionBadgeFullWidth"
-      :class="{
-        '!max-w-full': isBasketPage,
-      }"
+      :class="{ '!max-w-full': isBasketPage }"
     />
   </div>
 </template>
 
 <script setup lang="ts">
-import type { Product } from '@scayle/storefront-nuxt'
+import type { AppliedReduction, Product } from '@scayle/storefront-nuxt'
+
+type Props = {
+  product: Product
+  isPromotionBadgeFullWidth?: boolean
+}
+
+withDefaults(defineProps<Props>(), { isPromotionBadgeFullWidth: true })
 
 const route = useRoute()
 const localePath = useLocalePath()
 
-withDefaults(
-  defineProps<{ product: Product; isPromotionBadgeFullWidth?: boolean }>(),
-  {
-    isPromotionBadgeFullWidth: true,
-  },
-)
+const isBasketPage = computed(() => route.path === localePath(routeList.basket))
 
-const isBasketPage = computed(() => {
-  return route.path === localePath(routeList.basket)
-})
+const getRelativeReduction = ({ amount }: AppliedReduction) => {
+  return amount.relative * 100
+}
 </script>

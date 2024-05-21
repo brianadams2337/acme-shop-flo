@@ -79,7 +79,56 @@
                   :show-price-from="hasSpecial"
                   :show-price-reduction-badge="hasSpecial"
                   show-tax-info
-                />
+                >
+                  <template
+                    #default="{
+                      classes,
+                      isAutomaticDiscountPriceApplicable,
+                      isFree,
+                      price: productPrice,
+                      totalReductions,
+                      totalPrice,
+                      showPriceFrom,
+                      styles,
+                    }"
+                  >
+                    <p
+                      class="leading-snug flex items-end gap-1.5"
+                      :class="classes"
+                      data-test-id="price"
+                    >
+                      <span v-if="showPriceFrom">
+                        {{ $t('price.starting_from') }}
+                      </span>
+                      <span
+                        v-if="!isFree"
+                        :class="{
+                          'inline rounded p-1 text-base leading-5 font-semibold':
+                            isAutomaticDiscountPriceApplicable,
+                        }"
+                        :style="styles"
+                      >
+                        {{ totalPrice }}
+                      </span>
+                      <span
+                        v-if="
+                          totalReductions.absoluteWithTax ||
+                          isAutomaticDiscountPriceApplicable ||
+                          isFree
+                        "
+                        class="text-sm font-medium text-primary leading-5 p-1 line-through"
+                        data-test-id="initialProductPrice"
+                      >
+                        {{
+                          formatCurrency(
+                            productPrice.withTax +
+                              totalReductions.absoluteWithTax,
+                          )
+                        }}
+                      </span>
+                    </p>
+                  </template>
+                </ProductPrice>
               </div>
             </div>
           </div>
@@ -188,6 +237,7 @@
           v-if="isProductSubscriptionEligible(product)"
           :product="product"
           :variant="activeVariant"
+          class="mt-4"
           @add-item-to-basket="addItemToBasket($event)"
         />
       </div>

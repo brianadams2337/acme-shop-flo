@@ -81,12 +81,12 @@
               <template v-if="reducedPrice">
                 <div
                   class="flex"
-                  :class="{
-                    'flex-col items-end':
-                      hasSaleReduction(item) && !hasPromotionReduction(item),
-                    'flex-row items-center ':
-                      hasSaleReduction(item) && hasPromotionReduction(item),
-                  }"
+                  :class="
+                    hasSaleReduction(item) && {
+                      'flex-col items-end': !hasPromotionReduction(item),
+                      'flex-row items-center ': hasPromotionReduction(item),
+                    }
+                  "
                 >
                   <span
                     class="text-xs leading-[1.125rem] text-secondary line-through p-1"
@@ -111,11 +111,11 @@
                   :style="{
                     ...getBackgroundColorStyle(
                       item?.promotion?.customData.colorHex,
-                      10,
+                      AlphaColorMap.ALPHA_10,
                     ),
                     ...getTextColorStyle(
                       item?.promotion?.customData.colorHex,
-                      100,
+                      AlphaColorMap.ALPHA_100,
                     ),
                   }"
                 >
@@ -208,7 +208,8 @@ const props = withDefaults(defineProps<Props>(), {
   item: undefined,
   itemsGroup: undefined,
 })
-function getItemSaleReductionPrice(item?: BasketItem) {
+
+const getItemSaleReductionPrice = (item?: BasketItem) => {
   if (!item) return 0
   const itemTotalSalePrice = getBasketItemSalePrice(item)
   const totalWithReduction = price.value + (reducedPrice.value ?? 0)

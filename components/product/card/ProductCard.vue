@@ -35,7 +35,12 @@
                 }"
               >
                 <slot name="button" />
-                <SFLink :to="link" raw @click.capture="$emit('click:product')">
+                <SFLink
+                  v-if="link"
+                  :to="link"
+                  raw
+                  @click.capture="$emit('click:product')"
+                >
                   <ProductImage
                     v-if="image"
                     v-bind="{ image, imageLoading }"
@@ -94,9 +99,10 @@
                 <slot name="description-price" :price="price">
                   <ProductPrice
                     v-if="price"
+                    ref="productPrice"
                     v-bind="{ price, lowestPriorPrice, product }"
+                    :show-automatic-discount="showAutomaticDiscountPrice"
                     size="sm"
-                    :show-automatic-discount="!isBuyXGetYPrioritized"
                     type="whisper"
                   />
                 </slot>
@@ -165,7 +171,12 @@ const shouldHoverImage = ref(false)
 
 const { getProductDetailRoute } = useRouteHelpers()
 
-const { isBuyXGetYPrioritized } = await useProductPromotions(props.product)
+const { isBuyXGetYPrioritized, automaticDiscountPromotion } =
+  await useProductPromotions(props.product)
+
+const showAutomaticDiscountPrice = computed(() => {
+  return !isBuyXGetYPrioritized.value && !automaticDiscountPromotion.value
+})
 
 const onMouseOver = () => {
   loadHoverImage.value = true

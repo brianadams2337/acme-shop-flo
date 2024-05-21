@@ -3,6 +3,7 @@ import {
   type Product,
   getLowestPrice,
   getAppliedReductionsByCategory,
+  getFirstAttributeValue,
 } from '@scayle/storefront-nuxt'
 
 export { ProductImageType } from '@scayle/storefront-nuxt'
@@ -105,4 +106,22 @@ export function getVariantAvailability(
     type: 'soon',
     text: 'availability.available_soon',
   }
+}
+
+export const getApplicablePromotionsForProduct = (
+  product: Product,
+  promotions: Promotion[],
+) => {
+  const productPromotionId = getFirstAttributeValue(
+    product.attributes,
+    'promotion',
+  )?.id
+  const items = promotions.filter(({ customData }) => {
+    if (!productPromotionId || !customData.product?.promotionId) {
+      return false
+    }
+    return customData.product?.promotionId === productPromotionId
+  })
+
+  return _sort(items, (it) => it.priority)
 }

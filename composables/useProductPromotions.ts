@@ -28,14 +28,10 @@ export async function useProductPromotions(
   })
 
   const applicablePromotions = computed<Promotion[]>(() => {
-    const items = promotions.value.filter(({ customData }) => {
-      if (!productPromotionId.value || !customData.product?.promotionId) {
-        return false
-      }
-      return customData.product?.promotionId === productPromotionId.value
-    })
-
-    return _sort(items, (it) => it.priority)
+    if (!product.value || !promotions.value) {
+      return []
+    }
+    return getApplicablePromotionsForProduct(product.value, promotions.value)
   })
 
   const buyXGetYPromotion = computed(() => {

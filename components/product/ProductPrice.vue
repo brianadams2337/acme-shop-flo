@@ -18,6 +18,7 @@
         formatCurrency,
         price,
         totalPrice,
+        styles,
       }"
     >
       <p class="leading-snug" :class="classes" data-test-id="price">
@@ -66,6 +67,7 @@ import {
   getTotalAppliedReductions,
 } from '@scayle/storefront-nuxt'
 import { Size } from '#imports'
+import tailwindConfig from '~/tailwind.config'
 
 type Props = {
   product: Product
@@ -155,4 +157,33 @@ const classes = computed(() => ({
     isAutomaticDiscountPriceApplicable.value ||
     props.isFree,
 }))
+
+const styles = computed(() => {
+  if (isAutomaticDiscountApplied.value) {
+    return {
+      ...getBackgroundColorStyle(
+        automaticDiscountPromotion.value?.customData?.colorHex,
+        AlphaColorMap.ALPHA_10,
+      ),
+      ...getTextColorStyle(
+        automaticDiscountPromotion.value?.customData?.colorHex,
+        AlphaColorMap.ALPHA_100,
+      ),
+    }
+  }
+
+  const hasSale = appliedReductions.value.some(
+    ({ category }) => category === 'sale',
+  )
+
+  if (hasSale) {
+    return {
+      ...getTextColorStyle(
+        tailwindConfig.theme.extend.colors.red.DEFAULT,
+        AlphaColorMap.ALPHA_100,
+      ),
+    }
+  }
+  return undefined
+})
 </script>

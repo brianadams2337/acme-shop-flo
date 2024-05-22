@@ -9,16 +9,19 @@
     />
     <div
       class="translate-0 transition-transform duration-300 ease-in-out"
-      :class="{ '-translate-y-[3.25rem]': transformLayout }"
+      :class="{ '-translate-y-[3.25rem]': isLayoutTranslated }"
     >
-      <HeaderMetaBar />
+      <HeaderMetaBar class="md:mt-[3.25rem]" />
       <AppHeader />
       <SFToastContainer />
       <MobileSidebar />
       <div class="mt-4 grow">
         <NuxtPage />
       </div>
-      <CMSAppFooterData class="mt-16" />
+      <CMSAppFooterData
+        class="mt-16"
+        :class="{ 'lg:translate-y-[3.25rem]': isLayoutTranslated }"
+      />
     </div>
   </div>
 </template>
@@ -38,10 +41,10 @@ const [{ allCurrentPromotions }] = await Promise.all([
   useRootCategories(),
 ])
 
-const transformLayout = ref(false)
+const isLayoutTranslated = ref(false)
 
-const updateLayout = (isPromotionBannerShown: boolean) => {
-  transformLayout.value = !isPromotionBannerShown
+const updateLayout = (value: boolean) => {
+  isLayoutTranslated.value = !value
 }
 
 const trackingEvents = useTrackingEvents()

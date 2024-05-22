@@ -4,7 +4,7 @@
     v-else
     class="fixed bottom-0 z-[80] flex max-h-32 w-full cursor-pointer flex-col items-center justify-start rounded-tr-lg bg-blue p-4 text-sm text-white lg:hidden translate-0 transition-transform duration-300 ease-in-out"
     :style="backgroundColorStyle"
-    :class="{ 'translate-y-full': !isMobilePromotionBannerShown }"
+    :class="{ 'translate-y-full': !isPromotionBannerShown }"
     @click="togglePromotionList()"
   >
     <div class="overflow-hidden">
@@ -44,25 +44,11 @@
         is-full-width
       />
     </div>
-
-    <SFButton
-      type="raw"
-      class="absolute min-h-[1.875rem] left-0 -mt-[2.875rem] !w-fit items-center !px-2 !py-1 text-start !rounded-none !rounded-t-lg text-xs font-semibold leading-5 text-white inline-flex"
-      size="xs"
-      :style="backgroundColorStyle"
-      :class="{ '!border-b-[0.5px]': isMobilePromotionBannerShown }"
-      @click="togglePromotionBanner"
-    >
-      <IconGift class="size-3" />
-      <span v-if="isMobilePromotionBannerShown">
-        {{ $t('promotion.hide_my_promotions') }}</span
-      >
-      <span v-else> {{ $t('promotion.see_my_promotions') }}</span>
-      <template #append-icon="{ _class }">
-        <IconChevronDown v-if="isMobilePromotionBannerShown" :class="_class" />
-        <IconChevronUp v-else :class="_class" />
-      </template>
-    </SFButton>
+    <TogglePromotionBannerButton
+      v-model="isPromotionBannerShown"
+      class="absolute left-0 -mt-[2.875rem] !rounded-none !rounded-t-lg inline-flex"
+      is-mobile-view
+    />
   </div>
 </template>
 
@@ -72,11 +58,8 @@ const props = defineProps<{
   category?: { ctaLabel: string; to: string }
 }>()
 
-const isMobilePromotionBannerShown = ref(true)
+const isPromotionBannerShown = ref(true)
 
-const togglePromotionBanner = () => {
-  isMobilePromotionBannerShown.value = !isMobilePromotionBannerShown.value
-}
 const { isFullProgress, isMOVPromotionApplied } = await usePromotionProgress()
 
 const {

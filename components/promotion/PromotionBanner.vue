@@ -6,7 +6,7 @@
     <div
       :ref="(element) => setBannerRef(element as HTMLElement)"
       data-test-id="promotion-banner"
-      class="sticky top-0 z-[80] hidden h-[3.25rem] cursor-pointer items-center justify-between gap-1 overflow-hidden bg-blue py-2 pl-4 text-sm text-white lg:flex"
+      class="fixed w-full top-0 z-[80] hidden h-[3.25rem] cursor-pointer items-center justify-between gap-1 overflow-hidden bg-blue py-2 pl-4 text-sm text-white lg:flex"
       :style="backgroundColorStyle"
       @click="togglePromotionList()"
     >
@@ -31,25 +31,12 @@
       </div>
     </div>
     <SFFadeInTransition>
-      <SFButton
+      <TogglePromotionBannerButton
         v-if="!isPromotionListShown"
-        type="raw"
-        class="absolute min-h-[1.875rem] !w-fit items-center !px-2 !py-1 text-start !rounded-none !rounded-b-md text-xs font-semibold leading-5 text-white hidden lg:inline-flex"
-        size="xs"
-        :style="backgroundColorStyle"
-        :class="{ '!border-t-[0.5px]': isPromotionBannerShown }"
-        @click="togglePromotionBanner"
-      >
-        <IconGift class="size-3" />
-        <span v-if="isPromotionBannerShown">
-          {{ $t('promotion.hide_my_promotions') }}</span
-        >
-        <span v-else> {{ $t('promotion.see_my_promotions') }}</span>
-        <template #append-icon="{ _class }">
-          <IconChevronUp v-if="isPromotionBannerShown" :class="_class" />
-          <IconChevronDown v-else :class="_class" />
-        </template>
-      </SFButton>
+        v-model="isPromotionBannerShown"
+        class="absolute top-[3.25rem] !rounded-none !rounded-b-md hidden lg:inline-flex"
+        @update:model-value="emit('change', $event)"
+      />
     </SFFadeInTransition>
   </div>
   <SFSlideInFromTopTransition>
@@ -64,18 +51,11 @@
 </template>
 
 <script setup lang="ts">
-const props = defineProps<{
-  promotions: Promotion[]
-}>()
+const props = defineProps<{ promotions: Promotion[] }>()
 
-const emits = defineEmits<{ change: [isPromotionBannerShown: boolean] }>()
+const emit = defineEmits<{ change: [isPromotionBannerShown: boolean] }>()
 
 const isPromotionBannerShown = ref(true)
-
-const togglePromotionBanner = () => {
-  isPromotionBannerShown.value = !isPromotionBannerShown.value
-  emits('change', isPromotionBannerShown.value)
-}
 
 usePromotionChange(props.promotions)
 

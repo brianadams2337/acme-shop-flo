@@ -14,7 +14,7 @@
         <PromotionItem
           v-for="item in items"
           :key="item.id"
-          v-bind="item"
+          :promotion="item"
           class="mr-4 last-of-type:mr-0"
         />
       </SFHorizontalItemsSlider>

@@ -1,0 +1,65 @@
+<template>
+  <PromotionCard
+    v-bind="{ backgroundColor, promotion }"
+    :promotion="promotion"
+    class="relative flex flex-col items-start rounded-md bg-blue px-4 py-3 text-white"
+  >
+    <template #default="{ headlineParts, scheduledTo }">
+      <div class="flex items-center justify-between w-full">
+        <PromotionHeadline
+          v-if="headlineParts"
+          :headline-parts="headlineParts"
+          size="sm"
+          is-column
+          class="mb-2"
+        />
+        <PromotionCountdown :until="scheduledTo" />
+      </div>
+      <ClientOnly>
+        <template #fallback>
+          <div v-if="minOrderAmount" class="flex flex-col w-full mt-3.5">
+            <SFSkeletonLoader
+              v-for="n in 3"
+              :key="n"
+              type="custom"
+              class="my-1 h-2 w-full rounded-sm"
+            />
+          </div>
+        </template>
+        <SFFadeInTransition>
+          <ProductPromotionProgressLabel
+            v-bind="{ promotion, isGiftAddedToBasket, areGiftConditionsMet }"
+          />
+        </SFFadeInTransition>
+      </ClientOnly>
+      <div
+        v-if="isPriorityBadgeShown"
+        class="absolute bottom-3 right-4 rounded-md border px-2 py-1 text-2xs font-semibold uppercase"
+      >
+        {{ $t('promotion.highest_priority') }}
+      </div>
+    </template>
+  </PromotionCard>
+</template>
+
+<script setup lang="ts">
+type Props = {
+  promotion: Promotion
+  isPriorityBadgeShown?: boolean
+  isGiftAddedToBasket?: boolean
+  areGiftConditionsMet?: boolean
+}
+
+const props = withDefaults(defineProps<Props>(), {
+  isPriorityBadgeShown: false,
+  isGiftAddedToBasket: false,
+  areGiftConditionsMet: false,
+})
+
+const { minOrderAmount } = await usePromotionProgress(toRef(props.promotion))
+
+const backgroundColor = computed(() => {
+  const colorHex = props.promotion.customData.colorHex
+  return getBackgroundColorStyle(colorHex).backgroundColor
+})
+</script>

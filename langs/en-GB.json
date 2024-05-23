@@ -38,6 +38,7 @@
     "show_deals_label": "Show deal items",
     "my_deals_label": "My deals",
     "cart_reached": "Shopping cart reached! Add promotional products and get {discount}% discount on them",
+    "cart_reached_for_gifts": "Shopping cart reached! Add promotional products to get a free gift",
     "full_progress_message": "You are saving {amount} on your order",
     "automatic_discount_headline": {
       "add_label": "Add",
@@ -173,11 +174,10 @@
     "to_checkout": "to checkout",
     "no_items_info": "You have no products in your basket.",
     "promotion": {
+      "progress_left": "{amount} left",
+      "saved": "{amount} saved",
       "choose_free_gift": "Choose free gift",
-      "add_free_gift": "Add for free",
-      "quantity": "Add {quantityLeft} more to get free gift",
-      "mov": "Spend {minOrderValueLeft} more to get free gift",
-      "quantity_and_mov": "Add {quantityLeft} & spend {minOrderValueLeft} more to get free gift"
+      "add_free_gift": "Add for free"
     },
     "summary": {
       "sale": "Sale"
@@ -283,6 +283,10 @@
         "free_gift_headline": "Unlock your free gift",
         "free_gift_description": "Fulfill the promotion conditions to choose a free gift."
       },
+      "cart_reached": "Shopping cart reached! Add promotional products and get {discount}% discount on them",
+      "cart_reached_for_gifts": "Shopping cart reached! Add promotional products to get a free gift",
+      "add_free_gift_when_cart_reached": "Shopping cart reached! Add a free gift",
+      "full_progress_message": "You are saving {amount} on this promotion",
       "free_label": "Free",
       "add_for_free_label": "Add for free",
       "select_size_label": "Select your size",

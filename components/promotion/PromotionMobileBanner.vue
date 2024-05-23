@@ -60,8 +60,6 @@ const props = defineProps<{
 
 const isPromotionBannerShown = ref(true)
 
-const { isFullProgress, isMOVPromotionApplied } = await usePromotionProgress()
-
 const {
   headlineParts,
   minOrderValue,
@@ -69,6 +67,9 @@ const {
   backgroundColorStyle,
   expirationDate,
 } = useCurrentPromotion()
+
+const { isFullProgress, isMOVPromotionApplied } =
+  await usePromotionProgress(currentPromotion)
 
 const { togglePromotionList, isPromotionListShown } = usePromotionActions()
 

@@ -65,12 +65,14 @@ const {
   category,
   expirationDate,
   headlineParts,
+  currentPromotion,
 } = useCurrentPromotion()
 
 const { togglePromotionList, isPromotionListShown, setBannerRef } =
   usePromotionActions()
 
-const { isMOVPromotionApplied, isFullProgress } = await usePromotionProgress()
+const { isMOVPromotionApplied, isFullProgress } =
+  await usePromotionProgress(currentPromotion)
 
 const isDealsButtonShown = computed<boolean>(() => {
   return Boolean(

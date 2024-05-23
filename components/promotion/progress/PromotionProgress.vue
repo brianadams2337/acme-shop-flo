@@ -24,8 +24,9 @@
 <script setup lang="ts">
 withDefaults(defineProps<{ isFullWidth?: boolean }>(), { isFullWidth: false })
 
+const { currentPromotion } = useCurrentPromotion()
 const { progress, isFullProgress, formattedAmountLeft } =
-  await usePromotionProgress()
+  await usePromotionProgress(currentPromotion)
 
 const { isSmaller } = useDefaultBreakpoints()
 </script>

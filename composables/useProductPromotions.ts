@@ -104,15 +104,6 @@ export async function useProductPromotions(
     return isMinOrderValueReached.value && quantityCondition
   })
 
-  const quantityLeftForGiftConditions = computed(() => {
-    if (!giftConditions.value?.minQuantity || !addedProductBasketItem.value) {
-      return
-    }
-    return (
-      giftConditions.value.minQuantity - addedProductBasketItem.value.quantity
-    )
-  })
-
   const isHighestPriorityPromotionApplied = computed(() => {
     return appliedPromotions.value.some((promotion) => {
       const isValid = promotion.isValid
@@ -163,10 +154,12 @@ export async function useProductPromotions(
   }
 
   const areHurryToSaveBannersShown = computed(() => {
+    const hasMinOrderValue =
+      highestPriorityPromotion.value?.customData.minOrderValue
     return (
-      (!isBuyXGetYPrioritized.value &&
-        isHighestPriorityPromotionApplied.value) ||
-      (isHighestPriorityPromotionApplied.value && isGiftAddedToBasket.value)
+      !hasMinOrderValue &&
+      isHighestPriorityPromotionApplied.value &&
+      (!isBuyXGetYPrioritized.value || isGiftAddedToBasket.value)
     )
   })
 
@@ -213,7 +206,6 @@ export async function useProductPromotions(
     areGiftConditionsMet,
     giftConditions,
     addedProductBasketItem,
-    quantityLeftForGiftConditions,
     minOrderValueLeft,
   }
 }

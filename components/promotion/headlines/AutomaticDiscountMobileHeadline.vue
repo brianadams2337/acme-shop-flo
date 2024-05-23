@@ -37,5 +37,6 @@ const headline = computed(() => {
   return { offerText, conditionText }
 })
 
-const { progress, formattedAmountLeft } = await usePromotionProgress()
+const { progress, formattedAmountLeft } =
+  await usePromotionProgress(currentPromotion)
 </script>

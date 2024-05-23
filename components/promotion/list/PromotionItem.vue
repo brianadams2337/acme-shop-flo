@@ -1,7 +1,6 @@
 <template>
-  <component
-    :is="componentName"
-    v-bind="attributes"
+  <PromotionCard
+    :promotion="promotion"
     class="relative w-80 min-w-xs overflow-hidden rounded-md border p-2"
     @click="closePromotionList"
   >
@@ -9,30 +8,18 @@
     <PromotionItemTerms
       v-if="customData.terms"
       :content="customData.terms"
-      :promotion-id="id"
+      :promotion-id="promotion.id"
     />
-  </component>
+  </PromotionCard>
 </template>
 
 <script setup lang="ts">
-import { SFLink } from '#components'
-
-type Props = {
-  id: Promotion['id']
-  customData?: Promotion['customData']
-  schedule: Promotion['schedule']
-}
-
 const { togglePromotionList } = usePromotionActions()
-const props = withDefaults(defineProps<Props>(), { customData: () => ({}) })
+const props = defineProps<{ promotion: Promotion }>()
 
-const to = computed(() => props.customData.category?.to)
-
-const componentName = computed(() => (to.value ? SFLink : 'div'))
-
-const attributes = computed(() => {
-  return { ...(to.value && { raw: true, to: to.value }) }
-})
+const schedule = computed(() => props.promotion.schedule)
+const customData = computed(() => props.promotion.customData)
+const to = computed(() => customData.value.category?.to)
 
 const closePromotionList = () => to.value && togglePromotionList()
 </script>

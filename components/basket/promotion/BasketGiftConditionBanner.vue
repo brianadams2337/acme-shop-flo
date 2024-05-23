@@ -1,10 +1,29 @@
 <template>
-  <PromotionGiftConditionBanner
-    v-if="giftPromotion && !areGiftConditionsMet"
+  <PromotionCard
+    v-if="promotion"
+    :promotion="promotion"
     :background-color="giftBackgroundColorStyle.backgroundColor"
-    :schedule-to="giftPromotion.schedule.to"
-    :label="label"
-  />
+    class="flex flex-col items-start gap-y-[.125rem] rounded-md px-4 py-2 text-white md:items-center lg:flex-nowrap"
+  >
+    <template #default="{ headlineParts, scheduledTo }">
+      <div class="flex items-center justify-between w-full">
+        <PromotionHeadline
+          v-if="headlineParts"
+          :headline-parts="headlineParts"
+          size="sm"
+          is-column
+        />
+        <PromotionCountdown
+          :until="scheduledTo"
+          borderless
+          class="md:basis-1/2 md:items-center md:justify-end lg:basis-7/12 xl:basis-5/12"
+        />
+      </div>
+      <ProductPromotionProgressLabel
+        v-bind="{ promotion, isGiftAddedToBasket, areGiftConditionsMet }"
+      />
+    </template>
+  </PromotionCard>
 </template>
 
 <script setup lang="ts">
@@ -15,12 +34,9 @@ const props = defineProps<{ basketItem: BasketItem }>()
 const basketItem = computed(() => props.basketItem)
 
 const {
-  giftPromotion,
+  giftPromotion: promotion,
   giftBackgroundColorStyle,
-  minOrderValueLeft,
-  quantityLeftForGiftConditions: quantityLeft,
+  isGiftAddedToBasket,
   areGiftConditionsMet,
 } = await useBasketItemPromotion(basketItem)
-
-const { label } = usePromotionConditionBanner(minOrderValueLeft, quantityLeft)
 </script>

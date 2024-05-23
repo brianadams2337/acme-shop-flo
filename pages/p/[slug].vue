@@ -37,23 +37,7 @@
                 {{ productName }}
               </SFHeadline>
 
-              <SFFadeInTransition>
-                <PromotionHurryToSaveBanners
-                  v-if="areHurryToSaveBannersShown"
-                  :product="product"
-                  class="mt-2 w-full xs:hidden md:flex"
-                />
-                <ProductPromotionGiftConditionBanner
-                  v-else-if="!areGiftConditionsMet && isGiftAddedToBasket"
-                  :product="product"
-                  class="mt-2"
-                />
-                <ProductPromotionBanners
-                  v-else
-                  :product="product"
-                  class="mt-2 xs:hidden md:flex"
-                />
-              </SFFadeInTransition>
+              <ProductPromotionBanners :product="product" />
 
               <div class="flex flex-col items-end">
                 <div class="flex gap-2 xs:flex-col-reverse md:flex-col">
@@ -190,35 +174,23 @@
               :variant-id="activeVariant.id"
             />
 
-            <div class="mt-4 flex h-12">
-              <ClientOnly>
-                <SFButton
-                  data-test-id="add-item-to-basket-button"
-                  is-full-width
-                  type="primary"
-                  :disabled="product.isSoldOut"
-                  :title="product.isSoldOut ? $t('badge_labels.sold_out') : ''"
-                  :loading="basketIdle"
-                  class="text-sm !normal-case"
-                  @click="addItemToBasket()"
-                >
-                  {{ $t('pdp.add_label') }}
-                </SFButton>
+            <ProductBasketAndWishlistActions :product="product" class="mt-4" />
 
-                <WishlistToggle
-                  class="ml-2 box-border h-full border border-gray-350 !px-2"
-                  :product="product"
+            <ClientOnly>
+              <template #fallback>
+                <SFSkeletonLoader
+                  type="custom"
+                  class="h-64 mt-6 w-full rounded-md"
                 />
-              </ClientOnly>
-            </div>
-
-            <SFFadeInTransition>
-              <ProductPromotionGifts
-                v-if="isBuyXGetYPrioritized && !isGiftAddedToBasket"
-                :product="product"
-                class="mt-6"
-              />
-            </SFFadeInTransition>
+              </template>
+              <SFFadeInTransition>
+                <ProductPromotionGifts
+                  v-if="isBuyXGetYPrioritized && !isGiftAddedToBasket"
+                  :product="product"
+                  class="mt-6"
+                />
+              </SFFadeInTransition>
+            </ClientOnly>
 
             <div v-if="combineWithProductIds.length > 0" class="mt-3">
               <ProductDetailGroup data-test-id="combine-with-slider">
@@ -282,14 +254,10 @@ const {
   combineWithProductIds,
 } = await useProductDetails()
 
-const { addItemToBasket, basketIdle } = await useProductDetailsBasketActions()
+const { addItemToBasket } = await useProductDetailsBasketActions()
 
-const {
-  isBuyXGetYPrioritized,
-  areHurryToSaveBannersShown,
-  isGiftAddedToBasket,
-  areGiftConditionsMet,
-} = await useProductPromotions(product)
+const { isBuyXGetYPrioritized, isGiftAddedToBasket } =
+  await useProductPromotions(product)
 
 const route = useRoute()
 const { $i18n, $config } = useNuxtApp()

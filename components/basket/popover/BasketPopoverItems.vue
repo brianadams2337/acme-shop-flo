@@ -30,18 +30,35 @@
 <script setup lang="ts">
 import type { BasketItem } from '@scayle/storefront-nuxt'
 
+type BasketItems = {
+  standAlone: BasketItem[]
+  groups: BundledBasketItems<BasketItem>
+}
+
 const { items } = await useBasket()
+
+const basketItems = ref<BasketItems>({
+  standAlone: [],
+  groups: {},
+})
 
 const groupIds = computed(() => Object.keys(basketItems.value.groups))
 
-const basketItems = computed(() => {
-  const data = getPartitionedBasketItems(items.value)
+const updateBasketItems = (items: BasketItem[]) => {
+  const data = getPartitionedBasketItems(items)
   return {
     standAlone: sortBasketItemsByIsSoldOut(data.standAlone),
     groups: bundleBasketItemsByGroup(
       sortBasketItemsByIsSoldOut(data.groupedItems),
     ),
   }
+}
+
+// TODO: Investigate why when using computed for basket items instead is causing
+// UI issues (items with promotion on it, are not visible in the list.
+// After refresh they show up)
+watchPostEffect(() => {
+  basketItems.value = updateBasketItems(items.value ?? [])
 })
 
 const getBasketItemsFromGroup = (groupId: string) => {

@@ -10,7 +10,7 @@
           <PromotionItem
             v-for="item in items"
             :key="item.id"
-            v-bind="item"
+            :promotion="item"
             class="mr-4 last:mr-0"
           />
         </div>

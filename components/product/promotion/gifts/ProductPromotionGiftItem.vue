@@ -12,10 +12,9 @@
         :image-loading="eagerImageLoading ? 'eager' : 'lazy'"
         sizes="xl:100vw lg:100vw lg:100vw lg:100vw xs:100vw"
         fit="cover"
-        :class="{
-          grayscale: !areGiftConditionsMet,
-        }"
+        :class="{ grayscale: !areGiftConditionsMet }"
       />
+
       <ProductPromotionFreeGiftBadge
         v-bind="{ backgroundColorStyle }"
         class="absolute bottom-2 left-2"
@@ -26,9 +25,7 @@
         size="base"
         tag="h3"
         class="mt-2"
-        :class="{
-          'text-secondary': !areGiftConditionsMet,
-        }"
+        :class="{ 'text-secondary': !areGiftConditionsMet }"
       >
         {{ name }}
       </SFHeadline>
@@ -44,28 +41,20 @@
           <span
             v-if="variantWithLowestPrice"
             class="text-xs text-gray-600 line-through"
-            :class="{
-              'text-secondary': !areGiftConditionsMet,
-            }"
+            :class="{ 'text-secondary': !areGiftConditionsMet }"
           >
             {{ formatCurrency(variantWithLowestPrice.price.withTax) }}
           </span>
           <span
-            class="text-base font-bold inline rounded-md p-1 text-base leading-5"
-            :class="{
-              'text-secondary ': !areGiftConditionsMet,
-            }"
-            :style="{
-              ...showGiftStyle,
-            }"
+            class="font-bold inline rounded-md p-1 text-base leading-5"
+            :class="{ 'text-secondary ': !areGiftConditionsMet }"
+            :style="giftStyle"
           >
             {{ formatCurrency(0) }}
           </span>
           <span
             class="text-xs text-gray-700"
-            :class="{
-              'text-secondary': !areGiftConditionsMet,
-            }"
+            :class="{ 'text-secondary': !areGiftConditionsMet }"
           >
             {{ $t('price.including_vat') }}
           </span>
@@ -114,7 +103,7 @@ const { name, image, variantWithLowestPrice } = useProductBaseInfo(
   props.product,
 )
 
-const showGiftStyle = computed(() => {
+const giftStyle = computed(() => {
   if (areGiftConditionsMet.value) {
     return {
       ...getBackgroundColorStyle(

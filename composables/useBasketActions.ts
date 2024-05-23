@@ -91,6 +91,8 @@ export async function useBasketActions() {
     }
   }
 
+  // TODO: Investigate why when using computed for ordered items instead is causing
+  // UI issues (similar issue to the popover basket items)
   watchPostEffect(() => {
     orderedItems.value = updateBasketItems(basket.items.value ?? [])
   })

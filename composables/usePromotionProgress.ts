@@ -1,11 +1,15 @@
-export async function usePromotionProgress() {
-  const { currentPromotion } = useCurrentPromotion()
+export async function usePromotionProgress(
+  promotion:
+    | ComputedRef<Promotion | null>
+    | Ref<Promotion | null>
+    | ComputedRef<BasketPromotion | undefined>,
+) {
   const { formatCurrency } = useFormatHelpers()
 
   const { data: basketData } = await useBasket()
 
   const minOrderValue = computed<number>(() => {
-    return currentPromotion.value?.customData?.minOrderValue || 0
+    return promotion.value?.customData?.minOrderValue || 0
   })
 
   const minOrderAmount = computed<number>(() => {
@@ -35,9 +39,9 @@ export async function usePromotionProgress() {
     return formatCurrency(minOrderValue.value - basketTotal.value)
   })
 
-  const formattedDiscount = computed<string | undefined>(() => {
+  const discount = computed<number | undefined>(() => {
     const promotedItems = (basketData.value?.items ?? []).filter(
-      (item) => item.promotionId === currentPromotion.value?.id,
+      (item) => item.promotionId === promotion.value?.id,
     )
 
     const reductions = promotedItems?.reduce<number[]>((previous, current) => {
@@ -50,11 +54,14 @@ export async function usePromotionProgress() {
       return previous
     }, [])
 
-    if (!reductions) {
-      return
-    }
+    if (!reductions) return
 
-    return formatCurrency(_sum(reductions))
+    return _sum(reductions)
+  })
+
+  const formattedDiscount = computed<string | undefined>(() => {
+    if (!discount.value) return
+    return formatCurrency(discount.value)
   })
 
   const isMOVPromotionApplied = computed<boolean>(() => {
@@ -62,7 +69,7 @@ export async function usePromotionProgress() {
       return false
     }
     return (basketData.value?.items ?? []).some(({ promotionId }) => {
-      return promotionId === currentPromotion.value?.id
+      return promotionId === promotion.value?.id
     })
   })
 
@@ -72,6 +79,7 @@ export async function usePromotionProgress() {
     isFullProgress,
     formattedAmountLeft,
     formattedDiscount,
+    discount,
     isMOVPromotionApplied,
   }
 }

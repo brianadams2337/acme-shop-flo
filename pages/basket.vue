@@ -29,8 +29,11 @@
               :key="item.key"
             >
               <SFFadeInTransition>
-                <BasketAutomaticDiscountBanner
-                  v-if="isAutomaticDiscountType(item.promotion)"
+                <BasketAutomaticDiscountConditionBanner
+                  v-if="
+                    isAutomaticDiscountType(item.promotion) &&
+                    item.isPromotionApplicableItemUnique
+                  "
                   :basket-item="item"
                 />
                 <BasketGiftConditionBanner
@@ -46,7 +49,7 @@
                 <BasketItemPromotionGifts
                   v-if="
                     isGiftApplicableItem(item) &&
-                    item.isGiftApplicableItemUnique
+                    item.isPromotionApplicableItemUnique
                   "
                   :basket-item="item"
                 />
@@ -109,17 +112,19 @@ const {
 const { allCurrentPromotions } = await useBasketPromotions()
 
 type FilteredOrderedItems = BasketItem & {
-  isGiftApplicableItemUnique: boolean
+  isPromotionApplicableItemUnique: boolean
 }
 
-function shouldRenderPromotionGift(item: BasketItem, items: BasketItem[]) {
+const isPromotionApplicableItemUnique = (
+  item: BasketItem,
+  items: BasketItem[],
+) => {
   return !items.some((basketItem) => {
-    const basketProductID = getFirstAttributeValue(
-      basketItem.product?.attributes,
-      'promotion',
-    )?.id
+    const basketProductPromotionId = getPromotionIdFromProductAttributes(
+      basketItem.product,
+    )
     return (
-      basketProductID ===
+      basketProductPromotionId ===
       basketItemPromotion(item)?.customData.product?.promotionId
     )
   })
@@ -130,7 +135,7 @@ const filteredOrderedItems = computed(() => {
     (previous, current) => {
       previous.push({
         ...current,
-        isGiftApplicableItemUnique: shouldRenderPromotionGift(
+        isPromotionApplicableItemUnique: isPromotionApplicableItemUnique(
           current,
           previous,
         ),
@@ -142,32 +147,21 @@ const filteredOrderedItems = computed(() => {
 })
 
 const basketItemPromotion = (item: BasketItem) => {
-  const currentBasketItemProductID = getFirstAttributeValue(
-    item.product?.attributes,
-    'promotion',
-  )?.id
+  const currentBasketItemProductId = getPromotionIdFromProductAttributes(
+    item.product,
+  )
 
-  return allCurrentPromotions.value.find((promotion) => {
-    const isFreeGift = isBuyXGetYType(promotion)
-    if (!isFreeGift) {
-      return false
-    }
-    return (
-      promotion.customData?.product?.promotionId === currentBasketItemProductID
-    )
+  return allCurrentPromotions.value.find(({ customData }) => {
+    return customData?.product?.promotionId === currentBasketItemProductId
   })
 }
 
 const isGiftApplicableItem = ({ product, promotionId }: BasketItem) => {
-  if (promotionId) {
-    return false
-  }
+  if (promotionId) return false
   const id = getFirstAttributeValue(product?.attributes, 'promotion')?.id
   return allCurrentPromotions.value.some((promotion) => {
     const isFreeGift = isBuyXGetYType(promotion)
-    if (!isFreeGift) {
-      return false
-    }
+    if (!isFreeGift) return false
     return promotion.customData?.product?.promotionId === id
   })
 }

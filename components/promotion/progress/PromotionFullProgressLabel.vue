@@ -13,8 +13,11 @@
           $t('promotion.full_progress_message', { amount: formattedDiscount })
         }}
       </template>
-      <template v-else>
+      <template v-else-if="isAutomaticDiscount">
         {{ $t('promotion.cart_reached', { discount: automaticDiscount }) }}
+      </template>
+      <template v-else-if="isBuyXGetY">
+        {{ $t('promotion.cart_reached_for_gifts') }}
       </template>
     </p>
   </div>
@@ -23,10 +26,16 @@
 <script setup lang="ts">
 withDefaults(defineProps<{ isSmall?: boolean }>(), { isSmall: false })
 
-const { formattedDiscount, isMOVPromotionApplied } =
-  await usePromotionProgress()
+const {
+  automaticDiscount,
+  isAutomaticDiscount,
+  isBuyXGetY,
+  headlineParts,
+  currentPromotion,
+} = useCurrentPromotion()
 
-const { automaticDiscount, headlineParts } = useCurrentPromotion()
+const { formattedDiscount, isMOVPromotionApplied } =
+  await usePromotionProgress(currentPromotion)
 
 const headline = computed(() => {
   const [offerText, conditionText] = headlineParts.value ?? []

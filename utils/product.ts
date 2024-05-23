@@ -108,14 +108,16 @@ export function getVariantAvailability(
   }
 }
 
+export const getPromotionIdFromProductAttributes = (product?: Product) => {
+  if (!product) return
+  return getFirstAttributeValue(product.attributes, 'promotion')?.id
+}
+
 export const getApplicablePromotionsForProduct = (
   product: Product,
   promotions: Promotion[],
 ) => {
-  const productPromotionId = getFirstAttributeValue(
-    product.attributes,
-    'promotion',
-  )?.id
+  const productPromotionId = getPromotionIdFromProductAttributes(product)
   const items = promotions.filter(({ customData }) => {
     if (!productPromotionId || !customData.product?.promotionId) {
       return false

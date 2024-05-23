@@ -104,11 +104,12 @@ export async function useBasketItemPromotion(basketItem: Ref<BasketItem>) {
     )
   })
 
-  const quantityLeftForGiftConditions = computed(() => {
-    if (!giftConditions.value?.minQuantity) {
-      return
-    }
-    return giftConditions.value.minQuantity - basketItem.value.quantity
+  const isGiftAddedToBasket = computed(() => {
+    const variantIds = getVariantIds(giftPromotion.value)
+    return !!basket.items.value?.some(({ promotion, variant }) => {
+      const hasVariantId = variantIds.includes(variant.id)
+      return hasVariantId && giftPromotion.value?.id === promotion?.id
+    })
   })
 
   return {
@@ -123,7 +124,7 @@ export async function useBasketItemPromotion(basketItem: Ref<BasketItem>) {
     giftConditions,
     giftBackgroundColorStyle,
     areGiftConditionsMet,
-    quantityLeftForGiftConditions,
     minOrderValueLeft,
+    isGiftAddedToBasket,
   }
 }

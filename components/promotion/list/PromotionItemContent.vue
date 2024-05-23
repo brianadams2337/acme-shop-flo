@@ -1,10 +1,6 @@
 <template>
   <div
-    class="relative flex rounded-md bg-blue px-4 py-3 text-white"
-    :class="{
-      'flex-row items-center justify-between': props.inline,
-      'flex-col items-start': !props.inline,
-    }"
+    class="relative flex flex-col items-start rounded-md bg-blue px-4 py-3 text-white"
     :style="getBackgroundColorStyle(customData.colorHex)"
   >
     <PromotionHeadline
@@ -15,27 +11,16 @@
       class="mb-2"
     />
     <PromotionCountdown :until="schedule.to" />
-    <div
-      v-if="isPriorityBadgeShown"
-      class="absolute bottom-3 right-4 rounded-md border px-2 py-1 text-2xs font-semibold uppercase"
-    >
-      {{ $t('promotion.highest_priority') }}
-    </div>
   </div>
 </template>
 
 <script setup lang="ts">
 type Props = {
   customData?: Promotion['customData']
-  isPriorityBadgeShown?: boolean
   schedule: Promotion['schedule']
-  inline?: boolean
 }
 
-const props = withDefaults(defineProps<Props>(), {
-  customData: () => ({}),
-  isPriorityBadgeShown: false,
-})
+const props = withDefaults(defineProps<Props>(), { customData: () => ({}) })
 
 const headlineParts = computed(() => props.customData.headlineParts)
 </script>

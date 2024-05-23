@@ -294,4 +294,7 @@ export const storefrontBuildtimeConfig: Partial<ModuleOptions> = {
   // Storefront Core - Custom RPC Methods
   // https://scayle.dev/en/dev/storefront-core/module-configuration#custom-rpc-methods
   rpcMethodNames: Object.keys(customRpcMethods), // NOT OVERRIDABLE AT RUNTIME
+
+  // RPC Methods from the Storefront Core which are overriden by the project.
+  rpcMethodOverrides: [],
 }

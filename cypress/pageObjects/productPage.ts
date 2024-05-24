@@ -48,9 +48,9 @@ class ProductPage extends BasePage {
 
   addProductToWishlist(): void {
     Header.assertHeaderIsDisplayed()
-    cy.get(this.pageElements.addToWishlistButton).should('exist')
+    cy.get(this.pageElements.addToWishlistButton).eq(0).should('exist')
     cy.wait(1000)
-    cy.get(this.pageElements.addToWishlistButton).click({ force: true })
+    cy.get(this.pageElements.addToWishlistButton).eq(0).click({ force: true })
     // cy.get(this.pageElements.notificationPopup).should('exist')
     cy.scrollTo('top')
     cy.waitForXHR()

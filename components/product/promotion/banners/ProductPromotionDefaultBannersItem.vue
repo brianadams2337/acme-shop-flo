@@ -15,6 +15,12 @@
         />
         <PromotionCountdown :until="scheduledTo" />
       </div>
+      <div
+        v-if="isPriorityBadgeShown"
+        class="rounded-md border px-2 py-1 text-2xs font-semibold uppercase"
+      >
+        {{ $t('promotion.highest_priority') }}
+      </div>
       <ClientOnly>
         <template #fallback>
           <div v-if="minOrderAmount" class="flex flex-col w-full mt-3.5">
@@ -32,12 +38,6 @@
           />
         </SFFadeInTransition>
       </ClientOnly>
-      <div
-        v-if="isPriorityBadgeShown"
-        class="absolute bottom-3 right-4 rounded-md border px-2 py-1 text-2xs font-semibold uppercase"
-      >
-        {{ $t('promotion.highest_priority') }}
-      </div>
     </template>
   </PromotionCard>
 </template>

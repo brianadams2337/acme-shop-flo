@@ -34,9 +34,9 @@
         <template v-else-if="isBuyXGetY">
           {{
             $t(
-              isGiftAddedToBasket
-                ? 'pdp.promotion.cart_reached_for_gifts'
-                : 'pdp.promotion.add_free_gift_when_cart_reached',
+              !isGiftAddedToBasket && areGiftConditionsMet
+                ? 'pdp.promotion.add_free_gift_when_cart_reached'
+                : 'pdp.promotion.cart_reached_for_gifts',
             )
           }}
         </template>

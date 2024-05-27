@@ -47,10 +47,7 @@
               </SFSwipeDelete>
               <SFFadeInTransition>
                 <BasketItemPromotionGifts
-                  v-if="
-                    isGiftApplicableItem(item) &&
-                    item.isPromotionApplicableItemUnique
-                  "
+                  v-if="isGiftApplicableItem(item)"
                   :basket-item="item"
                 />
               </SFFadeInTransition>
@@ -111,7 +108,7 @@ const {
 
 const { allCurrentPromotions } = await useBasketPromotions()
 
-type FilteredOrderedItems = BasketItem & {
+type FilteredOrderedItem = BasketItem & {
   isPromotionApplicableItemUnique: boolean
 }
 
@@ -131,7 +128,7 @@ const isPromotionApplicableItemUnique = (
 }
 
 const filteredOrderedItems = computed(() => {
-  return orderedItems.value.standAlone.reduce<FilteredOrderedItems[]>(
+  return orderedItems.value.standAlone.reduce<FilteredOrderedItem[]>(
     (previous, current) => {
       previous.push({
         ...current,
@@ -156,8 +153,12 @@ const basketItemPromotion = (item: BasketItem) => {
   })
 }
 
-const isGiftApplicableItem = ({ product, promotionId }: BasketItem) => {
-  if (promotionId) return false
+const isGiftApplicableItem = ({
+  product,
+  promotionId,
+  isPromotionApplicableItemUnique,
+}: FilteredOrderedItem) => {
+  if (promotionId || !isPromotionApplicableItemUnique) return false
   const id = getFirstAttributeValue(product?.attributes, 'promotion')?.id
   return allCurrentPromotions.value.some((promotion) => {
     const isFreeGift = isBuyXGetYType(promotion)

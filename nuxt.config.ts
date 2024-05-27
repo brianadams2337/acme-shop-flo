@@ -383,7 +383,17 @@ export default defineNuxtConfig({
             return newRules
           },
           {
-            '/api/**': NO_CACHE, // Top-level API routes, like /api/up
+            // Cache most pages by default
+            '/**': CACHE_PAGE,
+            // Don't cache API routes.
+            '/api/**': NO_CACHE,
+            // Don't cache pages with user-specific information
+            '/wishlist': NO_CACHE,
+            '/basket': NO_CACHE,
+            '/checkout': NO_CACHE,
+            '/signin': NO_CACHE,
+            '/account': NO_CACHE,
+            '/account/**': NO_CACHE,
           },
         )
   })(),

@@ -12857,10 +12857,10 @@ std-env@^3.5.0, std-env@^3.7.0:
   resolved "https://registry.yarnpkg.com/std-env/-/std-env-3.7.0.tgz#c9f7386ced6ecf13360b6c6c55b8aaa4ef7481d2"
   integrity sha512-JPbdCEQLj1w5GilpiHAx3qJvFndqybBysA3qUOnznweH4QbNYUsW/ea8QzSrnh0vNsezMMw5bcVool8lM0gwzg==
 
-storyblok-generate-ts@2.0.2:
-  version "2.0.2"
-  resolved "https://registry.yarnpkg.com/storyblok-generate-ts/-/storyblok-generate-ts-2.0.2.tgz#b5063ce117eb981b820797b13a77455903381988"
-  integrity sha512-iML9/T1ascEJjLs2r8fgl9wrF3GgvznV7vFbYm7LpsH/uyNQ+mdIElbJp1R25GlQt12MpM+9sPzI681IRvASxw==
+storyblok-generate-ts@2.1.0:
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/storyblok-generate-ts/-/storyblok-generate-ts-2.1.0.tgz#e6f46a47aa3d06abc679ad6b613e62f505f3d868"
+  integrity sha512-ANjV0Nq/H9aG2jShT1UYgus/UfpUh9bVHJB1GiYDEHX4TTxD2R/FbH46LyjWRZ7hhS4NppMd7jQ5GJNH1cCMFA==
   dependencies:
     camelcase "^6.3.0"
     json-schema-to-typescript "^11.0.1"
@@ -12872,10 +12872,10 @@ storyblok-js-client@6.7.3, storyblok-js-client@^6.7.1, storyblok-js-client@^6.7.
   resolved "https://registry.yarnpkg.com/storyblok-js-client/-/storyblok-js-client-6.7.3.tgz#d8976889ac20455f2e33d42d46faad18c093b078"
   integrity sha512-fBBxtyju6xtFYgAgoWBaU7WagB8M6wN+N+A3UAhZtAPW8yZmlbr3nZu26ErYIbSLaeueyFlcNrI4Kag+Kszsdw==
 
-storyblok@3.30.0:
-  version "3.30.0"
-  resolved "https://registry.yarnpkg.com/storyblok/-/storyblok-3.30.0.tgz#9088032b0e8d33252797bd84e88f2557bb6ef150"
-  integrity sha512-3AI6zfjt0+DiOuHPU2fdMBhoq8vw0hLOv8buWVa1lyYx6y7FRLJ0WZu/+/rpYy/QqPWIWg8/3GMjlM5VIS7pGA==
+storyblok@3.31.1:
+  version "3.31.1"
+  resolved "https://registry.yarnpkg.com/storyblok/-/storyblok-3.31.1.tgz#adb41aea734ea43b34337eea2bec9b8fa78725d8"
+  integrity sha512-c5yLqkRy9op8obPRre2FKOuPfRXM4m+WdT45GrcycKaqG+8TTN8LDPuzIzR9/pmKGWswdIu0WTD8Ta51YKLtlQ==
   dependencies:
     "@storyblok/region-helper" "^1.0.0"
     axios "^0.27.2"

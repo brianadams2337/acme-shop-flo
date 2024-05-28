@@ -1,5 +1,5 @@
 <template>
-  <div v-if="blok" :class="marginClasses">
+  <div v-if="blok && imageSource.src" :class="marginClasses">
     <SFLink
       v-if="blok.fields.ctaUrl"
       :target="isLinkTypeUrl ? '_blank' : '_self'"
@@ -9,7 +9,6 @@
     >
       <Intersect :threshold="0.5" @enter="onIntersect">
         <NuxtImg
-          v-if="imageSource"
           provider="contentful"
           class="size-full object-cover"
           :src="imageSource.src"

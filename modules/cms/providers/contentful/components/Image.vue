@@ -1,7 +1,7 @@
 <template>
   <Intersect v-if="blok" @enter="onIntersect">
     <NuxtPicture
-      v-if="imageSource"
+      v-if="imageSource.src"
       provider="contentful"
       class="picture picture-contain h-full bg-gray-200"
       :sizes="sizes"

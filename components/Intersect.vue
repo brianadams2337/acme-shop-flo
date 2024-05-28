@@ -5,7 +5,11 @@
 </template>
 
 <script setup lang="ts">
+import { defineOptions, ref } from 'vue'
+import { useIntersectionObserver } from '@vueuse/core'
+import type { PropType } from 'vue'
 import type { MaybeComputedElementRef } from '@vueuse/core'
+import { pick as _pick } from 'radash'
 
 const props = defineProps({
   threshold: {

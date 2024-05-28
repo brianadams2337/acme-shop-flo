@@ -1,3 +1,4 @@
+import { sleep as _sleep } from 'radash'
 import type { RouterConfig } from '@nuxt/schema'
 
 export default <RouterConfig>{

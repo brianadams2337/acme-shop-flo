@@ -1,3 +1,4 @@
+import { alphabetical as _alphabetical } from 'radash'
 import {
   getFirstAttributeValue,
   type WishlistItem,

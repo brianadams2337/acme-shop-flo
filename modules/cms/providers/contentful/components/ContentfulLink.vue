@@ -13,6 +13,7 @@
 </template>
 
 <script lang="ts" setup>
+import { isString as _isString } from 'radash'
 import type { CMSContentfulLink } from '~/modules/cms/providers/contentful/types'
 import { useContentfulHelpers } from '~/modules/cms/providers/contentful/composables/useContentfulHelpers'
 
@@ -20,7 +21,7 @@ const { isInEditorMode } = useContentfulHelpers()
 const props = withDefaults(defineProps<CMSContentfulLink>(), { target: '' })
 
 const resolvedLink = computed(() => {
-  if (!isString(props.to)) {
+  if (!_isString(props.to)) {
     return props.to
   }
   const isPathRoute = props.to.includes('/')

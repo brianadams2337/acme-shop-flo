@@ -22,6 +22,7 @@
 </template>
 
 <script setup lang="ts">
+import { computed } from 'vue'
 const idpClasses: Record<string, string> = {
   google: 'bg-[#4285F4] text-white hover:bg-[#3869c1] focus:bg-[#3869c1]',
   facebook: 'bg-[#1877F2] text-white hover:bg-[#165dbb] focus:bg-[#165dbb]',

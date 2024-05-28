@@ -8,6 +8,7 @@ import {
 } from '@scayle/storefront-nuxt'
 import type { RouteLocationRaw, RouteParams } from '#vue-router'
 import type { NavigateToOptions } from '#app/composables/router'
+import { isString as _isString } from 'radash'
 
 export function useRouteHelpers() {
   const localePath = useLocalePath()
@@ -91,7 +92,7 @@ export function useRouteHelpers() {
   }
 
   const getLocalizedRoute = (route: RouteLocationRaw) => {
-    if (!isString(route)) {
+    if (!_isString(route)) {
       const isLocalePath =
         'path' in route &&
         route.path !== undefined &&

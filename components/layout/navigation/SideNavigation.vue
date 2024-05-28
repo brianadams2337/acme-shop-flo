@@ -59,6 +59,7 @@
 </template>
 
 <script setup lang="ts">
+import type { PropType } from 'vue'
 import type { Category } from '@scayle/storefront-nuxt'
 
 defineProps({

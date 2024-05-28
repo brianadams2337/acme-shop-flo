@@ -10,7 +10,7 @@
 </template>
 
 <script setup lang="ts">
-import { HeadlineSize, HeadlineTag } from '#imports'
+import { HeadlineSize, HeadlineTag } from '#storefront-ui'
 
 type Props = {
   tag?: HeadlineTag

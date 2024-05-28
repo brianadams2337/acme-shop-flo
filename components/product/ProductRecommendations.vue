@@ -33,14 +33,20 @@
 </template>
 
 <script setup lang="ts">
+import { useTrackingEvents } from '~/composables/useTrackingEvents'
+import { ref, computed } from 'vue'
+import { useRouteHelpers } from '~/composables/useRouteHelpers'
+import { useDefaultBreakpoints } from '~/composables/useDefaultBreakpoints'
+import { useProductRecommendations } from '~/composables/useProductRecommendations'
+import { getImageFromList } from '~/utils/image'
 import {
   getLowestPrice,
   getFirstAttributeValue,
   isFirstIndexOfRow,
   type Product,
 } from '@scayle/storefront-nuxt'
-import { productListingMetaData, Size } from '#imports'
-import { computed } from 'vue'
+import { productListingMetaData } from '~/constants/product'
+import { Size } from '#storefront-ui'
 
 type Props = {
   combineWithProductIds: number[]

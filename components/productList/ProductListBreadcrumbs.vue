@@ -29,6 +29,11 @@
 </template>
 
 <script setup lang="ts">
+import { useLink } from '#vue-router'
+import { computed } from 'vue'
+import { useRouteHelpers } from '~/composables/useRouteHelpers'
+import { useCurrentShop } from '#storefront/composables'
+import { useRoute } from '#app/composables/router'
 import { getBreadcrumbsFromPath } from '@scayle/storefront-nuxt'
 import { SFHorizontalItemsDivider, SFLink, SFHeadline } from '#components'
 import { showDividerTag } from '#storefront-ui'
@@ -43,6 +48,7 @@ const breadcrumbs = computed(() => {
 
 const isActive = (url: string) => {
   const { isExactActive } = useLink({ to: getLocalizedRoute(url) })
+
   return isExactActive.value
 }
 </script>

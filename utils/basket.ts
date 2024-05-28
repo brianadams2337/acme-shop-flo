@@ -1,4 +1,9 @@
 import {
+  alphabetical as _alphabetical,
+  group as _group,
+  sort as _sort,
+} from 'radash'
+import {
   getFirstAttributeValue,
   type BasketItem,
 } from '@scayle/storefront-nuxt'

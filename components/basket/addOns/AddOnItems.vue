@@ -28,6 +28,9 @@
 </template>
 
 <script setup lang="ts">
+import { computed, ref } from 'vue'
+import { useFormatHelpers } from '#storefront/composables'
+import type { PropType } from 'vue'
 import type { BasketItem } from '@scayle/storefront-nuxt'
 
 const props = defineProps({

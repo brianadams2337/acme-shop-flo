@@ -65,6 +65,8 @@
 </template>
 
 <script setup lang="ts">
+import { useI18n } from '#i18n'
+
 const config = useRuntimeConfig()
 const googleMapsKey = config.public.googleMapsApiKey
 const { storesData, refreshStores } = useStoreLocator('useStoreLocator', [

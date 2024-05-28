@@ -44,6 +44,10 @@
 </template>
 
 <script setup lang="ts">
+import { computed, reactive } from 'vue'
+import { useValidationRules } from '~/composables/useValidationRules'
+import { useAuthentication } from '~/composables/useAuthentication'
+import { useRoute } from '#app/composables/router'
 import useVuelidate from '@vuelidate/core'
 
 defineEmits(['close:modal'])

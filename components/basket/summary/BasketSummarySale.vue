@@ -12,7 +12,9 @@
 </template>
 
 <script setup lang="ts">
+import { useFormatHelpers } from '#storefront/composables'
 import { useBasketReductions } from '~/composables/useBasketReductions'
+
 const { formatCurrency } = useFormatHelpers()
 
 const { hasItemsWithSaleReductions, aggregatedSalePrice, withNegativePrefix } =

@@ -39,6 +39,9 @@
 </template>
 
 <script setup lang="ts">
+import { onMounted, computed, toRef, ref, defineOptions } from 'vue'
+import { useWishlistActions } from '~/composables/useWishlistActions'
+import { useWishlist } from '#storefront/composables'
 import type { Product } from '@scayle/storefront-nuxt'
 
 type Props = {

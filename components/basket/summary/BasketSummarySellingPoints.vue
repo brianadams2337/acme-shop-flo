@@ -15,6 +15,9 @@
 </template>
 
 <script lang="ts" setup>
+import { computed } from 'vue'
+import { useNuxtApp } from '#app/nuxt'
+
 const { $i18n } = useNuxtApp()
 
 const sellingPoints = computed(() => [

@@ -39,6 +39,8 @@
 </template>
 
 <script setup lang="ts">
+import { ref } from 'vue'
+import type { PropType } from 'vue'
 import type { SummaryItem } from './AddressSummary.vue'
 
 defineProps({

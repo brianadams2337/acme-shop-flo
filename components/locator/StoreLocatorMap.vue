@@ -3,9 +3,19 @@
 </template>
 
 <script setup lang="ts">
+import {
+  toRaw,
+  watch,
+  onMounted,
+  ref,
+  defineModel,
+  h,
+  render,
+  getCurrentInstance,
+  defineProps,
+} from 'vue'
 import { Loader } from '@googlemaps/js-api-loader'
 import type { StoreLocation } from '@scayle/omnichannel-nuxt'
-import { h, render, getCurrentInstance } from 'vue'
 
 import StoreDetailsComponent from './StoreDetails.vue'
 

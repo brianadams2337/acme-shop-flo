@@ -17,6 +17,7 @@
 </template>
 
 <script setup lang="ts">
+import type { PropType } from 'vue'
 import type { SummaryItem } from './AddressSummary.vue'
 
 defineProps({

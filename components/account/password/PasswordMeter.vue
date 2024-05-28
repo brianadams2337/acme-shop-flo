@@ -20,6 +20,7 @@
 </template>
 
 <script setup lang="ts">
+import { computed } from 'vue'
 import { passwordStrength } from 'check-password-strength'
 
 const props = defineProps<{ value: string }>()

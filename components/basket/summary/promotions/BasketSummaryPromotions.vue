@@ -23,6 +23,8 @@
 </template>
 
 <script setup lang="ts">
+import { computed, defineModel } from 'vue'
+import { useFormatHelpers } from '#storefront/composables'
 import { useBasketReductions } from '~/composables/useBasketReductions'
 
 const {

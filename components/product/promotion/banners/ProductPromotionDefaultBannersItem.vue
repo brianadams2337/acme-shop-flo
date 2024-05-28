@@ -13,7 +13,7 @@
           is-column
           class="mb-2"
         />
-        <PromotionCountdown :until="scheduledTo" />
+        <PromotionCountdown :timeUntil="scheduledTo" />
       </div>
       <div
         v-if="isPriorityBadgeShown"
@@ -43,6 +43,10 @@
 </template>
 
 <script setup lang="ts">
+import { getBackgroundColorStyle } from '~/utils/promotion'
+import { computed, toRef } from 'vue'
+import { usePromotionProgress } from '~/composables/usePromotionProgress'
+
 type Props = {
   promotion: Promotion
   isPriorityBadgeShown?: boolean
@@ -60,6 +64,7 @@ const { minOrderAmount } = await usePromotionProgress(toRef(props.promotion))
 
 const backgroundColor = computed(() => {
   const colorHex = props.promotion.customData.colorHex
+
   return getBackgroundColorStyle(colorHex).backgroundColor
 })
 </script>

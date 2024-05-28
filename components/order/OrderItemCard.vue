@@ -62,6 +62,9 @@
 </template>
 
 <script setup lang="ts">
+import { computed } from 'vue'
+import { useFormatHelpers } from '#storefront/composables'
+import { useRouteHelpers } from '~/composables/useRouteHelpers'
 import {
   getFirstAttributeValue,
   getTotalAppliedReductions,

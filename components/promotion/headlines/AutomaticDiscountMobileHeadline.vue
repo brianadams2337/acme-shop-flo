@@ -29,11 +29,16 @@
 </template>
 
 <script setup lang="ts">
+import { usePromotionProgress } from '~/composables/usePromotionProgress'
+import { computed } from 'vue'
+import { useCurrentPromotion } from '~/composables/useCurrentPromotion'
+
 const { automaticDiscount, headlineParts, currentPromotion } =
   useCurrentPromotion()
 
 const headline = computed(() => {
   const [offerText, conditionText] = headlineParts.value ?? []
+
   return { offerText, conditionText }
 })
 

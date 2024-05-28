@@ -14,6 +14,10 @@
 </template>
 
 <script setup lang="ts">
+import { computed } from 'vue'
+import { useFormatDate } from '~/composables/useFormatDate'
+import { useI18n } from '#i18n'
+
 type Props = {
   orderId: number
   shopId: number

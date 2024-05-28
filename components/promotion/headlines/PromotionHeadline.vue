@@ -10,7 +10,8 @@
 </template>
 
 <script setup lang="ts">
-import { PromotionHeadlineSize } from '#imports'
+import { computed } from 'vue'
+import { PromotionHeadlineSize } from '~/constants/promotion'
 
 type Props = {
   headlineParts: string[]

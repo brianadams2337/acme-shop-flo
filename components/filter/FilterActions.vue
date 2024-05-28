@@ -20,6 +20,10 @@
 </template>
 
 <script setup lang="ts">
+import { computed } from 'vue'
+import { useFilter } from '~/composables/useFilter'
+import { useNuxtApp } from '#app/nuxt'
+
 const { $i18n } = useNuxtApp()
 const { resetFilters, applyFilters, unfilteredCount, filteredCount } =
   useFilter()

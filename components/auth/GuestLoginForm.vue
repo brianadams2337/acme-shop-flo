@@ -53,6 +53,9 @@
 </template>
 
 <script setup lang="ts">
+import { reactive } from 'vue'
+import { useValidationRules } from '~/composables/useValidationRules'
+import { useAuthentication } from '~/composables/useAuthentication'
 import type { Gender } from '@scayle/storefront-nuxt'
 import useVuelidate from '@vuelidate/core'
 

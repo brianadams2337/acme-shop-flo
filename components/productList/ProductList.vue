@@ -44,6 +44,10 @@
 </template>
 
 <script setup lang="ts">
+import { ref, computed, toRefs } from 'vue'
+import { useRoute } from '#app/composables/router'
+import { useDefaultBreakpoints } from '~/composables/useDefaultBreakpoints'
+import { categoryListingMetaData } from '~/constants/listingMetadata'
 import {
   type Product,
   getRowByIndex,

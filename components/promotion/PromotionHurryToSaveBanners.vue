@@ -22,7 +22,7 @@
         {{ customData.product?.badgeLabel }}
       </SFHeadline>
       <PromotionCountdown
-        :until="schedule.to"
+        :timeUntil="schedule.to"
         class="min-w-fit max-w-fit lg:basis-7/12 lg:justify-end xl:basis-5/12"
       />
     </div>
@@ -42,7 +42,7 @@
         {{ $t('promotion.save_your_free_gift') }}
       </SFHeadline>
       <PromotionCountdown
-        :until="schedule.to"
+        :timeUntil="schedule.to"
         borderless
         class="lg:basis-7/12 lg:justify-end xl:basis-5/12"
       />
@@ -51,6 +51,13 @@
 </template>
 
 <script setup lang="ts">
+import { routeList } from '~/utils/route'
+import { computed } from 'vue'
+import { useProductPromotions } from '~/composables/useProductPromotions'
+import { useBasketPromotions } from '~/composables/useBasketPromotions'
+import { useLocalePath } from '#i18n'
+import { useRoute } from '#app/composables/router'
+import { getBackgroundColorStyle } from '~/utils/promotion'
 import type { Product } from '@scayle/storefront-nuxt'
 
 const props = withDefaults(defineProps<{ product?: Product }>(), {

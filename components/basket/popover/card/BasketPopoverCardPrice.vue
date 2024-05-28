@@ -64,6 +64,10 @@
 </template>
 
 <script setup lang="ts">
+import { sum as _sum } from 'radash'
+import { useBasketItem } from '~/composables/useBasketItem'
+import { computed } from 'vue'
+import { useFormatHelpers } from '#storefront/composables'
 import { type BasketItem } from '@scayle/storefront-nuxt'
 import { useBasketReductions } from '~/composables/useBasketReductions'
 

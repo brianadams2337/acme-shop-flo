@@ -10,11 +10,14 @@
       is-column
       class="mb-2"
     />
-    <PromotionCountdown :until="schedule.to" />
+    <PromotionCountdown :timeUntil="schedule.to" />
   </div>
 </template>
 
 <script setup lang="ts">
+import { computed } from 'vue'
+import { getBackgroundColorStyle } from '~/utils/promotion'
+
 type Props = {
   customData?: Promotion['customData']
   schedule: Promotion['schedule']

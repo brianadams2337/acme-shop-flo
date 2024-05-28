@@ -35,7 +35,13 @@
 </template>
 
 <script setup lang="ts">
+import { computed, ref } from 'vue'
+import { isScrolledToBottom } from '~/utils/scroll'
+import { usePromotionGifts } from '~/composables/usePromotionGifts'
+import { useProductPromotions } from '~/composables/useProductPromotions'
+import { useI18n } from '#i18n'
 import type { Product } from '@scayle/storefront-nuxt'
+
 const i18n = useI18n()
 const props = defineProps<{ product: Product }>()
 

@@ -46,6 +46,14 @@
 </template>
 
 <script setup lang="ts">
+import {
+  getAdditionalData,
+  isBuyXGetYType,
+  isAutomaticDiscountType,
+} from '~/utils/promotion'
+import { usePromotionProgress } from '~/composables/usePromotionProgress'
+import { computed } from 'vue'
+
 type Props = {
   promotion: Promotion
   isGiftAddedToBasket?: boolean

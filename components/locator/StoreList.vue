@@ -22,6 +22,7 @@
   </div>
 </template>
 <script setup lang="ts">
+import { defineModel } from 'vue'
 import type { Store } from '@scayle/omnichannel-nuxt'
 
 interface Props {

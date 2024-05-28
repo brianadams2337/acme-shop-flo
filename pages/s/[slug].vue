@@ -24,6 +24,8 @@
 </template>
 
 <script setup lang="ts">
+import { capitalize as _capitalize } from 'radash'
+
 const route = useRoute()
 const slug = computed(() =>
   Array.isArray(route.params.slug) ? route.params.slug[0] : route.params.slug,

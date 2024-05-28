@@ -2,7 +2,7 @@ import type {
   FetchProductsCountResponse,
   FilterParams,
 } from '@scayle/storefront-nuxt'
-import type { InjectionKey } from '#imports'
+import type { InjectionKey } from 'vue'
 
 // Use any here since we do not get the type during compilation
 export interface FilterContext {

@@ -51,12 +51,16 @@
 </template>
 
 <script setup lang="ts">
+import { computed } from 'vue'
+import { useFormatHelpers } from '#storefront/composables'
+import type { PropType } from 'vue'
 import {
   getTotalAppliedReductions,
   type AttributeGroup,
   type Attributes,
   getFirstAttributeValue,
 } from '@scayle/storefront-nuxt'
+
 const props = defineProps({
   product: {
     type: Object as PropType<OrderProduct>,
@@ -95,6 +99,7 @@ const reducedPrice = computed(() => {
   if (!props.price.appliedReductions) {
     return
   }
+
   return getTotalAppliedReductions({
     appliedReductions: props.price.appliedReductions,
   }).absoluteWithTax
@@ -106,6 +111,7 @@ const mapAttributes = (attributes: OrderProduct['attributes']): Attributes => {
   return Object.fromEntries(
     Object.entries(attributes).map(([k, v]) => {
       const val = { ...v, id: null, type: null } as AttributeGroup
+
       return [k, val]
     }),
   )

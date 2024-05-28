@@ -4,7 +4,6 @@ import type {
   RegisterRequest,
   UpdatePasswordByHashRequest,
 } from '@scayle/storefront-nuxt'
-import { FetchError } from 'ofetch'
 
 const httpErrorMessages: Record<number, string> = {
   400: '400_bad_request',

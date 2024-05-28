@@ -38,6 +38,10 @@
 </template>
 
 <script setup lang="ts">
+import { ProductImageType } from '~/utils/product'
+import { getImageFromList } from '~/utils/image'
+import { useFormatHelpers } from '#storefront/composables'
+import { type PropType, computed } from 'vue'
 import {
   type BasketItem,
   getFirstAttributeValue,

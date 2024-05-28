@@ -64,7 +64,10 @@
 </template>
 
 <script setup lang="ts">
+import { computed, ref } from 'vue'
+import { useRoute } from '#app/composables/router'
 import type { Category } from '@scayle/storefront-nuxt'
+import { routeList } from '~/utils/route'
 
 type Props = {
   categories?: Category[]

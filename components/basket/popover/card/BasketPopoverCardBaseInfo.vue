@@ -35,6 +35,8 @@
 </template>
 
 <script setup lang="ts">
+import { useBasketItem } from '~/composables/useBasketItem'
+import { computed } from 'vue'
 import { type BasketItem } from '@scayle/storefront-nuxt'
 
 type Props = {

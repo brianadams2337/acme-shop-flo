@@ -51,6 +51,9 @@
 </template>
 
 <script setup lang="ts">
+import { computed } from 'vue'
+import { useFlyouts } from '~/composables/useFlyouts'
+
 const { closeFlyoutMenu, flyoutNavigationItem } = useFlyouts()
 
 const childlessNavigationItems = computed(() => {

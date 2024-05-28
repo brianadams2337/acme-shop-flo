@@ -12,6 +12,7 @@
 </template>
 
 <script setup lang="ts">
+import { computed } from 'vue'
 import { type ProductImage, getAttributeValue } from '@scayle/storefront-nuxt'
 
 type Props = {
@@ -47,9 +48,11 @@ const brightness = computed(() => {
   if (imageBackground.value === 'white') {
     return 0.96
   }
+
   if (imageBackground.value === 'grey') {
     return 1.06
   }
+
   return 1
 })
 

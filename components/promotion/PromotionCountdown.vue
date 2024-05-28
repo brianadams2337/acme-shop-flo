@@ -17,7 +17,7 @@
       </template>
       <SFFadeInTransition :duration="300">
         <SFCountdown
-          :until="until"
+          :timeUntil="timeUntil"
           :show-units="true"
           unit-size="short"
           data-test-id="promotion-countdown"
@@ -28,8 +28,10 @@
 </template>
 
 <script setup lang="ts">
+import { SFFadeInTransition, SFCountdown, SFSkeletonLoader } from '#components'
+
 type Props = {
-  until: string
+  timeUntil: string
   borderless?: boolean
 }
 

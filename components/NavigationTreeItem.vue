@@ -11,8 +11,9 @@
 </template>
 
 <script setup lang="ts">
+import { computed } from 'vue'
 import type { NavigationTreeItem } from '@scayle/storefront-nuxt'
-import type { LinkVariant } from '#imports'
+import type { LinkVariant } from '#storefront-ui'
 
 type Props = {
   navigationItem: NavigationTreeItem | null

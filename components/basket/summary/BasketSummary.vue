@@ -23,6 +23,13 @@
 </template>
 
 <script lang="ts" setup>
+import { useBasketPromotions } from '~/composables/useBasketPromotions'
+import { routeList } from '~/utils/route'
+import { BasketListingMetadata } from '~/constants/listingMetadata'
+import { useRouteHelpers } from '~/composables/useRouteHelpers'
+import { useTrackingEvents } from '~/composables/useTrackingEvents'
+import { useUser, useBasket } from '#storefront/composables'
+
 const basket = await useBasket()
 const { isLoggedIn } = await useUser()
 

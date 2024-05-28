@@ -60,12 +60,19 @@
 </template>
 
 <script setup lang="ts">
+import { watch, reactive, computed } from 'vue'
+import { useValidationRules } from '~/composables/useValidationRules'
+import { useLastLoggedInUser } from '~/composables/useLastLoggedInUser'
+import { useAuthentication } from '~/composables/useAuthentication'
+import { useIDP } from '#storefront/composables'
+import { useRoute } from '#app/composables/router'
 import useVuelidate from '@vuelidate/core'
+import { isString as _isString } from 'radash'
 
 const route = useRoute()
 
 const idpParams = computed(() => {
-  if (isString(route.query.redirectUrl)) {
+  if (_isString(route.query.redirectUrl)) {
     return {
       queryParams: { redirectUrl: route.query.redirectUrl },
     }

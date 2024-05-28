@@ -1,3 +1,5 @@
+import { pascal as _pascal } from 'radash'
+
 export const CareIconSymbolMap: Record<number, string> = {
   720: 'machine-wash-30-gentle-or-delicate',
   741: 'machine-wash-30-permanent-press',

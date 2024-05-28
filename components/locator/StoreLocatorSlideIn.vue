@@ -75,6 +75,9 @@
 </template>
 
 <script setup lang="ts">
+import { useStoreLocator } from '#omnichannel/composables'
+import { computed, defineModel, ref } from 'vue'
+import { useSlideIn } from '~/modules/ui/runtime/composables/useSlideIn' // TODO: Use upcoming #storefront-ui alias
 import type { StoreLocation } from '@scayle/omnichannel-nuxt'
 
 interface Props {

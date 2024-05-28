@@ -12,6 +12,9 @@
 </template>
 
 <script setup lang="ts">
+import { computed } from 'vue'
+import { useFavoriteStore } from '~/composables/useFavoriteStore'
+
 interface Props {
   storeId: number
 }

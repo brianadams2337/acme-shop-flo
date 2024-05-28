@@ -23,6 +23,13 @@
 
 <script setup lang="ts">
 import {
+  useProductsByIds,
+  useVariant,
+  useFormatHelpers,
+} from '#storefront/composables'
+import { computed } from 'vue'
+import { sort as _sort } from 'radash'
+import {
   getFirstAttributeValue,
   type CentAmount,
 } from '@scayle/storefront-nuxt'

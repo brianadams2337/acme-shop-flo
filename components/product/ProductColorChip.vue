@@ -8,6 +8,9 @@
 </template>
 
 <script setup lang="ts">
+import { getColorCodeById } from '~/utils/product'
+import type { ProductColorCode } from '~/utils/product'
+import { computed } from 'vue'
 import type { ProductColor } from '@scayle/storefront-nuxt'
 import { Size, ColorChipRoundedType } from '#storefront-ui'
 import type { RouteLocationRaw } from '#vue-router'

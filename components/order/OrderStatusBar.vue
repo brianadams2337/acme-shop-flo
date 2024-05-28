@@ -36,6 +36,9 @@
 </template>
 
 <script setup lang="ts">
+import { Status, DeliveryProgress } from '~/constants/order'
+import { computed } from 'vue'
+import { useFormatDate } from '~/composables/useFormatDate'
 type Props = {
   index: number
   carrierKey: DeliveryInfo['carrierKey']

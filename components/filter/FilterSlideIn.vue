@@ -18,5 +18,7 @@
 </template>
 
 <script setup lang="ts">
+import { useFilter } from '~/composables/useFilter'
+
 const { onSlideInOpen, trackFilterFlyout } = useFilter()
 </script>

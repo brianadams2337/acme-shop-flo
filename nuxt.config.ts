@@ -202,8 +202,6 @@ export default defineNuxtConfig({
     '@vueuse/nuxt',
     // https://github.com/cpreston321/nuxt-swiper
     'nuxt-swiper',
-    // https://github.com/lukasaric/radash-nuxt
-    'radash-nuxt',
     // https://github.com/zadigetvoltaire/nuxt-gtm
     '@zadigetvoltaire/nuxt-gtm',
     // https://nuxt.com/docs/getting-started/testing
@@ -217,12 +215,6 @@ export default defineNuxtConfig({
   cms: {
     // @ts-expect-error provider here expects either `storyblok` or `contentful` but the env variable is typed as string
     provider: process.env.CMS_PROVIDER ?? 'storyblok',
-  },
-
-  // https://github.com/lukasaric/radash-nuxt
-  radash: {
-    prefix: '_',
-    upperAfterPrefix: false,
   },
 
   // https://nuxt.com/docs/api/nuxt-config#build

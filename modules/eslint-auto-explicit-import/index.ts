@@ -16,6 +16,7 @@ export default defineNuxtModule<ModuleOptions>({
     let unimport: Unimport
 
     nuxt.hook('imports:context', (ctx) => {
+      console.log('!!!', ctx)
       unimport = ctx
     })
 

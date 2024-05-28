@@ -23,6 +23,11 @@
 </template>
 
 <script setup lang="ts">
+import { onClickOutside } from '@vueuse/core'
+import { usePromotionActions } from '~/composables/usePromotionActions'
+import { useDefaultBreakpoints } from '~/composables/useDefaultBreakpoints'
+import { ref } from 'vue'
+
 defineProps<{ items: Promotion[] }>()
 
 const promotionList = ref()

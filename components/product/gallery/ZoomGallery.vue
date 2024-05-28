@@ -54,6 +54,9 @@
 </template>
 
 <script setup lang="ts">
+import { watch, computed, ref } from 'vue'
+import { useZoomGallery } from '~/composables/useZoomGallery'
+import type { PropType } from 'vue'
 import type { ProductImage } from '@scayle/storefront-nuxt'
 
 const props = defineProps({

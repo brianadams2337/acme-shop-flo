@@ -11,6 +11,12 @@ import {
   transformStateToFilters,
 } from '@scayle/storefront-nuxt'
 import type { FilterContext } from '~/composables/useFilterContext'
+import {
+  debounce as _debounce,
+  omit as _omit,
+  isEqual as _isEqual,
+  isEmpty as _isEmpty,
+} from 'radash'
 
 export const INCLUDED_QUICK_FILTERS = ['sale', 'isNew', 'styleGroup']
 
@@ -104,7 +110,7 @@ export function useFilter(
       string,
       any
     >
-    if (!isEmpty(combinedFilters)) {
+    if (!_isEmpty(combinedFilters)) {
       Object.keys(combinedFilters).forEach((key: string) => {
         const values = Array.isArray(combinedFilters[key])
           ? combinedFilters[key].join('|')
@@ -237,7 +243,7 @@ export function useFilter(
   }
 
   const priceChanged = computed(() => {
-    return !isEqual(initialState.value.prices, state.value.prices)
+    return !_isEqual(initialState.value.prices, state.value.prices)
   })
 
   const isSaleActive = computed(() => {

@@ -28,6 +28,9 @@
 </template>
 
 <script setup lang="ts">
+import { computed } from 'vue'
+import { useCurrentPromotion } from '~/composables/useCurrentPromotion'
+
 type Props = {
   modelValue: boolean
   isMobileView?: boolean

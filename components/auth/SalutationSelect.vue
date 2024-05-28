@@ -15,6 +15,8 @@
 </template>
 
 <script setup lang="ts">
+import { useNuxtApp } from '#app/nuxt'
+import type { PropType } from 'vue'
 import type { Gender } from '@scayle/storefront-nuxt'
 
 defineProps({

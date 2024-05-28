@@ -25,7 +25,7 @@ import { ref, computed } from 'vue'
 type CountdownUnit = 'days' | 'hours' | 'minutes' | 'seconds'
 
 type Props = {
-  until: string
+  timeUntil: string
   showUnits?: boolean
   unitSize?: 'short' | 'long'
 }
@@ -37,7 +37,7 @@ const props = withDefaults(defineProps<Props>(), {
 
 const emit = defineEmits<{ finished: [] }>()
 
-const until = computed(() => Date.parse(props.until))
+const timeUntil = computed(() => Date.parse(props.timeUntil))
 const countdown = ref<{ [k in CountdownUnit]?: number }>({})
 
 const formatValue = (value: number) => {
@@ -63,7 +63,7 @@ const shouldShowSeparator = (key: CountdownUnit) => {
 }
 
 const start = () => {
-  const remaining = until.value - Date.now()
+  const remaining = timeUntil.value - Date.now()
 
   countdown.value = {
     days: Math.floor(remaining / (SECOND * MINUTE * HOURS * DAY)),

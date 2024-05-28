@@ -37,7 +37,9 @@
 </template>
 
 <script lang="ts" setup>
+import { useFormatHelpers } from '#storefront/composables'
 import { useBasketReductions } from '~/composables/useBasketReductions'
+
 const { formatCurrency } = useFormatHelpers()
 
 const { totalCost, totalCostWithoutReductions } = await useBasketReductions()

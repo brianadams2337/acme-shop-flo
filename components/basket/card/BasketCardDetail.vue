@@ -10,6 +10,7 @@
 </template>
 
 <script setup lang="ts">
+import { computed } from 'vue'
 type Props = {
   label: string
   value?: string

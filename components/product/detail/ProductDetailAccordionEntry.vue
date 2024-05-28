@@ -17,6 +17,7 @@
 </template>
 
 <script setup lang="ts" ii>
+import { toRef } from 'vue'
 const props = withDefaults(
   defineProps<{ title: string; collapsed?: boolean }>(),
   { collapsed: false },

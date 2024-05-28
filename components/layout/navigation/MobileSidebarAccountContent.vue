@@ -36,6 +36,12 @@
 </template>
 
 <script setup lang="ts">
+import { computed } from 'vue'
+import { useAuthentication } from '~/composables/useAuthentication'
+import { useSideNavigation } from '~/composables/useSideNavigation'
+import { useUser } from '#storefront/composables'
+import { routeList } from '~/utils/route'
+
 const { user } = await useUser()
 const { closeSideNavigation } = useSideNavigation()
 

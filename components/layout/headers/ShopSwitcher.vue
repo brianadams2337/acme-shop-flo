@@ -50,6 +50,11 @@
 </template>
 
 <script setup lang="ts">
+import { computed } from 'vue'
+import { useTrackingEvents } from '~/composables/useTrackingEvents'
+import { useSwitchLocalePath } from '#i18n'
+import { useAvailableShops, useCurrentShop } from '#storefront/composables'
+
 const currentShop = useCurrentShop()
 const availableShops = useAvailableShops()
 const switchLocalePath = useSwitchLocalePath()

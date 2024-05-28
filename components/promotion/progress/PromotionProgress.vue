@@ -22,6 +22,10 @@
 </template>
 
 <script setup lang="ts">
+import { useDefaultBreakpoints } from '~/composables/useDefaultBreakpoints'
+import { usePromotionProgress } from '~/composables/usePromotionProgress'
+import { useCurrentPromotion } from '~/composables/useCurrentPromotion'
+
 withDefaults(defineProps<{ isFullWidth?: boolean }>(), { isFullWidth: false })
 
 const { currentPromotion } = useCurrentPromotion()

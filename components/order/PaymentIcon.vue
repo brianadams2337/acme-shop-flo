@@ -9,6 +9,9 @@
 </template>
 
 <script setup lang="ts">
+import { paidWithIcon } from '~/utils/payment'
+import { computed } from 'vue'
+
 const props = defineProps({
   paidWith: { type: String, required: true },
 })

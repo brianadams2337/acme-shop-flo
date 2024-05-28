@@ -13,6 +13,10 @@
 </template>
 
 <script setup lang="ts">
+import { normalizePathRoute } from '~/utils/route'
+import { useRouteHelpers } from '~/composables/useRouteHelpers'
+import { usePromotionActions } from '~/composables/usePromotionActions'
+
 const props = defineProps<{ category: Promotion['customData']['category'] }>()
 
 const { isPromotionListShown, togglePromotionList } = usePromotionActions()
@@ -23,7 +27,9 @@ const goToCategory = async () => {
   if (!props.category?.to) {
     return
   }
+
   await localizedNavigateTo(normalizePathRoute(props.category.to))
+
   isPromotionListShown.value && togglePromotionList()
 }
 </script>

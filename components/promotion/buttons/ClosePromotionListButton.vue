@@ -15,6 +15,8 @@
 </template>
 
 <script setup lang="ts">
+import { usePromotionActions } from '~/composables/usePromotionActions'
+
 withDefaults(defineProps<{ positionClass?: string }>(), {
   positionClass: '-bottom-3 right-[50%]',
 })

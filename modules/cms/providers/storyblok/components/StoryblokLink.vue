@@ -8,6 +8,7 @@
 </template>
 
 <script lang="ts" setup>
+import { isString as _isString } from 'radash'
 import type { CMSStoryblokLink } from '~/modules/cms/providers/storyblok/types'
 import { useStoryblokHelpers } from '~/modules/cms/providers/storyblok/composables/useStoryblokHelpers'
 
@@ -16,7 +17,7 @@ const props = withDefaults(defineProps<CMSStoryblokLink>(), { target: '_self' })
 const { isInEditorMode } = useStoryblokHelpers()
 
 const resolvedLink = computed(() => {
-  if (!isString(props.to)) {
+  if (!_isString(props.to)) {
     return props.to
   }
   const isPathRoute = props.to.includes('/')

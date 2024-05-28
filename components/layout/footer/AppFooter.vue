@@ -73,8 +73,12 @@
 </template>
 
 <script setup lang="ts">
-import type { StoryblokStory } from 'storyblok-generate-ts'
+import { useNavigationTreeItems } from '~/composables/useNavigationTreeItems'
+import { computed } from 'vue'
+import { useAsyncStoryblok } from '@storyblok/nuxt/dist/runtime/composables/useAsyncStoryblok'
+import { type Ref, onMounted } from 'vue'
 import { useDefaultStoryblokOptions } from '~/modules/cms/providers/storyblok/composables/useDefaultStoryblokOptions'
+import type { StoryblokStory } from 'storyblok-generate-ts'
 import type { SbFooter } from '~/modules/cms/providers/storyblok/types'
 
 const storyblokOptions = useDefaultStoryblokOptions()

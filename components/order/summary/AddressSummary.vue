@@ -16,6 +16,11 @@
 </template>
 
 <script setup lang="ts">
+import { computed } from 'vue'
+import { useNuxtApp } from '#app/nuxt'
+import type { PropType } from 'vue'
+import { pick as _pick, isEqual as _isEqual } from 'radash'
+
 export type SummaryItem = {
   name: 'shipping' | 'billing'
   label: string
@@ -59,7 +64,7 @@ const isShippingSameAsBillingAddress = computed(() => {
     ..._pick(props.billingAddress, propertiesToCheck),
     ..._pick(props.billingAddress.recipient, recipientPropertiesToCheck),
   }
-  return isEqual(shippingAddressProps, billingAddressProps)
+  return _isEqual(shippingAddressProps, billingAddressProps)
 })
 
 const items = computed<SummaryItem[]>(() => {

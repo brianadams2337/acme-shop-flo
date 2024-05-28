@@ -9,6 +9,7 @@
 </template>
 
 <script setup lang="ts">
+import { toRef } from 'vue'
 import type { Product } from '@scayle/storefront-nuxt'
 
 type Props = {

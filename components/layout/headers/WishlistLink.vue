@@ -15,5 +15,8 @@
 </template>
 
 <script setup lang="ts">
+import { useWishlist } from '#storefront/composables'
+import { routeList } from '~/utils/route'
+
 const { count } = await useWishlist()
 </script>

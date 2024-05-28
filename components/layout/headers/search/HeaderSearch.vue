@@ -60,6 +60,10 @@
 </template>
 
 <script setup lang="ts">
+import { computed, watchEffect, watch, ref } from 'vue'
+import { onClickOutside } from '@vueuse/core'
+import { useTrackingEvents } from '~/composables/useTrackingEvents'
+import { useSearchData } from '~/composables/useSearchData'
 import type {
   ProductSearchSuggestion,
   CategorySearchSuggestion,

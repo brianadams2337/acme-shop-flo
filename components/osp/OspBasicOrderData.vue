@@ -18,6 +18,9 @@
 </template>
 
 <script setup lang="ts">
+import { computed } from 'vue'
+import { useCurrentShop } from '#storefront/composables'
+
 type Props = {
   id: Order['id']
   customer?: Order['customer']

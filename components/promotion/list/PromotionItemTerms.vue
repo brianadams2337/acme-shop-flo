@@ -24,6 +24,9 @@
 </template>
 
 <script setup lang="ts">
+import { onUnmounted } from 'vue'
+import { useState } from '#app/composables/state'
+
 const props = defineProps<{
   promotionId: Promotion['id']
   content: string

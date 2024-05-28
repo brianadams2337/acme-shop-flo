@@ -41,6 +41,9 @@
 </template>
 
 <script setup lang="ts">
+import { useFlyouts } from '~/composables/useFlyouts'
+import { useRootCategories } from '~/composables/useRootCategories'
+import { routeList } from '~/utils/route'
 import type { NavigationTree } from '@scayle/storefront-nuxt'
 
 withDefaults(defineProps<{ navigationTree?: NavigationTree }>(), {

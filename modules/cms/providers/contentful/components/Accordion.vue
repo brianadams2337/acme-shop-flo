@@ -33,6 +33,8 @@
 import type { CMSAccordionProps } from '~/modules/cms/providers/contentful/types'
 import { getComponentName } from '~/modules/cms/utils/helpers'
 import { useContentfulMargins } from '~/modules/cms/providers/contentful/composables/useContentfulMargins'
+import { dash as _dash } from 'radash'
+
 const props = defineProps<CMSAccordionProps>()
 
 const route = useRoute()

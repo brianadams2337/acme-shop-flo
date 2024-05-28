@@ -60,13 +60,18 @@
 </template>
 
 <script setup lang="ts">
+import { getTextColorStyle, getBackgroundColorStyle } from '~/utils/promotion'
+import { AlphaColorMap } from '~/constants/color'
+import { useBasket, useFormatHelpers } from '#storefront/composables'
+import { useProductPromotions } from '~/composables/useProductPromotions'
+import { computed } from 'vue'
 import {
   type Price,
   type LowestPriorPrice,
   type Product,
   getTotalAppliedReductions,
 } from '@scayle/storefront-nuxt'
-import { Size } from '#imports'
+import { Size } from '#storefront-ui'
 import tailwindConfig from '~/tailwind.config'
 
 type Props = {
@@ -125,6 +130,7 @@ const totalPrice = computed(() => {
   if (props.isFree) {
     return formatCurrency(0)
   }
+
   return isAutomaticDiscountPriceApplicable.value
     ? formatCurrency(getAppliedAutomaticDiscountPrice(props.price) as number)
     : formatCurrency(props.price.withTax)
@@ -184,6 +190,7 @@ const styles = computed(() => {
       ),
     }
   }
+
   return undefined
 })
 </script>

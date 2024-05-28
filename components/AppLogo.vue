@@ -30,6 +30,8 @@
 </template>
 
 <script setup lang="ts">
+import { routeList } from '~/utils/route'
+import type { PropType } from 'vue'
 import type { RouteLocationRaw } from '#vue-router'
 
 defineProps({

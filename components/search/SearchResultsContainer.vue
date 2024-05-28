@@ -32,6 +32,8 @@
 </template>
 
 <script setup lang="ts">
+import { useSearchData } from '~/composables/useSearchData'
+import { useRouteHelpers } from '~/composables/useRouteHelpers'
 import type { SearchEntity } from '@scayle/storefront-nuxt'
 
 const emit = defineEmits<{

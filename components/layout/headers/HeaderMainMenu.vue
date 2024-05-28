@@ -21,5 +21,6 @@
 </template>
 
 <script setup lang="ts">
+import { routeList } from '~/utils/route'
 import { SFLink } from '#components'
 </script>

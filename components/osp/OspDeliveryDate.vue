@@ -11,6 +11,7 @@
 </template>
 
 <script setup lang="ts">
+import type { PropType } from 'vue'
 import { formatDate } from '@scayle/storefront-nuxt'
 
 defineProps({

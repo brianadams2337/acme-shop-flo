@@ -221,6 +221,7 @@
 </template>
 
 <script setup lang="ts">
+import { sleep as _sleep } from 'radash'
 import { ProductColorChip } from '#components'
 import { Size } from '#storefront-ui'
 import {

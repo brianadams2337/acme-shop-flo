@@ -16,5 +16,7 @@
 </template>
 
 <script setup lang="ts">
+import { usePromotionActions } from '~/composables/usePromotionActions'
+
 const { isPromotionListShown, togglePromotionList } = usePromotionActions()
 </script>

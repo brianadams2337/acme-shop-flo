@@ -28,7 +28,7 @@
         <div class="flex w-min flex-col items-start justify-stretch gap-y-2">
           <PromotionCountdown
             v-if="expirationDate"
-            :until="expirationDate"
+            :timeUntil="expirationDate"
             class="self-stretch"
           />
           <ShowDealsButton
@@ -53,6 +53,11 @@
 </template>
 
 <script setup lang="ts">
+import { computed, ref } from 'vue'
+import { usePromotionActions } from '~/composables/usePromotionActions'
+import { usePromotionProgress } from '~/composables/usePromotionProgress'
+import { useCurrentPromotion } from '~/composables/useCurrentPromotion'
+
 const props = defineProps<{
   promotions: Promotion[]
   category?: { ctaLabel: string; to: string }

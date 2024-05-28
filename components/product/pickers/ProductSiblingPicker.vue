@@ -32,6 +32,8 @@
 </template>
 
 <script setup lang="ts">
+import { computed, ref } from 'vue'
+import type { PropType } from 'vue'
 import type { getProductSiblings } from '@scayle/storefront-nuxt'
 // TODO: Expose the type in SFC
 type ProductSiblings = ReturnType<typeof getProductSiblings>

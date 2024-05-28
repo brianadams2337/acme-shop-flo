@@ -33,6 +33,9 @@
 </template>
 
 <script setup lang="ts">
+import { computed } from 'vue'
+import { unique as _unique } from 'radash'
+
 type Props = {
   orderData: Order
   deliveryDate: DeliveryDate
@@ -46,6 +49,7 @@ const orderItems = computed(() => {
 
 const getItemQuantity = (variantId: number): number | undefined => {
   const isVariant = (value: any) => value.variant.id === variantId
+
   return props.orderData?.items?.filter(isVariant).length
 }
 </script>

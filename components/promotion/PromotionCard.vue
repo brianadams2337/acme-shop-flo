@@ -9,6 +9,7 @@
 </template>
 
 <script setup lang="ts">
+import { computed } from 'vue'
 import { SFLink } from '#components'
 
 const props = defineProps<{ promotion: Promotion; backgroundColor?: string }>()

@@ -47,6 +47,9 @@
 </template>
 
 <script setup lang="ts">
+import { useWishlistItemActions } from '~/composables/useWishlistItemActions'
+import { useWishlistItem } from '~/composables/useWishlistItem'
+import { computed } from 'vue'
 import type { ProductImage, WishlistItem } from '@scayle/storefront-nuxt'
 import type { RouteLocationRaw } from '#vue-router'
 

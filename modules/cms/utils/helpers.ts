@@ -1,5 +1,6 @@
 import { createConsola } from 'consola'
 import { CMSProvidersMap } from './config'
+import { pascal as _pascal, dash as _dash } from 'radash'
 
 export const moduleName = '@scayle/storefront-cms'
 export const logger = createConsola({

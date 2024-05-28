@@ -35,7 +35,7 @@
                 />
                 <SFCountdown
                   v-if="blok.countdown_until"
-                  :until="blok.countdown_until"
+                  :timeUntil="blok.countdown_until"
                   class="my-4 md:ml-5"
                   @finished="storefrontBanner && storefrontBanner.close"
                 />
@@ -71,6 +71,7 @@
 </template>
 
 <script setup lang="ts">
+import { isEmpty as _isEmpty } from 'radash'
 import type { CMSBannerProps } from '~/modules/cms/providers/storyblok/types'
 import CMSText from '~/modules/cms/providers/storyblok/components/Text.vue'
 
@@ -81,7 +82,7 @@ const props = withDefaults(defineProps<CMSBannerProps>(), {
 const storefrontBanner = useStorefrontBanner()
 const storefrontTracking = useStorefrontTracking()
 const isActive = computed(() => {
-  return isEmpty(props.blok) ? true : props.blok.is_active
+  return _isEmpty(props.blok) ? true : props.blok.is_active
 })
 
 const shouldBeVisible = computed(
@@ -95,7 +96,7 @@ const is = (value: string | string[]) => {
   )
 }
 
-const hasScrollableLinks = computed(() => !isEmpty(props.blok?.links))
+const hasScrollableLinks = computed(() => !_isEmpty(props.blok?.links))
 const cachedUrl = computed(() => props.blok.cta_url?.cached_url)
 const baseTag = computed(() => {
   return cachedUrl.value ? resolveComponent('CMSStoryblokLink') : 'div'

@@ -1,4 +1,5 @@
 import type { Product } from '@scayle/storefront-nuxt'
+import { unique as _unique } from 'radash'
 
 export async function usePromotionGifts(product: Product) {
   const app = useNuxtApp()

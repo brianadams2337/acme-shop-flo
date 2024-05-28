@@ -11,6 +11,8 @@
 </template>
 
 <script setup lang="ts">
+import { getCareIconComponent } from '~/utils/careIcons'
+import { computed } from 'vue'
 import type { Value } from '@scayle/storefront-nuxt'
 
 const props = defineProps<{ symbol: Value }>()

@@ -1,3 +1,4 @@
+import { sort as _sort } from 'radash'
 import {
   getFirstAttributeValue,
   isInStock,

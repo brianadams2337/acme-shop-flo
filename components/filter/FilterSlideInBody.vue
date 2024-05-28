@@ -110,7 +110,8 @@
 </template>
 
 <script setup lang="ts">
-import type { ProductColorChip } from '#components'
+import { useCurrentShop } from '#storefront/composables'
+import { useFilter } from '~/composables/useFilter'
 
 const {
   state,

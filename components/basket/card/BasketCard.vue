@@ -195,6 +195,17 @@
 </template>
 
 <script setup lang="ts">
+import { useBasketItemPromotion } from '~/composables/useBasketItemPromotion'
+import { toRef, ref, computed } from 'vue'
+import { useRoute } from '#app/composables/router'
+import { usePageState } from '~/composables/usePageState'
+import { useToast } from '~/composables/useToast'
+import { useTrackingEvents } from '~/composables/useTrackingEvents'
+import { useWishlist, useFormatHelpers } from '#storefront/composables'
+import { useNuxtApp } from '#app/nuxt'
+import { useBasketItem } from '~/composables/useBasketItem'
+import { useRouteHelpers } from '~/composables/useRouteHelpers'
+import { sum as _sum } from 'radash'
 import { type BasketItem } from '@scayle/storefront-nuxt'
 import { useBasketReductions } from '~/composables/useBasketReductions'
 

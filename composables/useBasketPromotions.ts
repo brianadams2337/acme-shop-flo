@@ -1,3 +1,5 @@
+import { unique as _unique } from 'radash'
+
 export async function useBasketPromotions() {
   const [{ items: basketItems }, promotionData] = await Promise.all([
     useBasket(),

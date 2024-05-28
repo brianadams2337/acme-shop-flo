@@ -17,6 +17,8 @@
 </template>
 
 <script setup lang="ts">
+import { computed } from 'vue'
+import { useLastLoggedInUser } from '~/composables/useLastLoggedInUser'
 const { lastLoggedInUser, removeLastLoggedInUser } = await useLastLoggedInUser()
 
 const username = computed(() => lastLoggedInUser.value.firstName)

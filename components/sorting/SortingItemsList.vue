@@ -21,6 +21,10 @@
 </template>
 
 <script setup lang="ts">
+import { computed } from 'vue'
+import type { PropType } from 'vue'
+import { useRouteBaseName } from '#i18n'
+import { useRoute } from '#app/composables/router'
 import type { SortValue } from '@scayle/storefront-nuxt'
 
 const route = useRoute()

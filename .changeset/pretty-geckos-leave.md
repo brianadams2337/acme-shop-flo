@@ -1,0 +1,27 @@
+---
+'@scayle/storefront-boilerplate-nuxt': patch
+---
+
+- Added `@vue/test-utils@2.4.6`
+- Added `happy-dom@14.11.2`
+- Removed `@crowdin/cli`
+- Updated to `@changesets/cli@2.27.3`
+- Updated to `@eslint/eslintrc@3.1.0`
+- Updated to `@nuxt/eslint@0.3.13`
+- Updated to `@nuxt/image@1.7.0`
+- Updated to `@nuxt/test-utils@3.13.1`
+- Updated to `@scayle/eslint-config-storefront@4.2.0`
+- Updated to `@scayle/eslint-plugin-vue-composable@0.2.0`
+- Updated to `@types/node@20.12.12`
+- Updated to `@upstash/redis@1.31.3`
+- Updated to `@vitest/coverage-v8@1.6.0`
+- Updated to `eslint-plugin-tailwindcss@3.17.0`
+- Updated to `eslint@9.3.0`
+- Updated to `lint-staged@15.2.5`
+- Updated to `nuxt-svgo@4.0.1`
+- Updated to `postcss-custom-properties@13.3.10`
+- Updated to `postcss-html@1.7.0`
+- Updated to `storyblok-generate-ts@2.1.0`
+- Updated to `storyblok@3.31.1`
+- Updated to `vitest@1.6.0`
+- Updated to `vue-tsc@2.0.19`

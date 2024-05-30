@@ -14,12 +14,13 @@ export const setUserDefault = (): LastLoggedInUser => ({
 
 export async function useLastLoggedInUser() {
   const instance = useNuxtApp()
+  const currentShop = useCurrentShop()
 
   const { user, isLoggedIn, fetching } = await useUser()
 
   return await instance.runWithContext(() => {
     const localStorage = useLocalStorage<LastLoggedInUser>(
-      USER_KEY,
+      `${USER_KEY}-${currentShop.value.shopId}`,
       setUserDefault(),
       {
         serializer: {

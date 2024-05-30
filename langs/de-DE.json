@@ -428,7 +428,7 @@
     },
     "welcome_back": {
       "not_user": "Nicht {name}? Melden Sie sich mit einem anderen Benutzerkonto an",
-      "title": "Willkommen zurück, {name}!"
+      "title": "Willkommen zurück, {username}!"
     },
     "idp": {
       "google": "Mit Google anmelden",

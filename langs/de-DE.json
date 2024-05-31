@@ -427,7 +427,7 @@
       "title": "Ein Konto erstellen"
     },
     "welcome_back": {
-      "not_user": "Nicht {name}? Melden Sie sich mit einem anderen Benutzerkonto an",
+      "not_user": "Nicht {username}? Melden Sie sich mit einem anderen Benutzerkonto an",
       "title": "Willkommen zurück, {username}!"
     },
     "idp": {

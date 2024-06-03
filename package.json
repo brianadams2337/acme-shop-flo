@@ -50,7 +50,7 @@
     "@scayle/eslint-plugin-vue-composable": "0.2.0",
     "@scayle/prettier-config-storefront": "2.0.2",
     "@types/color": "3.0.6",
-    "@types/node": "20.12.12",
+    "@types/node": "20.14.0",
     "@upstash/redis": "1.31.3",
     "@vitest/coverage-v8": "1.6.0",
     "@vue/test-utils": "2.4.6",
@@ -138,7 +138,7 @@
     "./**/*{.md,.json,.css}\"": "prettier --write "
   },
   "volta": {
-    "node": "20.13.1"
+    "node": "20.14.0"
   },
   "resolutions": {
     "import-in-the-middle": "1.7.4"

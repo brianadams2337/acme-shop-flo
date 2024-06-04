@@ -1,6 +1,7 @@
 import withNuxt from './.nuxt/eslint.config.mjs'
 import eslintConfigStorefront from '@scayle/eslint-config-storefront'
 import tailwind from 'eslint-plugin-tailwindcss'
+import pluginVueA11y from 'eslint-plugin-vuejs-accessibility'
 
 // Workaround for flat config not being supported yet by eslint-plugin-tailwindcss
 // https://github.com/francoismassart/eslint-plugin-tailwindcss/issues/280
@@ -39,6 +40,35 @@ export default withNuxt(
            */
           cssFiles: ['assets/css/**/*.css'],
         },
+      },
+    },
+  ],
+  [
+    // https://vue-a11y.github.io/eslint-plugin-vuejs-accessibility/rule-overview/
+    ...pluginVueA11y.configs['flat/recommended'],
+    {
+      rules: {
+        // Provide warning until all existing issues have been fixed
+        'vuejs-accessibility/alt-text': 'warn',
+        'vuejs-accessibility/anchor-has-content': 'warn',
+        'vuejs-accessibility/aria-props': 'warn',
+        'vuejs-accessibility/aria-role': 'warn',
+        'vuejs-accessibility/aria-unsupported-elements': 'warn',
+        'vuejs-accessibility/click-events-have-key-events': 'warn',
+        'vuejs-accessibility/form-control-has-label': 'warn',
+        'vuejs-accessibility/heading-has-content': 'warn',
+        'vuejs-accessibility/iframe-has-title': 'warn',
+        'vuejs-accessibility/interactive-supports-focus': 'warn',
+        'vuejs-accessibility/label-has-for': 'warn',
+        'vuejs-accessibility/media-has-caption': 'warn',
+        'vuejs-accessibility/mouse-events-have-key-events': 'warn',
+        'vuejs-accessibility/no-access-key': 'warn',
+        'vuejs-accessibility/no-autofocus': 'warn',
+        'vuejs-accessibility/no-distracting-elements': 'warn',
+        'vuejs-accessibility/no-redundant-roles': 'warn',
+        'vuejs-accessibility/no-static-element-interactions': 'warn',
+        'vuejs-accessibility/role-has-required-aria-props': 'warn',
+        'vuejs-accessibility/tabindex-no-positive': 'warn',
       },
     },
   ],

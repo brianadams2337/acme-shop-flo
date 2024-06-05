@@ -18,6 +18,7 @@
 import { defineOptions, ref } from 'vue'
 import type { CMSAccordionEntryProps } from '../types'
 import CMSText from '~/modules/cms/providers/contentful/components/Text.vue'
+
 const props = withDefaults(defineProps<CMSAccordionEntryProps>(), {
   collapsed: false,
 })

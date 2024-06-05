@@ -60,6 +60,7 @@
 import { defineOptions, computed } from 'vue'
 import type { CMSParagraphProps } from '../types'
 import CMSText from '~/modules/cms/providers/contentful/components/Text.vue'
+
 const props = defineProps<CMSParagraphProps>()
 
 const isCtaEmail = computed(() => {

@@ -1,5 +1,6 @@
 import { BasePage } from './basePage'
 import Header from './components/header'
+
 class ProductPage extends BasePage {
   private pageElements = {
     zoomGallery: '[data-test-id="zoom-gallery"]',

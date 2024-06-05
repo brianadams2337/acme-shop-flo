@@ -39,6 +39,7 @@
 import { definePageMeta } from '#imports'
 import { defineOptions, computed } from 'vue'
 import { useRoute } from '#app/composables/router'
+
 const route = useRoute()
 const slug = computed(() =>
   Array.isArray(route.params.slug) ? route.params.slug[0] : route.params.slug,

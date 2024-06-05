@@ -21,6 +21,7 @@ import { useTracking } from '~/composables/useTracking'
 import { useWishlist } from '#storefront/composables'
 import { useNuxtApp, useRuntimeConfig } from '#app/nuxt'
 import { useRoute } from '#app/composables/router'
+
 const config = useRuntimeConfig()
 const route = useRoute()
 

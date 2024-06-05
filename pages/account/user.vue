@@ -18,6 +18,7 @@ import { defineOptions } from 'vue'
 import { useSeoMeta } from '@unhead/vue'
 import { useNuxtApp } from '#app/nuxt'
 import { useUser } from '#storefront/composables'
+
 await useUser()
 
 const { $i18n } = useNuxtApp()

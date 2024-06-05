@@ -12,6 +12,7 @@
 import { definePageMeta } from '#imports'
 import useSubscriptionWebComponent from '../composables/useSubscriptionWebComponent'
 import { useCurrentShop } from '#storefront/composables'
+
 const currentShop = useCurrentShop()
 const shopId = currentShop.value.shopId
 

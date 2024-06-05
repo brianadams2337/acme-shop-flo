@@ -21,6 +21,7 @@ import { useLog, useUser, useBasket } from '#storefront/composables'
 import { useNuxtApp } from '#app/nuxt'
 import { useCheckoutWebComponent } from '~/composables/useCheckoutWebComponent'
 import type { CheckoutEvent } from '@scayle/storefront-nuxt'
+
 const { accessToken, checkoutJwt, fetchCheckoutToken } =
   await useCheckoutWebComponent()
 const { fetch: fetchBasket, fetching } = await useBasket()

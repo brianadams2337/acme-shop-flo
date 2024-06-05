@@ -51,6 +51,7 @@
 <script setup lang="ts">
 import { useOrders } from '~/composables/useOrders'
 import { useFormatHelpers } from '#storefront/composables'
+
 const { formatCurrency } = useFormatHelpers()
 
 const { totalAmount, deliveryCost, paymentKey } = await useOrders()

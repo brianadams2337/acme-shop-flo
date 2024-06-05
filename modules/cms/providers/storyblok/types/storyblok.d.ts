@@ -1,6 +1,7 @@
 import type { RouteLocationRaw } from '#vue-router'
 import type { ISbStoryData, ISbLinkURLObject } from 'storyblok-js-client'
 import type * as Storyblok from './storyblok.gen.d'
+
 export type * from './storyblok.gen.d'
 export type BlokProps<T> = { blok: T }
 export type CMSComponentProps<T, R> = T & R

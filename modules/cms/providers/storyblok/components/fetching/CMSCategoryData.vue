@@ -4,6 +4,7 @@ import type { SbCmsImage, SbListingPage } from '../../types'
 import { useCMS } from '../../composables/useCMS'
 import { useCMSListingContent } from '../../composables/useCMSListingContent'
 import { useStoryblokEditor } from '../../composables/useStoryblokEditor'
+
 const props = defineProps<{
   selectedCategory: number | undefined
 }>()

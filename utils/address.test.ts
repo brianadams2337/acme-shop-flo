@@ -1,4 +1,5 @@
 import { describe, it, expect } from 'vitest'
+
 const baseAddress: OrderAddress = {
   city: '',
   countryCode: '',

@@ -4,6 +4,7 @@ import type { ContentfulRuntimeConfig } from '../types'
 import axiosFetchAdapter from './../utils/axiosFetchAdapter'
 import { useContentfulEditor } from '../composables/useContentfulEditor'
 import { defineNuxtPlugin, useRuntimeConfig } from '#app'
+
 export default defineNuxtPlugin({
   name: 'cms:contentful',
   setup() {

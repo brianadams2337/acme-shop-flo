@@ -20,6 +20,7 @@ import { defineOptions, computed } from 'vue'
 import type { CMSGridProps } from '../types'
 import { getComponentName } from '../../../utils/helpers'
 import { useStoryblokMargins } from '../composables/useStoryblokMargins'
+
 const props = defineProps<CMSGridProps>()
 const { marginClasses } = useStoryblokMargins(props.blok)
 

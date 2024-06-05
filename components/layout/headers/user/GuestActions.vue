@@ -28,5 +28,6 @@
 <script setup lang="ts">
 import { useFlyouts } from '~/composables/useFlyouts'
 import { routeList } from '~/utils/route'
+
 const { closeUserFlyout } = useFlyouts()
 </script>

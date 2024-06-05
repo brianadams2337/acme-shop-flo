@@ -30,6 +30,7 @@ import { definePageMeta } from '#imports'
 import { defineOptions, computed } from 'vue'
 import { useOrders } from '~/composables/useOrders'
 import { useRoute } from '#app/composables/router'
+
 const route = useRoute()
 const paramId = computed(() => +route.params.id)
 

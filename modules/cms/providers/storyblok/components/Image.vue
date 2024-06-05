@@ -18,6 +18,7 @@ import {
   useStoryblokImageSanitizer,
   getTeaserImage,
 } from '../composables/useStoryblokImage'
+
 const props = withDefaults(defineProps<CMSImageProps>(), {
   preload: false,
   isTeaser: false,

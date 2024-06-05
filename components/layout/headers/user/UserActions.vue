@@ -48,6 +48,7 @@ import { useAuthentication } from '~/composables/useAuthentication'
 import { useUser } from '#storefront/composables'
 import { useFlyouts } from '~/composables/useFlyouts'
 import { routeList } from '~/utils/route'
+
 const { closeUserFlyout } = useFlyouts()
 const { user } = await useUser()
 const { logout, isSubmitting } = await useAuthentication('logout')

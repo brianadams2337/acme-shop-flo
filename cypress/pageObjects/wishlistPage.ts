@@ -1,6 +1,7 @@
 import { getLocaleFile } from '../test-helpers'
 import { BasePage } from './basePage'
 import Header from './components/header'
+
 const locale = getLocaleFile()
 
 class WishlistPage extends BasePage {

@@ -1,5 +1,6 @@
 import { getLocaleFile } from '../../test-helpers'
 import head from './head'
+
 class Footer {
   private pageElements = {
     mainFooter: '#footer > .justify-between',

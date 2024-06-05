@@ -99,4 +99,10 @@ export default withNuxt(
       'vue/multi-word-component-names': 'off',
     },
   },
+  {
+    // Custom code styling not covered by Prettier
+    rules: {
+      'import/newline-after-import': ['error', { count: 1 }],
+    },
+  },
 )

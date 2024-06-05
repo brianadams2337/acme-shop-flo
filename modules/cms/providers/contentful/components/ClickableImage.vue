@@ -28,6 +28,7 @@ import { isStringURL } from '../../../utils/helpers'
 import type { CMSClickableImageProps } from '../types'
 import { useContentfulMargins } from '../composables/useContentfulMargins'
 import { useContentfulImageSanitizer } from '../composables/useContentfulImage'
+
 const props = withDefaults(defineProps<CMSClickableImageProps>(), {
   sizes: 'xs:100vw sm:100vw md:100vw lg:100vw xl:100vw xxl:100vw 2xl:100vw',
 })

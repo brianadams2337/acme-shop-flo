@@ -44,6 +44,7 @@ import { useNuxtApp } from '#app/nuxt'
 import { useTrackingEvents } from '~/composables/useTrackingEvents'
 import { useWishlist, useUser } from '#storefront/composables'
 import { routeList } from '~/utils/route'
+
 const { user } = await useUser()
 const wishlist = await useWishlist()
 

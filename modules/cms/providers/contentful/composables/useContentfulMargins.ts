@@ -2,6 +2,7 @@ import type {
   MarginKey,
   TypeMarginWithoutUnresolvableLinksResponse,
 } from '../types'
+
 export function useContentfulMargins(
   content: TypeMarginWithoutUnresolvableLinksResponse | undefined,
 ) {

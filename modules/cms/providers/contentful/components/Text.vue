@@ -15,6 +15,7 @@
 import { defineOptions, computed } from 'vue'
 import { documentToHtmlString } from '@contentful/rich-text-html-renderer'
 import type { CMSTextProps } from '../types'
+
 const props = withDefaults(defineProps<CMSTextProps>(), {
   noMarginTop: false,
 })

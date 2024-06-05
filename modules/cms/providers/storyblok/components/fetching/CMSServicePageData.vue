@@ -2,6 +2,7 @@
 import type { SbContentPage } from '../../types'
 import { useCMS } from '../../composables/useCMS'
 import { useStoryblokEditor } from '../../composables/useStoryblokEditor'
+
 const props = defineProps<{
   slug: string
 }>()

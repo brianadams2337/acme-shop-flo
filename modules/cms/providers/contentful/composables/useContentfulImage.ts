@@ -3,6 +3,7 @@ import {
   type TypeImageWithoutUnresolvableLinksResponse,
   type TypePageWithoutUnresolvableLinksResponse,
 } from '../types'
+
 type CMSImage = TypeImageWithoutUnresolvableLinksResponse
 type TeaserImage = TypePageWithoutUnresolvableLinksResponse
 

@@ -80,6 +80,7 @@ import { useCMS } from '../../composables/useCMS'
 import CMSText from '../Text.vue'
 import CMSLink from '../Link.vue'
 import { useStoryblokEditor } from '../../composables/useStoryblokEditor'
+
 const { fetchBySlug } = useCMS('footer')
 const { data } = await fetchBySlug<SbFooter>('global/footer')
 useStoryblokEditor<SbFooter>(data)

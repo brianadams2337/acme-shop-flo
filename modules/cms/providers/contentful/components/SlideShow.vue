@@ -29,6 +29,7 @@ import { defineOptions, ref } from 'vue'
 import { useContentfulMargins } from '../composables/useContentfulMargins'
 import type { CMSSlideShowProps } from '../types'
 import CMSSlide from '~/modules/cms/providers/contentful/components/Slide.vue'
+
 const props = defineProps<CMSSlideShowProps>()
 
 const sliderRef = ref()

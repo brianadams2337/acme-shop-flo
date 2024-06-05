@@ -2,6 +2,7 @@
 import type { Entry } from 'contentful'
 import { ref, resolveDynamicComponent } from 'vue'
 import { getComponentName } from '../../../utils/helpers'
+
 const props = defineProps<{
   blok: Entry
 }>()

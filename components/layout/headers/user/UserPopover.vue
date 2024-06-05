@@ -29,6 +29,7 @@ import { computed, onMounted } from 'vue'
 import { useUser } from '#storefront/composables'
 import { useFlyouts } from '~/composables/useFlyouts'
 import { useDefaultBreakpoints } from '~/composables/useDefaultBreakpoints'
+
 const { isGreaterOrEqual } = useDefaultBreakpoints()
 
 const { openUserFlyout, closeUserFlyout, isUserFlyoutOpen } = useFlyouts()

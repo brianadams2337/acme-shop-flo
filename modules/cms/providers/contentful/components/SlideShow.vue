@@ -25,7 +25,7 @@
 </template>
 
 <script setup lang="ts">
-import { defineOptions , ref } from 'vue'
+import { defineOptions, ref } from 'vue'
 import { useContentfulMargins } from '../composables/useContentfulMargins'
 import type { CMSSlideShowProps } from '../types'
 import CMSSlide from '~/modules/cms/providers/contentful/components/Slide.vue'

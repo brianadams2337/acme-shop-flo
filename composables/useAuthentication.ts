@@ -1,8 +1,9 @@
-import type {
-  GuestRequest,
-  LoginRequest,
-  RegisterRequest,
-  UpdatePasswordByHashRequest,
+import {
+  FetchError,
+  type GuestRequest,
+  type LoginRequest,
+  type RegisterRequest,
+  type UpdatePasswordByHashRequest,
 } from '@scayle/storefront-nuxt'
 
 const httpErrorMessages: Record<number, string> = {
@@ -155,7 +156,7 @@ export async function useAuthentication(
   }
 
   /**
-   * After a user was authenticated by loggin in, or registering.
+   * After a user was authenticated by login in, or registering.
    * Refresh user data, basket & wishlist.
    */
   const authenticated = async () => {

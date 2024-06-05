@@ -61,7 +61,7 @@
 </template>
 
 <script setup lang="ts">
-import { defineOptions , resolveComponent , computed } from 'vue'
+import { defineOptions, resolveComponent, computed } from 'vue'
 import { useTrackingEvents } from '~/composables/useTrackingEvents'
 import { useBanner } from '~/composables/useBanner'
 import { isEmpty as _isEmpty } from 'radash'

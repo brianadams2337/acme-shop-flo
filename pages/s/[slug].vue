@@ -24,7 +24,8 @@
 </template>
 
 <script setup lang="ts">
-import { defineOptions , computed } from 'vue'
+import { definePageMeta } from '#imports'
+import { defineOptions, computed } from 'vue'
 import { useSeoMeta } from '@unhead/vue'
 import { useRoute } from '#app/composables/router'
 import { capitalize as _capitalize } from 'radash'

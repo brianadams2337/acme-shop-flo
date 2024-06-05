@@ -221,10 +221,12 @@
 </template>
 
 <script setup lang="ts">
-import { defineOptions , computed , onMounted , ref } from 'vue'
-import { useHead , useServerSeoMeta } from '@unhead/vue'
+import { definePageMeta } from '#imports'
+import { useJsonld } from '#imports'
+import { defineOptions, computed, onMounted, ref } from 'vue'
+import { useHead, useServerSeoMeta } from '@unhead/vue'
 import { generateProductSchema, sanitizeCanonical } from '~/utils/seo'
-import { useFormatHelpers , useCurrentShop } from '#storefront/composables'
+import { useFormatHelpers, useCurrentShop } from '#storefront/composables'
 import { useTrackingEvents } from '~/composables/useTrackingEvents'
 import { useZoomGalleryActions } from '~/composables/useZoomGalleryActions'
 import { useProductDetailsAddOns } from '~/composables/useProductDetailsAddOns'

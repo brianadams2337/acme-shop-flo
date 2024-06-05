@@ -1,7 +1,4 @@
-import type {
-  SbListingPage,
-  SbStory,
-} from '../types'
+import type { SbListingPage, SbStory } from '../types'
 
 export function useCMSListingContent(data: Ref<SbStory<SbListingPage> | null>) {
   return {

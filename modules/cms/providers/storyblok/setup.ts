@@ -58,9 +58,8 @@ export async function setupStoryblok(options: ModuleOptions, nuxt: Nuxt) {
   addImportsDir(resolver.resolve('./composables'))
   addImportsDir(resolver.resolve('./composables/storefront'))
 
-  nuxt.options.alias['#storefront-cms/composables'] = resolver.resolve(
-    './components',
-  )
+  nuxt.options.alias['#storefront-cms/composables'] =
+    resolver.resolve('./components')
 
   logger.info('Loading up Storyblok components...')
   await addComponentsDir({

@@ -48,8 +48,11 @@
 </template>
 
 <script setup lang="ts">
-import { ref , computed, defineOptions } from 'vue'
-import { useProductsByIds , useProductsByReferenceKeys } from '#storefront/composables'
+import { ref, computed, defineOptions } from 'vue'
+import {
+  useProductsByIds,
+  useProductsByReferenceKeys,
+} from '#storefront/composables'
 import { useStorefrontTracking } from '../composables/storefront/useStorefrontTracking'
 import { usePageState } from '~/composables/usePageState'
 import { useRoute } from '#app/composables/router'

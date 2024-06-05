@@ -13,8 +13,8 @@
 </template>
 
 <script lang="ts" setup>
-import { defineOptions , computed } from 'vue'
-import type { LinkList , routeList } from '~/utils/route'
+import { defineOptions, computed } from 'vue'
+import { type LinkList, routeList } from '~/utils/route'
 import { isString as _isString } from 'radash'
 import type { CMSContentfulLink } from '../types'
 import { useContentfulHelpers } from '../composables/useContentfulHelpers'

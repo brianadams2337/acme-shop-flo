@@ -38,12 +38,17 @@
 </template>
 
 <script setup lang="ts">
-import { defineOptions , watch , computed } from 'vue'
+import { definePageMeta } from '#imports'
+import { defineOptions, watch, computed } from 'vue'
 import { useSeoMeta } from '@unhead/vue'
 import { routeList } from '~/utils/route'
 import { useLocalePath } from '#i18n'
 import { fetchLazy } from '~/utils/loading'
-import { useQueryFilterState , useWishlist, useFacet } from '#storefront/composables'
+import {
+  useQueryFilterState,
+  useWishlist,
+  useFacet,
+} from '#storefront/composables'
 import { createFilterContext } from '~/composables/useFilterContext'
 import { useTrackingEvents } from '~/composables/useTrackingEvents'
 import { useToast } from '~/composables/useToast'

@@ -50,11 +50,7 @@
 import { defineOptions } from 'vue'
 import { useCMSAlignment } from '../composables/useCMSAlignment'
 import type { PropType } from 'vue'
-import type {
-  SbCmsImage,
-  SbSlide,
-  SbVideo,
-} from '../types'
+import type { SbCmsImage, SbSlide, SbVideo } from '../types'
 
 const props = defineProps({
   blok: {

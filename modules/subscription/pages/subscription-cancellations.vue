@@ -9,6 +9,7 @@
 </template>
 
 <script setup lang="ts">
+import { definePageMeta } from '#imports'
 import useSubscriptionWebComponent from '../composables/useSubscriptionWebComponent'
 import { useCurrentShop } from '#storefront/composables'
 const currentShop = useCurrentShop()

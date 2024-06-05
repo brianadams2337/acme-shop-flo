@@ -10,7 +10,7 @@
 </template>
 
 <script lang="ts" setup>
-import { defineOptions , computed } from 'vue'
+import { defineOptions, computed } from 'vue'
 import { renderRichText } from '@storyblok/vue'
 import type { CMSTextProps } from '../types'
 

@@ -65,7 +65,8 @@
 </template>
 
 <script setup lang="ts">
-import { defineOptions , ref , computed } from 'vue'
+import { definePageMeta } from '#imports'
+import { defineOptions, ref, computed } from 'vue'
 import { useSeoMeta } from '@unhead/vue'
 import { useStoreLocator } from '#omnichannel/composables'
 import { useRuntimeConfig } from '#app/nuxt'

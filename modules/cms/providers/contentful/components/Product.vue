@@ -18,7 +18,7 @@
 </template>
 
 <script setup lang="ts">
-import { defineOptions , computed } from 'vue'
+import { defineOptions, computed } from 'vue'
 import { useNuxtApp } from '#app/nuxt'
 import { useListingUiState } from '~/composables/useListingUiState'
 import { type Product } from '@scayle/storefront-nuxt'

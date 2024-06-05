@@ -71,7 +71,7 @@
 </template>
 
 <script setup lang="ts">
-import { defineOptions , resolveComponent , computed } from 'vue'
+import { defineOptions, resolveComponent, computed } from 'vue'
 import { useStorefrontTracking } from '../composables/storefront/useStorefrontTracking'
 import { useStorefrontBanner } from '../composables/storefront/useStorefrontBanner'
 import { isEmpty as _isEmpty } from 'radash'

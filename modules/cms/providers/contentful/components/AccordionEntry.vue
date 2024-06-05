@@ -15,7 +15,7 @@
 </template>
 
 <script setup lang="ts">
-import { defineOptions , ref } from 'vue'
+import { defineOptions, ref } from 'vue'
 import type { CMSAccordionEntryProps } from '../types'
 import CMSText from '~/modules/cms/providers/contentful/components/Text.vue'
 const props = withDefaults(defineProps<CMSAccordionEntryProps>(), {

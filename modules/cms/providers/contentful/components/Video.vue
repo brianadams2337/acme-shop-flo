@@ -16,7 +16,8 @@
 </template>
 
 <script setup lang="ts">
-import { defineOptions , ref , computed } from 'vue'
+import { useImage } from '#imports'
+import { defineOptions, ref, computed } from 'vue'
 import { useIntersectionObserver } from '@vueuse/core'
 import { useTrackingEvents } from '~/composables/useTrackingEvents'
 import { useDefaultBreakpoints } from '~/composables/useDefaultBreakpoints'

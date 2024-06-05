@@ -202,8 +202,8 @@ const importsMap = {
   'vue-i18n/dist/vue-i18n': 'vue-i18n',
   '@nuxtjs/i18n/dist/runtime/composables/index': '#i18n', // https://github.com/nuxt-modules/i18n/blob/main/package.json#L34C6-L34C11
   'nuxt/dist/pages/runtime/composables': '#imports', // Needs to be imported through #imports to properly work with TypeScript in the Nuxt context
-  'nuxt-jsonld/dist/runtime/composable': '#imports,', // Needs to be imported through #imports to properly work with TypeScript in the Nuxt context
-  '@nuxt/image/dist/runtime/composables': 'imports', // Needs to be imported through #imports to properly work with TypeScript in the Nuxt context
+  'nuxt-jsonld/dist/runtime/composable': '#imports', // Needs to be imported through #imports to properly work with TypeScript in the Nuxt context
+  '@nuxt/image/dist/runtime/composables': '#imports', // Needs to be imported through #imports to properly work with TypeScript in the Nuxt context
 }
 
 const transformPathToImport = (itemFrom, dirName) => {

@@ -67,7 +67,7 @@
 </template>
 
 <script setup lang="ts">
-import { defineOptions , computed } from 'vue'
+import { defineOptions, computed } from 'vue'
 import { useNavigationTreeItems } from '~/composables/useNavigationTreeItems'
 import type {
   TypeFooterSkeleton,

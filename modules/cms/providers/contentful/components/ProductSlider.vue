@@ -51,7 +51,7 @@
 </template>
 
 <script setup lang="ts">
-import { defineOptions , ref , computed } from 'vue'
+import { defineOptions, ref, computed } from 'vue'
 import { useProductsByIds } from '#storefront/composables'
 import { useStorefrontTracking } from '../composables/storefront/useStorefrontTracking'
 import { usePageState } from '~/composables/usePageState'

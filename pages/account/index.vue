@@ -36,12 +36,13 @@
 </template>
 
 <script setup lang="ts">
+import { definePageMeta } from '#imports'
 import { useSeoMeta } from '@unhead/vue'
 import { wishlistListingMetadata } from '~/composables/useWishlistPage'
-import { onMounted , computed, defineOptions } from 'vue'
+import { onMounted, computed, defineOptions } from 'vue'
 import { useNuxtApp } from '#app/nuxt'
 import { useTrackingEvents } from '~/composables/useTrackingEvents'
-import { useWishlist , useUser } from '#storefront/composables'
+import { useWishlist, useUser } from '#storefront/composables'
 import { routeList } from '~/utils/route'
 const { user } = await useUser()
 const wishlist = await useWishlist()

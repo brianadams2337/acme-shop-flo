@@ -98,12 +98,13 @@
 </template>
 
 <script setup lang="ts">
-import { defineOptions , watch , computed } from 'vue'
+import { definePageMeta } from '#imports'
+import { defineOptions, watch, computed } from 'vue'
 import { prepareCanonicalURL } from '~/utils/seo'
 import { useHead } from '@unhead/vue'
 import { useFilter } from '~/composables/useFilter'
 import { createFilterContext } from '~/composables/useFilterContext'
-import { useQueryFilterState , useFacet } from '#storefront/composables'
+import { useQueryFilterState, useFacet } from '#storefront/composables'
 import { useProductListSort } from '~/composables/useProductListSort'
 import { createError } from '#app/composables/error'
 import { useCategory } from '~/composables/useCategory'

@@ -53,10 +53,7 @@
 import { defineOptions } from 'vue'
 import { useCMSAlignment } from '../composables/useCMSAlignment'
 import type { Entry } from 'contentful'
-import {
-  isTypeImage,
-  isTypeVideo,
-} from '../types/gen/index'
+import { isTypeImage, isTypeVideo } from '../types/gen/index'
 
 import type {
   CMSSlideProps,

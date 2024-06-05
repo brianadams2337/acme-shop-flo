@@ -3,7 +3,7 @@
 </template>
 
 <script setup lang="ts">
-import { defineOptions , computed } from 'vue'
+import { defineOptions, computed } from 'vue'
 import { useRoute } from '#app/composables/router'
 import { isString as _isString } from 'radash'
 

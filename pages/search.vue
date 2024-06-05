@@ -49,11 +49,13 @@ import {
   useWishlist,
   useFacet,
 } from '#storefront/composables'
-import { createFilterContext } from '~/composables/useFilterContext'
-import { useTrackingEvents } from '~/composables/useTrackingEvents'
-import { useToast } from '~/composables/useToast'
 import { useSlideIn } from '~/modules/ui/runtime/composables/useSlideIn'
-import { usePageState } from '~/composables/usePageState'
+import {
+  createFilterContext,
+  useTrackingEvents,
+  useToast,
+  usePageState,
+} from '~/composables'
 import { useNuxtApp } from '#app/nuxt'
 import { useRoute } from '#app/composables/router'
 import { PRODUCTS_PER_PAGE } from '~/constants/product'

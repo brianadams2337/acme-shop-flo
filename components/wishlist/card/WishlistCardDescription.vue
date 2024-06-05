@@ -56,8 +56,7 @@
 </template>
 
 <script setup lang="ts">
-import { useWishlistItemActions } from '~/composables/useWishlistItemActions'
-import { useWishlistItem } from '~/composables/useWishlistItem'
+import { useWishlistItemActions, useWishlistItem } from '~/composables'
 import { computed } from 'vue'
 import type { WishlistItem } from '@scayle/storefront-nuxt'
 

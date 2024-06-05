@@ -60,12 +60,14 @@
 
 <script setup lang="ts">
 import { watch, onBeforeUnmount, computed } from 'vue'
-import { useTrackingEvents } from '~/composables/useTrackingEvents'
-import { useSearchData } from '~/composables/useSearchData'
-import { useMobileSearch } from '~/composables/useMobileSearch'
-import { useSideNavigation } from '~/composables/useSideNavigation'
-import { useRootCategories } from '~/composables/useRootCategories'
-import { useDefaultBreakpoints } from '~/composables/useDefaultBreakpoints'
+import {
+  useTrackingEvents,
+  useSearchData,
+  useMobileSearch,
+  useSideNavigation,
+  useRootCategories,
+  useDefaultBreakpoints,
+} from '~/composables'
 import type { SearchEntity } from '@scayle/storefront-nuxt'
 
 const { isSmaller } = useDefaultBreakpoints()

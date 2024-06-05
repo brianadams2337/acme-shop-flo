@@ -4,7 +4,7 @@
 
 <script setup lang="ts">
 import { onMounted } from 'vue'
-import { useAuthentication } from '~/composables/useAuthentication'
+import { useAuthentication } from '~/composables'
 
 const props = defineProps<{
   code: string

@@ -14,7 +14,7 @@
           is-column
         />
         <PromotionCountdown
-          :timeUntil="scheduledTo"
+          :time-until="scheduledTo"
           borderless
           class="md:basis-1/2 md:items-center md:justify-end lg:basis-7/12 xl:basis-5/12"
         />
@@ -27,7 +27,7 @@
 </template>
 
 <script setup lang="ts">
-import { useBasketItemPromotion } from '~/composables/useBasketItemPromotion'
+import { useBasketItemPromotion } from '~/composables'
 import { computed } from 'vue'
 import type { BasketItem } from '@scayle/storefront-nuxt'
 

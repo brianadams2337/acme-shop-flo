@@ -54,7 +54,7 @@
 import { defineOptions, ref, computed } from 'vue'
 import { useProductsByIds } from '#storefront/composables'
 import { useStorefrontTracking } from '../composables/storefront/useStorefrontTracking'
-import { usePageState } from '~/composables/usePageState'
+import { usePageState } from '~/composables'
 import { useRoute } from '#app/composables/router'
 import { useStorefrontBreakpoints } from '../composables/storefront/useStorefrontBreakpoints'
 import {

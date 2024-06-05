@@ -76,14 +76,16 @@ import { definePageMeta } from '#imports'
 import { defineOptions, onMounted, computed } from 'vue'
 import { useSeoMeta } from '@unhead/vue'
 import { useNuxtApp } from '#app/nuxt'
+import { useRoute } from '#app/composables/router'
 import { WishlistListingMetadata } from '~/constants/listingMetadata'
 import { isBuyXGetYType, isAutomaticDiscountType } from '~/utils/promotion'
 import { getPromotionIdFromProductAttributes } from '~/utils/product'
-import { useBasketPromotions } from '~/composables/useBasketPromotions'
-import { useTrackingEvents } from '~/composables/useTrackingEvents'
-import { useBasketActions } from '~/composables/useBasketActions'
-import { useRoute } from '#app/composables/router'
-import { usePageState } from '~/composables/usePageState'
+import {
+  useBasketPromotions,
+  useTrackingEvents,
+  useBasketActions,
+  usePageState,
+} from '~/composables'
 import { useWishlist, useBasket } from '#storefront/composables'
 import {
   type BasketItem,

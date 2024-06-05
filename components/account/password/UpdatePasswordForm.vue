@@ -63,8 +63,7 @@
 
 <script setup lang="ts">
 import { watch, computed, reactive, ref } from 'vue'
-import { useToast } from '~/composables/useToast'
-import { useValidationRules } from '~/composables/useValidationRules'
+import { useToast, useValidationRules } from '~/composables'
 import { useNuxtApp } from '#app/nuxt'
 import { useUser } from '#storefront/composables'
 import { sleep } from 'radash'

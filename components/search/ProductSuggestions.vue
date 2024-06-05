@@ -42,7 +42,7 @@
 
 <script setup lang="ts">
 import { getFirstModelImage } from '~/utils/image'
-import { useRouteHelpers } from '~/composables/useRouteHelpers'
+import { useRouteHelpers } from '~/composables'
 import { useFormatHelpers } from '#storefront/composables'
 import { getSuggestionName } from '~/utils/search'
 import { type ProductSearchSuggestion } from '@scayle/storefront-nuxt'

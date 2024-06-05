@@ -68,7 +68,7 @@
 
 <script setup lang="ts">
 import { defineOptions, computed } from 'vue'
-import { useNavigationTreeItems } from '~/composables/useNavigationTreeItems'
+import { useNavigationTreeItems } from '~/composables'
 import type {
   TypeFooterSkeleton,
   TypeFooterWithoutUnresolvableLinksResponse,

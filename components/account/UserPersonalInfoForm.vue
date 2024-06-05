@@ -58,8 +58,7 @@
 <script setup lang="ts">
 import { ref, reactive, computed, watch } from 'vue'
 import { dateOfBirthFormats } from '~/constants/mask'
-import { useToast } from '~/composables/useToast'
-import { useValidationRules } from '~/composables/useValidationRules'
+import { useToast, useValidationRules } from '~/composables'
 import { useCurrentShop, useUser } from '#storefront/composables'
 import { useNuxtApp } from '#app/nuxt'
 import { formatDate, getPayloadDate } from '@scayle/storefront-nuxt'

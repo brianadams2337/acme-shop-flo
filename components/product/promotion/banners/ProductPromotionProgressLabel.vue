@@ -51,7 +51,7 @@ import {
   isBuyXGetYType,
   isAutomaticDiscountType,
 } from '~/utils/promotion'
-import { usePromotionProgress } from '~/composables/usePromotionProgress'
+import { usePromotionProgress } from '~/composables'
 import { computed } from 'vue'
 
 type Props = {

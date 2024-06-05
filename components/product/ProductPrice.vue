@@ -63,7 +63,7 @@
 import { getTextColorStyle, getBackgroundColorStyle } from '~/utils/promotion'
 import { AlphaColorMap } from '~/constants/color'
 import { useBasket, useFormatHelpers } from '#storefront/composables'
-import { useProductPromotions } from '~/composables/useProductPromotions'
+import { useProductPromotions } from '~/composables'
 import { computed } from 'vue'
 import {
   type Price,

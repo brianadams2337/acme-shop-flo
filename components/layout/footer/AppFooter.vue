@@ -73,7 +73,7 @@
 </template>
 
 <script setup lang="ts">
-import { useNavigationTreeItems } from '~/composables/useNavigationTreeItems'
+import { useNavigationTreeItems } from '~/composables'
 import { computed } from 'vue'
 import { useAsyncStoryblok } from '@storyblok/nuxt/dist/runtime/composables/useAsyncStoryblok'
 import { type Ref, onMounted } from 'vue'

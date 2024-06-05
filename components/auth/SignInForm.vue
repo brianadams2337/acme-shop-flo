@@ -43,10 +43,9 @@
 
 <script setup lang="ts">
 import { routeList } from '~/utils/route'
-import { useRouteHelpers } from '~/composables/useRouteHelpers'
+import { useRouteHelpers, useLastLoggedInUser } from '~/composables'
 import { computed } from 'vue'
 import { useRoute } from '#app/composables/router'
-import { useLastLoggedInUser } from '~/composables/useLastLoggedInUser'
 import { useNuxtApp } from '#app/nuxt'
 
 const props = withDefaults(defineProps<{ showGuestLogin?: boolean }>(), {

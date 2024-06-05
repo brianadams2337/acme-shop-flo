@@ -46,10 +46,12 @@
 <script setup lang="ts">
 import { routeList } from '~/utils/route'
 import { useLink } from '#vue-router'
-import { useNavigationTreeItems } from '~/composables/useNavigationTreeItems'
-import { useRouteHelpers } from '~/composables/useRouteHelpers'
-import { useSideNavigation } from '~/composables/useSideNavigation'
-import { useFlyouts } from '~/composables/useFlyouts'
+import {
+  useNavigationTreeItems,
+  useRouteHelpers,
+  useSideNavigation,
+  useFlyouts,
+} from '~/composables'
 
 const { isFlyoutMenuOpen, closeFlyoutMenu } = useFlyouts()
 

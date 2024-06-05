@@ -46,7 +46,7 @@
 </template>
 
 <script setup lang="ts">
-import { useProductPromotions } from '~/composables/useProductPromotions'
+import { useProductPromotions } from '~/composables'
 import { routeList } from '~/utils/route'
 import { computed } from 'vue'
 import { useLocalePath } from '#i18n'

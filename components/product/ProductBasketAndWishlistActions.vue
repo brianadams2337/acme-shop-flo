@@ -2,7 +2,7 @@
   <div class="flex h-12">
     <ClientOnly>
       <template #fallback>
-        <SFSkeletonLoader type="custom" class="h-full w-full rounded-md" />
+        <SFSkeletonLoader type="custom" class="size-full rounded-md" />
       </template>
       <SFButton
         data-test-id="add-item-to-basket-button"
@@ -30,7 +30,7 @@
 </template>
 
 <script setup lang="ts">
-import { useProductDetailsBasketActions } from '~/composables/useProductDetailsBasketActions'
+import { useProductDetailsBasketActions } from '~/composables'
 import type { Product } from '@scayle/storefront-nuxt'
 
 defineProps<{ product: Product }>()

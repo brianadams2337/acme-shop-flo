@@ -15,7 +15,7 @@
 
 <script setup lang="ts">
 import { computed } from 'vue'
-import { usePromotionActions } from '~/composables/usePromotionActions'
+import { usePromotionActions } from '~/composables'
 
 const { togglePromotionList } = usePromotionActions()
 const props = defineProps<{ promotion: Promotion }>()

@@ -224,19 +224,21 @@
 import { definePageMeta, useJsonld } from '#imports'
 import { defineOptions, computed, onMounted, ref } from 'vue'
 import { useHead, useServerSeoMeta } from '@unhead/vue'
-import { generateProductSchema, sanitizeCanonical } from '~/utils/seo'
-import { useFormatHelpers, useCurrentShop } from '#storefront/composables'
-import { useTrackingEvents } from '~/composables/useTrackingEvents'
-import { useZoomGalleryActions } from '~/composables/useZoomGalleryActions'
-import { useProductDetailsAddOns } from '~/composables/useProductDetailsAddOns'
-import { useFavoriteStore } from '~/composables/useFavoriteStore'
-import { usePageState } from '~/composables/usePageState'
-import { useRouteHelpers } from '~/composables/useRouteHelpers'
 import { useNuxtApp } from '#app/nuxt'
 import { useRoute } from '#app/composables/router'
-import { useProductPromotions } from '~/composables/useProductPromotions'
-import { useProductDetailsBasketActions } from '~/composables/useProductDetailsBasketActions'
-import { useProductDetails } from '~/composables/useProductDetails'
+import { generateProductSchema, sanitizeCanonical } from '~/utils/seo'
+import { useFormatHelpers, useCurrentShop } from '#storefront/composables'
+import {
+  useTrackingEvents,
+  useZoomGalleryActions,
+  useProductDetailsAddOns,
+  useFavoriteStore,
+  usePageState,
+  useRouteHelpers,
+  useProductPromotions,
+  useProductDetailsBasketActions,
+  useProductDetails,
+} from '~/composables'
 import { isProductSubscriptionEligible } from '~/modules/subscription/helpers/subscription'
 import { sleep } from 'radash'
 import { ProductColorChip } from '#components'

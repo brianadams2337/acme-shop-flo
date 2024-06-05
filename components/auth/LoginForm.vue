@@ -61,9 +61,11 @@
 
 <script setup lang="ts">
 import { watch, reactive, computed } from 'vue'
-import { useValidationRules } from '~/composables/useValidationRules'
-import { useLastLoggedInUser } from '~/composables/useLastLoggedInUser'
-import { useAuthentication } from '~/composables/useAuthentication'
+import {
+  useValidationRules,
+  useLastLoggedInUser,
+  useAuthentication,
+} from '~/composables'
 import { useIDP } from '#storefront/composables'
 import { useRoute } from '#app/composables/router'
 import useVuelidate from '@vuelidate/core'

@@ -18,7 +18,7 @@
 
 <script setup lang="ts">
 import { computed } from 'vue'
-import { useLastLoggedInUser } from '~/composables/useLastLoggedInUser'
+import { useLastLoggedInUser } from '~/composables'
 
 const { lastLoggedInUser, removeLastLoggedInUser } = await useLastLoggedInUser()
 

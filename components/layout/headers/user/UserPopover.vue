@@ -27,8 +27,7 @@
 import { routeList } from '~/utils/route'
 import { computed, onMounted } from 'vue'
 import { useUser } from '#storefront/composables'
-import { useFlyouts } from '~/composables/useFlyouts'
-import { useDefaultBreakpoints } from '~/composables/useDefaultBreakpoints'
+import { useFlyouts, useDefaultBreakpoints } from '~/composables'
 
 const { isGreaterOrEqual } = useDefaultBreakpoints()
 

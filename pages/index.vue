@@ -13,11 +13,13 @@
 <script setup lang="ts">
 import { definePageMeta } from '#imports'
 import { defineOptions, onMounted } from 'vue'
-import { wishlistListingMetadata } from '~/composables/useWishlistPage'
 import { sanitizeCanonical } from '~/utils/seo'
 import { useHead, useSeoMeta } from '@unhead/vue'
-import { useTrackingEvents } from '~/composables/useTrackingEvents'
-import { useTracking } from '~/composables/useTracking'
+import {
+  wishlistListingMetadata,
+  useTrackingEvents,
+  useTracking,
+} from '~/composables'
 import { useWishlist } from '#storefront/composables'
 import { useNuxtApp, useRuntimeConfig } from '#app/nuxt'
 import { useRoute } from '#app/composables/router'

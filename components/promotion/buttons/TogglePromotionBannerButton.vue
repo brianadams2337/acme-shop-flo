@@ -29,7 +29,7 @@
 
 <script setup lang="ts">
 import { computed } from 'vue'
-import { useCurrentPromotion } from '~/composables/useCurrentPromotion'
+import { useCurrentPromotion } from '~/composables'
 
 type Props = {
   modelValue: boolean

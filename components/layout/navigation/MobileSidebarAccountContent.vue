@@ -37,8 +37,7 @@
 
 <script setup lang="ts">
 import { computed } from 'vue'
-import { useAuthentication } from '~/composables/useAuthentication'
-import { useSideNavigation } from '~/composables/useSideNavigation'
+import { useAuthentication, useSideNavigation } from '~/composables'
 import { useUser } from '#storefront/composables'
 import { routeList } from '~/utils/route'
 

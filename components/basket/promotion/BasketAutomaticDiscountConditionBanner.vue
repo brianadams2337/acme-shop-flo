@@ -16,7 +16,7 @@
           class="text-balance lg:basis-1/2 xl:basis-7/12"
         />
         <PromotionCountdown
-          :timeUntil="scheduledTo"
+          :time-until="scheduledTo"
           class="md:items-center md:justify-end lg:basis-1/2 xl:basis-5/12"
           borderless
         />
@@ -31,9 +31,8 @@
 </template>
 
 <script setup lang="ts">
-import { usePromotionProgress } from '~/composables/usePromotionProgress'
 import { toRef } from 'vue'
-import { useBasketItemPromotion } from '~/composables/useBasketItemPromotion'
+import { useBasketItemPromotion, usePromotionProgress } from '~/composables'
 import { type BasketItem } from '@scayle/storefront-nuxt'
 
 const props = defineProps<{ basketItem: BasketItem }>()

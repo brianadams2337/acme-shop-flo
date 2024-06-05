@@ -49,7 +49,7 @@
 </template>
 
 <script setup lang="ts">
-import { useOrders } from '~/composables/useOrders'
+import { useOrders } from '~/composables'
 import { useFormatHelpers } from '#storefront/composables'
 
 const { formatCurrency } = useFormatHelpers()

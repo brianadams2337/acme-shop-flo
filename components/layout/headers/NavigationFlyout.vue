@@ -52,7 +52,7 @@
 
 <script setup lang="ts">
 import { computed } from 'vue'
-import { useFlyouts } from '~/composables/useFlyouts'
+import { useFlyouts } from '~/composables'
 
 const { closeFlyoutMenu, flyoutNavigationItem } = useFlyouts()
 

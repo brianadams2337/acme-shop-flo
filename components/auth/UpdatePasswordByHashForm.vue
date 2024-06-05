@@ -45,8 +45,7 @@
 
 <script setup lang="ts">
 import { computed, reactive } from 'vue'
-import { useValidationRules } from '~/composables/useValidationRules'
-import { useAuthentication } from '~/composables/useAuthentication'
+import { useValidationRules, useAuthentication } from '~/composables'
 import { useRoute } from '#app/composables/router'
 import useVuelidate from '@vuelidate/core'
 

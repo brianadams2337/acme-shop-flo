@@ -33,11 +33,13 @@
 </template>
 
 <script setup lang="ts">
-import { useTrackingEvents } from '~/composables/useTrackingEvents'
 import { ref, computed } from 'vue'
-import { useRouteHelpers } from '~/composables/useRouteHelpers'
-import { useDefaultBreakpoints } from '~/composables/useDefaultBreakpoints'
-import { useProductRecommendations } from '~/composables/useProductRecommendations'
+import {
+  useTrackingEvents,
+  useRouteHelpers,
+  useDefaultBreakpoints,
+  useProductRecommendations,
+} from '~/composables'
 import { getImageFromList } from '~/utils/image'
 import {
   getLowestPrice,

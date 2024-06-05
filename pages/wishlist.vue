@@ -51,8 +51,8 @@ import { BasketListingMetadata } from '~/constants/listingMetadata'
 import {
   wishlistListingMetadata,
   useWishlistPage,
-} from '~/composables/useWishlistPage'
-import { useTrackingEvents } from '~/composables/useTrackingEvents'
+  useTrackingEvents,
+} from '~/composables'
 import { useBasket } from '#storefront/composables'
 
 const { data, products, count, fetching, orderedItems } =

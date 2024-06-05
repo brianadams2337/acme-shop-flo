@@ -15,7 +15,7 @@
 import { definePageMeta } from '#imports'
 import { useSeoMeta } from '@unhead/vue'
 import { computed, watch, onMounted, defineOptions } from 'vue'
-import { useTrackingEvents } from '~/composables/useTrackingEvents'
+import { useTrackingEvents } from '~/composables'
 import { useNuxtApp } from '#app/nuxt'
 import { useUser, useOrderConfirmation } from '#storefront/composables'
 import { useRoute } from '#app/composables/router'

@@ -22,7 +22,7 @@
         {{ customData.product?.badgeLabel }}
       </SFHeadline>
       <PromotionCountdown
-        :timeUntil="schedule.to"
+        :time-until="schedule.to"
         class="min-w-fit max-w-fit lg:basis-7/12 lg:justify-end xl:basis-5/12"
       />
     </div>
@@ -42,7 +42,7 @@
         {{ $t('promotion.save_your_free_gift') }}
       </SFHeadline>
       <PromotionCountdown
-        :timeUntil="schedule.to"
+        :time-until="schedule.to"
         borderless
         class="lg:basis-7/12 lg:justify-end xl:basis-5/12"
       />
@@ -53,8 +53,7 @@
 <script setup lang="ts">
 import { routeList } from '~/utils/route'
 import { computed } from 'vue'
-import { useProductPromotions } from '~/composables/useProductPromotions'
-import { useBasketPromotions } from '~/composables/useBasketPromotions'
+import { useProductPromotions, useBasketPromotions } from '~/composables'
 import { useLocalePath } from '#i18n'
 import { useRoute } from '#app/composables/router'
 import { getBackgroundColorStyle } from '~/utils/promotion'

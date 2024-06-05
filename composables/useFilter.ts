@@ -10,7 +10,7 @@ import {
   transformMinAndMaxPriceToFilter,
   transformStateToFilters,
 } from '@scayle/storefront-nuxt'
-import type { FilterContext } from '~/composables/useFilterContext'
+import type { FilterContext } from '~/composables'
 import { debounce, omit, isEqual, isEmpty } from 'radash'
 
 export const INCLUDED_QUICK_FILTERS = ['sale', 'isNew', 'styleGroup']

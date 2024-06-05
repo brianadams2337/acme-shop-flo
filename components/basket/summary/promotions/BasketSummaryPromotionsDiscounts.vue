@@ -38,7 +38,7 @@
 <script setup lang="ts">
 import { useFormatHelpers } from '#storefront/composables'
 import { getTextColorStyle } from '~/utils/promotion'
-import { useBasketReductions } from '~/composables/useBasketReductions'
+import { useBasketReductions } from '~/composables'
 
 const { itemsWithPromotionsReductions, getHeadlineParts, withNegativePrefix } =
   await useBasketReductions()

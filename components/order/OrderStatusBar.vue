@@ -38,7 +38,7 @@
 <script setup lang="ts">
 import { Status, DeliveryProgress } from '~/constants/order'
 import { computed } from 'vue'
-import { useFormatDate } from '~/composables/useFormatDate'
+import { useFormatDate } from '~/composables'
 
 type Props = {
   index: number

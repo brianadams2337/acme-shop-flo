@@ -47,7 +47,7 @@
 </template>
 
 <script setup lang="ts">
-import { useFilter } from '~/composables/useFilter'
+import { useFilter } from '~/composables'
 
 const {
   applyFilters,

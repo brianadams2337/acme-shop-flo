@@ -74,7 +74,7 @@
 
 <script setup lang="ts">
 import { defineOptions, computed } from 'vue'
-import { useNavigationTreeItems } from '~/composables/useNavigationTreeItems'
+import { useNavigationTreeItems } from '~/composables'
 import type { SbFooter } from '../../types'
 import { useCMS } from '../../composables/useCMS'
 import CMSText from '../Text.vue'

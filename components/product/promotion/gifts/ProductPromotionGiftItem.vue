@@ -78,13 +78,15 @@
 import { getTextColorStyle, getBackgroundColorStyle } from '~/utils/promotion'
 import { AlphaColorMap } from '~/constants/color'
 import { computed } from 'vue'
-import { useProductBaseInfo } from '~/composables/useProductBaseInfo'
-import { useRouteHelpers } from '~/composables/useRouteHelpers'
-import { usePromotionGiftSelection } from '~/composables/usePromotionGiftSelection'
-import { useProductPromotions } from '~/composables/useProductPromotions'
-import { useDefaultBreakpoints } from '~/composables/useDefaultBreakpoints'
 import { useFormatHelpers } from '#storefront/composables'
-import { useProductDetails } from '~/composables/useProductDetails'
+import {
+  useProductBaseInfo,
+  useRouteHelpers,
+  usePromotionGiftSelection,
+  useProductPromotions,
+  useDefaultBreakpoints,
+  useProductDetails,
+} from '~/composables'
 import type { Product } from '@scayle/storefront-nuxt'
 
 const props = defineProps<{

@@ -13,7 +13,7 @@
 
 <script setup lang="ts">
 import { useFormatHelpers } from '#storefront/composables'
-import { useBasketReductions } from '~/composables/useBasketReductions'
+import { useBasketReductions } from '~/composables'
 
 const { formatCurrency } = useFormatHelpers()
 

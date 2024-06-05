@@ -13,7 +13,7 @@
           is-column
           class="mb-2"
         />
-        <PromotionCountdown :timeUntil="scheduledTo" />
+        <PromotionCountdown :time-until="scheduledTo" />
       </div>
       <div
         v-if="isPriorityBadgeShown"
@@ -45,7 +45,7 @@
 <script setup lang="ts">
 import { getBackgroundColorStyle } from '~/utils/promotion'
 import { computed, toRef } from 'vue'
-import { usePromotionProgress } from '~/composables/usePromotionProgress'
+import { usePromotionProgress } from '~/composables'
 
 type Props = {
   promotion: Promotion

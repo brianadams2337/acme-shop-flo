@@ -12,7 +12,7 @@
       </SFHeadline>
       <PromotionCountdown
         v-if="giftPromotion"
-        :timeUntil="giftPromotion.schedule.to"
+        :time-until="giftPromotion.schedule.to"
       />
     </div>
     <div class="p-4">
@@ -22,8 +22,7 @@
 </template>
 
 <script setup lang="ts">
-import { usePromotionGifts } from '~/composables/usePromotionGifts'
-import { useBasketItemPromotion } from '~/composables/useBasketItemPromotion'
+import { usePromotionGifts, useBasketItemPromotion } from '~/composables'
 import { computed } from 'vue'
 import type { BasketItem } from '@scayle/storefront-nuxt'
 

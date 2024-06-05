@@ -29,9 +29,8 @@
 </template>
 
 <script setup lang="ts">
-import { usePromotionProgress } from '~/composables/usePromotionProgress'
+import { usePromotionProgress, useCurrentPromotion } from '~/composables'
 import { computed } from 'vue'
-import { useCurrentPromotion } from '~/composables/useCurrentPromotion'
 
 const { automaticDiscount, headlineParts, currentPromotion } =
   useCurrentPromotion()

@@ -44,9 +44,8 @@
 
 <script setup lang="ts">
 import { computed } from 'vue'
-import { useAuthentication } from '~/composables/useAuthentication'
 import { useUser } from '#storefront/composables'
-import { useFlyouts } from '~/composables/useFlyouts'
+import { useAuthentication, useFlyouts } from '~/composables'
 import { routeList } from '~/utils/route'
 
 const { closeUserFlyout } = useFlyouts()

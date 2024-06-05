@@ -21,7 +21,7 @@
 
 <script setup lang="ts">
 import { computed } from 'vue'
-import { useFilter } from '~/composables/useFilter'
+import { useFilter } from '~/composables'
 import { useNuxtApp } from '#app/nuxt'
 
 const { $i18n } = useNuxtApp()

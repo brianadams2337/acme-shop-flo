@@ -50,12 +50,14 @@
 
 <script setup lang="ts">
 import { BasketListingMetadata } from '~/constants/listingMetadata'
-import { wishlistListingMetadata } from '~/composables/useWishlistPage'
+import {
+  wishlistListingMetadata,
+  useRouteHelpers,
+  useDefaultBreakpoints,
+  useTrackingEvents,
+} from '~/composables'
 import { onMounted, computed, ref } from 'vue'
-import { useRouteHelpers } from '~/composables/useRouteHelpers'
-import { useDefaultBreakpoints } from '~/composables/useDefaultBreakpoints'
 import { useUser, useBasket, useWishlist } from '#storefront/composables'
-import { useTrackingEvents } from '~/composables/useTrackingEvents'
 import { useRoute } from '#app/composables/router'
 import { routeList } from '~/utils/route'
 import type { OrderSummary } from '@scayle/storefront-nuxt'

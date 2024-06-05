@@ -11,7 +11,7 @@
       @click="togglePromotionList()"
     >
       <div class="flex-1">
-        <PromotionCountdown v-if="expirationDate" :timeUntil="expirationDate" />
+        <PromotionCountdown v-if="expirationDate" :time-until="expirationDate" />
       </div>
       <PromotionHeadline
         v-if="headlineParts"
@@ -52,10 +52,12 @@
 
 <script setup lang="ts">
 import { computed, ref } from 'vue'
-import { usePromotionProgress } from '~/composables/usePromotionProgress'
-import { usePromotionActions } from '~/composables/usePromotionActions'
-import { useCurrentPromotion } from '~/composables/useCurrentPromotion'
-import { usePromotionChange } from '~/composables/usePromotionChange'
+import {
+  usePromotionProgress,
+  usePromotionActions,
+  useCurrentPromotion,
+  usePromotionChange,
+} from '~/composables'
 
 const props = defineProps<{ promotions: Promotion[] }>()
 

@@ -19,8 +19,7 @@
 import { useImage } from '#imports'
 import { defineOptions, ref, computed } from 'vue'
 import { useIntersectionObserver } from '@vueuse/core'
-import { useTrackingEvents } from '~/composables/useTrackingEvents'
-import { useDefaultBreakpoints } from '~/composables/useDefaultBreakpoints'
+import { useTrackingEvents, useDefaultBreakpoints } from '~/composables'
 import type { CMSVideoProps } from '../types'
 import { useStoryblokMargins } from '../composables/useStoryblokMargins'
 

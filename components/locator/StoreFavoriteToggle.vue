@@ -13,7 +13,7 @@
 
 <script setup lang="ts">
 import { computed } from 'vue'
-import { useFavoriteStore } from '~/composables/useFavoriteStore'
+import { useFavoriteStore } from '~/composables'
 
 interface Props {
   storeId: number

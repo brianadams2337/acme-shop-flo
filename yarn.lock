@@ -5397,10 +5397,10 @@ cardinal@^2.1.1:
     ansicolors "~0.3.2"
     redeyed "~2.1.0"
 
-cf-content-types-generator@2.15.1:
-  version "2.15.1"
-  resolved "https://registry.yarnpkg.com/cf-content-types-generator/-/cf-content-types-generator-2.15.1.tgz#201e51cf67c83188720283ef0aaefbef8bd85b48"
-  integrity sha512-jEGU6G1Eo+NWMFyYVnuen0+U19ZxuWcUZWP3l/bl0aPb8xdj9jA26VGsujI4FO/dPUjrtaF7LXKeO0SwbZqy7w==
+cf-content-types-generator@2.15.2:
+  version "2.15.2"
+  resolved "https://registry.yarnpkg.com/cf-content-types-generator/-/cf-content-types-generator-2.15.2.tgz#cad0a8ffe625a11df95264b2ba1998ecdb3c2e20"
+  integrity sha512-z4+Z8woiHxZIJu3C+OAhQTOV/A4sQk8EMxlcIhPYI32m89drLyxjSojpof8nsiWii26NzP42XSgVLCtLvy9z8g==
   dependencies:
     "@oclif/core" "^3.16.0"
     "@oclif/plugin-help" "^6.0.9"

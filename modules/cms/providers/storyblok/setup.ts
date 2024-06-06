@@ -9,8 +9,8 @@ import {
 import type { ModuleOptions as StoryblokDefaultModuleOptions } from '@storyblok/nuxt'
 import type { Nuxt, NuxtOptions } from 'nuxt/schema'
 import { logger } from '../../utils/helpers'
+import type { ModuleOptions } from '../../types'
 import type { StoryblokModuleOptions } from './types'
-import type { ModuleOptions } from '~/modules/cms/types'
 
 export async function setupStoryblok(options: ModuleOptions, nuxt: Nuxt) {
   const resolver = createResolver(import.meta.url)
@@ -54,6 +54,7 @@ export async function setupStoryblok(options: ModuleOptions, nuxt: Nuxt) {
   logger.info('Loading up Storyblok plugin...')
   addPlugin(resolver.resolve('./runtime/plugin'))
 
+  // TODO: Remove with fully disabling of auto import feature
   logger.info('Loading up Storyblok composables...')
   addImportsDir(resolver.resolve('./composables'))
   addImportsDir(resolver.resolve('./composables/storefront'))

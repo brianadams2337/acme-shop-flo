@@ -8,7 +8,17 @@ import {
 } from '@scayle/storefront-nuxt'
 import { isString } from 'radash'
 import type { RouteLocationRaw, RouteParams } from '#vue-router'
-import type { NavigateToOptions } from '#app/composables/router'
+import { type NavigateToOptions, navigateTo } from '#app/composables/router'
+import { useCurrentShop } from '#storefront/composables'
+import { useLocalePath } from '#i18n'
+import {
+  groupSearchCategoryFiltersByKey,
+  hasLocalePrefix,
+  isCategorySuggestion,
+  isProductSuggestion,
+  normalizePathRoute,
+  routeList,
+} from '~/utils'
 
 export function useRouteHelpers() {
   const localePath = useLocalePath()

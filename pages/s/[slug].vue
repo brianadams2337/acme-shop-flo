@@ -29,6 +29,7 @@ import { useSeoMeta } from '@unhead/vue'
 import { capitalize } from 'radash'
 import { useRoute } from '#app/composables/router'
 import { definePageMeta } from '#imports'
+import { routeList } from '~/utils'
 
 const route = useRoute()
 const slug = computed(() =>

@@ -31,7 +31,7 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import { unique } from 'radash'
-import { useOrderDetails } from '~/composables'
+import { useOrderDetails } from '~/composables/useOrderDetails'
 
 const props = defineProps<{
   orderId: number

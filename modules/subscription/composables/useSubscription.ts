@@ -9,7 +9,7 @@ import {
   extendPromise,
 } from '@scayle/storefront-nuxt'
 
-import type { Ref } from 'vue'
+import { computed, ref, type Ref } from 'vue'
 import {
   type PreferredDeliveryDate,
   SUBSCRIPTION_CANCELLATION_POLICY,
@@ -19,6 +19,8 @@ import {
   getOrdinalSuffix,
   getSubscriptionIntervals,
 } from '../helpers/subscription'
+import { useNuxtApp } from '#app'
+import { useProduct } from '#storefront/composables'
 
 const selectedInterval = ref<Value | undefined>()
 const selectedPreferredDeliveryDate = ref<PreferredDeliveryDate | undefined>()

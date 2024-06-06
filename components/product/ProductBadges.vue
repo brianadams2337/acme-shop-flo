@@ -65,6 +65,7 @@ import { routeList } from '~/utils/route'
 import { useLocalePath } from '#i18n'
 import { useRoute } from '#app/composables/router'
 import { isProductSustainable } from '~/utils/sustainability'
+import { getSalesRelativeAmountByCategory } from '~/utils'
 
 type Props = {
   product: Product

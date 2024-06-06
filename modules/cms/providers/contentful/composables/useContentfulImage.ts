@@ -1,4 +1,5 @@
-import { useStorefrontBreakpoints } from '../composables/storefront/useStorefrontBreakpoints'
+import { reactive } from 'vue'
+import { useStorefrontBreakpoints } from '../../../composables/storefront/useStorefrontBreakpoints'
 import {
   type TypeImageWithoutUnresolvableLinksResponse,
   type TypePageWithoutUnresolvableLinksResponse,
@@ -11,7 +12,8 @@ type SanitizedImage = {
   src: string
   alt: string
 }
-export const isMobile = () => useStorefrontBreakpoints()?.isSmaller('md')
+
+const isMobile = () => useStorefrontBreakpoints()?.isSmaller('md')
 
 export function useContentfulImageSanitizer() {
   const sanitize = (img: CMSImage | null | undefined): SanitizedImage => {

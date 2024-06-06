@@ -62,7 +62,7 @@ import {
   useToast,
   useTrackingEvents,
 } from '~/composables'
-import { useNuxtApp } from '#app/nuxt'
+import { useNuxtApp } from '#app'
 import { useRoute } from '#app/composables/router'
 import { PRODUCTS_PER_PAGE } from '~/constants/product'
 

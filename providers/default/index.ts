@@ -3,6 +3,7 @@ import type { ProviderGetImage } from '@nuxt/image'
 
 export default () => {}
 
+// eslint-disable-next-line unimport/auto-insert
 export const getImage: ProviderGetImage = (
   src,
   { modifiers = {} } = {},

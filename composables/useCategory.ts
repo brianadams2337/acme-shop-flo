@@ -1,3 +1,8 @@
+import { computed } from 'vue'
+import { useRouteHelpers } from '~/composables/useRouteHelpers'
+import { useRoute } from '#app/composables/router'
+import { useCategoryById, useCategoryByPath } from '#storefront/composables'
+
 const STORYBLOK_CATEGORIES_FOLDER = '/categories'
 
 export function useCategory(autoFetch = false) {

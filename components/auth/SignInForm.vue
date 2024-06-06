@@ -46,7 +46,7 @@ import { computed } from 'vue'
 import { routeList } from '~/utils/route'
 import { useLastLoggedInUser, useRouteHelpers } from '~/composables'
 import { useRoute } from '#app/composables/router'
-import { useNuxtApp } from '#app/nuxt'
+import { useNuxtApp } from '#app'
 
 const props = withDefaults(defineProps<{ showGuestLogin?: boolean }>(), {
   showGuestLogin: true,

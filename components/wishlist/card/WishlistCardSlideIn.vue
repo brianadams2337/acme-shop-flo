@@ -24,7 +24,10 @@
           </div>
         </div>
         <div class="px-5 pt-4">
-          <SFRadioGroup :items="sizes" @update:model-value="selectRadioSize" />
+          <SFRadioGroup
+            :items="sizes"
+            @update:model-value="selectRadioSize($event, 1)"
+          />
         </div>
       </div>
     </template>

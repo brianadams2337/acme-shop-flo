@@ -82,7 +82,7 @@ import useVuelidate from '@vuelidate/core'
 import { dateOfBirthFormats } from '~/constants/mask'
 import { useToast, useValidationRules } from '~/composables'
 import { useCurrentShop, useUser } from '#storefront/composables'
-import { useNuxtApp } from '#app/nuxt'
+import { useNuxtApp } from '#app'
 
 const { user, updateUser } = await useUser()
 

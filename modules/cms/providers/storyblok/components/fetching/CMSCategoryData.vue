@@ -1,3 +1,16 @@
+<template>
+  <div>
+    <slot
+      v-bind="{
+        content: content as SbCmsImage,
+        hasTeaserImage,
+        postListingContent,
+        preListingContent,
+      }"
+    />
+  </div>
+</template>
+
 <script setup lang="ts">
 import type { SbCmsImage, SbListingPage } from '../../types'
 import { useCMS } from '../../composables/useCMS'
@@ -24,16 +37,3 @@ useStoryblokEditor<SbListingPage>(data)
 const { content, hasTeaserImage, postListingContent, preListingContent } =
   useCMSListingContent(data)
 </script>
-
-<template>
-  <div>
-    <slot
-      v-bind="{
-        content: content as SbCmsImage,
-        hasTeaserImage,
-        postListingContent,
-        preListingContent,
-      }"
-    />
-  </div>
-</template>

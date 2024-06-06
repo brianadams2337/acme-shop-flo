@@ -79,7 +79,7 @@ import {
   getFirstAttributeValue,
 } from '@scayle/storefront-nuxt'
 import { definePageMeta } from '#imports'
-import { useNuxtApp } from '#app/nuxt'
+import { useNuxtApp } from '#app'
 import { useRoute } from '#app/composables/router'
 import { WishlistListingMetadata } from '~/constants/listingMetadata'
 import { isAutomaticDiscountType, isBuyXGetYType } from '~/utils/promotion'

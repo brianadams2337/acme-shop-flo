@@ -1,3 +1,6 @@
+import { useRoute } from '#app/composables/router'
+import { getEmailHash, mapCustomerInfoToTrackingPayload } from '~/utils'
+
 export type AuthTrackingEventData = {
   customer_id?: number
   customer_type?: CustomerType

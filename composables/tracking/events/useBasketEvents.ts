@@ -1,4 +1,6 @@
 import type { BasketItem, BasketTotalPrice } from '@scayle/storefront-nuxt'
+import { useCurrentShop } from '#storefront/composables'
+import { divideByHundred, sumReductionsByCategory } from '~/utils'
 
 const useBasketEvents = (
   track: (event: TrackingEvent, payload: TrackingPayload) => any,

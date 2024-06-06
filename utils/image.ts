@@ -2,6 +2,38 @@ import { type ProductImage, getAttributeValue } from '@scayle/storefront-nuxt'
 
 export { getImageFromList, isImageType } from '@scayle/storefront-nuxt'
 
+export const getAttribute = (
+  image: ProductImage,
+  key: string,
+): string | undefined => {
+  const values = image.attributes?.[key]?.values
+  if (!values || Array.isArray(values)) {
+    return
+  }
+  return values.value
+}
+
+export const getImage = (
+  images: ProductImage[],
+  imageKind: string,
+  imageView: string,
+  imageViewOptional = false,
+) => {
+  return (
+    images.find(
+      (image: ProductImage) =>
+        getAttributeValue(image.attributes, 'imageKind') === imageKind &&
+        getAttributeValue(image.attributes, 'imageView') === imageView,
+    ) ||
+    (imageViewOptional &&
+      images.find(
+        (image: ProductImage) =>
+          getAttributeValue(image.attributes, 'imageKind') === imageKind,
+      )) ||
+    undefined
+  )
+}
+
 const getBreakerImage = (
   baseImages: ProductImage[],
 ): ProductImage | undefined => {
@@ -95,38 +127,6 @@ export const getBasketImage = (images: ProductImage[]) => {
   return getDetailPageImages(images)[0]?.hash
 }
 
-export const getImage = (
-  images: ProductImage[],
-  imageKind: string,
-  imageView: string,
-  imageViewOptional = false,
-) => {
-  return (
-    images.find(
-      (image: ProductImage) =>
-        getAttributeValue(image.attributes, 'imageKind') === imageKind &&
-        getAttributeValue(image.attributes, 'imageView') === imageView,
-    ) ||
-    (imageViewOptional &&
-      images.find(
-        (image: ProductImage) =>
-          getAttributeValue(image.attributes, 'imageKind') === imageKind,
-      )) ||
-    undefined
-  )
-}
-
 export const getModelImages = (images: ProductImage[]) => {
   return getDetailPageImages(images).slice(1)
-}
-
-export const getAttribute = (
-  image: ProductImage,
-  key: string,
-): string | undefined => {
-  const values = image.attributes?.[key]?.values
-  if (!values || Array.isArray(values)) {
-    return
-  }
-  return values.value
 }

@@ -1,4 +1,8 @@
 import type { Product, Variant } from '@scayle/storefront-nuxt'
+import { usePageState } from '~/composables/usePageState'
+import { useTrackingEvents } from '~/composables/useTrackingEvents'
+
+import { useRoute } from '#app/composables/router'
 
 export function useWishlistActions() {
   const { trackRemoveFromWishlist, trackAddToWishlist } = useTrackingEvents()

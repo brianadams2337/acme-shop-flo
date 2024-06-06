@@ -1,4 +1,4 @@
-import { computed } from 'vue'
+import { computed, type Ref } from 'vue'
 
 export type PaginationOptions = Record<
   'firstPage' | 'currentPage' | 'lastPage' | 'visiblePages',

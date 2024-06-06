@@ -1,4 +1,5 @@
 import { useI18n } from '#i18n'
+import { useCurrentShop } from '#storefront/composables'
 
 /**
  * Get the first day of the week for the current locale

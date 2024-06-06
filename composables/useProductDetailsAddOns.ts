@@ -3,6 +3,8 @@ import {
   flattenDeep,
   flattenFieldSet,
 } from '@scayle/storefront-nuxt'
+import { type MaybeRefOrGetter, toRef, computed, readonly, toValue } from 'vue'
+import { useState } from '#app/composables/state'
 
 export function useProductDetailsAddOns(
   productId: MaybeRefOrGetter<number>,

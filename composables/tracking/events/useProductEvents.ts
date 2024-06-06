@@ -1,4 +1,7 @@
 import type { Product } from '@scayle/storefront-nuxt'
+import { useCurrentShop } from '#storefront/composables'
+import { useRouteHelpers } from '~/composables/useRouteHelpers'
+import { getDeepestCategoryForTracking } from '~/utils'
 
 const collectProductListItems = (
   items: Product[],

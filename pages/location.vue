@@ -70,7 +70,7 @@ import { useSeoMeta } from '@unhead/vue'
 import { useToast } from '~/composables/useToast'
 import { definePageMeta } from '#imports'
 import { useStoreLocator } from '#omnichannel/composables'
-import { useRuntimeConfig } from '#app/nuxt'
+import { useRuntimeConfig } from '#app'
 import { useI18n } from '#i18n'
 
 const { t } = useI18n()

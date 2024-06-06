@@ -24,7 +24,7 @@ import { computed } from 'vue'
 import { isString } from 'radash'
 import type { RouteLocationRaw } from '#vue-router'
 import { LinkVariant } from '#storefront-ui'
-import { useRouteHelpers } from '~/composables'
+import { useRouteHelpers } from '~/composables/useRouteHelpers'
 
 const LinkTypeClass = {
   [LinkVariant.LOUD]: 'font-bold',

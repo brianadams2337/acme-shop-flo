@@ -16,7 +16,7 @@
 import { computed, defineOptions } from 'vue'
 import { useSeoMeta } from '@unhead/vue'
 import { definePageMeta } from '#imports'
-import { useNuxtApp } from '#app/nuxt'
+import { useNuxtApp } from '#app'
 import { useUser } from '#storefront/composables'
 
 const { user } = useUser()

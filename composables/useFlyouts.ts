@@ -3,6 +3,8 @@ import type {
   NavigationItemExternal,
   NavigationItems,
 } from '@scayle/storefront-nuxt'
+import { computed } from 'vue'
+import { useState } from '#app/composables/state'
 
 export type FlyoutMenuCategory = {
   name: string

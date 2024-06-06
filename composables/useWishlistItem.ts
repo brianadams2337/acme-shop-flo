@@ -6,6 +6,12 @@ import {
   getLowestPrice,
   getSizeFromVariant,
 } from '@scayle/storefront-nuxt'
+import { computed, type Ref } from 'vue'
+import {
+  getVariantSizes,
+  getVariantWithLowestPrice,
+  hasOneSizeProductVariantOnly,
+} from '~/utils'
 
 export function useWishlistItem(item: Ref<WishlistItem>) {
   const hasOneSizeVariantOnly = computed(() => {

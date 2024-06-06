@@ -1,5 +1,8 @@
 import { extendPromise } from '@scayle/storefront-nuxt'
 import { sum } from 'radash'
+import { computed, type ComputedRef, type Ref } from 'vue'
+import { useBasket, useFormatHelpers } from '#storefront/composables'
+import { divideByHundred, getBasketTotalWithoutPromotions } from '~/utils'
 
 export function usePromotionProgress(
   promotion:

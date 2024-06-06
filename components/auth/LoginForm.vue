@@ -70,6 +70,7 @@ import {
 } from '~/composables'
 import { useIDP } from '#storefront/composables'
 import { useRoute } from '#app/composables/router'
+import { routeList } from '~/utils/route'
 
 const route = useRoute()
 

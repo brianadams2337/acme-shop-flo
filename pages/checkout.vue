@@ -19,7 +19,7 @@ import type { CheckoutEvent } from '@scayle/storefront-nuxt'
 import { definePageMeta } from '#imports'
 import { useCheckoutWebComponent, useTrackingEvents } from '~/composables'
 import { useBasket, useLog, useUser } from '#storefront/composables'
-import { useNuxtApp } from '#app/nuxt'
+import { useNuxtApp } from '#app'
 
 const { accessToken, checkoutJwt, fetchCheckoutToken } =
   await useCheckoutWebComponent()

@@ -1,3 +1,5 @@
+import { readonly, ref } from 'vue'
+
 export function useZoomGalleryActions() {
   const state = ref({
     display: false,

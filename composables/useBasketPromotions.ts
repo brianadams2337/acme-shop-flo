@@ -1,5 +1,8 @@
 import { extendPromise } from '@scayle/storefront-nuxt'
 import { unique } from 'radash'
+import { computed } from 'vue'
+import { useBasket, useCurrentPromotions } from '#storefront/composables'
+import { isAutomaticDiscountType, isBuyXGetYType } from '~/utils'
 
 export function useBasketPromotions() {
   const basket = useBasket()

@@ -1,4 +1,4 @@
-import type { NuxtConfig } from 'nuxt/schema'
+import { type NuxtConfig, defineNuxtConfig } from 'nuxt/config'
 import yn from 'yn'
 import { nanoid } from 'nanoid'
 import { HashAlgorithm, type ModuleBaseOptions } from '@scayle/storefront-nuxt'
@@ -519,8 +519,6 @@ export default defineNuxtConfig({
 
   // https://nuxt.com/docs/api/nuxt-config#imports
   imports: {
-    // https://nuxt.com/docs/api/nuxt-config#dirs
-    dirs: ['./constants'],
     // https://nuxt.com/docs/guide/concepts/auto-imports#disabling-auto-imports
     autoImport: false,
   },
@@ -528,7 +526,7 @@ export default defineNuxtConfig({
   // Allow auto-import for vue components
   // https://nuxt.com/docs/api/nuxt-config#components
   components: [
-    { path: '~/components', pathPrefix: false, extensions: ['.vue'] },
+    { path: '~/components', pathPrefix: false, extensions: ['vue'] },
   ],
 
   // https://nuxt.com/docs/api/nuxt-config#vue-1
@@ -673,7 +671,7 @@ export default defineNuxtConfig({
           : JSON.stringify(nitro.options.runtimeConfig)
 
         console.log(
-          '[storefront-boilerplate] runtimeConfig after nitro initialisation:',
+          '[storefront-boilerplate] runtimeConfig after nitro initialization:',
           configToPrint,
         )
       }

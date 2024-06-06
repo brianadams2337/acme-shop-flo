@@ -1,4 +1,7 @@
 import type { ChainModifiers, Entry, EntrySkeletonType } from 'contentful'
+import { getCurrentInstance, onBeforeUnmount, type Ref } from 'vue'
+import { useRoute } from '#app/composables/router'
+import { useCurrentShop } from '#storefront/composables'
 
 export function useContentfulEditor<T extends EntrySkeletonType>(
   content?: Ref<Entry<T, ChainModifiers, string> | null | undefined>,

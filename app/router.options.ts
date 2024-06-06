@@ -1,5 +1,6 @@
 import { sleep } from 'radash'
-import type { RouterConfig } from '@nuxt/schema'
+import type { RouterConfig } from 'nuxt/schema'
+import { useNuxtApp } from '#app'
 
 export default <RouterConfig>{
   scrollBehaviorType: 'smooth',

@@ -1,5 +1,7 @@
 import { useStoryblokBridge } from '@storyblok/vue'
+import type { Ref } from 'vue'
 import type { SbStory } from '../types/storyblok'
+import { useRoute } from '#app/composables/router'
 
 export function useStoryblokEditor<T>(content?: Ref<SbStory<T> | null>) {
   const route = useRoute()

@@ -1,5 +1,11 @@
 import yn from 'yn'
 import { purifySensitiveData } from '@scayle/storefront-nuxt'
+// NOTE: We need to import here from the Nuxt server-specific #imports to mitigate
+// unresolved dependencies in the imported composables from Nitro(nitropack).
+// This results in `nuxi typecheck` not being able to properly infer the correct
+// import and throw an error without explicit `@ts-expect-error`
+// @ts-expect-error TS2724: '"#imports"' has no exported member named 'defineNitroPlugin'. Did you mean 'defineNuxtPlugin'?
+import { defineNitroPlugin, useRuntimeConfig } from '#imports'
 
 /*
     This Nitro plugin logs the sanitized runtime configuration at startup.
@@ -22,14 +28,14 @@ export default defineNitroPlugin(() => {
     'secret',
   ]
 
-  const loggableConfig: Record<string, any> = purifySensitiveData(
+  const logableConfig: Record<string, any> = purifySensitiveData(
     runtimeConfig,
     sensitiveKeys,
   )
 
   const configToPrint = yn(process.env.ENABLE_CONFIG_LOG_PRETTIER)
-    ? JSON.stringify(loggableConfig, null, 2)
-    : JSON.stringify(loggableConfig)
+    ? JSON.stringify(logableConfig, null, 2)
+    : JSON.stringify(logableConfig)
 
   console.log(
     '[storefront-boilerplate] runtimeConfig after startup:',

@@ -76,8 +76,10 @@ export default defineNuxtModule<ModuleOptions>({
       options,
     )
 
-    addServerPlugin(resolver.resolve('src/nitro-plugin'))
-    addPlugin(resolver.resolve('src/nuxt-plugin'))
+    addServerPlugin(
+      resolver.resolve('src/runtime/nitro/plugins/nitroOTelTracerPlugin'),
+    )
+    addPlugin(resolver.resolve('src/runtime/plugins/matchedVueRoutePlugin'))
 
     // Extend the H3 context based on the data we add in our route middleware
     const template = addTypeTemplate({

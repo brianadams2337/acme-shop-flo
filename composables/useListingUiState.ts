@@ -1,3 +1,6 @@
+import { reactive, computed } from 'vue'
+import { useDefaultBreakpoints } from '~/composables/useDefaultBreakpoints'
+
 export function useListingUiState() {
   const { isGreaterOrEqual } = useDefaultBreakpoints()
 

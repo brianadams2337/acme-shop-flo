@@ -1,3 +1,6 @@
+import { computed } from 'vue'
+import { useRoute } from '#app/composables/router'
+
 export function useStoryblokHelpers() {
   const route = useRoute()
 

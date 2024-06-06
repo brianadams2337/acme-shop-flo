@@ -92,7 +92,11 @@ const sizes = computed(() =>
   })),
 )
 
-const onSelectSize = (variantId: number) => {
+const onSelectSize = (variantId: string | number | undefined) => {
+  if (!variantId) {
+    return
+  }
+
   const value = variantSizes.value.find((it) => it.variantId === variantId)
   value && handleSelectedSize(value)
 }

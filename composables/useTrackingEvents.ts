@@ -15,6 +15,10 @@ import {
   useUserItemsTrackingWatcher,
   useWishlistEvents,
 } from './tracking'
+import { usePageState } from '~/composables/usePageState'
+import { useTracking } from '~/composables/useTracking'
+
+import { mapProductToTrackingPayload, mapTrackingDataForEvent } from '~/utils'
 
 /**
  * Higher order composable which serves as a single entry point to unify different ecommerce tracking events

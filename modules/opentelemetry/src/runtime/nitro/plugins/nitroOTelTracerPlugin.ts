@@ -1,10 +1,17 @@
 import { getRequestURL } from 'h3'
+import type { NitroApp } from 'nitropack'
 import { type Span, SpanStatusCode, context, trace } from '@opentelemetry/api'
 import {
   SEMATTRS_HTTP_HOST,
   SEMATTRS_HTTP_METHOD,
   SEMATTRS_HTTP_ROUTE,
 } from '@opentelemetry/semantic-conventions'
+// NOTE: We need to import here from the Nuxt server-specific #imports to mitigate
+// unresolved dependencies in the imported composables from Nitro(nitropack).
+// This results in `nuxi typecheck` not being able to properly infer the correct
+// import and throw an error without explicit `@ts-expect-error`
+// @ts-expect-error TS2724: '"#imports"' has no exported member named 'defineNitroPlugin'. Did you mean 'defineNuxtPlugin'?
+import { defineNitroPlugin, useRuntimeConfig } from '#imports'
 
 const tracer = trace.getTracer(
   'nitro',
@@ -37,7 +44,7 @@ function getReplace(pathReplace?: string[]): (path: string) => string {
   }
 }
 
-export default defineNitroPlugin((nitro) => {
+export default defineNitroPlugin((nitro: NitroApp) => {
   const config = useRuntimeConfig().opentelemetry
 
   // Find the h3 handler which is the nitro router

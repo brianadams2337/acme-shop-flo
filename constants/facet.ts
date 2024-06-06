@@ -1,3 +1,6 @@
+import { SUSTAINABILITY_ATTRIBUTES } from '~/constants/attributes'
+import { INCLUDED_QUICK_FILTERS } from '~/composables/useFilter'
+
 export const FACET_PARAMS = {
   with: {
     product: {

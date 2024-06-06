@@ -37,8 +37,8 @@
 
 <script setup lang="ts">
 import { computed, defineOptions, ref } from 'vue'
-import { useStorefrontTracking } from '../composables/storefront/useStorefrontTracking'
-import { useStorefrontBreakpoints } from '../composables/storefront/useStorefrontBreakpoints'
+import { useStorefrontTracking } from '../../../composables/storefront/useStorefrontTracking'
+import { useStorefrontBreakpoints } from '../../../composables/storefront/useStorefrontBreakpoints'
 import type { CMSImageSliderSlideProps } from '../types'
 
 const props = defineProps<CMSImageSliderSlideProps>()

@@ -5,6 +5,14 @@ import type {
   ProductSearchSuggestion,
 } from '@scayle/storefront-nuxt'
 import { describe, expect, it } from 'vitest'
+import {
+  getSearchFilterLabels,
+  getSuggestionName,
+  groupSearchCategoryFiltersByKey,
+  isCategorySuggestion,
+  isProductSuggestion,
+  type CategoryFilter,
+} from './search'
 
 const getBaseCategory = (): Category => ({
   id: 2046,

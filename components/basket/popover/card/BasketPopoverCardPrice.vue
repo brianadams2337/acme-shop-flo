@@ -69,6 +69,8 @@ import { computed } from 'vue'
 import { type BasketItem } from '@scayle/storefront-nuxt'
 import { useFormatHelpers } from '#storefront/composables'
 import { useBasketItem, useBasketReductions } from '~/composables'
+import { getBackgroundColorStyle, getTextColorStyle } from '~/utils'
+import { AlphaColorMap } from '~/constants'
 
 const props = defineProps<{ item: BasketItem }>()
 

@@ -6,6 +6,7 @@ import {
   getFirstAttributeValue,
   getLowestPrice,
 } from '@scayle/storefront-nuxt'
+import { MINIMUM_QUANTITY_IMMEDIATE_AVAILABILITY } from '~/constants/product'
 
 export { ProductImageType } from '@scayle/storefront-nuxt'
 

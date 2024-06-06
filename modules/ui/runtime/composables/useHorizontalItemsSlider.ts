@@ -1,5 +1,5 @@
 import { computed, ref } from 'vue'
-import { useState } from 'nuxt/app'
+import { useState } from '#app/composables/state'
 
 export function useHorizontalItemsSlider() {
   const sliderRef = useState<HTMLElement>('slider-ref')

@@ -16,8 +16,9 @@
 
 <script setup lang="ts">
 import { defineOptions } from 'vue'
-import { useStorefrontTracking } from '../composables/storefront/useStorefrontTracking'
+import { useStorefrontTracking } from '../../../composables/storefront/useStorefrontTracking'
 import type { SbBannerLink } from '../types'
+import CMSStoryblokLink from './StoryblokLink.vue'
 
 defineProps<{ blok: SbBannerLink }>()
 

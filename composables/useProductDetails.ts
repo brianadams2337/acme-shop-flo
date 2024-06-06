@@ -8,7 +8,18 @@ import {
   getVariantBySize,
   extendPromise,
 } from '@scayle/storefront-nuxt'
+import { computed } from 'vue'
+import { useProductBaseInfo } from './useProductBaseInfo'
+import { useImage } from '#imports'
+import { useProduct } from '#storefront/composables'
 import { getAdvancedAttributes } from '~/utils/attribute'
+import { useState } from '#app/composables/state'
+import { useRoute } from '#app/composables/router'
+import {
+  PRODUCT_IMAGE_QUALITY_MODIFIER,
+  PRODUCT_WITH_PARAMS,
+} from '~/constants'
+import { getQuantitySelectionList, hasOneSizeProductVariantOnly } from '~/utils'
 
 export function useProductDetails(key?: string) {
   if (!key) {

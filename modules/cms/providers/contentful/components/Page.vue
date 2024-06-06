@@ -19,7 +19,7 @@
 
 <script setup lang="ts">
 import { defineOptions } from 'vue'
-import { useStorefrontBreakpoints } from '../composables/storefront/useStorefrontBreakpoints'
+import { useStorefrontBreakpoints } from '../../../composables/storefront/useStorefrontBreakpoints'
 import { getComponentName } from '../../../utils/helpers'
 import type { CMSPageProps } from '../types'
 

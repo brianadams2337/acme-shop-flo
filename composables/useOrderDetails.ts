@@ -1,4 +1,7 @@
 import { unique } from 'radash'
+import { computed, type Ref } from 'vue'
+import { useOrder, useVariant } from '#storefront/composables'
+import { useRoute } from '#app/composables/router'
 
 export function useOrderDetails(key?: string) {
   if (!key) {
@@ -8,16 +11,19 @@ export function useOrderDetails(key?: string) {
   const route = useRoute()
   const paramId = computed(() => +route.params.id)
 
-  const { data: orderDetails, fetching } = useOrder({
+  const { data, fetching } = useOrder({
     params: computed(() => ({ orderId: paramId.value })),
     key: `orderId-${key}`,
   })
+
+  // NOTE: Explicitly casting returned data from useOrder to mitigate returned any data type
+  const orderDetails = data as Ref<Order>
 
   const totalAmount = computed(() => orderDetails.value?.cost.withTax ?? 0)
 
   const deliveryCost = computed(() => {
     return (
-      orderDetails.value?.cost.appliedFees
+      (orderDetails as Ref<Order>).value?.cost.appliedFees
         ?.filter(({ category }) => category === 'delivery')
         ?.reduce((acc, fee) => {
           return acc + fee.amount.withTax

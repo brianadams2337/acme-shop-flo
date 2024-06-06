@@ -1,3 +1,5 @@
+import { getEmailHash } from '~/utils'
+
 const useCustomerEvents = (
   track: (event: TrackingEvent, payload: TrackingPayload) => any,
 ) => ({

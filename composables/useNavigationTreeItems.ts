@@ -1,12 +1,14 @@
 import { type NavigationTree, extendPromise } from '@scayle/storefront-nuxt'
+import { computed } from 'vue'
+import { useNavigationTrees } from '#storefront/composables'
 
 export function useNavigationTreeItems(prefix = 'base') {
-  const navigatationTrees = useNavigationTrees({
+  const navigationTrees = useNavigationTrees({
     params: { params: { with: { category: true } } },
     key: `${prefix}-navigation-trees`,
   })
 
-  const { data } = navigatationTrees
+  const { data } = navigationTrees
 
   const navigationTreeItems = computed<NavigationTree[]>(() => {
     const normalizedPrefix = prefix.toLowerCase()
@@ -16,7 +18,7 @@ export function useNavigationTreeItems(prefix = 'base') {
   })
 
   return extendPromise(
-    navigatationTrees.then(() => ({})),
+    navigationTrees.then(() => ({})),
     { navigationTreeItems },
   )
 }

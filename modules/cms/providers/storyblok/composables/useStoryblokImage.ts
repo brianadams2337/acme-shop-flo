@@ -1,11 +1,13 @@
+import { reactive } from 'vue'
 import type { SbCmsImage } from '../types/storyblok'
+import { useDefaultBreakpoints } from '~/composables/useDefaultBreakpoints'
 
 type SanitizedImage = {
   src: string
   alt: string
 }
 
-export const isMobile = () => useDefaultBreakpoints().isSmaller('md')
+const isMobile = () => useDefaultBreakpoints().isSmaller('md')
 
 export function useStoryblokImageSanitizer() {
   const sanitize = (img: SbCmsImage): SanitizedImage => {

@@ -1,3 +1,7 @@
+import { useHead } from '@unhead/vue'
+import { computed } from 'vue'
+import { useCurrentShop, useRpc } from '#storefront/composables'
+
 export type Customer = {
   authentication: { data: any; type: string }
   data: {

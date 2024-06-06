@@ -5,6 +5,8 @@ import {
   getSortByValue,
   getSortingValues,
 } from '@scayle/storefront-nuxt'
+import { computed, toRef, type MaybeRefOrGetter } from 'vue'
+import { useRoute } from '#app/composables/router'
 
 export const DEFAULT_SORTING_KEY = 'dateNewest'
 

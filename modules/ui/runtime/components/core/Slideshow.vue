@@ -16,6 +16,11 @@
 
 <script lang="ts" setup>
 import { ref } from 'vue'
+import {
+  Autoplay as SwiperAutoplay,
+  Navigation as SwiperNavigation,
+  Pagination as SwiperPagination,
+} from 'swiper/modules'
 
 type AutoplayOptions =
   | boolean

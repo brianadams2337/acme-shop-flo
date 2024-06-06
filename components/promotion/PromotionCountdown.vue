@@ -28,6 +28,7 @@
 </template>
 
 <script setup lang="ts">
+import { COUNTDOWN_LOADER_UNITS } from '~/constants'
 import { SFCountdown, SFFadeInTransition, SFSkeletonLoader } from '#components'
 
 type Props = {

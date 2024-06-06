@@ -1,3 +1,6 @@
+import { onMounted, onUnmounted } from 'vue'
+import { useTrackingEvents } from '~/composables/useTrackingEvents'
+
 const getPageType = (hash: string): PageType => {
   if (hash.endsWith('#/auth')) {
     return 'checkout:#/auth'

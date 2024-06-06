@@ -1,6 +1,8 @@
 import { extendPromise, type BasketItem } from '@scayle/storefront-nuxt'
 import { sum } from 'radash'
+import { computed } from 'vue'
 import { hexToRGBAColor } from '~/utils/color'
+import { useBasket } from '#storefront/composables'
 
 export function useBasketReductions() {
   const basket = useBasket()

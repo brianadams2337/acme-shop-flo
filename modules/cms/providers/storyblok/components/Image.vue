@@ -12,7 +12,7 @@
 
 <script setup lang="ts">
 import { computed, defineOptions } from 'vue'
-import { useStorefrontTracking } from '../composables/storefront/useStorefrontTracking'
+import { useStorefrontTracking } from '../../../composables/storefront/useStorefrontTracking'
 import type { CMSImageProps } from '../types'
 import {
   getTeaserImage,

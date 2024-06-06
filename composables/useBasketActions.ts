@@ -4,6 +4,19 @@ import {
   getFirstAttributeValue,
   extendPromise,
 } from '@scayle/storefront-nuxt'
+import { ref, watchPostEffect } from 'vue'
+import { useToast } from '~/composables/useToast'
+import { useTrackingEvents } from '~/composables/useTrackingEvents'
+import { useNuxtApp } from '#app'
+import {
+  bundleBasketItemsByGroup,
+  getPartitionedBasketItems,
+  routeList,
+  sortBasketItemsByNameAndSize,
+  type BundledBasketItems,
+} from '~/utils'
+import { useBasket } from '#storefront/composables'
+import { BasketListingMetadata } from '~/constants'
 
 const listingMetaData = {
   id: BasketListingMetadata.ID,
@@ -48,6 +61,7 @@ export function useBasketActions() {
     if (!itemGroupId) {
       return
     }
+
     return (basket.items.value ?? [])
       .filter(({ itemGroup }) => itemGroup?.id === itemGroupId)
       .map(({ product }) => product)

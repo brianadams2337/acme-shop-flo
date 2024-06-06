@@ -18,7 +18,7 @@ import {
   getTeaserImage,
   useContentfulImageSanitizer,
 } from '../composables/useContentfulImage'
-import { useStorefrontTracking } from '../composables/storefront/useStorefrontTracking'
+import { useStorefrontTracking } from '../../../composables/storefront/useStorefrontTracking'
 import type {
   CMSImageProps,
   TypePageWithoutUnresolvableLinksResponse,

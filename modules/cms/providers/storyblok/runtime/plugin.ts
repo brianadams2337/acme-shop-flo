@@ -1,6 +1,7 @@
 // plugins/storyblok.js
 import { StoryblokVue, apiPlugin } from '@storyblok/vue'
 import type { StoryblokRuntimeConfig } from '../types'
+import { defineNuxtPlugin, useRuntimeConfig } from '#app'
 
 export default defineNuxtPlugin(({ vueApp }) => {
   const runtimeConfig = useRuntimeConfig()

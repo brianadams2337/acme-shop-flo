@@ -1,11 +1,22 @@
 import { min } from 'radash'
-
 import {
   type Price,
   type Product,
   getFirstAttributeValue,
   extendPromise,
 } from '@scayle/storefront-nuxt'
+import { type MaybeRefOrGetter, toRef, computed } from 'vue'
+import { useBasketPromotions } from '~/composables/useBasketPromotions'
+import { useBasket, useCurrentPromotions } from '#storefront/composables'
+import {
+  divideByHundred,
+  getAdditionalData,
+  getApplicablePromotionsForProduct,
+  getBasketTotalWithoutPromotions,
+  getVariantIds,
+  isAutomaticDiscountType,
+  isBuyXGetYType,
+} from '~/utils'
 
 export function useProductPromotions(
   productItem?: MaybeRefOrGetter<Product | undefined>,

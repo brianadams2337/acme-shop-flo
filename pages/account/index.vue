@@ -51,7 +51,7 @@ import { useSeoMeta } from '@unhead/vue'
 import { computed, defineOptions, onMounted } from 'vue'
 import { definePageMeta } from '#imports'
 import { useTrackingEvents, wishlistListingMetadata } from '~/composables'
-import { useNuxtApp } from '#app/nuxt'
+import { useNuxtApp } from '#app'
 import { useUser, useWishlist } from '#storefront/composables'
 import { routeList } from '~/utils/route'
 

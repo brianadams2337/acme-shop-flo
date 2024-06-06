@@ -8,6 +8,7 @@
 import { computed, defineOptions } from 'vue'
 import { useSeoMeta } from '@unhead/vue'
 import type { SbSeo } from '../types'
+import CMSStoryblokComponent from './CMSStoryblokComponent.vue'
 
 const props = defineProps<{
   story: {

@@ -39,6 +39,7 @@
 import { computed, defineOptions } from 'vue'
 import { definePageMeta } from '#imports'
 import { useRoute } from '#app/composables/router'
+import { routeList } from '~/utils'
 
 const route = useRoute()
 const slug = computed(() =>

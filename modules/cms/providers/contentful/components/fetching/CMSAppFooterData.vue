@@ -73,9 +73,10 @@ import type {
   TypeFooterWithoutUnresolvableLinksResponse,
 } from '../../types'
 import { useCMS } from '../../composables/useCMS'
-import CMSLink from '../Link.vue'
 import { useContentfulEditor } from '../../composables/useContentfulEditor'
-import { useNavigationTreeItems } from '~/composables'
+import CMSText from '../Text.vue'
+import CMSLink from '../Link.vue'
+import { useNavigationTreeItems } from '~/composables/useNavigationTreeItems'
 
 const { fetchBySlug } = useCMS('footer')
 const { data } = await fetchBySlug<TypeFooterSkeleton>({

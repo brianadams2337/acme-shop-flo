@@ -8,6 +8,16 @@ import {
   isInStock,
   extendPromise,
 } from '@scayle/storefront-nuxt'
+import { type Ref, computed, nextTick } from 'vue'
+import { useBasketActions } from '~/composables/useBasketActions'
+import { useBasketItemUiState } from '~/composables/useBasketItemUiState'
+import { usePageState } from '~/composables/usePageState'
+import { useProductBaseInfo } from '~/composables/useProductBaseInfo'
+import { useProductPromotions } from '~/composables/useProductPromotions'
+import { useTrackingEvents } from '~/composables/useTrackingEvents'
+import { useCurrentShop, useBasket } from '#storefront/composables'
+import { getQuantitySelectionList, getVariantIds } from '~/utils'
+import { useRoute } from '#app/composables/router'
 
 export function useBasketItem(basketItem: Ref<BasketItem>) {
   const product = computed(() => basketItem.value.product)

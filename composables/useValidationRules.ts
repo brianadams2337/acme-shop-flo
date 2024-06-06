@@ -7,7 +7,7 @@ import {
 } from '@vuelidate/validators'
 import { dateValidator, getPayloadDate } from '@scayle/storefront-nuxt'
 import { snake } from 'radash'
-import { useNuxtApp } from '#app/nuxt'
+import { useNuxtApp } from '#app'
 
 const isValidDate = (date: Date) => new Date(date).toString() !== 'Invalid Date'
 

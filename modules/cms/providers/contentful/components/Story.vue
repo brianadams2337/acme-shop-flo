@@ -8,6 +8,7 @@
 import { computed, defineOptions } from 'vue'
 import { useSeoMeta } from '@unhead/vue'
 import type { TypeContentPageWithoutUnresolvableLinksResponse } from '../types'
+import CMSContentfulComponent from './ContentfulComponent.vue'
 
 const props = defineProps<{
   story: any

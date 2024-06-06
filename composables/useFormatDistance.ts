@@ -1,3 +1,5 @@
+import { useCurrentShop } from '#storefront/composables'
+
 export const useFormatDistance = () => {
   const currentShop = useCurrentShop()
   const formatter = new Intl.NumberFormat(currentShop.value.locale, {

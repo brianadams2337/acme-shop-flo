@@ -1,3 +1,4 @@
+import { computed } from 'vue'
 import type { Alignment } from '../types/storyblok'
 
 export function useCMSAlignment(blok: Partial<Alignment>) {

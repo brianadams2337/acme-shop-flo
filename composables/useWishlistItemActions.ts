@@ -8,6 +8,20 @@ import {
   getVariantBySize,
   extendPromise,
 } from '@scayle/storefront-nuxt'
+import { type Ref, computed } from 'vue'
+import { useBasketActions } from '~/composables/useBasketActions'
+import { useFlyouts } from '~/composables/useFlyouts'
+import { useProductPromotions } from '~/composables/useProductPromotions'
+import { useToast } from '~/composables/useToast'
+import { useTrackingEvents } from '~/composables/useTrackingEvents'
+import { useWishlistItem } from '~/composables/useWishlistItem'
+import { wishlistListingMetadata } from '~/composables/useWishlistPage'
+import { useState } from '#app/composables/state'
+import { useNuxtApp } from '#app'
+import { useSlideIn } from '~/modules/ui/runtime/composables/useSlideIn'
+import { ONE_SIZE_KEY } from '~/constants'
+import type { VariantSize } from '~/utils'
+import { useBasket, useWishlist } from '#storefront/composables'
 
 export function useWishlistItemActions(item: Ref<WishlistItem>) {
   const { $i18n } = useNuxtApp()
@@ -133,8 +147,15 @@ export function useWishlistItemActions(item: Ref<WishlistItem>) {
     sizeSavingId.value = null
   }
 
-  const selectRadioSize = (value: string, index: number) => {
-    const size = getSize(value)
+  const selectRadioSize = (
+    value: string | number | undefined,
+    index: number,
+  ) => {
+    if (!value) {
+      return
+    }
+
+    const size = getSize(value.toString())
 
     if (size) {
       changeSizeAndAddToBasket(product, size, index)

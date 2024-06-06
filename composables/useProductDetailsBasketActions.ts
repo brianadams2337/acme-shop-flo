@@ -4,10 +4,19 @@ import type {
   Variant,
 } from '@scayle/storefront-nuxt'
 import { unique } from 'radash'
-import { toValue } from 'vue'
+import { type Ref, toValue } from 'vue'
 import { isSubscriptionAlreadyInBasket } from '~/modules/subscription/helpers/subscription'
 import { hasOneSizeProductVariantOnly } from '~/utils/sizes'
-import { useToast } from '~/composables'
+import { useBasketActions } from '~/composables/useBasketActions'
+import { useBasketGroup } from '~/composables/useBasketGroup'
+import { useFlyouts } from '~/composables/useFlyouts'
+import { useProductDetailsAddOns } from '~/composables/useProductDetailsAddOns'
+import { useProductPromotions } from '~/composables/useProductPromotions'
+import { useToast } from '~/composables/useToast'
+import { useTrackingEvents } from '~/composables/useTrackingEvents'
+import { useBasket } from '#storefront/composables'
+import { useNuxtApp } from '#app'
+import { useProductBaseInfo } from '~/composables/useProductBaseInfo'
 
 export function useProductDetailsBasketActions(
   product: Ref<Product>,

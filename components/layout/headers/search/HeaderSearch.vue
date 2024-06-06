@@ -62,10 +62,7 @@
 <script setup lang="ts">
 import { computed, ref, watch, watchEffect } from 'vue'
 import { onClickOutside } from '@vueuse/core'
-import type {
-  CategorySearchSuggestion,
-  ProductSearchSuggestion,
-} from '@scayle/storefront-nuxt'
+import type { SearchEntity } from '@scayle/storefront-nuxt'
 import { useSearchData, useTrackingEvents } from '~/composables'
 
 const {
@@ -105,9 +102,7 @@ watchEffect(() => {
   showSuggestions.value = !!searchQuery.value.length
 })
 
-const trackSuggestionClickAndClose = (
-  suggestion: ProductSearchSuggestion | CategorySearchSuggestion,
-) => {
+const trackSuggestionClickAndClose = (suggestion: SearchEntity) => {
   trackSearchSuggestionClick(searchQuery.value, suggestion)
   closeInput()
 }

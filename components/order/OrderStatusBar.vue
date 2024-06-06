@@ -37,8 +37,8 @@
 
 <script setup lang="ts">
 import { computed } from 'vue'
-import { DeliveryProgress, Status } from '~/constants/order'
-import { useFormatDate } from '~/composables'
+import { DeliveryProgress, OrderStatus } from '~/constants/order'
+import { useFormatDate } from '~/composables/useFormatDate'
 
 type Props = {
   index: number
@@ -56,7 +56,7 @@ const progressLevel = computed<number>(() => {
 })
 
 const progressType = computed<'success' | 'warn' | 'danger'>(() => {
-  return props.deliveryStatus !== Status.CANCELLATION_COMPLETED
+  return props.deliveryStatus !== OrderStatus.CANCELLATION_COMPLETED
     ? 'success'
     : 'danger'
 })

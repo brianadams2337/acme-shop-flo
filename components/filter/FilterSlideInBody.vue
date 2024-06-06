@@ -111,7 +111,7 @@
 
 <script setup lang="ts">
 import { useCurrentShop } from '#storefront/composables'
-import { useFilter } from '~/composables'
+import { useFilter } from '~/composables/useFilter'
 
 const {
   state,

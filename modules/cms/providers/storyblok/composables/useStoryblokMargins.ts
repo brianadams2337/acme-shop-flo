@@ -1,3 +1,4 @@
+import { computed } from 'vue'
 import type { MarginKey } from '../types/storyblok'
 
 export function useStoryblokMargins(

@@ -37,7 +37,8 @@
 
 <script setup lang="ts">
 import { useFormatHelpers } from '#storefront/composables'
-import { getTextColorStyle } from '~/utils/promotion'
+import { getTextColorStyle, getBackgroundColorStyle } from '~/utils'
+import { AlphaColorMap } from '~/constants'
 import { useBasketReductions } from '~/composables'
 
 const { itemsWithPromotionsReductions, getHeadlineParts, withNegativePrefix } =

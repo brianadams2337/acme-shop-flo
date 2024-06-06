@@ -1,4 +1,6 @@
 import { type Category, extendPromise } from '@scayle/storefront-nuxt'
+import { computed } from 'vue'
+import { useCategories } from '#storefront/composables'
 
 export function useRootCategories() {
   const categoryData = useCategories({

@@ -1,4 +1,5 @@
 import { HttpStatusCode } from '@scayle/storefront-nuxt'
+import { defineNuxtRouteMiddleware, navigateTo } from '#app/composables/router'
 
 export default defineNuxtRouteMiddleware((to) => {
   if (to.path !== '/' && to.path.endsWith('/')) {

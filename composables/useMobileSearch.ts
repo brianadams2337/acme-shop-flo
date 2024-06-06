@@ -1,3 +1,5 @@
+import { ref, readonly } from 'vue'
+
 export function useMobileSearch() {
   const isActive = ref(false)
 

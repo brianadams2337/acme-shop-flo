@@ -1,9 +1,16 @@
 import {
-  type Product,
   type FetchProductsParams,
+  type Product,
   extendPromise,
 } from '@scayle/storefront-nuxt'
+import { computed } from 'vue'
+import { usePageState } from '~/composables/usePageState'
+import { useTrackingEvents } from '~/composables/useTrackingEvents'
+
 import { productListingMetaData } from '~/constants/product'
+import { useRoute } from '#app/composables/router'
+import { useProductsByIds } from '#storefront/composables'
+import { getDeepestCategoryForTracking } from '~/utils'
 
 export function useProductRecommendations(
   combineWithProductIds: Array<number>,

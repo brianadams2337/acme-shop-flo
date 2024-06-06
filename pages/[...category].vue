@@ -106,7 +106,7 @@ import { prepareCanonicalURL } from '~/utils/seo'
 import { useFacet, useQueryFilterState } from '#storefront/composables'
 import { useRoute } from '#app/composables/router'
 import { useSlideIn } from '~/modules/ui/runtime/composables/useSlideIn'
-import { useNuxtApp } from '#app/nuxt'
+import { useNuxtApp } from '#app'
 import { createError } from '#app/composables/error'
 import {
   type FilterContext,
@@ -116,7 +116,14 @@ import {
   usePageState,
   useProductListSort,
   useTrackingEvents,
+  DEFAULT_SORTING_KEY,
 } from '~/composables'
+import {
+  FACET_PARAMS,
+  FETCH_PRODUCTS_CACHE_TTL,
+  PRODUCTS_PER_PAGE,
+  categoryListingMetaData,
+} from '~/constants'
 
 const route = useRoute()
 const { pageState, setPageState } = usePageState()

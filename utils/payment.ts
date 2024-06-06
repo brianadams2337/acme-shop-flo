@@ -1,4 +1,4 @@
-import IconPaymentLastscrift from '@/assets/icons/payment/lastschrift.svg'
+import IconPaymentLastschrift from '@/assets/icons/payment/lastschrift.svg'
 import IconPaymentVisa from '@/assets/icons/payment/visa.svg'
 import IconPaymentMastercard from '@/assets/icons/payment/mastercard.svg'
 import IconPaymentDiscover from '@/assets/icons/payment/discover.svg'
@@ -16,7 +16,7 @@ export type PaymentIconsMap = { [key: string]: PaymentIcon }
 
 const paymentIconsMap: PaymentIconsMap = {
   ratepay_directdebit: {
-    component: IconPaymentLastscrift,
+    component: IconPaymentLastschrift,
     width: 20,
   },
   computop_creditcard_visa: {

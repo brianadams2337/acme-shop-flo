@@ -1,3 +1,8 @@
+import { getCurrentScope, watch } from 'vue'
+import { onNuxtReady } from '#app/composables/ready'
+import { useUser } from '#storefront/composables'
+import { useTrackingEvents } from '~/composables/useTrackingEvents'
+
 export const useCustomerDataChangeWatcher = async () => {
   const scope = getCurrentScope()
   const { trackCustomerData } = useTrackingEvents()

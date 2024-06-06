@@ -7,8 +7,8 @@ import {
 } from '@nuxt/kit'
 import type { Nuxt, NuxtOptions } from 'nuxt/schema'
 import { logger } from '../../utils/helpers'
+import type { ModuleOptions } from '../../types'
 import type { ContentfulModuleOptions } from './types'
-import type { ModuleOptions } from '~/modules/cms/types'
 
 export async function setupContentful(options: ModuleOptions, nuxt: Nuxt) {
   const resolver = createResolver(import.meta.url)
@@ -45,6 +45,7 @@ export async function setupContentful(options: ModuleOptions, nuxt: Nuxt) {
   logger.info('Loading up Contentful plugin...')
   addPlugin(resolver.resolve('./runtime/plugin'))
 
+  // TODO: Remove with fully disabling of auto import feature
   logger.info('Loading up Contentful composables...')
   addImportsDir(resolver.resolve('./composables'))
   addImportsDir(resolver.resolve('./composables/storefront'))

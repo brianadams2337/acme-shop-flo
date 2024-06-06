@@ -1,3 +1,4 @@
+import { computed, type Ref } from 'vue'
 import type { TypeListingPageWithoutUnresolvableLinksResponse } from '../types'
 
 export function useCMSListingContent(

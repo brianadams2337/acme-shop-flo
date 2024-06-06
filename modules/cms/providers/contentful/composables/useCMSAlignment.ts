@@ -1,3 +1,4 @@
+import { computed } from 'vue'
 import type { Alignment } from '../types'
 
 export function useCMSAlignment(alignment: Partial<Alignment>) {

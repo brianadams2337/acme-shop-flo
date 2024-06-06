@@ -8,6 +8,18 @@ import {
   getVariantBySize,
   extendPromise,
 } from '@scayle/storefront-nuxt'
+import { computed } from 'vue'
+import { useBasketActions } from '~/composables/useBasketActions'
+import { useFlyouts } from '~/composables/useFlyouts'
+import { useProductBaseInfo } from '~/composables/useProductBaseInfo'
+import { useToast } from '~/composables/useToast'
+import { useTrackingEvents } from '~/composables/useTrackingEvents'
+import { useState } from '#app/composables/state'
+import { useNuxtApp } from '#app'
+import { useRoute } from '#app/composables/router'
+import { useLocalePath } from '#i18n'
+import { useBasket } from '#storefront/composables'
+import { hasOneSizeProductVariantOnly, routeList } from '~/utils'
 
 export function usePromotionGiftSelection(
   gift: Product,

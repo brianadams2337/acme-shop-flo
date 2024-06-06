@@ -326,7 +326,12 @@ function createAutoInsert(options) {
     plugins: {
       unimport: plugin,
     },
-    files: options.include ?? ['**/*.(m|c)?tsx?', '**/*.vue'],
+    files: options.include ?? [
+      '**/*.ts',
+      '**/*.(c|m)js',
+      '**/*.(m|c)?tsx?',
+      '**/*.vue',
+    ],
     ignores: options.exclude ?? ['**/*.mdx?/**'],
     rules: {
       'unimport/auto-insert': ['error', options.imports],

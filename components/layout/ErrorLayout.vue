@@ -27,7 +27,7 @@ import { useHead } from '@unhead/vue'
 import { computed } from 'vue'
 import type { PropType } from 'vue'
 import { HttpStatusCode } from '@scayle/storefront-nuxt'
-import { useNuxtApp } from '#app/nuxt'
+import { useNuxtApp } from '#app'
 import type { NuxtError } from '#app'
 
 type AppError =

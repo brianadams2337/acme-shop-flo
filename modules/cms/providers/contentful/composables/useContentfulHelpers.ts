@@ -1,3 +1,6 @@
+import { computed } from 'vue'
+import { useRoute } from '#app/composables/router'
+
 // TODO
 export function useContentfulHelpers() {
   const route = useRoute()

@@ -51,7 +51,7 @@
         <div class="mr-2 size-4">
           <IconClock />
         </div>
-        <div>
+        <div v-if="openingTimes">
           <span class="font-bold">{{
             openingTimes.currentlyOpen
               ? $t('store_locator.labels.store_open')
@@ -67,14 +67,17 @@
         </div>
       </div>
     </div>
-    <StoreOpeningTimesSummary :opening-times="openingTimes" />
+    <StoreOpeningTimesSummary
+      v-if="openingTimes"
+      :opening-times="openingTimes"
+    />
   </div>
 </template>
 
 <script setup lang="ts">
 import { computed } from 'vue'
 import type { OpeningTimes, StoreAddress } from '@scayle/omnichannel-nuxt'
-import { useFormatDistance } from '~/composables'
+import { useFormatDistance } from '~/composables/useFormatDistance'
 
 interface Props {
   id: number
@@ -83,14 +86,16 @@ interface Props {
   distance?: number
   quantity?: number
   address: StoreAddress
-  customData: Partial<{ phone: string }>
-  openingTimes: OpeningTimes
+  customData?: Partial<{ phone: string }>
+  openingTimes?: OpeningTimes
 }
 
 const props = withDefaults(defineProps<Props>(), {
+  index: 0,
   distance: undefined,
   quantity: undefined,
-  index: 0,
+  customData: undefined,
+  openingTimes: undefined,
 })
 
 const formatDistance = useFormatDistance()

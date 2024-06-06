@@ -1,4 +1,5 @@
 import { version } from '../../../package.json'
+import { useCurrentShop } from '#storefront/composables'
 
 const SHOP_GENDER: 'male' | 'female' | 'other' | '' = ''
 

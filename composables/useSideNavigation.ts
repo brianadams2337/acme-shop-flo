@@ -1,4 +1,6 @@
 import type { Category } from '@scayle/storefront-nuxt'
+import { computed } from 'vue'
+import { useState } from '#app/composables/state'
 
 type SideNavigationState = {
   isOpen: boolean

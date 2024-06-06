@@ -11,6 +11,7 @@
 <script lang="ts" setup>
 import { defineOptions } from 'vue'
 import type { CMSLinkTypeProps } from '../types'
+import CMSContentfulLink from './ContentfulLink.vue'
 
 const props = defineProps<CMSLinkTypeProps>()
 

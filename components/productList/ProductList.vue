@@ -53,6 +53,7 @@ import {
 import { useRoute } from '#app/composables/router'
 import { useDefaultBreakpoints } from '~/composables'
 import { categoryListingMetaData } from '~/constants/listingMetadata'
+import { PRODUCTS_PER_PAGE } from '~/constants'
 
 type Props = {
   products?: Product[]

@@ -4,6 +4,11 @@ import {
   extendPromise,
   type WishlistItem,
 } from '@scayle/storefront-nuxt'
+import { computed } from 'vue'
+import { useSeoMeta } from '@unhead/vue'
+import { WishlistListingMetadata } from '~/constants'
+import { useNuxtApp } from '#app'
+import { useBasket, useWishlist } from '#storefront/composables'
 
 export const wishlistListingMetadata = {
   id: WishlistListingMetadata.ID,

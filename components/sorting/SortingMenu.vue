@@ -36,7 +36,7 @@
 
 <script setup lang="ts">
 import type { SortValue } from '@scayle/storefront-nuxt'
-import { useTrackingEvents } from '~/composables'
+import { useTrackingEvents } from '~/composables/useTrackingEvents'
 
 type Props = {
   values: SortValue[]

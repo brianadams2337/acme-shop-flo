@@ -1,4 +1,6 @@
 import type { ISbStoriesParams } from 'storyblok-js-client'
+import { useRoute } from '#app/composables/router'
+import { useCurrentShop } from '#storefront/composables'
 
 export function useDefaultStoryblokOptions(): Pick<
   ISbStoriesParams,

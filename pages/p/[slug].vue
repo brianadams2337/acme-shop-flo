@@ -237,7 +237,7 @@ import {
   isInStock,
 } from '@scayle/storefront-nuxt'
 import { definePageMeta, useJsonld } from '#imports'
-import { useNuxtApp } from '#app/nuxt'
+import { useNuxtApp } from '#app'
 import { useRoute } from '#app/composables/router'
 import { generateProductSchema, sanitizeCanonical } from '~/utils/seo'
 import { useCurrentShop, useFormatHelpers } from '#storefront/composables'

@@ -1,4 +1,5 @@
-import { useNuxtApp } from '#app'
+import { addRouteMiddleware } from '#app/composables/router'
+import { defineNuxtPlugin, useNuxtApp } from '#app'
 
 /**
  * When rendering SSR pages, add the `matchedVueRoute` property to the event context

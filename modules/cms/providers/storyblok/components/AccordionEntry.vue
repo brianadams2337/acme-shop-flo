@@ -17,7 +17,7 @@
 <script setup lang="ts">
 import { defineOptions, ref } from 'vue'
 import type { CMSAccordionEntryProps } from '../types'
-import CMSText from '~/modules/cms/providers/storyblok/components/Text.vue'
+import CMSText from './Text.vue'
 
 const props = withDefaults(defineProps<CMSAccordionEntryProps>(), {
   collapsed: true,

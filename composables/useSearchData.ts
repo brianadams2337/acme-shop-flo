@@ -1,5 +1,12 @@
 import { debounce } from 'radash'
 import { type SearchV2With } from '@scayle/storefront-nuxt'
+import { computed } from 'vue'
+import { useRouteHelpers } from '~/composables/useRouteHelpers'
+import { useTrackingEvents } from '~/composables/useTrackingEvents'
+import { useState } from '#app/composables/state'
+import { useStorefrontSearch } from '#storefront/composables'
+import { isCategorySuggestion, isProductSuggestion } from '~/utils'
+import { DEBOUNCED_SEARCH_DURATION } from '~/constants'
 
 type SearchParams = Partial<{ categoryId: number; with: SearchV2With }>
 

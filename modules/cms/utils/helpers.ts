@@ -4,7 +4,6 @@ import { CMSProvidersMap } from './config'
 
 export const moduleName = '@scayle/storefront-cms'
 export const logger = createConsola({
-  fancy: true,
   formatOptions: {
     colors: true,
   },

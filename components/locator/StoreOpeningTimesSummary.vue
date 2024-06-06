@@ -35,7 +35,7 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
 import type { OpeningTimes } from '@scayle/omnichannel-nuxt'
-import { useFirstDayOfWeek } from '~/composables'
+import { useFirstDayOfWeek } from '~/composables/useFirstDayOfWeek'
 
 interface Props {
   openingTimes: OpeningTimes

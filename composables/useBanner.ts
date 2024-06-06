@@ -1,3 +1,5 @@
+import { ref } from 'vue'
+
 export function useBanner() {
   const isOpen = ref(true)
   const localKey = 'bannerLastCloseAt'

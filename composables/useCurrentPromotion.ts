@@ -1,3 +1,12 @@
+import { computed } from 'vue'
+import { useState } from '#app/composables/state'
+import {
+  getAdditionalData,
+  getBackgroundColorStyle,
+  isAutomaticDiscountType,
+  isBuyXGetYType,
+} from '~/utils'
+
 export function useCurrentPromotion(promotions: Promotion[] = []) {
   const promotion = useState<Promotion | null>(
     'current-promotion',

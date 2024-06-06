@@ -21,10 +21,10 @@
     >
       <SFButton type="tertiary" is-full-width>{{ blok.cta.email }}</SFButton>
       <div class="max-w-lg">
-        <CmsText :blok="{ ...blok, component: 'CmsText' }" />
+        <CMSText :blok="{ ...blok, component: 'CmsText' }" />
       </div>
     </div>
-    <CmsText v-else :blok="{ ...blok, component: 'CmsText' }" />
+    <CMSText v-else :blok="{ ...blok, component: 'CmsText' }" />
     <template v-if="blok.nested_items">
       <component
         :is="getComponentName(nestedItem.component)"
@@ -73,6 +73,7 @@ import { computed, defineOptions } from 'vue'
 import type { PropType } from 'vue'
 import type { SbNestedParagraph } from '../types/storyblok'
 import { getComponentName } from '../../../utils/helpers'
+import CMSText from './Text.vue'
 
 const props = defineProps({
   blok: {
@@ -104,7 +105,7 @@ function getHeadlineSize(size?: string) {
     case 'h3':
       return 'lg'
     case 'h4':
-      return 'md'
+      return 'base'
     case 'h5':
       return 'sm'
     default:

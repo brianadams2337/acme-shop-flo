@@ -24,7 +24,7 @@
       </div>
     </div>
     <template v-else>
-      <CMSText :blok="blok?.fields.body ?? ''" />
+      <CMSText :blok="blok?.fields.body ?? null" />
     </template>
 
     <template v-if="blok?.fields.nestedItems">
@@ -80,6 +80,8 @@
 import { computed, defineOptions } from 'vue'
 import type { CMSNestedParagraphProps } from '../types/contentful-defs'
 import { EMAIL_REGEX_PATTERN, getComponentName } from '../../../utils/helpers'
+import CMSText from './Text.vue'
+import CMSContentfulLink from './ContentfulLink.vue'
 
 const props = defineProps<CMSNestedParagraphProps>()
 
@@ -109,7 +111,7 @@ function getHeadlineSize(size: string | undefined) {
     case 'h3':
       return 'lg'
     case 'h4':
-      return 'md'
+      return 'base'
     case 'h5':
       return 'sm'
     default:

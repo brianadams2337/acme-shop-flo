@@ -11,7 +11,18 @@ import {
   transformToWhereCondition,
 } from '@scayle/storefront-nuxt'
 import { debounce, isEmpty, isEqual, omit } from 'radash'
-import type { FilterContext } from '~/composables'
+import { computed, watch } from 'vue'
+import { useQueryFilterState } from '#storefront/composables'
+import { useRoute } from '#app/composables/router'
+import { useState } from '#app/composables/state'
+import { DEFAULT_SORTING_KEY } from '~/composables/useProductListSort'
+import {
+  type FilterContext,
+  useFilterContext,
+} from '~/composables/useFilterContext'
+import { useTrackingEvents } from '~/composables/useTrackingEvents'
+import { useSlideIn } from '~/modules/ui/runtime/composables'
+import { deepClone } from '~/utils'
 
 export const INCLUDED_QUICK_FILTERS = ['sale', 'isNew', 'styleGroup']
 

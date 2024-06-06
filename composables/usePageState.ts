@@ -1,3 +1,6 @@
+import { readonly } from 'vue'
+import { useState } from '#app/composables/state'
+
 export type PageState = {
   type: PageType
   typeId: string

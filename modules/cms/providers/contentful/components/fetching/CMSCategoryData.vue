@@ -1,3 +1,16 @@
+<template>
+  <div>
+    <slot
+      v-bind="{
+        content,
+        hasTeaserImage,
+        postListingContent,
+        preListingContent,
+      }"
+    />
+  </div>
+</template>
+
 <script setup lang="ts">
 import type { Ref } from 'vue'
 import type {
@@ -31,16 +44,3 @@ const { content, hasTeaserImage, postListingContent, preListingContent } =
 
 useContentfulEditor<TypeListingPageSkeleton>(data)
 </script>
-
-<template>
-  <div>
-    <slot
-      v-bind="{
-        content,
-        hasTeaserImage,
-        postListingContent,
-        preListingContent,
-      }"
-    />
-  </div>
-</template>

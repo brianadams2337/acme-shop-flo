@@ -8,6 +8,19 @@ import {
   getTotalAppliedReductions,
   getUniqueItemsFromOrder,
 } from '@scayle/storefront-nuxt'
+import { useCurrentShop } from '#storefront/composables'
+import { usePageState } from '~/composables/usePageState'
+import { useTracking } from '~/composables/useTracking'
+import {
+  divideByHundred,
+  getCarrier,
+  getCouponReductionWithTax,
+  getDeepestCategoryForTracking,
+  getGiftcardAmount,
+  getShippingNetFee,
+  sumReductionsByCategory,
+  sumReductionsFromAllOrderItemsPerCategory,
+} from '~/utils'
 
 const getItems = (orderData: Order, currency?: string) => {
   const defaultEmptyValue = ''

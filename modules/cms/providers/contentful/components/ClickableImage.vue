@@ -23,7 +23,7 @@
 
 <script setup lang="ts">
 import { computed, defineOptions } from 'vue'
-import { useStorefrontTracking } from '../composables/storefront/useStorefrontTracking'
+import { useStorefrontTracking } from '../../../composables/storefront/useStorefrontTracking'
 import { isStringURL } from '../../../utils/helpers'
 import type { CMSClickableImageProps } from '../types'
 import { useContentfulMargins } from '../composables/useContentfulMargins'

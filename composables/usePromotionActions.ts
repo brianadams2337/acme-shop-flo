@@ -1,3 +1,6 @@
+import { readonly } from 'vue'
+import { useState } from '#app/composables/state'
+
 export function usePromotionActions() {
   const isShown = useState('promotion-list-shown', () => false)
 

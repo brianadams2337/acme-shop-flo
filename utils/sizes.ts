@@ -6,6 +6,7 @@ import {
   getFirstAttributeValue,
   isInStock,
 } from '@scayle/storefront-nuxt'
+import { ONE_SIZE_KEY } from '~/constants/attributes'
 
 export type VariantSize = {
   variantId: number

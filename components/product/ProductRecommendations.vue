@@ -49,6 +49,7 @@ import {
 import { getImageFromList } from '~/utils/image'
 import { productListingMetaData } from '~/constants/product'
 import { Size } from '#storefront-ui'
+import { getVariantWithLowestPrice } from '~/utils'
 
 type Props = {
   combineWithProductIds: number[]

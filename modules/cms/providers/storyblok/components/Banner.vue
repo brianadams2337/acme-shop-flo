@@ -73,10 +73,11 @@
 <script setup lang="ts">
 import { computed, defineOptions, resolveComponent } from 'vue'
 import { isEmpty } from 'radash'
-import { useStorefrontTracking } from '../composables/storefront/useStorefrontTracking'
-import { useStorefrontBanner } from '../composables/storefront/useStorefrontBanner'
+import { useStorefrontTracking } from '../../../composables/storefront/useStorefrontTracking'
+import { useStorefrontBanner } from '../../../composables/storefront/useStorefrontBanner'
 import type { CMSBannerProps } from '../types'
-import CMSText from '~/modules/cms/providers/storyblok/components/Text.vue'
+import CMSText from './Text.vue'
+import CMSScrollableLinkList from './ScrollableLinkList.vue'
 
 const props = withDefaults(defineProps<CMSBannerProps>(), {
   type: '',

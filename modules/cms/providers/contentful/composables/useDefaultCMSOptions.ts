@@ -1,3 +1,5 @@
+import { useCurrentShop } from '#storefront/composables'
+
 export function useDefaultCMSOptions() {
   const currentShop = useCurrentShop()
 

@@ -24,9 +24,14 @@
 
 <script setup lang="ts">
 import { defineOptions, ref } from 'vue'
+import {
+  Autoplay as SwiperAutoplay,
+  Navigation as SwiperNavigation,
+  Pagination as SwiperPagination,
+} from 'swiper/modules'
 import type { CMSSlideShowProps } from '../types'
 import { useStoryblokMargins } from '../composables/useStoryblokMargins'
-import CMSSlide from '~/modules/cms/providers/storyblok/components/Slide.vue'
+import CMSSlide from './Slide.vue'
 
 const props = defineProps<CMSSlideShowProps>()
 

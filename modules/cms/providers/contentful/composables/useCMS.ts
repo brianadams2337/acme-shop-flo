@@ -9,9 +9,9 @@ import type {
   EntrySkeletonType,
   LocaleCode,
 } from 'contentful'
-import type { AsyncDataOptions } from 'nuxt/app'
 import { useDefaultCMSOptions } from './useDefaultCMSOptions'
 import { useContentful } from './useContentful'
+import { useAsyncData, type AsyncDataOptions } from '#app/composables/asyncData'
 
 export function useCMS(key: string) {
   const defaultCMSOptions = useDefaultCMSOptions()

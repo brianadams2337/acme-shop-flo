@@ -22,6 +22,7 @@ export default defineNuxtModule<ModuleOptions>({
   async setup(options, nuxt) {
     const { resolve } = createResolver(import.meta.url)
 
+    // TODO: Remove with fully disabling of auto import feature
     addImportsDir(resolve('./runtime/composables'))
     addImportsDir(resolve('./runtime/helpers'))
 
@@ -30,6 +31,11 @@ export default defineNuxtModule<ModuleOptions>({
       pathPrefix: false,
       global: true, // TODO: Remove this after we move to the `explicit` imports
       prefix: options.prefix ?? 'SF',
+      // Only auto import Vue components
+      // Resolves:
+      // > This module cannot be imported in the Vue part of your app.
+      // > [importing @nuxt/test-utils/runtime from modules/ui/runtime/components/core/button/Button.nuxt.test.ts]
+      extensions: ['vue'],
     })
 
     nuxt.options.alias['#storefront-ui'] = resolve('./runtime')

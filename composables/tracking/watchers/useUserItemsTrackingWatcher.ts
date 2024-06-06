@@ -1,3 +1,10 @@
+import { getCurrentScope, watch } from 'vue'
+import { useBasket, useWishlist } from '#storefront/composables'
+import { useRoute } from '#app/composables/router'
+import { useTrackingEvents } from '~/composables/useTrackingEvents'
+import { BasketListingMetadata, WishlistListingMetadata } from '~/constants'
+import { didBasketDataChange, didWishlistDataChange } from '~/utils'
+
 export const useUserItemsTrackingWatcher = async () => {
   const scope = getCurrentScope()
   const route = useRoute()

@@ -1,3 +1,6 @@
+import { defineNuxtRouteMiddleware } from '#app/composables/router'
+import { usePageState } from '~/composables/usePageState'
+
 export default defineNuxtRouteMiddleware((to) => {
   const { setPageState } = usePageState()
 

@@ -15,6 +15,7 @@
 <script setup lang="ts">
 import { defineOptions } from 'vue'
 import type { CMSDetailImageProps } from '../types'
+import CMSStoryblokLink from './StoryblokLink.vue'
 import { useRoute } from '#app/composables/router'
 
 withDefaults(defineProps<CMSDetailImageProps>(), {

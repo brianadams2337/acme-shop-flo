@@ -5,6 +5,21 @@ import {
   type UpdatePasswordByHashRequest,
 } from '@scayle/storefront-nuxt'
 import { FetchError } from 'ofetch'
+import { computed, ref } from 'vue'
+import { useRouteHelpers } from '~/composables/useRouteHelpers'
+import { useToast } from '~/composables/useToast'
+import { useTrackingEvents } from '~/composables/useTrackingEvents'
+import { useNuxtApp } from '#app'
+import { useRoute, useRouter } from '#app/composables/router'
+import {
+  useBasket,
+  useLog,
+  useSession,
+  useUser,
+  useWishlist,
+} from '#storefront/composables'
+import { useLocalePath } from '#i18n'
+import { routeList } from '~/utils'
 
 const httpErrorMessages: Record<number, string> = {
   400: '400_bad_request',

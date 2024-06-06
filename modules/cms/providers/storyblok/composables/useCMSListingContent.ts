@@ -1,3 +1,4 @@
+import { computed, type Ref } from 'vue'
 import type { SbListingPage, SbStory } from '../types'
 
 export function useCMSListingContent(data: Ref<SbStory<SbListingPage> | null>) {

@@ -1,3 +1,14 @@
+<template>
+  <div>
+    <slot
+      v-bind="{
+        data: resData,
+        pending,
+      }"
+    />
+  </div>
+</template>
+
 <script setup lang="ts">
 import { computed } from 'vue'
 import type {
@@ -43,14 +54,3 @@ const resData = computed(() => {
 
 useContentfulEditor<TypeContentPageSkeleton>(data)
 </script>
-
-<template>
-  <div>
-    <slot
-      v-bind="{
-        data: resData,
-        pending,
-      }"
-    />
-  </div>
-</template>

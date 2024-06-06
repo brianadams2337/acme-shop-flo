@@ -26,9 +26,14 @@
 
 <script setup lang="ts">
 import { defineOptions, ref } from 'vue'
+import {
+  Autoplay as SwiperAutoplay,
+  Navigation as SwiperNavigation,
+  Pagination as SwiperPagination,
+} from 'swiper/modules'
 import { useContentfulMargins } from '../composables/useContentfulMargins'
 import type { CMSSlideShowProps } from '../types'
-import CMSSlide from '~/modules/cms/providers/contentful/components/Slide.vue'
+import CMSSlide from './Slide.vue'
 
 const props = defineProps<CMSSlideShowProps>()
 

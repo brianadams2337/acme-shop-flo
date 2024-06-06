@@ -1,3 +1,5 @@
+import { onUnmounted, ref, type Ref } from 'vue'
+
 export function useZoomGallery(imageCount: number) {
   const containerRef: Ref<HTMLElement | null> = ref(null)
   const doubleZoomActive = ref(false)

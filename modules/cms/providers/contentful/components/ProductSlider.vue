@@ -57,12 +57,13 @@ import {
   getLatestCategory,
   isFirstIndexOfRow,
 } from '@scayle/storefront-nuxt'
-import { useStorefrontTracking } from '../composables/storefront/useStorefrontTracking'
-import { useStorefrontBreakpoints } from '../composables/storefront/useStorefrontBreakpoints'
+import { useStorefrontTracking } from '../../../composables/storefront/useStorefrontTracking'
+import { useStorefrontBreakpoints } from '../../../composables/storefront/useStorefrontBreakpoints'
 import type { CMSProductSliderProps } from '../types'
 import { useContentfulMargins } from '../composables/useContentfulMargins'
+import CMSProduct from './Product.vue'
 import { useProductsByIds } from '#storefront/composables'
-import { usePageState } from '~/composables'
+import { usePageState } from '~/composables/usePageState'
 import { useRoute } from '#app/composables/router'
 
 const props = defineProps<CMSProductSliderProps>()

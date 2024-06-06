@@ -48,7 +48,7 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import type { OrderSummary } from '@scayle/storefront-nuxt'
-import { DeliveryProgress, Status } from '~/constants/order'
+import { DeliveryProgress, OrderStatus } from '~/constants/order'
 import { useFormatDate, useRouteHelpers } from '~/composables'
 import { useRoute } from '#app/composables/router'
 
@@ -81,6 +81,8 @@ const progressLevel = computed<number>(() => {
 })
 
 const progressType = computed<'success' | 'warn' | 'danger'>(() => {
-  return props.status !== Status.CANCELLATION_COMPLETED ? 'success' : 'danger'
+  return props.status !== OrderStatus.CANCELLATION_COMPLETED
+    ? 'success'
+    : 'danger'
 })
 </script>

@@ -69,7 +69,7 @@ import { computed, reactive, ref, watch } from 'vue'
 import { sleep } from 'radash'
 import useVuelidate from '@vuelidate/core'
 import { useToast, useValidationRules } from '~/composables'
-import { useNuxtApp } from '#app/nuxt'
+import { useNuxtApp } from '#app'
 import { useUser } from '#storefront/composables'
 
 const { updatePassword, fetch: refresh } = useUser()

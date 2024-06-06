@@ -5,7 +5,7 @@
 </template>
 
 <script setup lang="ts">
-import { useAuthentication } from '~/composables'
+import { useAuthentication } from '~/composables/useAuthentication'
 
 const { logout, isSubmitting } = useAuthentication('logout')
 </script>

@@ -16,6 +16,7 @@ import {
   getOriginalPrice,
   getPrice,
 } from '@scayle/storefront-nuxt'
+import { divideByHundred } from '~/utils/price'
 
 // TODO: Add tests
 

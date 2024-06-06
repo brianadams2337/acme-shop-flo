@@ -202,7 +202,7 @@ import { sum } from 'radash'
 import { computed, ref, toRef } from 'vue'
 import { type BasketItem } from '@scayle/storefront-nuxt'
 import { useRoute } from '#app/composables/router'
-import { useNuxtApp } from '#app/nuxt'
+import { useNuxtApp } from '#app'
 import { useFormatHelpers, useWishlist } from '#storefront/composables'
 import {
   useBasketItem,
@@ -213,6 +213,8 @@ import {
   useToast,
   useTrackingEvents,
 } from '~/composables'
+import { getBackgroundColorStyle, getTextColorStyle } from '~/utils'
+import { AlphaColorMap } from '~/constants'
 
 type Props = {
   index: number

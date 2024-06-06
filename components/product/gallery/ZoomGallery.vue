@@ -57,7 +57,7 @@
 import { computed, ref, watch } from 'vue'
 import type { PropType } from 'vue'
 import type { ProductImage } from '@scayle/storefront-nuxt'
-import { useZoomGallery } from '~/composables'
+import { useZoomGallery } from '~/composables/useZoomGallery'
 
 const props = defineProps({
   images: {

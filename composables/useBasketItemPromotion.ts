@@ -3,6 +3,16 @@ import {
   getFirstAttributeValue,
   extendPromise,
 } from '@scayle/storefront-nuxt'
+import { type Ref, computed } from 'vue'
+import { useBasketPromotions } from './useBasketPromotions'
+import { useBasket } from '#storefront/composables'
+import {
+  getBackgroundColorStyle,
+  getBasketTotalWithoutPromotions,
+  getVariantIds,
+  isAutomaticDiscountType,
+  isBuyXGetYType,
+} from '~/utils'
 
 export function useBasketItemPromotion(basketItem: Ref<BasketItem>) {
   const basket = useBasket()

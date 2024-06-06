@@ -1,3 +1,5 @@
+import { useCurrentShop } from '#storefront/composables'
+
 const getCategoryData = (category: { id?: number; name?: string }) => {
   const { id = -1, name = '' } = category
   return { id: id >= 0 ? id.toString() : '', name }

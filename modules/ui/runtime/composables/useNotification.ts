@@ -1,6 +1,6 @@
 import { nanoid } from 'nanoid'
-import { useState } from 'nuxt/app'
 import { computed } from 'vue'
+import { useState } from '#app/composables/state'
 import type { RouteLocationRaw } from '#vue-router'
 
 export const DEFAULT_NOTIFICATION_DURATION = 5000

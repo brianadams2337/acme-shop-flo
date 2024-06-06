@@ -27,6 +27,7 @@
 import { computed, defineOptions } from 'vue'
 import { getComponentName } from '../../../utils/helpers'
 import type { CMSGridTile } from '../types'
+import CMSContentfulLink from './ContentfulLink.vue'
 
 const props = withDefaults(defineProps<CMSGridTile>(), {
   sizes: 'xs:100vw sm:100vw md:100vw lg:100vw xl:100vw xxl:100vw 2xl:100vw',

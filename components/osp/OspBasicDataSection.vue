@@ -46,7 +46,7 @@
 </template>
 
 <script setup lang="ts">
-import { useRouteHelpers } from '~/composables'
+import { useRouteHelpers } from '~/composables/useRouteHelpers'
 import { routeList } from '~/utils/route'
 
 type Props = {

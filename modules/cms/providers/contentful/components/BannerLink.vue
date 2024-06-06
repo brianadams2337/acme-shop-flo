@@ -17,7 +17,7 @@
 <script setup lang="ts">
 import { defineOptions } from 'vue'
 import type { CMSBannerLinkProps } from '../types'
-import { useTrackingEvents } from '~/composables'
+import { useTrackingEvents } from '~/composables/useTrackingEvents'
 
 defineProps<CMSBannerLinkProps>()
 

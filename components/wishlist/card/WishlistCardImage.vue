@@ -1,5 +1,5 @@
 <template>
-  <SFLink :to="link" raw>
+  <SFLink v-if="link" :to="link" raw>
     <ProductImage
       v-if="image"
       :image="image"
@@ -55,8 +55,8 @@ import type { RouteLocationRaw } from '#vue-router'
 type Props = {
   index: number
   item: WishlistItem
-  link: RouteLocationRaw
-  image: ProductImage | null
+  link?: RouteLocationRaw
+  image?: ProductImage | null
   imageLoading: 'lazy' | 'eager'
   name: string
 }

@@ -4,6 +4,9 @@ import {
   rpcCall,
 } from '@scayle/storefront-nuxt'
 import { nanoid } from 'nanoid'
+import { toValue, type MaybeRefOrGetter } from 'vue'
+import { useBasket, useCurrentShop } from '#storefront/composables'
+import { useNuxtApp } from '#app'
 
 type AggregateGroupParams = {
   mainItem: AddOrUpdateItemType

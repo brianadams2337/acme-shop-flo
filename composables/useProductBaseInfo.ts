@@ -3,7 +3,15 @@ import {
   getFirstAttributeValue,
   getProductAndSiblingsColors,
   getProductSiblings,
+  ProductImageType,
+  getImageFromList,
 } from '@scayle/storefront-nuxt'
+import { type MaybeRefOrGetter, toRef, computed } from 'vue'
+import { useRouteHelpers } from './useRouteHelpers'
+import {
+  getLowestPriceBetweenVariants,
+  getVariantWithLowestPrice,
+} from '~/utils'
 
 export function useProductBaseInfo(
   productItem: MaybeRefOrGetter<Product | undefined>,

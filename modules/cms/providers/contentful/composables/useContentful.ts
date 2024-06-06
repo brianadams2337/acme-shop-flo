@@ -1,4 +1,4 @@
-import { useNuxtApp } from '#app/nuxt'
+import { useNuxtApp } from '#app'
 
 export function useContentful() {
   const { $contentful } = useNuxtApp()

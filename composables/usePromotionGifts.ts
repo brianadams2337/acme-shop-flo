@@ -1,5 +1,13 @@
 import { type Product, extendPromise } from '@scayle/storefront-nuxt'
 import { unique } from 'radash'
+import { computed } from 'vue'
+import { useProductPromotions } from '~/composables/useProductPromotions'
+import {
+  useBasket,
+  useVariant,
+  useProductsByIds,
+} from '#storefront/composables'
+import { getBackgroundColorStyle, getVariantIds, isBuyXGetYType } from '~/utils'
 
 export function usePromotionGifts(product: Product, key?: string) {
   if (!key) {

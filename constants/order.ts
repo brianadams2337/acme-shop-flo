@@ -6,7 +6,7 @@ type UppercaseObjectKeys<T extends string> = {
 
 type StatusKeys = UppercaseObjectKeys<Package['deliveryStatus']>
 
-export const Status: StatusKeys = {
+export const OrderStatus: StatusKeys = {
   OPEN: 'open',
   SHIPMENT_PENDING: 'shipment_pending',
   DELEGATION_PENDING: 'delegation_pending',
@@ -14,15 +14,15 @@ export const Status: StatusKeys = {
   CANCELLATION_COMPLETED: 'cancellation_completed',
 } as const
 
-export type Status = ValuesType<typeof Status>
+export type OrderStatus = ValuesType<typeof OrderStatus>
 
 export const DeliveryProgress: Readonly<
-  Record<Status, number> & { DEFAULT: number }
+  Record<OrderStatus, number> & { DEFAULT: number }
 > = {
-  [Status.OPEN]: 25,
-  [Status.SHIPMENT_PENDING]: 50,
-  [Status.DELEGATION_PENDING]: 75,
-  [Status.SHIPMENT_COMPLETED]: 100,
-  [Status.CANCELLATION_COMPLETED]: 100,
+  [OrderStatus.OPEN]: 25,
+  [OrderStatus.SHIPMENT_PENDING]: 50,
+  [OrderStatus.DELEGATION_PENDING]: 75,
+  [OrderStatus.SHIPMENT_COMPLETED]: 100,
+  [OrderStatus.CANCELLATION_COMPLETED]: 100,
   DEFAULT: 5,
 }

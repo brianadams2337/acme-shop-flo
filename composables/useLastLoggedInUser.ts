@@ -1,4 +1,6 @@
 import { useLocalStorage } from '@vueuse/core'
+import { watch } from 'vue'
+import { useCurrentShop, useUser } from '#storefront/composables'
 
 export interface LastLoggedInUser {
   firstName: string

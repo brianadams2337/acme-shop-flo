@@ -1,3 +1,5 @@
+import { useState } from '#app/composables/state'
+
 export function useListbox<T = object>(name: string) {
   const isOpen = useState<boolean>(`${name}-open`, () => false)
   const _activeValue = useState<T>(`${name}-value`, () => ({}) as T)

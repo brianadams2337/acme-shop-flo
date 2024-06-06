@@ -52,7 +52,7 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import { useSwitchLocalePath } from '#i18n'
-import { useTrackingEvents } from '~/composables'
+import { useTrackingEvents } from '~/composables/useTrackingEvents'
 import { useAvailableShops, useCurrentShop } from '#storefront/composables'
 
 const currentShop = useCurrentShop()

@@ -1,6 +1,6 @@
 <template>
   <div v-if="blok">
-    <CMSStoryblokLink :to="`${route.path}/${blok.fields.uid}`">
+    <CMSContentfulLink :to="`${route.path}/${blok.fields.uid}`">
       <NuxtPicture
         class="picture picture-contain w-full sm:block"
         provider="contentful"
@@ -11,13 +11,14 @@
         "
         :sizes="sizes"
       />
-    </CMSStoryblokLink>
+    </CMSContentfulLink>
   </div>
 </template>
 
 <script setup lang="ts">
 import { defineOptions } from 'vue'
 import type { CMSDetailImageProps } from '../types'
+import CMSContentfulLink from './ContentfulLink.vue'
 import { useRoute } from '#app/composables/router'
 
 withDefaults(defineProps<CMSDetailImageProps>(), {

@@ -68,7 +68,7 @@ import {
   getTotalAppliedReductions,
 } from '@scayle/storefront-nuxt'
 import { useFormatHelpers } from '#storefront/composables'
-import { useRouteHelpers } from '~/composables'
+import { useRouteHelpers } from '~/composables/useRouteHelpers'
 
 type Props = {
   product: OrderProduct

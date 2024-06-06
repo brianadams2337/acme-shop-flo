@@ -1,5 +1,11 @@
 import { debounce } from 'radash'
 import type { Log } from '@scayle/storefront-nuxt'
+import { useEventListener } from '@vueuse/core'
+import { useGtm } from '@gtm-support/vue-gtm'
+import { useRuntimeConfig } from '#app'
+import { useLog } from '#storefront/composables'
+import { useState } from '#app/composables/state'
+import { usePageState } from '~/composables/usePageState'
 
 const WAIT_TIME = 1000
 

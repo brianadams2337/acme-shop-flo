@@ -1,7 +1,8 @@
 import type { ISbStoriesParams } from 'storyblok-js-client'
 import { useStoryblokApi } from '@storyblok/vue'
 import type { SbStory } from '../types/storyblok'
-import type { AsyncDataOptions } from '#app'
+import { useDefaultStoryblokOptions } from './useDefaultStoryblokOptions'
+import { useAsyncData, type AsyncDataOptions } from '#app/composables/asyncData'
 
 export function useCMS(key: string) {
   const storyblokApi = useStoryblokApi()

@@ -19,7 +19,7 @@
 import { computed } from 'vue'
 import type { PropType } from 'vue'
 import { isEqual, pick } from 'radash'
-import { useNuxtApp } from '#app/nuxt'
+import { useNuxtApp } from '#app'
 
 export type SummaryItem = {
   name: 'shipping' | 'billing'

@@ -1,3 +1,7 @@
+import { defineNuxtRouteMiddleware } from '#app/composables/router'
+import { usePageState, useTracking } from '~/composables'
+import { mapTrackingDataForEvent } from '~/utils'
+
 const TIMEOUT_DELAY = 500
 
 export default defineNuxtRouteMiddleware((to, from) => {

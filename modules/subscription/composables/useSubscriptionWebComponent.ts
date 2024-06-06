@@ -1,3 +1,8 @@
+import { useHead } from '@unhead/vue'
+import { ref } from 'vue'
+import { useRuntimeConfig } from '#app'
+import { useLog, useRpc } from '#storefront/composables'
+
 const isSubscriptionOverviewWebComponentLoaded = ref(false)
 const isSubscriptionCancellationWebComponentLoaded = ref(false)
 

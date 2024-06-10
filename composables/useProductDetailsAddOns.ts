@@ -5,13 +5,13 @@ import {
 } from '@scayle/storefront-nuxt'
 
 export function useProductDetailsAddOns(
-  productId: number,
+  productId: MaybeRefOrGetter<number>,
   productItem?: MaybeRefOrGetter<Product | undefined>,
 ) {
   const product = toRef(productItem)
 
   const selectedAddOns = useState<{ [id: number]: boolean }>(
-    `selected-add-on-${productId}`,
+    `selected-add-on-${toValue(productId)}`,
     () => ({}),
   )
 

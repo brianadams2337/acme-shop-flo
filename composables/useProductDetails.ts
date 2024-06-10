@@ -10,7 +10,7 @@ import {
 } from '@scayle/storefront-nuxt'
 import { getAdvancedAttributes } from '~/utils/attribute'
 
-export async function useProductDetails(key?: string) {
+export function useProductDetails(key?: string) {
   if (!key) {
     // The key is auto-added so this will only be thrown if a nullish value is passed to the function
     throw Error('missing key argument')

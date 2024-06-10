@@ -13,52 +13,49 @@ export const setUserDefault = (): LastLoggedInUser => ({
 })
 
 export async function useLastLoggedInUser() {
-  const instance = useNuxtApp()
   const currentShop = useCurrentShop()
 
-  const { user, isLoggedIn, fetching } = await useUser()
+  const { user, isLoggedIn, fetching } = useUser()
 
-  return await instance.runWithContext(() => {
-    const localStorage = useLocalStorage<LastLoggedInUser>(
-      `${USER_KEY}-${currentShop.value.shopId}`,
-      setUserDefault(),
-      {
-        serializer: {
-          read: (value: any) => (value ? JSON.parse(atob(value)) : null),
-          write: (value: any) => btoa(JSON.stringify(value)),
-        },
+  const localStorage = useLocalStorage<LastLoggedInUser>(
+    `${USER_KEY}-${currentShop.value.shopId}`,
+    setUserDefault(),
+    {
+      serializer: {
+        read: (value: any) => (value ? JSON.parse(atob(value)) : null),
+        write: (value: any) => btoa(JSON.stringify(value)),
       },
-    )
+    },
+  )
 
-    const removeLastLoggedInUser = () => {
-      localStorage.value = setUserDefault()
-    }
+  const removeLastLoggedInUser = () => {
+    localStorage.value = setUserDefault()
+  }
 
-    watch(
-      () => isLoggedIn.value,
-      (value) => {
-        if (!value) {
-          return
-        }
+  watch(
+    () => isLoggedIn.value,
+    (value) => {
+      if (!value) {
+        return
+      }
 
-        const isGuest = user.value?.status?.isGuestCustomer
+      const isGuest = user.value?.status?.isGuestCustomer
 
-        if (isGuest) {
-          return
-        }
+      if (isGuest) {
+        return
+      }
 
-        localStorage.value = {
-          firstName: user.value!.firstName,
-          email: user.value!.email || '',
-        }
-      },
-    )
+      localStorage.value = {
+        firstName: user.value!.firstName,
+        email: user.value!.email || '',
+      }
+    },
+  )
 
-    return {
-      lastLoggedInUser: localStorage,
-      removeLastLoggedInUser,
-      isLoggedIn,
-      isFetching: fetching,
-    }
-  })
+  return {
+    lastLoggedInUser: localStorage,
+    removeLastLoggedInUser,
+    isLoggedIn,
+    isFetching: fetching,
+  }
 }

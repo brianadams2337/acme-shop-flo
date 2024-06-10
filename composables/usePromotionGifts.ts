@@ -1,7 +1,7 @@
 import { type Product, extendPromise } from '@scayle/storefront-nuxt'
 import { unique } from 'radash'
 
-export async function usePromotionGifts(product: Product, key?: string) {
+export function usePromotionGifts(product: Product, key?: string) {
   if (!key) {
     // The key is auto-added so this will only be thrown if a nullish value is passed to the function
     throw Error('missing key argument')

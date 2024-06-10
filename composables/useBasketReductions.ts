@@ -2,7 +2,7 @@ import { extendPromise, type BasketItem } from '@scayle/storefront-nuxt'
 import { sum } from 'radash'
 import { hexToRGBAColor } from '~/utils/color'
 
-export async function useBasketReductions() {
+export function useBasketReductions() {
   const basket = useBasket()
 
   const withNegativePrefix = (value: string): string => {

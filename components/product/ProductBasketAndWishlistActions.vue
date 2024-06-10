@@ -35,5 +35,5 @@ import { useProductDetailsBasketActions } from '~/composables'
 
 defineProps<{ product: Product }>()
 
-const { addItemToBasket, basketIdle } = await useProductDetailsBasketActions()
+const { addItemToBasket, basketIdle } = useProductDetailsBasketActions()
 </script>

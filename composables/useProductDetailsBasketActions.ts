@@ -2,7 +2,7 @@ import type { AddOrUpdateItemType } from '@scayle/storefront-nuxt'
 import { unique } from 'radash'
 import { isSubscriptionAlreadyInBasket } from '~/modules/subscription/helpers/subscription'
 
-export async function useProductDetailsBasketActions() {
+export function useProductDetailsBasketActions() {
   const app = useNuxtApp()
 
   const toast = useToast()
@@ -16,25 +16,19 @@ export async function useProductDetailsBasketActions() {
     activeVariant,
     quantity,
     name,
-  } = await app.runWithContext(() =>
-    useProductDetails('use-product-details-basket-actions'),
-  )
+  } = useProductDetails('use-product-details-basket-actions')
 
-  const [
-    { fetching: basketIdle, addItem: addBasketItem, items: basketItems },
-    { highestPriorityPromotion, isBuyXGetYPrioritized },
-    { selectedAddOnVariantIds, isAnyAddOnSelected },
-    { addGroupToBasket },
-    { showAddToBasketToast },
-  ] = await app.runWithContext(() =>
-    Promise.all([
-      useBasket(),
-      useProductPromotions(product),
-      useProductDetailsAddOns(productId.value, product),
-      useBasketGroup(),
-      useBasketActions(),
-    ]),
-  )
+  const {
+    fetching: basketIdle,
+    addItem: addBasketItem,
+    items: basketItems,
+  } = useBasket()
+  const { highestPriorityPromotion, isBuyXGetYPrioritized } =
+    useProductPromotions(product)
+  const { selectedAddOnVariantIds, isAnyAddOnSelected } =
+    useProductDetailsAddOns(productId, product)
+  const { addGroupToBasket } = useBasketGroup()
+  const { showAddToBasketToast } = useBasketActions()
 
   const getBasketAddOnProducts = () => {
     return unique(

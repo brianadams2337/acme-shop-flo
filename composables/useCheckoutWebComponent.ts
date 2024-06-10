@@ -19,8 +19,7 @@ export type Customer = {
   groups: string[]
 }
 
-export async function useCheckoutWebComponent() {
-  const instance = useNuxtApp()
+export function useCheckoutWebComponent() {
   const currentShop = useCurrentShop()
   useHead({
     script: [
@@ -34,17 +33,16 @@ export async function useCheckoutWebComponent() {
     ],
   })
 
-  const { data, fetch: fetchCheckoutToken } = await useRpc(
+  const { data, fetch: fetchCheckoutToken } = useRpc(
     'getCheckoutToken',
     'getCheckoutToken',
     undefined,
-    { autoFetch: false },
+    { immediate: false },
   )
-  return instance.runWithContext(() => {
-    return {
-      fetchCheckoutToken,
-      accessToken: computed(() => data.value?.accessToken),
-      checkoutJwt: computed(() => data.value?.checkoutJwt),
-    }
-  })
+
+  return {
+    fetchCheckoutToken,
+    accessToken: computed(() => data.value?.accessToken),
+    checkoutJwt: computed(() => data.value?.checkoutJwt),
+  }
 }

@@ -10,7 +10,7 @@ export const wishlistListingMetadata = {
   name: WishlistListingMetadata.NAME,
 } as const
 
-export async function useWishlistPage() {
+export function useWishlistPage() {
   const app = useNuxtApp()
 
   useSeoMeta({

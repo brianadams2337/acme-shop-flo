@@ -269,7 +269,7 @@ const {
   combineWithProductIds,
 } = await useProductDetails('[slug].vue')
 
-const { addItemToBasket } = await useProductDetailsBasketActions()
+const { addItemToBasket } = useProductDetailsBasketActions()
 
 const { isBuyXGetYPrioritized, isGiftAddedToBasket } =
   await useProductPromotions(product)

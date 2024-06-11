@@ -29,7 +29,7 @@
         />
       </div>
       <div class="mt-4">
-        <LogoutButton data-test-id="add-item-to-basket-button" />
+        <LogoutButton data-testid="logout-button" />
       </div>
     </PageContent>
   </div>

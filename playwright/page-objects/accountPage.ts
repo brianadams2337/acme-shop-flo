@@ -6,9 +6,7 @@ export class AccountPage {
 
   constructor(page: Page) {
     this.page = page
-    // change this after fix     this.logoutButton = page.locator(
-      '[data-test-id="add-item-to-basket-button"]',
-    )
+    this.logoutButton = page.getByTestId('logout-button')
   }
 
   async clickLogoutButton() {

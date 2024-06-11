@@ -89,7 +89,7 @@ const editableUser = reactive({
   email: '',
   password: '',
 })
-const { login, isSubmitting } = await useAuthentication('login')
+const { login, isSubmitting } = useAuthentication('login')
 const { lastLoggedInUser } = await useLastLoggedInUser()
 
 if (lastLoggedInUser.value) {

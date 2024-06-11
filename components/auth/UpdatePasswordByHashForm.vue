@@ -53,7 +53,7 @@ defineEmits(['close:modal'])
 
 const route = useRoute()
 const { resetPasswordByHash, isSubmitting } =
-  await useAuthentication('reset_password')
+  useAuthentication('reset_password')
 
 const validationRules = useValidationRules()
 

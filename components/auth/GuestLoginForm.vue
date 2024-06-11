@@ -58,7 +58,7 @@ import type { Gender } from '@scayle/storefront-nuxt'
 import useVuelidate from '@vuelidate/core'
 import { useAuthentication, useValidationRules } from '~/composables'
 
-const { guestLogin, isSubmitting } = await useAuthentication('guest_login')
+const { guestLogin, isSubmitting } = useAuthentication('guest_login')
 const validationRules = useValidationRules()
 
 const editableUser = reactive({

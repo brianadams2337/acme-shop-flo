@@ -50,7 +50,7 @@ import { routeList } from '~/utils/route'
 
 const { closeUserFlyout } = useFlyouts()
 const { user } = await useUser()
-const { logout, isSubmitting } = await useAuthentication('logout')
+const { logout, isSubmitting } = useAuthentication('logout')
 
 const isGuest = computed(() => user.value?.status?.isGuestCustomer)
 </script>

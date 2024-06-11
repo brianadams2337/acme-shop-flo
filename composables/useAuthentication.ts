@@ -16,7 +16,7 @@ const httpErrorMessages: Record<number, string> = {
   500: '500_server_error',
 } as const
 
-export async function useAuthentication(
+export function useAuthentication(
   event: AuthTrackingEvent,
   method: AuthenticationType = 'email',
 ) {
@@ -39,11 +39,9 @@ export async function useAuthentication(
     $i18n.t(`login_page.${event}.status.success`),
   )
 
-  const [
-    { fetch: refreshWishlist },
-    { fetch: refreshBasket },
-    { user, fetch: refreshUser, customerType },
-  ] = await Promise.all([useWishlist(), useBasket(), useUser()])
+  const { fetch: refreshWishlist } = useWishlist()
+  const { fetch: refreshBasket } = useBasket()
+  const { user, fetch: refreshUser, customerType } = useUser()
 
   const refresh = async () => {
     await Promise.all([refreshUser(), refreshWishlist(), refreshBasket()])

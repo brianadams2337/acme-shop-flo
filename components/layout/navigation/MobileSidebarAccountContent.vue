@@ -41,10 +41,10 @@ import { useAuthentication, useSideNavigation } from '~/composables'
 import { useUser } from '#storefront/composables'
 import { routeList } from '~/utils/route'
 
-const { user } = await useUser()
+const { user } = useUser()
 const { closeSideNavigation } = useSideNavigation()
 
-const { logout, isSubmitting } = await useAuthentication('logout')
+const { logout, isSubmitting } = useAuthentication('logout')
 
 const isGuest = computed(() => user.value?.status?.isGuestCustomer)
 </script>

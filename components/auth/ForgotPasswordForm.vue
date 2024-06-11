@@ -56,8 +56,7 @@ import {
 
 defineEmits(['close:modal'])
 
-const { forgotPassword, isSubmitting } =
-  await useAuthentication('forgot_password')
+const { forgotPassword, isSubmitting } = useAuthentication('forgot_password')
 const { lastLoggedInUser } = await useLastLoggedInUser()
 
 const validationRules = useValidationRules()

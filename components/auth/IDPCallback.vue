@@ -10,7 +10,7 @@ const props = defineProps<{
   code: string
 }>()
 
-const { loginIDP } = await useAuthentication('login')
+const { loginIDP } = useAuthentication('login')
 
 onMounted(async () => {
   await loginIDP(props.code)

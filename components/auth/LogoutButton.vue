@@ -7,5 +7,5 @@
 <script setup lang="ts">
 import { useAuthentication } from '~/composables'
 
-const { logout, isSubmitting } = await useAuthentication('logout')
+const { logout, isSubmitting } = useAuthentication('logout')
 </script>

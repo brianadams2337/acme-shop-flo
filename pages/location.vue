@@ -67,10 +67,13 @@
 <script setup lang="ts">
 import { computed, defineOptions, ref } from 'vue'
 import { useSeoMeta } from '@unhead/vue'
+import { useToast } from '~/composables/useToast'
 import { definePageMeta } from '#imports'
 import { useStoreLocator } from '#omnichannel/composables'
 import { useRuntimeConfig } from '#app/nuxt'
 import { useI18n } from '#i18n'
+
+const { t } = useI18n()
 
 const config = useRuntimeConfig()
 const googleMapsKey = config.public.googleMapsApiKey
@@ -85,6 +88,8 @@ const searching = ref<boolean>(false)
 
 const searchAddress = ref('')
 const searchRadius = ref(5000)
+
+const toast = useToast()
 
 const searchForStores = async () => {
   searching.value = true
@@ -115,11 +120,12 @@ const getClientLocation = (): Promise<GeolocationPosition> =>
   })
 
 const findStoresInUserLocation = async () => {
-  const { coords } = await getClientLocation()
   searchAddress.value = ''
   searching.value = true
 
   try {
+    const { coords } = await getClientLocation()
+
     await refreshStores({
       filters: {
         radius: 10000,
@@ -129,12 +135,18 @@ const findStoresInUserLocation = async () => {
         },
       },
     })
-    // eslint-disable-next-line no-empty
-  } catch {}
+  } catch (e) {
+    if (e instanceof GeolocationPositionError) {
+      const msg =
+        e.code === GeolocationPositionError.PERMISSION_DENIED
+          ? t('store_locator.geolocation.error.permission_denied')
+          : t('store_locator.geolocation.error.unknown')
+      toast.show(msg, 'CONFIRM')
+    }
+  }
   searching.value = false
 }
 
-const { t } = useI18n()
 useSeoMeta({ robots: 'index,follow', title: t('navigation.location') })
 
 defineOptions({ name: 'LocationPage' })

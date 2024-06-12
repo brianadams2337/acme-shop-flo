@@ -469,6 +469,12 @@
       "fri": "Friday",
       "sat": "Saturday",
       "sun": "Sunday"
+    },
+    "geolocation": {
+      "error": {
+        "permission_denied": "User denied geolocation prompt",
+        "unknown": "Unable to determine geolocation"
+      }
     }
   },
   "intl": {

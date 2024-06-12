@@ -470,6 +470,12 @@
       "fri": "Freitag",
       "sat": "Samstag",
       "sun": "Sonntag"
+    },
+    "geolocation": {
+      "error": {
+        "permission_denied": "Zugriff auf den Standort wurde durch den Nutzer verweigert",
+        "unknown": "Der Standort konnte nicht ermittelt werden"
+      }
     }
   },
   "intl": {

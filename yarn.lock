@@ -3137,17 +3137,17 @@
   optionalDependencies:
     redis "4"
 
-"@scayle/storefront-nuxt@7.76.0":
-  version "7.76.0"
-  resolved "https://registry.yarnpkg.com/@scayle/storefront-nuxt/-/storefront-nuxt-7.76.0.tgz#ebdf3542266f12a76800f3cb3b80932531120084"
-  integrity sha512-v9XcqGio9Gplck9emRXX9M9wxg+UuAzraapXiaNtaEKbhvfZ2wrC8ZQYyJs5Ko2ebnOQJmn1xlUULX5y3y/eUg==
+"@scayle/storefront-nuxt@7.76.1":
+  version "7.76.1"
+  resolved "https://registry.yarnpkg.com/@scayle/storefront-nuxt/-/storefront-nuxt-7.76.1.tgz#b4145ec9cd81ed238d683b5c0d2d326aed44ac5e"
+  integrity sha512-hLIjDeWN3gTW+lWtkrzNYO+W0J8+HP1L4dPLU5KJl5hSARfDfBC4bNcQE7tKsMbXxhycvjE2z2vRf9x3JBJWjg==
   dependencies:
     "@nuxt/kit" "3.11.1"
     "@opentelemetry/api" "1.9.0"
     "@scayle/h3-session" "0.4.0"
     "@scayle/storefront-core" "7.55.0"
     "@scayle/unstorage-compression-driver" "0.1.3"
-    "@vueuse/core" "10.10.0"
+    "@vueuse/core" "10.10.1"
     consola "3.2.3"
     core-js "3.37.1"
     defu "6.1.4"
@@ -4437,16 +4437,6 @@
     "@vueuse/shared" "10.9.0"
     vue-demi ">=0.14.7"
 
-"@vueuse/core@10.10.0":
-  version "10.10.0"
-  resolved "https://registry.yarnpkg.com/@vueuse/core/-/core-10.10.0.tgz#05a98d3c5674762455a2c552c915d461d83e6490"
-  integrity sha512-vexJ/YXYs2S42B783rI95lMt3GzEwkxzC8Hb0Ndpd8rD+p+Lk/Za4bd797Ym7yq4jXqdSyj3JLChunF/vyYjUw==
-  dependencies:
-    "@types/web-bluetooth" "^0.0.20"
-    "@vueuse/metadata" "10.10.0"
-    "@vueuse/shared" "10.10.0"
-    vue-demi ">=0.14.7"
-
 "@vueuse/core@10.10.1":
   version "10.10.1"
   resolved "https://registry.yarnpkg.com/@vueuse/core/-/core-10.10.1.tgz#8f62ab7574f7d37511090cc22ce88ef704592b59"
@@ -4476,11 +4466,6 @@
     "@vueuse/shared" "10.9.0"
     vue-demi ">=0.14.7"
 
-"@vueuse/metadata@10.10.0":
-  version "10.10.0"
-  resolved "https://registry.yarnpkg.com/@vueuse/metadata/-/metadata-10.10.0.tgz#53e61e9380670e342cbe6e03d852f3319308cb5b"
-  integrity sha512-UNAo2sTCAW5ge6OErPEHb5z7NEAg3XcO9Cj7OK45aZXfLLH1QkexDcZD77HBi5zvEiLOm1An+p/4b5K3Worpug==
-
 "@vueuse/metadata@10.10.1":
   version "10.10.1"
   resolved "https://registry.yarnpkg.com/@vueuse/metadata/-/metadata-10.10.1.tgz#a5a0fed19d1249cfb416464e955092a62d19a830"
@@ -4501,13 +4486,6 @@
     "@vueuse/metadata" "10.10.1"
     local-pkg "^0.5.0"
     vue-demi ">=0.14.8"
-
-"@vueuse/shared@10.10.0":
-  version "10.10.0"
-  resolved "https://registry.yarnpkg.com/@vueuse/shared/-/shared-10.10.0.tgz#93f7c2210151ff43c2c7677963f7aa3aef5d9896"
-  integrity sha512-2aW33Ac0Uk0U+9yo3Ypg9s5KcR42cuehRWl7vnUHadQyFvCktseyxxEPBi1Eiq4D2yBGACOnqLZpx1eMc7g5Og==
-  dependencies:
-    vue-demi ">=0.14.7"
 
 "@vueuse/shared@10.10.1":
   version "10.10.1"

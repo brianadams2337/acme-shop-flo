@@ -49,12 +49,12 @@
 </template>
 
 <script setup lang="ts">
-import { useOrders } from '~/composables'
+import { useOrderDetails } from '~/composables'
 import { useFormatHelpers } from '#storefront/composables'
 
 const { formatCurrency } = useFormatHelpers()
 
-const { totalAmount, deliveryCost, paymentKey } = useOrders(
+const { totalAmount, deliveryCost, paymentKey } = useOrderDetails(
   'payment-summary.vue',
 )
 </script>

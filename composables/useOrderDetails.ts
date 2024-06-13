@@ -1,6 +1,6 @@
 import { unique } from 'radash'
 
-export function useOrders(key?: string) {
+export function useOrderDetails(key?: string) {
   if (!key) {
     // The key is auto-added so this will only be thrown if a nullish value is passed to the function
     throw Error('missing key argument')

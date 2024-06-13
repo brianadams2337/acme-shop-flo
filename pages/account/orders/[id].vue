@@ -28,14 +28,14 @@
 <script setup lang="ts">
 import { computed, defineOptions } from 'vue'
 import { definePageMeta } from '#imports'
-import { useOrders } from '~/composables'
+import { useOrderDetails } from '~/composables'
 import { useRoute } from '#app/composables/router'
 
 const route = useRoute()
 const paramId = computed(() => +route.params.id)
 
 const { orderDetails, fetching, shippingAddress, billingAddress, itemCount } =
-  useOrders('[id].vue')
+  useOrderDetails('[id].vue')
 
 defineOptions({ name: 'OrderDetailsView' })
 definePageMeta({ pageType: 'account_area:order_id' })

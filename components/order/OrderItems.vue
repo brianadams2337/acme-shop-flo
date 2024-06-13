@@ -31,14 +31,14 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import { unique } from 'radash'
-import { useOrders } from '~/composables'
+import { useOrderDetails } from '~/composables'
 
 type CarrierMap = Record<
   string,
   { items: OrderItems; deliveryInfo: DeliveryInfo }
 >
 
-const { orderVariants, orderItems, packages } = useOrders('order.vue')
+const { orderVariants, orderItems, packages } = useOrderDetails('order.vue')
 
 const uniqueItems = computed(() => {
   return unique(orderItems.value, (it) => it.variant.id)

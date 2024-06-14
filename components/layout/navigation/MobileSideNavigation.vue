@@ -97,8 +97,9 @@ const isNestedCategoryViewActive = computed(() => {
 })
 
 function handleGoBack() {
-  setActiveParentCategory(undefined)
+  activeParentCategory.value = undefined
 }
+
 activeParentCategory.value = props.categories.find(({ path }) => {
   if (currentPathParts.value.length < 2) {
     return

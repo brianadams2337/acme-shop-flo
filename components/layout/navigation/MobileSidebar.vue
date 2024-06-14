@@ -2,10 +2,10 @@
   <SFSlideInFromLeftTransition>
     <nav
       v-if="isSideNavigationOpen"
-      class="sticky inset-1 z-[100] min-h-screen overflow-hidden overflow-y-auto overscroll-none bg-white md:hidden"
+      class="sticky inset-1 z-[100] h-screen overflow-hidden overflow-y-auto overscroll-none bg-white md:hidden"
       :class="{ 'animate-pulse': fetchingCategories }"
     >
-      <div class="h-full" :style="{ 'max-height': 'calc(100% - 80px)' }">
+      <div class="flex h-full max-h-[calc(100%-80px)] flex-col">
         <MobileSidebarAccountContent
           @click:hide-categories="setSideNavigationActiveState(false)"
           @click:show-categories="setSideNavigationActiveState(true)"

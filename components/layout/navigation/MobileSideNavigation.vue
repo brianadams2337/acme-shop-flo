@@ -6,7 +6,7 @@
       :index="index"
     />
   </div>
-  <div v-else class="mr-4" :class="{ 'animate-pulse': fetching }">
+  <div v-else class="mr-4 overflow-auto" :class="{ 'animate-pulse': fetching }">
     <ul v-if="categories?.length" class="my-4 md:mt-0">
       <li
         v-for="category in categories"

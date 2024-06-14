@@ -660,6 +660,14 @@
     "@vercel/stega" "^0.1.2"
     json-pointer "^0.6.2"
 
+"@contentful/content-source-maps@^0.6.0":
+  version "0.6.0"
+  resolved "https://registry.yarnpkg.com/@contentful/content-source-maps/-/content-source-maps-0.6.0.tgz#420934abd38522d776227888dd3a1cb5cf8879d3"
+  integrity sha512-REX3kUm4f2tkdfJArqblhKL7SMLfEG18eF3vcQA+8KdBqo+7lNS2W2CuPt2i8uvdgt1aKliGXJeJTgZjYFpCqw==
+  dependencies:
+    "@vercel/stega" "^0.1.2"
+    json-pointer "^0.6.2"
+
 "@contentful/live-preview@4.2.1":
   version "4.2.1"
   resolved "https://registry.yarnpkg.com/@contentful/live-preview/-/live-preview-4.2.1.tgz#984179e3db14e874a5c8f9d93d624ec97eadfa76"
@@ -4895,7 +4903,7 @@ available-typed-arrays@^1.0.7:
   dependencies:
     possible-typed-array-names "^1.0.0"
 
-axios@1.6.8, axios@^1.4.0, axios@^1.6.2, axios@^1.6.7:
+axios@1.6.8, axios@^1.4.0, axios@^1.6.2, axios@^1.6.7, axios@~1.6.8:
   version "1.6.8"
   resolved "https://registry.yarnpkg.com/axios/-/axios-1.6.8.tgz#66d294951f5d988a00e87a0ffb955316a619ea66"
   integrity sha512-v/ZHtJDU39mDpyBoFVkETcd/uNdxrWRrg3bKpOKzXFA6Bvqopts6ALSMU3y6ijYxbw2B+wPrIv46egTzJXCLGQ==
@@ -5906,14 +5914,14 @@ contentful-sdk-core@^8.1.0:
     p-throttle "^4.1.1"
     qs "^6.11.2"
 
-contentful@10.11.10:
-  version "10.11.10"
-  resolved "https://registry.yarnpkg.com/contentful/-/contentful-10.11.10.tgz#f5c88d701d42f95cf34330ceccf11a6dacd651a5"
-  integrity sha512-kjzQEOgWv0v6kWstuHGhp99gZkRAEhZ9e64DwCUp7GkTr3B67fppMe+qlzsNj6hefC44M3w/oP3A/xys9QR9pw==
+contentful@10.12.0:
+  version "10.12.0"
+  resolved "https://registry.yarnpkg.com/contentful/-/contentful-10.12.0.tgz#ff2a0c6b1a583b6c51c932eedc6e0bfb2e253728"
+  integrity sha512-jGu15/nY7SQ24pbA3tXSPo5URxnZcBeV6wnH0pF1z/DguCUK2CftjBH4LSHrIevw2RdDuFU9VsAh8kjT1B2dbg==
   dependencies:
-    "@contentful/content-source-maps" "^0.5.0"
+    "@contentful/content-source-maps" "^0.6.0"
     "@contentful/rich-text-types" "^16.0.2"
-    axios "^1.6.7"
+    axios "~1.6.8"
     contentful-resolve-response "^1.8.1"
     contentful-sdk-core "^8.1.0"
     json-stringify-safe "^5.0.1"

@@ -46,7 +46,7 @@ test('Verify User login with wrong credentials', async ({
     LOGIN_WRONG_CREDENTIALS.password,
   )
 
-  await header.clickLoginHeaderButton()
+  await signinPage.clickLoginButton()
   await toastMessage.assertToastInfoIsVisible()
   await toastMessage.clickToastMessageButton()
   await toastMessage.assertToastInfoNotVisible()

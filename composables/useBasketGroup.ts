@@ -13,7 +13,6 @@ type AggregateGroupParams = {
 export function useBasketGroup(
   withParams?: MaybeRefOrGetter<BasketWithOptions>,
 ) {
-  const groupId = nanoid(8)
   const nuxtApp = useNuxtApp()
   const currentShop = useCurrentShop()
   const { fetch: refreshBasket } = useBasket()
@@ -22,6 +21,7 @@ export function useBasketGroup(
     mainItem,
     items,
   }: AggregateGroupParams): AddOrUpdateItemType[] => {
+    const groupId = nanoid(8)
     return [
       {
         ...mainItem,

@@ -38,6 +38,10 @@ const { $i18n } = useNuxtApp()
 const { trackPurchaseEvent } = useTrackingEvents()
 
 onMounted(() => {
+  if (user.isLoggedIn) {
+    user.forceRefresh()
+  }
+
   watch(
     fetching,
     (isFetching) => {
@@ -48,19 +52,6 @@ onMounted(() => {
     { immediate: true },
   )
 })
-
-watch(
-  user.fetching,
-  async (isFetching) => {
-    if (!isFetching && user.isLoggedIn) {
-      // This will force fetching fresh user data from the backend.
-      // Without it the new order will not be available in the users order list,
-      // which will cause the oder not being displayed in the MyAccount area.
-      await user.forceRefresh()
-    }
-  },
-  { immediate: true },
-)
 
 const deliveryDate = computed(() => {
   const [pkg] = orderData.value.packages || []

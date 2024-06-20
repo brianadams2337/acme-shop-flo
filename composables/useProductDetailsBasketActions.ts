@@ -1,22 +1,22 @@
-import type { AddOrUpdateItemType } from '@scayle/storefront-nuxt'
+import type {
+  AddOrUpdateItemType,
+  Product,
+  Variant,
+} from '@scayle/storefront-nuxt'
 import { unique } from 'radash'
 import { isSubscriptionAlreadyInBasket } from '~/modules/subscription/helpers/subscription'
+import { hasOneSizeProductVariantOnly } from '~/utils/sizes'
 
-export function useProductDetailsBasketActions() {
+export function useProductDetailsBasketActions(
+  product: Ref<Product>,
+  activeVariant: Ref<Variant | undefined>,
+  quantity: Ref<number>,
+) {
   const app = useNuxtApp()
 
   const toast = useToast()
   const { trackAddToBasket } = useTrackingEvents()
   const { openBasketFlyout } = useFlyouts()
-
-  const {
-    product,
-    productId,
-    hasOneSizeVariantOnly,
-    activeVariant,
-    quantity,
-    name,
-  } = useProductDetails('use-product-details-basket-actions')
 
   const {
     fetching: basketIdle,
@@ -26,9 +26,11 @@ export function useProductDetailsBasketActions() {
   const { highestPriorityPromotion, isBuyXGetYPrioritized } =
     useProductPromotions(product)
   const { selectedAddOnVariantIds, isAnyAddOnSelected } =
-    useProductDetailsAddOns(productId, product)
+    useProductDetailsAddOns(product.value.id, product)
   const { addGroupToBasket } = useBasketGroup()
   const { showAddToBasketToast } = useBasketActions()
+
+  const { name } = useProductBaseInfo(product)
 
   const getBasketAddOnProducts = () => {
     return unique(
@@ -45,7 +47,9 @@ export function useProductDetailsBasketActions() {
     if (!product.value) {
       return
     }
-    if (hasOneSizeVariantOnly.value && product.value.variants) {
+    const hasOneSizeVariantOnly =
+      product.value && hasOneSizeProductVariantOnly(product.value)
+    if (hasOneSizeVariantOnly && product.value.variants) {
       activeVariant.value = product.value.variants[0]
     }
 

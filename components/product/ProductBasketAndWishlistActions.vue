@@ -30,10 +30,19 @@
 </template>
 
 <script setup lang="ts">
-import type { Product } from '@scayle/storefront-nuxt'
+import { toRef } from 'vue'
+import type { Product, Variant } from '@scayle/storefront-nuxt'
 import { useProductDetailsBasketActions } from '~/composables'
 
-defineProps<{ product: Product }>()
+const props = defineProps<{
+  product: Product
+  activeVariant: Variant | undefined
+  quantity: number
+}>()
 
-const { addItemToBasket, basketIdle } = useProductDetailsBasketActions()
+const { addItemToBasket, basketIdle } = useProductDetailsBasketActions(
+  toRef(() => props.product),
+  toRef(() => props.activeVariant),
+  toRef(() => props.quantity),
+)
 </script>

@@ -169,7 +169,14 @@
               :variant-id="activeVariant.id"
             />
 
-            <ProductBasketAndWishlistActions :product="product" class="mt-4" />
+            <ProductBasketAndWishlistActions
+              v-bind="{
+                product,
+                activeVariant,
+                quantity,
+              }"
+              class="mt-4"
+            />
 
             <ClientOnly>
               <template #fallback>
@@ -249,6 +256,7 @@ import { isProductSubscriptionEligible } from '~/modules/subscription/helpers/su
 import { ProductColorChip } from '#components'
 import { Size } from '#storefront-ui'
 
+const productDetails = await useProductDetails('[slug].vue')
 const {
   product,
   activeVariant,
@@ -267,9 +275,13 @@ const {
   fetching,
   productId,
   combineWithProductIds,
-} = await useProductDetails('[slug].vue')
+} = productDetails
 
-const { addItemToBasket } = useProductDetailsBasketActions()
+const { addItemToBasket } = useProductDetailsBasketActions(
+  product,
+  activeVariant,
+  quantity,
+)
 
 const { isBuyXGetYPrioritized, isGiftAddedToBasket } =
   await useProductPromotions(product)

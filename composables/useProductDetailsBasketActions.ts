@@ -4,8 +4,10 @@ import type {
   Variant,
 } from '@scayle/storefront-nuxt'
 import { unique } from 'radash'
+import { toValue } from 'vue'
 import { isSubscriptionAlreadyInBasket } from '~/modules/subscription/helpers/subscription'
 import { hasOneSizeProductVariantOnly } from '~/utils/sizes'
+import { useToast } from '~/composables'
 
 export function useProductDetailsBasketActions(
   product: Ref<Product>,
@@ -49,11 +51,14 @@ export function useProductDetailsBasketActions(
     }
     const hasOneSizeVariantOnly =
       product.value && hasOneSizeProductVariantOnly(product.value)
+
+    let variantToAdd = toValue(activeVariant)
+
     if (hasOneSizeVariantOnly && product.value.variants) {
-      activeVariant.value = product.value.variants[0]
+      variantToAdd = product.value.variants[0]
     }
 
-    if (!activeVariant.value) {
+    if (!variantToAdd) {
       toast.show(app.$i18n.t('basket.notification.select_size'), 'CONFIRM')
       return
     }
@@ -61,7 +66,7 @@ export function useProductDetailsBasketActions(
     if (
       isSubscriptionAlreadyInBasket(
         !!priorItemToAdd,
-        activeVariant.value.id,
+        variantToAdd.id,
         basketItems.value,
       )
     ) {
@@ -84,7 +89,7 @@ export function useProductDetailsBasketActions(
         await addBasketItem(priorItemToAdd)
       } else if (isAnyAddOnSelected.value) {
         await addGroupToBasket({
-          mainItem: { variantId: activeVariant.value.id, quantity: 1 },
+          mainItem: { variantId: variantToAdd.id, quantity: 1 },
           items: [
             ...selectedAddOnVariantIds.value.map((variantId) => ({
               variantId,
@@ -94,7 +99,7 @@ export function useProductDetailsBasketActions(
         })
       } else {
         await addBasketItem({
-          variantId: activeVariant.value.id,
+          variantId: variantToAdd.id,
           quantity: quantity.value,
           ...(!promotionId && { promotionId: null }),
           ...(promotionId && !isBuyXGetYPrioritized.value && { promotionId }),
@@ -116,7 +121,7 @@ export function useProductDetailsBasketActions(
       } else {
         trackAddToBasket({
           product: product.value,
-          variant: activeVariant.value,
+          variant: variantToAdd,
           quantity: quantity.value,
           index: 1,
         })

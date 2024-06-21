@@ -1,7 +1,7 @@
 <template>
   <select
     class="w-full rounded border-2 border-transparent bg-secondary-450 p-3 text-sm font-medium placeholder:text-secondary focus:outline-none focus:ring-0"
-    :value="value"
+    :value="model"
     @input="triggerInputEvent($event)"
   >
     <option
@@ -15,26 +15,19 @@
 </template>
 
 <script setup lang="ts">
-import type { PropType } from 'vue'
+import { defineModel } from 'vue'
 import type { Gender } from '@scayle/storefront-nuxt'
 import { useNuxtApp } from '#app/nuxt'
 
-defineProps({
-  value: {
-    type: String as PropType<Gender>,
-    required: true,
-    default: 'f',
-  },
+const model = defineModel<Gender>({
+  required: true,
+  default: 'f',
 })
-
-const emit = defineEmits<{
-  (e: 'input', value: string): void
-}>()
 
 const { $i18n } = useNuxtApp()
 
 const triggerInputEvent = (event: Event) => {
-  emit('input', (event?.target as HTMLInputElement)?.value)
+  model.value = (event?.target as HTMLInputElement)?.value as Gender
 }
 
 const genders: { label: string; value: Gender }[] = [

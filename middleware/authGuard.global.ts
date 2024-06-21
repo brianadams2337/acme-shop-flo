@@ -1,9 +1,12 @@
 import type { LinkList } from '~/utils/route'
 
 export default defineNuxtRouteMiddleware(async (to) => {
-  if (to.path.includes('/api')) {
+  const currentShop = useCurrentShop()
+
+  if (to.path.includes('/api') || !currentShop.value) {
     return
   }
+
   const nuxt = useNuxtApp()
   const getLocalePath = useLocalePath()
   const userComposable = await useUser()

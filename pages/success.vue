@@ -12,8 +12,8 @@
 </template>
 
 <script setup lang="ts">
-import { useSeoMeta } from '@unhead/vue'
 import { computed, defineOptions, onMounted, watch } from 'vue'
+import { useSeoMeta } from '@unhead/vue'
 import { definePageMeta } from '#imports'
 import { useTrackingEvents } from '~/composables'
 import { useNuxtApp } from '#app/nuxt'
@@ -37,11 +37,11 @@ const { $i18n } = useNuxtApp()
 
 const { trackPurchaseEvent } = useTrackingEvents()
 
-onMounted(() => {
-  if (user.isLoggedIn) {
-    user.forceRefresh()
-  }
+if (import.meta.client && user.isLoggedIn) {
+  await user.forceRefresh()
+}
 
+onMounted(() => {
   watch(
     fetching,
     (isFetching) => {

@@ -1,5 +1,72 @@
 # @scayle/storefront-boilerplate-nuxt
 
+## 1.1.0
+
+### Minor Changes
+
+- 24df82a: Fix errors in async composable usage
+
+  This change enables all rules in `@scayle/eslint-plugin-vue-composable` and ensures that all composables in the application conform to best practices regarding asyncronous usage. These changes may fix various bugs relating to reactivity issues. As part of this change, some composables are now entirely synchronous.
+
+- 10c2230: Enable live preview for CMS provider `storyblok`
+- 2ba9efb: Update mobile sidebar navigation to support expanding and collapsing top-level categories
+- cf1e09c: Introduced usage of explicit imports for composables, utilities and framework-specific functionalities and disabled `imports.autoImport` within the `nuxt.config.ts`.
+  NOTE: As `defineProps`, `defineEmits` and `withDefaults` are Vue compiler macros, they do not need to be imported explicitly
+  and will trigger a compiler warning if done so.
+- 10c2230: Enable live preview for CMS provider `contentful`
+- cf1e09c: Introduced local module `storefront-eslint-auto-explicit-import` to extend `eslint` with explicit import injection
+
+### Patch Changes
+
+- 0ab8fd3: - Added `@typescript-eslint/utils@7.13.1`
+  - Added `@typescript-eslint/scope-manager@7.13.1`
+  - Added `eslint-plugin-unimport@0.0.3`
+  - Added `eslint-plugin-vuejs-accessibility@2.3.0`
+  - Added `eslint@9.5.0`
+  - Added `pathe@1.1.2`
+  - Added `unimport@3.7.2`
+  - Updated to `@changesets/cli@2.27.5`
+  - Updated to `@types/node@20.14.6`
+  - Updated to `@typescript-eslint/scope-manager@7.13.1`
+  - Updated to `eslint-plugin-tailwindcss@3.17.4`
+  - Updated to `happy-dom@14.12.3`
+  - Updated to `lint-staged@15.2.7`
+  - Updated to `storyblok@3.32.1`
+  - Updated to `tailwindcss@3.4.4`
+  - Updated to `vue-tsc@2.0.21`
+- 0812657: Fix mobile basket layout when there are products with long titles
+- e398736: Ensure `authGuard.global.ts` has user information during SSR
+- cf1e09c: Renamed prop `until` to `timeUntil` for `SFCountdown` and `PromotionCountdown` components to avoid name collision with `until` from `@vueuse/core`
+- 4174329: Fix missing error alert on failed login
+- 0ab8fd3: - Added `@contentful/live-preview@4.2.2`
+  - Added `radash@12.1.0`
+  - Removed `radash-nuxt`
+  - Updated to `@contentful/rich-text-html-renderer@16.5.2`
+  - Updated to `@opentelemetry/api@1.9.0`
+  - Updated to `@opentelemetry/auto-instrumentations-node@0.47.1`
+  - Updated to `@opentelemetry/exporter-trace-otlp-proto@0.52.1`
+  - Updated to `@opentelemetry/instrumentation@0.52.1`
+  - Updated to `@opentelemetry/resources@1.25.1`
+  - Updated to `@opentelemetry/sdk-node@0.52.1`
+  - Updated to `@opentelemetry/semantic-conventions@1.25.1`
+  - Updated to `@scayle/omnichannel-nuxt@3.0.2`
+  - Updated to `@scayle/storefront-nuxt@7.77.0`
+  - Updated to `@types/google.maps@3.55.10`
+  - Updated to `@vercel/kv@2.0.0`
+  - Updated to `@vueuse/core@10.11.0`
+  - Updated to `@vueuse/nuxt@10.11.0`
+  - Updated to `cf-content-types-generator@2.15.3`
+  - Updated to `contentful@10.12.1`
+  - Updated to `nuxi@3.12.0`
+- 5135feb: Ensure the OSP only does the user refresh on client side
+- 42d0bbf: Prevent old user data from beeing applied to the state after `user.forceRefresh()` as happend on the OSP
+- eb4d6f6: Introducing [eslint-plugin-vuejs-accessibility](https://vue-a11y.github.io/eslint-plugin-vuejs-accessibility) for basic accessibility linting of Vue components
+- cf1e09c: Replace `radash-nuxt` module with `radash` as dependency and use explicit imports instead
+- 7ee3992: Fix selected gender being ignored during registration
+- d526912: Fix `SFLink` in `Breadcrumbs`
+- c18d979: Share PDP state with `useProductDetailsBasketActions` and `ProductBasketAndWishlistActions.vue`
+- 6f9bfba: Fix: Regenerate the `itemGroup.id` each time an itemGroup is added to the basket
+
 ## 1.0.0
 
 ### 🔥 Highlights

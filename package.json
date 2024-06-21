@@ -61,6 +61,7 @@
     "env-cmd": "10.1.0",
     "eslint-plugin-nuxt": "4.0.0",
     "eslint-plugin-tailwindcss": "3.17.4",
+    "eslint-plugin-unimport": "0.0.3",
     "eslint-plugin-vuejs-accessibility": "2.3.0",
     "eslint": "9.5.0",
     "happy-dom": "14.12.3",
@@ -76,16 +77,15 @@
     "postcss": "8.4.38",
     "postinstall-postinstall": "2.1.0",
     "prettier": "3.0.3",
-    "storyblok": "3.32.1",
     "storyblok-generate-ts": "2.1.0",
+    "storyblok": "3.32.1",
     "tailwindcss": "3.4.4",
     "typescript": "5.4.5",
     "unimport": "3.7.2",
     "utility-types": "3.11.0",
     "vitest-environment-nuxt": "1.0.0",
     "vitest": "1.6.0",
-    "vue-tsc": "2.0.21",
-    "eslint-plugin-unimport": "0.0.3"
+    "vue-tsc": "2.0.21"
   },
   "dependencies": {
     "@contentful/live-preview": "4.2.2",
@@ -117,8 +117,8 @@
     "citty": "0.1.6",
     "color": "4.2.3",
     "consola": "3.2.3",
-    "contentful": "10.12.1",
     "contentful-export": "7.19.145",
+    "contentful": "10.12.1",
     "dotenv": "16.4.5",
     "global": "4.4.0",
     "globby": "14.0.1",
@@ -133,8 +133,8 @@
     "schema-dts": "1.1.2",
     "storyblok-js-client": "6.7.3",
     "ufo": "1.5.3",
-    "vue": "3.4.21",
     "vue-slider-component": "4.1.0-beta.7",
+    "vue": "3.4.21",
     "yn": "5.0.0"
   },
   "lint-staged": {

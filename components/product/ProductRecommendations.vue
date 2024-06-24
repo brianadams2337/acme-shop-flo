@@ -64,7 +64,7 @@ const {
   trackRecommendationClick,
 } = await useProductRecommendations(
   props.combineWithProductIds,
-  'product-recommendations.vue',
+  `product-recommendations-[${props.combineWithProductIds.join(',')}]`,
 )
 
 const { isGreaterOrEqual } = useDefaultBreakpoints()

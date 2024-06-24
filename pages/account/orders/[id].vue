@@ -18,8 +18,8 @@
           v-if="shippingAddress || billingAddress"
           v-bind="{ shippingAddress, billingAddress }"
         />
-        <OrderItems />
-        <PaymentSummary />
+        <OrderItems :order-id="paramId" />
+        <PaymentSummary :order-id="paramId" />
       </template>
     </div>
   </PageContent>
@@ -35,7 +35,7 @@ const route = useRoute()
 const paramId = computed(() => +route.params.id)
 
 const { orderDetails, fetching, shippingAddress, billingAddress, itemCount } =
-  useOrderDetails('[id].vue')
+  useOrderDetails(`order-${paramId.value}`)
 
 defineOptions({ name: 'OrderDetailsView' })
 definePageMeta({ pageType: 'account_area:order_id' })

@@ -33,14 +33,14 @@ export function usePromotionGifts(product: Product, key?: string) {
 
   const { data: variants } = useVariant({
     params: computed(() => ({ ids: variantIds.value })),
-    key: `promotion-variants-${key}`,
+    key: `promotion-variants-${product.id}-${key}`,
   })
 
   const { data: productsData } = useProductsByIds({
     params: computed(() => ({
       ids: variants.value?.map(({ productId }) => productId) ?? [],
     })),
-    key: `promotion-products-${key}`,
+    key: `promotion-products-${product.id}-${key}`,
   })
 
   const products = computed(() => {

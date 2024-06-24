@@ -52,9 +52,13 @@
 import { useOrderDetails } from '~/composables'
 import { useFormatHelpers } from '#storefront/composables'
 
+const props = defineProps<{
+  orderId: number
+}>()
+
 const { formatCurrency } = useFormatHelpers()
 
 const { totalAmount, deliveryCost, paymentKey } = useOrderDetails(
-  'payment-summary.vue',
+  `order-${props.orderId}`,
 )
 </script>

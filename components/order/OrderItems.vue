@@ -33,12 +33,18 @@ import { computed } from 'vue'
 import { unique } from 'radash'
 import { useOrderDetails } from '~/composables'
 
+const props = defineProps<{
+  orderId: number
+}>()
+
 type CarrierMap = Record<
   string,
   { items: OrderItems; deliveryInfo: DeliveryInfo }
 >
 
-const { orderVariants, orderItems, packages } = useOrderDetails('order.vue')
+const { orderVariants, orderItems, packages } = useOrderDetails(
+  `order-${props.orderId}`,
+)
 
 const uniqueItems = computed(() => {
   return unique(orderItems.value, (it) => it.variant.id)

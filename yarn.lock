@@ -3320,14 +3320,14 @@
   resolved "https://registry.yarnpkg.com/@scayle/storefront-api/-/storefront-api-17.2.0.tgz#9492f35cb228a17b36b74d9f10b2d1e7a3135f66"
   integrity sha512-jyUwQDfxQdRAIhUvHttd+ioB0u6k5oJH9RhTqeFe1MVQtdJLqV34S++5lCLJz/LKt5WZIn3dRvuHm3o4Zu49Ig==
 
-"@scayle/storefront-core@7.58.1":
-  version "7.58.1"
-  resolved "https://registry.yarnpkg.com/@scayle/storefront-core/-/storefront-core-7.58.1.tgz#6a63696e3f1562b2a490e45b0362453c2c105073"
-  integrity sha512-2xv3tSOJyXxbOEkOkAjS7vB3niXmIOaBMo3wkcVieVFmiEDaugXvmPeBnKQy0XvsyYjxITK+lEqVML9keF1vdg==
+"@scayle/storefront-core@7.58.2":
+  version "7.58.2"
+  resolved "https://registry.yarnpkg.com/@scayle/storefront-core/-/storefront-core-7.58.2.tgz#6437ef50bcb93fb992efaa14931989e18f4fdccb"
+  integrity sha512-QZ39//cujCjj96EBFfLBTx6babkAv0oAYPQGFZHPXKiIEFcCVV7HrZ6aGUQYa6g4hzkpaqkJV0IWSdabUIB/Nw==
   dependencies:
     "@scayle/storefront-api" "17.2.0"
     crypto-js "4.2.0"
-    jose "5.4.0"
+    jose "5.4.1"
     radash "12.1.0"
     slugify "1.6.6"
     ufo "1.5.3"
@@ -3336,15 +3336,15 @@
   optionalDependencies:
     redis "4"
 
-"@scayle/storefront-nuxt@7.77.0":
-  version "7.77.0"
-  resolved "https://registry.yarnpkg.com/@scayle/storefront-nuxt/-/storefront-nuxt-7.77.0.tgz#03b1f89e357627a812fe26ce91f12751e35f722c"
-  integrity sha512-Yhu2x53LOn3SsdCNplyo8cA6auV+vZuLRjwO+BH5Fmco5WlSDR/BZDVC/c520Q4a/CeYqzFZCdoxyJtHhzm94w==
+"@scayle/storefront-nuxt@7.77.1":
+  version "7.77.1"
+  resolved "https://registry.yarnpkg.com/@scayle/storefront-nuxt/-/storefront-nuxt-7.77.1.tgz#2f3e544c113568be566413784579dc063f6cb8b4"
+  integrity sha512-tGEiPBKU+vU5R550ZP431HMz8/4rVMKMIQzLqhLQRlDkE2ViFvPEp4yBxkkIcecHKFDjRPHbD3hgCBX8B/Dvsw==
   dependencies:
     "@nuxt/kit" "3.11.2"
     "@opentelemetry/api" "1.9.0"
     "@scayle/h3-session" "0.4.0"
-    "@scayle/storefront-core" "7.58.1"
+    "@scayle/storefront-core" "7.58.2"
     "@scayle/unstorage-compression-driver" "0.1.3"
     "@vueuse/core" "10.11.0"
     consola "3.2.3"
@@ -9285,10 +9285,10 @@ jiti@^1.21.6:
   resolved "https://registry.yarnpkg.com/jiti/-/jiti-1.21.6.tgz#6c7f7398dd4b3142767f9a168af2f317a428d268"
   integrity sha512-2yTgeWTWzMWkHu6Jp9NKgePDaYHbntiwvYuuJLbbN9vl7DC9DvXKOB2BC3ZZ92D3cvV/aflH0osDfwpHepQ53w==
 
-jose@5.4.0:
-  version "5.4.0"
-  resolved "https://registry.yarnpkg.com/jose/-/jose-5.4.0.tgz#4f6c2357e7b3cd4bc10ec65bb29e677d7adfbc84"
-  integrity sha512-6rpxTHPAQyWMb9A35BroFl1Sp0ST3DpPcm5EVIxZxdH+e0Hv9fwhyB3XLKFUcHNpdSDnETmBfuPPTTlYz5+USw==
+jose@5.4.1:
+  version "5.4.1"
+  resolved "https://registry.yarnpkg.com/jose/-/jose-5.4.1.tgz#b471ee3963920ba5452fd1b1398c8ba72a7b2fcf"
+  integrity sha512-U6QajmpV/nhL9SyfAewo000fkiRQ+Yd2H0lBxJJ9apjpOgkOcBQJWOrMo917lxLptdS/n/o/xPzMkXhF46K8hQ==
 
 jose@^5.2.0:
   version "5.2.4"

@@ -1,19 +1,18 @@
-import type { Page } from '@playwright/test'
+import type { Locator, Page } from '@playwright/test'
 
 export class ProductListingPage {
   readonly page: Page
-  readonly wishlistButton: string
+  readonly wishlistButton: Locator
 
   constructor(page: Page) {
     this.page = page
-    this.wishlistButton = '[data-test-id="add-item-to-wishlist-button"]'
+    this.wishlistButton = page.locator(
+      '[data-test-id="add-item-to-wishlist-button"]',
+    )
   }
 
-  async addProductToWishlist(productID: string) {
-    const addToWishlistButton = this.page.locator(
-      `${productID} ${this.wishlistButton}`,
-    )
-    await addToWishlistButton.click()
+  async addProductToWishlist() {
+    await this.wishlistButton.first().click()
   }
 
   async openProductbyID(productLocator: string) {

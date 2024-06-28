@@ -21,7 +21,7 @@ test('E2E from Home to Checkout - happy path', async ({
   await homePage.visitPage()
   await mainNavigation.menuItemSecond.click()
   await mainNavigation.menuSubcategory.click()
-  await productListingPage.addProductToWishlist(E2E_PLP_PRODUCT_ID)
+  await productListingPage.addProductToWishlist()
   await expect(header.wishlistNumItems).toHaveText('1')
 
   await productListingPage.openProductbyID(E2E_PLP_PRODUCT_ID)

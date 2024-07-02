@@ -1,9 +1,9 @@
 diff --git a/node_modules/import-in-the-middle/hook.js b/node_modules/import-in-the-middle/hook.js
-index 79a2e5b..239bc21 100644
+index 8e534e0..7c79d9b 100644
 --- a/node_modules/import-in-the-middle/hook.js
 +++ b/node_modules/import-in-the-middle/hook.js
-@@ -22,6 +22,51 @@ if (NODE_MAJOR >= 20 || (NODE_MAJOR === 18 && NODE_MINOR >= 19)) {
-   getExports = ({ url }) => import(url).then(Object.keys)
+@@ -22,6 +22,39 @@ if (NODE_MAJOR >= 20 || (NODE_MAJOR === 18 && NODE_MINOR >= 19)) {
+   getExports = (url) => import(url).then(Object.keys)
  }
  
 +function shouldIgnore (url) {
@@ -19,18 +19,6 @@ index 79a2e5b..239bc21 100644
 +    'vue',
 +    'vue/server-renderer',
 +    'vue-slider-component',
-+    '@envelop/core',
-+    '@floating-ui/react-dom-interactions',
-+    'dataloader',
-+    'graphql-yoga',
-+    // Does not get patched properly.
-+    // Produces errors such as:
-+    // > TypeError: Cannot read properties of undefined (reading 'sendCommand')
-+    // > at instrumentation_1.InstrumentationNodeModuleDefinition.moduleExports [as patch] (/Users/x/Developer/contra/gaia/node_modules/.pnpm/@opentelemetry+instrumentation-ioredis@0.36.1_@opentelemetry+api@1.7.0/node_modules/@opentelemetry/instrumentation-ioredis/build/src/instrumentation.js:40:78)
-+    'ioredis',
-+    'openai',
-+    'playwright-chromium',
-+    'styled-components',
 +  ];
 +
 +  for (const pattern of patterns) {
@@ -50,31 +38,33 @@ index 79a2e5b..239bc21 100644
 +
 +  return false;
 +}
-+
++  
  function hasIitm (url) {
    try {
      return new URL(url).searchParams.has('iitm')
-@@ -230,6 +275,9 @@ function addIitm (url) {
+@@ -210,6 +243,10 @@ function createHook (meta) {
+   const iitmURL = new URL('lib/register.js', meta.url).toString()
  
- function createHook (meta) {
    async function resolve (specifier, context, parentResolve) {
 +    if (shouldIgnore(specifier)) {
 +      return parentResolve(specifier)
 +    }
-     const { parentURL = '' } = context
-     const newSpecifier = deleteIitm(specifier)
-     if (isWin && parentURL.indexOf('file:node') === 0) {
-@@ -264,6 +312,9 @@ function createHook (meta) {
++      
+     cachedResolve = parentResolve
  
-   const iitmURL = new URL('lib/register.js', meta.url).toString()
+     // See github.com/DataDog/import-in-the-middle/pull/76.
+@@ -262,6 +299,10 @@ function createHook (meta) {
+   }
+ 
    async function getSource (url, context, parentGetSource) {
 +    if (shouldIgnore(url)) {
 +      return parentGetSource(url)
 +    }
++      
      if (hasIitm(url)) {
        const realUrl = deleteIitm(url)
-       const { imports, namespaces, setters: mapSetters } = await processModule({
-@@ -331,6 +382,9 @@ register(${JSON.stringify(realUrl)}, _, set, ${JSON.stringify(specifiers.get(rea
+ 
+@@ -315,6 +356,9 @@ register(${JSON.stringify(realUrl)}, _, set, ${JSON.stringify(specifiers.get(rea
  
    // For Node.js 16.12.0 and higher.
    async function load (url, context, parentLoad) {

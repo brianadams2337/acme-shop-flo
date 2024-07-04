@@ -35,9 +35,9 @@
             <SFFadeInTransition>
               <div v-if="totalCount" class="flex justify-center">
                 <SFLink
-                  to=""
+                  :to="getSearchRoute(searchQuery)"
                   class="ml-4 mt-4 border-b border-b-black"
-                  @click="resolveSearchAndClose"
+                  @click="resetAndClose"
                 >
                   {{ $t('search.more') }}
                 </SFLink>
@@ -59,20 +59,21 @@
 </template>
 
 <script setup lang="ts">
-import { computed, onBeforeUnmount, watch } from 'vue'
+import { onBeforeUnmount, watch } from 'vue'
 import type { SearchEntity } from '@scayle/storefront-nuxt'
 import {
   useDefaultBreakpoints,
   useMobileSearch,
   useRootCategories,
+  useRouteHelpers,
   useSearchData,
   useSideNavigation,
   useTrackingEvents,
 } from '~/composables'
 
-const { isSmaller } = useDefaultBreakpoints()
+const { getSearchRoute } = useRouteHelpers()
 
-const isLessThanMdBreakpoint = computed(() => isSmaller('md'))
+const { smaller } = useDefaultBreakpoints()
 
 const { rootCategories, fetchingCategories } = useRootCategories()
 
@@ -125,5 +126,5 @@ watch(searchQuery, () => {
   debouncedSearch()
 })
 
-watch(isLessThanMdBreakpoint, (value) => !value && resetAndClose())
+watch(smaller('md'), (value) => !value && resetAndClose())
 </script>

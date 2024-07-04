@@ -23,9 +23,13 @@
             </div>
           </div>
         </div>
-        <div class="px-5 pt-4">
-          <SFRadioGroup
-            :items="sizes"
+        <div class="flex items-center px-5 pt-4">
+          <SFRadioItem
+            v-for="size in sizes"
+            :key="size.variantId"
+            v-bind="size"
+            :disabled="!size.isAvailable"
+            class="mr-2"
             @update:model-value="selectRadioSize($event, 1)"
           />
         </div>

@@ -462,6 +462,8 @@ export default defineNuxtConfig({
     '@nuxt/eslint',
     // Based on https://github.com/antfu/nuxt-eslint-auto-explicit-import
     './modules/eslint-auto-explicit-import',
+    // https://scayle.dev/en/storefront-guide/integrations/open-telemetry
+    '@scayle/nuxt-opentelemetry',
   ],
 
   // Storefront CMS Module (local)

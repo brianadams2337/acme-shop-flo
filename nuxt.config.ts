@@ -583,10 +583,14 @@ export default defineNuxtConfig({
     const isVercel =
       process.env.NITRO_PRESET && process.env.NITRO_PRESET.includes('vercel')
 
-    // Page generated on-demand, revalidates in background
     const CACHE_PAGE: NitroRouteConfig = isVercel
       ? {
           isr: true,
+          cache: {
+            maxAge: 10 * 60, // Default: 10min
+            staleMaxAge: 10 * 60, // Default: 10min
+            headersOnly: true,
+          },
         }
       : {
           cache: {

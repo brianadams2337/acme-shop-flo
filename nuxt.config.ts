@@ -51,6 +51,9 @@ const BASE_SHOP_DOMAIN = ''
 const SHOP_SELECTOR_MODE = 'path' as ModuleBaseOptions['shopSelector']
 const DOMAIN_PER_LOCALE = SHOP_SELECTOR_MODE === 'domain'
 
+const isVercel =
+  process.env.NITRO_PRESET && process.env.NITRO_PRESET.includes('vercel')
+
 // Generate the i18n locales from the shop config
 interface LocaleConfig {
   code: string
@@ -264,10 +267,7 @@ export default defineNuxtConfig({
       /** Storefront Core - Storage Configuration for `cache` and `session` mountpoints
        * https://scayle.dev/en/dev/storefront-core/module-configuration#storage */
       storage: (() => {
-        if (
-          process.env.NITRO_PRESET &&
-          process.env.NITRO_PRESET.includes('vercel')
-        ) {
+        if (isVercel) {
           // No driver options are necessary for vercelKV
           // It supports url, token and others, but if they are
           // not preset, it will use KV_REST_API_URL and KV_REST_API_TOKEN
@@ -580,9 +580,6 @@ export default defineNuxtConfig({
     }
 
     // Vercel-specific routeRules for using ISR with Vercel CDN as page caching setup
-    const isVercel =
-      process.env.NITRO_PRESET && process.env.NITRO_PRESET.includes('vercel')
-
     const CACHE_PAGE: NitroRouteConfig = isVercel
       ? {
           isr: true,

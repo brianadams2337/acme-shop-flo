@@ -23,25 +23,9 @@ export const shops: ShopAndLocaleConfig[] = [
   {
     locale: 'de-DE',
     code: 'de',
-    shopId: 1001,
+    shopId: 1918,
     currency: 'EUR',
     isDefault: true,
-    translationFile: 'de-DE.json',
-  },
-  {
-    locale: 'de-AT',
-    code: 'at',
-    shopId: 1018,
-    currency: 'EUR',
-    isDefault: false,
-    translationFile: 'de-DE.json',
-  },
-  {
-    locale: 'de-CH',
-    code: 'ch',
-    shopId: 1019,
-    currency: 'EUR',
-    isDefault: false,
     translationFile: 'de-DE.json',
   },
   {

@@ -31,7 +31,7 @@ export const shops: ShopAndLocaleConfig[] = [
   {
     locale: 'en-US',
     code: ['en', 'en-us'],
-    shopId: 1028,
+    shopId: 1919,
     currency: 'USD',
     isDefault: false,
     translationFile: 'en-GB.json',

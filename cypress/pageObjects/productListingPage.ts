@@ -183,7 +183,7 @@ class ProductListingPage extends BasePage {
   }
 
   openTestCategory() {
-    cy.get('[data-test-id="nav-link-50337"]').scrollIntoView().click({
+    cy.get('[data-test-id="nav-link-frauen"]').scrollIntoView().click({
       force: true,
     })
     Header.selectCategoryOnNavBar(HEADER_TEST_CATEGORY_WOMEN.toLowerCase())

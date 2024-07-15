@@ -18,7 +18,7 @@
       <SFLink
         v-for="category in rootCategories"
         :key="`nav-link-${category.id}`"
-        :data-test-id="`nav-link-${category.id}`"
+        :data-test-id="`nav-link-${category.slug}`"
         class="border-b-2 border-transparent py-2.5 font-normal hover:border-black sm:text-sm sm:font-semibold"
         :class="{ 'text-flamingo': category.slug === 'sale' }"
         :to="category.path"

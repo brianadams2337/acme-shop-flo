@@ -675,18 +675,23 @@
     json-pointer "^0.6.2"
     lodash.isequal "^4.5.0"
 
-"@contentful/rich-text-html-renderer@16.6.1":
-  version "16.6.1"
-  resolved "https://registry.yarnpkg.com/@contentful/rich-text-html-renderer/-/rich-text-html-renderer-16.6.1.tgz#84ed0006ec03cb37078df8b8730e3cab1399dc35"
-  integrity sha512-Te4rotpUmjVcdLoEsSukTkt6ssVLTtVe4Ftg1S8ANKuzo9I4+8VhZkgWS7H/G7f4FGMguAABVgN7ZqeiI5HCcw==
+"@contentful/rich-text-html-renderer@16.6.4":
+  version "16.6.4"
+  resolved "https://registry.yarnpkg.com/@contentful/rich-text-html-renderer/-/rich-text-html-renderer-16.6.4.tgz#7644c3c5e00c06aa35106b6bc222d42ea2191bd8"
+  integrity sha512-N6gPZgfGMElPMRwvyQtEuOV3Ti+4oMGRQoVUag8ZZqy2oPzL2d2+qh2YCeDKSSVl7lBgl+HdyyorD3WqMj2eCQ==
   dependencies:
-    "@contentful/rich-text-types" "^16.6.1"
+    "@contentful/rich-text-types" "^16.7.0"
     escape-html "^1.0.3"
 
-"@contentful/rich-text-types@^16.0.2", "@contentful/rich-text-types@^16.2.0", "@contentful/rich-text-types@^16.3.0", "@contentful/rich-text-types@^16.6.1":
+"@contentful/rich-text-types@^16.0.2", "@contentful/rich-text-types@^16.2.0", "@contentful/rich-text-types@^16.3.0":
   version "16.6.1"
   resolved "https://registry.yarnpkg.com/@contentful/rich-text-types/-/rich-text-types-16.6.1.tgz#d7a0890b885ab681028aa7f1085e219d8b2c51be"
   integrity sha512-Rb8QusSMSTMUP4dbpBDWgwGJoqKDYRxPcNXySP0URYTQ6pViJ2SXhVc81RJCgJ5Fb02n5ctbvDYGtcnBH8yhDw==
+
+"@contentful/rich-text-types@^16.7.0":
+  version "16.7.0"
+  resolved "https://registry.yarnpkg.com/@contentful/rich-text-types/-/rich-text-types-16.7.0.tgz#e9a5d59a94867536180a4e506b1745dfe04f83f0"
+  integrity sha512-SMW6JjJpp05CU5xBjIJp9azxFJ/bzcRzd2o9sF49C736m3aCxSobfuUIJz0dHw92MGsiFKAfzn5yTL3JMfqBqg==
 
 "@csstools/cascade-layer-name-parser@^1.0.13":
   version "1.0.13"

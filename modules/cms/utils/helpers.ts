@@ -7,7 +7,7 @@ export const logger = createConsola({
   formatOptions: {
     colors: true,
   },
-  level: process.env.ENABLE_NUXT_DEBUGGING ? 3 : -1,
+  level: process.env.NUXT_DEBUGGING_ENABLED ? 3 : -1,
   defaults: {
     tag: moduleName,
   },

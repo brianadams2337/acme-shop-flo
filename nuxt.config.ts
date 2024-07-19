@@ -103,7 +103,7 @@ export default defineNuxtConfig({
   telemetry: false,
 
   // https://nuxt.com/docs/api/nuxt-config#debug
-  debug: yn(process.env.ENABLE_NUXT_DEBUGGING),
+  debug: yn(process.env.NUXT_DEBUGGING_ENABLED),
 
   // https://nuxt.com/blog/v3-10#bundler-module-resolution
   // Some dependencies are currently not yet compatible with `moduleResolution: bundler`:
@@ -577,7 +577,7 @@ export default defineNuxtConfig({
   // https://nitro.unjs.io/guide/cache#route-rules
   routeRules: (() => {
     // Allow for disabling the SSR Cache via an environment flag
-    if (yn(process.env.DISABLE_PAGE_CACHE)) {
+    if (yn(process.env.PAGE_CACHE_DISABLED)) {
       return {}
     }
 
@@ -687,9 +687,9 @@ export default defineNuxtConfig({
 
   hooks: {
     'nitro:init'(nitro) {
-      // This hook enables build-time configuration logging, controlled by the feature flag ENABLE_CONFIG_LOG_BUILD.
-      if (yn(process.env.ENABLE_CONFIG_LOG_BUILD)) {
-        const configToPrint = yn(process.env.ENABLE_CONFIG_LOG_PRETTIER)
+      // This hook enables build-time configuration logging, controlled by the feature flag CONFIG_LOG_BUILD_ENABLED.
+      if (yn(process.env.CONFIG_LOG_BUILD_ENABLED)) {
+        const configToPrint = yn(process.env.CONFIG_LOG_PRETTIER_ENABLED)
           ? JSON.stringify(nitro.options.runtimeConfig, null, 2)
           : JSON.stringify(nitro.options.runtimeConfig)
 

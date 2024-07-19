@@ -13,7 +13,7 @@ import { defineNitroPlugin, useRuntimeConfig } from '#imports'
     This feature aids in development and debugging, ensuring sensitive data like tokens and passwords are not exposed in logs.
 */
 export default defineNitroPlugin(() => {
-  if (!yn(process.env.ENABLE_CONFIG_LOG_RUNTIME)) {
+  if (!yn(process.env.CONFIG_LOG_RUNTIME_ENABLED)) {
     return
   }
 
@@ -33,7 +33,7 @@ export default defineNitroPlugin(() => {
     sensitiveKeys,
   )
 
-  const configToPrint = yn(process.env.ENABLE_CONFIG_LOG_PRETTIER)
+  const configToPrint = yn(process.env.CONFIG_LOG_PRETTIER_ENABLED)
     ? JSON.stringify(logableConfig, null, 2)
     : JSON.stringify(logableConfig)
 

@@ -4,8 +4,8 @@ export const E2E_CHECKOUT_URL = /\/checkout/
 export const LOGGED_IN_USER_DATA = {
   firstName: 'test',
   lastName: 'AQA',
-  email: 'AQA@aboutyou.com',
-  password: 'Aqa-temp-pass!',
+  email: 'sfb.aqa@scayle.com',
+  password: 'Aqa-temp-pass!1',
 }
 
 export const LOGIN_WRONG_CREDENTIALS = {

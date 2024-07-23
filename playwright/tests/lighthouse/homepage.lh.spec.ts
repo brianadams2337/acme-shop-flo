@@ -4,7 +4,7 @@ import { lighthouseThresholds } from '../../support/constants'
 
 test.describe.configure({ mode: 'serial', timeout: 120000 })
 
-test('Lighthouse audit for Homepage', async ({ baseURL }) => {
+test('C2139574: Lighthouse audit for Homepage', async ({ baseURL }) => {
   const homepageUrl = new URL('/', baseURL)
 
   const averageScores = await runLighthouseAudit(homepageUrl, 'homepage')

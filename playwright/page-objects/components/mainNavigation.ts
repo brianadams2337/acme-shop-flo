@@ -8,6 +8,6 @@ export class MainNavigation {
   constructor(page: Page) {
     this.page = page
     this.menuItemSecond = page.locator('[data-test-id="nav-link-frauen"]')
-    this.menuSubcategory = page.getByRole('link', { name: 'Clothing' })
+    this.menuSubcategory = page.getByRole('link', { name: 'Bekleidung' })
   }
 }

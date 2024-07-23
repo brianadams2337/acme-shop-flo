@@ -1,7 +1,7 @@
 import { expect, test } from '../fixtures/fixtures'
 import { E2E_BASKET_URL, LOGGED_IN_USER_DATA } from '../support/constants'
 
-test('E2E from Home to Checkout - happy path', async ({
+test('C2139186: E2E from Home to Checkout - happy path', async ({
   homePage,
   mainNavigation,
   productListingPage,

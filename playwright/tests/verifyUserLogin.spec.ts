@@ -5,7 +5,7 @@ import {
   LOGIN_WRONG_CREDENTIALS,
 } from '../support/constants'
 
-test('Verify User login and log out', async ({
+test('C2130648: Verify User login and log out', async ({
   homePage,
   signinPage,
   header,
@@ -33,7 +33,7 @@ test('Verify User login and log out', async ({
   await signinPage.assertLoginButtonIsVisible()
 })
 
-test('Verify User login with wrong credentials', async ({
+test('C2130649: Verify User login with wrong credentials', async ({
   homePage,
   signinPage,
   header,

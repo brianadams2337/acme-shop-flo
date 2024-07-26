@@ -36,6 +36,7 @@ type Props = {
   label?: string
 }
 withDefaults(defineProps<Props>(), {
+  item: undefined,
   label: undefined,
 })
 

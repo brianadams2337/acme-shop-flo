@@ -1,33 +1,35 @@
 <template>
   <div class="flex flex-col flex-wrap sm:flex-row sm:items-center">
-    <div class="inline-flex flex-wrap">
+    <div
+      class="inline-flex flex-wrap"
+      :class="{
+        'border-r border-gray-500 max-sm:border-none md:border-r-2':
+          categoryAncestors.length,
+      }"
+    >
       <SFLink
         v-for="({ to, value }, index) in categoryAncestors"
         :key="`breadcrumb-${value}`"
         :data-testid="`category-breadcrumb-${index}`"
         :to="to"
         raw
-        class="flex items-center text-lg font-medium text-gray-500 sm:text-2xl"
+        class="flex items-center px-2 text-lg font-medium text-gray-500 sm:text-2xl"
+        :class="{
+          'border-r border-gray-500 md:border-r-2': showDividerTag(
+            index,
+            categoryAncestors.length,
+          ),
+          'pl-0': index === 0,
+        }"
       >
-        <span>{{ value }}</span>
-        <span
-          v-if="showDividerTag(index, categoryAncestors.length)"
-          class="mx-2 text-2xl font-light"
-        >
-          {{ divider }}
-        </span>
+        <span class="leading-none">{{ value }}</span>
       </SFLink>
     </div>
-    <span
-      v-if="categoryAncestors.length"
-      class="mx-2 text-2xl font-light max-sm:hidden"
-    >
-      {{ divider }}
-    </span>
     <SFHeadline
       tag="h1"
       data-testid="active-category-breadcrumb"
       class="mt-1.5 !font-semi-bold-variable text-gray-900 max-sm:text-[1.5rem] max-sm:leading-6 sm:mt-0"
+      :class="{ 'pl-2 max-sm:pl-0': categoryAncestors.length }"
     >
       {{ category.name }}
       <SFFadeInTransition>
@@ -53,13 +55,11 @@ import { showDividerTag } from '#storefront-ui'
 
 type Props = {
   category: Category
-  divider?: '/' | '|'
   productsCount?: number
   productsFetching?: boolean
 }
 
 const props = withDefaults(defineProps<Props>(), {
-  divider: '|',
   productsCount: undefined,
   productsFetching: false,
 })

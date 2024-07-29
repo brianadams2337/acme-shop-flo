@@ -81,6 +81,7 @@
           <ProductCardDetails
             v-if="link && product"
             v-bind="{ product, isProductHovered, link }"
+            @click.capture="$emit('click:product')"
           />
         </slot>
       </article>

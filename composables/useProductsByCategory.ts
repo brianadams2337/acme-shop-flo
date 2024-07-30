@@ -37,7 +37,6 @@ export function useProductsByCategory(
     params: () => ({
       ...(route.query.page && { page: +route.query.page }),
       sort: selectedSort.value,
-      //TODO: TESTING CODE Remove before merge!
       perPage: Number(route.query.products_per_page) || PRODUCTS_PER_PAGE,
       with: PRODUCT_WITH_PARAMS,
       category: category.value.path,

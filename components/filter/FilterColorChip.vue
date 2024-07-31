@@ -7,6 +7,7 @@
         :value="color"
         class="absolute z-20 size-full cursor-pointer appearance-none rounded-lg"
         type="checkbox"
+        data-testid="filter-color-chip"
       />
       <div class="relative flex size-10 items-center justify-center">
         <span

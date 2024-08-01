@@ -5,7 +5,7 @@ import { lighthouseThresholds } from '../../support/constants'
 test.describe.configure({ mode: 'serial', timeout: 120000 })
 
 test('C2139575: Lighthouse audit for PLP', async ({ baseURL }) => {
-  const plpUrl = new URL('/c/frauen/bekleidung-50338', baseURL)
+  const plpUrl = new URL('/c/frauen/bekleidung-2048', baseURL)
   const averageScores = await runLighthouseAudit(plpUrl, 'plp')
 
   expect(averageScores.performance).toBeGreaterThanOrEqual(

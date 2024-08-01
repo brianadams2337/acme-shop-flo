@@ -37,6 +37,14 @@ export default {
     fontFamily: {
       sans: ['Inter', 'sans-serif'],
     },
+    aspectRatio: {
+      '4/3': '4 / 3',
+      '3/4': '3 / 4',
+      '9/4': '9 / 4',
+      video: '16 / 9',
+      square: '1/1',
+      auto: 'auto',
+    },
     fontWeight: {
       light: '300',
       normal: '400',

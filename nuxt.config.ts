@@ -5,6 +5,7 @@ import { HashAlgorithm, type ModuleBaseOptions } from '@scayle/storefront-nuxt'
 import * as customRpcMethods from './rpcMethods'
 import withParams from './constants/withParams'
 import { shops } from './config/shops'
+import breakpoints from './config/breakpoints'
 
 declare module '@nuxt/schema' {
   interface PublicRuntimeConfig {
@@ -507,13 +508,8 @@ export default defineNuxtConfig({
     },
     intersectOptions: { rootMargin: '50px' },
     screens: {
-      xs: 320,
-      sm: 640,
-      md: 768,
-      lg: 1024,
-      xl: 1280,
-      xxl: 1536,
-      '2xl': 1536,
+      ...breakpoints,
+      xxl: breakpoints['2xl'],
     },
   },
 

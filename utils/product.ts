@@ -2,15 +2,14 @@ import { sort } from 'radash'
 import {
   type Product,
   type Variant,
-  type ProductSibling,
-  ProductImageType,
-  getImageFromList,
   getAttributeValueTuples,
   getAppliedReductionsByCategory,
   getFirstAttributeValue,
   getLowestPrice,
 } from '@scayle/storefront-nuxt'
+import { getPrimaryImage } from './image'
 import { MINIMUM_QUANTITY_IMMEDIATE_AVAILABILITY } from '~/constants/product'
+import type { ProductSibling } from '~/types/siblings'
 
 export { ProductImageType } from '@scayle/storefront-nuxt'
 
@@ -140,7 +139,8 @@ export const getProductSiblingData = (
   colorAttributeName = 'colorDetail',
 ): ProductSibling => ({
   id,
-  image: getImageFromList(images, ProductImageType.BUST, 'front'),
+  name: getFirstAttributeValue(attributes, 'name')?.label ?? '',
+  image: getPrimaryImage(images) ?? images[0],
   colors: getAttributeValueTuples(attributes, colorAttributeName),
 })
 

@@ -38,34 +38,29 @@
 </template>
 
 <script setup lang="ts">
-import { type PropType, computed } from 'vue'
+import { computed } from 'vue'
 import {
   type BasketItem,
   getFirstAttributeValue,
   getTotalAppliedReductions,
 } from '@scayle/storefront-nuxt'
-import { ProductImageType } from '~/utils/product'
-import { getImageFromList } from '~/utils/image'
+import { getPrimaryImage } from '~/utils/image'
 import { useFormatHelpers } from '#storefront/composables'
 
-const props = defineProps({
-  addOn: {
-    type: Object as PropType<BasketItem>,
-    required: true,
-  },
-  sizeMode: {
-    type: String as PropType<'md' | 'sm'>,
-    default: 'md',
-  },
+type Props = {
+  addOn: BasketItem
+  sizeMode: 'md' | 'sm'
+}
+
+const props = withDefaults(defineProps<Props>(), {
+  sizeMode: 'md',
 })
 
 const { formatCurrency } = useFormatHelpers()
 
 const imageHash = computed(() => {
-  return (
-    getImageFromList(props.addOn.product.images, ProductImageType.BUST, 'front')
-      ?.hash ?? ''
-  )
+  const images = props.addOn.product.images
+  return getPrimaryImage(images)?.hash ?? images[0].hash
 })
 
 const name = computed(() => {

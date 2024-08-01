@@ -24,13 +24,10 @@
         <ProductImage
           v-if="item"
           :image="item"
-          :alt="name"
-          :image-loading="
-            shouldEagerLoad && imageIndex === 0 ? 'eager' : 'lazy'
-          "
+          :alt="alt"
+          :image-loading="getImageLoading(imageIndex)"
           :class="{ 'opacity-20': !isAvailable }"
-          fit="cover"
-          sizes="sm:100vw"
+          sizes="xs:50vw sm:50vw md:40vw lg:33vw xl:320px"
           class="absolute inset-0"
         />
       </SFLink>
@@ -48,7 +45,7 @@ type Props = {
   isAvailable: boolean
   isProductHovered: boolean
   image: ProductImage
-  name: string
+  alt: string
   images: ProductImage[]
   productIndex: number
 }
@@ -64,7 +61,10 @@ const areArrowsShown = computed(() => {
   return props.isProductHovered && productImages.value.length > 1
 })
 
-const shouldEagerLoad = computed(() => {
-  return props.productIndex < PRODUCT_CARD_IMAGE_EAGER_LOAD_SIZE
-})
+const getImageLoading = (index: number) => {
+  const shouldEagerLoad =
+    props.productIndex < PRODUCT_CARD_IMAGE_EAGER_LOAD_SIZE
+
+  return shouldEagerLoad && index === 0 ? 'eager' : 'lazy'
+}
 </script>

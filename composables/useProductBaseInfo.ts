@@ -2,23 +2,26 @@ import {
   type Product,
   getFirstAttributeValue,
   getProductAndSiblingsColors,
-  ProductImageType,
-  getImageFromList,
-  type ProductSibling,
 } from '@scayle/storefront-nuxt'
 import { type MaybeRefOrGetter, toRef, computed } from 'vue'
 import { useRouteHelpers } from './useRouteHelpers'
 import { getProductSiblings } from '~/utils/product'
 import {
   getLowestPriceBetweenVariants,
+  getPrimaryImage,
   getVariantWithLowestPrice,
+  formatColors,
 } from '~/utils'
+import { useI18n } from '#i18n'
+import type { ProductSibling } from '~/types/siblings'
 
 export function useProductBaseInfo(
   productItem: MaybeRefOrGetter<Product | undefined>,
 ) {
   const product = toRef(productItem)
   const { getProductDetailRoute } = useRouteHelpers()
+
+  const { t } = useI18n()
 
   const brand = computed(() => {
     return (
@@ -33,10 +36,9 @@ export function useProductBaseInfo(
   })
 
   const price = computed(() => {
-    if (!product.value) {
-      return
-    }
-    return getLowestPriceBetweenVariants(product.value)
+    return product.value
+      ? getLowestPriceBetweenVariants(product.value)
+      : undefined
   })
 
   const variantWithLowestPrice = computed(() =>
@@ -48,21 +50,14 @@ export function useProductBaseInfo(
   })
 
   const colors = computed(() => {
-    if (!product.value) {
-      return
-    }
-    return getProductAndSiblingsColors(product.value, 'color')
+    return product.value
+      ? getProductAndSiblingsColors(product.value, 'color')
+      : undefined
   })
 
   const image = computed(() => {
-    if (!product.value) {
-      return
-    }
-    return getImageFromList(
-      product.value.images,
-      ProductImageType.BUST,
-      'front',
-    )
+    if (!product.value) return
+    return getPrimaryImage(product.value.images) ?? product.value.images[0]
   })
 
   const siblings = computed<ProductSibling[]>(() => {
@@ -77,7 +72,15 @@ export function useProductBaseInfo(
     return product.value ? getProductDetailRoute(product.value) : undefined
   })
 
+  const alt = computed(() => {
+    return t('product_image.alt', {
+      productName: name.value,
+      colors: formatColors(colors.value),
+    })
+  })
+
   return {
+    alt,
     brand,
     name,
     price,

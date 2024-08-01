@@ -509,5 +509,8 @@
   "image_slider": {
     "previous_label": "Vorherigen Bild",
     "next_label": "Nächsten Bild"
+  },
+  "product_image": {
+    "alt": "{productName} in {colors}"
   }
 }

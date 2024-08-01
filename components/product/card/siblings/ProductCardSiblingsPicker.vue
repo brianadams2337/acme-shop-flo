@@ -1,7 +1,7 @@
 <template>
   <div class="flex items-center justify-start">
     <SFLink
-      v-for="{ id, image } in itemsToShow"
+      v-for="{ id, name, image, colors } in itemsToShow"
       :key="id"
       :to="getProductDetailRoute(product, id)"
       class="relative mr-2 flex size-12 items-center justify-center overflow-hidden rounded-md bg-gray-200"
@@ -9,9 +9,14 @@
       <ProductImage
         v-if="image"
         :image="image"
-        fit="cover"
-        sizes="xs:20vw sm:20vw md:20vw"
-        class="size-full"
+        :alt="
+          $t('product_image.alt', {
+            productName: name,
+            colors: formatColors(colors),
+          })
+        "
+        width="36px"
+        sizes="xs:40px sm:40px md:40px lg:40px xl:40px"
       />
     </SFLink>
     <SFLink
@@ -27,9 +32,11 @@
 
 <script setup lang="ts">
 import { computed } from 'vue'
-import type { ProductSibling, Product } from '@scayle/storefront-nuxt'
+import type { Product } from '@scayle/storefront-nuxt'
+import type { ProductSibling } from '~/types/siblings'
 import { useRouteHelpers } from '~/composables'
 import { PRODUCT_CARD_SIBLINGS_LIMIT } from '~/constants'
+import { formatColors } from '~/utils'
 
 type Props = {
   product: Product

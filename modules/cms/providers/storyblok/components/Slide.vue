@@ -4,7 +4,7 @@
       :is="getSlideComponent(image)"
       v-for="image in blok.image"
       :key="image._uid"
-      class="aspect-[1/1] md:aspect-[9/4]"
+      class="aspect-square md:aspect-9/4"
       :blok="image"
       :preload="preload"
     />

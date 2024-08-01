@@ -1,9 +1,17 @@
 <template>
   <NuxtPicture
-    v-bind="{ alt, quality, background, sizes, modifiers, height }"
+    v-bind="{ alt, quality, sizes, modifiers, height, width }"
+    densities="x1"
     :src="image.hash"
     :loading="imageLoading"
-    :class="classes"
+    :class="{
+      'picture-contain': fit === 'contain',
+      'picture-cover': fit === 'cover',
+      'm-auto h-[90%]': isCentered,
+      'aspect-4/3': aspectRatio === '4/3',
+      'aspect-3/4': aspectRatio === '3/4',
+      'aspect-video': aspectRatio === '16/9',
+    }"
     provider="default"
     data-testid="product-image"
     class="picture block mix-blend-darken"
@@ -13,7 +21,7 @@
 
 <script setup lang="ts">
 import { computed } from 'vue'
-import { type ProductImage, getAttributeValue } from '@scayle/storefront-nuxt'
+import { type ProductImage } from '@scayle/storefront-nuxt'
 
 type Props = {
   image: ProductImage
@@ -26,6 +34,8 @@ type Props = {
   shouldTrim?: boolean
   isCentered?: boolean
   height?: number | string
+  width?: number | string
+  aspectRatio?: '16/9' | '4/3' | '3/4'
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -37,44 +47,16 @@ const props = withDefaults(defineProps<Props>(), {
   alt: undefined,
   quality: 75,
   height: undefined,
+  width: undefined,
+  aspectRatio: '3/4',
   load: () => {},
 })
 
-const imageBackground = computed(() => {
-  return getAttributeValue(props.image.attributes, 'imageBackground')
-})
-
-const brightness = computed(() => {
-  if (imageBackground.value === 'white') {
-    return 0.96
-  }
-
-  if (imageBackground.value === 'grey') {
-    return 1.06
-  }
-
-  return 1
-})
-
-const modifiers = computed(() => ({
-  ...(props.shouldTrim && { trim: 1 }),
-  brightness: brightness.value,
-}))
-
-const background = computed(() => {
-  return imageBackground.value === 'transparent' ? 'f4f4f4' : 'ffffff'
-})
-
-const classes = computed(() => ({
-  'picture-contain': props.fit === 'contain',
-  'picture-cover': props.fit === 'cover',
-  'm-auto h-[90%]': props.isCentered,
-}))
+const modifiers = computed(() => ({ ...(props.shouldTrim && { trim: 1 }) }))
 </script>
 
 <style>
 .picture img {
-  width: 100%;
   height: 100%;
 }
 

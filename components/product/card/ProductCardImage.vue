@@ -1,12 +1,9 @@
 <template>
   <SFLink :to="link" raw>
     <ProductImage
-      :image="image"
-      :alt="name"
+      v-bind="{ image, imageLoading, alt }"
       :class="{ 'opacity-20': !isAvailable }"
-      fit="cover"
-      :image-loading="imageLoading"
-      sizes="sm:100vw"
+      sizes="xs:50vw sm:50vw md:40vw lg:33vw xl:320px"
       class="absolute inset-0"
     />
   </SFLink>
@@ -21,7 +18,7 @@ const props = defineProps<{
   link: string
   isAvailable: boolean
   image: ProductImage
-  name: string
+  alt: string
   productIndex: number
 }>()
 

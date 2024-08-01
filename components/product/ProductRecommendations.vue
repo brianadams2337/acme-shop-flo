@@ -19,7 +19,7 @@
       :name="getFirstAttributeValue(recommendation.attributes, 'name')?.label"
       :class="sizeClasses"
       :link="getProductDetailRoute(recommendation)"
-      :image="getImageFromList(recommendation.images, 'model', 'front')"
+      :image="getPrimaryImage(recommendation.images)"
       :price="getLowestPrice(recommendation.variants ?? [])"
       :show-add-to-cart="false"
       :show-add-to-wishlist="false"
@@ -46,7 +46,7 @@ import {
 } from '~/composables'
 import { productListingMetaData } from '~/constants'
 import { Size } from '#storefront-ui'
-import { getImageFromList } from '~/utils'
+import { getPrimaryImage } from '~/utils'
 
 type Props = {
   combineWithProductIds: number[]

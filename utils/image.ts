@@ -1,7 +1,5 @@
 import { type ProductImage, getAttributeValue } from '@scayle/storefront-nuxt'
 
-export { getImageFromList, isImageType } from '@scayle/storefront-nuxt'
-
 export const getAttribute = (
   image: ProductImage,
   key: string,
@@ -11,6 +9,10 @@ export const getAttribute = (
     return
   }
   return values.value
+}
+
+export const getPrimaryImage = (images: ProductImage[]) => {
+  return images.find((image) => getAttribute(image, 'primaryImage'))
 }
 
 export const getImage = (
@@ -69,64 +71,4 @@ export const getFirstModelImage = (images: ProductImage[], index = 0) => {
     baseImages[0] ||
     images[0]
   )
-}
-
-export const getDetailPageImages = (images: ProductImage[]) => {
-  const baseImages = images.filter(
-    (image: ProductImage) =>
-      getAttributeValue(image.attributes, 'imageBackground') === 'grey',
-  )
-
-  let firstImage = baseImages.find(
-    (image: ProductImage) =>
-      getAttributeValue(image.attributes, 'image1stView') === '1st_model_image',
-  )
-
-  const hasModelImages = getImage(baseImages, 'model_image', 'front', true)
-
-  const usingBustImages = !firstImage && !hasModelImages
-
-  if (usingBustImages) {
-    firstImage = getImage(baseImages, 'bust_image', 'front', true)
-  }
-
-  const returnImages = [
-    firstImage,
-    getImage(baseImages, 'model_image', 'front'),
-    getImage(baseImages, 'model_image', 'back'),
-    ...baseImages.filter(
-      (image: ProductImage) =>
-        getAttributeValue(image.attributes, 'imageKind') === 'model_image' &&
-        getAttributeValue(image.attributes, 'imageView') === undefined,
-    ),
-    ...baseImages.filter(
-      (image: ProductImage) =>
-        getAttributeValue(image.attributes, 'imageKind') ===
-        'modeloutfit_image',
-    ),
-
-    ...(usingBustImages
-      ? baseImages.filter(
-          (image: ProductImage) =>
-            getAttributeValue(image.attributes, 'imageKind') === 'bust_image',
-        )
-      : []),
-    getImage(baseImages, 'detail_image', 'front'),
-    getImage(baseImages, 'detail_image', 'back'),
-    ...baseImages.filter(
-      (image: ProductImage) =>
-        getAttributeValue(image.attributes, 'imageKind') === 'detail_image' &&
-        getAttributeValue(image.attributes, 'imageView') === undefined,
-    ),
-  ].filter((e) => !!e)
-
-  return [...new Set(returnImages)]
-}
-
-export const getBasketImage = (images: ProductImage[]) => {
-  return getDetailPageImages(images)[0]?.hash
-}
-
-export const getModelImages = (images: ProductImage[]) => {
-  return getDetailPageImages(images).slice(1)
 }

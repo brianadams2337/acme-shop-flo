@@ -27,7 +27,7 @@
             <slot v-if="product" name="header-actions">
               <ProductCardHeaderActions
                 v-bind="{ product, listingMetaData }"
-                :class="headerActionsClass"
+                :class="{ 'lg:opacity-0': areHeaderActionsHidden }"
                 class="opacity-100 transition"
               />
             </slot>
@@ -40,25 +40,14 @@
               <template v-if="link && image">
                 <ProductCardImage
                   v-if="shouldShowSingleImage"
-                  v-bind="{
-                    image,
-                    name,
-                    link,
-                    isAvailable,
-                  }"
+                  v-bind="{ image, alt, link, isAvailable }"
                   :product-index="index"
                   @click.capture="$emit('click:product')"
                 />
 
                 <ProductCardImageSlider
                   v-else
-                  v-bind="{
-                    isAvailable,
-                    image,
-                    name,
-                    isProductHovered,
-                    link,
-                  }"
+                  v-bind="{ isAvailable, image, alt, isProductHovered, link }"
                   :product-index="index"
                   :images="product.images"
                   @click.capture="$emit('click:product')"
@@ -131,13 +120,12 @@ const onMouseLeave = () => {
   emit('product-image:mouseleave')
 }
 
-const { brand, name, price, lowestPriorPrice, image, link } =
+const { brand, name, alt, price, lowestPriorPrice, image, link } =
   useProductBaseInfo(props.product)
 
-const headerActionsClass = computed(() => ({
-  'lg:opacity-0':
-    props.isWishlistCard && !isProductHovered.value && props.isAvailable,
-}))
+const areHeaderActionsHidden = computed(() => {
+  return props.isWishlistCard && !isProductHovered.value && props.isAvailable
+})
 
 const shouldShowSingleImage = computed(() => {
   return !props.multipleImages || props.product.images.length === 1

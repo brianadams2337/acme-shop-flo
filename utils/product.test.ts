@@ -175,6 +175,16 @@ describe('getProductSiblingData', () => {
             value: 'weiss',
           },
         },
+        name: {
+          id: 20005,
+          key: 'name',
+          label: 'Name',
+          type: null,
+          multiSelect: false,
+          values: {
+            label: "HUGO Sweatshirt 'Dakimara'",
+          },
+        },
       },
       images: [
         {
@@ -186,6 +196,7 @@ describe('getProductSiblingData', () => {
     const sibling = getProductSiblingData(product, 'color')
     expect(sibling).toStrictEqual({
       id: 1,
+      name: "HUGO Sweatshirt 'Dakimara'",
       image: {
         hash: 'images/fe8ee645c772b98de23b00e4f600a613.png',
         attributes: {},

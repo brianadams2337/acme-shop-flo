@@ -58,6 +58,7 @@ const modifiers = computed(() => ({ ...(props.shouldTrim && { trim: 1 }) }))
 <style>
 .picture img {
   height: 100%;
+  width: 100%;
 }
 
 .picture-contain img {

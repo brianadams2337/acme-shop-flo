@@ -5,57 +5,38 @@ import {
   type WithContext,
   type BreadcrumbList,
 } from 'schema-dts'
+import { parseURL, stringifyParsedURL, parseQuery, stringifyQuery } from 'ufo'
+import { pick } from 'radash'
 import type { BreadcrumbItem } from '~/types/breadcrumbs'
 
-const CANONICAL_PARAM_WHITELIST = ['page']
-
-// TODO: Use `UFO` for url manipulation
+const CANONICAL_PARAMS_WHITELIST = ['page']
 
 /**
- * Strips off all parameters (except page) from input canonical url string
- * @param url canonical
- * @returns url string
- */
-export const sanitizeCanonical = (url: string | undefined): string => {
-  if (!url) {
-    return ''
-  }
-  const [baseUrl, parametersPart] = url.split('?') ?? []
-
-  if (!parametersPart) {
-    // no url parameters exist, so return the original url
-    return url
-  }
-  const parametersAndValues = parametersPart.split('&')
-
-  // For each key=value combination, check for page and filter attribute. Return the combination if found
-  return `${baseUrl}?${parametersAndValues
-    .filter((attribute) => !attribute.toLocaleLowerCase().includes('page=1'))
-    .join('&')}`
-}
-
-/**
- * Prepares a canonical URL by removing unwanted parameters
+ * Sanitize a canonical URL by removing unwanted parameters
  * @param url The URL to prepare
+ * @param whitelistParams The whitelist params to exclude
  * @returns The prepared URL
  */
-export function prepareCanonicalURL(url: string): string {
-  const [baseUrl, queryString] = url.split('?')
-  if (!queryString) {
-    return baseUrl
-  }
+export const sanitizeCanonicalURL = (
+  url: string,
+  whitelistParams = CANONICAL_PARAMS_WHITELIST,
+): string => {
+  const parsedURL = parseURL(url)
 
-  const paramStrings = queryString.split('&')
+  if (!parsedURL.search) return url
 
-  const filteredParams = paramStrings.filter((paramString) => {
-    const [paramName] = paramString.split('=')
-    return CANONICAL_PARAM_WHITELIST.includes(paramName)
+  const parsedQuery = parseQuery(parsedURL.search)
+
+  const orderedWhitelistParams = Object.keys(parsedQuery).filter((key) =>
+    whitelistParams.includes(key),
+  )
+
+  const purifiedQuery = pick(parsedQuery, orderedWhitelistParams)
+
+  return stringifyParsedURL({
+    ...parsedURL,
+    search: stringifyQuery(purifiedQuery),
   })
-
-  if (!filteredParams.length) {
-    return baseUrl
-  }
-  return baseUrl + '?' + filteredParams.join('&')
 }
 
 const generateSchemaProductOffers = ({

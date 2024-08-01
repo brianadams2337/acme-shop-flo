@@ -14,7 +14,7 @@
 import { defineOptions, onMounted } from 'vue'
 import { useHead, useSeoMeta } from '@unhead/vue'
 import { definePageMeta } from '#imports'
-import { sanitizeCanonical } from '~/utils/seo'
+import { sanitizeCanonicalURL } from '~/utils/seo'
 import {
   useTracking,
   useTrackingEvents,
@@ -42,7 +42,7 @@ useHead({
     {
       rel: 'canonical',
       key: 'canonical',
-      href: sanitizeCanonical(`${config.public.baseUrl}${route?.fullPath}`),
+      href: sanitizeCanonicalURL(`${config.public.baseUrl}${route?.fullPath}`),
     },
   ],
 })

@@ -238,7 +238,7 @@ import {
 import { definePageMeta, useJsonld } from '#imports'
 import { useNuxtApp } from '#app'
 import { useRoute } from '#app/composables/router'
-import { generateProductSchema, sanitizeCanonical } from '~/utils/seo'
+import { generateProductSchema, sanitizeCanonicalURL } from '~/utils/seo'
 import { useCurrentShop, useFormatHelpers } from '#storefront/composables'
 import {
   useFavoriteStore,
@@ -329,7 +329,7 @@ const metaDescription = computed(() =>
 const currentShop = useCurrentShop()
 const { formatCurrency } = useFormatHelpers()
 
-const sanitizedCanonicalURL = sanitizeCanonical(
+const sanitizedCanonicalURL = sanitizeCanonicalURL(
   `${$config.public.baseUrl}${route.fullPath}`,
 )
 
@@ -358,7 +358,7 @@ useHead(() => {
       {
         rel: 'canonical',
         key: 'canonical',
-        href: sanitizeCanonical(
+        href: sanitizeCanonicalURL(
           `${$config.baseUrl}${getProductDetailRoute(product?.value)}`,
         ),
       },

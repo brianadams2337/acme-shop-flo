@@ -6,7 +6,7 @@ import {
   useBreadcrumbs,
 } from '~/composables'
 import { useRoute } from '#app/composables/router'
-import { prepareCanonicalURL, generateCategoryBreadcrumbSchema } from '~/utils'
+import { sanitizeCanonicalURL, generateCategoryBreadcrumbSchema } from '~/utils'
 import { useNuxtApp } from '#app'
 
 export function useCategorySeoData(category: Ref<Category | undefined>) {
@@ -26,7 +26,7 @@ export function useCategorySeoData(category: Ref<Category | undefined>) {
   const canonicalLink = computed(() => {
     if (robots.value?.includes('noindex')) return []
     const url = `${$config.public.baseUrl}${route?.fullPath}`
-    const href = prepareCanonicalURL(url)
+    const href = sanitizeCanonicalURL(url)
     return [{ rel: 'canonical', key: 'canonical', href }]
   })
 

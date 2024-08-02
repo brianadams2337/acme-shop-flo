@@ -2,14 +2,7 @@
   <div
     class="absolute left-auto right-1 top-1 z-20 flex h-8 w-auto cursor-pointer p-1 md:right-0 md:top-0 md:p-3"
   >
-    <ClientOnly>
-      <template #fallback>
-        <IconHeartInactive
-          class="size-6 animate-pulse fill-gray-200 text-gray-200"
-        />
-      </template>
-      <WishlistToggle v-bind="{ product, listingMetaData }" />
-    </ClientOnly>
+    <WishlistToggle v-bind="{ product, listingMetaData }" />
   </div>
 </template>
 

@@ -11,11 +11,9 @@
           <IconLocationMenu class="size-6 cursor-pointer" />
         </SFLink>
       </div>
-      <ClientOnly>
-        <UserPopover data-test-id="user-popover" />
-        <WishlistLink />
-        <BasketPopover />
-      </ClientOnly>
+      <UserPopover data-testid="user-popover" />
+      <WishlistLink />
+      <BasketPopover />
     </div>
   </div>
 </template>

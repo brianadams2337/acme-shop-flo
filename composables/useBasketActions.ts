@@ -118,6 +118,7 @@ export function useBasketActions() {
   const basketData = basket.data
   const basketCount = basket.count
   const basketItems = basket.items
+  const basketStatus = basket.status
 
   return extendPromise(
     basket.then(() => ({})),
@@ -131,6 +132,7 @@ export function useBasketActions() {
       basketItems,
       isBasketEmpty,
       showAddToBasketToast,
+      basketStatus,
     },
   )
 }

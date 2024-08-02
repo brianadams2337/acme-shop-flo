@@ -6,9 +6,11 @@
       class="relative"
       type="loud"
     >
-      <FloatingBadge v-if="count" class="-right-2 -top-2">
-        {{ count }}
-      </FloatingBadge>
+      <AsyncDataWrapper :status="status">
+        <FloatingBadge v-if="count" class="-right-2 -top-2">
+          {{ count }}
+        </FloatingBadge>
+      </AsyncDataWrapper>
       <IconHeartBold class="size-6" />
     </SFLink>
   </div>
@@ -18,5 +20,5 @@
 import { useWishlist } from '#storefront/composables'
 import { routeList } from '~/utils/route'
 
-const { count } = useWishlist()
+const { count, status } = useWishlist()
 </script>

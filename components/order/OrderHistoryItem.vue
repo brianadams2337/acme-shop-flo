@@ -33,14 +33,15 @@
           Status:
           <span class="font-bold">{{ status?.split('_').join(' ') }}</span>
         </p>
-        <SFLink
-          :to="getOrderDetailsRoute(id)"
-          class="w-full justify-center rounded bg-primary px-5 py-3 text-xs font-semibold text-white md:w-auto md:px-8"
-          is-full-width
-        >
-          {{ $t('my_account.orders.details') }}
-        </SFLink>
       </div>
+    </SFLink>
+    <SFLink
+      :to="getOrderDetailsRoute(id)"
+      class="w-full justify-center rounded bg-primary px-5 py-3 text-xs font-semibold text-white md:w-auto md:px-8"
+      :class="isLatestOrder ? 'xs:flex sm:hidden' : 'hidden'"
+      is-full-width
+    >
+      {{ $t('my_account.orders.details') }}
     </SFLink>
   </div>
 </template>

@@ -1,6 +1,6 @@
 <template>
-  <form class="mx-auto mt-10 flex w-full flex-col md:mx-0 lg:w-[400px]">
-    <client-only>
+  <AsyncDataWrapper :status="status">
+    <form class="mx-auto mt-10 flex w-full flex-col md:mx-0 lg:w-[400px]">
       <SFRadioGroup
         v-model="payload.gender"
         :items="genders"
@@ -62,17 +62,11 @@
           </SFButton>
         </div>
       </div>
-      <template #fallback>
-        <div class="w-full space-y-6">
-          <SFSkeletonLoader />
-          <SFSkeletonLoader v-for="i in 4" :key="i" full-width />
-          <div class="flex w-full justify-center pt-4">
-            <SFSkeletonLoader />
-          </div>
-        </div>
-      </template>
-    </client-only>
-  </form>
+    </form>
+    <template #loading>
+      <UserPersonalInfoFormSkeletonLoader :form-element-count="4" />
+    </template>
+  </AsyncDataWrapper>
 </template>
 
 <script setup lang="ts">
@@ -84,7 +78,7 @@ import { useToast, useValidationRules } from '~/composables'
 import { useCurrentShop, useUser } from '#storefront/composables'
 import { useNuxtApp } from '#app'
 
-const { user, updateUser } = await useUser()
+const { user, updateUser, status } = useUser()
 
 const { $i18n } = useNuxtApp()
 const currentShop = useCurrentShop()

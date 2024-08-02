@@ -13,7 +13,12 @@ export default defineNuxtRouteMiddleware(async (to) => {
 
   const nuxt = useNuxtApp()
   const getLocalePath = useLocalePath()
-  const userComposable = await useUser()
+  const userComposable = await useUser({ key: 'authGuard-user' })
+
+  if (!nuxt.ssrContext && !userComposable.user.value) {
+    await userComposable.fetch()
+  }
+
   const user = nuxt?.ssrContext
     ? nuxt?.ssrContext?.event?.context.$rpcContext.user
     : userComposable.user.value

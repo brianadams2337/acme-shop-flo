@@ -20,8 +20,16 @@
       @click="onToggleWishlist"
     >
       <template #icon="{ _class }">
-        <IconHeartActivePurple v-if="isInWishlist" :class="_class" />
-        <IconHeartInactive v-else :class="_class" />
+        <AsyncDataWrapper :status="status">
+          <IconHeartInactive v-if="!isInWishlist" :class="_class" />
+          <IconHeartActivePurple v-else :class="_class" />
+          <template #loading>
+            <IconHeartInactive
+              :class="_class"
+              class="animate-pulse fill-gray-200 text-gray-200"
+            />
+          </template>
+        </AsyncDataWrapper>
       </template>
     </SFButton>
   </div>
@@ -46,7 +54,7 @@ const isWishlistToggling = ref(false)
 const product = toRef(props, 'product')
 const productId = computed(() => product.value.id)
 
-const { toggleItem, fetching, contains } = useWishlist()
+const { toggleItem, fetching, contains, status } = useWishlist()
 
 const { trackWishlistEvent } = useWishlistActions()
 

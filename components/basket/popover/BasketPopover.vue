@@ -1,10 +1,12 @@
 <template>
   <SFPopover
     :is-open="isBasketFlyoutOpen"
-    :disable-popover-content="isSmaller('md')"
+    :disable-popover-content="isMobile"
     content-wrapper-class="mt-8"
     @mouseenter="openBasketFlyout"
     @mouseleave="closeBasketFlyout"
+    @focusout="closeBasketFlyout"
+    @focusin="openBasketFlyout"
   >
     <template #action>
       <SFLink
@@ -13,7 +15,10 @@
         class="relative"
         type="loud"
       >
-        <FloatingBadge v-if="!isEmpty" class="-right-2 -top-2">
+        <FloatingBadge
+          v-if="!isEmpty && status === 'success'"
+          class="-right-2 -top-2"
+        >
           {{ countWithoutSoldOutItems }}
         </FloatingBadge>
         <IconCart class="size-6" />
@@ -24,10 +29,10 @@
       />
     </template>
     <template #content>
-      <ClientOnly>
+      <AsyncDataWrapper :status="status">
         <BasketPopoverItems />
         <BasketPopoverActions v-if="!isEmpty" />
-      </ClientOnly>
+      </AsyncDataWrapper>
     </template>
   </SFPopover>
 </template>
@@ -37,9 +42,11 @@ import { useBasket } from '#storefront/composables'
 import { useDefaultBreakpoints, useFlyouts } from '~/composables'
 import { routeList } from '~/utils/route'
 
-const { isSmaller } = useDefaultBreakpoints()
+const { smaller } = useDefaultBreakpoints()
+
+const isMobile = smaller('md')
 
 const { openBasketFlyout, closeBasketFlyout, isBasketFlyoutOpen } = useFlyouts()
 
-const { isEmpty, countWithoutSoldOutItems } = useBasket()
+const { isEmpty, countWithoutSoldOutItems, status } = useBasket()
 </script>

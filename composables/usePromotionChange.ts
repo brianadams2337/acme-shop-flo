@@ -1,4 +1,4 @@
-import { onMounted, onUnmounted, ref } from 'vue'
+import { nextTick, onMounted, onUnmounted, ref } from 'vue'
 import { useCurrentPromotion } from '~/composables/useCurrentPromotion'
 import { PROMOTIONS_CHANGE_DELAY } from '~/constants'
 
@@ -16,6 +16,6 @@ export function usePromotionChange(promotions: Promotion[]) {
     }, PROMOTIONS_CHANGE_DELAY)
   }
 
-  onMounted(() => showNextPromotion())
+  onMounted(() => nextTick(showNextPromotion))
   onUnmounted(() => clearTimeout(timeoutId.value))
 }

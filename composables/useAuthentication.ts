@@ -6,6 +6,7 @@ import {
 } from '@scayle/storefront-nuxt'
 import { FetchError } from 'ofetch'
 import { computed, ref } from 'vue'
+import { clearNuxtData } from '#app/composables/asyncData'
 import { useRouteHelpers } from '~/composables/useRouteHelpers'
 import { useToast } from '~/composables/useToast'
 import { useTrackingEvents } from '~/composables/useTrackingEvents'
@@ -154,6 +155,10 @@ export function useAuthentication(
 
     try {
       await session.revokeToken()
+      // we call `useUser` in templates/nuxt/middleware/authGuard.global.ts with the key `authGuard-user`.
+      // We need to delete the user data for this key on logout to reset the state in the auth guard.
+      // Without deleting the date, the auth guard would allow navigating to protected pages for logged out users.
+      clearNuxtData('authGuard-user')
       if (user.value) {
         trackLogout()
       }

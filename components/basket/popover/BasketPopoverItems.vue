@@ -1,28 +1,33 @@
 <template>
-  <div
-    v-if="basketItems?.standAlone?.length"
-    class="max-h-xs overflow-y-auto overscroll-none"
-  >
-    <article v-for="item in basketItems?.standAlone" :key="item.key">
-      <BasketPopoverCard :items="[item]" is-light-variant />
-    </article>
-  </div>
-  <div v-if="groupIds?.length" class="max-h-xs overflow-y-auto overscroll-none">
-    <article v-for="groupId in groupIds" :key="groupId">
-      <BasketPopoverCard
-        :items="getBasketItemsFromGroup(groupId)"
-        is-light-variant
-      />
-    </article>
-  </div>
-  <div
-    v-if="!items?.length"
-    class="flex w-full flex-col items-center justify-center py-4"
-  >
-    <div class="w-2/3">
-      <p class="text-center text-sm">
-        {{ $t('basket.no_items_info') }}
-      </p>
+  <div>
+    <div
+      v-if="basketItems?.standAlone?.length"
+      class="max-h-xs overflow-y-auto overscroll-none"
+    >
+      <article v-for="item in basketItems?.standAlone" :key="item.key">
+        <BasketPopoverCard :items="[item]" is-light-variant />
+      </article>
+    </div>
+    <div
+      v-if="groupIds?.length"
+      class="max-h-xs overflow-y-auto overscroll-none"
+    >
+      <article v-for="groupId in groupIds" :key="groupId">
+        <BasketPopoverCard
+          :items="getBasketItemsFromGroup(groupId)"
+          is-light-variant
+        />
+      </article>
+    </div>
+    <div
+      v-if="!items?.length"
+      class="flex w-full flex-col items-center justify-center py-4"
+    >
+      <div class="w-2/3">
+        <p class="text-center text-sm">
+          {{ $t('basket.no_items_info') }}
+        </p>
+      </div>
     </div>
   </div>
 </template>
@@ -45,13 +50,6 @@ type BasketItems = {
 
 const { items } = useBasket()
 
-const basketItems = ref<BasketItems>({
-  standAlone: [],
-  groups: {},
-})
-
-const groupIds = computed(() => Object.keys(basketItems.value.groups))
-
 const updateBasketItems = (items: BasketItem[]) => {
   const data = getPartitionedBasketItems(items)
   return {
@@ -61,6 +59,10 @@ const updateBasketItems = (items: BasketItem[]) => {
     ),
   }
 }
+
+const basketItems = ref<BasketItems>(updateBasketItems(items.value ?? []))
+
+const groupIds = computed(() => Object.keys(basketItems.value.groups))
 
 // TODO: Investigate why when using computed for basket items instead is causing
 // UI issues (items with promotion on it, are not visible in the list.

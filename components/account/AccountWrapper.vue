@@ -7,8 +7,8 @@
           class="mt-6 w-full pb-10 md:mt-0 md:w-1/3 lg:w-1/4"
           :class="{ 'hidden md:block': route.params.id || isAccountPage }"
         >
-          <OrderOverviewHeader :orders-count="orders.length" />
-          <client-only>
+          <AsyncDataWrapper :status="status">
+            <OrderOverviewHeader :orders-count="orders.length" />
             <div v-if="shouldDisplayOrderOverview">
               <OrderHistoryItem
                 v-for="(order, idx) in slicedOrders"
@@ -40,18 +40,11 @@
                 @change:page="changePage"
               />
             </div>
-            <template #fallback>
-              <div>
-                <SFSkeletonLoader
-                  v-for="i in ORDERS_PER_PAGE"
-                  :key="i"
-                  full-width
-                  type="custom"
-                  class="!h-[86px] first:rounded-md last:rounded-md"
-                />
-              </div>
+
+            <template #loading>
+              <OrderListSkeletonLoader :orders-per-page="ORDERS_PER_PAGE" />
             </template>
-          </client-only>
+          </AsyncDataWrapper>
         </div>
         <div class="w-full md:w-2/3 md:pl-14 lg:w-3/4 lg:pl-28">
           <slot />
@@ -89,8 +82,8 @@ const props = withDefaults(defineProps<Props>(), {
 const ORDERS_PER_PAGE = 8
 
 const route = useRoute()
-const wishlist = await useWishlist()
-const basket = await useBasket()
+const wishlist = useWishlist()
+const basket = useBasket()
 const {
   trackWishlist,
   collectProductListItems,
@@ -98,7 +91,7 @@ const {
   collectBasketItems,
 } = useTrackingEvents()
 
-const { user } = useUser()
+const { user, status } = useUser()
 
 const currentPage = ref<number>(1)
 

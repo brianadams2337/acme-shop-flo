@@ -3,14 +3,8 @@
     class="container max-sm:max-w-none sm:py-10"
     data-test-id="basket-container"
   >
-    <ClientOnly>
-      <div v-if="fetching || !basketData" class="grid grid-cols-12 gap-2">
-        <ProductCardSkeleton
-          v-for="index in 20"
-          :key="`product-loading-${index}`"
-        />
-      </div>
-      <div v-else-if="isBasketEmpty" class="space-y-8">
+    <AsyncDataWrapper :status="basketStatus">
+      <div v-if="isBasketEmpty" class="space-y-8">
         <EmptyState
           :title="$t('basket.empty_title')"
           :description="$t('basket.empty_description')"
@@ -67,7 +61,19 @@
 
         <BasketSummary class="w-full md:w-2/5 2xl:w-1/3" />
       </div>
-    </ClientOnly>
+      <template #loading>
+        <div class="flex flex-col-reverse gap-8 md:flex-row xl:gap-16">
+          <SFSkeletonLoader
+            type="custom"
+            class="h-96 w-full space-y-4 max-md:mb-4 md:w-3/5 2xl:w-2/3"
+          />
+          <SFSkeletonLoader
+            type="custom"
+            class="h-96 w-full md:w-2/5 2xl:w-1/3"
+          />
+        </div>
+      </template>
+    </AsyncDataWrapper>
   </div>
 </template>
 
@@ -92,12 +98,8 @@ import {
 } from '~/composables'
 import { useBasket, useWishlist } from '#storefront/composables'
 
-const basket = await useBasket()
-const wishlist = await useWishlist()
-
-if (basket.error.value) {
-  throw basket.error.value
-}
+const basket = useBasket()
+const wishlist = useWishlist()
 
 const { pageState } = usePageState()
 const route = useRoute()
@@ -105,9 +107,8 @@ const route = useRoute()
 const {
   listingMetaData,
   orderedItems,
-  fetching,
+  basketStatus,
   basketItems,
-  basketData,
   basketCount,
   isBasketEmpty,
   removeItem,
@@ -121,7 +122,7 @@ const {
   collectProductListItems,
 } = useTrackingEvents()
 
-const { allCurrentPromotions } = await useBasketPromotions()
+const { allCurrentPromotions } = useBasketPromotions()
 
 type FilteredOrderedItem = BasketItem & {
   isPromotionApplicableItemUnique: boolean

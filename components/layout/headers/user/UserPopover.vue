@@ -2,8 +2,11 @@
   <SFPopover
     :is-open="isUserFlyoutOpen"
     content-wrapper-class="mt-8"
-    @mouseenter="isGreaterOrEqual('md') && openUserFlyout()"
-    @mouseleave="isGreaterOrEqual('md') && closeUserFlyout()"
+    :disable-popover-content="isMobile"
+    @mouseenter="openUserFlyout()"
+    @mouseleave="closeUserFlyout()"
+    @focusin="openUserFlyout()"
+    @focusout="closeUserFlyout()"
   >
     <template #action>
       <SFLink :to="link" raw>
@@ -14,11 +17,11 @@
         class="absolute -bottom-3 h-0.5 w-8 bg-black"
       />
     </template>
-    <template #content>
-      <ClientOnly>
+    <template v-if="mounted" #content>
+      <AsyncDataWrapper :status="status">
         <UserActions v-if="user" />
         <GuestActions v-else />
-      </ClientOnly>
+      </AsyncDataWrapper>
     </template>
   </SFPopover>
 </template>
@@ -28,11 +31,15 @@ import { computed } from 'vue'
 import { routeList } from '~/utils/route'
 import { useUser } from '#storefront/composables'
 import { useDefaultBreakpoints, useFlyouts } from '~/composables'
+import { useMounted } from '#imports'
 
-const { isGreaterOrEqual } = useDefaultBreakpoints()
+const { smaller } = useDefaultBreakpoints()
+
+const isMobile = smaller('md')
 
 const { openUserFlyout, closeUserFlyout, isUserFlyoutOpen } = useFlyouts()
-const { user } = useUser()
+const { user, status } = useUser()
 
+const mounted = useMounted()
 const link = computed(() => (user.value ? routeList.account : routeList.signin))
 </script>

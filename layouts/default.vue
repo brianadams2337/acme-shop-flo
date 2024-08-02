@@ -28,7 +28,7 @@
 <script setup lang="ts">
 import { defineOptions, onMounted } from 'vue'
 import { useHead } from '@unhead/vue'
-import { useCurrentPromotions, useWishlist } from '#storefront/composables'
+import { useCurrentPromotions } from '#storefront/composables'
 import {
   USE_BANNER_KEY,
   USE_DEFAULT_BREAKPOINTS_KEY,
@@ -37,7 +37,6 @@ import {
   useBanner,
   useBasketPromotions,
   useDefaultBreakpoints,
-  useRootCategories,
   useSideNavigation,
   useTrackingEvents,
   usePromotionActions,
@@ -45,11 +44,7 @@ import {
 import { useModal } from '#storefront-ui/composables'
 
 // Initialize data
-const [{ allCurrentPromotions }] = await Promise.all([
-  useBasketPromotions(), // This covers basket fetch so we don't need to fetch it here
-  useWishlist(),
-  useRootCategories(),
-])
+const { allCurrentPromotions } = useBasketPromotions()
 
 const { isPromotionBannerShown } = usePromotionActions()
 

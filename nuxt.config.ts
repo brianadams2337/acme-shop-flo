@@ -17,9 +17,9 @@ declare module '@nuxt/schema' {
 /** [DEFAULT VALUE] Storefront Core - Configure format for AppKey generation for baskets and wishlists
  * https://scayle.dev/en/dev/storefront-core/module-configuration#app-keys */
 const DEFAULT_APP_KEYS = {
-  wishlistKey: 'wishlist_{shopId}_{userId}', // Override: NUXT_STOREFRONT_STORES_{UNIQUE_IDENTIFIER}_APP_KEYS_WISHLIST_KEY
-  basketKey: 'basket_{shopId}_{userId}', // Override: NUXT_STOREFRONT_STORES_{UNIQUE_IDENTIFIER}_APP_KEYS_BASKET_KEY
-  hashAlgorithm: HashAlgorithm.SHA256, // Override: NUXT_STOREFRONT_STORES_{UNIQUE_IDENTIFIER}_APP_KEYS_HASH_ALGORITHM
+  wishlistKey: 'wishlist_{shopId}_{userId}', // Override: NUXT_STOREFRONT_SHOPS_{UNIQUE_IDENTIFIER}_APP_KEYS_WISHLIST_KEY
+  basketKey: 'basket_{shopId}_{userId}', // Override: NUXT_STOREFRONT_SHOPS_{UNIQUE_IDENTIFIER}_APP_KEYS_BASKET_KEY
+  hashAlgorithm: HashAlgorithm.SHA256, // Override: NUXT_STOREFRONT_SHOPS_{UNIQUE_IDENTIFIER}_APP_KEYS_HASH_ALGORITHM
 }
 
 /** Custom type declaration for local Storefront configuration */
@@ -181,20 +181,20 @@ export default defineNuxtConfig({
 
       /** Storefront Core - Shop-specific configuration options
        * https://scayle.dev/en/dev/storefront-core/module-configuration#shops */
-      stores: shops.reduce(
+      shops: shops.reduce(
         (previousShopConfigs, shop) => ({
-          /** Values within `storefront.stores` are Overrideable by using their locale as identifier.
-           * Example of an runtimeConfig override: NUXT_STOREFRONT_STORES_EN_US_PATH=someValue
+          /** Values within `storefront.shops` are Overrideable by using their locale as identifier.
+           * Example of an runtimeConfig override: NUXT_STOREFRONT_SHOPS_EN_US_PATH=someValue
            * All values should be provided through runtime using NUXT_ environment variable overrides.
            * https://nuxt.com/docs/guide/going-further/runtime-config#example */
           ...previousShopConfigs,
 
           /** We can use shop.locale instead of shop.shopId to avoid conflicts if we use the same shopId for multiple shop.
-           * The key [shop.locale] is connected to the Overrideable environment variables like NUXT_STOREFRONT_STORES_{UNIQUE_IDENTIFIER}_CHECKOUT_USER.
+           * The key [shop.locale] is connected to the Overrideable environment variables like NUXT_STOREFRONT_SHOPS_{UNIQUE_IDENTIFIER}_CHECKOUT_USER.
            * Depending on what key will be used here, the variables need use either the locale or shopId as{UNIQUE_IDENTIFIER}.
            * NOTE: We recommend to use the shopId as {UNIQUE_IDENTIFIER}!
-           * Example if `[shop.locale]` is used -> Overrideable environment variable: NUXT_STOREFRONT_STORES_EN_US_CHECKOUT_USER.
-           * Example if `[shop.shopId]` is used -> Overrideable environment variable: NUXT_STOREFRONT_STORES_1001_CHECKOUT_USER. */
+           * Example if `[shop.locale]` is used -> Overrideable environment variable: NUXT_STOREFRONT_SHOPS_EN_US_CHECKOUT_USER.
+           * Example if `[shop.shopId]` is used -> Overrideable environment variable: NUXT_STOREFRONT_SHOPS_1001_CHECKOUT_USER. */
           [shop.shopId]: {
             /** Storefront Core - Identity Provider support for Token-based (OAuth) Authentication
              * https://scayle.dev/en/dev/storefront-core/authentication#support-for-identity-provider */
@@ -203,43 +203,41 @@ export default defineNuxtConfig({
               idpKeys: ['google'],
               idpRedirectURL: '',
             },
-
             /** Storefront Core - Numeric SCAYLE ShopId (usually 5 digits) */
-            shopId: shop.shopId, // Override: NUXT_STOREFRONT_STORES_{UNIQUE_IDENTIFIER}_SHOP_ID
-
+            shopId: shop.shopId, // Override: NUXT_STOREFRONT_SHOPS_{UNIQUE_IDENTIFIER}_SHOP_ID
             /** [CONDITIONAL] Storefront Core - Shop path if `path` is selected as `shopSelector
              * https://scayle.dev/en/dev/storefront-core/module-configuration#path-and-domain */
-            path: shop.code, // Override: NUXT_STOREFRONT_STORES_{UNIQUE_IDENTIFIER}_PATH
+            path: shop.code, // Override: NUXT_STOREFRONT_SHOPS_{UNIQUE_IDENTIFIER}_PATH
 
             /** [CONDITIONAL] Storefront Core - Shop domain if `domain` is selected as `shopSelector
              * https://scayle.dev/en/dev/storefront-core/module-configuration#path-and-domain */
             domain: BASE_SHOP_DOMAIN,
 
-            locale: shop.locale, // Override: NUXT_STOREFRONT_STORES_{UNIQUE_IDENTIFIER}_LOCALE
+            locale: shop.locale, // Override: NUXT_STOREFRONT_SHOPS_{UNIQUE_IDENTIFIER}_LOCALE
 
-            isLowestPreviousPriceActive: false, // Override: NUXT_STOREFRONT_STORES_{UNIQUE_IDENTIFIER}_IS_LOWEST_PREVIOUS_PRICE_ACTIVE,
+            isLowestPreviousPriceActive: false, // Override: NUXT_STOREFRONT_SHOPS_{UNIQUE_IDENTIFIER}_IS_LOWEST_PREVIOUS_PRICE_ACTIVE,
 
-            /** Storefront Core - Store-specific authentication configurations
+            /** Storefront Core - Shop-specific authentication configurations
              * NOTE: Currently only `resetPasswordUrl` is supported
              * https://scayle.dev/en/dev/storefront-core/module-configuration#password-reset-url */
             auth: {
-              // Override: NUXT_STOREFRONT_STORES_{UNIQUE_IDENTIFIER}_AUTH_RESET_PASSWORD_URL
+              // Override: NUXT_STOREFRONT_SHOPS_{UNIQUE_IDENTIFIER}_AUTH_RESET_PASSWORD_URL
               resetPasswordUrl: `https://${BASE_SHOP_DOMAIN}/${shop.locale}/signin/`,
             },
 
             /** Storefront Core - Set shop-specific campaign keyword to be used */
-            storeCampaignKeyword: '', // Override: NUXT_STOREFRONT_STORES_{UNIQUE_IDENTIFIER}_STORE_CAMPAIGN_KEYWORD,
+            shopCampaignKeyword: '', // Override: NUXT_STOREFRONT_SHOPS_{UNIQUE_IDENTIFIER}_SHOP_CAMPAIGN_KEYWORD,
 
             /** Storefront Core - Set shop-specific currency to be used */
-            currency: shop.currency, // Override: NUXT_STOREFRONT_STORES_{UNIQUE_IDENTIFIER}_CURRENCY
+            currency: shop.currency, // Override: NUXT_STOREFRONT_SHOPS_{UNIQUE_IDENTIFIER}_CURRENCY
 
             /** Storefront Core - Checkout web component configuration */
             checkout: {
-              shopId: shop.shopId, // Override: NUXT_STOREFRONT_STORES_{UNIQUE_IDENTIFIER}_CHECKOUT_SHOP_ID
-              token: '', // Override: NUXT_STOREFRONT_STORES_{UNIQUE_IDENTIFIER}_CHECKOUT_TOKEN
-              secret: '', // Override: NUXT_STOREFRONT_STORES_{UNIQUE_IDENTIFIER}_CHECKOUT_SECRET
-              host: '', // Override: NUXT_STOREFRONT_STORES_{UNIQUE_IDENTIFIER}_CHECKOUT_HOST
-              user: '', // Override: NUXT_STOREFRONT_STORES_{UNIQUE_IDENTIFIER}_CHECKOUT_USER
+              shopId: shop.shopId, // Override: NUXT_STOREFRONT_SHOPS_{UNIQUE_IDENTIFIER}_CHECKOUT_SHOP_ID
+              token: '', // Override: NUXT_STOREFRONT_SHOPS_{UNIQUE_IDENTIFIER}_CHECKOUT_TOKEN
+              secret: '', // Override: NUXT_STOREFRONT_SHOPS_{UNIQUE_IDENTIFIER}_CHECKOUT_SECRET
+              host: '', // Override: NUXT_STOREFRONT_SHOPS_{UNIQUE_IDENTIFIER}_CHECKOUT_HOST
+              user: '', // Override: NUXT_STOREFRONT_SHOPS_{UNIQUE_IDENTIFIER}_CHECKOUT_USER
               // The number of seconds that a CBD token should be considered valid since issued
               cbdExpiration: 60 * 60 * 2, // 2 hours
             },
@@ -259,7 +257,7 @@ export default defineNuxtConfig({
               'ratepay',
               'klarna',
               'paypal',
-            ], // Override: NUXT_STOREFRONT_STORES_{UNIQUE_IDENTIFIER}_PAYMENT_PROVIDERS,
+            ], // Override: NUXT_STOREFRONT_SHOPS_{UNIQUE_IDENTIFIER}_PAYMENT_PROVIDERS,
 
             isDefault: shop.isDefault,
           },

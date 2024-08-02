@@ -1,4 +1,3 @@
-/* eslint-disable sonarjs/no-duplicate-string */
 import { describe, vi, it, expect } from 'vitest'
 import type { Category, ProductCategory } from '@scayle/storefront-nuxt'
 import { useBreadcrumbs } from './useBreadcrumbs'

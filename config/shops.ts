@@ -16,7 +16,7 @@ interface ShopAndLocaleConfig {
 }
 
 /**
- * List of configurations to be used to define the `stores` list for `storefront-nuxt` and `locales` for `nuxt-i18n`
+ * List of configurations to be used to define the `shops` list for `storefront-nuxt` and `locales` for `nuxt-i18n`
  *
  */
 export const shops: ShopAndLocaleConfig[] = [

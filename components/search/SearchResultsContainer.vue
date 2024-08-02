@@ -15,6 +15,7 @@
             :to="getSearchRoute(searchQuery)"
             raw
             class="mx-auto mt-3 rounded px-4 py-2 text-xs font-semibold underline transition-all duration-200 ease-in-out hover:bg-secondary-450 hover:font-bold"
+            data-testid="search-more-button"
             @click="emit('close')"
           >
             {{ $t('search.more') }}

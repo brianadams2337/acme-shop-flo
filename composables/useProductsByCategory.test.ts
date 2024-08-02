@@ -282,7 +282,7 @@ describe('useProductsByCategory', () => {
     })
 
     it('should return Error if there is error', () => {
-      mocks.useProducts.error.value = createError('bla')
+      mocks.useProducts.error.value = createError('products error')
       const { error } = useProductsByCategory(toRef<Category>(mocks.category))
       expect(error.value).toBeTruthy()
     })

@@ -30,8 +30,11 @@ test('C2130727: Verify PLP Filters and Product Count', async ({
   await plpFilters.filterPriceFrom.press('Enter')
   await plpFilters.filterPriceTo.fill('60')
   await plpFilters.filterPriceTo.press('Enter')
-  await plpFilters.filterColorChip.first().click()
-  await plpFilters.filterSizeCheckbox.first().check()
+  await plpFilters.filterColorChip.first().setChecked(true)
+  await page.waitForTimeout(2000)
+
+  await plpFilters.filterSizeCheckbox.first().setChecked(true)
+  await page.waitForLoadState('networkidle')
 
   const sizeFilterValue = await plpFilters.filterSizeCheckbox
     .first()

@@ -16,6 +16,7 @@ export class BasketPage {
   }
 
   async gotoCheckoutPage() {
+    await this.checkoutButton.waitFor({ state: 'visible' })
     await this.checkoutButton.click()
   }
 

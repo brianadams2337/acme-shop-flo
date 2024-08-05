@@ -19,7 +19,7 @@ export class Header {
     )
 
     this.headerBasketButton = page.locator('[data-test-id="basket-link"]')
-    this.headerLoginButton = page.locator('[data-test-id="user-popover"]')
+    this.headerLoginButton = page.getByTestId('user-popover')
   }
 
   async hidePromotionBanner() {

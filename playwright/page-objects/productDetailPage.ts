@@ -14,9 +14,7 @@ export class ProductDetailPage {
     this.productSizeValue = page.locator(
       '[data-testid="product-size"] >> button:not([disabled=""])',
     )
-    this.addToBasketButton = page.locator(
-      '[data-test-id="add-item-to-basket-button"]',
-    )
+    this.addToBasketButton = page.getByTestId('add-item-to-basket-button')
   }
 
   async pickProductSize() {

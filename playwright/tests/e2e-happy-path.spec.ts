@@ -9,11 +9,13 @@ test('C2139186: E2E from Home to Checkout - happy path', async ({
   header,
   basketPage,
   page,
+  signinPage,
 }) => {
   await homePage.visitPage()
   await mainNavigation.menuItemSecond.click()
   await productListingPage.menuSubCategoryLvl1.first().click()
   await productListingPage.addProductToWishlist()
+  await header.wishlistNumItems.waitFor({ state: 'visible' })
   await expect(header.wishlistNumItems).toHaveText('1')
 
   await productListingPage.openProductDetails()
@@ -26,5 +28,7 @@ test('C2139186: E2E from Home to Checkout - happy path', async ({
   await basketPage.assertProductIsInBasket()
 
   await basketPage.gotoCheckoutPage()
+  await signinPage.loginButton.waitFor({ state: 'visible' })
+
   expect(page.url()).toContain('signin?redirectUrl=checkout')
 })

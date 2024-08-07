@@ -145,7 +145,7 @@
               />
 
               <SFDropdown
-                v-if="!availableAddOns.length && !hasOneSizeVariantOnly"
+                v-if="!availableAddOns.length"
                 :model-value="quantity"
                 :items="availableQuantity"
                 :disabled="!activeVariant"

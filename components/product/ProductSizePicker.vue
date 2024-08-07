@@ -39,14 +39,14 @@
             :list-name="list"
             :value="{ ...size, disabled: !size.isAvailable }"
             data-testid="product-size"
-            class="cursor-pointer px-4 py-2 hover:bg-gray-200"
+            class="cursor-pointer hover:bg-gray-200"
             :class="{ 'cursor-not-allowed': !size.isAvailable }"
           >
             <SFButton
               v-if="size"
               size="sm"
               type="raw"
-              class="w-full !justify-start"
+              class="w-full !justify-start px-4 py-2"
               :disabled="!size.isAvailable"
               :class="{
                 'font-bold': isActive,

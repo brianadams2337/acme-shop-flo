@@ -17,7 +17,7 @@
     "dotenv": "16.4.5",
     "eslint": "9.8.0",
     "eslint-plugin-playwright": "1.6.2",
-    "lighthouse": "12.1.0",
+    "lighthouse": "12.2.0",
     "playwright-testrail-reporter": "1.2.1",
     "ts-node": "10.9.2",
     "typescript": "5.5.4"

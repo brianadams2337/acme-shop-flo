@@ -2,7 +2,7 @@
   <div class="inline-flex h-full items-center justify-center">
     <SFLink
       :to="routeList.wishlist"
-      data-test-id="wishlist-link"
+      data-testid="wishlist-link"
       class="relative"
       type="loud"
     >

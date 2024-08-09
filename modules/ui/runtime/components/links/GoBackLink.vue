@@ -2,7 +2,7 @@
   <component
     v-bind="useWindowHistory ? {} : { to, ...(to && { raw: true }) }"
     :is="componentName"
-    data-test-id="back-button"
+    data-testid="back-button"
     class="absolute z-20 flex items-center gap-2 text-primary"
     v-on="backClickEventHandling"
   >

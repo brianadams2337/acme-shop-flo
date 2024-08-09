@@ -1,7 +1,7 @@
 <template>
   <div
     v-if="hasItemsWithPromotionReductions"
-    data-test-id="basket-summary-promotions"
+    data-testid="basket-summary-promotions"
     class="flex flex-col justify-between gap-[.625rem]"
   >
     <div class="flex items-center justify-between">

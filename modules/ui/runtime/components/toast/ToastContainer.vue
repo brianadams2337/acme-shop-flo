@@ -14,7 +14,7 @@
         v-for="notification in notifications"
         :key="notification.id"
         :notification="notification"
-        data-test-id="toast-info"
+        data-testid="toast-info"
         class="right-0 transition-all duration-500"
       />
     </TransitionGroup>

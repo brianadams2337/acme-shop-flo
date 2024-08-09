@@ -1,5 +1,5 @@
 <template>
-  <div id="header" class="bg-white" data-test-id="main-header">
+  <div id="header" class="bg-white" data-testid="main-header">
     <div class="border-b border-gray-200">
       <div
         class="mx-4 flex h-[4.375rem] items-center justify-between gap-1 md:container sm:gap-4"
@@ -8,7 +8,7 @@
           <SFButton
             class="md:hidden"
             type="raw"
-            data-test-id="side-navigation-button"
+            data-testid="side-navigation-button"
             @click="toggleSideNavigation"
           >
             <IconClose v-if="isSideNavigationOpen" class="size-6" />

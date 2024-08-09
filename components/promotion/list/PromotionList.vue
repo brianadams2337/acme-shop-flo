@@ -1,7 +1,7 @@
 <template>
   <div
     ref="promotionListRef"
-    data-test-id="promotion-list"
+    data-testid="promotion-list"
     class="absolute right-0 top-[3.25rem] z-60 hidden w-full lg:block"
   >
     <div class="relative bg-primary p-5 text-white">
@@ -13,10 +13,11 @@
               :key="item.id"
               :promotion="item"
               class="mr-4 last:mr-0"
+              :data-testid="`promotion-item-${item.id}`"
             />
           </SFHorizontalItemsSlider>
         </div>
-        <ClosePromotionListButton data-test-id="close-promotion-button" />
+        <ClosePromotionListButton data-testid="close-promotion-button" />
       </div>
     </div>
   </div>

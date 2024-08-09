@@ -51,7 +51,7 @@
         />
         <div
           class="mt-6 flex w-full items-center justify-center"
-          data-test-id="save-button"
+          data-testid="save-button"
         >
           <SFButton
             class="w-full capitalize md:w-auto md:min-w-[50%]"

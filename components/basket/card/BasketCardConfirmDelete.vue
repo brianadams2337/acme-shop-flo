@@ -18,11 +18,16 @@
         </div>
 
         <div class="flex space-x-4 sm:max-w-md">
-          <SFButton type="tertiary" is-full-width @click="emit('click:cancel')">
+          <SFButton
+            type="tertiary"
+            is-full-width
+            data-testid="basket-remove-item-cancel-button"
+            @click="emit('click:cancel')"
+          >
             {{ $t('basket_card.cancel') }}
           </SFButton>
           <SFButton
-            data-test-id="basket-remove-item-confirm-button"
+            data-testid="basket-remove-item-confirm-button"
             no-padding
             is-full-width
             @click="emit('click:confirm')"

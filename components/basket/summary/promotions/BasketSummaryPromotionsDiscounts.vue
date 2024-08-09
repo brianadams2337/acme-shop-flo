@@ -6,7 +6,7 @@
     >
       <div
         class="flex items-center justify-between rounded px-2 py-[.375rem] text-sm font-semibold leading-[17px]"
-        data-test-id="basket-summary-promotion-item"
+        data-testid="basket-summary-promotion-item"
         :style="{
           ...getBackgroundColorStyle(
             promotion?.customData.colorHex,

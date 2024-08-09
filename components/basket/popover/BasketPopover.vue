@@ -10,7 +10,7 @@
   >
     <template #action>
       <SFLink
-        data-test-id="basket-link"
+        data-testid="basket-link"
         :to="routeList.basket"
         class="relative"
         type="loud"

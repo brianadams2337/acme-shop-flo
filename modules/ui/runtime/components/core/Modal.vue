@@ -14,7 +14,7 @@
           <slot name="headline" />
           <button
             v-if="!hideCloseButton"
-            data-test-id="close-button"
+            data-testid="close-button"
             class="absolute right-6 top-6 z-50 cursor-pointer p-3"
             @click="close"
           >

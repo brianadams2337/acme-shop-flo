@@ -7,6 +7,7 @@
       raw
       :to="getOrderDetailsRoute(id)"
       class="flex flex-col items-baseline"
+      data-testid="order-history-list-item"
     >
       <div class="mb-2 text-sm font-bold">
         {{

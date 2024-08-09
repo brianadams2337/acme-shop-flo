@@ -8,7 +8,7 @@
       <div class="mt-4 space-y-4">
         <BasketSummaryDetails />
         <SFButton
-          data-test-id="checkout-link"
+          data-testid="checkout-link"
           is-full-width
           type="primary"
           class="!normal-case"

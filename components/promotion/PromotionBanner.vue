@@ -27,7 +27,7 @@
         <PromotionProgress v-if="minOrderValue" class="mr-2.5" />
         <ShowDealsButton
           v-if="isDealsButtonShown"
-          data-test-id="show-deals-button"
+          data-testid="show-deals-button"
           :category="category"
           class="mr-3"
         />

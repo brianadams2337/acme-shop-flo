@@ -1,7 +1,7 @@
 <template>
   <div
     class="container max-sm:max-w-none sm:py-10"
-    data-test-id="basket-container"
+    data-testid="basket-container"
   >
     <AsyncDataWrapper :status="basketStatus">
       <div v-if="isBasketEmpty" class="space-y-8">

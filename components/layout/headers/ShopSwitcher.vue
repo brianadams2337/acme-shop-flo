@@ -8,7 +8,7 @@
     <SFListboxButton
       class="h-full"
       :list-name="list"
-      data-test-id="language-listbox"
+      data-testid="language-listbox"
     >
       <div class="text-xs uppercase text-gray-350">
         <span v-if="selectedCountry">{{ selectedCountry }}</span>

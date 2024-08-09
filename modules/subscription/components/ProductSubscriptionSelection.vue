@@ -87,7 +87,7 @@
       {{ $t('subscription.not_eligible_message') }}
     </div>
     <SFButton
-      data-test-id="add-item-to-basket-button"
+      data-testid="add-item-to-basket-button"
       is-full-width
       type="primary"
       :disabled="!subscriptionState.isEligible || product.isSoldOut"

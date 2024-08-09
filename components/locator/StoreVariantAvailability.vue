@@ -32,7 +32,7 @@
       </p>
     </div>
     <SFButton
-      data-test-id="choose-store-button"
+      data-testid="choose-store-button"
       type="tertiary"
       class="ml-auto rounded border border-black p-2 text-xs !normal-case"
       rounded

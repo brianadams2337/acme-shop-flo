@@ -8,7 +8,7 @@
             <div class="my-2 md:mt-1">
               <div
                 class="max-w-xs text-xs font-semibold text-secondary"
-                data-test-id="pdp-product-brand"
+                data-testid="pdp-product-brand"
               >
                 {{ brand }}
               </div>
@@ -16,7 +16,7 @@
                 <SFHeadline
                   size="2xl"
                   class="!leading-snug"
-                  data-test-id="pdp-product-name"
+                  data-testid="pdp-product-name"
                   tag="h1"
                 >
                   {{ productName }}
@@ -44,7 +44,7 @@
                       <p
                         class="inline-flex items-end gap-1 leading-snug"
                         :class="classes"
-                        data-test-id="price"
+                        data-testid="price"
                       >
                         <span
                           :class="{
@@ -62,7 +62,7 @@
                             isFree
                           "
                           class="p-1 text-sm font-medium leading-5 text-primary line-through"
-                          data-test-id="initialProductPrice"
+                          data-testid="initialProductPrice"
                         >
                           {{
                             formatCurrency(
@@ -88,7 +88,7 @@
               />
 
               <SFButton
-                data-test-id="add-item-to-basket-button"
+                data-testid="add-item-to-basket-button"
                 is-full-width
                 type="primary"
                 :disabled="product.isSoldOut || !activeVariant"

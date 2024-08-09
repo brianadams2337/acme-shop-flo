@@ -4,7 +4,7 @@
     <div class="ml-1 flex h-full items-center justify-center space-x-4">
       <div class="inline-flex h-full items-center justify-center">
         <SFLink
-          data-test-id="store-location-link"
+          data-testid="store-location-link"
           :to="routeList.location"
           type="loud"
         >

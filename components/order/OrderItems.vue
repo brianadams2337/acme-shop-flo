@@ -18,7 +18,7 @@
         >
           <OrderItemCard
             v-bind="data"
-            data-test-id="order-item-card"
+            data-testid="order-item-card"
             :delivery-status="map.deliveryInfo.formattedStatus"
             :quantity="getItemQuantity(data.variant.id)"
           />

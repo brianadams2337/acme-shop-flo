@@ -22,7 +22,7 @@
         :current-category="currentCategory"
         :is-parent-sale="isSaleCategory(category)"
         :sub-categories="category.children ?? []"
-        :parent-data-test-id="getDataTestId(index)"
+        :parent-data-testid="getDataTestId(index)"
       />
     </li>
   </ul>

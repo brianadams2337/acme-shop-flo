@@ -6,7 +6,7 @@
       </SFHeadline>
       <p
         v-if="count !== undefined"
-        data-test-id="wishlist-count"
+        data-testid="wishlist-count"
         class="mt-4 text-xs font-semibold text-secondary"
       >
         {{ $t('wishlist.products_count', count) }}
@@ -28,7 +28,7 @@
           v-for="(item, index) in orderedItems"
           :key="`product-${item.key}-${item.product}`"
           v-bind="{ item, index }"
-          data-test-id="wishlist-card"
+          data-testid="wishlist-card"
           class="mb-4"
         />
       </div>

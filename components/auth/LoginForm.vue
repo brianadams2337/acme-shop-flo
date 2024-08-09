@@ -10,7 +10,7 @@
           :has-errors="!isValid"
           required
           :readonly="isSubmitting"
-          data-test-id="login-email"
+          data-testid="login-email"
           @change="v.email.$touch()"
         />
       </SFValidatedInputGroup>
@@ -24,7 +24,7 @@
           :has-errors="!isValid"
           required
           :readonly="isSubmitting"
-          data-test-id="login-password"
+          data-testid="login-password"
           @change="v.password.$touch()"
         />
       </SFValidatedInputGroup>
@@ -49,7 +49,7 @@
         class="w-full"
         :disabled="isSubmitting"
         :loading="isSubmitting"
-        data-test-id="login-submit"
+        data-testid="login-submit"
         @click="onSubmit()"
       >
         {{ $t('global.sign_in') }}

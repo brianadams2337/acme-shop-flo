@@ -22,7 +22,7 @@
         v-if="searchQuery"
         type="raw"
         aria-label="Close search input"
-        data-test-id="close-search-button"
+        data-testid="close-search-button"
         class="absolute right-0 flex h-full cursor-pointer items-center justify-center px-2.5 py-2"
       >
         <IconClose

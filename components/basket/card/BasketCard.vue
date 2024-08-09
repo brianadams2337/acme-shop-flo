@@ -2,7 +2,7 @@
   <SFFadeInTransition>
     <div
       v-if="uiState === 'default'"
-      data-test-id="basket-card"
+      data-testid="basket-card"
       class="w-full rounded border border-gray-350 p-4 text-sm lg:p-5"
     >
       <div class="flex w-full" :class="{ 'opacity-50': !inStock }">
@@ -82,7 +82,7 @@
             </div>
             <div
               class="flex flex-col items-end justify-start text-right font-bold"
-              data-test-id="basket-card-prices"
+              data-testid="basket-card-prices"
             >
               <template v-if="reducedPrice">
                 <div
@@ -96,6 +96,7 @@
                 >
                   <span
                     class="p-1 text-xs leading-[1.125rem] text-secondary line-through"
+                    data-testid="basket-card-original-price"
                   >
                     {{ formatCurrency(price + reducedPrice) }}
                   </span>
@@ -106,6 +107,7 @@
                       'text-xs leading-[1.125rem] text-secondary line-through':
                         hasPromotionReduction(item),
                     }"
+                    data-testid="basket-card-price-sale"
                   >
                     {{ formatCurrency(getItemSaleReductionPrice(item)) }}
                   </span>
@@ -113,7 +115,7 @@
                 <span
                   v-if="hasPromotionReduction(item)"
                   class="inline rounded p-1 text-base leading-5"
-                  data-test-id="basket-card-reduction-price"
+                  data-testid="basket-card-reduction-price"
                   :style="{
                     ...getBackgroundColorStyle(
                       item?.promotion?.customData.colorHex,
@@ -128,7 +130,11 @@
                   {{ formatCurrency(price) }}
                 </span>
               </template>
-              <span v-else class="text-base leading-5">
+              <span
+                v-else
+                class="text-base leading-5"
+                data-testid="basket-card-product-price"
+              >
                 {{ formatCurrency(price) }}
               </span>
               <p
@@ -153,7 +159,7 @@
       </div>
       <div class="flex justify-end pt-4">
         <BasketCardAction
-          :data-test-id="
+          :data-testid="
             isInWishlist
               ? 'basket-remove-from-wishlist-button'
               : 'basket-add-to-wishlist-button'
@@ -175,7 +181,7 @@
         </BasketCardAction>
 
         <BasketCardAction
-          data-test-id="basket-remove-item-button"
+          data-testid="basket-remove-item-button"
           class="ml-1"
           @click="onPressDelete"
         >

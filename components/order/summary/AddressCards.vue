@@ -4,7 +4,7 @@
       v-for="({ label, name }, idx) in items"
       :key="`headline-${name}-${idx}`"
       class="w-full rounded-md border border-gray-350 p-5 md:w-1/2"
-      data-test-id="address-card"
+      data-testid="address-card"
     >
       <SFHeadline tag="h3" size="sm" class="mb-2.5" is-uppercase>
         {{ label }}

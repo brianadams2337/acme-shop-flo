@@ -12,7 +12,7 @@
           <SFButton
             type="raw"
             size="xs"
-            data-test-id="closeCross"
+            data-testid="closeCross"
             @click="toggleItem"
           >
             <template #icon="{ _class }">
@@ -32,7 +32,7 @@
             required
           />
           <SFButton
-            data-test-id="choose-store-button"
+            data-testid="choose-store-button"
             type="primary"
             class="ml-auto"
             rounded
@@ -60,7 +60,7 @@
     </template>
     <template #slide-in-actions>
       <SFButton
-        data-test-id="choose-store-button"
+        data-testid="choose-store-button"
         type="primary"
         is-full-width
         class="w-fit rounded border border-black p-2 text-xs !normal-case"

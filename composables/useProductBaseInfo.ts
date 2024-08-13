@@ -81,6 +81,22 @@ export function useProductBaseInfo(
     })
   })
 
+  const longestCategoryList = computed(() => {
+    if (
+      !product.value ||
+      !product.value.categories ||
+      product.value.categories.length === 0
+    ) {
+      return []
+    }
+
+    return product.value.categories.reduce(
+      (longestArray, currentArray) =>
+        currentArray.length > longestArray.length ? currentArray : longestArray,
+      [],
+    )
+  })
+
   return {
     alt,
     brand,
@@ -93,5 +109,6 @@ export function useProductBaseInfo(
     nonSoldOutSiblings,
     link,
     variantWithLowestPrice,
+    longestCategoryList,
   }
 }

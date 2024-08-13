@@ -1,10 +1,21 @@
 <template>
   <AsyncDataWrapper :status="productDataStatus">
     <PageContent>
-      <div>
-        {{ brand }}
+      <ProductBreadcrumbs
+        v-if="longestCategoryList"
+        class="mb-8 hidden md:block"
+        :product-categories="longestCategoryList"
+      />
+      <div class="font-semi-bold-variable text-gray-900">{{ brand }}</div>
+      <SFHeadline
+        size="lg"
+        class="text-md !font-normal text-gray-600 md:text-lg"
+        data-testid="pdp-product-name"
+        tag="h1"
+      >
         {{ name }}
-      </div>
+      </SFHeadline>
+
       <div class="my-3 flex space-x-4">
         <SFDropdown v-model="activeVariant" :items="product.variants ?? []">
           {{ getFirstAttributeValue(activeVariant?.attributes, 'size')?.label }}
@@ -22,7 +33,7 @@
       </div>
       <ProductPrice
         v-if="price"
-        size="xl"
+        size="lg"
         class="mt-3"
         v-bind="{ product, lowestPriorPrice, price }"
         type="normal"
@@ -73,7 +84,8 @@ const { data: product, status: productDataStatus } = useProduct({
 const activeVariant = ref<Variant>()
 const quantity = ref(1)
 
-const { name, brand, lowestPriorPrice } = useProductBaseInfo(product)
+const { name, brand, lowestPriorPrice, longestCategoryList } =
+  useProductBaseInfo(product)
 
 const price = computed(() =>
   activeVariant.value

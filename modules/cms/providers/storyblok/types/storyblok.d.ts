@@ -189,7 +189,16 @@ export type CMSLinkTypeProps = LinkTypeProp
 type DoubleColumnProp = BlokProps<Storyblok.SbDoubleColumn>
 export type CMSDoubleColumnProps = DoubleColumnProp
 
-type ProductSliderProp = BlokProps<Storyblok.SbProductSlider>
+export type SbProductSliderWithProducts = Storyblok.SbProductSlider & {
+  products?: {
+    id?: string
+    referenceKey?: string
+    name?: string
+    imageUrl?: string
+  }[]
+}
+
+type ProductSliderProp = BlokProps<SbProductSliderWithProducts>
 export type CMSProductSliderProps = ProductSliderProp
 
 type PageProp = BlokProps<Storyblok.SbPage>

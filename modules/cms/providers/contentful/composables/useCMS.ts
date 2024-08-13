@@ -2,7 +2,6 @@ import type {
   AddChainModifier,
   ChainModifiers,
   ContentfulClientApi,
-  ContentfulCollection,
   EntriesQueries,
   Entry,
   EntryCollection,
@@ -25,25 +24,23 @@ export function useCMS(key: string) {
   >(
     query?: EntriesQueries<T, Modifiers>,
     asyncDataOption?: AsyncDataOptions<
-      ContentfulCollection<Entry<T, Modifiers, Locale>>,
-      Entry<T, Modifiers, Locale> | undefined
+      Entry<T, 'WITHOUT_UNRESOLVABLE_LINKS', Locale> | undefined
     >,
   ) {
     return await useAsyncData(
       key,
       () =>
-        contentfulClient.getEntries<T, Locale>({
-          include: 10,
-          limit: 1,
-          ...defaultCMSOptions,
-          ...query,
-        }) as unknown as Promise<
-          ContentfulCollection<Entry<T, Modifiers, Locale>>
-        >,
+        contentfulClient
+          .getEntries<T, Locale>({
+            include: 10,
+            limit: 1,
+            ...defaultCMSOptions,
+            ...query,
+          })
+          .then((data) => {
+            return data.items.at(0)
+          }),
       {
-        transform: (data) => {
-          return data.items.at(0)
-        },
         ...asyncDataOption,
       },
     )

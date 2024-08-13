@@ -7,6 +7,7 @@ import {
   getTotalAppliedReductions,
   isInStock,
   extendPromise,
+  type PublicShopConfig,
 } from '@scayle/storefront-nuxt'
 import { type Ref, computed, nextTick } from 'vue'
 import { useBasketActions } from '~/composables/useBasketActions'
@@ -126,7 +127,8 @@ export function useBasketItem(basketItem: Ref<BasketItem>) {
   }
 
   const isLowestPreviousPriceActive = computed(() => {
-    return !!currentShop.value?.isLowestPreviousPriceActive
+    return !!(currentShop.value as PublicShopConfig)
+      ?.isLowestPreviousPriceActive
   })
 
   const trackProductClick = () => {

@@ -281,8 +281,8 @@
         "description": "You fulfilled the condition. Feel free to choose a free gift."
       },
       "free_gift_conditions_not_met": {
-        "free_gift_headline": "Unlock your free gift",
-        "free_gift_description": "Fulfill the promotion conditions to choose a free gift."
+        "headline": "Unlock your free gift",
+        "description": "Fulfill the promotion conditions to choose a free gift."
       },
       "cart_reached": "Shopping cart reached! Add promotional products and get {discount}% discount on them",
       "cart_reached_for_gifts": "Shopping cart reached! Add promotional products to get a free gift",

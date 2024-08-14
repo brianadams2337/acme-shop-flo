@@ -11,7 +11,7 @@ const WAIT_TIME = 1000
 
 // TODO Handle tracking events when `gtm` is not initialized (server-side)
 const handleNonInitializedTracking = (log: Log) => ({
-  push: (data: any) => {
+  push: (data: unknown) => {
     log.warn(`Gtm was not initialized yet. Event: ${JSON.stringify(data)}`)
   },
   hasEventInQueue: (eventName: string) => {

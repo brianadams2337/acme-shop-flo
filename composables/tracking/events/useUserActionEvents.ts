@@ -13,7 +13,7 @@ export type AuthTrackingEventData = {
 const METHOD_DEFAULT = 'none'
 
 const useUserActionEvents = (
-  track: (event: TrackingEvent, payload: TrackingPayload) => any,
+  track: (event: TrackingEvent, payload: TrackingPayload) => void,
 ) => {
   const route = useRoute()
 

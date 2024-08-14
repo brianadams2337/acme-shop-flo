@@ -10,7 +10,9 @@ import { ProductsPerRow, PRODUCTS_PER_PAGE } from '~/constants'
 
 export function useRowIntersection(products: Ref<Product[]>) {
   const route = useRoute()
-  const trackingCollector = ref<{ row: number; items: Product[] }[]>([])
+  const trackingCollector = ref<
+    { row: number; items: (Product & { index: number })[] }[]
+  >([])
   const { greaterOrEqual } = useDefaultBreakpoints()
 
   const isGreaterOrEqualThenLg = greaterOrEqual('lg')

@@ -4,7 +4,7 @@ import { useCurrentShop } from '#storefront/composables'
 const SHOP_GENDER: 'male' | 'female' | 'other' | '' = ''
 
 const useShopEvents = (
-  track: (event: TrackingEvent, payload: TrackingPayload) => any,
+  track: (event: TrackingEvent, payload: TrackingPayload) => void,
 ) => {
   const currentShop = useCurrentShop().value
   const currency = currentShop!.currency

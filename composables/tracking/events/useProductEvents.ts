@@ -20,7 +20,7 @@ const collectProductListItems = (
 }
 
 const useProductEvents = (
-  track: (event: TrackingEvent, payload: TrackingPayload) => any,
+  track: (event: TrackingEvent, payload: TrackingPayload) => void,
 ) => {
   const currencyCode = useCurrentShop().value!.currency
   const { getProductDetailRoute } = useRouteHelpers()
@@ -37,40 +37,29 @@ const useProductEvents = (
       soldOut = false,
       pagePayload,
     }: TrackSelectItemEventParams) => {
-      const payload: any = {
+      const payload = {
         product,
         destinationUrl: getProductDetailRoute(product),
         destination: `product|${product.id}`,
         quantity,
+        category: category
+          ? {
+              name: category?.name || '',
+              id: category?.id?.toString() || '',
+            }
+          : undefined,
+        list: listingMetaData
+          ? {
+              name: listingMetaData.name,
+              id: listingMetaData.id,
+              index: index > -1 ? index : undefined,
+            }
+          : undefined,
+        variant: variant ?? undefined,
+        source: source ?? undefined,
+        sold_out: soldOut,
+        pagePayload: pagePayload,
       }
-
-      if (category) {
-        payload.category = {
-          name: category?.name || '',
-          id: category?.id?.toString() || '',
-        }
-      }
-      if (listingMetaData) {
-        payload.list = {
-          name: listingMetaData.name,
-          id: listingMetaData.id,
-        }
-      }
-
-      if (variant) {
-        payload.variant = variant
-      }
-
-      if (index > -1) {
-        payload.list.index = index
-      }
-
-      if (source) {
-        payload.source = source
-      }
-
-      payload.sold_out = soldOut
-      payload.pagePayload = pagePayload
 
       track('select_item', {
         ...payload,
@@ -87,7 +76,7 @@ const useProductEvents = (
     }: TrackViewItemListEventParams) => {
       const itemsToTrack =
         items?.map(
-          (product: Product & { index: number }): ProductViewData => ({
+          (product): ProductViewData => ({
             product,
             category: category || {
               name: getDeepestCategoryForTracking(product.categories).name,

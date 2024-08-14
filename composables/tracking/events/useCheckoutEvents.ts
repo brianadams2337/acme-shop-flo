@@ -5,7 +5,7 @@ const collectBasketItems = (
   options: { listName: string; listId: string },
 ) => {
   return items.map(
-    (basketItem: any): ProductListData => ({
+    (basketItem): ProductListData => ({
       product: basketItem.product,
       list: {
         name: options.listName,
@@ -17,7 +17,7 @@ const collectBasketItems = (
 }
 
 const useCheckoutEvents = (
-  track: (event: TrackingEvent, payload: TrackingPayload) => any,
+  track: (event: TrackingEvent, payload: TrackingPayload) => void,
 ) => ({
   trackBeginCheckout: (
     items: BasketItem<Product, Variant>[] = [],

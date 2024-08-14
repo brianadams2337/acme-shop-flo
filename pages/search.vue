@@ -68,7 +68,12 @@ const trackProductClick = (product: Product) => {
   })
 }
 
-const trackViewListing = ({ items }: { row: number; items: Product[] }) => {
+const trackViewListing = ({
+  items,
+}: {
+  row: number
+  items: (Product & { index: number })[]
+}) => {
   trackViewItemList({
     items,
     listingMetaData: categoryListingMetaData,

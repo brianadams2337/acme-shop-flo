@@ -103,6 +103,6 @@ const onProductIntersect = (index: number) => {
 
 const emit = defineEmits<{
   'click:product': [Product, number]
-  'intersect:row': [{ row: number; items: Product[] }]
+  'intersect:row': [{ row: number; items: (Product & { index: number })[] }]
 }>()
 </script>

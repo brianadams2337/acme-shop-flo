@@ -85,7 +85,7 @@ onMounted(() => {
   )
 
   trackViewItemList({
-    items: products.value,
+    items: products.value.map((product, index) => ({ ...product, index })),
     listingMetaData: wishlistListingMetadata,
     source: 'wishlist',
   })

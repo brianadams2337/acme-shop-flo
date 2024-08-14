@@ -31,7 +31,7 @@ const processPayload = (
 }
 
 const useWishlistEvents = (
-  track: (event: TrackingEvent, payload: TrackingPayload) => any,
+  track: (event: TrackingEvent, payload: TrackingPayload) => void,
 ) => {
   const currencyCode = useCurrentShop().value!.currency
 

@@ -3,7 +3,7 @@ import { useCurrentShop } from '#storefront/composables'
 import { divideByHundred, sumReductionsByCategory } from '~/utils'
 
 const useBasketEvents = (
-  track: (event: TrackingEvent, payload: TrackingPayload) => any,
+  track: (event: TrackingEvent, payload: TrackingPayload) => void,
 ) => {
   const currencyCode = useCurrentShop().value!.currency
 

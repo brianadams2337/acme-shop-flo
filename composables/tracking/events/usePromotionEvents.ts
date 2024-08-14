@@ -1,7 +1,7 @@
 import type { StoryblokTrackingContent } from '~/modules/cms/providers/storyblok/types'
 
 const usePromotionEvents = (
-  track: (event: TrackingEvent, payload: TrackingPayload) => any,
+  track: (event: TrackingEvent, payload: TrackingPayload) => void,
 ) => ({
   trackPromotion: (
     event: TrackingEvent,

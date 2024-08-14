@@ -329,7 +329,7 @@ declare global {
   }
 
   type TrackViewItemListEventParams = {
-    items: any[]
+    items: (Product & { index: number })[]
     listingMetaData: ListItem
     productIndex?: number
     paginationOffset?: number

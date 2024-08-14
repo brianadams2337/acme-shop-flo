@@ -1,5 +1,5 @@
 const useContentEvents = (
-  track: (event: TrackingEvent, payload: TrackingPayload) => any,
+  track: (event: TrackingEvent, payload: TrackingPayload) => void,
 ) => ({
   trackContentView: (
     contentName: string,

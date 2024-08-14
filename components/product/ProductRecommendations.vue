@@ -69,10 +69,15 @@ const { isGreaterOrEqual } = useDefaultBreakpoints()
 const { getProductDetailRoute } = useRouteHelpers()
 
 // TODO: Extract logic to a composable
-const trackingCollector = ref<Product[]>([])
+const trackingCollector = ref<(Product & { index: number })[]>([])
 const { trackViewItemList } = useTrackingEvents()
 
-const trackViewListing = ({ items }: { row: number; items: Product[] }) => {
+const trackViewListing = ({
+  items,
+}: {
+  row: number
+  items: (Product & { index: number })[]
+}) => {
   trackViewItemList({ items, listingMetaData: productListingMetaData })
 }
 

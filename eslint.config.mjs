@@ -88,6 +88,8 @@ export default withNuxt(
   {
     // https://eslint.org/docs/latest/use/configure/ignore#ignorepatterns-in-config-files
     ignores: ['cypress/', '**/fixtures/**/*', 'playwright/'],
+  },
+  {
     rules: {
       '@typescript-eslint/no-explicit-any': 'warn',
       'eslint-comments/no-unlimited-disable': 'off',

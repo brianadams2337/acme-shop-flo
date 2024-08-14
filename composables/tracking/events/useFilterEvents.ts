@@ -1,5 +1,5 @@
 const useFilterEvents = (
-  track: (event: TrackingEvent, payload: TrackingPayload) => any,
+  track: (event: TrackingEvent, payload: TrackingPayload) => void,
 ) => ({
   trackFilterApply: (action: string, label: string) => {
     track('filter_slider', {

@@ -1,7 +1,7 @@
 import { getEmailHash } from '~/utils'
 
 const useCustomerEvents = (
-  track: (event: TrackingEvent, payload: TrackingPayload) => any,
+  track: (event: TrackingEvent, payload: TrackingPayload) => void,
 ) => ({
   trackCustomerData: async (params: TrackCustomerDataParams) =>
     track('customer_data', {

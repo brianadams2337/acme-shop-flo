@@ -124,8 +124,9 @@ const mapAdditionalInfo = (
     ...('variant' in data && { item_variant: data.variant?.id.toString() }),
     ...(hasListIndex && { index: list?.index }),
     ...('index' in product &&
+      product.index !== undefined &&
       !hasListIndex &&
-      (product as any).index > -1 && { index: product.index }),
+      product.index > -1 && { index: product.index }),
   } as AdditionalInfo | ViewInfo
 }
 
@@ -153,11 +154,10 @@ const getTotalPriceInfo = (
     total.total_without_tax += item.price * item.quantity
   })
 
-  Object.keys(total).forEach(
-    (key) =>
-      ((total as any)[key] = Number(
-        ((total as any)[key] as number).toFixed(2),
-      )),
+  const keys = Object.keys(total) as (keyof typeof total)[]
+
+  keys.forEach(
+    (key) => (total[key] = Number((total[key] as number).toFixed(2))),
   )
 
   return total
@@ -466,15 +466,21 @@ export const sumReductionsFromAllOrderItemsPerCategory = (
   if (!orderItems) {
     return 0
   }
-  return orderItems.reduce((sum: number, orderItem: any) => {
-    return (
-      sum +
-      sumReductionsByCategory(orderItem?.price?.appliedReductions, category)
-    )
-  }, 0)
+  return orderItems.reduce(
+    (sum: number, orderItem: NonNullable<Order['items']>[number]) => {
+      return (
+        sum +
+        sumReductionsByCategory(
+          orderItem?.price?.appliedReductions as AppliedReduction[],
+          category,
+        )
+      )
+    },
+    0,
+  )
 }
 
-export const getFirstCarrierKey = (orderData: any) => {
+export const getFirstCarrierKey = (orderData: Order) => {
   return orderData.packages?.[0]?.carrierKey
 }
 

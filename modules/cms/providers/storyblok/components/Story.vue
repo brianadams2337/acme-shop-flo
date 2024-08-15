@@ -4,18 +4,24 @@
   </div>
 </template>
 
-<script setup lang="ts">
+<script setup lang="ts" generic="T extends ISbComponentType<string>">
 import { computed, defineOptions } from 'vue'
 import { useSeoMeta } from '@unhead/vue'
-import type { SbSeo } from '../types'
+import type { ISbStoryData, ISbComponentType } from 'storyblok-js-client'
+import type { SbSeo, SbContentPage, SbPage } from '../types'
 import CMSStoryblokComponent from './CMSStoryblokComponent.vue'
 
+export type ContentType = NonNullable<
+  SbContentPage['content'] | SbPage['content']
+>
+
 const props = defineProps<{
-  story: {
-    [key: string]: any
-  }
+  story: ISbStoryData<T>
 }>()
-const seo = computed<SbSeo>(() => props.story.content.seo)
+
+const seo = computed<SbSeo>(() => {
+  return (props.story.content as unknown as { seo: SbSeo }).seo
+})
 
 useSeoMeta({
   description: seo.value?.description,

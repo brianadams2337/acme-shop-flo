@@ -7,11 +7,12 @@
 <script setup lang="ts">
 import { computed, defineOptions } from 'vue'
 import { useSeoMeta } from '@unhead/vue'
+import type { Entry } from 'contentful'
 import type { TypeContentPageWithoutUnresolvableLinksResponse } from '../types'
 import CMSContentfulComponent from './ContentfulComponent.vue'
 
 const props = defineProps<{
-  story: any
+  story: Entry
 }>()
 
 const seoData = computed(() => {

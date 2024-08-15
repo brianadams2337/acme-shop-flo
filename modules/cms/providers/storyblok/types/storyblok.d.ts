@@ -44,7 +44,7 @@ export interface StoryblokBridgeConfig {
   accessToken?: string
 }
 export interface StoryblokEventPayload<
-  S extends StoryblokComponent<string> = any,
+  S extends StoryblokComponent<string> = unknown,
 > {
   action:
     | 'customEvent'
@@ -82,9 +82,9 @@ export interface StoryblokBridge {
     storyId: string,
   ) => StoryblokComponent<string>
   resolveRelations: (
-    story: any,
+    story: unknown,
     resolve: string[],
-    callback: (storyContent: any) => void,
+    callback: (storyContent: unknown) => void,
   ) => void
 }
 
@@ -299,7 +299,7 @@ export type SbStory<T> = {
     rels: ISbStoryData<T>[]
     story: ISbStoryData<T>
   }
-  headers: any
+  headers: unknown
 }
 
 export type SbStoryWithSeo<T> = {
@@ -309,5 +309,5 @@ export type SbStoryWithSeo<T> = {
     rels: ISbStoryData<T>[]
     story: ISbStoryData<T & { SEO: SbSeo }>
   }
-  headers: any
+  headers: unknown
 }

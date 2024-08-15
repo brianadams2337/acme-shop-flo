@@ -1,4 +1,4 @@
-import type { SbCmsImage } from '../types/storyblok'
+import type { SbCmsImage, Sbasset } from '../types/storyblok'
 import { useDefaultBreakpoints } from '~/composables/useDefaultBreakpoints'
 
 type SanitizedImage = {
@@ -20,7 +20,16 @@ export function useStoryblokImageSanitizer() {
   }
 }
 
-export function getTeaserImage(blok: any) {
+interface BlokWithTeaser {
+  teaser_image?: Sbasset
+  teaser_image_mobile?: Sbasset
+}
+
+export function hasTeaser(blok: object): blok is BlokWithTeaser {
+  return 'teaser_image' in blok || 'teaser_image_mobile' in blok
+}
+
+export function getTeaserImage(blok: BlokWithTeaser) {
   const sanitizedImage: SanitizedImage = { src: '', alt: '' }
 
   const desktopImageProperty = 'teaser_image'
@@ -29,7 +38,7 @@ export function getTeaserImage(blok: any) {
   if (blok) {
     const imageKey = isMobile() ? mobileImageProperty : desktopImageProperty
     const fallbackBlok = blok[desktopImageProperty]
-    const image = blok[imageKey].filename ? blok[imageKey] : fallbackBlok
+    const image = blok[imageKey]?.filename ? blok[imageKey] : fallbackBlok
     sanitizedImage.src = image?.filename || ''
     sanitizedImage.alt = image?.alt || image?.name || ''
   }

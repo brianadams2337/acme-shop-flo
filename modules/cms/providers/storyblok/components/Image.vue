@@ -18,6 +18,7 @@ import type { CMSImageProps } from '../types'
 import {
   getTeaserImage,
   useStoryblokImageSanitizer,
+  hasTeaser,
 } from '../composables/useStoryblokImage'
 
 const props = withDefaults(defineProps<CMSImageProps>(), {
@@ -31,7 +32,9 @@ const tracking = useStorefrontTracking()
 const { sanitize } = useStoryblokImageSanitizer()
 
 const imageSource = computed(() =>
-  props.isTeaser ? getTeaserImage(props.blok) : sanitize(props.blok),
+  props.isTeaser && hasTeaser(props.blok)
+    ? getTeaserImage(props.blok)
+    : sanitize(props.blok),
 )
 
 const onIntersect = (_: IntersectionObserverEntry, stop: () => void) => {

@@ -1,7 +1,6 @@
 import type { Document } from '@contentful/rich-text-types'
 import type * as Contentful from './gen'
 
-export type TODO = any
 export type BlokProps<T> = { blok: T | null }
 export type CMSComponentProps<T, R> = T & R
 export * from './gen'

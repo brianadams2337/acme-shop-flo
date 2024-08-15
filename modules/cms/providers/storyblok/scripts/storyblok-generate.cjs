@@ -30,7 +30,7 @@ storyblokToTypescript({
   titlePrefix: 'Sb',
   titleSuffix: '',
   compilerOptions: {
-    unknownAny: false,
+    unknownAny: true,
     additionalProperties: false,
     bannerComment: `
         /* eslint-disable */

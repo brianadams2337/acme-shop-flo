@@ -45,7 +45,6 @@
 
 <script setup lang="ts">
 import { computed } from 'vue'
-import { sort } from 'radash'
 import type { Product } from '@scayle/storefront-nuxt'
 import { useProductPromotions } from '~/composables'
 import { routeList } from '~/utils/route'
@@ -87,6 +86,6 @@ const getBadgeLabel = (customData: Promotion['customData']) => {
 }
 
 const orderedPromotions = computed(() => {
-  return sort(applicablePromotions.value, (it) => it.priority)
+  return applicablePromotions.value.toSorted((a, b) => a.priority - b.priority)
 })
 </script>

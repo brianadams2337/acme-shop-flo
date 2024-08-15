@@ -31,7 +31,6 @@
 
 <script setup lang="ts">
 import { defineOptions } from 'vue'
-import { dash } from 'radash'
 import type { CMSAccordionProps } from '../types'
 import { getComponentName } from '../../../utils/helpers'
 import { useContentfulMargins } from '../composables/useContentfulMargins'
@@ -42,7 +41,11 @@ const props = defineProps<CMSAccordionProps>()
 const route = useRoute()
 
 const collapseByAnchorSlug = (linkTitle: string) => {
-  return `#${dash(linkTitle)}` !== route.hash
+  const dashedTitle = linkTitle
+    .split(/[\s_.-]+|(?=[A-Z][a-z])/)
+    .join('-')
+    .toLowerCase()
+  return `#${dashedTitle}` !== route.hash
 }
 
 const { marginClasses } = useContentfulMargins(props.blok?.fields.marginTop)

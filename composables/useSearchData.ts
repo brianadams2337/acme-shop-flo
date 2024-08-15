@@ -1,4 +1,4 @@
-import { debounce } from 'radash'
+import { useDebounceFn } from '@vueuse/core'
 import type { SearchV2With } from '@scayle/storefront-nuxt'
 import { computed } from 'vue'
 import { useRouteHelpers } from '~/composables/useRouteHelpers'
@@ -73,16 +73,13 @@ export function useSearchData(
 
   const hasSearchQuery = computed(() => searchQuery.value?.length)
 
-  const debouncedSearch = debounce(
-    { delay: DEBOUNCED_SEARCH_DURATION },
-    async () => {
-      if (!hasSearchQuery.value) {
-        fetching.value = false
-        return
-      }
-      await getSearchSuggestions()
-    },
-  )
+  const debouncedSearch = useDebounceFn(async () => {
+    if (!hasSearchQuery.value) {
+      fetching.value = false
+      return
+    }
+    await getSearchSuggestions()
+  }, DEBOUNCED_SEARCH_DURATION)
 
   const showSuggestionsLoader = computed(() => {
     return fetching.value && (!searchQuery.value || noSuggestions.value)

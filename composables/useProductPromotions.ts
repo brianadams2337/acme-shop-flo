@@ -1,4 +1,3 @@
-import { min } from 'radash'
 import {
   type Price,
   type Product,
@@ -48,18 +47,29 @@ export function useProductPromotions(
     return getApplicablePromotionsForProduct(product.value, promotions.value)
   })
 
+  const getPromotionWithPriority = (items: Promotion[]) => {
+    // Avoid "Reduce of empty array with no initial value"
+    if (!items || (items.length ?? 0) === 0) {
+      return
+    }
+
+    // Lower priority value equals higher priority
+    return items.reduce((a, b) => (a.priority < b.priority ? a : b))
+  }
+
   const buyXGetYPromotion = computed(() => {
     const items = applicablePromotions.value.filter(isBuyXGetYType)
-    return min(items, ({ priority }) => priority)
+    return getPromotionWithPriority(items)
   })
 
   const automaticDiscountPromotion = computed(() => {
     const items = applicablePromotions.value.filter(isAutomaticDiscountType)
-    return min(items, ({ priority }) => priority)
+    return getPromotionWithPriority(items)
   })
 
   const highestPriorityPromotion = computed(() => {
-    return min(applicablePromotions.value, (promotion) => promotion.priority)
+    const items = applicablePromotions.value
+    return getPromotionWithPriority(items)
   })
 
   const addedProductBasketItem = computed(() => {

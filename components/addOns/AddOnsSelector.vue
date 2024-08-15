@@ -23,7 +23,6 @@
 
 <script setup lang="ts">
 import { computed } from 'vue'
-import { sort } from 'radash'
 import {
   type CentAmount,
   getFirstAttributeValue,
@@ -62,11 +61,11 @@ const { data: products } = useProductsByIds({
 })
 
 const sortedProductsById = computed(() => {
-  return sort(products.value || [], ({ id }) => id)
+  return (products.value ?? []).toSorted((a, b) => a.id - b.id)
 })
 
 const sortedVariantsByProductId = computed(() => {
-  return sort(variants.value || [], ({ productId }) => productId)
+  return (variants.value ?? []).toSorted((a, b) => a.productId - b.productId)
 })
 
 const computedAddOns = computed(() => {

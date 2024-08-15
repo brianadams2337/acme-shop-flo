@@ -1,5 +1,3 @@
-import { pascal } from 'radash'
-
 export const CareIconSymbolMap: Record<number, string> = {
   720: 'machine-wash-30-gentle-or-delicate',
   741: 'machine-wash-30-permanent-press',
@@ -41,5 +39,11 @@ export const getCareIconComponent = (iconId?: number): string | undefined => {
   if (!iconId || !(iconId in CareIconSymbolMap)) {
     return undefined
   }
-  return `IconCare${pascal(CareIconSymbolMap[iconId])}`
+
+  const normalizedCareIconSymbol = CareIconSymbolMap[iconId]
+    .split(/[\s_.-]+|(?=[A-Z][a-z])/)
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+    .join('')
+
+  return `IconCare${normalizedCareIconSymbol}`
 }

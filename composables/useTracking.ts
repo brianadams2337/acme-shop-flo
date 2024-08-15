@@ -1,6 +1,5 @@
-import { debounce } from 'radash'
+import { useDebounceFn, useEventListener } from '@vueuse/core'
 import type { Log } from '@scayle/storefront-nuxt'
-import { useEventListener } from '@vueuse/core'
 import { useGtm } from '@gtm-support/vue-gtm'
 import { useRuntimeConfig } from '#app'
 import { useLog } from '#storefront/composables'
@@ -85,7 +84,7 @@ export function useTracking() {
     return queue.value.some((item) => item.data.event === eventName)
   }
 
-  const flushDebounced = debounce({ delay: WAIT_TIME }, flush)
+  const flushDebounced = useDebounceFn(flush, WAIT_TIME)
 
   useEventListener('beforeunload', flush)
 

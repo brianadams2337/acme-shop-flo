@@ -1,5 +1,4 @@
 import { extendPromise, type BasketItem } from '@scayle/storefront-nuxt'
-import { sum } from 'radash'
 import { computed } from 'vue'
 import { hexToRGBAColor } from '~/utils/color'
 import { useBasket } from '#storefront/composables'
@@ -12,8 +11,12 @@ export function useBasketReductions() {
   }
 
   const getPromotionTextColor = (color: unknown): string | undefined => {
-    if (typeof color !== 'string') return
+    if (typeof color !== 'string') {
+      return
+    }
+
     const fallbackColor = '#007aff'
+
     return hexToRGBAColor(color ?? fallbackColor, 100)
   }
 
@@ -22,14 +25,20 @@ export function useBasketReductions() {
   }
 
   const hasSaleReduction = (item?: BasketItem): boolean => {
-    if (!item) return false
+    if (!item) {
+      return false
+    }
+
     return item.price.total.appliedReductions.some(
       ({ category }) => category === 'sale',
     )
   }
 
   const hasPromotionReduction = (item?: BasketItem): boolean => {
-    if (!item) return false
+    if (!item) {
+      return false
+    }
+
     return item.price.total.appliedReductions.some(
       ({ category }) => category === 'promotion',
     )
@@ -45,7 +54,8 @@ export function useBasketReductions() {
     const discounts = (basket.data.value?.cost.appliedReductions ?? []).map(
       ({ amount }) => amount.absoluteWithTax,
     )
-    return sum(discounts)
+
+    return discounts.reduce((acc, item) => acc + item, 0)
   })
 
   const totalCost = computed<number | undefined>(() => {
@@ -54,7 +64,8 @@ export function useBasketReductions() {
 
   const totalCostWithoutReductions = computed<number>(() => {
     const totalCostValue = totalCost.value?.valueOf() ?? 0
-    return sum([totalCostValue, totalDiscount.value])
+
+    return totalCostValue + totalDiscount.value
   })
 
   const aggregatedSalePrice = computed<number>(() => {
@@ -69,7 +80,8 @@ export function useBasketReductions() {
       },
       [],
     )
-    return sum(allSaleReductions)
+
+    return allSaleReductions.reduce((acc, item) => acc + item, 0)
   })
 
   const itemsWithPromotionsReductions = computed(() => {
@@ -111,14 +123,15 @@ export function useBasketReductions() {
       .filter((item) => item.category === 'sale')
       .map(({ amount }) => amount.absoluteWithTax)
 
-    return sum(discounts)
+    return discounts.reduce((acc, item) => acc + item, 0)
   })
 
   const totalPromotionsReductions = computed(() => {
     const discounts = (basket.data.value?.cost.appliedReductions ?? [])
       .filter((item) => item.category === 'promotion')
       .map(({ amount }) => amount.absoluteWithTax)
-    return sum(discounts)
+
+    return discounts.reduce((acc, item) => acc + item, 0)
   })
 
   return extendPromise(

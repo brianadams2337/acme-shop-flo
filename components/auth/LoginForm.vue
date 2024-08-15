@@ -67,7 +67,6 @@
 <script setup lang="ts">
 import { computed, reactive } from 'vue'
 import useVuelidate from '@vuelidate/core'
-import { isString } from 'radash'
 import {
   useAuthentication,
   useLastLoggedInUser,
@@ -80,7 +79,7 @@ import { routeList } from '~/utils/route'
 const route = useRoute()
 
 const idpParams = computed(() => {
-  if (isString(route.query.redirectUrl)) {
+  if (typeof route.query.redirectUrl === 'string') {
     return {
       queryParams: { redirectUrl: route.query.redirectUrl },
     }

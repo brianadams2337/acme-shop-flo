@@ -1,5 +1,4 @@
 import { extendPromise } from '@scayle/storefront-nuxt'
-import { sum } from 'radash'
 import { computed, type ComputedRef, type Ref } from 'vue'
 import { useBasket, useFormatHelpers } from '#storefront/composables'
 import { divideByHundred, getBasketTotalWithoutPromotions } from '~/utils'
@@ -43,6 +42,7 @@ export function usePromotionProgress(
     if (!minOrderValue.value) {
       return
     }
+
     return formatCurrency(minOrderValue.value - basketTotal.value)
   })
 
@@ -55,19 +55,26 @@ export function usePromotionProgress(
       const reduction = current.price.total.appliedReductions.find(
         ({ category }) => category === 'promotion',
       )
+
       if (reduction) {
         previous.push(reduction.amount.absoluteWithTax)
       }
+
       return previous
     }, [])
 
-    if (!reductions) return
+    if (!reductions) {
+      return
+    }
 
-    return sum(reductions)
+    return reductions.reduce((acc, item) => acc + item, 0)
   })
 
   const formattedDiscount = computed<string | undefined>(() => {
-    if (!discount.value) return
+    if (!discount.value) {
+      return
+    }
+
     return formatCurrency(discount.value)
   })
 
@@ -75,6 +82,7 @@ export function usePromotionProgress(
     if (!minOrderValue.value) {
       return false
     }
+
     return (basketData.value?.items ?? []).some(({ promotionId }) => {
       return promotionId === promotion.value?.id
     })

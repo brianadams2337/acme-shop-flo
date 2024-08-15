@@ -1,4 +1,3 @@
-import { isEmpty } from 'radash'
 import {
   type Product,
   type Value,
@@ -120,7 +119,8 @@ export function useWishlistItemActions(item: Ref<WishlistItem>) {
     index: number,
   ) => {
     const newVariant = getVariantBySize(product.variants || [], size, 'size')
-    if (isEmpty(newVariant)) {
+
+    if (Object.values(newVariant || {}).length === 0) {
       return
     }
     sizeSavingId.value = product.id
@@ -177,7 +177,8 @@ export function useWishlistItemActions(item: Ref<WishlistItem>) {
 
   const changeSize = async (size: Value) => {
     const newVariant = getVariantBySize(product.variants || [], size, 'size')
-    if (isEmpty(newVariant)) {
+
+    if (Object.values(newVariant || {}).length === 0) {
       return
     }
     sizeSavingId.value = product.id
@@ -194,6 +195,7 @@ export function useWishlistItemActions(item: Ref<WishlistItem>) {
     if (size.value !== selectedSize.value?.value) {
       changeSize(size)
     }
+
     isChangingSize.value = false
   }
 

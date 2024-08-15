@@ -62,7 +62,6 @@
 
 <script setup lang="ts">
 import { computed, defineOptions, resolveComponent } from 'vue'
-import { isEmpty } from 'radash'
 import type { CMSBannerProps } from '../types'
 import CMSText from './Text.vue'
 import CMSScrollableLinkList from './ScrollableLinkList.vue'
@@ -76,7 +75,9 @@ const props = withDefaults(defineProps<CMSBannerProps>(), {
 const { close, isOpen, shouldBeVisible: _shouldBeVisible } = useBanner()
 const { trackPromotion } = useTrackingEvents()
 const isActive = computed(() => {
-  return isEmpty(props.blok) ? true : props.blok?.fields.isActive
+  return Object.values(props.blok || {}).length === 0
+    ? true
+    : props.blok?.fields.isActive
 })
 
 const shouldBeVisible = computed(() => _shouldBeVisible(props.publishedAt))
@@ -88,7 +89,9 @@ const is = (value: string | string[]) => {
   )
 }
 
-const hasScrollableLinks = computed(() => !isEmpty(props.blok?.fields.links))
+const hasScrollableLinks = computed(
+  () => Object.values(props.blok?.fields.links || {}).length !== 0,
+)
 const cachedUrl = computed(() => props.blok?.fields.ctaUrl)
 const baseTag = computed(() => {
   return cachedUrl.value ? resolveComponent('CMSContentfulLink') : 'div'

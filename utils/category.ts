@@ -1,5 +1,4 @@
 import type { Category } from '@scayle/storefront-nuxt'
-import { unique } from 'radash'
 
 export const getCategoryAncestors = (
   category: Category,
@@ -14,11 +13,18 @@ export const isSaleCategory = (category: Category) => {
 }
 
 export const flattenCategoryTree = (categoryTree: Category[]): Category[] => {
-  return unique(
-    categoryTree.reduce<Category[]>((categories, categoryNode) => {
+  const flattenedCategoryTreeList = categoryTree.reduce<Category[]>(
+    (categories, categoryNode) => {
       const children = categoryNode?.children ?? []
       return categories.concat(categoryNode, ...flattenCategoryTree(children))
-    }, []),
-    (item) => item.id,
+    },
+    [],
   )
+
+  // Filter and return unique entries
+  return [
+    ...new Map(
+      flattenedCategoryTreeList.map((item) => [item?.id ?? item, item]),
+    ).values(),
+  ]
 }

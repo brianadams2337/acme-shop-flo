@@ -1,4 +1,3 @@
-import { sort } from 'radash'
 import {
   type Product,
   type Variant,
@@ -131,7 +130,7 @@ export const getApplicablePromotionsForProduct = (
     return customData.product?.promotionId === productPromotionId
   })
 
-  return sort(items, (it) => it.priority)
+  return items.toSorted((a, b) => a.priority - b.priority)
 }
 
 export const getProductSiblingData = (

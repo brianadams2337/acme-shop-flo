@@ -6,7 +6,6 @@ import {
   getFirstAttributeValue,
   slugify,
 } from '@scayle/storefront-nuxt'
-import { isString } from 'radash'
 import type { RouteLocationRaw } from '#vue-router'
 import { type NavigateToOptions, navigateTo } from '#app/composables/router'
 import { useCurrentShop } from '#storefront/composables'
@@ -96,7 +95,7 @@ export function useRouteHelpers() {
   }
 
   const getLocalizedRoute = (route: RouteLocationRaw) => {
-    if (!isString(route)) {
+    if (typeof route !== 'string') {
       const isLocalePath =
         'path' in route &&
         route.path !== undefined &&

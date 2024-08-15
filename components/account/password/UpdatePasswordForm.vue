@@ -72,8 +72,8 @@
 
 <script setup lang="ts">
 import { computed, reactive, ref, watch } from 'vue'
-import { sleep } from 'radash'
 import useVuelidate from '@vuelidate/core'
+import { wait } from '@scayle/storefront-nuxt'
 import { useToast, useValidationRules } from '~/composables'
 import { useNuxtApp } from '#app'
 import { useUser } from '#storefront/composables'
@@ -135,7 +135,7 @@ const updateUserPassword = async () => {
     toast.show(msg, { action: 'CONFIRM' })
     isUpdating.value = false
 
-    await sleep(500)
+    await wait(500)
     resetState.value = false
   }
 }

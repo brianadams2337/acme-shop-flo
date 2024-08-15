@@ -72,7 +72,6 @@
 
 <script setup lang="ts">
 import { computed, defineOptions, resolveComponent } from 'vue'
-import { isEmpty } from 'radash'
 import { useStorefrontTracking } from '../../../composables/storefront/useStorefrontTracking'
 import { useStorefrontBanner } from '../../../composables/storefront/useStorefrontBanner'
 import type { CMSBannerProps } from '../types'
@@ -86,7 +85,9 @@ const props = withDefaults(defineProps<CMSBannerProps>(), {
 const storefrontBanner = useStorefrontBanner()
 const storefrontTracking = useStorefrontTracking()
 const isActive = computed(() => {
-  return isEmpty(props.blok) ? true : props.blok.is_active
+  return Object.values(props.blok || {}).length === 0
+    ? true
+    : props.blok.is_active
 })
 
 const shouldBeVisible = computed(
@@ -100,7 +101,9 @@ const is = (value: string | string[]) => {
   )
 }
 
-const hasScrollableLinks = computed(() => !isEmpty(props.blok?.links))
+const hasScrollableLinks = computed(
+  () => Object.values(props.blok?.links || {}).length !== 0,
+)
 const cachedUrl = computed(() => props.blok.cta_url?.cached_url)
 const baseTag = computed(() => {
   return cachedUrl.value ? resolveComponent('CMSStoryblokLink') : 'div'

@@ -1,4 +1,3 @@
-import { unique } from 'radash'
 import { computed, type Ref } from 'vue'
 import { useOrder, useVariant } from '#storefront/composables'
 import { useRoute } from '#app/composables/router'
@@ -49,7 +48,8 @@ export function useOrderDetails(key?: string) {
   const variantIds = computed(() => {
     const ids =
       orderDetails.value?.items?.map((it) => it.variant.id as number) ?? []
-    return unique(ids)
+
+    return [...new Map(ids.map((id) => [id, id])).values()]
   })
 
   const { data: orderVariants } = useVariant({

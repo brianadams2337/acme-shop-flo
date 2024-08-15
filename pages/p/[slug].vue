@@ -224,11 +224,11 @@
 <script setup lang="ts">
 import { computed, defineOptions, onMounted, ref } from 'vue'
 import { useHead, useServerSeoMeta } from '@unhead/vue'
-import { sleep } from 'radash'
 import {
   type ProductColor,
   getFirstAttributeValue,
   isInStock,
+  wait,
 } from '@scayle/storefront-nuxt'
 import { definePageMeta, useJsonld } from '#imports'
 import { useNuxtApp } from '#app'
@@ -310,7 +310,7 @@ onMounted(async () => {
     return
   }
   setPageState('typeId', String(product.value.id))
-  await sleep(1000)
+  await wait(1000)
   trackViewItem({ product: product.value })
 })
 

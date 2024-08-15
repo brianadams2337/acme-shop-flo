@@ -1,4 +1,3 @@
-import { alphabetical } from 'radash'
 import {
   getFirstAttributeValue,
   extendPromise,
@@ -30,11 +29,23 @@ export function useWishlistPage() {
     throw wishlist.error.value
   }
 
+  const getWishlistItemForSorting = (item: WishlistItem) => {
+    const attributes = item.product?.attributes
+    return getFirstAttributeValue(attributes, 'name')?.label ?? ''
+  }
+
   const orderedItems = computed(() => {
-    return alphabetical(wishlist.items.value || [], (item: WishlistItem) => {
-      const attributes = item.product?.attributes
-      return getFirstAttributeValue(attributes, 'name')?.label ?? ''
-    })
+    if (!wishlist.items.value) {
+      return []
+    }
+
+    return wishlist.items.value
+      .slice() // This creates a shallow copy of the input array so it doesn't modify the original array, as the sort method modifies the array in place
+      .sort((a, b) =>
+        getWishlistItemForSorting(a).localeCompare(
+          getWishlistItemForSorting(b),
+        ),
+      )
   })
 
   const count = wishlist.count

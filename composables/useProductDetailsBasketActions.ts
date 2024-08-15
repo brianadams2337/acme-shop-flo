@@ -3,7 +3,6 @@ import type {
   Product,
   Variant,
 } from '@scayle/storefront-nuxt'
-import { unique } from 'radash'
 import { type Ref, toValue } from 'vue'
 import { isSubscriptionAlreadyInBasket } from '~/modules/subscription/helpers/subscription'
 import { hasOneSizeProductVariantOnly } from '~/utils/sizes'
@@ -45,14 +44,18 @@ export function useProductDetailsBasketActions(
   const { name } = useProductBaseInfo(product)
 
   const getBasketAddOnProducts = () => {
-    return unique(
-      (basketItems.value ?? [])
-        .filter(({ variant }) =>
-          selectedAddOnVariantIds.value.includes(variant.id),
-        )
-        .map(({ product }) => product),
-      (product) => product.id,
-    )
+    const filteredBasketItems = (basketItems.value ?? [])
+      .filter(({ variant }) =>
+        selectedAddOnVariantIds.value.includes(variant.id),
+      )
+      .map(({ product }) => product)
+
+    // Filter and return unique entries
+    return [
+      ...new Map(
+        filteredBasketItems.map((product) => [product?.id ?? product, product]),
+      ).values(),
+    ]
   }
 
   const addItemToBasket = async (priorItemToAdd?: AddOrUpdateItemType) => {

@@ -1,4 +1,6 @@
 <template>
+  <!-- eslint-disable unimport/auto-insert-->
+  <!-- Disabling unimport/auto-insert here due misdetection of min keyword -->
   <div>
     <!--
       `silent` switches off error messages
@@ -66,6 +68,7 @@
       />
     </div>
   </div>
+  <!-- eslint-enable unimport/auto-insert-->
 </template>
 
 <script setup lang="ts">

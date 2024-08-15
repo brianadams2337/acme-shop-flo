@@ -6,7 +6,6 @@ import {
   sameAs,
 } from '@vuelidate/validators'
 import { dateValidator, getPayloadDate } from '@scayle/storefront-nuxt'
-import { snake } from 'radash'
 import { useNuxtApp } from '#app'
 
 const isValidDate = (date: Date) => new Date(date).toString() !== 'Invalid Date'
@@ -43,16 +42,22 @@ const validateName = (value: string | undefined): boolean => {
   return hasValidUnicodeLetters && hasValidBoundaries && !hasPunctuationStreak
 }
 
+const toSnakeCase = (stringValue: string) =>
+  stringValue
+    .match(/[A-Z]{2,}(?=[A-Z][a-z]+[0-9]*|\b)|[A-Z]?[a-z]+[0-9]*|[A-Z]|[0-9]+/g)
+    ?.map((x) => x.toLowerCase())
+    .join('_')
+
 export function useValidationRules() {
   const { $i18n } = useNuxtApp()
 
   const withI18nMessage = createI18nMessage({
     t: $i18n.t.bind($i18n),
-    messagePath: ({ $validator }) => `validation.${snake($validator)}`,
+    messagePath: ({ $validator }) => `validation.${toSnakeCase($validator)}`,
     messageParams: ({ field, max, otherName, property, ...params }) => ({
       ...params,
       property,
-      field: $i18n.t(`form_fields.${snake(field || property)}`),
+      field: $i18n.t(`form_fields.${toSnakeCase(field || property)}`),
       max,
       otherField: otherName,
     }),

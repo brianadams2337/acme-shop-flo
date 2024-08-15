@@ -24,7 +24,6 @@
 
 <script setup lang="ts">
 import { computed } from 'vue'
-import { isString } from 'radash'
 import type { RouteLocationRaw } from '#vue-router'
 import { LinkVariant } from '#storefront-ui'
 import { useRouteHelpers } from '~/composables/useRouteHelpers'
@@ -79,7 +78,7 @@ const exactActiveClass = computed(() => {
 const { getLocalizedRoute } = useRouteHelpers()
 
 const resolvedLink = computed(() => {
-  const isExternal = isString(props.to) && props.to.startsWith('http')
+  const isExternal = typeof props.to === 'string' && props.to.startsWith('http')
 
   if (isExternal) {
     return props.to

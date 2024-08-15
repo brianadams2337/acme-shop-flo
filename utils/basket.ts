@@ -1,4 +1,4 @@
-import { alphabetical, group, sort } from 'radash'
+import { group } from 'radash'
 import {
   type BasketItem,
   getFirstAttributeValue,
@@ -9,22 +9,32 @@ export type BundledBasketItems<T = unknown> = Partial<Record<string, T[]>>
 export const sortBasketItemsByNameAndSize = (
   items: BasketItem[],
 ): BasketItem[] => {
-  const sortedAlphabetically = alphabetical(
-    items,
-    (item: BasketItem) =>
-      getFirstAttributeValue(item.product.attributes, 'name')?.label ?? '',
+  const getSortingBasketItemName = (item: BasketItem) =>
+    getFirstAttributeValue(item.product.attributes, 'name')?.label ?? ''
+
+  const sortedAlphabetically = items.toSorted((a, b) =>
+    getSortingBasketItemName(a).localeCompare(getSortingBasketItemName(b)),
   )
-  return sort(
-    sortedAlphabetically,
-    (item: BasketItem) =>
-      getFirstAttributeValue(item.variant?.attributes, 'size')?.id ?? 0,
+
+  const getSortingBasketItemSize = (item: BasketItem) =>
+    getFirstAttributeValue(item.variant?.attributes, 'size')?.id ?? 0
+
+  return sortedAlphabetically.toSorted(
+    (a, b) => getSortingBasketItemSize(a) - getSortingBasketItemSize(b),
   )
 }
 
 export const sortBasketItemsByIsSoldOut = (
   items: BasketItem[],
 ): BasketItem[] => {
-  return sort(items, ({ product }) => Number(product.isSoldOut))
+  const getSortingBasketItemProductAttribute = ({ product }: BasketItem) =>
+    Number(product.isSoldOut)
+
+  return items.toSorted(
+    (a, b) =>
+      getSortingBasketItemProductAttribute(a) -
+      getSortingBasketItemProductAttribute(b),
+  )
 }
 
 export const getPartitionedBasketItems = (items: BasketItem[] = []) => {

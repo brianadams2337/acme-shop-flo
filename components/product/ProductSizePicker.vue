@@ -65,7 +65,6 @@
 
 <script setup lang="ts">
 import { computed, toRef } from 'vue'
-import { sort } from 'radash'
 
 import {
   type Variant,
@@ -106,13 +105,20 @@ const getSizeFromVariant = (variant: Variant) => {
   }
 }
 
+const getSortingAttributeSort = ({ attributes }: Variant) => {
+  return Number(getFirstAttributeValue(attributes, 'sort')?.value || '0')
+}
+
 const _sizes = computed(() => {
   if (!variants.value?.length) {
     return []
   }
-  return sort([...props.variants], ({ attributes }) => {
-    return Number(getFirstAttributeValue(attributes, 'sort')?.value || '0')
-  }).map(getSizeFromVariant)
+
+  const sortedVariants = [...props.variants].toSorted(
+    (a, b) => getSortingAttributeSort(a) - getSortingAttributeSort(b),
+  )
+
+  return sortedVariants.map(getSizeFromVariant)
 })
 
 const sizes = computed(() => getVariantSizes(props.variants))

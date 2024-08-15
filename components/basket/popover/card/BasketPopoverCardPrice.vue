@@ -64,7 +64,6 @@
 </template>
 
 <script setup lang="ts">
-import { sum } from 'radash'
 import { computed } from 'vue'
 import type { BasketItem } from '@scayle/storefront-nuxt'
 import { useFormatHelpers } from '#storefront/composables'
@@ -79,10 +78,14 @@ const basketItem = computed(() => props.item)
 const { price, reducedPrice } = useBasketItem(basketItem)
 
 function getItemSaleReductionPrice(item?: BasketItem) {
-  if (!item) return 0
+  if (!item) {
+    return 0
+  }
+
   const itemTotalSalePrice = getBasketItemSalePrice(item)
   const totalWithReduction = price.value + (reducedPrice.value ?? 0)
-  return sum([totalWithReduction, -itemTotalSalePrice])
+
+  return totalWithReduction + -itemTotalSalePrice
 }
 
 const { hasSaleReduction, hasPromotionReduction, getBasketItemSalePrice } =

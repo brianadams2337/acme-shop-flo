@@ -1,4 +1,3 @@
-import { sum } from 'radash'
 import {
   type AutomaticDiscountEffect,
   type BasketResponseData,
@@ -58,12 +57,18 @@ export const getAdditionalData = (
 export const getBasketTotalWithoutPromotions = (
   basket?: BasketResponseData,
 ) => {
-  if (!basket) return 0
-  const promotionReductions = sum(
-    basket.cost.appliedReductions
-      .filter(({ category }) => category === 'promotion')
-      .map(({ amount }) => amount.absoluteWithTax),
+  if (!basket) {
+    return 0
+  }
+
+  const promotionReductionsList = basket.cost.appliedReductions
+    .filter(({ category }) => category === 'promotion')
+    .map(({ amount }) => amount.absoluteWithTax)
+
+  const promotionReductionsSum = promotionReductionsList.reduce(
+    (acc, item) => acc + item,
+    0,
   )
 
-  return basket.cost.withTax + promotionReductions
+  return basket.cost.withTax + promotionReductionsSum
 }

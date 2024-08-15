@@ -7,7 +7,6 @@ import {
   extendPromise,
 } from '@scayle/storefront-nuxt'
 import { computed } from 'vue'
-import { useImage } from '#imports'
 import { useProduct } from '#storefront/composables'
 import { getAdvancedAttributes } from '~/utils/attribute'
 import { useBreadcrumbs, useProductBaseInfo } from '~/composables'
@@ -19,6 +18,7 @@ import {
   PRODUCT_WITH_PARAMS,
 } from '~/constants'
 import { getQuantitySelectionList, hasOneSizeProductVariantOnly } from '~/utils'
+import { useImage } from '#image/composables'
 
 export function useProductDetails(key?: string) {
   if (!key) {
@@ -73,13 +73,15 @@ export function useProductDetails(key?: string) {
   )
 
   const handleSelectedSize = (value: Value) => {
-    if (product.value?.variants) {
-      activeVariant.value = getVariantBySize(
-        product.value?.variants,
-        value,
-        'size',
-      )
+    if (!product.value?.variants) {
+      return
     }
+
+    activeVariant.value = getVariantBySize(
+      product.value?.variants,
+      value,
+      'size',
+    )
   }
 
   const hasOneSizeVariantOnly = computed(() => {

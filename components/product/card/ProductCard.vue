@@ -7,7 +7,7 @@
     <Intersect @enter="emit('intersect:product', props.product.id)">
       <article
         :id="id"
-        class="flex h-full flex-col"
+        class="group/product-card flex h-full flex-col"
         @mouseover="onMouseOver"
         @mouseleave="onMouseLeave"
       >
@@ -74,18 +74,12 @@
             </slot>
           </div>
         </slot>
-        <slot
-          name="details"
-          v-bind="{ ...$props, name, price, brand, lowestPriorPrice }"
-        >
-          <ProductCardDetails
-            v-if="link && product"
-            :product="product"
-            :is-product-hovered="isProductHovered"
-            :link="link"
-            @click.capture="$emit('click:product')"
-          />
-        </slot>
+        <ProductCardDetails
+          v-if="link && product"
+          :product="product"
+          :link="link"
+          @click.capture="$emit('click:product')"
+        />
       </article>
     </Intersect>
   </div>
@@ -133,8 +127,7 @@ const onMouseLeave = () => {
   emit('product-image:mouseleave')
 }
 
-const { brand, name, alt, price, lowestPriorPrice, image, link } =
-  useProductBaseInfo(props.product)
+const { brand, name, alt, image, link } = useProductBaseInfo(props.product)
 
 const areHeaderActionsHidden = computed(() => {
   return props.isWishlistCard && !isProductHovered.value && props.isAvailable

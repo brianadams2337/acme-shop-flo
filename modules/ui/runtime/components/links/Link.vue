@@ -8,17 +8,6 @@
     :class="variantClass"
   >
     <slot />
-    <slot name="badge" :badge="badge">
-      <SFFadeInTransition>
-        <span
-          v-if="badge"
-          :data-badge-content="badge"
-          class="rounded-xl bg-black px-2 text-white"
-        >
-          {{ badge }}
-        </span>
-      </SFFadeInTransition>
-    </slot>
   </NuxtLink>
 </template>
 
@@ -40,7 +29,6 @@ const LinkTypeClass = {
 
 type Props = {
   to: RouteLocationRaw
-  badge?: number | string
   onlyExactActive?: boolean
   type?: LinkVariant
   openInNewTab?: boolean
@@ -49,7 +37,6 @@ type Props = {
 }
 
 const props = withDefaults(defineProps<Props>(), {
-  badge: undefined,
   onlyExactActive: false,
   type: LinkVariant.NORMAL,
   openInNewTab: false,

@@ -511,5 +511,14 @@
   },
   "product_image": {
     "alt": "{productName} in {colors}"
+  },
+  "country_selection": {
+    "prompt": "Looks like you are in {country}. Which shop would you like to visit?",
+    "switch_to_shop": "Switch to the {country} shop",
+    "stay_in_shop": "Stay in the {country} shop",
+    "override_codes": {
+      "ZZ": "International"
+    },
+    "country_with_language": "{country} ({language})"
   }
 }

@@ -7,6 +7,7 @@
       :promotions="allCurrentPromotions"
     />
     <SFToastContainer />
+    <CountryDetection />
     <div
       class="translate-y-0 transition-transform duration-300 ease-in-out"
       :class="{ 'lg:translate-y-[-3.25rem]': !isPromotionBannerShown }"

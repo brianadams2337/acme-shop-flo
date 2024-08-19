@@ -1,9 +1,7 @@
 import {
   useBasketEvents,
   useCheckoutEvents,
-  useCheckoutStepTrackingInterceptor,
   useContentEvents,
-  useCustomerDataChangeWatcher,
   useCustomerEvents,
   useFilterEvents,
   useProductEvents,
@@ -12,7 +10,6 @@ import {
   useSearchEvents,
   useShopEvents,
   useUserActionEvents,
-  useUserItemsTrackingWatcher,
   useWishlistEvents,
 } from './tracking'
 import { usePageState } from '~/composables/usePageState'
@@ -68,10 +65,5 @@ export function useTrackingEvents() {
     ...useCustomerEvents(track),
     ...useContentEvents(track),
     mapProductToTrackingPayload,
-    /**  Watcher on basket and wishlist items, to fire tracking events. **/
-    listenToUserItemsChanges: useUserItemsTrackingWatcher,
-    /** Intercepts historyState changes within the checkout page and fires the corresponding content_view event **/
-    listenToCheckoutStepChanges: useCheckoutStepTrackingInterceptor,
-    listenToCustomerDataChanges: useCustomerDataChangeWatcher,
   }
 }

@@ -40,6 +40,8 @@ import {
   useSideNavigation,
   useTrackingEvents,
   usePromotionActions,
+  useUserItemsTrackingWatcher,
+  useCustomerDataChangeWatcher,
 } from '~/composables'
 import { useModal } from '#storefront-ui/composables'
 
@@ -49,6 +51,8 @@ const { allCurrentPromotions } = useBasketPromotions()
 const { isPromotionBannerShown } = usePromotionActions()
 
 const trackingEvents = useTrackingEvents()
+useUserItemsTrackingWatcher()
+useCustomerDataChangeWatcher()
 
 createContext(USE_TRACKING_EVENTS_KEY, trackingEvents)
 createContext(USE_DEFAULT_BREAKPOINTS_KEY, useDefaultBreakpoints())
@@ -58,8 +62,6 @@ const { data: _promotionData } = useCurrentPromotions()
 
 onMounted(async () => {
   trackingEvents.trackShopInit()
-  await trackingEvents.listenToUserItemsChanges()
-  await trackingEvents.listenToCustomerDataChanges()
 })
 
 // Meta tags

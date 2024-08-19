@@ -17,7 +17,10 @@ import { useSeoMeta } from '@unhead/vue'
 import { useEventListener } from '@vueuse/core'
 import type { CheckoutEvent } from '@scayle/storefront-nuxt'
 import { definePageMeta } from '#imports'
-import { useCheckoutWebComponent, useTrackingEvents } from '~/composables'
+import {
+  useCheckoutWebComponent,
+  useCheckoutStepTrackingInterceptor,
+} from '~/composables'
 import { useBasket, useLog, useUser } from '#storefront/composables'
 import { useNuxtApp } from '#app'
 
@@ -31,9 +34,7 @@ const { $i18n } = useNuxtApp()
 
 const log = useLog('CheckoutPage')
 
-const { listenToCheckoutStepChanges } = useTrackingEvents()
-
-listenToCheckoutStepChanges()
+useCheckoutStepTrackingInterceptor()
 
 const checkoutRef = ref(null)
 

@@ -436,6 +436,10 @@ export default defineNuxtConfig({
     },
   },
 
+  tailwindcss: {
+    cssPath: '~/assets/css/main.css',
+  },
+
   // https://nuxt.com/docs/api/nuxt-config#modules-1
   modules: [
     // https://scayle.dev/en/storefront-guide

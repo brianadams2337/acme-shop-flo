@@ -3137,6 +3137,13 @@
   dependencies:
     storyblok-js-client "^6.7.2"
 
+"@storyblok/js@^3.0.9":
+  version "3.0.10"
+  resolved "https://registry.yarnpkg.com/@storyblok/js/-/js-3.0.10.tgz#12cc6bff91249867948d2d60c01a8d65a10e1511"
+  integrity sha512-noGli1YL+Pu35yxPwYNhEmrgeDbyZOuGu3om8RPjr9FXwgvuj3x5/CUdByVgrdeSE4SFQulOAfDwpSgqxxO04A==
+  dependencies:
+    storyblok-js-client "^6.8.3"
+
 "@storyblok/nuxt@6.0.10":
   version "6.0.10"
   resolved "https://registry.yarnpkg.com/@storyblok/nuxt/-/nuxt-6.0.10.tgz#83808ae2b6e1801c4b55ff5f989761fb8c1a0167"
@@ -3149,7 +3156,14 @@
   resolved "https://registry.yarnpkg.com/@storyblok/region-helper/-/region-helper-1.1.0.tgz#ce7274f578e1bd428e08766662a38ceffcba06ab"
   integrity sha512-2NU/GHeaS9vFtkZJk/mNH6E5HvrV3vT3AN/Wrl44L3lwLIfcK4E0orjgCi7gvl0N3Ul5E+y6vJAVjD3bmjSZVg==
 
-"@storyblok/vue@8.0.8", "@storyblok/vue@^8.0.0":
+"@storyblok/vue@8.0.9":
+  version "8.0.9"
+  resolved "https://registry.yarnpkg.com/@storyblok/vue/-/vue-8.0.9.tgz#79973f357cd5557beeeca7aaea10ec026b561d8f"
+  integrity sha512-BOBFHpVWJCWvj/xwDQs416dkflHMBwVr6m/fKs97baEjCKC8sjBgHUojmK1oWVehfRiodFr/dGiIAlMKGdHi8Q==
+  dependencies:
+    "@storyblok/js" "^3.0.9"
+
+"@storyblok/vue@^8.0.0":
   version "8.0.8"
   resolved "https://registry.yarnpkg.com/@storyblok/vue/-/vue-8.0.8.tgz#ada0ec146b2aee88c2a64700acaba7c06777bce8"
   integrity sha512-ReYbMVeekQpj6wNE4V/ac2u59YYxsENrtWGmyMwWiqohTOm4106tznMbzWmVJgEwO8N2eXhIkg1MZ7FlADqAlw==
@@ -11772,10 +11786,10 @@ storyblok-generate-ts@2.1.0:
     ts-command-line-args "^2.3.1"
     tsup "^6.4.0"
 
-storyblok-js-client@6.8.2:
-  version "6.8.2"
-  resolved "https://registry.yarnpkg.com/storyblok-js-client/-/storyblok-js-client-6.8.2.tgz#f285524fbbc6e0d1daa1b7744faaf61ab59acaf8"
-  integrity sha512-2mr6/VhbtzQ/QYO6/zwGADGu3LfpEfilNiys6UQJHowp3bfozl+HEVN1PuKH4jIzsvGOltYmnMpiJrdwom184w==
+storyblok-js-client@6.8.3, storyblok-js-client@^6.8.3:
+  version "6.8.3"
+  resolved "https://registry.yarnpkg.com/storyblok-js-client/-/storyblok-js-client-6.8.3.tgz#a2c752e5972216b264e30ae5e44143250684b013"
+  integrity sha512-199ULvMM4Lm0B1SrTr0QTUgtftV0OPePA4T0uJXq9nKyFFS8ln3cdVS6iegsh89BYlrQCncfRPjufaYBzvvtPg==
 
 storyblok-js-client@^6.7.1, storyblok-js-client@^6.7.2:
   version "6.8.0"

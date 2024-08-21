@@ -5,6 +5,7 @@
       :key="id"
       :to="getProductDetailRoute(product, id)"
       class="relative mr-2 flex size-12 items-center justify-center overflow-hidden rounded-md bg-gray-200"
+      data-testid="product-sibling"
     >
       <ProductImage
         v-if="image"

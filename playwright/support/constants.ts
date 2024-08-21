@@ -42,6 +42,7 @@ export const PLP_FILTER_DEEPLINK = {
 export const PLP_PATH_SUBCATEGORY_LVL_1 = '/c/frauen/bekleidung-50338'
 export const PLP_PATH_SUBCATEGORY_LVL_2 = '/c/frauen/sneaker/sneaker-low-50347'
 export const PLP_BASE_PATH = /\/c/
+export const PLP_SIBLING_TEST_PRODUCT_PATH = /\/p\/sneaker-gazelle-bold-206062/
 
 export const SEARCH_SUGGESTIONS = {
   searchTermNoResults: 'noresults',

@@ -3,6 +3,7 @@ import {
   PLP_FILTER_DEEPLINK,
   PLP_PATH_SUBCATEGORY_LVL_1,
   PLP_PATH_SUBCATEGORY_LVL_2,
+  PLP_SIBLING_TEST_PRODUCT_PATH,
 } from '../support/constants'
 
 test.beforeEach(async ({ productListingPage, baseURL, page }) => {
@@ -164,4 +165,20 @@ test('C2130731: Verify PLP Add to Wishlist', async ({
   await productListingPage.removeProductFromWishlist()
   await expect(header.wishlistNumItems.first()).not.toBeVisible()
   await expect(productListingPage.wishlistButton.first()).toBeVisible()
+})
+
+test('C2132074: Verify PLP Product siblings', async ({
+  productListingPage,
+  page,
+}) => {
+  await productListingPage.productTile.first().hover()
+  await productListingPage.productSibling.nth(1).click()
+  await page.waitForURL(PLP_SIBLING_TEST_PRODUCT_PATH)
+
+  const pageUrl = page.url()
+  const productPathString = PLP_SIBLING_TEST_PRODUCT_PATH.source.replace(
+    /\\/g,
+    '',
+  )
+  expect(pageUrl).toContain(productPathString)
 })

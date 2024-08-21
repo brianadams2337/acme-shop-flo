@@ -11,6 +11,7 @@ export class ProductListingPage {
   readonly menuSubCategoryLvl2: Locator
   readonly productItem: Locator
   readonly removeFromWishlistButton: Locator
+  readonly productSibling: Locator
 
   constructor(page: Page) {
     this.page = page
@@ -35,6 +36,7 @@ export class ProductListingPage {
     this.removeFromWishlistButton = page.getByTestId(
       'remove-item-from-wishlist-button',
     )
+    this.productSibling = page.getByTestId('product-sibling')
   }
 
   async addProductToWishlist() {

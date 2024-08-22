@@ -7,7 +7,8 @@ import type {
 } from 'schema-dts'
 import { parseURL, stringifyParsedURL, parseQuery, stringifyQuery } from 'ufo'
 import type { BreadcrumbItem } from '~/types/breadcrumbs'
-
+import { isInStock, type Variant } from '@scayle/storefront-nuxt'
+import { divideByHundred } from '~/utils/price'
 const CANONICAL_PARAMS_WHITELIST = ['page']
 
 /**
@@ -43,47 +44,39 @@ export const sanitizeCanonicalURL = (
 }
 
 const generateSchemaProductOffers = ({
-  price,
-  isInStock = false,
-  priceCurrency = 'EUR',
+  variants,
 }: {
-  price: string
-  isInStock: boolean
-  priceCurrency?: string
-}): Offer => {
-  return {
+  variants: Variant[]
+}): Offer[] => {
+  return variants.map((variant) => ({
     '@type': 'Offer',
-    priceCurrency,
-    price,
-    availability: isInStock
+    mpn: variant.referenceKey,
+    sku: variant.id.toString(),
+    price: divideByHundred(variant.price.withTax),
+    priceCurrency: variant.price.currencyCode,
+    availability: isInStock(variant)
       ? 'https://schema.org/InStock'
       : 'https://schema.org/OutOfStock',
-    ...(isInStock && { itemCondition: 'https://schema.org/NewCondition' }),
-  }
+    itemCondition: 'https://schema.org/NewCondition',
+  }))
 }
 
 export const generateProductSchema = ({
-  price,
   productName,
   brandName,
+  variants,
   url,
-  isInStock = false,
   images = [],
-  priceCurrency,
+  description,
 }: {
-  price: string
   productName: string
   brandName: string
+  variants: Variant[]
   url: string
-  isInStock?: boolean
+  description: string
   images?: string[]
-  priceCurrency?: string
 }): WithContext<Product> => {
-  const offers = generateSchemaProductOffers({
-    price,
-    isInStock,
-    priceCurrency,
-  })
+  const offers = generateSchemaProductOffers({ variants })
 
   const brand: Brand = {
     '@type': 'Brand',
@@ -96,6 +89,7 @@ export const generateProductSchema = ({
     url,
     name: productName,
     image: images,
+    description,
     brand,
     offers,
   }

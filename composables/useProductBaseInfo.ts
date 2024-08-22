@@ -35,6 +35,13 @@ export function useProductBaseInfo(
     )
   })
 
+  const description = computed(() => {
+    return (
+      getFirstAttributeValue(product.value?.attributes, 'description')?.label ??
+      ''
+    )
+  })
+
   const price = computed(() => {
     return product.value
       ? getLowestPriceBetweenVariants(product.value)
@@ -101,6 +108,7 @@ export function useProductBaseInfo(
     alt,
     brand,
     name,
+    description,
     price,
     lowestPriorPrice,
     colors,

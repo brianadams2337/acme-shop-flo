@@ -69,6 +69,7 @@
 </template>
 
 <script setup lang="ts">
+import { useSeoMeta } from '@unhead/vue'
 import { computed, defineOptions, ref } from 'vue'
 import {
   getFirstAttributeValue,
@@ -78,9 +79,12 @@ import {
 import {
   definePageMeta,
   useBasket,
+  useHead,
+  useJsonld,
   useProduct,
   useProductBaseInfo,
   useProductPromotions,
+  useProductSeoData,
   useRoute,
 } from '#imports'
 
@@ -143,4 +147,24 @@ const addToBasket = () => {
     promotionId: automaticDiscountPromotion.value?.id,
   })
 }
+
+// SEO
+const {
+  description,
+  canonicalLink,
+  robots,
+  title,
+  productJsonLd,
+  productBreadcrumbJsonLd,
+} = useProductSeoData(product)
+
+useSeoMeta({
+  title,
+  description,
+  robots,
+})
+useHead({
+  link: canonicalLink,
+})
+useJsonld(() => [productBreadcrumbJsonLd.value, productJsonLd.value])
 </script>

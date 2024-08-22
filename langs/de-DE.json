@@ -273,10 +273,6 @@
       "hermes_paragraph": "Immediately available items Hermes usually delivers within 1-3 business days.",
       "return_information": "Sollte das Retourenlabel in deiner Lieferung fehlen, kannst du jederzeit ein Neues Label bei unserem Kundenservice anfordern. Bei Fragen wenden Sie sich bitte an:"
     },
-    "seo": {
-      "buy_online": "Online bestellen",
-      "description": "{productName} online bestellen. Kostenloser Versand und 100 Tage kostenlose Rückgabe. Entdecken Sie die große Auswahl an weiteren Markenprodukten im Demo Shop."
-    },
     "promotion": {
       "free_gift_conditions_met": {
         "headline": "Lösen Sie Ihr kostenloses Geschenk ein",
@@ -295,6 +291,10 @@
       "select_size_label": "Wählen Sie Ihre Größe",
       "select_size_add_label": "Hinzufügen",
       "select_size_cancel": "Stornieren"
+    },
+    "meta": {
+      "title": "{productName} {'|'} SCAYLE",
+      "description": "Kaufen Sie {productName} online bei SCAYLE. \nEntdecken Sie die große Auswahl weiterer Markenprodukte."
     }
   },
   "price": {

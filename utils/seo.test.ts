@@ -1,4 +1,5 @@
 import { it, describe } from 'vitest'
+import type { Variant } from '@scayle/storefront-nuxt'
 import {
   sanitizeCanonicalURL,
   generateProductSchema,
@@ -39,11 +40,24 @@ describe('generateProductSchema', () => {
   it('return generated product schema with mandatory payload defined only', ({
     expect,
   }) => {
+    const variant = {
+      id: 1,
+      referenceKey: 'refKey',
+      price: {
+        withTax: 1050,
+        currencyCode: 'EUR',
+      },
+      stock: {
+        quantity: 0,
+      },
+    } as unknown as Variant
+
     const schema = generateProductSchema({
-      price: '123',
       productName: 'Test product',
       brandName: 'Hugo',
+      description: 'product description',
       url: '/p/sweatshirt-ess-206056',
+      variants: [variant],
     })
 
     expect(schema).toEqual({
@@ -51,28 +65,45 @@ describe('generateProductSchema', () => {
       '@type': 'Product',
       url: '/p/sweatshirt-ess-206056',
       name: 'Test product',
+      description: 'product description',
       image: [],
       brand: { '@type': 'Brand', name: 'Hugo' },
-      offers: {
-        '@type': 'Offer',
-        priceCurrency: 'EUR',
-        price: '123',
-        availability: 'https://schema.org/OutOfStock',
-      },
+      offers: [
+        {
+          '@type': 'Offer',
+          priceCurrency: 'EUR',
+          price: 10.5,
+          availability: 'https://schema.org/OutOfStock',
+          itemCondition: 'https://schema.org/NewCondition',
+          mpn: 'refKey',
+          sku: '1',
+        },
+      ],
     })
   })
 
   it('return generated product schema with optional payload defined', ({
     expect,
   }) => {
+    const variant = {
+      id: 1,
+      referenceKey: 'refKey',
+      price: {
+        withTax: 1050,
+        currencyCode: 'USD',
+      },
+      stock: {
+        quantity: 10,
+      },
+    } as unknown as Variant
+
     const schema = generateProductSchema({
-      price: '123',
       productName: 'Test product',
+      description: 'product description',
       brandName: 'Hugo',
+      variants: [variant],
       url: '/p/sweatshirt-ess-206056',
-      isInStock: true,
       images: ['images/fe8ee645c772b98de23b00e4f600a613.png'],
-      priceCurrency: 'USD',
     })
 
     expect(schema).toEqual({
@@ -80,15 +111,20 @@ describe('generateProductSchema', () => {
       '@type': 'Product',
       url: '/p/sweatshirt-ess-206056',
       name: 'Test product',
+      description: 'product description',
       image: ['images/fe8ee645c772b98de23b00e4f600a613.png'],
       brand: { '@type': 'Brand', name: 'Hugo' },
-      offers: {
-        '@type': 'Offer',
-        priceCurrency: 'USD',
-        price: '123',
-        availability: 'https://schema.org/InStock',
-        itemCondition: 'https://schema.org/NewCondition',
-      },
+      offers: [
+        {
+          '@type': 'Offer',
+          priceCurrency: 'USD',
+          price: 10.5,
+          availability: 'https://schema.org/InStock',
+          itemCondition: 'https://schema.org/NewCondition',
+          mpn: 'refKey',
+          sku: '1',
+        },
+      ],
     })
   })
 })

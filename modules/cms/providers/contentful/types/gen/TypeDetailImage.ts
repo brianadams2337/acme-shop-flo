@@ -18,7 +18,7 @@ export type TypeDetailImageSkeleton = EntrySkeletonType<
 >
 export type TypeDetailImage<
   Modifiers extends ChainModifiers,
-  Locales extends LocaleCode,
+  Locales extends LocaleCode = LocaleCode,
 > = Entry<TypeDetailImageSkeleton, Modifiers, Locales>
 
 export function isTypeDetailImage<

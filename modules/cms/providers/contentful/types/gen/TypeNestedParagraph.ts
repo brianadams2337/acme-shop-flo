@@ -31,7 +31,7 @@ export type TypeNestedParagraphSkeleton = EntrySkeletonType<
 >
 export type TypeNestedParagraph<
   Modifiers extends ChainModifiers,
-  Locales extends LocaleCode,
+  Locales extends LocaleCode = LocaleCode,
 > = Entry<TypeNestedParagraphSkeleton, Modifiers, Locales>
 
 export function isTypeNestedParagraph<

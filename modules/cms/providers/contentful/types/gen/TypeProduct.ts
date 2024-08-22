@@ -17,7 +17,7 @@ export type TypeProductSkeleton = EntrySkeletonType<
 >
 export type TypeProduct<
   Modifiers extends ChainModifiers,
-  Locales extends LocaleCode,
+  Locales extends LocaleCode = LocaleCode,
 > = Entry<TypeProductSkeleton, Modifiers, Locales>
 
 export function isTypeProduct<

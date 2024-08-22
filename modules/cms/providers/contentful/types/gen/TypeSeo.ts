@@ -20,7 +20,7 @@ export interface TypeSeoFields {
 export type TypeSeoSkeleton = EntrySkeletonType<TypeSeoFields, 'seo'>
 export type TypeSeo<
   Modifiers extends ChainModifiers,
-  Locales extends LocaleCode,
+  Locales extends LocaleCode = LocaleCode,
 > = Entry<TypeSeoSkeleton, Modifiers, Locales>
 
 export function isTypeSeo<

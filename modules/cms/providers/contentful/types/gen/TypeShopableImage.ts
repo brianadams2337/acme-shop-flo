@@ -26,7 +26,7 @@ export type TypeShopableImageSkeleton = EntrySkeletonType<
 >
 export type TypeShopableImage<
   Modifiers extends ChainModifiers,
-  Locales extends LocaleCode,
+  Locales extends LocaleCode = LocaleCode,
 > = Entry<TypeShopableImageSkeleton, Modifiers, Locales>
 
 export function isTypeShopableImage<

@@ -21,7 +21,7 @@ export type TypeSocialMediaLinkSkeleton = EntrySkeletonType<
 >
 export type TypeSocialMediaLink<
   Modifiers extends ChainModifiers,
-  Locales extends LocaleCode,
+  Locales extends LocaleCode = LocaleCode,
 > = Entry<TypeSocialMediaLinkSkeleton, Modifiers, Locales>
 
 export function isTypeSocialMediaLink<

@@ -25,7 +25,7 @@ export interface TypeVideoFields {
 export type TypeVideoSkeleton = EntrySkeletonType<TypeVideoFields, 'video'>
 export type TypeVideo<
   Modifiers extends ChainModifiers,
-  Locales extends LocaleCode,
+  Locales extends LocaleCode = LocaleCode,
 > = Entry<TypeVideoSkeleton, Modifiers, Locales>
 
 export function isTypeVideo<

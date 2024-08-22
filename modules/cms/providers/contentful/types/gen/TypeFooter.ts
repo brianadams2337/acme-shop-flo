@@ -25,7 +25,7 @@ export interface TypeFooterFields {
 export type TypeFooterSkeleton = EntrySkeletonType<TypeFooterFields, 'footer'>
 export type TypeFooter<
   Modifiers extends ChainModifiers,
-  Locales extends LocaleCode,
+  Locales extends LocaleCode = LocaleCode,
 > = Entry<TypeFooterSkeleton, Modifiers, Locales>
 
 export function isTypeFooter<

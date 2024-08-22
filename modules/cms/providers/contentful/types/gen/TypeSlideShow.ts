@@ -21,7 +21,7 @@ export type TypeSlideShowSkeleton = EntrySkeletonType<
 >
 export type TypeSlideShow<
   Modifiers extends ChainModifiers,
-  Locales extends LocaleCode,
+  Locales extends LocaleCode = LocaleCode,
 > = Entry<TypeSlideShowSkeleton, Modifiers, Locales>
 
 export function isTypeSlideShow<

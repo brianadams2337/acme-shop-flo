@@ -24,7 +24,7 @@ export type TypeDoubleColumnSkeleton = EntrySkeletonType<
 >
 export type TypeDoubleColumn<
   Modifiers extends ChainModifiers,
-  Locales extends LocaleCode,
+  Locales extends LocaleCode = LocaleCode,
 > = Entry<TypeDoubleColumnSkeleton, Modifiers, Locales>
 
 export function isTypeDoubleColumn<

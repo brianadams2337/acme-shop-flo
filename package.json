@@ -91,8 +91,8 @@
     "@contentful/live-preview": "4.5.5",
     "@contentful/rich-text-html-renderer": "16.6.9",
     "@googlemaps/js-api-loader": "1.16.8",
-    "@scayle/omnichannel-nuxt": "4.0.0",
     "@scayle/nuxt-opentelemetry": "0.3.1",
+    "@scayle/omnichannel-nuxt": "4.0.0",
     "@scayle/storefront-nuxt": "7.85.2",
     "@storyblok/nuxt": "6.0.10",
     "@storyblok/vue": "8.0.9",
@@ -126,8 +126,8 @@
     "schema-dts": "1.1.2",
     "storyblok-js-client": "6.9.2",
     "ufo": "1.5.4",
-    "vue": "3.4.38",
     "vue-slider-component": "4.1.0-beta.7",
+    "vue": "3.4.38",
     "yn": "5.0.0"
   },
   "lint-staged": {

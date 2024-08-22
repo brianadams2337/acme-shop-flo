@@ -20,7 +20,7 @@ export type TypeMammutCeSkeleton = EntrySkeletonType<
 >
 export type TypeMammutCe<
   Modifiers extends ChainModifiers,
-  Locales extends LocaleCode,
+  Locales extends LocaleCode = LocaleCode,
 > = Entry<TypeMammutCeSkeleton, Modifiers, Locales>
 
 export function isTypeMammutCe<

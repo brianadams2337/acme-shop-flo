@@ -25,7 +25,7 @@ export interface TypeSlideFields {
 export type TypeSlideSkeleton = EntrySkeletonType<TypeSlideFields, 'slide'>
 export type TypeSlide<
   Modifiers extends ChainModifiers,
-  Locales extends LocaleCode,
+  Locales extends LocaleCode = LocaleCode,
 > = Entry<TypeSlideSkeleton, Modifiers, Locales>
 
 export function isTypeSlide<

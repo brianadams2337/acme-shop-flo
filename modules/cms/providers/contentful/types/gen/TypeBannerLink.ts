@@ -20,7 +20,7 @@ export type TypeBannerLinkSkeleton = EntrySkeletonType<
 >
 export type TypeBannerLink<
   Modifiers extends ChainModifiers,
-  Locales extends LocaleCode,
+  Locales extends LocaleCode = LocaleCode,
 > = Entry<TypeBannerLinkSkeleton, Modifiers, Locales>
 
 export function isTypeBannerLink<

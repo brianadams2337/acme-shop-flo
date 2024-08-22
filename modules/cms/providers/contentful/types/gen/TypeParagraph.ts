@@ -24,7 +24,7 @@ export type TypeParagraphSkeleton = EntrySkeletonType<
 >
 export type TypeParagraph<
   Modifiers extends ChainModifiers,
-  Locales extends LocaleCode,
+  Locales extends LocaleCode = LocaleCode,
 > = Entry<TypeParagraphSkeleton, Modifiers, Locales>
 
 export function isTypeParagraph<

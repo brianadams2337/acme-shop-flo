@@ -18,7 +18,7 @@ export type TypeNewsletterSkeleton = EntrySkeletonType<
 >
 export type TypeNewsletter<
   Modifiers extends ChainModifiers,
-  Locales extends LocaleCode,
+  Locales extends LocaleCode = LocaleCode,
 > = Entry<TypeNewsletterSkeleton, Modifiers, Locales>
 
 export function isTypeNewsletter<

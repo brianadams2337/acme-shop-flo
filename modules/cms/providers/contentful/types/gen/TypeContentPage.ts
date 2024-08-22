@@ -53,7 +53,7 @@ export type TypeContentPageSkeleton = EntrySkeletonType<
 >
 export type TypeContentPage<
   Modifiers extends ChainModifiers,
-  Locales extends LocaleCode,
+  Locales extends LocaleCode = LocaleCode,
 > = Entry<TypeContentPageSkeleton, Modifiers, Locales>
 
 export function isTypeContentPage<

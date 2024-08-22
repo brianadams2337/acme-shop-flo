@@ -24,7 +24,7 @@ export type TypeStorePageSkeleton = EntrySkeletonType<
 >
 export type TypeStorePage<
   Modifiers extends ChainModifiers,
-  Locales extends LocaleCode,
+  Locales extends LocaleCode = LocaleCode,
 > = Entry<TypeStorePageSkeleton, Modifiers, Locales>
 
 export function isTypeStorePage<

@@ -31,7 +31,7 @@ export type TypeListingPageSkeleton = EntrySkeletonType<
 >
 export type TypeListingPage<
   Modifiers extends ChainModifiers,
-  Locales extends LocaleCode,
+  Locales extends LocaleCode = LocaleCode,
 > = Entry<TypeListingPageSkeleton, Modifiers, Locales>
 
 export function isTypeListingPage<

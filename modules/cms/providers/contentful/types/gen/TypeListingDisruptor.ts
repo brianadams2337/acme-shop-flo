@@ -27,7 +27,7 @@ export type TypeListingDisruptorSkeleton = EntrySkeletonType<
 >
 export type TypeListingDisruptor<
   Modifiers extends ChainModifiers,
-  Locales extends LocaleCode,
+  Locales extends LocaleCode = LocaleCode,
 > = Entry<TypeListingDisruptorSkeleton, Modifiers, Locales>
 
 export function isTypeListingDisruptor<

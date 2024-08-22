@@ -25,7 +25,7 @@ export type TypeImageSliderSkeleton = EntrySkeletonType<
 >
 export type TypeImageSlider<
   Modifiers extends ChainModifiers,
-  Locales extends LocaleCode,
+  Locales extends LocaleCode = LocaleCode,
 > = Entry<TypeImageSliderSkeleton, Modifiers, Locales>
 
 export function isTypeImageSlider<

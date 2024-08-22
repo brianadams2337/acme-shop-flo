@@ -23,7 +23,7 @@ export type TypeClickableImageSkeleton = EntrySkeletonType<
 >
 export type TypeClickableImage<
   Modifiers extends ChainModifiers,
-  Locales extends LocaleCode,
+  Locales extends LocaleCode = LocaleCode,
 > = Entry<TypeClickableImageSkeleton, Modifiers, Locales>
 
 export function isTypeClickableImage<

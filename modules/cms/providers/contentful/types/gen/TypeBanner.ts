@@ -22,7 +22,7 @@ export interface TypeBannerFields {
 export type TypeBannerSkeleton = EntrySkeletonType<TypeBannerFields, 'banner'>
 export type TypeBanner<
   Modifiers extends ChainModifiers,
-  Locales extends LocaleCode,
+  Locales extends LocaleCode = LocaleCode,
 > = Entry<TypeBannerSkeleton, Modifiers, Locales>
 
 export function isTypeBanner<

@@ -15,7 +15,7 @@ export interface TypeTitleFields {
 export type TypeTitleSkeleton = EntrySkeletonType<TypeTitleFields, 'title'>
 export type TypeTitle<
   Modifiers extends ChainModifiers,
-  Locales extends LocaleCode,
+  Locales extends LocaleCode = LocaleCode,
 > = Entry<TypeTitleSkeleton, Modifiers, Locales>
 
 export function isTypeTitle<

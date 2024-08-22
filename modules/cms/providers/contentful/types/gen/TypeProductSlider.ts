@@ -22,7 +22,7 @@ export type TypeProductSliderSkeleton = EntrySkeletonType<
 >
 export type TypeProductSlider<
   Modifiers extends ChainModifiers,
-  Locales extends LocaleCode,
+  Locales extends LocaleCode = LocaleCode,
 > = Entry<TypeProductSliderSkeleton, Modifiers, Locales>
 
 export function isTypeProductSlider<

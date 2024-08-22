@@ -40,7 +40,7 @@ export interface TypeGridFields {
 export type TypeGridSkeleton = EntrySkeletonType<TypeGridFields, 'grid'>
 export type TypeGrid<
   Modifiers extends ChainModifiers,
-  Locales extends LocaleCode,
+  Locales extends LocaleCode = LocaleCode,
 > = Entry<TypeGridSkeleton, Modifiers, Locales>
 
 export function isTypeGrid<

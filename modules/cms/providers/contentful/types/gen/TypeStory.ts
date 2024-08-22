@@ -18,7 +18,7 @@ export interface TypeStoryFields {
 export type TypeStorySkeleton = EntrySkeletonType<TypeStoryFields, 'story'>
 export type TypeStory<
   Modifiers extends ChainModifiers,
-  Locales extends LocaleCode,
+  Locales extends LocaleCode = LocaleCode,
 > = Entry<TypeStorySkeleton, Modifiers, Locales>
 
 export function isTypeStory<

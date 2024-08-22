@@ -24,7 +24,7 @@ export interface TypeStoreFields {
 export type TypeStoreSkeleton = EntrySkeletonType<TypeStoreFields, 'store'>
 export type TypeStore<
   Modifiers extends ChainModifiers,
-  Locales extends LocaleCode,
+  Locales extends LocaleCode = LocaleCode,
 > = Entry<TypeStoreSkeleton, Modifiers, Locales>
 
 export function isTypeStore<

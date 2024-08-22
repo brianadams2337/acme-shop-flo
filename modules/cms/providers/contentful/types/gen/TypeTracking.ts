@@ -23,7 +23,7 @@ export type TypeTrackingSkeleton = EntrySkeletonType<
 >
 export type TypeTracking<
   Modifiers extends ChainModifiers,
-  Locales extends LocaleCode,
+  Locales extends LocaleCode = LocaleCode,
 > = Entry<TypeTrackingSkeleton, Modifiers, Locales>
 
 export function isTypeTracking<

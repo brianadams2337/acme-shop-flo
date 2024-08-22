@@ -17,7 +17,7 @@ export type TypeCmsTextSkeleton = EntrySkeletonType<
 >
 export type TypeCmsText<
   Modifiers extends ChainModifiers,
-  Locales extends LocaleCode,
+  Locales extends LocaleCode = LocaleCode,
 > = Entry<TypeCmsTextSkeleton, Modifiers, Locales>
 
 export function isTypeCmsText<

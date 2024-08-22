@@ -19,7 +19,7 @@ export type TypeAccordionEntrySkeleton = EntrySkeletonType<
 >
 export type TypeAccordionEntry<
   Modifiers extends ChainModifiers,
-  Locales extends LocaleCode,
+  Locales extends LocaleCode = LocaleCode,
 > = Entry<TypeAccordionEntrySkeleton, Modifiers, Locales>
 
 export function isTypeAccordionEntry<

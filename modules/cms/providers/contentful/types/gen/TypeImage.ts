@@ -17,7 +17,7 @@ export interface TypeImageFields {
 export type TypeImageSkeleton = EntrySkeletonType<TypeImageFields, 'image'>
 export type TypeImage<
   Modifiers extends ChainModifiers,
-  Locales extends LocaleCode,
+  Locales extends LocaleCode = LocaleCode,
 > = Entry<TypeImageSkeleton, Modifiers, Locales>
 
 export function isTypeImage<

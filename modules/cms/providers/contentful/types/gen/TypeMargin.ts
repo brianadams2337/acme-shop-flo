@@ -15,7 +15,7 @@ export interface TypeMarginFields {
 export type TypeMarginSkeleton = EntrySkeletonType<TypeMarginFields, 'margin'>
 export type TypeMargin<
   Modifiers extends ChainModifiers,
-  Locales extends LocaleCode,
+  Locales extends LocaleCode = LocaleCode,
 > = Entry<TypeMarginSkeleton, Modifiers, Locales>
 
 export function isTypeMargin<

@@ -25,7 +25,7 @@ export type TypeImageTextSkeleton = EntrySkeletonType<
 >
 export type TypeImageText<
   Modifiers extends ChainModifiers,
-  Locales extends LocaleCode,
+  Locales extends LocaleCode = LocaleCode,
 > = Entry<TypeImageTextSkeleton, Modifiers, Locales>
 
 export function isTypeImageText<

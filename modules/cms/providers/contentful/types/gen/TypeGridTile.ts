@@ -33,7 +33,7 @@ export type TypeGridTileSkeleton = EntrySkeletonType<
 >
 export type TypeGridTile<
   Modifiers extends ChainModifiers,
-  Locales extends LocaleCode,
+  Locales extends LocaleCode = LocaleCode,
 > = Entry<TypeGridTileSkeleton, Modifiers, Locales>
 
 export function isTypeGridTile<

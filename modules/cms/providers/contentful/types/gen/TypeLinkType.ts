@@ -19,7 +19,7 @@ export type TypeLinkTypeSkeleton = EntrySkeletonType<
 >
 export type TypeLinkType<
   Modifiers extends ChainModifiers,
-  Locales extends LocaleCode,
+  Locales extends LocaleCode = LocaleCode,
 > = Entry<TypeLinkTypeSkeleton, Modifiers, Locales>
 
 export function isTypeLinkType<

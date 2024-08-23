@@ -1,6 +1,5 @@
 import {
   addComponentsDir,
-  addImportsDir,
   addPlugin,
   addTypeTemplate,
   createResolver,
@@ -51,10 +50,6 @@ export async function setupStoryblok(options: ModuleOptions, nuxt: Nuxt) {
   }
 
   addPlugin(resolver.resolve('./runtime/plugin'))
-
-  // TODO: Remove with fully disabling of auto import feature
-  addImportsDir(resolver.resolve('./composables'))
-  addImportsDir(resolver.resolve('./composables/storefront'))
 
   nuxt.options.alias['#storefront-cms/composables'] =
     resolver.resolve('./components')

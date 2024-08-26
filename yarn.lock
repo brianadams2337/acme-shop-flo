@@ -9831,7 +9831,14 @@ number-is-nan@^1.0.0:
   resolved "https://registry.yarnpkg.com/number-is-nan/-/number-is-nan-1.0.1.tgz#097b602b53422a522c1afb8790318336941a011d"
   integrity sha512-4jbtZXNAsfZbAHiiqjLPBiCl16dES1zI4Hpzzxw61Tk+loF+sBDBKx1ICKKKwIqQ7M0mFn1TmkN7euSncWgHiQ==
 
-nuxi@3.12.0, nuxi@^3.11.1:
+nuxi@3.13.0:
+  version "3.13.0"
+  resolved "https://registry.yarnpkg.com/nuxi/-/nuxi-3.13.0.tgz#46b984a24fd90e4a41c878131dd4421bf9ab377d"
+  integrity sha512-15cnHePX+A0Vwwpgj/X+BQGcGulJQr6ddzfMXpvevpEsuAr/hHe5HioHVqYwqMSqiQLVtZLhPxeVOrg8eJn09Q==
+  optionalDependencies:
+    fsevents "~2.3.3"
+
+nuxi@^3.11.1:
   version "3.12.0"
   resolved "https://registry.yarnpkg.com/nuxi/-/nuxi-3.12.0.tgz#33ed391a636eca6f8ba2d6c8e47d5257598ff6db"
   integrity sha512-6vRdiXTw9SajEQOUi6Ze/XaIXzy1q/sD5UqHQSv3yqTu7Pot5S7fEihNXV8LpcgLz+9HzjVt70r7jYe7R99c2w==

@@ -48,7 +48,8 @@ type NitroRouteConfig = NitroRouteRules extends Record<string, infer Value>
 
 /** [DEFAULT VALUE] Storefront Core - Shop domain if `domain` is selected as `shopSelector
  * https://scayle.dev/en/dev/storefront-core/module-configuration#path-and-domain */
-const BASE_SHOP_DOMAIN = ''
+const baseShopDomain = (code: string | string[]) =>
+  `${Array.isArray(code) ? code[0] : code}.localhost:3000`
 
 const SHOP_SELECTOR_MODE = 'path' as ModuleBaseOptions['shopSelector']
 const DOMAIN_PER_LOCALE = SHOP_SELECTOR_MODE === 'domain'
@@ -69,14 +70,14 @@ const locales: LocaleConfig[] = shops.flatMap((shop) => {
     return shop.code.map((code) => ({
       code,
       iso: shop.locale,
-      domain: BASE_SHOP_DOMAIN,
+      domain: `${code}.localhost:3000`,
       file: shop.translationFile,
     }))
   } else {
     return {
       code: shop.code,
       iso: shop.locale,
-      domain: BASE_SHOP_DOMAIN,
+      domain: `${shop.code}.localhost:3000`,
       file: shop.translationFile,
     }
   }
@@ -212,7 +213,7 @@ export default defineNuxtConfig({
 
             /** [CONDITIONAL] Storefront Core - Shop domain if `domain` is selected as `shopSelector
              * https://scayle.dev/en/dev/storefront-core/module-configuration#path-and-domain */
-            domain: BASE_SHOP_DOMAIN,
+            domain: baseShopDomain(shop.code),
 
             locale: shop.locale, // Override: NUXT_STOREFRONT_SHOPS_{UNIQUE_IDENTIFIER}_LOCALE
 
@@ -223,7 +224,9 @@ export default defineNuxtConfig({
              * https://scayle.dev/en/dev/storefront-core/module-configuration#password-reset-url */
             auth: {
               // Override: NUXT_STOREFRONT_SHOPS_{UNIQUE_IDENTIFIER}_AUTH_RESET_PASSWORD_URL
-              resetPasswordUrl: `https://${BASE_SHOP_DOMAIN}/${shop.locale}/signin/`,
+              resetPasswordUrl: `https://${baseShopDomain(shop.code)}/${
+                shop.locale
+              }/signin/`,
             },
 
             /** Storefront Core - Set shop-specific campaign keyword to be used */

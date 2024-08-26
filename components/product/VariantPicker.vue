@@ -40,7 +40,7 @@
           </span>
         </span>
         <ProductPrice
-          v-if="item.stock.quantity === 0"
+          v-if="item.stock.quantity !== 0"
           size="lg"
           :promotion="automaticDiscountPromotion"
           :price="item.price"

@@ -137,7 +137,7 @@ export function usePromotionGiftSelection(gift: Product) {
         },
       )
     } finally {
-      activeVariant.value = null
+      activeVariant.value = undefined
       toggleGiftSelection()
     }
   }

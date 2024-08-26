@@ -58,16 +58,6 @@ export default {
       ping: {
         '25%, 50%': { transform: 'scale(.8)', opacity: 10 },
       },
-      grow: {
-        '0%': { transform: 'scale(0.5)', opacity: 0 },
-        '30%': { opacity: 0 },
-        '100%': { transform: 'scale(1)' },
-      },
-      shrink: {
-        '0%': { transform: 'scale(1)' },
-        '30%': { opacity: 0 },
-        '100%': { transform: 'scale(0)', opacity: 0 },
-      },
     },
     zIndex: {
       0: '0',

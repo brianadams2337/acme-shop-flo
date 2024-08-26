@@ -104,6 +104,11 @@ export function useProductBaseInfo(
     )
   })
 
+  const variants = computed(() => product.value?.variants || [])
+  const hasOneVariantOnly = computed(() => {
+    return variants.value.length === 1
+  })
+
   return {
     alt,
     brand,
@@ -118,5 +123,7 @@ export function useProductBaseInfo(
     link,
     variantWithLowestPrice,
     longestCategoryList,
+    variants,
+    hasOneVariantOnly,
   }
 }

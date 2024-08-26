@@ -58,13 +58,12 @@
               </div>
             </div>
             <div class="w-full">
-              <ProductSizePicker
+              <VariantPicker
                 v-if="!hasOneSizeVariantOnly"
-                :id="product.id"
-                :value="size"
+                v-model="activeVariant"
                 :variants="product.variants ?? []"
+                :automatic-discount-promotion="automaticDiscountPromotion"
                 class="my-8 mr-2"
-                @select-size="handleSelectedSize"
               />
 
               <SFButton
@@ -126,8 +125,6 @@ const {
   activeVariant,
   price,
   productName,
-  handleSelectedSize,
-  size,
   brand,
   hasOneSizeVariantOnly,
   addItemToBasket,
@@ -173,7 +170,7 @@ const styles = computed(() => {
 const { automaticDiscountPromotion } = useProductPromotions(props.product)
 
 const close = () => {
-  activeVariant.value = null
+  activeVariant.value = undefined
   toggleGiftSelection()
 }
 </script>

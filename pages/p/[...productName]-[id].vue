@@ -1,14 +1,14 @@
 <template>
   <AsyncDataWrapper :status="productDataStatus">
     <div
-      class="flex flex-col items-start xl:container max-md:space-y-5 md:flex-row md:space-x-4"
+      class="flex flex-col items-start justify-between gap-8 xl:container max-md:space-y-5 md:flex-row md:space-x-4"
     >
       <ProductGallery
         :product="product"
-        class="md:sticky md:top-8 md:mr-4 md:w-1/2"
+        class="md:sticky md:top-8 md:w-1/2"
         product-image-slider-class="md:max-w-[528px]"
       />
-      <div class="max-md:px-5 md:ml-32 md:w-1/2">
+      <div class="w-full max-md:px-5 md:w-1/2">
         <ProductBreadcrumbs
           v-if="longestCategoryList"
           class="mb-8 hidden md:block"
@@ -26,25 +26,15 @@
 
         <ProductPromotionBanners :product="product" />
 
-        <div class="my-3 flex space-x-4">
-          <SFDropdown v-model="activeVariant" :items="product.variants ?? []">
-            {{
-              getFirstAttributeValue(activeVariant?.attributes, 'size')?.label
-            }}
-            <template #item="{ item, selectItem }">
-              <div
-                class="flex cursor-pointer items-center justify-between space-x-2"
-                @click="selectItem(item)"
-              >
-                {{ getFirstAttributeValue(item.attributes, 'size')?.label }}
-                <IconCheck
-                  v-if="item.id === activeVariant?.id"
-                  class="size-4"
-                />
-              </div>
-            </template>
-          </SFDropdown>
-          <input v-model="quantity" type="number" />
+        <div class="my-3 flex h-12 items-center space-x-4">
+          <VariantPicker
+            v-model="activeVariant"
+            :variants="variants"
+            :automatic-discount-promotion="automaticDiscountPromotion"
+            :has-one-variant-only="hasOneVariantOnly"
+          />
+          <IconClose class="size-4 text-gray-500 max-sm:hidden" />
+          <input v-model="quantity" type="number" class="h-full w-1/3" />
         </div>
         <ProductPrice
           v-if="price"
@@ -71,11 +61,7 @@
 <script setup lang="ts">
 import { useSeoMeta } from '@unhead/vue'
 import { computed, defineOptions, ref } from 'vue'
-import {
-  getFirstAttributeValue,
-  type Price,
-  type Variant,
-} from '@scayle/storefront-nuxt'
+import type { Price } from '@scayle/storefront-nuxt'
 import {
   definePageMeta,
   useBasket,
@@ -87,6 +73,7 @@ import {
   useProductSeoData,
   useRoute,
 } from '#imports'
+import { PRODUCT_WITH_PARAMS } from '~/constants'
 
 definePageMeta({
   validate(route) {
@@ -96,22 +83,36 @@ definePageMeta({
 defineOptions({ name: 'ProductDetail' })
 
 const route = useRoute()
-const productNumber = parseInt(route.params.id.toString())
 
-const { data: product, status: productDataStatus } = useProduct({
-  params: {
-    id: productNumber,
-  },
-  options: {
-    lazy: true,
-    deep: false,
-  },
-  key: `productDetailPage-${route.params.id}`,
+const productId = computed(() => {
+  return parseInt(route.params.id.toString())
 })
-const activeVariant = ref<Variant>()
+
+const {
+  data: product,
+  status: productDataStatus,
+  error,
+} = useProduct({
+  params: {
+    id: productId.value,
+    with: PRODUCT_WITH_PARAMS,
+  },
+  key: `PDP-${productId.value}`,
+})
+
+if (error.value) {
+  throw error.value
+}
+
 const quantity = ref(1)
 
-const { name, brand, longestCategoryList } = useProductBaseInfo(product)
+const { name, brand, longestCategoryList, hasOneVariantOnly, variants } =
+  useProductBaseInfo(product)
+
+const activeVariant = ref(
+  hasOneVariantOnly.value ? variants.value[0] : undefined,
+)
+
 const { addItem, items } = useBasket()
 
 const price = computed(() => {

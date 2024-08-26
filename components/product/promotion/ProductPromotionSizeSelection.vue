@@ -78,7 +78,7 @@ const {
 const sizeSelection = ref()
 
 const cancel = () => {
-  activeVariant.value = null
+  activeVariant.value = undefined
   toggleGiftSelection()
 }
 

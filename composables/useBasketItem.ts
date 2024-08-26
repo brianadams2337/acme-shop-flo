@@ -86,7 +86,14 @@ export function useBasketItem(basketItem: Ref<BasketItem>) {
     return variantIds.includes(basketItem.value.variant.id)
   })
 
-  const changeQuantity = async (newQuantity: number, index: number) => {
+  const changeQuantity = async (
+    newQuantity: number | undefined,
+    index: number,
+  ) => {
+    if (!newQuantity) {
+      return
+    }
+
     if (newQuantity === 0) {
       return onPressDelete()
     }

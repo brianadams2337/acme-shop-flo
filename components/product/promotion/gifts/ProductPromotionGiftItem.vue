@@ -83,15 +83,16 @@ import { computed } from 'vue'
 import type { Product } from '@scayle/storefront-nuxt'
 import { getBackgroundColorStyle, getTextColorStyle } from '~/utils/promotion'
 import { AlphaColorMap } from '~/constants/color'
-import { useFormatHelpers } from '#storefront/composables'
+import { useFormatHelpers, useProduct } from '#storefront/composables'
 import {
   useDefaultBreakpoints,
   useProductBaseInfo,
-  useProductDetails,
   useProductPromotions,
   usePromotionGiftSelection,
   useRouteHelpers,
 } from '~/composables'
+import { PRODUCT_WITH_PARAMS } from '~/constants'
+import { useRoute } from '#app/composables/router'
 
 const props = defineProps<{
   product: Product
@@ -99,10 +100,20 @@ const props = defineProps<{
   isProductAddedToBasket: boolean
   eagerImageLoading: boolean
 }>()
+const route = useRoute()
 
-const { product: promotedProduct } = await useProductDetails(
-  'product-promotion-gift-item.vue',
-)
+const productId = computed(() => {
+  return parseInt(route.params.id.toString())
+})
+
+const { data: promotedProduct } = useProduct({
+  params: {
+    id: productId.value,
+    with: PRODUCT_WITH_PARAMS,
+  },
+  key: `product-promotion-gift-item-${productId.value}`,
+})
+
 const { formatCurrency } = useFormatHelpers()
 
 const { md: isGreaterThanMd } = useDefaultBreakpoints()

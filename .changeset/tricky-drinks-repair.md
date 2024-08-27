@@ -8,4 +8,4 @@ Added End-to-End tests for Basket:
 - Add to Basket guest and logged in user
 - Basket features for regular product
 
-Added attribute data-testid to "Login" and "Continue shopping" buttons in Basket empty state.
+Added attribute `data-testid` to "Login" and "Continue shopping" buttons in Basket empty state.

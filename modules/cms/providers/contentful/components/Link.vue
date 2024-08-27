@@ -15,6 +15,6 @@ import CMSContentfulLink from './ContentfulLink.vue'
 
 const props = defineProps<CMSLinkTypeProps>()
 
-const url = props.blok?.fields.ctaUrl ?? null
+const url = props.blok?.fields?.ctaUrl ?? null
 defineOptions({ name: 'CMSLink' })
 </script>

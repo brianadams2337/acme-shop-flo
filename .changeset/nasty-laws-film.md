@@ -2,7 +2,7 @@
 '@scayle/storefront-boilerplate-nuxt': minor
 ---
 
-Renamed the 'default' image provider to 'scayle' to improve clarity.
+Renamed the `default` image provider to `scayle` to improve clarity.
 
 We now also removed the default provider setting in the `@nuxt/image` module settings to allow using local images with the `NuxtImg` component.
 

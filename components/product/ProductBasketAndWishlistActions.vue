@@ -33,5 +33,6 @@ const { addItemToBasket, basketIdle } = useProductDetailsBasketActions(
   toRef(() => props.product),
   toRef(() => props.activeVariant),
   toRef(() => props.quantity),
+  toRef(() => props.product.id),
 )
 </script>

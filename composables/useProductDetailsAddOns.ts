@@ -8,7 +8,7 @@ import { useState } from '#app/composables/state'
 
 export function useProductDetailsAddOns(
   productId: MaybeRefOrGetter<number>,
-  productItem?: MaybeRefOrGetter<Product | undefined>,
+  productItem?: MaybeRefOrGetter<Product | undefined | null>,
 ) {
   const product = toRef(productItem)
 

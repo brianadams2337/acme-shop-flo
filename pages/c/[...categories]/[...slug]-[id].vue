@@ -66,9 +66,13 @@
 </template>
 
 <script setup lang="ts">
+import { type Ref, watch, defineOptions, computed } from 'vue'
 import { useHead } from '@unhead/vue'
-import { watch, defineOptions, computed } from 'vue'
-import { HttpStatusCode, type Product } from '@scayle/storefront-nuxt'
+import {
+  HttpStatusCode,
+  type Product,
+  type Category,
+} from '@scayle/storefront-nuxt'
 import {
   definePageMeta,
   useJsonld,
@@ -104,7 +108,7 @@ const { rootCategories, fetchingCategories, allCategories } = useRootCategories(
 const currentCategoryId = computed(() => getCategoryId(route.params))
 
 const {
-  data: currentCategory,
+  data: _currentCategory,
   fetching: isCategoryFetching,
   error: categoryError,
 } = await useCurrentCategory(currentCategoryId.value)
@@ -113,9 +117,12 @@ if (categoryError.value) {
   throw categoryError.value
 }
 
-if (!isCategoryFetching && !currentCategory.value) {
+if (!isCategoryFetching && !_currentCategory.value) {
   throw createError({ statusCode: HttpStatusCode.NOT_FOUND, fatal: true })
 }
+
+// With the above checks we know the category is non-null
+const currentCategory = _currentCategory as Ref<Category>
 
 const {
   products,

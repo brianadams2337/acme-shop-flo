@@ -49,7 +49,7 @@
         </slot>
         <SFPagination
           v-if="isPaginationShown"
-          :total-page-count="pagination.last ?? 0"
+          :total-page-count="pagination?.last ?? 0"
           class="col-span-12 mt-6"
         />
       </template>
@@ -72,7 +72,7 @@ import {
 
 type Props = {
   products: Product[]
-  pagination: FetchProductsByCategoryResponse['pagination']
+  pagination: FetchProductsByCategoryResponse['pagination'] | undefined
   loading?: boolean
   isPaginationVisible?: boolean
   currentCategory?: Category

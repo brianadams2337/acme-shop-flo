@@ -19,9 +19,10 @@ import { useNuxtApp } from '#app'
 import { useProductBaseInfo } from '~/composables/useProductBaseInfo'
 
 export function useProductDetailsBasketActions(
-  product: Ref<Product>,
+  product: Ref<Product | null>,
   activeVariant: Ref<Variant | undefined>,
   quantity: Ref<number>,
+  productId: Ref<number>,
 ) {
   const app = useNuxtApp()
 
@@ -37,7 +38,7 @@ export function useProductDetailsBasketActions(
   const { highestPriorityPromotion, isBuyXGetYPrioritized } =
     useProductPromotions(product)
   const { selectedAddOnVariantIds, isAnyAddOnSelected } =
-    useProductDetailsAddOns(product.value.id, product)
+    useProductDetailsAddOns(productId, product)
   const { addGroupToBasket } = useBasketGroup()
   const { showAddToBasketToast } = useBasketActions()
 

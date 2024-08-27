@@ -55,7 +55,12 @@
         {{ $t('global.sign_in') }}
       </SFButton>
     </form>
-    <IDPForm v-if="hasIDPs" :redirects="externalIDPRedirects" />
+    <IDPForm
+      v-if="
+        externalIDPRedirects && Object.keys(externalIDPRedirects).length > 0
+      "
+      :redirects="externalIDPRedirects"
+    />
   </div>
 </template>
 
@@ -96,12 +101,6 @@ const { lastLoggedInUser } = await useLastLoggedInUser()
 if (lastLoggedInUser.value) {
   editableUser.email = lastLoggedInUser.value.email
 }
-
-const hasIDPs = computed(
-  () =>
-    externalIDPRedirects.value &&
-    Object.keys(externalIDPRedirects.value).length > 0,
-)
 
 const validationRules = useValidationRules()
 

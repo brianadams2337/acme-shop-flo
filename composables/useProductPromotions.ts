@@ -19,7 +19,7 @@ import {
 } from '~/utils'
 
 export function useProductPromotions(
-  productItem?: MaybeRefOrGetter<Product | undefined>,
+  productItem?: MaybeRefOrGetter<Product | undefined | null>,
 ) {
   const basket = useBasket()
   const basketPromotions = useBasketPromotions()

@@ -16,7 +16,7 @@ import { useI18n } from '#i18n'
 import type { ProductSibling } from '~/types/siblings'
 
 export function useProductBaseInfo(
-  productItem: MaybeRefOrGetter<Product | undefined>,
+  productItem: MaybeRefOrGetter<Product | undefined | null>,
 ) {
   const product = toRef(productItem)
   const { getProductDetailRoute } = useRouteHelpers()

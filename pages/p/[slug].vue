@@ -279,6 +279,7 @@ const { addItemToBasket } = useProductDetailsBasketActions(
   product,
   activeVariant,
   quantity,
+  productId,
 )
 
 const { isBuyXGetYPrioritized, isGiftAddedToBasket } =

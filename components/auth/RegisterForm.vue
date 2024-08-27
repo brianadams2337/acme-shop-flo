@@ -67,7 +67,12 @@
         {{ $t('login_page.sign_up.submit') }}
       </SFButton>
     </form>
-    <IDPForm v-if="hasIDPs" :redirects="externalIDPRedirects" />
+    <IDPForm
+      v-if="
+        externalIDPRedirects && Object.keys(externalIDPRedirects).length > 0
+      "
+      :redirects="externalIDPRedirects"
+    />
   </div>
 </template>
 
@@ -131,10 +136,4 @@ const idpParams = computed(() => {
   return { queryParams: undefined }
 })
 const { data: externalIDPRedirects } = useIDP(idpParams)
-
-const hasIDPs = computed(
-  () =>
-    externalIDPRedirects.value &&
-    Object.keys(externalIDPRedirects.value).length > 0,
-)
 </script>

@@ -59,13 +59,13 @@ export function useProductsSearch({
   const { data, fetching, error } = productsData
 
   const products = computed(() => data.value?.products ?? [])
-  const pagination = computed(() => data.value?.pagination ?? {})
+  const pagination = computed(() => data.value?.pagination)
 
-  const totalProductsCount = computed(() => pagination.value.total ?? 0)
+  const totalProductsCount = computed(() => pagination.value?.total ?? 0)
 
   const paginationOffset = computed(() => {
-    const page = pagination.value.page ?? 1
-    const perPage = pagination.value.perPage ?? SEARCH_PRODUCTS_PER_PAGE
+    const page = pagination.value?.page ?? 1
+    const perPage = pagination.value?.perPage ?? SEARCH_PRODUCTS_PER_PAGE
     return (page - 1) * perPage
   })
 

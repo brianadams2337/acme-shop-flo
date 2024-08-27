@@ -58,13 +58,13 @@ export function useProductsByCategory(
   const { data, fetching, error } = productsData
 
   const products = computed(() => data.value?.products ?? [])
-  const pagination = computed(() => data.value?.pagination ?? {})
+  const pagination = computed(() => data.value?.pagination)
 
-  const totalProductsCount = computed(() => pagination.value.total ?? 0)
+  const totalProductsCount = computed(() => data.value?.pagination.total ?? 0)
 
   const paginationOffset = computed(() => {
-    const page = pagination.value.page ?? 1
-    const perPage = pagination.value.perPage ?? PRODUCTS_PER_PAGE
+    const page = data.value?.pagination.page ?? 1
+    const perPage = data.value?.pagination.perPage ?? PRODUCTS_PER_PAGE
     return (page - 1) * perPage
   })
 

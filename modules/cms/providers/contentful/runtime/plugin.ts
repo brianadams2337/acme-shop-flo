@@ -1,8 +1,6 @@
 import contentful, { createClient } from 'contentful'
-import type { AxiosAdapter } from 'axios'
 import type { ContentfulRuntimeConfig } from '../types'
 import { useContentfulEditor } from '../composables/useContentfulEditor'
-import axiosFetchAdapter from './../utils/axiosFetchAdapter'
 import { defineNuxtPlugin, useRuntimeConfig } from '#app'
 
 export default defineNuxtPlugin({
@@ -10,7 +8,7 @@ export default defineNuxtPlugin({
   setup() {
     const config = useRuntimeConfig()
     const cms = config.public.cms as ContentfulRuntimeConfig
-    const createClientFunc =
+    const createContentfulApiClient =
       process.env.NODE_ENV === 'development'
         ? createClient
         : contentful.createClient
@@ -29,12 +27,13 @@ export default defineNuxtPlugin({
         ? cms.previewAccessToken ?? ''
         : cms.accessToken
 
-    const client = createClientFunc({
+    // https://contentful.github.io/contentful.js/contentful/7.14.8/contentful.html#.createClient
+    const client = createContentfulApiClient({
       accessToken,
       space: cms.space,
-      adapter: axiosFetchAdapter as AxiosAdapter,
       host,
     })
+
     return {
       provide: {
         contentful: client,

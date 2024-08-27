@@ -646,7 +646,7 @@
   resolved "https://registry.yarnpkg.com/@colors/colors/-/colors-1.5.0.tgz#bb504579c1cae923e6576a4f5da43d25f97bdbd9"
   integrity sha512-ooWCrlZP11i8GImSjTHYHLkvFDP48nS4+204nGb1RiX/WXYHmJA2III9/e2DWVabCESdW7hBAEzHRqUn9OUVvQ==
 
-"@contentful/content-source-maps@^0.11.1":
+"@contentful/content-source-maps@^0.11.0", "@contentful/content-source-maps@^0.11.1":
   version "0.11.1"
   resolved "https://registry.yarnpkg.com/@contentful/content-source-maps/-/content-source-maps-0.11.1.tgz#108a623ec76f9dd396f5ac0d6acb774ff223ca9d"
   integrity sha512-dLNhz5NVxhnq2K+O+VfOiGB+JR53qRTD/TmSZxLsYJm+kQObSSziI4lVUlqEm7OBFmRnOW4hgR6woGylrfYuyA==
@@ -5578,10 +5578,10 @@ contentful-batch-libs@^9.4.1:
     lodash.clonedeep "^4.5.0"
     uuid "^9.0.1"
 
-contentful-export@7.19.145:
-  version "7.19.145"
-  resolved "https://registry.yarnpkg.com/contentful-export/-/contentful-export-7.19.145.tgz#66064f57344249dfea4eea3416c9d8ba03d8e0b9"
-  integrity sha512-tGhoC/w94pnQs6L+AnFUkC/mTTBIez32SPWfuZ6kJVyqCKlXzAxvDzgN7aPr3W7/wtw17jam5M5a3vK4KSABtw==
+contentful-export@7.19.148:
+  version "7.19.148"
+  resolved "https://registry.yarnpkg.com/contentful-export/-/contentful-export-7.19.148.tgz#70e2521912997e6325fffa6c2fa9c75abbde374d"
+  integrity sha512-N0SihWUGFvfOy4hLH2fd8thSy4F/dN045bg5TmMBn8YUSVIwis9h+vaVX14/G/J4KwF7DOBlRPoivxYCPHfTqA==
   dependencies:
     bfj "^8.0.0"
     bluebird "^3.3.3"
@@ -5667,16 +5667,16 @@ contentful-sdk-core@^8.1.0, contentful-sdk-core@^8.3.1:
     p-throttle "^4.1.1"
     qs "^6.11.2"
 
-contentful@10.13.2:
-  version "10.13.2"
-  resolved "https://registry.yarnpkg.com/contentful/-/contentful-10.13.2.tgz#395ae06a9ccdc75fafcc07b9553333b1be075da8"
-  integrity sha512-59qQqHKAjd2Bc1XV1pqyHzhwHg4X3BMZKqPkPMptPwoXUYjion+1zytFuXyt5YsNMKVvImvFfZVab8ZOrbI6Iw==
+contentful@10.15.0:
+  version "10.15.0"
+  resolved "https://registry.yarnpkg.com/contentful/-/contentful-10.15.0.tgz#0f8cc2887f583b283f1326357777c4e4a0764c2f"
+  integrity sha512-gkkMRf2FK1SQHMs2UKOuIeCdBXQKF/fMzIRCDL038lUScyE6mvnPu8aHrAQuUZwfcd58J0cibqT+iqj+pAVyGA==
   dependencies:
-    "@contentful/content-source-maps" "^0.6.0"
+    "@contentful/content-source-maps" "^0.11.0"
     "@contentful/rich-text-types" "^16.0.2"
-    axios "~1.6.8"
+    axios "^1.7.4"
     contentful-resolve-response "^1.9.0"
-    contentful-sdk-core "^8.1.0"
+    contentful-sdk-core "^8.3.1"
     json-stringify-safe "^5.0.1"
     type-fest "^4.0.0"
 

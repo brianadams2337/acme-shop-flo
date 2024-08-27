@@ -1,6 +1,6 @@
 <template>
   <div>
-    <slot :data="resData" :pending="pending" />
+    <slot :data="resData" :pending="status === 'pending'" />
   </div>
 </template>
 
@@ -19,26 +19,14 @@ const props = defineProps<{
 
 const { fetchBySlug } = useCMS(`services-page-${props.slug}`)
 
-const { data, pending } = await fetchBySlug<TypeContentPageSkeleton>({
+const { data, status } = await fetchBySlug<TypeContentPageSkeleton>({
   content_type: 'contentPage',
   'fields.slug[match]': `s/${props.slug}`,
 })
 
 const resData = computed(() => {
-  if (!data.value) {
-    return {
-      headline: '',
-      name: '',
-      slug: '',
-      seo: '',
-      content: '',
-      subline: '',
-      teaserImage: '',
-      teaserImageMobile: '',
-      uid: '',
-    }
-  }
   const res = data.value as TypeContentPageWithoutUnresolvableLinksResponse
+
   return {
     ...res,
     headline: res?.fields.headline ?? '',

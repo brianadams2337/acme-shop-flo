@@ -19,7 +19,7 @@ const seoData = computed(() => {
   if (!props.story?.fields?.seo) {
     return {
       description: '',
-      title: '',
+      title: (props.story.fields.headline as string) ?? '',
       twitterTitle: '',
       twitterDescription: '',
       twitterImage: '',
@@ -28,10 +28,12 @@ const seoData = computed(() => {
       ogImage: '',
     }
   }
+
   const story = props.story as TypeContentPageWithoutUnresolvableLinksResponse
+
   return {
     description: story.fields.seo?.fields?.description ?? '',
-    title: story.fields.seo?.fields.title ?? '',
+    title: story.fields.seo?.fields.title ?? story.fields.headline ?? '',
     robots: 'index,follow',
     twitterTitle: story.fields.seo?.fields.twitterTitle ?? '',
     twitterDescription: story.fields.seo?.fields.twitterDescription ?? '',

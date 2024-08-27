@@ -1,6 +1,6 @@
 <template>
   <div>
-    <slot :data="data?.data.story" :pending="pending" />
+    <slot :data="data?.data.story" :pending="status === 'pending'" />
   </div>
 </template>
 
@@ -15,6 +15,6 @@ const props = defineProps<{
 
 const { fetchBySlug } = useCMS(`services-page-${props.slug}`)
 
-const { data, pending } = await fetchBySlug<SbContentPage>(`s/${props.slug}`)
+const { data, status } = await fetchBySlug<SbContentPage>(`s/${props.slug}`)
 useStoryblokEditor<SbContentPage>(data)
 </script>

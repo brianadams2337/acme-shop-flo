@@ -1,6 +1,6 @@
 <template>
   <div>
-    <slot :data="data" :pending="pending" />
+    <slot :data="resData" :pending="status === 'pending'" />
   </div>
 </template>
 
@@ -19,17 +19,16 @@ const props = defineProps<{
 
 const { fetchBySlug } = useCMS(`content-page-${props.slug}`)
 
-const { data: responseData, pending } =
-  await fetchBySlug<TypeContentPageSkeleton>({
-    content_type: 'contentPage',
-    'fields.slug[match]': `content/${props.slug}`,
-  })
+const { data, status } = await fetchBySlug<TypeContentPageSkeleton>({
+  content_type: 'contentPage',
+  'fields.slug[match]': `content/${props.slug}`,
+})
 
-const data = computed(() => {
-  const res =
-    responseData?.value as TypeContentPageWithoutUnresolvableLinksResponse
+const resData = computed(() => {
+  const res = data.value as TypeContentPageWithoutUnresolvableLinksResponse
 
   return {
+    ...res,
     uuid: res.fields.uid ?? '',
     _uid: res.fields.uid ?? '',
     slug: res.fields.slug ?? '',
@@ -43,5 +42,5 @@ const data = computed(() => {
   }
 })
 
-useContentfulEditor<TypeContentPageSkeleton>(responseData)
+useContentfulEditor<TypeContentPageSkeleton>(data)
 </script>

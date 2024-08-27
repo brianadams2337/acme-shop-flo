@@ -99,6 +99,9 @@ const i18nDefaultLocale = Array.isArray(defaultShop.code)
   : defaultShop.code
 
 export default defineNuxtConfig({
+  // https://nuxt.com/docs/api/nuxt-config#compatibilitydate
+  compatibilityDate: '2024-09-03',
+
   // https://nuxt.com/docs/api/nuxt-config#devtools
   devtools: { enabled: true },
 

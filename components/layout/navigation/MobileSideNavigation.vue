@@ -23,6 +23,7 @@
           v-for="subCategory in activeParentCategory.children"
           :key="`side-navigation-list-item-mb-${subCategory.id}`"
           class="mb-3 ml-0 px-5 last:mb-0"
+          :data-testid="`side-navigation-list-subitem-${subCategory.id}`"
           @click="emit('click:navigationItem')"
           @keydown.enter="emit('click:navigationItem')"
         >
@@ -46,6 +47,7 @@
           v-for="category in categories"
           :key="`side-navigation-list-item-${category.id}`"
           class="mb-3 ml-0 px-5 last:mb-0 md:ml-3 md:px-12"
+          :data-testid="`side-navigation-list-item-${category.id}`"
           :class="{ 'text-pink-neon': category.path === '/sale' }"
           @click="setActiveParentCategory(category)"
           @keydown.enter="setActiveParentCategory(category)"

@@ -51,6 +51,10 @@ export default defineConfig({
       name: 'chromium',
       use: { ...devices['Desktop Chrome'] },
     },
+    {
+      name: 'Mobile Chrome',
+      use: { ...devices['Galaxy S9+'] },
+    },
 
     {
       name: 'firefox',
@@ -60,6 +64,11 @@ export default defineConfig({
     {
       name: 'webkit',
       use: { ...devices['Desktop Safari'] },
+    },
+
+    {
+      name: 'Mobile Safari',
+      use: { ...devices['iPhone 15'] },
     },
 
     /* Test against mobile viewports. */

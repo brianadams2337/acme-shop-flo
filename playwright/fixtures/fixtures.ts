@@ -12,6 +12,7 @@ import { Breadcrumb } from '../page-objects/components/breadcrumb'
 import { Pagination } from '../page-objects/components/pagination'
 import { PlpFilters } from '../page-objects/components/plpFilters'
 import { Search } from '../page-objects/components/search'
+import { MobileNavigation } from '../page-objects/components/mobileNavigation'
 
 interface Fixtures {
   homePage: HomePage
@@ -27,6 +28,7 @@ interface Fixtures {
   pagination: Pagination
   plpFilters: PlpFilters
   search: Search
+  mobileNavigation: MobileNavigation
 }
 
 export type OutputMode = 'json' | 'html' | 'csv'
@@ -83,6 +85,10 @@ export const test = base.extend<Fixtures>({
   search: async ({ page }, use) => {
     const search = new Search(page)
     await use(search)
+  },
+  mobileNavigation: async ({ page }, use) => {
+    const mobileNavigation = new MobileNavigation(page)
+    await use(mobileNavigation)
   },
 })
 export { expect } from '@playwright/test'

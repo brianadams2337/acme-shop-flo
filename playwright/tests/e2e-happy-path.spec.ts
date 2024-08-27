@@ -1,4 +1,5 @@
 import { expect, test } from '../fixtures/fixtures'
+import { isMobile } from '../support/utils'
 import {
   BASKET_TEST_DATA,
   E2E_BASKET_URL,
@@ -15,15 +16,26 @@ test('C2139186: E2E from Home to Checkout - happy path', async ({
   basketPage,
   page,
   signinPage,
+  mobileNavigation,
 }) => {
   await test.step('Visit Homepage and navigate to PLP', async () => {
-    await expect(async () => {
-      await homePage.visitPage()
-      await mainNavigation.mainMenuCategoryClick()
-      const pageUrl = page.url()
-      expect(pageUrl).toContain(PLP_PATH_MAIN_CATEGORY)
-      await productListingPage.openTestCategoryPLP(PLP_SUBCATEGORY_NAME_DE)
-    }).toPass()
+    await homePage.visitPage()
+    await page.waitForLoadState('networkidle')
+    if (isMobile(page)) {
+      await expect(async () => {
+        await mobileNavigation.sideNavigationButton.waitFor()
+        await mobileNavigation.sideNavigationButton.click()
+        await mobileNavigation.mainCategoryMenuItem.click()
+        await mobileNavigation.subCategoryMenuItem.click()
+      }).toPass()
+    } else {
+      await expect(async () => {
+        await mainNavigation.mainMenuCategoryClick()
+        const pageUrl = page.url()
+        expect(pageUrl).toContain(PLP_PATH_MAIN_CATEGORY)
+        await productListingPage.openTestCategoryPLP(PLP_SUBCATEGORY_NAME_DE)
+      }).toPass()
+    }
   })
 
   await test.step('Add product to Wishlist from PLP', async () => {

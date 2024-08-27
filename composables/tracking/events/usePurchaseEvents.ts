@@ -82,7 +82,7 @@ const usePurchaseEvents = (): {
     const moneyLocale = 'en-EN' // for money formatting analytics requires en-EN so that every shop value is formatted the same way
     const currency = useCurrentShop().value?.currency
     const giftcard = getGiftcardAmount({
-      amount: 0, // TODO if giftcard is implemented this should change to the right amount
+      amount: 0, // NOTE: If giftcard is implemented this should change to the right amount
       currency: currency ?? 'USD',
       locale: moneyLocale,
     })

@@ -1,6 +1,3 @@
-// TODO: there is no such concept in cypress as constants: https://docs.cypress.io/guides/core-concepts/writing-and-organizing-tests
-// TODO: use Cypress.env instead? See: https://docs.cypress.io/api/cypress-api/env
-
 export const HEADER_TEST_CATEGORY_WOMEN = 'frauen/bekleidung'
 export const PLP_CATEGORY_WOMEN = 'Frauen'
 export const TEST_ITEM_REGULAR = {

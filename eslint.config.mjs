@@ -49,7 +49,7 @@ export default withNuxt(
     ...pluginVueA11y.configs['flat/recommended'],
     {
       rules: {
-        // TODO: Enable the following rules for upcoming a11y improvements
+        // NOTE: Enable the following rules for upcoming a11y improvements
         'vuejs-accessibility/mouse-events-have-key-events': 'off',
         'vuejs-accessibility/no-static-element-interactions': 'off',
         'vuejs-accessibility/alt-text': 'off',

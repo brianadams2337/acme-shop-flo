@@ -212,8 +212,7 @@ const transformPathToImport = (itemFrom, dirName) => {
   // We check if we're trying to import composables from `@scayle/storefront-nuxt`
   // or `@scayle/omnichannel-nuxt` and transform the import to their respective
   // allowed import path or alias.
-  // NOTE:
-  // If a Nuxt project is part of a mono-repo setup and some of its used packages
+  // NOTE: If a Nuxt project is part of a mono-repo setup and some of its used packages
   // are located within the root repo, the package resolution using `mlly` will not
   // resolve to a node_modules packages, but to the local package within the repository.
   // https://github.com/unjs/mlly/issues/158

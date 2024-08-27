@@ -53,7 +53,6 @@ type Props = {
   size?: Size
 }
 
-// TODO use computed property for dynamic class bindings on line 24
 const props = withDefaults(defineProps<Props>(), { size: Size.MD })
 
 const {

@@ -45,7 +45,7 @@ const useUserActionEvents = (
           customer_id: customerId,
           [methodKeyName]: method || METHOD_DEFAULT,
           eh,
-          customer_type: customerType, // TODO: CO should add this to payload as well
+          customer_type: customerType, // NOTE: CO should add this to payload as well
           status,
           content_name: route.fullPath,
         }),

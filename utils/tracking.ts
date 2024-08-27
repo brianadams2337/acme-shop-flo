@@ -185,7 +185,7 @@ export const mapCustomerInfoToTrackingPayload = ({
   return mappedPayload
 }
 
-// @TODO Refactor to reduce complexity
+// TODO: Refactor to reduce complexity
 export const mapTrackingDataForEvent = (
   event: TrackingEvent,
   payload: TrackingPayload,

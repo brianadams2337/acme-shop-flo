@@ -78,7 +78,7 @@
 import { computed, defineModel, ref } from 'vue'
 import type { StoreLocation } from '@scayle/omnichannel-nuxt'
 import { useStoreLocator } from '#omnichannel/composables'
-import { useSlideIn } from '~/modules/ui/runtime/composables/useSlideIn' // TODO: Use upcoming #storefront-ui alias
+import { useSlideIn } from '~/modules/ui/runtime/composables/useSlideIn'
 
 interface Props {
   variantId: number

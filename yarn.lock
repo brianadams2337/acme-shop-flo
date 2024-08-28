@@ -9852,10 +9852,10 @@ number-is-nan@^1.0.0:
   resolved "https://registry.yarnpkg.com/number-is-nan/-/number-is-nan-1.0.1.tgz#097b602b53422a522c1afb8790318336941a011d"
   integrity sha512-4jbtZXNAsfZbAHiiqjLPBiCl16dES1zI4Hpzzxw61Tk+loF+sBDBKx1ICKKKwIqQ7M0mFn1TmkN7euSncWgHiQ==
 
-nuxi@3.13.0:
-  version "3.13.0"
-  resolved "https://registry.yarnpkg.com/nuxi/-/nuxi-3.13.0.tgz#46b984a24fd90e4a41c878131dd4421bf9ab377d"
-  integrity sha512-15cnHePX+A0Vwwpgj/X+BQGcGulJQr6ddzfMXpvevpEsuAr/hHe5HioHVqYwqMSqiQLVtZLhPxeVOrg8eJn09Q==
+nuxi@3.13.1:
+  version "3.13.1"
+  resolved "https://registry.yarnpkg.com/nuxi/-/nuxi-3.13.1.tgz#170a573d49bd8f1ec433c6b781276a29d5201232"
+  integrity sha512-rhUfFCtIH8IxhfibVd26uGrC0ojUijGoU3bAhPQHrkl7mFlK+g+XeIttdsI8YAC7s/wPishrTpE9z1UssHY6eA==
   optionalDependencies:
     fsevents "~2.3.3"
 

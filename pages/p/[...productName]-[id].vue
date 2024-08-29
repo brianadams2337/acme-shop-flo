@@ -8,21 +8,23 @@
         class="md:sticky md:top-8 md:w-1/2"
         product-image-slider-class="md:max-w-[528px]"
       />
-      <div class="w-full max-md:px-5 md:w-1/2">
+      <div class="flex w-full flex-col gap-4 max-md:px-5 md:w-1/2">
         <ProductBreadcrumbs
           v-if="longestCategoryList"
           class="mb-8 hidden md:block"
           :product-categories="longestCategoryList"
         />
-        <div class="font-semi-bold-variable text-gray-900">{{ brand }}</div>
-        <SFHeadline
-          size="lg"
-          class="text-md !font-normal text-gray-600 md:text-lg"
-          data-testid="pdp-product-name"
-          tag="h1"
-        >
-          {{ name }}
-        </SFHeadline>
+        <div>
+          <div class="font-semi-bold-variable text-gray-900">{{ brand }}</div>
+          <SFHeadline
+            size="lg"
+            class="text-md !font-normal text-gray-600 md:text-lg"
+            data-testid="pdp-product-name"
+            tag="h1"
+          >
+            {{ name }}
+          </SFHeadline>
+        </div>
 
         <ProductPromotionBanners :product="product" />
 
@@ -46,6 +48,12 @@
           show-tax-info
           :show-price-from="showFrom"
         />
+        <div
+          v-if="product.isSoldOut"
+          class="rounded-xl bg-red-100 p-4 text-md text-red"
+        >
+          {{ $t('pdp.sold_out') }}
+        </div>
         <SFButton :disabled="!activeVariant" @click="addToBasket">{{
           $t('basket.add_to_basket')
         }}</SFButton>

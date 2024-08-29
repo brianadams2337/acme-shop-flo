@@ -24,7 +24,7 @@
       >
         <SFListboxOptions
           v-if="isOpen"
-          class="shadow-md absolute right-0 top-0 z-60 max-h-32 w-32 overflow-y-auto bg-white"
+          class="absolute right-0 top-0 z-60 max-h-32 w-32 overflow-y-auto bg-white shadow-md"
         >
           <SFListboxOption
             v-for="{ shopId, path, locale } in availableShops"

@@ -19,7 +19,7 @@ export default withNuxt(
         'tailwindcss/no-unnecessary-arbitrary-value': 'error',
         'tailwindcss/enforces-negative-arbitrary-values': 'error',
         'tailwindcss/no-custom-classname': [
-          'off',
+          'error',
           {
             whitelist: [
               'picture',

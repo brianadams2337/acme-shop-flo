@@ -178,10 +178,10 @@ export default {
         },
       ],
     },
-    boxShadow: {
-      secondary: '0px 6px 16px -10px rgba(0, 0, 0, 0.04)',
-    },
     extend: {
+      boxShadow: {
+        secondary: '0px 6px 16px -10px rgba(0, 0, 0, 0.04)',
+      },
       colors: {
         emerald: {
           100: '#CEF5E8',

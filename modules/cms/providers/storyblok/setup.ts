@@ -18,7 +18,13 @@ export async function setupStoryblok(options: ModuleOptions, nuxt: Nuxt) {
   const runtimeCMS = nuxt.options.runtimeConfig?.public.cms
 
   if (!nuxt.options.modules.includes('@storyblok/nuxt')) {
-    await installModule('@storyblok/nuxt', { componentsDir: '' })
+    // NOTE: We need to enable sudo mode, as we define our own Storyblok Vue plugin
+    // and thus want to avoid duplicate initialization.
+    // https://github.com/storyblok/storyblok-nuxt?tab=readme-ov-file#define-your-own-plugin
+    await installModule('@storyblok/nuxt', {
+      componentsDir: '',
+      enableSudoMode: true,
+    })
   }
 
   if (!nuxt.options.storyblok) {

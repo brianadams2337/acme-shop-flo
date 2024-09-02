@@ -32,7 +32,7 @@ export function usePromotionGiftSelection(gift: Product) {
 
   const { openBasketFlyout } = useFlyouts()
 
-  const activeVariant = useState<Variant | null | undefined>(
+  const activeVariant = useState<Variant | undefined>(
     `active-gift-variant-${gift.id}`,
   )
 

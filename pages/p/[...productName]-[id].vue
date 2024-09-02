@@ -4,6 +4,7 @@
       class="flex flex-col items-start justify-between gap-8 xl:container max-md:space-y-5 md:flex-row md:space-x-4"
     >
       <ProductGallery
+        v-if="product"
         :product="product"
         class="md:sticky md:top-8 md:w-1/2"
         product-image-slider-class="md:max-w-[528px]"
@@ -26,7 +27,7 @@
           </SFHeadline>
         </div>
 
-        <ProductPromotionBanners :product="product" />
+        <ProductPromotionBanners v-if="product" :product="product" />
 
         <div class="my-3 flex h-12 items-center space-x-4">
           <VariantPicker
@@ -49,7 +50,7 @@
           :show-price-from="showFrom"
         />
         <div
-          v-if="product.isSoldOut"
+          v-if="product && product.isSoldOut"
           class="rounded-xl bg-red-100 p-4 text-md text-red"
         >
           {{ $t('pdp.sold_out') }}

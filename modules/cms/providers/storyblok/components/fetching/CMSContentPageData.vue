@@ -15,6 +15,8 @@ const props = defineProps<{
 
 const { fetchBySlug } = useCMS(`content-page-${props.slug}`)
 
-const { data, pending } = await fetchBySlug<SbContentPage>(`c/${props.slug}`)
+const { data, pending } = await fetchBySlug<SbContentPage>(
+  `content/${props.slug}`,
+)
 useStoryblokEditor<SbContentPage>(data)
 </script>

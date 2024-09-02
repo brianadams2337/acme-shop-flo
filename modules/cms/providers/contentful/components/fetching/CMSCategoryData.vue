@@ -33,7 +33,12 @@ if (!props.selectedCategory) {
 }
 const { data } = await fetchBySlug<TypeListingPageSkeleton>({
   content_type: 'listingPage',
-  'fields.slug[match]': `categories/${props.selectedCategory}`,
+  // NOTE:We need to pass both the `c/` path, as well as the prefix `c-` plus
+  // the selected categoryID to the fetchBySlug composables.
+  // Contentful requires also to set `c/c-{selectedCategory} to be set as `Slug`
+  // within the related story.
+  // This allows the Contentful Preview functionality to properly work.
+  'fields.slug[match]': `c/c-${props.selectedCategory}`,
 })
 const { content, hasTeaserImage, postListingContent, preListingContent } =
   useCMSListingContent(

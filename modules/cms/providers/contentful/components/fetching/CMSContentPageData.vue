@@ -22,12 +22,13 @@ const { fetchBySlug } = useCMS(`content-page-${props.slug}`)
 const { data: responseData, pending } =
   await fetchBySlug<TypeContentPageSkeleton>({
     content_type: 'contentPage',
-    'fields.slug[match]': `c/${props.slug}`,
+    'fields.slug[match]': `content/${props.slug}`,
   })
 
 const data = computed(() => {
   const res =
     responseData?.value as TypeContentPageWithoutUnresolvableLinksResponse
+
   return {
     uuid: res.fields.uid ?? '',
     _uid: res.fields.uid ?? '',

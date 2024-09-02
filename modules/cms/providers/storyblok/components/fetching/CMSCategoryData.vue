@@ -28,8 +28,14 @@ if (!props.selectedCategory) {
   console.log('No category selected')
 }
 const { data } = await fetchBySlug<SbListingPage>(
-  `categories/${props.selectedCategory}`,
+  // NOTE:We need to pass both the `c/` path, as well as the prefix `c-` plus
+  // the selected categoryID to the fetchBySlug composables.
+  // Storyblok requires also to set `c-{selectedCategory} to be set as `Slug`
+  // within the related story.
+  // This allows the Storyblok Preview functionality to properly work.
+  `c/c-${props.selectedCategory}`,
 )
+
 useStoryblokEditor<SbListingPage>(data)
 
 const { content, hasTeaserImage, postListingContent, preListingContent } =

@@ -514,6 +514,10 @@ export default defineNuxtConfig({
     },
   },
 
+  experimental: {
+    cookieStore: true,
+  },
+
   // https://v8.i18n.nuxtjs.org/getting-started/basic-usage
   i18n: {
     locales,

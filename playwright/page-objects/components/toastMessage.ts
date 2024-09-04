@@ -1,4 +1,5 @@
 import type { Locator, Page } from '@playwright/test'
+import { expect } from '../../fixtures/fixtures'
 
 export class ToastMessage {
   readonly page: Page
@@ -10,7 +11,7 @@ export class ToastMessage {
   }
 
   async assertToastInfoIsVisible() {
-    await this.toastInfo.isVisible()
+    await expect(this.toastInfo).toBeVisible()
   }
 
   async clickToastMessageButton() {

@@ -71,3 +71,12 @@ export const BASKET_TEST_DATA = {
 
 export const HOMEPAGE_PATH_DE = '/de'
 export const SIGNIN_URL = '/signin'
+
+export const USER_ACCOUNT = {
+  accountUserPath: '/account/user',
+  userFirstName: 'Aqa',
+  userLastName: 'Test',
+  userBirthDateCorrect: '30.05.1981',
+  userBirthDateIncorrect: '32.13.9999',
+  nonMatchingPassword: 'N0nMatch1ngPa55w0rd!',
+}

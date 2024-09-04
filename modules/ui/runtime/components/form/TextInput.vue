@@ -1,6 +1,7 @@
 <template>
   <div class="relative flex-1 cursor-text">
     <input
+      v-bind="$attrs"
       :id="placeholder"
       ref="input"
       v-model="modelValue"
@@ -20,7 +21,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed, defineModel } from 'vue'
+import { defineOptions, computed, defineModel } from 'vue'
 import { vMaska } from 'maska'
 
 type Props = {
@@ -62,4 +63,7 @@ const classes = computed(() => [
       props.hasErrors,
   },
 ])
+defineOptions({
+  inheritAttrs: false,
+})
 </script>

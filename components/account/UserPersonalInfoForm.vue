@@ -1,10 +1,14 @@
 <template>
   <AsyncDataWrapper :status="status">
-    <form class="mx-auto mt-10 flex w-full flex-col md:mx-0 lg:w-[400px]">
+    <form
+      class="mx-auto mt-10 flex w-full flex-col md:mx-0 lg:w-[400px]"
+      data-testid="form-user-data"
+    >
       <SFRadioGroup
         v-model="payload.gender"
         :items="genders"
         class="items-start"
+        data-testid="radio-group-gender"
       />
       <div class="mt-8">
         <SFValidatedInputGroup
@@ -16,30 +20,35 @@
             :has-errors="!isValid"
             :placeholder="$t('form_fields.first_name')"
             required
+            data-testid="user-first-name"
             @input="v.firstName.$touch"
           />
         </SFValidatedInputGroup>
         <SFValidatedInputGroup
           v-slot="{ isValid }"
           :errors="v.lastName.$errors"
+          data-testid="section-last-name"
         >
           <SFTextInput
             v-model="payload.lastName"
             :has-errors="!isValid"
             :placeholder="$t('form_fields.last_name')"
             required
+            data-testid="user-last-name"
             @input="v.lastName.$touch"
           />
         </SFValidatedInputGroup>
         <SFValidatedInputGroup
           v-slot="{ isValid }"
           :errors="v.birthDate.$errors"
+          data-testid="section-birthdate"
         >
           <SFTextInput
             v-model="payload.birthDate"
             :placeholder="dobFormat.placeholder"
             :mask="dobFormat.mask"
             :has-errors="!isValid"
+            data-testid="user-birthdate"
             @input="v.birthDate.$touch"
           />
         </SFValidatedInputGroup>
@@ -47,6 +56,7 @@
           v-model="payload.email"
           :placeholder="$t('form_fields.email')"
           :hint="$t('my_account.user.email_change_hint')"
+          data-testid="user-email-address"
           readonly
         />
         <div

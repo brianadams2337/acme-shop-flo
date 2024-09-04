@@ -3,6 +3,7 @@
     <form
       ref="passwordUpdateForm"
       class="mx-auto mt-8 flex w-full flex-col md:mx-0 lg:w-[400px]"
+      data-testid="form-password-update"
     >
       <h3 class="mb-4 text-left text-2xl font-bold">
         {{ $t('my_account.password') }}
@@ -17,6 +18,7 @@
           :has-errors="!isValid"
           type="password"
           autocomplete="current-password"
+          data-testid="current-password"
           required
           @input="v.oldPassword.$touch"
         />
@@ -32,6 +34,7 @@
           :has-errors="!isValid"
           type="password"
           autocomplete="new-password"
+          data-testid="new-password"
           required
           @input="v.newPassword.$touch"
         />
@@ -40,6 +43,7 @@
       <SFValidatedInputGroup
         v-slot="{ isValid }"
         :errors="v.repeatedPassword.$errors"
+        data-testid="section-password-repeat"
       >
         <SFTextInput
           v-model="payload.repeatedPassword"
@@ -47,6 +51,7 @@
           :has-errors="!isValid"
           type="password"
           autocomplete="new-password"
+          data-testid="new-password-repeat"
           required
           @input="v.repeatedPassword.$touch"
         />
@@ -54,6 +59,7 @@
       <div class="mt-2 flex w-full items-center justify-center">
         <SFButton
           class="w-full capitalize md:w-auto md:min-w-[50%]"
+          data-testid="update-password-button"
           :disabled="v.$error || isUpdating"
           @click="updateUserPassword"
         >

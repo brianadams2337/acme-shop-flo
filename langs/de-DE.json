@@ -301,7 +301,8 @@
     },
     "store_selector_headline": "Kostenlose Abholung im Geschäft:",
     "check_store_availability": "Verfügbarkeit prüfen",
-    "pickup_in_store": "Abholung im Geschäft:"
+    "pickup_in_store": "Abholung im Geschäft:",
+    "sibling_error": "Fehler: Dieses Attribut wurde nicht gesetzt!"
   },
   "price": {
     "starting_from": "von",

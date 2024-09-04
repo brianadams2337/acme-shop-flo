@@ -340,6 +340,10 @@ export default {
         '.transition-discrete': {
           'transition-behavior': 'allow-discrete',
         },
+        '.diagonal-strikethrough': {
+          background:
+            'linear-gradient(to left top, transparent 49%, currentColor, currentColor, transparent 52.25%)',
+        },
       }
       addUtilities(utilities)
       // https://github.com/tailwindlabs/tailwindcss/pull/12040

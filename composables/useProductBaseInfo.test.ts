@@ -346,6 +346,7 @@ describe('useProductBaseInfo', () => {
             hash: 'test image',
           },
           name: 'Test Product',
+          isSoldOut: false,
         },
         {
           colors: [
@@ -357,6 +358,65 @@ describe('useProductBaseInfo', () => {
           ],
           id: 5,
           image: undefined,
+          name: 'Test Product',
+          isSoldOut: false,
+        },
+      ])
+    })
+
+    it('should return the correct default value for siblings sorted by sold out state', () => {
+      product.siblings?.unshift({
+        id: 52,
+        attributes: attributes,
+        isActive: true,
+        isSoldOut: true,
+        isNew: false,
+        createdAt: '',
+        updatedAt: '',
+        images: [],
+      })
+      const { siblings } = useProductBaseInfo(product)
+
+      expect(siblings.value).toStrictEqual([
+        {
+          colors: [
+            {
+              id: 6,
+              label: 'Weiß',
+              value: 'weiss',
+            },
+          ],
+          id: 1,
+          image: {
+            hash: 'test image',
+          },
+          name: 'Test Product',
+          isSoldOut: false,
+        },
+        {
+          colors: [
+            {
+              id: 6,
+              label: 'Weiß',
+              value: 'weiss',
+            },
+          ],
+          id: 5,
+          image: undefined,
+          name: 'Test Product',
+          isSoldOut: false,
+        },
+        {
+          colors: [
+            {
+              id: 6,
+              label: 'Weiß',
+              value: 'weiss',
+            },
+          ],
+          id: 52,
+          image: undefined,
+          isSoldOut: true,
           name: 'Test Product',
         },
       ])
@@ -389,6 +449,7 @@ describe('useProductBaseInfo', () => {
             hash: 'test image',
           },
           name: 'Test Product',
+          isSoldOut: false,
         },
         {
           colors: [
@@ -401,6 +462,7 @@ describe('useProductBaseInfo', () => {
           id: 5,
           image: undefined,
           name: 'Test Product',
+          isSoldOut: false,
         },
       ])
     })

@@ -3,6 +3,7 @@
     class="relative"
     :class="{ 'overflow-y-scroll scrollbar-hide': mode === 'vertical' }"
   >
+    <slot name="header" />
     <div
       ref="sliderRef"
       class="flex size-full shrink-0 snap-mandatory scrollbar-hide"
@@ -24,7 +25,7 @@
       <div v-if="withArrows">
         <slot
           name="arrows"
-          v-bind="{ prev, isPrevEnabled, next, isNextEnabled }"
+          v-bind="{ prev, isPrevEnabled, next, isNextEnabled, isScrollable }"
         >
           <slot name="prev-button" v-bind="{ prev, isPrevEnabled }">
             <button
@@ -102,6 +103,7 @@ const {
   onScroll,
   scrollImageIntoView,
   activeSlide,
+  isScrollable,
 } = useItemsSlider(sliderRef as Ref<HTMLElement>, props.mode)
 
 const divOrTransition = computed(() => {

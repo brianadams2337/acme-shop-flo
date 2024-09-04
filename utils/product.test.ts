@@ -516,6 +516,7 @@ describe('getProductSiblingData', () => {
           value: 'weiss',
         },
       ],
+      isSoldOut: false,
     })
   })
 })

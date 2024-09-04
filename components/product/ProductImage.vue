@@ -14,6 +14,7 @@
       'picture-contain': fit === 'contain',
       'picture-cover': fit === 'cover',
       'm-auto h-[90%]': isCentered,
+      'aspect-square': aspectRatio === '1/1',
       'aspect-4/3': aspectRatio === '4/3',
       'aspect-3/4': aspectRatio === '3/4',
       'aspect-video': aspectRatio === '16/9',
@@ -42,7 +43,7 @@ type Props = {
   isCentered?: boolean
   height?: number | string
   width?: number | string
-  aspectRatio?: '16/9' | '4/3' | '3/4'
+  aspectRatio?: '16/9' | '4/3' | '3/4' | '1/1'
 }
 
 const props = withDefaults(defineProps<Props>(), {

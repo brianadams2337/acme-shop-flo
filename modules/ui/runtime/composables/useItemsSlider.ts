@@ -144,6 +144,16 @@ export function useItemsSlider(
       : !arrivedTop.value,
   )
 
+  const isScrollable = computed(() => {
+    if (!sliderRef.value) {
+      return
+    }
+
+    return mode === 'horizontal'
+      ? sliderRef.value.scrollWidth > sliderRef.value.clientWidth
+      : sliderRef.value.scrollHeight > sliderRef.value.clientHeight
+  })
+
   return {
     sliderRef,
     onScroll,
@@ -153,5 +163,6 @@ export function useItemsSlider(
     isPrevEnabled,
     scrollImageIntoView,
     activeSlide,
+    isScrollable,
   }
 }

@@ -28,8 +28,10 @@
           </SFHeadline>
         </div>
 
-        <ProductPromotionBanners v-if="product" :product="product" />
-
+        <ProductPromotionBanners
+          v-if="product && automaticDiscountPromotion"
+          :product="product"
+        />
         <ProductPrice
           v-if="price"
           size="lg"
@@ -40,6 +42,14 @@
           show-tax-info
           :show-price-from="showFrom"
         />
+        <div
+          v-if="product?.isSoldOut"
+          class="rounded-xl bg-red-100 p-4 text-md text-red"
+        >
+          {{ $t('pdp.sold_out') }}
+        </div>
+        <SiblingSelection :product="product" />
+
         <ProductPromotionBanners :product="product" />
         <ProductActions
           v-model:active-variant="activeVariant"

@@ -300,7 +300,8 @@
     },
     "store_selector_headline": "Free in-store pickup:",
     "check_store_availability": "Check availability",
-    "pickup_in_store": "Pick up in store:"
+    "pickup_in_store": "Pick up in store:",
+    "sibling_error": "Error: This attribute is not set!"
   },
   "price": {
     "starting_from": "from",

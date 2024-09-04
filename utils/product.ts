@@ -134,23 +134,32 @@ export const getApplicablePromotionsForProduct = (
 }
 
 export const getProductSiblingData = (
-  { id, images, attributes }: Product,
+  { id, images, attributes, isSoldOut }: Product,
   colorAttributeName = 'colorDetail',
 ): ProductSibling => ({
   id,
   name: getFirstAttributeValue(attributes, 'name')?.label ?? '',
   image: getPrimaryImage(images) ?? images[0],
   colors: getAttributeValueTuples(attributes, colorAttributeName),
+  isSoldOut,
 })
 
 export const getProductSiblings = (
   product?: Product | null,
   colorAttributeName = 'colorDetail',
-  options: { omitSoldOut?: boolean; includeCurrentProduct?: boolean } = {},
+  options: {
+    omitSoldOut?: boolean
+    includeCurrentProduct?: boolean
+    sortBySoldOut?: boolean
+  } = {},
 ): ProductSibling[] => {
   if (!product) return []
 
-  const { omitSoldOut = false, includeCurrentProduct = true } = options
+  const {
+    omitSoldOut = false,
+    includeCurrentProduct = true,
+    sortBySoldOut = false,
+  } = options
   const nonSoldOutItems =
     product?.siblings?.filter(({ isSoldOut, isActive }) => {
       return omitSoldOut ? isActive && !isSoldOut : isActive
@@ -159,6 +168,14 @@ export const getProductSiblings = (
   const items = nonSoldOutItems.map((item) =>
     getProductSiblingData(item, colorAttributeName),
   )
+
+  if (sortBySoldOut) {
+    items.sort((a, b) => {
+      const soldOutOrder = a.isSoldOut ? 1 : -1
+
+      return a.isSoldOut === b.isSoldOut ? 0 : soldOutOrder
+    })
+  }
 
   return includeCurrentProduct
     ? [getProductSiblingData(product, colorAttributeName), ...items]

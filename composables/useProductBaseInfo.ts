@@ -68,7 +68,7 @@ export function useProductBaseInfo(
   })
 
   const siblings = computed<ProductSibling[]>(() => {
-    return getProductSiblings(product.value, 'color')
+    return getProductSiblings(product.value, 'color', { sortBySoldOut: true })
   })
 
   const nonSoldOutSiblings = computed<ProductSibling[]>(() => {

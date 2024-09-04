@@ -269,12 +269,12 @@
     "sold_out": "Derzeit online ausverkauft.",
     "no_product_information_provided": "Es stehen aktuell keine Information zur Verfügung.",
     "shipping": {
-      "general_info": "Das Porto für den Versand und die Rücksendung der Artikel sowie die Kosten für die Verpackung trägt ABOUT YOU. Bei Bestellungen mit mehreren Produkten kann es zu Teillieferungen kommen.",
-      "dhl_headline": "DHL Standard Versand - 0,00 EUR",
-      "dhl_paragraph": "Verfügbare Artikel werden in der Regel innerhalb von 1-3 Werktagen per DHL zugestellt.",
+      "general_info": "Die Versandkosten für den Versand und die Rücksendung der Artikel sowie die Verpackungskosten werden von SCAYLE übernommen. Bei Bestellungen mit mehreren Produkten kann es zu Teillieferungen kommen.",
+      "dhl_headline": "DHL Standardversand - 0,00 EUR",
+      "dhl_paragraph": "Sofort verfügbare Artikel werden in der Regel innerhalb von 1-3 Werktagen von DHL geliefert.",
       "hermes_headline": "Hermes – 0,00 EUR",
-      "hermes_paragraph": "Immediately available items Hermes usually delivers within 1-3 business days.",
-      "return_information": "Sollte das Retourenlabel in deiner Lieferung fehlen, kannst du jederzeit ein Neues Label bei unserem Kundenservice anfordern. Bei Fragen wenden Sie sich bitte an:"
+      "hermes_paragraph": "Sofort verfügbare Artikel werden in der Regel innerhalb von 1-3 Werktagen von Hermes geliefert.",
+      "return_information": "Falls das Rücksendeetikett in Ihrer Lieferung fehlt, können Sie jederzeit ein neues bei unserem Kundenservice anfordern."
     },
     "promotion": {
       "free_gift_conditions_met": {
@@ -302,7 +302,12 @@
     "store_selector_headline": "Kostenlose Abholung im Geschäft:",
     "check_store_availability": "Verfügbarkeit prüfen",
     "pickup_in_store": "Abholung im Geschäft:",
-    "sibling_error": "Fehler: Dieses Attribut wurde nicht gesetzt!"
+    "sibling_error": "Fehler: Dieses Attribut wurde nicht gesetzt!",
+    "information": {
+      "fit_size": "Passform & Größe",
+      "extras": "Extra",
+      "design": "Design"
+    }
   },
   "price": {
     "starting_from": "von",

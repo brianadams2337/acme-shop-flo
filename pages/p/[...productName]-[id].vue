@@ -1,75 +1,80 @@
 <template>
   <AsyncDataWrapper :status="productDataStatus">
-    <div
-      v-if="product"
-      class="flex flex-col items-start justify-between gap-8 xl:container max-md:space-y-5 md:flex-row md:space-x-4"
-    >
-      <ProductGallery
-        v-if="product"
-        :product="product"
-        class="md:sticky md:top-8 md:w-1/2"
-        product-image-slider-class="md:max-w-[528px]"
-      />
-      <div class="flex w-full flex-col gap-4 max-md:px-5 md:w-1/2">
-        <ProductBreadcrumbs
-          v-if="longestCategoryList"
-          class="mb-8 hidden md:block"
-          :product-categories="longestCategoryList"
+    <div v-if="product" class="xl:container">
+      <div
+        class="flex flex-col items-start justify-between gap-8 max-md:space-y-5 md:flex-row md:space-x-4"
+      >
+        <ProductGallery
+          :product="product"
+          class="md:sticky md:top-8 md:w-1/2"
+          product-image-slider-class="md:max-w-[528px]"
         />
-        <div>
-          <div class="font-semi-bold-variable text-gray-900">{{ brand }}</div>
-          <SFHeadline
+        <div class="flex w-full flex-col gap-4 max-md:px-5 md:w-1/2">
+          <ProductBreadcrumbs
+            v-if="longestCategoryList"
+            class="mb-8 hidden md:block"
+            :product-categories="longestCategoryList"
+          />
+          <div>
+            <span class="font-semi-bold-variable text-gray-900">{{
+              brand
+            }}</span>
+            <SFHeadline
+              size="lg"
+              class="text-md !font-normal text-gray-600 md:text-lg"
+              data-testid="pdp-product-name"
+              tag="h1"
+            >
+              {{ name }}
+            </SFHeadline>
+          </div>
+
+          <ProductPromotionBanners
+            v-if="product && automaticDiscountPromotion"
+            :product="product"
+          />
+          <ProductPromotionBanners v-if="product" :product="product" />
+
+          <ProductPrice
+            v-if="price"
             size="lg"
-            class="text-md !font-normal text-gray-600 md:text-lg"
-            data-testid="pdp-product-name"
-            tag="h1"
+            class="mt-3"
+            :promotion="automaticDiscountPromotion"
+            :price="price"
+            type="normal"
+            show-tax-info
+            :show-price-from="showFrom"
+          />
+          <div
+            v-if="product?.isSoldOut"
+            class="rounded-xl bg-red-100 p-4 text-md text-red"
           >
-            {{ name }}
-          </SFHeadline>
-        </div>
+            {{ $t('pdp.sold_out') }}
+          </div>
+          <SiblingSelection :product="product" />
 
-        <ProductPromotionBanners
-          v-if="product && automaticDiscountPromotion"
-          :product="product"
-        />
-        <ProductPrice
-          v-if="price"
-          size="lg"
-          class="mt-3"
-          :promotion="automaticDiscountPromotion"
-          :price="price"
-          type="normal"
-          show-tax-info
-          :show-price-from="showFrom"
-        />
-        <div
-          v-if="product?.isSoldOut"
-          class="rounded-xl bg-red-100 p-4 text-md text-red"
-        >
-          {{ $t('pdp.sold_out') }}
-        </div>
-        <SiblingSelection :product="product" />
-
-        <ProductPromotionBanners :product="product" />
-        <ProductActions
-          v-model:active-variant="activeVariant"
-          :product="product"
-          :promotion="automaticDiscountPromotion ?? undefined"
-        />
-        <SFFadeInTransition>
-          <StoreVariantAvailability
+          <ProductPromotionBanners :product="product" />
+          <ProductActions
+            v-model:active-variant="activeVariant"
+            :product="product"
+            :promotion="automaticDiscountPromotion ?? undefined"
+          />
+          <SFFadeInTransition>
+            <StoreVariantAvailability
+              v-if="activeVariant?.id"
+              :selected-store-id="selectedStoreId"
+              :variant-id="activeVariant.id"
+            />
+          </SFFadeInTransition>
+          <LazyStoreLocatorSlideIn
             v-if="activeVariant?.id"
-            :selected-store-id="selectedStoreId"
+            v-model:selectedStoreId="selectedStoreId"
             :variant-id="activeVariant.id"
           />
-        </SFFadeInTransition>
-        <LazyStoreLocatorSlideIn
-          v-if="activeVariant?.id"
-          v-model:selectedStoreId="selectedStoreId"
-          :variant-id="activeVariant.id"
-        />
-        <div class="h-screen bg-slate-400">placeholder adas</div>
+          <div class="h-screen bg-slate-400">placeholder adas</div>
+        </div>
       </div>
+      <ProductDetails :product="product" />
     </div>
     <template #loading>
       <SFSkeletonLoader />

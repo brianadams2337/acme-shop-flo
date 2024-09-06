@@ -20,8 +20,8 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import type { PropType } from 'vue'
-import { isEqual, pick } from 'radash'
 import { useNuxtApp } from '#app'
+import { isEqual } from '~/utils/object'
 
 export type SummaryItem = {
   name: 'shipping' | 'billing'
@@ -41,12 +41,24 @@ const props = defineProps({
 
 const { $i18n } = useNuxtApp()
 
+const pickElements = (
+  objectValue: Record<string, unknown>,
+  keysList: string[],
+) =>
+  Object.fromEntries(
+    keysList
+      .filter((key) => key in objectValue)
+      .map((key) => [key, objectValue[key]]),
+  )
+
 const isShippingSameAsBillingAddress = computed(() => {
   if (!props.shippingAddress || !props.billingAddress) {
     return false
   }
+
   type RecipientProps = 'firstName' | 'lastName'
   type AddressProps = 'street' | 'houseNumber' | 'zipCode' | 'city'
+
   const propertiesToCheck = [
     'street',
     'houseNumber',
@@ -54,18 +66,25 @@ const isShippingSameAsBillingAddress = computed(() => {
     'city',
     'additional',
   ] as AddressProps[]
+
   const recipientPropertiesToCheck = [
     'firstName',
     'lastName',
   ] as RecipientProps[]
+
   const shippingAddressProps = {
-    ...pick(props.shippingAddress, propertiesToCheck),
-    ...pick(props.shippingAddress.recipient, recipientPropertiesToCheck),
+    ...pickElements(props.shippingAddress, propertiesToCheck),
+    ...pickElements(
+      props.shippingAddress.recipient,
+      recipientPropertiesToCheck,
+    ),
   }
+
   const billingAddressProps = {
-    ...pick(props.billingAddress, propertiesToCheck),
-    ...pick(props.billingAddress.recipient, recipientPropertiesToCheck),
+    ...pickElements(props.billingAddress, propertiesToCheck),
+    ...pickElements(props.billingAddress.recipient, recipientPropertiesToCheck),
   }
+
   return isEqual(shippingAddressProps, billingAddressProps)
 })
 
@@ -74,8 +93,10 @@ const items = computed<SummaryItem[]>(() => {
     const label = $i18n.t('my_account.orders.address_label')
     return [{ name: 'shipping', label }]
   }
+
   const shippingLabel = $i18n.t('my_account.orders.shipping_address_label')
   const billingLabel = $i18n.t('my_account.orders.billing_address_label')
+
   return [
     { name: 'shipping', label: shippingLabel },
     { name: 'billing', label: billingLabel },

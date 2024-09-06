@@ -1,5 +1,4 @@
 import { extendPromise } from '@scayle/storefront-nuxt'
-import { unique } from 'radash'
 import { computed } from 'vue'
 import { useBasket, useCurrentPromotions } from '#storefront/composables'
 import { isAutomaticDiscountType, isBuyXGetYType } from '~/utils'
@@ -27,16 +26,23 @@ export function useBasketPromotions() {
   })
 
   const buyXGetYPromotions = computed(() => {
-    return unique(
-      appliedPromotions.value.filter(isBuyXGetYType),
-      ({ id }) => id,
+    const appliedPromotionsBuyXGetX =
+      appliedPromotions.value.filter(isBuyXGetYType)
+
+    return appliedPromotionsBuyXGetX.filter(
+      (item, index, self) =>
+        index === self.findIndex((arrayItem) => arrayItem.id === item.id),
     )
   })
 
   const automaticDiscountPromotions = computed(() => {
-    return unique(
-      appliedPromotions.value.filter(isAutomaticDiscountType),
-      ({ id }) => id,
+    const appliedPromotionsAutomaticDiscount = appliedPromotions.value.filter(
+      isAutomaticDiscountType,
+    )
+
+    return appliedPromotionsAutomaticDiscount.filter(
+      (item, index, self) =>
+        index === self.findIndex((arrayItem) => arrayItem.id === item.id),
     )
   })
 

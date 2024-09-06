@@ -32,7 +32,6 @@
 
 <script setup lang="ts">
 import { computed } from 'vue'
-import { unique } from 'radash'
 import type { VariantDetail } from '@scayle/storefront-api'
 import type { ListOfPackages } from '@scayle/storefront-nuxt'
 
@@ -48,7 +47,11 @@ type CarrierMap = Record<
 >
 
 const uniqueItems = computed(() => {
-  return unique(props.orderItems, (it) => it.variant.id)
+  return props.orderItems.filter(
+    (item, index, self) =>
+      index ===
+      self.findIndex((arrayItem) => arrayItem.variant.id === item.variant.id),
+  )
 })
 
 const carrierBundledItemsMap = computed<CarrierMap | undefined>(() => {

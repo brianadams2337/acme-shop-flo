@@ -1,4 +1,3 @@
-import { isEqual } from 'radash'
 import {
   type AppliedReduction,
   type BasketResponseData,
@@ -16,6 +15,7 @@ import {
   getOriginalPrice,
   getPrice,
 } from '@scayle/storefront-nuxt'
+import { isEqual } from './object'
 import { divideByHundred } from '~/utils/price'
 
 // TODO: Add tests

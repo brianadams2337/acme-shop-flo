@@ -6,7 +6,6 @@ import type {
   BreadcrumbList,
 } from 'schema-dts'
 import { parseURL, stringifyParsedURL, parseQuery, stringifyQuery } from 'ufo'
-import { pick } from 'radash'
 import type { BreadcrumbItem } from '~/types/breadcrumbs'
 
 const CANONICAL_PARAMS_WHITELIST = ['page']
@@ -31,7 +30,11 @@ export const sanitizeCanonicalURL = (
     whitelistParams.includes(key),
   )
 
-  const purifiedQuery = pick(parsedQuery, orderedWhitelistParams)
+  const purifiedQuery = Object.fromEntries(
+    orderedWhitelistParams
+      .filter((key) => key in parsedQuery)
+      .map((key) => [key, parsedQuery[key]]),
+  )
 
   return stringifyParsedURL({
     ...parsedURL,

@@ -8,7 +8,6 @@
 import { defineOptions, ref } from 'vue'
 import { useIntersectionObserver } from '@vueuse/core'
 import type { MaybeComputedElementRef } from '@vueuse/core'
-import { pick } from 'radash'
 
 type Props = {
   threshold?: number[] | number
@@ -37,7 +36,12 @@ const { stop } = useIntersectionObserver(
       ? emit('enter', observerEntry, stop)
       : emit('leave', observerEntry)
   },
-  pick(props, ['threshold', 'root', 'rootMargin']),
+  // Explicitly picking relevant values for intersection observer
+  {
+    threshold: props.threshold,
+    root: props.root,
+    rootMargin: props.rootMargin,
+  },
 )
 
 defineOptions({ name: 'IntersectionObserver' })

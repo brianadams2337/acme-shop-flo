@@ -1,4 +1,3 @@
-import { group } from 'radash'
 import {
   type BasketItem,
   getFirstAttributeValue,
@@ -50,5 +49,13 @@ export const getPartitionedBasketItems = (items: BasketItem[] = []) => {
 export const bundleBasketItemsByGroup = (
   items: BasketItem[] = [],
 ): BundledBasketItems<BasketItem> => {
-  return group(items, (item: BasketItem) => item.itemGroup?.id ?? '-1')
+  return items.reduce(
+    (acc, item) => {
+      const groupId = item.itemGroup?.id ?? '-1'
+      if (!acc[groupId]) acc[groupId] = []
+      acc[groupId].push(item)
+      return acc
+    },
+    {} as Record<string, BasketItem[]>,
+  )
 }

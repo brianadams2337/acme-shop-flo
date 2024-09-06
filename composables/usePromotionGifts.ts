@@ -1,5 +1,4 @@
 import { type Product, extendPromise } from '@scayle/storefront-nuxt'
-import { unique } from 'radash'
 import { computed } from 'vue'
 import { useProductPromotions } from '~/composables/useProductPromotions'
 import {
@@ -52,7 +51,13 @@ export function usePromotionGifts(product: Product, key?: string) {
   })
 
   const products = computed(() => {
-    const items = unique(productsData.value || [], ({ id }) => id)
+    const items = !productsData.value
+      ? []
+      : productsData.value.filter(
+          (item, index, self) =>
+            index === self.findIndex((arrayItem) => arrayItem.id === item.id),
+        )
+
     return items.map((item) => {
       const filteredVariants = item.variants?.filter(({ id }) => {
         return variantIds.value.includes(id)

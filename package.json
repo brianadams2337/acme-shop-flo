@@ -121,7 +121,6 @@
     "nuxi": "3.13.1",
     "nuxt-jsonld": "2.0.8",
     "nuxt-swiper": "1.2.2",
-    "radash": "12.1.0",
     "redis": "4.7.0",
     "schema-dts": "1.1.2",
     "storyblok-js-client": "6.9.2",

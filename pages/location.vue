@@ -2,7 +2,7 @@
   <div class="relative">
     <div class="h-[calc(100vh-220px)] w-full">
       <StoreLocatorMap
-        v-model:selectedStoreId="selectedStoreId"
+        v-model:selected-store-id="selectedStoreId"
         :stores="stores"
         :api-key="googleMapsKey"
       />
@@ -56,7 +56,7 @@
       </div>
       <StoreList
         v-if="stores.length"
-        v-model:selectedStoreId="selectedStoreId"
+        v-model:selected-store-id="selectedStoreId"
         :stores="stores"
       />
     </div>

@@ -51,7 +51,7 @@
         </div>
         <StoreList
           v-else
-          v-model:selectedStoreId="currentSelectedStoreId"
+          v-model:selected-store-id="currentSelectedStoreId"
           :stores="stores"
           class="mt-5"
         />

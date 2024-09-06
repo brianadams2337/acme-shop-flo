@@ -296,7 +296,7 @@ export default {
     },
   },
   plugins: [
-    plugin(({ addUtilities }) => {
+    plugin(({ addUtilities, addVariant }) => {
       const utilities = {
         '.top-white-shadow': {
           boxShadow: '0 -22px 10px 0 #fff',
@@ -346,8 +346,14 @@ export default {
           padding: '0',
           border: '0',
         },
+        '.transition-discrete': {
+          'transition-behavior': 'allow-discrete',
+        },
       }
       addUtilities(utilities)
+      // https://github.com/tailwindlabs/tailwindcss/pull/12040
+      addVariant('starting', '@starting-style')
+      addVariant('loaded', 'body.loaded &')
     }),
   ],
 }

@@ -74,6 +74,12 @@ useHead({
       isSideNavigationOpen.value ? 'overflow-hidden h-full' : '',
     ],
   }),
+  script: [
+    {
+      // Add loaded class to body after DOMContentLoaded
+      children: `document.addEventListener('DOMContentLoaded', () => { document.body.classList.add('loaded'); });`,
+    },
+  ],
 })
 
 defineOptions({ name: 'AppDefault' })

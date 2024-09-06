@@ -16,9 +16,14 @@
         name: 'Product Recommendation List',
         id: 'ProductRecommendationList',
       }"
-      :name="getFirstAttributeValue(recommendation.attributes, 'name')?.label"
+      :name="getName(recommendation.attributes)"
       :class="sizeClasses"
-      :link="getProductDetailRoute(recommendation)"
+      :link="
+        getProductDetailRoute(
+          recommendation.id,
+          getName(recommendation.attributes),
+        )
+      "
       :image="getPrimaryImage(recommendation.images)"
       :price="getLowestPrice(recommendation.variants ?? [])"
       :show-add-to-cart="false"
@@ -34,6 +39,7 @@
 import { computed, ref } from 'vue'
 import {
   type Product,
+  type Attributes,
   getFirstAttributeValue,
   getLowestPrice,
   isFirstIndexOfRow,
@@ -54,6 +60,9 @@ type Props = {
 }
 
 const props = withDefaults(defineProps<Props>(), { size: Size.MD })
+
+const getName = (attributes?: Attributes) =>
+  getFirstAttributeValue(attributes, 'name')?.label
 
 const {
   sliderProducts,

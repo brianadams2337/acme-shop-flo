@@ -1,7 +1,7 @@
 <template>
   <div>
     <SFLink
-      :to="getProductDetailRoute(product)"
+      :to="getProductDetailRoute(product.id, name)"
       class="relative overflow-hidden rounded-md bg-gray-200"
     >
       <ProductImage

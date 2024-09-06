@@ -11,7 +11,12 @@
       <SearchResultItem
         v-for="item in items"
         :key="item.productSuggestion.product.id"
-        :to="getProductDetailRoute(item.productSuggestion.product)"
+        :to="
+          getProductDetailRoute(
+            item.productSuggestion.product.id,
+            getSuggestionName(item),
+          )
+        "
         :image-url="getImageUrl(item)"
         @click:result="emit('click:result', item)"
       >

@@ -1,5 +1,8 @@
 import { useDebounceFn } from '@vueuse/core'
-import type { SearchV2With } from '@scayle/storefront-nuxt'
+import {
+  getFirstAttributeValue,
+  type SearchV2With,
+} from '@scayle/storefront-nuxt'
 import { computed } from 'vue'
 import { useRouteHelpers } from '~/composables/useRouteHelpers'
 import { useTrackingEvents } from '~/composables/useTrackingEvents'
@@ -60,7 +63,12 @@ export function useSearchData(
 
     if (isProductSuggestion(resolved)) {
       const { product } = resolved.productSuggestion
-      return await localizedNavigateTo(getProductDetailRoute(product))
+      return await localizedNavigateTo(
+        getProductDetailRoute(
+          product.id,
+          getFirstAttributeValue(product.attributes, 'name')?.label,
+        ),
+      )
     }
 
     if (isCategorySuggestion(resolved)) {

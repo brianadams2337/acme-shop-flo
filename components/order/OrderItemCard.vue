@@ -1,5 +1,5 @@
 <template>
-  <SFLink :to="getOrderProductDetailRoute(product)" class="w-full">
+  <SFLink :to="getProductDetailRoute(product.id, name)" class="w-full">
     <div class="w-full divide-y divide-gray-500">
       <div class="flex h-28 justify-between space-x-4 md:space-x-0">
         <div class="mr-2 w-1/5 flex-none">
@@ -80,7 +80,7 @@ type Props = {
 
 const props = withDefaults(defineProps<Props>(), { quantity: 1 })
 
-const { getOrderProductDetailRoute } = useRouteHelpers()
+const { getProductDetailRoute } = useRouteHelpers()
 const { formatCurrency } = useFormatHelpers()
 const name = computed(() => props.product.name)
 

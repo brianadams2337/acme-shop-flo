@@ -1,7 +1,7 @@
 <template>
   <div class="flex w-full" data-testid="product-promotion-gift-item">
     <SFLink
-      :to="getProductDetailRoute(product)"
+      :to="getProductDetailRoute(product.id, name)"
       raw
       class="relative mr-3 flex w-32 items-center rounded-md bg-gray-200"
     >

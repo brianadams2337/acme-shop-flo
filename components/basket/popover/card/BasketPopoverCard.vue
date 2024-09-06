@@ -4,7 +4,7 @@
   >
     <SFLink
       v-if="mainItem"
-      :to="getProductDetailRoute(mainItem.product)"
+      :to="getProductDetailRoute(mainItem.product.id, name)"
       class="flex text-sm"
       :class="{ 'opacity-40': isSoldOut }"
     >
@@ -58,7 +58,7 @@ const mainItem = computed(() => {
   return basketItem as BasketItem
 })
 const { getProductDetailRoute } = useRouteHelpers()
-const { isSoldOut } = useBasketItem(mainItem)
+const { isSoldOut, name } = useBasketItem(mainItem)
 
 const addOnItems = computed(() =>
   props.items.filter((item) => item.itemGroup && !item.itemGroup.isMainItem),

@@ -35,7 +35,7 @@
 
 <script setup lang="ts">
 import { computed, ref } from 'vue'
-import type { ProductSibling } from '@scayle/storefront-nuxt'
+import type { ProductSibling } from '~/types/siblings'
 
 type Props = {
   items?: ProductSibling[]

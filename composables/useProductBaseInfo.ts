@@ -69,7 +69,9 @@ export function useProductBaseInfo(
   })
 
   const link = computed(() => {
-    return product.value ? getProductDetailRoute(product.value) : undefined
+    return product.value
+      ? getProductDetailRoute(product.value.id, name.value)
+      : undefined
   })
 
   const alt = computed(() => {

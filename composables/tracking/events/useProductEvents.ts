@@ -1,4 +1,5 @@
 import type { Product } from '@scayle/storefront-nuxt'
+import { getFirstAttributeValue } from '@scayle/storefront-nuxt'
 import { useCurrentShop } from '#storefront/composables'
 import { useRouteHelpers } from '~/composables/useRouteHelpers'
 import { getDeepestCategoryForTracking } from '~/utils'
@@ -39,7 +40,10 @@ const useProductEvents = (
     }: TrackSelectItemEventParams) => {
       const payload = {
         product,
-        destinationUrl: getProductDetailRoute(product),
+        destinationUrl: getProductDetailRoute(
+          product.id,
+          getFirstAttributeValue(product.attributes, 'name')?.label,
+        ),
         destination: `product|${product.id}`,
         quantity,
         category: category
@@ -91,7 +95,12 @@ const useProductEvents = (
               positionOffset > -1
                 ? positionOffset + product.index + 1
                 : undefined,
-            destinationUrl: String(getProductDetailRoute(product as Product)),
+            destinationUrl: String(
+              getProductDetailRoute(
+                product.id,
+                getFirstAttributeValue(product.attributes, 'name')?.label,
+              ),
+            ),
             destination: `product|${product.id}`,
             source:
               source ||

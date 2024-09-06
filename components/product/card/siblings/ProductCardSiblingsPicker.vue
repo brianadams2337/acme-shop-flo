@@ -3,7 +3,7 @@
     <SFLink
       v-for="({ id, name, image, colors }, index) in itemsToShow"
       :key="id"
-      :to="getProductDetailRoute(product, id)"
+      :to="getProductDetailRoute(id, name)"
       class="relative mr-2 flex size-12 items-center justify-center overflow-hidden rounded-md bg-gray-200"
       :class="classForIndex(index)"
       data-testid="product-sibling"
@@ -23,7 +23,7 @@
     </SFLink>
     <SFLink
       v-if="siblings.length > 2"
-      :to="getProductDetailRoute(product)"
+      :to="productRoute"
       raw
       class="hidden text-sm font-medium text-gray-500 max-lg:block"
     >
@@ -31,7 +31,7 @@
     </SFLink>
     <SFLink
       v-if="siblings.length > 3"
-      :to="getProductDetailRoute(product)"
+      :to="productRoute"
       raw
       class="hidden text-sm font-medium text-gray-500 lg:max-xl:block"
     >
@@ -39,7 +39,7 @@
     </SFLink>
     <SFLink
       v-if="siblings.length > 4"
-      :to="getProductDetailRoute(product)"
+      :to="productRoute"
       raw
       class="hidden text-sm font-medium text-gray-500 xl:block"
     >
@@ -51,6 +51,7 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import type { Product } from '@scayle/storefront-nuxt'
+import { getFirstAttributeValue } from '@scayle/storefront-nuxt'
 import type { ProductSibling } from '~/types/siblings'
 import { useRouteHelpers } from '~/composables'
 import { PRODUCT_CARD_SIBLINGS_LIMIT } from '~/constants'
@@ -67,6 +68,13 @@ const { getProductDetailRoute } = useRouteHelpers()
 
 const itemsToShow = computed(() =>
   props.siblings.slice(0, PRODUCT_CARD_SIBLINGS_LIMIT),
+)
+
+const productRoute = computed(() =>
+  getProductDetailRoute(
+    props.product.id,
+    getFirstAttributeValue(props.product.attributes, 'name')?.label,
+  ),
 )
 
 // TODO: This is something that could be improved when we update to Tailwind 4

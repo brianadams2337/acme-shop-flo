@@ -15,7 +15,7 @@ vi.mock('#i18n', () => ({
 }))
 vi.mock('~/composables', () => ({
   useRouteHelpers: vi.fn().mockReturnValue({
-    getProductDetailRoute: (product: Product) => product.id,
+    getProductDetailRoute: (id: number) => id,
   }),
 }))
 

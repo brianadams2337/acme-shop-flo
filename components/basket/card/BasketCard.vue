@@ -12,7 +12,7 @@
           @keydown.enter="selectItem"
         >
           <SFLink
-            :to="getProductDetailRoute(product)"
+            :to="getProductDetailRoute(product.id, name)"
             class="grid h-full grid-cols-1 grid-rows-1 rounded-md bg-gray-200 p-2"
           >
             <ProductImage
@@ -43,7 +43,7 @@
           <div class="flex grow flex-col justify-between gap-2 lg:pt-4">
             <div>
               <SFLink
-                :to="getProductDetailRoute(product)"
+                :to="getProductDetailRoute(product.id, name)"
                 class="block !whitespace-normal"
                 @click.capture="selectItem"
                 @keydown.enter="selectItem"

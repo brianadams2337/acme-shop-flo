@@ -1,7 +1,6 @@
 import {
   type Category,
   type CategorySearchSuggestion,
-  type Product,
   type SearchEntity,
   getFirstAttributeValue,
   slugify,
@@ -30,25 +29,11 @@ export function useRouteHelpers() {
     return navigateTo(getLocalizedRoute(route), options)
   }
 
-  const getProductDetailRoute = (product: Product, id?: number): string => {
-    const name = getFirstAttributeValue(product.attributes, 'name')?.label
+  const getProductDetailRoute = (id: number, name?: string): string => {
     return localePath({
       name: 'p-slug',
       params: {
-        slug: `${slugify(name)}-${id || product.id}`,
-      },
-    })
-  }
-
-  const getOrderProductDetailRoute = (
-    product: OrderProduct,
-    id?: number,
-  ): string => {
-    const name = product.attributes.name.label
-    return localePath({
-      name: 'p-slug',
-      params: {
-        slug: `${slugify(name)}-${id || product.id}`,
+        slug: name ? `${slugify(name)}-${id}` : `${id}`,
       },
     })
   }
@@ -78,7 +63,13 @@ export function useRouteHelpers() {
     }
 
     if (isProductSuggestion(suggestion)) {
-      return getProductDetailRoute(suggestion.productSuggestion.product)
+      return getProductDetailRoute(
+        suggestion.productSuggestion.product.id,
+        getFirstAttributeValue(
+          suggestion.productSuggestion.product.attributes,
+          'name',
+        )?.label,
+      )
     }
 
     if (isCategorySuggestion(suggestion)) {
@@ -121,7 +112,6 @@ export function useRouteHelpers() {
   return {
     localizedNavigateTo,
     getProductDetailRoute,
-    getOrderProductDetailRoute,
     getSearchRoute,
     getSearchSuggestionPath,
     getOrderDetailsRoute,

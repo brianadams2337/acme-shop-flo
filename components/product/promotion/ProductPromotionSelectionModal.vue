@@ -110,7 +110,7 @@
                   type="raw"
                   no-padding
                   size="xs"
-                  :to="getProductDetailRoute(product)"
+                  :to="getProductDetailRoute(product.id, productName)"
                   class="font-semibold"
                 >
                   {{ $t('pdp.details_label') }}

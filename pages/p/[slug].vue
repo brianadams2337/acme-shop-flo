@@ -119,7 +119,7 @@
                 <template #item="{ item }">
                   <ProductColorChip
                     v-if="item.colors.length"
-                    :to="getProductDetailRoute(product, item.id)"
+                    :to="getProductDetailRoute(item.id, item.name)"
                     :is-active="item.id === product.id"
                     :size="Size.LG"
                     :color="item.colors[0] as ProductColor"
@@ -355,7 +355,10 @@ useHead(() => {
         rel: 'canonical',
         key: 'canonical',
         href: sanitizeCanonicalURL(
-          `${$config.baseUrl}${getProductDetailRoute(product?.value)}`,
+          `${$config.baseUrl}${getProductDetailRoute(
+            product?.value.id,
+            productName.value,
+          )}`,
         ),
       },
     ],

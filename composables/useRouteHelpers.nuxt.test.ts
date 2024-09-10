@@ -32,7 +32,7 @@ describe('useRouteHelpers', () => {
       expect(getProductDetailRoute(1, 'test-product')).toStrictEqual(
         '/de/p/test-product-1',
       )
-      expect(getProductDetailRoute(2)).toStrictEqual('/de/p/2')
+      expect(getProductDetailRoute(2, 'name')).toStrictEqual('/de/p/name-2')
       expect(getProductDetailRoute(1, 'HelloWorld')).toStrictEqual(
         '/de/p/helloworld-1',
       )

@@ -29,7 +29,7 @@ export function useRouteHelpers() {
     return navigateTo(getLocalizedRoute(route), options)
   }
 
-  const getProductDetailRoute = (id: number, name?: string): string => {
+  const getProductDetailRoute = (id: number, name: string): string => {
     return localePath({
       name: 'p-productName-id',
       params: {
@@ -64,12 +64,18 @@ export function useRouteHelpers() {
     }
 
     if (isProductSuggestion(suggestion)) {
+      const name = getFirstAttributeValue(
+        suggestion.productSuggestion.product.attributes,
+        'name',
+      )?.label
+
+      if (!name) {
+        return
+      }
+
       return getProductDetailRoute(
         suggestion.productSuggestion.product.id,
-        getFirstAttributeValue(
-          suggestion.productSuggestion.product.attributes,
-          'name',
-        )?.label,
+        name,
       )
     }
 

@@ -35,8 +35,9 @@
       leave-to-class="translate-y-full md:-translate-y-10 opacity-0"
     >
       <div
+        v-if="isDropdownListVisible"
         v-popover="isDropdownListVisible"
-        class="absolute m-0 mt-2 w-full rounded-md bg-white p-2 shadow-secondary ring-1 ring-gray-300 focus:outline-none"
+        class="absolute m-0 w-full rounded-md bg-white p-2 shadow-secondary ring-1 ring-gray-300 focus:outline-none"
         :class="[
           {
             'rounded-t-md md:rounded-md': radius == 'md',
@@ -80,8 +81,8 @@
 <script setup lang="ts" generic="T">
 import { defineModel, ref, watch } from 'vue'
 import { onClickOutside, useEventListener } from '@vueuse/core'
-import { useDefaultBreakpoints } from '~/composables'
 import { vPopover } from '../../directives/popover'
+import { useDefaultBreakpoints } from '~/composables'
 
 type Props = {
   items: NonNullable<T>[]
@@ -109,7 +110,6 @@ const selectItem = (item: T) => {
   isDropdownListVisible.value = false
 }
 
-const dropdownOptions = ref()
 const dropdownContainer = ref()
 
 onClickOutside(dropdownContainer, () => {

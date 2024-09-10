@@ -30,7 +30,7 @@
           </div>
 
           <ProductPromotionBanners
-            v-if="product && automaticDiscountPromotion"
+            v-if="product"
             class="max-md:px-5"
             :product="product"
           />
@@ -47,7 +47,6 @@
           />
           <SiblingSelection :product="product" class="max-md:px-5" />
 
-          <ProductPromotionBanners :product="product" class="max-md:px-5" />
           <ProductActions
             v-model:active-variant="activeVariant"
             :product="product"

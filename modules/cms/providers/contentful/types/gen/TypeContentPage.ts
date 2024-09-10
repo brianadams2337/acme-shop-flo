@@ -11,7 +11,6 @@ import type { TypeDoubleColumnSkeleton } from './TypeDoubleColumn'
 import type { TypeGridSkeleton } from './TypeGrid'
 import type { TypeImageSkeleton } from './TypeImage'
 import type { TypeImageSliderSkeleton } from './TypeImageSlider'
-import type { TypeMammutCeSkeleton } from './TypeMammutCe'
 import type { TypeNestedParagraphSkeleton } from './TypeNestedParagraph'
 import type { TypeParagraphSkeleton } from './TypeParagraph'
 import type { TypeProductSliderSkeleton } from './TypeProductSlider'
@@ -35,7 +34,6 @@ export interface TypeContentPageFields {
       | TypeGridSkeleton
       | TypeImageSkeleton
       | TypeImageSliderSkeleton
-      | TypeMammutCeSkeleton
       | TypeNestedParagraphSkeleton
       | TypeParagraphSkeleton
       | TypeProductSliderSkeleton

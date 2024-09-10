@@ -11,7 +11,7 @@ import type { ContentfulModuleOptions } from './types'
 
 export async function setupContentful(options: ModuleOptions, nuxt: Nuxt) {
   const resolver = createResolver(import.meta.url)
-  logger.info('Setting up Contentful as CMS provider')
+  logger.info('Using Contentful as Storefront CMS provider')
 
   const runtimeCMS = nuxt.options.runtimeConfig?.public.cms
 

@@ -5,7 +5,6 @@ import type {
   EntrySkeletonType,
   LocaleCode,
 } from 'contentful'
-import type { TypeListingDisruptorSkeleton } from './TypeListingDisruptor'
 import type { TypeSeoSkeleton } from './TypeSeo'
 
 export interface TypeListingPageFields {
@@ -15,9 +14,6 @@ export interface TypeListingPageFields {
   teaserImageMobile?: EntryFieldTypes.AssetLink
   preListingContent?: EntryFieldTypes.Array<
     EntryFieldTypes.EntryLink<EntrySkeletonType>
-  >
-  listing?: EntryFieldTypes.Array<
-    EntryFieldTypes.EntryLink<TypeListingDisruptorSkeleton>
   >
   postListingContent?: EntryFieldTypes.Array<
     EntryFieldTypes.EntryLink<EntrySkeletonType>

@@ -9,7 +9,13 @@ import type {
 export interface TypeSocialMediaLinkFields {
   uid?: EntryFieldTypes.Symbol
   type: EntryFieldTypes.Symbol<
-    'facebook' | 'instagram' | 'snapchat' | 'twitter' | 'youtube'
+    | 'facebook'
+    | 'instagram'
+    | 'linkedin'
+    | 'messenger'
+    | 'snapchat'
+    | 'twitter'
+    | 'youtube'
   >
   url?: EntryFieldTypes.Symbol
   isActive?: EntryFieldTypes.Boolean

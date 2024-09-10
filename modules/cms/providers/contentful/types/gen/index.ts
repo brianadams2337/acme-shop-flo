@@ -196,17 +196,6 @@ export type {
   TypeLinkTypeWithoutLinkResolutionResponse,
   TypeLinkTypeWithoutUnresolvableLinksResponse,
 } from './TypeLinkType'
-export { isTypeListingDisruptor } from './TypeListingDisruptor'
-export type {
-  TypeListingDisruptor,
-  TypeListingDisruptorFields,
-  TypeListingDisruptorSkeleton,
-  TypeListingDisruptorWithAllLocalesAndWithoutLinkResolutionResponse,
-  TypeListingDisruptorWithAllLocalesAndWithoutUnresolvableLinksResponse,
-  TypeListingDisruptorWithAllLocalesResponse,
-  TypeListingDisruptorWithoutLinkResolutionResponse,
-  TypeListingDisruptorWithoutUnresolvableLinksResponse,
-} from './TypeListingDisruptor'
 export { isTypeListingPage } from './TypeListingPage'
 export type {
   TypeListingPage,
@@ -218,17 +207,6 @@ export type {
   TypeListingPageWithoutLinkResolutionResponse,
   TypeListingPageWithoutUnresolvableLinksResponse,
 } from './TypeListingPage'
-export { isTypeMammutCe } from './TypeMammutCe'
-export type {
-  TypeMammutCe,
-  TypeMammutCeFields,
-  TypeMammutCeSkeleton,
-  TypeMammutCeWithAllLocalesAndWithoutLinkResolutionResponse,
-  TypeMammutCeWithAllLocalesAndWithoutUnresolvableLinksResponse,
-  TypeMammutCeWithAllLocalesResponse,
-  TypeMammutCeWithoutLinkResolutionResponse,
-  TypeMammutCeWithoutUnresolvableLinksResponse,
-} from './TypeMammutCe'
 export { isTypeMargin } from './TypeMargin'
 export type {
   TypeMargin,
@@ -251,17 +229,6 @@ export type {
   TypeNestedParagraphWithoutLinkResolutionResponse,
   TypeNestedParagraphWithoutUnresolvableLinksResponse,
 } from './TypeNestedParagraph'
-export { isTypeNewsletter } from './TypeNewsletter'
-export type {
-  TypeNewsletter,
-  TypeNewsletterFields,
-  TypeNewsletterSkeleton,
-  TypeNewsletterWithAllLocalesAndWithoutLinkResolutionResponse,
-  TypeNewsletterWithAllLocalesAndWithoutUnresolvableLinksResponse,
-  TypeNewsletterWithAllLocalesResponse,
-  TypeNewsletterWithoutLinkResolutionResponse,
-  TypeNewsletterWithoutUnresolvableLinksResponse,
-} from './TypeNewsletter'
 export { isTypePage } from './TypePage'
 export type {
   TypePage,
@@ -361,28 +328,6 @@ export type {
   TypeSocialMediaLinkWithoutLinkResolutionResponse,
   TypeSocialMediaLinkWithoutUnresolvableLinksResponse,
 } from './TypeSocialMediaLink'
-export { isTypeStore } from './TypeStore'
-export type {
-  TypeStore,
-  TypeStoreFields,
-  TypeStoreSkeleton,
-  TypeStoreWithAllLocalesAndWithoutLinkResolutionResponse,
-  TypeStoreWithAllLocalesAndWithoutUnresolvableLinksResponse,
-  TypeStoreWithAllLocalesResponse,
-  TypeStoreWithoutLinkResolutionResponse,
-  TypeStoreWithoutUnresolvableLinksResponse,
-} from './TypeStore'
-export { isTypeStorePage } from './TypeStorePage'
-export type {
-  TypeStorePage,
-  TypeStorePageFields,
-  TypeStorePageSkeleton,
-  TypeStorePageWithAllLocalesAndWithoutLinkResolutionResponse,
-  TypeStorePageWithAllLocalesAndWithoutUnresolvableLinksResponse,
-  TypeStorePageWithAllLocalesResponse,
-  TypeStorePageWithoutLinkResolutionResponse,
-  TypeStorePageWithoutUnresolvableLinksResponse,
-} from './TypeStorePage'
 export { isTypeStory } from './TypeStory'
 export type {
   TypeStory,

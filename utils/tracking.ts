@@ -284,8 +284,11 @@ export const mapTrackingDataForEvent = (
         ],
       },
     }
-    // eslint-disable-next-line no-constant-binary-expression
-  } else if ('product' && 'currencyCode' in payload && payload.product) {
+  } else if (
+    'product' in payload &&
+    'currencyCode' in payload &&
+    payload.product
+  ) {
     const currency = payload.currencyCode
     const price =
       'variant' in payload && payload.variant
@@ -306,8 +309,11 @@ export const mapTrackingDataForEvent = (
         ],
       },
     }
-    // eslint-disable-next-line no-constant-binary-expression
-  } else if ('products' && 'currencyCode' in payload && payload.products) {
+  } else if (
+    'products' in payload &&
+    'currencyCode' in payload &&
+    payload.products
+  ) {
     const currency = payload.currencyCode
     const { pagePayload } = payload
 

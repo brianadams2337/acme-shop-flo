@@ -35,7 +35,7 @@
             'pointer-events-none':
               sibling.isSoldOut || sibling.id === product.id,
           }"
-          :to="getProductDetailRoute(product, sibling.id)"
+          :to="getProductDetailRoute(sibling.id, name)"
         >
           <ProductImage
             v-if="sibling.image"
@@ -91,7 +91,7 @@ type Props = {
 const { getProductDetailRoute } = useRouteHelpers()
 
 const props = defineProps<Props>()
-const { siblings } = useProductBaseInfo(props.product)
+const { siblings, name } = useProductBaseInfo(props.product)
 
 const hoveredColorLabel = ref()
 const { t } = useI18n()

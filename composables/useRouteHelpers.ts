@@ -29,27 +29,12 @@ export function useRouteHelpers() {
     return navigateTo(getLocalizedRoute(route), options)
   }
 
-  const getProductDetailRoute = (product: Product, id?: number): string => {
-    const name = getFirstAttributeValue(product.attributes, 'name')?.label
+  const getProductDetailRoute = (id: number, name?: string): string => {
     return localePath({
       name: 'p-productName-id',
       params: {
         productName: slugify(name),
-        id: `${id || product.id}`,
-      },
-    })
-  }
-
-  const getOrderProductDetailRoute = (
-    product: OrderProduct,
-    id?: number,
-  ): string => {
-    const name = product.attributes.name.label
-    return localePath({
-      name: 'p-productName-id',
-      params: {
-        productName: slugify(name),
-        id: `${id || product.id}`,
+        id: `${id}`,
       },
     })
   }

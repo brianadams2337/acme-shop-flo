@@ -60,7 +60,7 @@ import { getPromotionStyle } from '~/utils'
 
 type Props = {
   price: Price
-  promotion: Promotion | null
+  promotion: Promotion | null | undefined
   showTaxInfo?: boolean
   showPriceFrom?: boolean
   isFree?: boolean

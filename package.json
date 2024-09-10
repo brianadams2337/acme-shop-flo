@@ -95,7 +95,7 @@
     "@scayle/omnichannel-nuxt": "4.0.0",
     "@scayle/storefront-nuxt": "7.85.2",
     "@storyblok/nuxt": "6.0.10",
-    "@storyblok/vue": "8.0.9",
+    "@storyblok/vue": "8.1.0",
     "@tailwindcss/forms": "0.5.9",
     "@tailwindcss/typography": "0.5.15",
     "@types/google.maps": "3.58.0",

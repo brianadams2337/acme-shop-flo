@@ -111,7 +111,7 @@
     "color": "4.2.3",
     "consola": "3.2.3",
     "contentful-export": "7.19.148",
-    "contentful": "10.15.0",
+    "contentful": "10.15.1",
     "dotenv": "16.4.5",
     "global": "4.4.0",
     "globby": "14.0.2",

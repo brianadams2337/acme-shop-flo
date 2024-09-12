@@ -8,7 +8,10 @@
         <SFHeadline tag="h2" size="lg">
           {{ $t('promotion.my_deals_label') }} ({{ items.length }})
         </SFHeadline>
-        <ClosePromotionListButton position-class="right-5 top-3" />
+        <ClosePromotionListButton
+          position-class="right-5 top-3"
+          data-testid="close-promotion-button-mobile"
+        />
       </div>
       <SFHorizontalItemsSlider>
         <PromotionItem
@@ -16,6 +19,7 @@
           :key="item.id"
           :promotion="item"
           class="mr-4 last-of-type:mr-0"
+          data-testid="promotion-list-mobile"
         />
       </SFHorizontalItemsSlider>
     </div>

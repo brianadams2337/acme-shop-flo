@@ -7,6 +7,7 @@
     class="fixed bottom-0 z-80 flex max-h-32 w-full translate-y-0 cursor-pointer flex-col items-center justify-start rounded-tr-lg bg-blue p-4 text-sm text-white transition-transform duration-300 ease-in-out lg:hidden"
     :style="backgroundColorStyle"
     :class="{ 'translate-y-full': !isPromotionBannerShown }"
+    data-testid="promotion-banner-mobile"
     @click="togglePromotionList()"
     @keydown.enter="togglePromotionList()"
   >
@@ -33,6 +34,7 @@
             v-if="expirationDate"
             :time-until="expirationDate"
             class="self-stretch"
+            data-testid="promotion-countdown-mobile"
           />
           <ShowDealsButton
             v-if="isDealsButtonShown"
@@ -50,6 +52,7 @@
     </div>
     <TogglePromotionBannerButton
       class="absolute left-0 mt-[-2.875rem] inline-flex !rounded-none !rounded-t-lg"
+      data-testid="toggle-promo-button-mobile"
       is-mobile-view
     />
   </div>

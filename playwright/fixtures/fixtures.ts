@@ -16,6 +16,7 @@ import { MobileNavigation } from '../page-objects/components/mobileNavigation'
 import { WishlistPage } from '../page-objects/wishlistPage'
 import { Footer } from '../page-objects/components/footer'
 import { OrdersPage } from '../page-objects/ordersPage'
+import { Promotions } from '../page-objects/components/promotions'
 
 interface Fixtures {
   homePage: HomePage
@@ -35,6 +36,7 @@ interface Fixtures {
   wishlistPage: WishlistPage
   footer: Footer
   ordersPage: OrdersPage
+  promotions: Promotions
 }
 
 export type OutputMode = 'json' | 'html' | 'csv'
@@ -107,6 +109,10 @@ export const test = base.extend<Fixtures>({
   ordersPage: async ({ page }, use) => {
     const ordersPage = new OrdersPage(page)
     await use(ordersPage)
+  },
+  promotions: async ({ page }, use) => {
+    const promotions = new Promotions(page)
+    await use(promotions)
   },
 })
 export { expect } from '@playwright/test'

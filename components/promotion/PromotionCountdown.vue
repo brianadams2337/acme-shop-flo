@@ -20,7 +20,6 @@
           :time-until="timeUntil"
           :show-units="true"
           unit-size="short"
-          data-testid="promotion-countdown"
         />
       </SFFadeInTransition>
     </ClientOnly>

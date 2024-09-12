@@ -15,6 +15,7 @@
         <PromotionCountdown
           v-if="expirationDate"
           :time-until="expirationDate"
+          data-testid="promotion-countdown"
         />
       </div>
       <PromotionHeadline

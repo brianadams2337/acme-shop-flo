@@ -11,7 +11,10 @@
 
 <script lang="ts" setup>
 import { computed, defineOptions } from 'vue'
-import { renderRichText } from '@storyblok/vue'
+import {
+  richTextResolver,
+  type StoryblokRichTextNode,
+} from '@storyblok/richtext'
 import type { CMSTextProps } from '../types'
 
 const props = withDefaults(defineProps<CMSTextProps>(), {
@@ -19,8 +22,9 @@ const props = withDefaults(defineProps<CMSTextProps>(), {
 })
 
 const content = computed(() =>
-  // TODO: Fix types / override `renderRichText` definition
-  props.blok.body ? renderRichText(props.blok.body) : null,
+  richTextResolver().render(
+    props.blok.body as unknown as StoryblokRichTextNode,
+  ),
 )
 defineOptions({ name: 'CMSText' })
 </script>

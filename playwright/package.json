@@ -26,7 +26,9 @@
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "e2e:happy": "playwright test ./tests/e2e-happy-path.spec.ts",
-    "e2e:lighthouse": "playwright test ./tests/lighthouse/*.ts --project chromium"
+    "e2e:lighthouse": "playwright test ./tests/lighthouse/*.ts --project chromium",
+    "e2e:test": "playwright test ./tests/e2e*.spec.ts",
+    "e2e:ui": "playwright test --ui"
   },
   "author": "",
   "license": "ISC",

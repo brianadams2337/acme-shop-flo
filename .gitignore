@@ -25,9 +25,6 @@ logs
 
 .npmrc
 
-# Cypress
-.cypress.env.json
-
 # # automatically downloaded fonts
 assets/css/fonts.css
 assets/fonts
@@ -91,11 +88,6 @@ storybook-static
 # crowdIn
 .env_crowdin.yml
 .env.storyblok
-
-# Cypress
-cypress/results
-cypress/screenshots
-cypress/videos
 
 # Redis
 *.rdb

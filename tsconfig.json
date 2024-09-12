@@ -1,6 +1,6 @@
 {
   "extends": "./.nuxt/tsconfig.json",
-  "exclude": ["./cypress/**/*", "./playwright/**/*"],
+  "exclude": ["./playwright/**/*"],
   "compilerOptions": {
     "noImplicitAny": true
   }

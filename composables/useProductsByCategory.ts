@@ -8,7 +8,7 @@ import { useProducts } from '#storefront/composables'
 import { useProductListSort, useAppliedFilters } from '~/composables'
 import { useRoute } from '#app/composables/router'
 import {
-  PRODUCT_WITH_PARAMS,
+  PRODUCT_CARD_WITH_PARAMS,
   PRODUCTS_PER_PAGE,
   FETCH_PRODUCTS_CACHE_TTL,
 } from '~/constants'
@@ -41,7 +41,7 @@ export function useProductsByCategory(
       ...(route.query.page && { page: +route.query.page }),
       sort: selectedSort.value,
       perPage: Number(route.query.products_per_page) || PRODUCTS_PER_PAGE,
-      with: PRODUCT_WITH_PARAMS,
+      with: PRODUCT_CARD_WITH_PARAMS,
       category: category.value.path,
       includeSoldOut,
       includeSellableForFree,

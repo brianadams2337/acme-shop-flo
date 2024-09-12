@@ -41,6 +41,19 @@ export const PRODUCT_WITH_PARAMS: ProductWith = {
   lowestPriorPrice: true,
 }
 
+/**
+ * The default with params used when fetching products in the product list page
+ */
+export const PRODUCT_CARD_WITH_PARAMS: ProductWith = {
+  ...PRODUCT_WITH_PARAMS,
+  attributes: {
+    withKey: ['color', 'name', 'brand', 'storefrontBadge', 'promotion'],
+  },
+  advancedAttributes: {
+    withKey: [],
+  },
+}
+
 export const productListingMetaData = {
   name: 'PDP',
   id: 'PDP',

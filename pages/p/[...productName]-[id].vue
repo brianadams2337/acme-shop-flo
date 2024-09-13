@@ -132,15 +132,19 @@ if (error.value) {
 
 const { name, brand, longestCategoryList, hasOneVariantOnly, variants } =
   useProductBaseInfo(product)
-// On client side we need to wait for the data to be loaded before we know if a product has only one variant
-whenever(hasOneVariantOnly, () => {
-  activeVariant.value = variants.value[0]
-})
 
 const { automaticDiscountPromotion } = useProductPromotions(product)
 
 const { items } = useBasket()
 const activeVariant = ref<Variant>()
+// On client side we need to wait for the data to be loaded before we know if a product has only one variant
+whenever(
+  hasOneVariantOnly,
+  () => {
+    activeVariant.value = variants.value[0]
+  },
+  { immediate: true, once: true },
+)
 
 const price = computed(() => {
   const basketVariant = items.value?.find(

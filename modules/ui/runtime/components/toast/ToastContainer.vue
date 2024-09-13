@@ -1,5 +1,8 @@
 <template>
-  <div class="md:container md:relative">
+  <div
+    class="md:container md:fixed md:right-8 md:top-48 md:w-min"
+    :class="notifications.length ? 'z-110' : 'z-0'"
+  >
     <TransitionGroup
       name="notification"
       tag="div"
@@ -7,8 +10,7 @@
       leave-to-class="opacity-0 -z-10 -translate-y-8"
       leave-active-class="absolute"
       move-class="transition-all duration-500"
-      class="fixed bottom-0 flex w-full flex-col items-end gap-4 p-4 md:absolute md:right-0 md:top-24 md:w-min md:p-0"
-      :class="notifications.length ? 'z-110' : 'z-70'"
+      class="fixed bottom-0 flex w-full flex-col items-end gap-4 p-4 md:absolute"
     >
       <SFToast
         v-for="notification in notifications"

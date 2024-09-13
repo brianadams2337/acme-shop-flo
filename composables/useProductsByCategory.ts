@@ -1,9 +1,8 @@
 import {
   extendPromise,
-  type Category,
   type FetchProductsByCategoryParams,
 } from '@scayle/storefront-nuxt'
-import { type Ref, computed } from 'vue'
+import { type MaybeRefOrGetter, computed, toValue } from 'vue'
 import { useProducts } from '#storefront/composables'
 import { useProductListSort, useAppliedFilters } from '~/composables'
 import { useRoute } from '#app/composables/router'
@@ -14,7 +13,7 @@ import {
 } from '~/constants'
 
 export function useProductsByCategory(
-  category: Ref<Category>,
+  categoryId: MaybeRefOrGetter<number>,
   {
     params: {
       includeSoldOut = true,
@@ -42,19 +41,19 @@ export function useProductsByCategory(
       sort: selectedSort.value,
       perPage: Number(route.query.products_per_page) || PRODUCTS_PER_PAGE,
       with: PRODUCT_CARD_WITH_PARAMS,
-      category: category.value.path,
+      categoryId: toValue(categoryId),
       includeSoldOut,
       includeSellableForFree,
       pricePromotionKey,
       orFiltersOperator,
       cache: {
         ttl: FETCH_PRODUCTS_CACHE_TTL,
-        cacheKeyPrefix: `PLP:${category.value.id}`,
+        cacheKeyPrefix: `PLP:${toValue(categoryId)}`,
       },
       where: appliedFilter.value,
       ...restParams,
     }),
-    key: `${category.value.id}-products`,
+    key: `${toValue(categoryId)}-products`,
     options,
   })
 

@@ -25,7 +25,7 @@ const route = useRoute()
 if (!props.selectedCategory) {
   console.log('No category selected')
 }
-const { data } = await useCMSBySlug<SbListingPage>(
+const { data } = useCMSBySlug<SbListingPage>(
   `ListingPage-${route.path}`,
   // NOTE:We need to pass both the `c/` path, as well as the prefix `c-` plus
   // the selected categoryID to the useCMSBySlug composables.

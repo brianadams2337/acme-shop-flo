@@ -1,5 +1,5 @@
 import { toRef, type Ref } from 'vue'
-import type { Product, Category, CentAmount } from '@scayle/storefront-nuxt'
+import type { Product, CentAmount } from '@scayle/storefront-nuxt'
 import { describe, beforeEach, it, vi, expect } from 'vitest'
 import { useProductsByCategory } from './useProductsByCategory'
 import type { NuxtError } from '#app'
@@ -175,7 +175,7 @@ describe('useProductsByCategory', () => {
         total: 8,
       }
       const { totalProductsCount } = useProductsByCategory(
-        toRef<Category>(mocks.category),
+        toRef<number>(mocks.category.id),
       )
       expect(totalProductsCount.value).toEqual(8)
     })
@@ -195,7 +195,7 @@ describe('useProductsByCategory', () => {
       }
 
       const { paginationOffset } = useProductsByCategory(
-        toRef<Category>(mocks.category),
+        toRef<number>(mocks.category.id),
       )
 
       expect(paginationOffset.value).toEqual(0)
@@ -212,7 +212,7 @@ describe('useProductsByCategory', () => {
       ]
 
       const { products } = useProductsByCategory(
-        toRef<Category>(mocks.category),
+        toRef<number>(mocks.category.id),
       )
       expect(products.value.map(({ id }) => id)).toEqual([1, 2, 3, 4])
     })
@@ -221,7 +221,7 @@ describe('useProductsByCategory', () => {
       mocks.useProducts.data.value.products = []
 
       const { products } = useProductsByCategory(
-        toRef<Category>(mocks.category),
+        toRef<number>(mocks.category.id),
       )
       expect(products.value.length).toEqual(0)
     })
@@ -241,7 +241,7 @@ describe('useProductsByCategory', () => {
       }
 
       const { pagination } = useProductsByCategory(
-        toRef<Category>(mocks.category),
+        toRef<number>(mocks.category.id),
       )
       expect(pagination.value).toStrictEqual({
         current: 4,
@@ -260,7 +260,7 @@ describe('useProductsByCategory', () => {
     it('should return "true" if fetching is in process', () => {
       mocks.useProducts.fetching.value = false
       const { fetching } = useProductsByCategory(
-        toRef<Category>(mocks.category),
+        toRef<number>(mocks.category.id),
       )
       expect(fetching.value).toEqual(false)
     })
@@ -268,7 +268,7 @@ describe('useProductsByCategory', () => {
     it('should return "false" if fetching is done', () => {
       mocks.useProducts.fetching.value = true
       const { fetching } = useProductsByCategory(
-        toRef<Category>(mocks.category),
+        toRef<number>(mocks.category.id),
       )
       expect(fetching.value).toEqual(true)
     })
@@ -277,13 +277,13 @@ describe('useProductsByCategory', () => {
   describe('error', () => {
     it('should return "null" if there is no error', () => {
       mocks.useProducts.error.value = null
-      const { error } = useProductsByCategory(toRef<Category>(mocks.category))
+      const { error } = useProductsByCategory(toRef<number>(mocks.category.id))
       expect(error.value).toEqual(null)
     })
 
     it('should return Error if there is error', () => {
       mocks.useProducts.error.value = createError('products error')
-      const { error } = useProductsByCategory(toRef<Category>(mocks.category))
+      const { error } = useProductsByCategory(toRef<number>(mocks.category.id))
       expect(error.value).toBeTruthy()
     })
   })

@@ -52,5 +52,5 @@ const {
   resetFilter,
   unfilteredCount,
   areFiltersCleared,
-} = await useFilter(currentCategory)
+} = useFilter(currentCategory)
 </script>

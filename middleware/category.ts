@@ -3,6 +3,10 @@ import { useCurrentCategory, useRouteHelpers } from '~/composables'
 import { getCategoryId } from '~/utils/route'
 
 export default defineNuxtRouteMiddleware(async ({ params, query, path }) => {
+  if (import.meta.client) {
+    return
+  }
+
   const { buildCategoryPath } = useRouteHelpers()
 
   const { data: category } = await useCurrentCategory(getCategoryId(params))

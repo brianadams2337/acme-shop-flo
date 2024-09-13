@@ -1,5 +1,5 @@
-import { type Category, extendPromise } from '@scayle/storefront-nuxt'
-import { computed, type Ref, ref } from 'vue'
+import { extendPromise } from '@scayle/storefront-nuxt'
+import { computed, type MaybeRefOrGetter, toValue, ref } from 'vue'
 import type { LocationQuery } from 'vue-router'
 import { useRoute, useRouter } from '#app/composables/router'
 import { useTrackingEvents, useAppliedFilters, useToast } from '~/composables'
@@ -9,7 +9,7 @@ import type { RangeTuple } from '#storefront-ui/components/form/RangeSlider.vue'
 import { useI18n } from '#i18n'
 
 export function useFilter(
-  currentCategory?: Ref<Category>,
+  currentCategoryId?: MaybeRefOrGetter<number | undefined>,
   options: { immediate?: boolean; keyPrefix?: string } = {},
 ) {
   const route = useRoute()
@@ -27,14 +27,14 @@ export function useFilter(
 
   const filterData = useFilters({
     params: () => ({
-      category: currentCategory?.value.path || '/',
+      categoryId: toValue(currentCategoryId),
       where: {
         ...appliedFilter.value,
         ...(route.query.term && { term: String(route.query.term) }),
       },
     }),
     options: { immediate },
-    key: `${currentCategory?.value.id || keyPrefix}-filters`,
+    key: `${toValue(currentCategoryId) ?? keyPrefix}-filters`,
   })
 
   const {

@@ -52,7 +52,9 @@ const currentCategory = props.category ? toRef(props.category) : undefined
 
 const { buildCategoryPath } = useRouteHelpers()
 
-const { resetFilters } = await useFilter(currentCategory, { immediate: false })
+const { resetFilters } = await useFilter(currentCategory?.value.id, {
+  immediate: false,
+})
 
 const { areFiltersApplied } = useAppliedFilters()
 </script>

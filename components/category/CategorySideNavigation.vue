@@ -9,7 +9,7 @@
       >
         <CategorySideNavigationItem
           :category="category"
-          :is-active="category.id === currentCategory.id"
+          :is-active="category.id === currentCategory?.id"
           :is-sale="isSaleCategory(category)"
           class="font-semi-bold-variable text-gray-900"
         />
@@ -30,7 +30,7 @@ import { isSaleCategory } from '~/utils'
 
 defineProps<{
   rootCategories: Category[]
-  currentCategory: Category
+  currentCategory: Category | null
   fetchingCategories: boolean
 }>()
 </script>

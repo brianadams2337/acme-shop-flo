@@ -27,17 +27,16 @@
 </template>
 
 <script setup lang="ts">
-import type { Category } from '@scayle/storefront-nuxt'
 import { toRef } from 'vue'
 import { useAppliedFilters, useFilter } from '~/composables'
 
-const props = defineProps<{ currentCategory?: Category }>()
+const props = defineProps<{ currentCategoryId?: number }>()
 
 const { appliedBooleanValues, appliedFilter, appliedAttributeValues } =
   useAppliedFilters()
 
-const currentCategory = props.currentCategory
-  ? toRef(props.currentCategory)
+const currentCategoryId = props.currentCategoryId
+  ? toRef(props.currentCategoryId)
   : undefined
 
 const {
@@ -52,5 +51,5 @@ const {
   resetFilter,
   unfilteredCount,
   areFiltersCleared,
-} = useFilter(currentCategory)
+} = useFilter(currentCategoryId)
 </script>

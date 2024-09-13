@@ -19,12 +19,12 @@ import type { Category } from '@scayle/storefront-nuxt'
 import { useRouteHelpers } from '~/composables'
 import { routeList } from '~/utils'
 
-const props = defineProps<{ currentCategory: Category }>()
+const props = defineProps<{ currentCategory: Category | null }>()
 
 const { buildCategoryPath } = useRouteHelpers()
 
 const link = computed(() => {
-  return props.currentCategory.parent
+  return props.currentCategory?.parent
     ? buildCategoryPath(props.currentCategory.parent)
     : routeList.home.path
 })

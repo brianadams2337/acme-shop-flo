@@ -69,7 +69,7 @@ type Props = {
   pagination: FetchProductsByCategoryResponse['pagination'] | undefined
   loading?: boolean
   isPaginationVisible?: boolean
-  currentCategory?: Category
+  currentCategory?: Category | null
 }
 
 const props = withDefaults(defineProps<Props>(), {

@@ -29,6 +29,7 @@
                 class="mr-2 md:hidden"
               />
               <CategoryBreadcrumbs
+                v-if="currentCategory"
                 :products-fetching="productsFetching"
                 :category="currentCategory"
                 :products-count="totalProductsCount"
@@ -66,26 +67,28 @@
 </template>
 
 <script setup lang="ts">
-import { toRefs } from 'vue'
-import { type Ref, watch, defineOptions, computed } from 'vue'
+import {
+  onMounted,
+  toRefs,
+  onServerPrefetch,
+  watch,
+  defineOptions,
+  computed,
+} from 'vue'
 import { useHead } from '@unhead/vue'
 import {
   HttpStatusCode,
   type Product,
   type Category,
 } from '@scayle/storefront-nuxt'
-import {
-  definePageMeta,
-  useJsonld,
-  useServerSeoMeta,
-  useSeoMeta,
-} from '#imports'
+import { definePageMeta, useServerSeoMeta, useSeoMeta } from '#imports'
 import {
   useCurrentCategory,
   useProductsByCategory,
   useTrackingEvents,
   usePageState,
   useCategorySeoData,
+  useJsonld,
 } from '~/composables'
 import { createError } from '#app/composables/error'
 import { useRoute } from '#app/composables/router'
@@ -116,22 +119,24 @@ const {
   paginationOffset,
 } = useProductsByCategory(currentCategoryId, { options: { lazy: true } })
 
+const currentCategoryPromise = useCurrentCategory(currentCategoryId.value)
+
 const {
-  data: _currentCategory,
+  data: currentCategory,
   fetching: isCategoryFetching,
   error: categoryError,
-} = await useCurrentCategory(currentCategoryId.value)
+} = currentCategoryPromise
 
-if (categoryError.value) {
-  throw categoryError.value
+const validateCategoryExists = async () => {
+  await currentCategoryPromise
+
+  if (categoryError.value || (!isCategoryFetching && !currentCategory.value)) {
+    throw createError({ statusCode: HttpStatusCode.NOT_FOUND, fatal: true })
+  }
 }
 
-if (!isCategoryFetching && !_currentCategory.value) {
-  throw createError({ statusCode: HttpStatusCode.NOT_FOUND, fatal: true })
-}
-
-// With the above checks we know the category is non-null
-const currentCategory = _currentCategory as Ref<Category>
+onServerPrefetch(validateCategoryExists)
+onMounted(validateCategoryExists)
 
 const trackProductClick = (product: Product) => {
   trackSelectItem({

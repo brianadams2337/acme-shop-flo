@@ -7,7 +7,7 @@
       v-for="category in categories"
       :key="category.id"
       :category="category"
-      :is-active="category.id === currentCategory.id"
+      :is-active="category.id === currentCategory?.id"
       class="mr-2"
     />
   </SFHorizontalItemsSlider>
@@ -19,14 +19,14 @@ import type { Category } from '@scayle/storefront-nuxt'
 
 const props = defineProps<{
   allCategories: Category[]
-  currentCategory: Category
+  currentCategory: Category | null
 }>()
 
 const categories = computed(() => {
   const currentCategory = props.currentCategory
 
   // If the category is a leaf node, select all categories which have the same parent
-  if (currentCategory.childrenIds.length === 0) {
+  if (currentCategory?.childrenIds.length === 0) {
     return props.allCategories.filter((item) => {
       return currentCategory.parentId === item.parentId
     })
@@ -34,7 +34,7 @@ const categories = computed(() => {
 
   // If the category has children, we return all categories which have our current category as a parent
   return props.allCategories.filter((item) => {
-    return currentCategory.id === item.parentId
+    return currentCategory?.id === item.parentId
   })
 })
 </script>

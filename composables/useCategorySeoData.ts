@@ -9,7 +9,7 @@ import { useRoute } from '#app/composables/router'
 import { sanitizeCanonicalURL, generateCategoryBreadcrumbSchema } from '~/utils'
 import { useNuxtApp } from '#app'
 
-export function useCategorySeoData(category: Ref<Category | undefined>) {
+export function useCategorySeoData(category: Ref<Category | undefined | null>) {
   const { $i18n, $config } = useNuxtApp()
   const route = useRoute()
 

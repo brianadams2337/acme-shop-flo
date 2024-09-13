@@ -455,8 +455,6 @@ export default defineNuxtConfig({
     '@nuxt/image',
     // https://i18n.nuxtjs.org/
     '@nuxtjs/i18n',
-    // https://github.com/ymmooot/nuxt-jsonld
-    'nuxt-jsonld',
     // https://github.com/vueuse/vueuse/tree/main/packages/nuxt
     '@vueuse/nuxt',
     // https://github.com/cpreston321/nuxt-swiper

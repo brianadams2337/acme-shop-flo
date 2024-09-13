@@ -9,7 +9,7 @@
     >
       <CategorySideNavigationItem
         :category="category"
-        :is-active="category.id === currentCategory.id"
+        :is-active="category.id === currentCategory?.id"
         :is-sale="!isParentSale && isSaleCategory(category)"
         class="!leading-5"
         :class="{
@@ -34,15 +34,15 @@ import { isSaleCategory } from '~/utils'
 
 const props = defineProps<{
   subCategories: Category[]
-  currentCategory: Category
+  currentCategory: Category | null
   isParentSale: boolean
   parentDataTestId?: string
 }>()
 
 const shouldShowChildren = ({ id, children }: Category) => {
   if (!children?.length) return false
-  const areAncestorsActive = props.currentCategory.rootlineIds.includes(id)
-  return id === props.currentCategory.id || areAncestorsActive
+  const areAncestorsActive = props.currentCategory?.rootlineIds.includes(id)
+  return id === props.currentCategory?.id || areAncestorsActive
 }
 
 const getDataTestId = (index: number) => {

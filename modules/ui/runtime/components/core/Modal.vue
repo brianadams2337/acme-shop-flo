@@ -8,7 +8,7 @@
       @cancel="onCancel"
     >
       <div
-        class="relative m-auto size-full rounded-md bg-white p-8 md:w-[46.875rem]"
+        class="relative m-auto w-full rounded-md bg-white p-8 md:w-[46.875rem]"
         :class="{ '!h-[95%] !w-[95%]': fullScreen }"
       >
         <slot name="headline" />

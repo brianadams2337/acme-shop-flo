@@ -17,6 +17,7 @@ import { WishlistPage } from '../page-objects/wishlistPage'
 import { Footer } from '../page-objects/components/footer'
 import { OrdersPage } from '../page-objects/ordersPage'
 import { Promotions } from '../page-objects/components/promotions'
+import { CheckoutPage } from '../page-objects/checkoutPage'
 
 interface Fixtures {
   homePage: HomePage
@@ -37,6 +38,7 @@ interface Fixtures {
   footer: Footer
   ordersPage: OrdersPage
   promotions: Promotions
+  checkoutPage: CheckoutPage
 }
 
 export type OutputMode = 'json' | 'html' | 'csv'
@@ -113,6 +115,10 @@ export const test = base.extend<Fixtures>({
   promotions: async ({ page }, use) => {
     const promotions = new Promotions(page)
     await use(promotions)
+  },
+  checkoutPage: async ({ page }, use) => {
+    const checkoutPage = new CheckoutPage(page)
+    await use(checkoutPage)
   },
 })
 export { expect } from '@playwright/test'

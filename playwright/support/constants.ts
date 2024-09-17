@@ -110,3 +110,5 @@ export const USER_WITHOUT_ORDERS = {
   email: 'sfb.aqa.no-orders@scayle.com',
   password: 'N00rd3rs!',
 }
+
+export const CHECKOUT_URL = '/checkout'

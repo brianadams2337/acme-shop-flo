@@ -77,6 +77,7 @@ import { computed, toRefs, watch } from 'vue'
 import type { Product, Variant } from '@scayle/storefront-nuxt'
 import { useSubscription } from '../composables/useSubscription'
 import type { PreferredDeliveryDate } from '../helpers/subscription'
+import type { AddToBasketItem } from '~/composables/useAddToBasket'
 
 type Props = {
   product: Product
@@ -89,7 +90,9 @@ const props = withDefaults(defineProps<Props>(), {
   variant: undefined,
 })
 
-defineEmits(['addItemToBasket'])
+defineEmits<{
+  (e: 'addItemToBasket', item: AddToBasketItem | undefined): void
+}>()
 
 const { product, variant, pricePromotionKey } = toRefs(props)
 const {

@@ -59,6 +59,12 @@ export const getOrdinalSuffix = (locale: string, value?: number) => {
   return ordinalRules.select(value)
 }
 
+export const hasSubscriptionCustomData = (
+  customData?: Record<string, unknown>,
+) => {
+  return Object.hasOwnProperty.call(customData || {}, 'subscriptionDefinition')
+}
+
 // This check is for rejecting adding variant in case of:
 // 1) try to add subscription variant (priorItemToAdd) but the variant (subscription or not doesn't matter) is already in the basket
 // 2) try to add non-subscription variant but the variant is already in the basket, and it's a subscription variant
@@ -71,9 +77,8 @@ export const isSubscriptionAlreadyInBasket = (
     (basketItem) => basketItem.variant.id === variantId,
   )
 
-  const hasVariantInBasketSubscriptionDefined = Object.hasOwnProperty.call(
-    variantAlreadyInBasket?.customData || {},
-    'subscriptionDefinition',
+  const hasVariantInBasketSubscriptionDefined = hasSubscriptionCustomData(
+    variantAlreadyInBasket?.customData as Record<string, unknown>,
   )
 
   return (

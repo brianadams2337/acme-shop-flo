@@ -21,6 +21,7 @@ import {
 } from '../helpers/subscription'
 import { useNuxtApp } from '#app'
 import { useProduct } from '#storefront/composables'
+import type { AddToBasketItem } from '~/composables/useAddToBasket'
 
 const selectedInterval = ref<Value | undefined>()
 const selectedPreferredDeliveryDate = ref<PreferredDeliveryDate | undefined>()
@@ -73,12 +74,18 @@ export function useSubscription(
     ),
   )
 
-  const itemToAdd = computed(() => {
+  const itemToAdd = computed<AddToBasketItem | undefined>(() => {
+    if (!selectedVariant.value) {
+      return
+    }
     return {
       variantId: selectedVariant.value?.id,
       quantity: 1,
       customData: customData.value,
       displayData: displayData.value,
+      productName:
+        getFirstAttributeValue(product.value.attributes, 'name')?.label || '',
+      interval: selectedInterval.value?.label,
     }
   })
 

@@ -36,6 +36,7 @@ export const PRODUCT_WITH_PARAMS: ProductWith = {
     attributes: {
       withKey: ['color', 'name', 'brand'],
     },
+    priceRange: true,
   },
   priceRange: true,
   lowestPriorPrice: true,

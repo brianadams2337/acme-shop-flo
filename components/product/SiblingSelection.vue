@@ -12,7 +12,7 @@
     </template>
     <div class="flex w-full gap-4">
       <div
-        v-for="sibling in siblings"
+        v-for="(sibling, index) in siblings"
         :key="sibling.id"
         class="relative size-20 shrink-0 rounded-xl border-2 transition-all hover:border-black md:size-16"
         :class="{
@@ -36,6 +36,7 @@
               sibling.isSoldOut || sibling.id === product.id,
           }"
           :to="getProductDetailRoute(sibling.id, name)"
+          @click="trackSiblingClick(sibling, index)"
         >
           <ProductImage
             v-if="sibling.image"
@@ -80,10 +81,17 @@
 <script setup lang="ts">
 import type { Product } from '@scayle/storefront-nuxt'
 import { computed, ref, defineProps } from 'vue'
+import { useRoute } from '#app/composables/router'
 import { SFItemsSlider, SFLink } from '#components'
-import { useProductBaseInfo, useRouteHelpers } from '~/composables'
+import {
+  usePageState,
+  useProductBaseInfo,
+  useRouteHelpers,
+  useTrackingEvents,
+} from '~/composables'
 import type { ProductSibling } from '~/types/siblings'
 import { useI18n } from '#i18n'
+import { productListingMetaData } from '~/constants/product'
 
 type Props = {
   product: Product
@@ -115,4 +123,30 @@ const label = computed(() => {
 
   return hoveredColorLabel.value || firstSiblingColors[0].label.toLowerCase()
 })
+
+const { pageState } = usePageState()
+const route = useRoute()
+const trackSiblingClick = (sibling: ProductSibling, index: number) => {
+  const siblingsProduct = props.product.siblings?.find(
+    (product) => product.id === sibling.id,
+  )
+  if (!siblingsProduct) {
+    return
+  }
+  try {
+    useTrackingEvents().trackSelectItem({
+      product: siblingsProduct,
+      listingMetaData: productListingMetaData,
+      index,
+      soldOut: sibling.isSoldOut,
+      pagePayload: {
+        content_name: route.fullPath,
+        page_type: pageState.value.type,
+        page_type_id: pageState.value.typeId,
+      },
+    })
+  } catch (e) {
+    console.error(e)
+  }
+}
 </script>

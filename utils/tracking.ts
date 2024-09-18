@@ -62,9 +62,7 @@ export const mapProductToTrackingPayload = (
   product: Product,
   variant?: Variant,
 ): ProductInfo => {
-  const price = variant
-    ? getPrice(variant)
-    : getLowestPrice(product.variants || [])
+  const price = variant ? variant.price : product.priceRange?.min
   const getFloatedReducedPriceForCategoryOrNull = (
     price: Price,
     type: 'sale' | 'campaign',
@@ -81,14 +79,24 @@ export const mapProductToTrackingPayload = (
   return {
     item_id: product.id.toString(),
     item_name: getFirstAttributeValue(product.attributes, 'name')!.label,
-    price: divideByHundred(price.withoutTax),
-    sale_discount: getFloatedReducedPriceForCategoryOrNull(price, 'sale'),
-    campaign_discount: getFloatedReducedPriceForCategoryOrNull(
-      price,
-      'campaign',
-    ),
-    original_price: divideByHundred(getOriginalPrice(price)),
-    tax: divideByHundred(getOriginalPrice(price) - price.withoutTax),
+    ...(price
+      ? {
+          price: divideByHundred(price.withoutTax),
+          sale_discount: getFloatedReducedPriceForCategoryOrNull(price, 'sale'),
+          campaign_discount: getFloatedReducedPriceForCategoryOrNull(
+            price,
+            'campaign',
+          ),
+          original_price: divideByHundred(getOriginalPrice(price)),
+          tax: divideByHundred(getOriginalPrice(price) - price.withoutTax),
+        }
+      : {
+          price: undefined,
+          sale_discount: undefined,
+          campaign_discount: undefined,
+          original_price: undefined,
+          tax: undefined,
+        }),
     item_brand: itemBrand,
     item_brand_id: itemBrandId,
   }
@@ -111,7 +119,7 @@ const mapAdditionalInfo = (
   return {
     item_category: name,
     item_category_id: id,
-    item_variant: product.variants![0].id.toString(),
+    item_variant: product?.variants?.[0]?.id?.toString(),
     item_list_name: list?.name || '',
     item_list_id: list?.id || '',
     sold_out: product.isSoldOut,
@@ -119,7 +127,7 @@ const mapAdditionalInfo = (
     ...('source' in data && { source: data.source }),
     ...('destination' in data && { destination: data.destination }),
     ...('destinationUrl' in data && { destination_url: data.destinationUrl }),
-    ...('variant' in data && { item_variant: data.variant?.id.toString() }),
+    ...('variant' in data && { item_variant: data?.variant?.id?.toString() }),
     ...(hasListIndex && { index: list?.index }),
     ...('index' in product &&
       product.index !== undefined &&
@@ -131,10 +139,10 @@ const mapAdditionalInfo = (
 const getTotalPriceInfo = (
   items: {
     quantity: number
-    campaign_discount: number
-    sale_discount: number
-    price: number
-    priceWithTax: number
+    campaign_discount?: number
+    sale_discount?: number
+    price?: number
+    priceWithTax?: number
   }[],
 ) => {
   const total = {
@@ -146,10 +154,11 @@ const getTotalPriceInfo = (
 
   items.forEach((item) => {
     total.total_campaign_reduction_with_tax +=
-      item.campaign_discount * item.quantity
-    total.total_sale_reduction_with_tax += item.sale_discount * item.quantity
-    total.total_with_tax += item.priceWithTax * item.quantity
-    total.total_without_tax += item.price * item.quantity
+      (item.campaign_discount ?? 0) * item.quantity
+    total.total_sale_reduction_with_tax +=
+      (item.sale_discount ?? 0) * item.quantity
+    total.total_with_tax += (item.priceWithTax ?? 0) * item.quantity
+    total.total_without_tax += (item.price ?? 0) * item.quantity
   })
 
   const keys = Object.keys(total) as (keyof typeof total)[]

@@ -85,7 +85,7 @@
 <script setup lang="ts">
 import { whenever } from '@vueuse/core'
 import { useSeoMeta } from '@unhead/vue'
-import { computed, defineOptions, ref } from 'vue'
+import { computed, defineOptions, onMounted, ref } from 'vue'
 import type { Price, Variant } from '@scayle/storefront-nuxt'
 import { useProductPromotions } from '~/composables/useProductPromotions'
 import { useFavoriteStore } from '~/composables/useFavoriteStore'
@@ -95,10 +95,12 @@ import {
   useBasket,
   useHead,
   useJsonld,
+  usePageState,
   useProduct,
   useProductBaseInfo,
   useProductSeoData,
   useRoute,
+  useTrackingEvents,
 } from '#imports'
 import { PRODUCT_WITH_PARAMS } from '~/constants'
 import StoreVariantAvailability from '~/components/locator/StoreVariantAvailability.vue'
@@ -128,9 +130,9 @@ const {
   key: `PDP-${productId.value}`,
 })
 
-if (error.value) {
+whenever(error, () => {
   throw error.value
-}
+})
 
 const { name, brand, longestCategoryList, hasOneVariantOnly, variants } =
   useProductBaseInfo(product)
@@ -200,4 +202,17 @@ useHead({
   link: canonicalLink,
 })
 useJsonld(() => [productBreadcrumbJsonLd.value, productJsonLd.value])
+
+// Tracking
+onMounted(async () => {
+  usePageState().setPageState('typeId', String(productId.value))
+  // Wait for the product to be loaded
+  whenever(
+    product,
+    (loadedProduct) => {
+      useTrackingEvents().trackViewItem({ product: loadedProduct })
+    },
+    { immediate: true, once: true },
+  )
+})
 </script>

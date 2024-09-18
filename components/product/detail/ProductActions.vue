@@ -133,7 +133,7 @@ import {
   useAddToBasket,
   type AddToBasketItem,
 } from '~/composables/useAddToBasket'
-import { useElementVisibility } from '#imports'
+import { useElementVisibility, useTrackingEvents } from '#imports'
 
 type Props = {
   product: Product
@@ -169,6 +169,7 @@ const basketItem = computed<AddToBasketItem | undefined>(() => {
 const isVariantListVisible = ref(false)
 const variantPicker = ref()
 const { addItem } = useAddToBasket()
+const { trackAddToBasket } = useTrackingEvents()
 
 const isVariantPickerVisible = useElementVisibility(variantPicker, {
   threshold: 1,
@@ -185,6 +186,11 @@ const addItemToBasket = async (item: AddToBasketItem | undefined) => {
   if (!item) {
     return
   }
-  addItem(item)
+  await addItem(item)
+  trackAddToBasket({
+    product: props.product,
+    variant: activeVariant.value,
+    quantity: item.quantity,
+  })
 }
 </script>

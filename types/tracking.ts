@@ -140,13 +140,13 @@ declare global {
   interface ProductInfo {
     item_id: string
     item_name: string
-    price: number
-    sale_discount: number
-    campaign_discount: number
-    original_price: number
+    price?: number
+    sale_discount?: number
+    campaign_discount?: number
+    original_price?: number
     item_brand: string
     item_brand_id: string
-    tax: number
+    tax?: number
   }
 
   interface AdditionalInfo {

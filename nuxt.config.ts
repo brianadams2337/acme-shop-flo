@@ -682,11 +682,6 @@ export default defineNuxtConfig({
     resolve: {
       preserveSymlinks: true,
     },
-    build: {
-      rollupOptions: {
-        external: ['@nuxtjs/composition-api'], // Handle incompatible dependencies of Nuxt 2-compatible @scayle/omnichannel-nuxt package
-      },
-    },
   },
 
   hooks: {

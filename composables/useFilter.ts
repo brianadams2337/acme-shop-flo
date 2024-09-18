@@ -33,7 +33,7 @@ export function useFilter(
         ...(route.query.term && { term: String(route.query.term) }),
       },
       includeSellableForFree: true,
-      includeSoldOut: true,
+      includeSoldOut: false,
     })),
     options: { immediate },
     key: `${toValue(currentCategoryId) ?? keyPrefix}-filters`,

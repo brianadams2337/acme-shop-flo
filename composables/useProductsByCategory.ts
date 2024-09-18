@@ -16,7 +16,7 @@ export function useProductsByCategory(
   categoryId: MaybeRefOrGetter<number>,
   {
     params: {
-      includeSoldOut = true,
+      includeSoldOut = false,
       includeSellableForFree = true,
       pricePromotionKey = '',
       orFiltersOperator,

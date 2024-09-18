@@ -27,6 +27,7 @@
       {{ $t('filter.reset_all') }}
     </SFButton>
     <SFButton
+      autofocus
       data-testid="apply-filter-button"
       size="lg"
       class="w-1/2"

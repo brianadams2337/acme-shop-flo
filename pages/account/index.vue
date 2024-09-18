@@ -39,7 +39,7 @@
           class="mt-2.5 h-20"
         />
       </div>
-      <div class="mt-4">
+      <div class="mx-auto mt-12 w-fit">
         <LogoutButton data-testid="logout-button" />
       </div>
     </PageContent>

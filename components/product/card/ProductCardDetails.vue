@@ -11,7 +11,7 @@
         />
       </div>
       <ProductCardDescription
-        class="mt-3 block opacity-100 transition-all delay-100 duration-200 ease-in transition-discrete group-hover/product-card:hidden group-hover/product-card:opacity-0 group-hover/product-card:delay-0 loaded:starting:opacity-0 max-md:mb-6 md:absolute md:inset-0 md:mt-5"
+        class="mt-3 block opacity-100 transition-all delay-100 duration-200 ease-in transition-discrete group-hover/product-card:delay-0 loaded:starting:opacity-0 max-md:mb-6 md:absolute md:inset-0 md:mt-5 group-hover/product-card:md:hidden group-hover/product-card:md:opacity-0"
         :name="name"
         :brand="brand"
       />

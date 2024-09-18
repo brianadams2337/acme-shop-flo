@@ -9,14 +9,19 @@
         {{ selectedSort.label }}
       </span>
     </template>
-    <template #item="{ item }">
+    <template #item="{ item, selectItem }">
       <SFLink
         data-testid="sort-item"
         type="whisper"
         class="mb-1 w-full rounded p-2 !text-base !font-medium last-of-type:mb-0 hover:bg-gray-100"
         :class="{ 'bg-gray-100 !text-black': item.key === selectedSort.key }"
         :to="item.to"
-        @click="trackFilterApply('sort', item.key)"
+        @click="
+          () => {
+            selectItem(item)
+            trackFilterApply('sort', item.key)
+          }
+        "
       >
         <span class="flex w-full items-center justify-between">
           {{ item.label }}

@@ -1,5 +1,275 @@
 # @scayle/storefront-boilerplate-nuxt
 
+## 2.0.0
+
+### Major Changes
+
+- aac8524: Removed `Cypress` and finished migration to `Playwright` as End-to-End testing suite.
+
+### Minor Changes
+
+- aac8524: CMS: Removed auto-import capabilities of local CMS module in favor of using explicit imports for composables and utilities
+- aac8524: CMS: Removed `axiosFetchAdapter` from Contentful CMS provider integration as Edge deployment support has been dropped
+- aac8524: CMS: Removed unsupported CMS components from Contentful component definitions
+
+  - `SbListingDisruptor`
+  - `SbNewsletter`
+  - `SbStore`
+  - `SbStorePage`
+
+- aac8524: CMS: Removed unsupported CMS components from Storyblok component definitions
+
+  - `SbListingDisruptor`
+  - `SbNewsletter`
+  - `SbStore`
+  - `SbStorePage`
+
+- aac8524: Code Style: Applied consistent `v-bind` style and enforced through lint rule
+- aac8524: Country Detection: Added `getCurrentCountryFromTimezone` util function to determine user's country from the browser's timezone settings
+- aac8524: Country Detection: Add automatic country detection and redirect prompt
+
+  ## How it works
+
+  In the `onMounted` hook, we look up the country of the user and check if it matches the current shop. If it does not match, we try to find a shop which does match that country and prompt the user to switch to the other shop. When a user is logged in or has already declined the prompt, we no longer show the dialog.
+
+  ## Disabling
+
+  If you want to disable this feature, remove the `<CountryDetection/>` component from the `default.vue` layout.
+
+  ## Customizing
+
+  The default implementation of the country detection uses the timezone of the browser to assume the user's country. If you would like to use a different method such as GeoIP lookup, the `getCurrentCountryFromTimezone` function can be easily swapped out. The replacement function should return a single country code which represents the user's country, or `undefined` if one cannot be found. Or in other words a function which matches the interface `() => string | undefined`
+
+  It's also possible to customize the `getShopsForRegion` function. The default implementation will search the available shops for those which match the detected region. If there are multiple matches, multiple options will be presented in the dialog. A fallback `shopId` can be passed as the second argument. This is useful if you have a global shop. When no shop matches the user's region, this fallback will be used instead. If there are no matches and a fallback is not specified, the user will not be prompted.
+
+  The country names shown in the prompt use the default translation of the shop's country code. If you would like to override this behavior, extend the translations file with the key `country_selection.override_codes.CODE`. The code should be uppercase.
+
+- aac8524: Basic End-to-End tests for Checkout page.
+- aac8524: End-to-End tests to check Footer functionalities.
+- aac8524: End-to-End tests for Promotion banner basic features.
+- aac8524: Added End-to-End tests to verify User Account page features
+
+  - Verify User personal data layout
+  - Update birthdate with correct and incorrect date format
+  - Update password matching and non-matching new password
+
+- aac8524: Added PLP siblings test to e2e-Plp.spec.ts
+- aac8524: Added End-to-End tests for Basket:
+
+  - Empty state guest and logged in user
+  - Add to Basket guest and logged in user
+  - Basket features for regular product
+
+  Added attribute `data-testid` to "Login" and "Continue shopping" buttons in Basket empty state.
+
+- aac8524: - Search End-to-End tests extended to run on mobile devices.
+  - Added mobile specific locators to work with navigation and search features on mobile devices.
+- aac8524: - Set up mobile End-to-End tests in Playwright to cover Mobile Chrome and Mobile Safari.
+  - Adaption of test `e2e-happy-path.spec.ts` to work with mobile navigation.
+- aac8524: End-to-End tests for Wishlist page.
+- aac8524: End-to-End tests for User Orders page, user with and without orders.
+- aac8524: E2E tests checking basic Home layout and if all the links are valid.
+- aac8524: Renamed the `default` image provider to `scayle` to improve clarity and removed the default provider setting
+  in the `@nuxt/image` module settings to allow using local images with the `NuxtImg` component.
+
+  For this, place your local image into the `public/` folder and use the following component:
+
+  ```vue
+  <NuxtImg src="/{fileName}" />
+  ```
+
+  _(NOTE: The filename should be without the `/public` folder name.)_
+
+- aac8524: PLP: Improve responsiveness of switching categories on the product listing page
+
+  The following changes were made to optimize the navigation that occurs on a category switch:
+
+  - Skipping unnecessary middlewares on the navigation
+  - Not unnecessarily reloading root categories on category switch
+  - Removing unnecessary awaits within `setup` functions
+  - Passing `categoryId` to `useProducts` directly to avoid additional fetches
+
+- aac8524: Introduced "Smart Sorting Keys" as new default sorting.
+  To learn more about Smart Sorting Keys, visit the [SCAYLE Resource Center / Product Sorting](https://scayle.dev/en/developer-guide/products/product-sorting#smart-sorting-keys).
+- aac8524: UI: Updated the `Modal` component to use native HTML `<dialog>` element
+- aac8524: UI: Removed unused `SFSlideshow` component
+
+### Patch Changes
+
+- aac8524: CMS: Fixed footer social media icons not being visible even though content had been set via CMS provider
+- aac8524: CMS: Refactored deprecated usage of `pending` from `fetchBySlug` in CMS related components to use `status` instead
+- aac8524: CMS: Fixed issues with Storyblok CMS setup by removing legacy runtime option (`public.storyblok` in `nuxt.config.ts`) and ensuring the necessary `accessToken` is not overriden during Storyblok module initialization.
+- aac8524: CMS: Fixed issues with Storyblok CMS setup where the `@storyblok/vue` plugin has been initialized twice, resulting in misleading runtime warnings and errors.
+- aac8524: CMS: Replaced Storyblok RichTextResolver class with dedicated `@storyblok/richtext` dependency
+- aac8524: CMS: Removed deprecated `AppFooter` component as it has been replaced by `CMSAppFooter`
+- aac8524: CMS: Fixed handling of empty Contentful CMS link values resulting in application crashes
+- aac8524: CMS: Fixed issues with fetching CMS data for categories and content pages due to changes in path slugs.
+  Category slugs are expected to now have the form `c/c-{categoryId}` (before `category/{categoryId}`),
+  while content pages are expected to have the form `content/{pageName}`(before `c/{pageName}`).
+- aac8524: CMS: Fixed possible composable misuse errors
+
+  `useCMS` has been split into `useCMSBySlug` and `useCMSByFolder` to avoid possible errors caused by calling a composable outside the appropriate context. This applies to both the Contentful and Storyblok providers.
+
+  Before:
+
+  ```ts
+  const { fetchBySlug } = useCMS('some-key')
+  const { data } = fetchBySlug('some-slug')
+  ```
+
+  After:
+
+  ```ts
+  const { data } = useCMSBySlug('some-key', 'some-slug')
+  ```
+
+- aac8524: CMS: Fixed type errors in Contentful's `useCms` composable
+- aac8524: Code Style: Enabled and enforced `tailwindcss/no-custom-classname` lint rule
+- aac8524: Code Style: Resolved `no-explicit-any` issues in Vue components
+- aac8524: Code Style: Resolved `no-explicit-any` warnings in CMS modules
+- aac8524: Code Style: Enabled and enforced `no-explicit-any` lint rule and resolved remaining warnings
+- aac8524: Code Style: Resolved `no-explicit-any` warnings in tracking composables and utils
+- aac8524: Config: Removed duplicate TailwindCSS generation
+- aac8524: Config: Resolved nuxt-i18n issues with domain shop selection
+
+  - Remove unused variable from `.env.example`
+  - Use unique placeholder domains in nuxt-i18n config
+  - Replace the deprecated `iso` option with `language`
+
+- aac8524: Config: Removed `vite.build.rollupOptions.external` option to handle former `@scayle/omnichannelnuxt` Nuxt 2-support for `@nuxtjs/composition-api` in `nuxt.config.ts`
+- aac8524: Config: Enabled `noImplicitAny` in `tsconfig.json`
+- aac8524: Config: Fixed missing image modifiers in SCAYLE provider for `nuxt/image` module
+- aac8524: Country Detection: Fixed dialog height in Safari
+- aac8524: Optimizing E2E tests to run faster and be more resilient.
+
+  - Added `{ waitUntil: 'commit' }` or `{ waitUntil: 'load' }` to `page.goto()` method where possible.
+  - Implemented retry mechanism using `expect()` to handle callback function with the Playwright built-in `toPass()` method to avoid possible failures caused by hydration.
+  - Added `test.step` into some tests with more steps to complete, to achieve better readability in the reports.
+
+- aac8524: - Adapting E2E tests to use new test ID attributes due to the migration of existing `data-test-id` to `data-testid`. This enables Playwright to use built-in loactor `getByTestId()`
+  - Deleted existing PLP `.spec.ts` files and added all PLP tests to `e2e-Plp-spec.ts`, so this file now contains all current and future PLP tests. Having multiple tests within one `.spec.ts` file follows the logic of having multiple tests within one test suite related to respective application section
+  - Added test to check add/remove to/from Wishlist from PLP page
+- aac8524: Enable cookieStore option to resolve Lighthouse `bfcache` audit
+- aac8524: PLP: Fixed focus behavior to don't focus close button in `FilterSlideIn`
+- aac8524: PLP: Fixed hydration error on product list caused by invalid HTML (nested anchor elements)
+- aac8524: PLP: Only fetch necessary product attributes from SAPI to reduce payload size
+- aac8524: PLP: Improve perceived performance of the wishlist toggle by optimisitcally changing the icon
+- aac8524: PLP: Tweaked `useFilter` and `useProductsByCategory` to use the same parameters to avoid discrepancies
+- aac8524: PLP: Brought back `details` slot on `ProductCard.vue` which had been removed previously
+- aac8524: PLP: Used correct product name in URL when linking to PDP
+- aac8524: PLP: Fixed current `categoryID` not being passed to `FilterSlideIn`
+- aac8524: PLP: Used responsive classes instead of rendering different DOM based on size
+- aac8524: PLP: Fixed height of `FilterSlideIn` on mobile devices
+- aac8524: Translations: Fixed the english translation for free gifts on the PDP
+- aac8524: UI: Fixed scaling issue with large logout button on `AccountPage`
+- aac8524: Utility Replacement: Replaced `radash.sort` with native `toSorted`
+- aac8524: Utility Replacement: Replaced `radash.min` and `radash.sum` with custom functional utilities
+- aac8524: Utility Replacement: Replaced `radash.unique` with native array operations:
+
+  ```ts
+  arrayValue.filter(
+    (item, index, self) =>
+      index === self.findIndex((arrayItem) => arrayItem.value === item.value),
+  )
+  ```
+
+- aac8524: Utility Replacement: Replaced `radash.alphabetical` with native `toSorted`
+- aac8524: Utility Replacement: Replaced `radash.dash` with native string operations
+
+  ```ts
+  stringValue
+    .split(/[\s_.-]+|(?=[A-Z][a-z])/)
+    .join('-')
+    .toLowerCase()
+  ```
+
+- aac8524: Utility Replacement: Replacd `radash.isString` with native `typeof value === 'string` based check
+- aac8524: Utility Replacement: Replaced functional utility `isEmtpy` with native `Object.values(obj).length === 0` check
+- aac8524: Utility Replacement: Replaced instances of `radash.debounce` with `useDebounceFn` from `vueuse/core`
+- aac8524: Utility Replacement: Replace `yn` with custom `stringToBoolean` utility function
+- aac8524: Utility Replacement: Replaced `sort` and `alphabetical` utils with native functionality
+- aac8524: Utility Replacement: Replaced `radash.isEqual` with custom `isEqual` util
+
+  NOTE: Arbitrary comparison of objects can have a exponentially negative impact
+  on performance the larger the compared objects are. We recommend to compare the
+  values of explicit keys between two objects.
+
+- aac8524: Utility Replacement: Replaced `radash.pascal` with native string operations:
+
+  ```ts
+  stringValue
+    .split(/[\s_.-]+|(?=[A-Z][a-z])/)
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+    .join('')
+  ```
+
+- aac8524: Utility Replacement: Replace `radash.sleep` with `wait` util from `@scayle/storefront-nuxt`
+- aac8524: Utility Replacement: Replaced `radash.sum` with native calculations and array operations:
+
+  ```ts
+  array.reduce((acc, item) => acc + item, 0)
+  ```
+
+- aac8524: Utility Replacement: Replaced `radash.snake` with custom functional utility
+- aac8524: Utility Replacement: Utility Replacement: Replaced `radash.min` with native array operations:
+
+  ```ts
+  // Plain array
+  // Input: [4, 2, 8, 6]
+  // Output: [2]
+  Math.min(...(numbersArray.length ? numbersArray : []))
+
+  // Array containing objects
+  // Input: [{ numberValue: 4 }, { numberValue: 2 }, { numberValue: 8 }, { numberValue: 6 }]
+  // Output: { numberValue: 2 }
+  const getValueForComparison = (objectValue) => objectValue.numberValue
+  array.reduce((a, b) =>
+    getValueForComparison(a) < getValueForComparison(b) ? a : b,
+  )
+  ```
+
+- aac8524: Utility Replacement: Replaced `radash.snake` with custom native string operations:
+
+  ```ts
+  stringValue
+    .match(/[A-Z]{2,}(?=[A-Z][a-z]+[0-9]*|\b)|[A-Z]?[a-z]+[0-9]*|[A-Z]|[0-9]+/g)
+    ?.map((x) => x.toLowerCase())
+    .join('_')
+  ```
+
+- aac8524: Utility Replacement: Replaced `radash.pick` with native array operations:
+
+  ```ts
+  // objectValue: Record<string, unknown>
+  // keysList: string[]
+  Object.fromEntries(
+    keysList
+      .filter((key) => key in objectValue)
+      .map((key) => [key, objectValue[key]]),
+  )
+  ```
+
+- aac8524: Utility Replacement: Replaced `radash.group` with native array operations:
+
+  ```ts
+  arrayValue.reduce(
+    (acc, item) => {
+      const groupId = item.id // Exchange item.id with the appropriate object key
+      if (!acc[groupId]) acc[groupId] = []
+      acc[groupId].push(item)
+      return acc
+    },
+    {} as Record<string, TypeOfArrayElement[]>,
+  )
+  ```
+
+- aac8524: Utility Replacement: Replaced functional utility `sort` with native `toSorted`
+- aac8524: Utility Replacement: Replaced `radash.capitalize` with native string operations:
+
+  ```ts
+  stringValue.charAt(0).toUpperCase() + stringValue.slice(1)
+  ```
+
 ## 1.2.0
 
 ### 🔥 Highlights

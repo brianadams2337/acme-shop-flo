@@ -229,6 +229,10 @@ export function useFilter(
       ...filter,
     }
 
+    if ('page' in newQuery) {
+      delete newQuery.page
+    }
+
     // Should not apply reset all filter if appliedFilter is empty
     if (!appliedFiltersCount.value && !Object.keys(filter).length) {
       return

@@ -318,6 +318,20 @@ describe('useFilter', () => {
       onSlideInClose()
       expect(mocks.useToast.show).not.toBeCalled()
     })
+
+    it('should reset page param when attribute filter is applied', () => {
+      mocks.route.query = {
+        page: '1',
+      }
+
+      const { applyAttributeFilter } = useFilter()
+      applyAttributeFilter('newAttribute', 1)
+      expect(mocks.router.push).toBeCalledWith({
+        query: {
+          'filters[newAttribute]': '1',
+        },
+      })
+    })
   })
 
   describe('applyBooleanFilter', () => {
@@ -343,10 +357,39 @@ describe('useFilter', () => {
         query: {},
       })
     })
+
+    it('should reset page param when boolean filter is applied', () => {
+      mocks.route.query = {
+        page: '1',
+      }
+
+      const { applyBooleanFilter } = useFilter()
+      applyBooleanFilter('newBool', true)
+      expect(mocks.router.push).toBeCalledWith({
+        query: {
+          'filters[newBool]': 'true',
+        },
+      })
+    })
   })
 
   describe('applyPriceFilter', () => {
     it('should apply prices correctly', () => {
+      const { applyPriceFilter } = useFilter()
+      applyPriceFilter([99 as CentAmount, 2345 as CentAmount])
+      expect(mocks.router.push).toBeCalledWith({
+        query: {
+          'filters[minPrice]': '99',
+          'filters[maxPrice]': '2345',
+        },
+      })
+    })
+
+    it('should reset page param when price filter is applied', () => {
+      mocks.route.query = {
+        page: '1',
+      }
+
       const { applyPriceFilter } = useFilter()
       applyPriceFilter([99 as CentAmount, 2345 as CentAmount])
       expect(mocks.router.push).toBeCalledWith({
@@ -368,6 +411,7 @@ describe('useFilter', () => {
       mocks.useAppliedFilters.appliedFiltersCount.value = 1
       mocks.route.query = {
         'filters[newAttribute]': [1, 2, 3, 4],
+        page: '1',
       }
       const { resetFilter } = useFilter()
       resetFilter('newAttribute')

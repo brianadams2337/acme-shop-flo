@@ -13,7 +13,10 @@
 
       <template v-else-if="data">
         <CMSImage
-          v-if="'teaser_image' in data.content || 'teaser_image' in data"
+          v-if="
+            ('teaser_image' in data.content || 'teaser_image' in data) &&
+            data.content['teaser_image']?.filename
+          "
           :blok="{
             ...('teaser_image' in data.content ? data.content : data),
             _uid: data.uuid,

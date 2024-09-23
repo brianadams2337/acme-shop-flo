@@ -50,8 +50,8 @@ export type CMSBannerLinkProps = BannerLinkProp
 
 export type CMSScrollableLinkProps = {
   links: CMSBannerLinkProps[]
-  hasMarginTop: boolean
-  fullWidth: boolean
+  hasMarginTop?: boolean
+  fullWidth?: boolean
 }
 
 type DetailImageProps =

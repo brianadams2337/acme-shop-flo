@@ -71,7 +71,6 @@ const { sliderProducts, trackRecommendationClick } = useProductRecommendations(
 const { isGreaterOrEqual } = useDefaultBreakpoints()
 const { getProductDetailRoute } = useRouteHelpers()
 
-// TODO: Extract logic to a composable
 const trackingCollector = ref<(Product & { index: number })[]>([])
 const { trackViewItemList } = useTrackingEvents()
 

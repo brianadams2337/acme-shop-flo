@@ -23,7 +23,6 @@ export const getImage: ProviderGetImage = (
     modifiers.height = Math.ceil((modifiers.width * 4) / 3)
   }
 
-  // TODO: Find out how to configure desired format
   delete modifiers.format
 
   const formatter = (key: string, value: string | number) => `${key}=${value}`

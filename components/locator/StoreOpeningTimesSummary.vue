@@ -14,7 +14,6 @@
       <div v-for="day in daysOfWeek" :key="day" class="mb-1">
         <div class="flex items-center justify-between">
           <div class="grow">
-            <!-- TODO: Add bold for current day -->
             {{ $t(`store_locator.opening_times.${day}`) }}
           </div>
           <div class="flex w-24 flex-col text-justify">

@@ -6,7 +6,7 @@ export function useContentfulHelpers() {
 
   const isInEditorMode = computed(() => Boolean('_storyblok' in route.query))
 
-  // TODO: This is not runtime-safe (should be dealt via runtimeConfig)
+  // NOTE: Not runtime-safe
   const getContentVersion = () => {
     const environment = process.env.NODE_ENV
     const isAllowedDraft = ['staging', 'integration', 'development']

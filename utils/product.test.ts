@@ -13,8 +13,6 @@ import {
   getApplicablePromotionsForProduct,
 } from './product'
 
-// TODO: Add tests for remaining product utils
-
 const CREATED_AT = '2022-04-26T15:04:56+00:00'
 
 const getProductData = (): Omit<Product, 'id' | 'isActive' | 'isSoldOut'> => ({
@@ -109,7 +107,6 @@ const getProductData = (): Omit<Product, 'id' | 'isActive' | 'isSoldOut'> => ({
   ],
 })
 
-// TODO: Cover more cases (e.g return data set check, different color attribute name etc.)
 const getCurrentPromotionsData = (): Promotion[] => [
   {
     id: '66951014684cc17335766006',

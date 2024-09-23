@@ -28,7 +28,6 @@ export default defineNuxtModule<ModuleOptions>({
       global: true,
     })
 
-    // TODO: Remove with fully disabling of auto import feature
     addImportsDir(resolver.resolve('./composables'))
     addImportsDir(resolver.resolve('./helpers'))
 

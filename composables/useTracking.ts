@@ -8,7 +8,7 @@ import { usePageState } from '~/composables/usePageState'
 
 const WAIT_TIME = 1000
 
-// TODO: Handle tracking events when `gtm` is not initialized (server-side)
+// NOTE: Tracking events on server-side might need additional / extended handling if `gtm` is not initialized
 const handleNonInitializedTracking = (log: Log) => ({
   push: (data: unknown) => {
     log.warn(`Gtm was not initialized yet. Event: ${JSON.stringify(data)}`)
@@ -21,7 +21,7 @@ const handleNonInitializedTracking = (log: Log) => ({
 })
 
 export function useTracking() {
-  // NOTE: use gtm will only return a gtm instance on client side.
+  // NOTE: useGtm will only return a GTM instance on client side.
   const gtm = useGtm()
   const log = useLog('tracking')
 
@@ -58,7 +58,7 @@ export function useTracking() {
     const sortedEvents = queue.value.sort((a, b) => a.index - b.index)
     sortedEvents.forEach((item) => {
       if ('ecommerce' in item.data) {
-        gtm.push({ ecommerce: null }) // Clear the previous ecommerce object.
+        gtm.push({ ecommerce: null }) // Clear the previous ecommerce object
       }
 
       const {

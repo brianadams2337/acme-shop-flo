@@ -1,4 +1,3 @@
-<!-- TODO: DOMPurify -->
 <!-- eslint-disable vue/no-v-html -->
 <template>
   <div class="prose-sm fill-current">

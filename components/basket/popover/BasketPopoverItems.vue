@@ -64,9 +64,6 @@ const basketItems = ref<BasketItems>(updateBasketItems(items.value ?? []))
 
 const groupIds = computed(() => Object.keys(basketItems.value.groups))
 
-// TODO: Investigate why when using computed for basket items instead is causing
-// UI issues (items with promotion on it, are not visible in the list.
-// After refresh they show up)
 watchPostEffect(() => {
   basketItems.value = updateBasketItems(items.value ?? [])
 })

@@ -18,8 +18,6 @@ import {
 import { isEqual } from './object'
 import { divideByHundred } from '~/utils/price'
 
-// TODO: Add tests
-
 /**
  * Checks if event is one of: AdditionalTrackingEvent = 'cart' | 'wishlist' | 'search' | 'filter_flyout' | 'filter_slider'
  */
@@ -185,7 +183,6 @@ export const mapCustomerInfoToTrackingPayload = ({
   return mappedPayload
 }
 
-// TODO: Refactor to reduce complexity
 export const mapTrackingDataForEvent = (
   event: TrackingEvent,
   payload: TrackingPayload,
@@ -221,7 +218,6 @@ export const mapTrackingDataForEvent = (
       ...totalPrice,
     }
   } else if (isViewCartEvent(event)) {
-    // TODO: There might a place to improve this new event handling
     const {
       currencyCode: currency,
       valueWithoutTax: value,

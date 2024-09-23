@@ -83,7 +83,7 @@ storyblokToTypescript({
           },
         }
       case 'scayle-plugin':
-      case 'scayle-plugin2': // TODO: Remove this once the plugin is renamed correctly
+      case 'scayle-plugin2':
         return {
           [key]: {
             type: 'array',

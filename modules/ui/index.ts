@@ -22,7 +22,6 @@ export default defineNuxtModule<ModuleOptions>({
   async setup(options, nuxt) {
     const { resolve } = createResolver(import.meta.url)
 
-    // TODO: Remove with fully disabling of auto import feature
     addImportsDir(resolve('./runtime/composables'))
     addImportsDir(resolve('./runtime/helpers'))
 

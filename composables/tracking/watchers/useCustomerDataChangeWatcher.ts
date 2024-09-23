@@ -24,8 +24,10 @@ export const useCustomerDataChangeWatcher = async () => {
     )
   })
 
-  // TODO: This is just a workaround. On Latest and Test user is not fetched yet. So long term solution will be initializing user data much earlier.
-  // Remove the watcher and test this again after another solution is implemented.
+  // NOTE: Sometimes, when the user is logged in, “duplicate” `customer_data` events on page refresh will be triggered.
+  // This is actually not a real "duplicate" event, as the first event will have a guest user,
+  // and the second one will be an existing one, due to the fact that the user is not fetched yet on initial rendering.
+  // As a solution we remove the event that has the guest user in it since the user is already logged in.
   onNuxtReady(() => {
     scope?.run(() => {
       watch(

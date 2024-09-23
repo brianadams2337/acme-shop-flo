@@ -60,7 +60,6 @@ const { getLocalizedRoute } = useRouteHelpers()
 
 const { navigationTreeItems } = useNavigationTreeItems('header')
 
-// TODO: Check if this really works when we start touching checkout related stuff
 const { isExactActive: isCheckoutPage } = useLink({
   to: getLocalizedRoute(routeList.checkout.path),
 })

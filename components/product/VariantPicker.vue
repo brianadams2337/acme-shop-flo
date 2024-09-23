@@ -46,6 +46,7 @@
           :promotion="promotion"
           :price="item.price"
           type="normal"
+          :show-badges="false"
         />
         <span v-else>{{ $t('global.sold_out') }}</span>
       </button>
@@ -56,7 +57,6 @@
 <script setup lang="ts">
 import { defineModel } from 'vue'
 import { getFirstAttributeValue, type Variant } from '@scayle/storefront-nuxt'
-import SFDropdown from '~/modules/ui/runtime/components/form/Dropdown.vue'
 
 type Props = {
   variants: Variant[]

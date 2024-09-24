@@ -8,7 +8,11 @@
   >
     <div
       class="relative m-auto w-full rounded-md bg-white"
-      :class="{ '!h-[95%] !w-[95%]': fullScreen, 'p-8': !disablePadding, 'md:w-[46.875rem]': !fullScreen }"
+      :class="{
+        '!h-[95%] !w-[95%]': fullScreen,
+        'p-8': !disablePadding,
+        'md:w-[46.875rem]': !fullScreen,
+      }"
     >
       <slot name="headline" />
       <button

@@ -6,6 +6,8 @@
     {{ $t('pdp.sold_out') }}
   </div>
   <div v-else class="max-md:px-5">
+    <SiblingSelection :product="product" class="max-md:px-5" />
+
     <div
       class="mt-7 text-md font-semi-bold-variable leading-[14px] text-gray-900"
     >

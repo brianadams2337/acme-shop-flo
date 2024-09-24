@@ -45,7 +45,6 @@
             />
             <ProductPromotionBanners :product="product" />
           </div>
-          <SiblingSelection :product="product" class="max-md:px-5" />
 
           <ProductActions
             v-model:active-variant="activeVariant"

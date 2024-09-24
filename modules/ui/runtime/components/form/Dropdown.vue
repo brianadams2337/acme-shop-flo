@@ -102,7 +102,7 @@ const isDropdownListVisible = defineModel<boolean>('visible', {
   default: false,
 })
 
-const modelValue = defineModel<T | undefined>('modelValue')
+const modelValue = defineModel<T>('modelValue')
 
 const selectItem = (item: T) => {
   modelValue.value = item

@@ -42,6 +42,7 @@
             'rounded-t-md md:rounded-md': radius == 'md',
             'rounded-t-[10px] md:rounded-[10px]': radius == 'lg',
             'rounded-t-xl md:rounded-xl': radius == 'xl',
+            'block-scrolling': isDropdownListVisible && isMobile,
           },
         ]"
         :style="itemsContainerStyle"

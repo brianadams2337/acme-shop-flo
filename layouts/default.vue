@@ -38,7 +38,6 @@ import {
   useBanner,
   useBasketPromotions,
   useDefaultBreakpoints,
-  useSideNavigation,
   useTrackingEvents,
   usePromotionActions,
   useUserItemsTrackingWatcher,
@@ -65,14 +64,9 @@ onMounted(async () => {
 })
 
 // Meta tags
-const { isSideNavigationOpen } = useSideNavigation()
-
 useHead({
   bodyAttrs: () => ({
-    class: [
-      'relative',
-      isSideNavigationOpen.value ? 'overflow-hidden h-full' : '',
-    ],
+    class: ['relative'],
   }),
   script: [
     {

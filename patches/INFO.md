@@ -4,5 +4,4 @@ The `patches/` directory is utilized in conjunction with the [`patch-package`](h
 
 The Storefront Boilerplate currently includes the following local patches:
 
-- `@nuxt/image` - Support providing the base URL through runtime configuration
-- `import-in-the-middle` - Ignore broken modules instead of crashing
+(none)

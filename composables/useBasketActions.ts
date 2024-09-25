@@ -3,8 +3,11 @@ import {
   type Product,
   getFirstAttributeValue,
   extendPromise,
+  type AddOrUpdateItemType,
 } from '@scayle/storefront-nuxt'
 import { ref, watchPostEffect } from 'vue'
+import { ExistingItemHandling } from '@scayle/storefront-api'
+import { useI18n } from 'vue-i18n'
 import { useToast } from '~/composables/useToast'
 import { useTrackingEvents } from '~/composables/useTrackingEvents'
 import { useNuxtApp } from '#app'
@@ -14,9 +17,11 @@ import {
   routeList,
   sortBasketItemsByNameAndSize,
   type BundledBasketItems,
+  getBasketToastErrorMessageKey,
 } from '~/utils'
-import { useBasket } from '#storefront/composables'
+import { useBasket, useLog } from '#storefront/composables'
 import { BasketListingMetadata } from '~/constants'
+import { hasSubscriptionCustomData } from '~/modules/subscription/helpers/subscription'
 
 const listingMetaData = {
   id: BasketListingMetadata.ID,
@@ -28,15 +33,30 @@ type OrderedItems<T> = {
   groupedItems: BundledBasketItems<T>
 }
 
+export type AddToBasketItem = AddOrUpdateItemType & {
+  productName: string
+  interval?: string
+}
+
 export function useBasketActions() {
   const { $i18n } = useNuxtApp()
-
-  const toast = useToast()
-
+  const { show } = useToast()
+  const i18n = useI18n()
+  const log = useLog()
   const { trackRemoveFromBasket, trackBasket, collectBasketItems } =
     useTrackingEvents()
 
   const basket = useBasket()
+  const {
+    fetching,
+    isEmpty: isBasketEmpty,
+    data: basketData,
+    count: basketCount,
+    items: basketItems,
+    status: basketStatus,
+    removeItem: removeBasketItem,
+    addItem: addItemToBasket,
+  } = basket
 
   const showAddToBasketToast = (
     isAddedToBasket: boolean,
@@ -52,7 +72,7 @@ export function useBasketActions() {
 
     const action = isAddedToBasket ? 'ROUTE' : 'CONFIRM'
 
-    toast.show(message, {
+    show(message, {
       action,
       ...(isAddedToBasket && { to: routeList.basket }),
     })
@@ -63,7 +83,7 @@ export function useBasketActions() {
       return
     }
 
-    return (basket.items.value ?? [])
+    return (basketItems.value ?? [])
       .filter(({ itemGroup }) => itemGroup?.id === itemGroupId)
       .map(({ product }) => product)
   }
@@ -76,7 +96,7 @@ export function useBasketActions() {
   }: BasketItem) => {
     const groupedProducts = getGroupedProducts(itemGroup?.id)
 
-    await basket.removeItem({ variantId: variant.id })
+    await removeBasketItem({ variantId: variant.id })
 
     if (!itemGroup) {
       trackRemoveFromBasket({ product, quantity, variant })
@@ -85,7 +105,7 @@ export function useBasketActions() {
     }
 
     trackBasket(
-      collectBasketItems(basket.items.value || [], {
+      collectBasketItems(basketItems.value || [], {
         listId: listingMetaData.id,
         listName: listingMetaData.name,
       }),
@@ -108,15 +128,43 @@ export function useBasketActions() {
   }
 
   watchPostEffect(() => {
-    orderedItems.value = updateBasketItems(basket.items.value ?? [])
+    orderedItems.value = updateBasketItems(basketItems.value ?? [])
   })
 
-  const fetching = basket.fetching
-  const isBasketEmpty = basket.isEmpty
-  const basketData = basket.data
-  const basketCount = basket.count
-  const basketItems = basket.items
-  const basketStatus = basket.status
+  const showAddItemSuccessMessage = (
+    item: AddToBasketItem,
+    hasSubscriptionData: boolean,
+  ) => {
+    const message = hasSubscriptionData
+      ? i18n.t('basket.notification.add_subscription_to_basket_success', {
+          productName: item.productName,
+          interval: item.interval,
+        })
+      : i18n.t('basket.notification.add_to_basket_success', {
+          productName: item.productName,
+        })
+
+    show(message, { type: 'SUCCESS', action: 'ROUTE', to: routeList.basket })
+  }
+
+  const addItem = async (item: AddToBasketItem) => {
+    try {
+      const hasSubscriptionData = hasSubscriptionCustomData(item.customData)
+      const existingItemHandling = hasSubscriptionData
+        ? ExistingItemHandling.ReplaceExisting
+        : ExistingItemHandling.AddQuantityToExisting
+      await addItemToBasket({ ...item, existingItemHandling })
+      showAddItemSuccessMessage(item, hasSubscriptionData)
+    } catch (e) {
+      log.error('Item could not be added to basket', e)
+      show(
+        i18n.t(getBasketToastErrorMessageKey(e), {
+          productName: item.productName,
+        }),
+        { type: 'ERROR', action: 'CONFIRM' },
+      )
+    }
+  }
 
   return extendPromise(
     basket.then(() => ({})),
@@ -131,6 +179,7 @@ export function useBasketActions() {
       isBasketEmpty,
       showAddToBasketToast,
       basketStatus,
+      addItem,
     },
   )
 }

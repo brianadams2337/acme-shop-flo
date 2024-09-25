@@ -21,7 +21,7 @@ import {
 } from '../helpers/subscription'
 import { useNuxtApp } from '#app'
 import { useProduct } from '#storefront/composables'
-import type { AddToBasketItem } from '~/composables/useAddToBasket'
+import type { AddToBasketItem } from '~/composables'
 
 const selectedInterval = ref<Value | undefined>()
 const selectedPreferredDeliveryDate = ref<PreferredDeliveryDate | undefined>()

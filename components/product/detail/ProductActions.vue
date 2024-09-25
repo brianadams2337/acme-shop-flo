@@ -128,15 +128,15 @@
 <script setup lang="ts">
 import { defineModel, computed, ref, watch } from 'vue'
 import type { Product, Variant } from '@scayle/storefront-nuxt'
+import { useElementVisibility } from '@vueuse/core'
 import { isAutomaticDiscountType } from '~/utils/promotion'
 import { isProductSubscriptionEligible } from '~/modules/subscription/helpers/subscription'
-import { useProductBaseInfo } from '~/composables/useProductBaseInfo'
-import type VariantPicker from '~/components/product/VariantPicker.vue'
 import {
-  useAddToBasket,
+  useProductBaseInfo,
+  useBasketActions,
+  useTrackingEvents,
   type AddToBasketItem,
-} from '~/composables/useAddToBasket'
-import { useElementVisibility, useTrackingEvents } from '#imports'
+} from '~/composables'
 
 type Props = {
   product: Product
@@ -175,7 +175,7 @@ const basketItem = computed<AddToBasketItem | undefined>(() => {
 // Add to basket
 const isVariantListVisible = ref(false)
 const variantPicker = ref()
-const { addItem } = useAddToBasket()
+const { addItem } = useBasketActions()
 const { trackAddToBasket } = useTrackingEvents()
 
 const isVariantPickerVisible = useElementVisibility(variantPicker, {

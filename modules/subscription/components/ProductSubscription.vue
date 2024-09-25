@@ -57,7 +57,7 @@ import type { Product, Variant } from '@scayle/storefront-nuxt'
 import { useSubscription } from '../composables/useSubscription'
 import type { PreferredDeliveryDate } from '../helpers/subscription'
 import { useProductPromotions } from '~/composables/useProductPromotions'
-import type { AddToBasketItem } from '~/composables/useAddToBasket'
+import type { AddToBasketItem } from '~/composables/useBasketActions'
 
 type Props = {
   product: Product

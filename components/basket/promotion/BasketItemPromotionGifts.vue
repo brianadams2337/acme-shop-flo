@@ -26,16 +26,14 @@
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue'
+import { toRef } from 'vue'
 import type { BasketItem } from '@scayle/storefront-nuxt'
 import { useBasketItemPromotion, usePromotionGifts } from '~/composables'
 
 const props = defineProps<{ basketItem: BasketItem }>()
 
-const basketItem = computed(() => props.basketItem)
-
 const { giftPromotion, giftBackgroundColorStyle, areGiftConditionsMet } =
-  useBasketItemPromotion(basketItem)
+  useBasketItemPromotion(toRef(props.basketItem))
 
 const { products, isGiftAlreadyAdded } = usePromotionGifts(
   props.basketItem.product,

@@ -52,16 +52,6 @@ export function useBasketItemPromotion(basketItem: Ref<BasketItem>) {
     return giftPromotion.value?.customData?.minOrderValue
   })
 
-  const isMinOrderValueReached = computed(() => {
-    if (!minimumOrderValueForGift.value) {
-      return false
-    }
-    const basketTotal = getBasketTotalWithoutPromotions(
-      basket.data.value ?? undefined,
-    )
-    return basketTotal >= minimumOrderValueForGift.value
-  })
-
   const minOrderValueLeft = computed(() => {
     if (!minimumOrderValueForGift.value) {
       return 0
@@ -74,18 +64,12 @@ export function useBasketItemPromotion(basketItem: Ref<BasketItem>) {
   })
 
   const areGiftConditionsMet = computed(() => {
-    const minQuantity = giftConditions.value?.minQuantity
-    if (!minQuantity) {
-      return false
-    }
-
-    const quantityCondition = basketItem.value?.quantity >= minQuantity
-
-    if (!minimumOrderValueForGift.value) {
-      return quantityCondition
-    }
-
-    return isMinOrderValueReached.value && quantityCondition
+    return (
+      basket.data.value?.applicablePromotions?.some(
+        (applicablePromotions) =>
+          applicablePromotions.promotion.id === giftPromotion.value?.id,
+      ) || false
+    )
   })
 
   const isBuyXGetY = computed(() => isBuyXGetYType(promotion.value))

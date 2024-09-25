@@ -104,6 +104,7 @@
                   type="tertiary"
                   :to="getProductDetailRoute(product.id, name)"
                   class="!border-gray-300"
+                  @click="selectItem(product)"
                 >
                   {{ $t('pdp.details_label') }}
                 </SFButton>
@@ -120,10 +121,13 @@
 import type { Product } from '@scayle/storefront-nuxt'
 import {
   useDefaultBreakpoints,
+  usePageState,
   useProductBaseInfo,
   usePromotionGiftSelection,
   useRouteHelpers,
+  useTrackingEvents,
 } from '~/composables'
+import { useRoute } from '#app/composables/router'
 
 const props = defineProps<{
   product: Product
@@ -133,6 +137,9 @@ const props = defineProps<{
 
 const { getProductDetailRoute } = useRouteHelpers()
 const { isGreaterOrEqual } = useDefaultBreakpoints()
+const { trackSelectItem } = useTrackingEvents()
+const route = useRoute()
+const { pageState } = usePageState()
 
 const {
   basketIdle,
@@ -145,6 +152,17 @@ const {
 } = usePromotionGiftSelection(props.product)
 
 const { name, brand, image } = useProductBaseInfo(props.product)
+
+const selectItem = (product: Product) => {
+  trackSelectItem({
+    product,
+    pagePayload: {
+      content_name: route.fullPath,
+      page_type: pageState.value.type,
+      page_type_id: route.params.id?.toString() || '',
+    },
+  })
+}
 
 const close = () => {
   activeVariant.value = undefined

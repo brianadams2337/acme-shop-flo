@@ -75,6 +75,8 @@ export const mapProductToTrackingPayload = (
     getFirstAttributeValue(product.attributes, 'brand')?.label || ''
   const itemBrandId =
     getFirstAttributeValue(product.attributes, 'brand')?.id?.toString() || ''
+  const itemSize =
+    getFirstAttributeValue(variant?.attributes, 'size')?.value?.toString() || ''
 
   return {
     item_id: product.id.toString(),
@@ -99,6 +101,7 @@ export const mapProductToTrackingPayload = (
         }),
     item_brand: itemBrand,
     item_brand_id: itemBrandId,
+    item_size: itemSize,
   }
 }
 
@@ -125,6 +128,7 @@ const mapAdditionalInfo = (
     sold_out: product.isSoldOut,
     quantity: quantity > -1 ? String(quantity) : '0',
     ...('source' in data && { source: data.source }),
+    ...('currency' in data && { currency: data.currency }),
     ...('destination' in data && { destination: data.destination }),
     ...('destinationUrl' in data && { destination_url: data.destinationUrl }),
     ...('variant' in data && { item_variant: data?.variant?.id?.toString() }),
@@ -205,9 +209,10 @@ export const mapTrackingDataForEvent = (
     isAdditionalTrackingEvent(event) &&
     isProductImpressionsData(payload)
   ) {
-    const items = payload.items.map((payload) => ({
-      ...mapProductToTrackingPayload(payload.product),
-      ...mapAdditionalInfo(payload),
+    const items = payload.items.map((payloadItem) => ({
+      ...mapProductToTrackingPayload(payloadItem.product),
+      ...mapAdditionalInfo(payloadItem),
+      currency: 'currencyCode' in payload ? payload.currencyCode : undefined,
     }))
 
     // @ts-expect-error Property 'items' does not exist on type '{}'.

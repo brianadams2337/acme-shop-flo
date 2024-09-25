@@ -146,6 +146,7 @@ declare global {
     original_price?: number
     item_brand: string
     item_brand_id: string
+    item_size: string
     tax?: number
   }
 

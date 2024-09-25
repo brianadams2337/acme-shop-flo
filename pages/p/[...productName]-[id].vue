@@ -211,6 +211,7 @@ useHead({
   link: canonicalLink,
 })
 useJsonld(() => [productBreadcrumbJsonLd.value, productJsonLd.value])
+definePageMeta({ pageType: 'product_detail_page' })
 
 // Tracking
 onMounted(async () => {

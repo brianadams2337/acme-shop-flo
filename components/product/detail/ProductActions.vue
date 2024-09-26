@@ -77,7 +77,7 @@
     class="mt-4"
     @add-item-to-basket="addItemToBasket($event)"
   />
-  <Teleport to="body">
+  <Teleport to="#teleports">
     <FloatingContainer
       class="!bottom-6 z-50 flex w-full items-center gap-x-3 px-3 md:hidden"
     >

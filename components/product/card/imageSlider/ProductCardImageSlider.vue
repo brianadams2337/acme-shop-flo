@@ -2,6 +2,7 @@
   <SFItemsSlider class="size-full" :with-arrows="areArrowsShown">
     <template #prev-button="{ prev, isPrevEnabled }">
       <ProductCardImageSliderButton
+        class="top-[40%] bg-white hover:bg-white"
         :disabled="!isPrevEnabled"
         direction="left"
         @click="prev()"
@@ -9,6 +10,7 @@
     </template>
     <template #next-button="{ next, isNextEnabled }">
       <ProductCardImageSliderButton
+        class="top-[40%] bg-white hover:bg-white"
         :disabled="!isNextEnabled"
         direction="right"
         @click="next()"

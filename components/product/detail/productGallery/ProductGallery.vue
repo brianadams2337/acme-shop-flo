@@ -17,11 +17,7 @@
           @mouseenter="scrollImageIntoView(index)"
           @click="isZoomModalOpen = true"
         >
-          <ProductImage
-            :image="productThumbnail"
-            :alt="alt"
-            sizes="xs:96px sm:96px md:96px lg:96px xl:96px"
-          />
+          <ProductImage :image="productThumbnail" :alt="alt" sizes="96px" />
         </div>
         <template #prev-button="{ prev, isPrevEnabled }">
           <button
@@ -127,7 +123,7 @@ import { ref } from 'vue'
 import { useElementSize } from '@vueuse/core'
 import type { Product } from '@scayle/storefront-nuxt'
 import { SFItemsSlider } from '#components'
-import GoBackLink from '~/modules/ui/runtime/components/links/GoBackLink.vue'
+import GoBackLink from '#storefront-ui/components/links/GoBackLink.vue'
 import { useProductBaseInfo } from '#imports'
 
 const props = defineProps<{

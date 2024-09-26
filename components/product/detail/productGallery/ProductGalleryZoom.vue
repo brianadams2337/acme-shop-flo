@@ -29,7 +29,7 @@
                 :image="productImage"
                 :alt="alt"
                 :data-testid="`product-image-zoom-${index}`"
-                sizes="xs:100vw sm:100vw md:100vw lg:100vw xl:100vw"
+                sizes="100vw"
                 :style="imageIndex === index ? style : {}"
                 class="transition-transform duration-75"
                 :with-mix-blend-darken="false"
@@ -38,7 +38,7 @@
             </div>
             <template #prev-button="{ prev, isPrevEnabled }">
               <ProductCardImageSliderButton
-                class="!top-1/2 !-translate-y-1/2 !bg-gray-200 max-md:hidden"
+                class="top-1/2 -translate-y-1/2 bg-gray-200 max-md:hidden"
                 :disabled="!isPrevEnabled"
                 direction="left"
                 @click="prev()"
@@ -46,7 +46,7 @@
             </template>
             <template #next-button="{ next, isNextEnabled }">
               <ProductCardImageSliderButton
-                class="!top-1/2 !-translate-y-1/2 !bg-gray-200 max-md:hidden"
+                class="top-1/2 -translate-y-1/2 bg-gray-200 max-md:hidden"
                 :disabled="!isNextEnabled"
                 direction="right"
                 @click="next()"

@@ -1,9 +1,9 @@
 <template>
   <button
-    class="absolute top-[40%] bg-white p-2 text-gray-400 shadow-secondary transition-transform duration-300 hover:bg-white hover:text-gray-900 disabled:hover:translate-x-0 disabled:hover:text-gray-400"
+    class="absolute p-2 text-gray-400 shadow-secondary transition-transform duration-300 hover:text-gray-900 disabled:hover:translate-x-0 disabled:hover:text-gray-400"
     :class="{
       '-left-2 rounded-r-full hover:translate-x-1': isLeft,
-      '-right-2 rounded-l-full hover:-translate-x-1': direction === 'right',
+      '-right-2 rounded-l-full hover:-translate-x-1': !isLeft,
     }"
     :disabled="disabled"
     :aria-label="ariaLabel"

@@ -32,7 +32,8 @@
           v-for="({ product, key }, index) in orderedItems"
           :id="product.id"
           :key="`product-${key}-${product}`"
-          v-bind="{ index, product }"
+          :index="index"
+          :product="product"
           data-testid="wishlist-card"
           class="col-span-6 mb-4 md:col-span-4 2xl:col-span-3"
         />

@@ -18,10 +18,12 @@
       "
     >
       <div
-        class="absolute left-auto right-1 top-1 z-20 flex h-12 w-auto cursor-pointer p-1 opacity-100 transition md:right-0 md:top-0 md:p-3"
-        :class="{ 'lg:opacity-0': !isProductHovered }"
+        class="absolute left-auto right-1 top-1 z-20 flex h-12 w-auto cursor-pointer p-1 transition md:right-0 md:top-0 md:p-3"
       >
-        <WishlistToggle v-bind="{ product, listingMetaData }" />
+        <WishlistToggle
+          :product="product"
+          :listing-meta-data="listingMetaData"
+        />
       </div>
       <ProductCardBadgesHeader
         :product="product"
@@ -30,14 +32,19 @@
       <template v-if="link && image">
         <ProductCardImage
           v-if="shouldShowSingleImage"
-          v-bind="{ image, alt, link }"
+          :image="image"
+          :alt="alt"
+          :link="link"
           :product-index="index"
           @click.capture="$emit('click:product')"
         />
 
         <ProductCardImageSlider
           v-else
-          v-bind="{ image, alt, link, isProductHovered }"
+          :image="image"
+          :alt="alt"
+          :link="link"
+          :is-product-hovered="isProductHovered"
           :product-index="index"
           :images="product.images"
           @click.capture="$emit('click:product')"
@@ -50,7 +57,8 @@
     </div>
     <ProductCardDetails
       v-if="link"
-      v-bind="{ product, link }"
+      :product="product"
+      :link="link"
       @click.capture="$emit('click:product')"
     />
   </Intersect>

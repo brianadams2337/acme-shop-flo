@@ -8,7 +8,8 @@
           (width === '2' && listingColumns === 3) || listingColumns === 1,
         'col-span-full md:col-span-8': width === '2' && listingColumns === 2,
       }"
-      v-bind="{ product, multipleImages }"
+      :product="product"
+      :multiple-images="multipleImages"
       class="col-span-full"
       @intersect:product="emit('intersect:product', product)"
     />

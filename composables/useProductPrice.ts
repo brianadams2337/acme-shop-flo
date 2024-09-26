@@ -2,6 +2,11 @@ import { computed, type Ref } from 'vue'
 import type { Price } from '@scayle/storefront-nuxt'
 import { useFormatHelpers } from '#storefront/composables'
 
+type RelativeReductions = {
+  value: number
+  category: 'promotion' | 'sale' | 'campaign' | 'voucher'
+}
+
 export function useProductPrice(price: Ref<Price>) {
   const { formatCurrency } = useFormatHelpers()
 
@@ -18,7 +23,7 @@ export function useProductPrice(price: Ref<Price>) {
     )
   })
 
-  const relativeReductions = computed(() =>
+  const relativeReductions = computed<RelativeReductions[]>(() =>
     appliedReductions.value.map(({ amount, category }) => {
       return { value: Math.round(amount.relative * 100), category }
     }),

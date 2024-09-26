@@ -12,7 +12,6 @@
       <slot
         v-if="showBadges"
         name="relative-reductions"
-        :applied-reductions="appliedReductions"
         :relative-reductions="relativeReductions"
       >
         <span

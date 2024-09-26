@@ -23,7 +23,7 @@
           'border-gray-200': sibling.isSoldOut && sibling.id !== product.id,
         }"
         @mouseenter="setHoveredLabel(sibling)"
-        @mouseleave="setHoveredLabel(undefined)"
+        @mouseleave="setHoveredLabel()"
       >
         <div
           v-if="sibling.isSoldOut"
@@ -104,7 +104,7 @@ const { siblings, name } = useProductBaseInfo(props.product)
 const hoveredColorLabel = ref()
 const { t } = useI18n()
 
-const setHoveredLabel = (sibling: ProductSibling | undefined) => {
+const setHoveredLabel = (sibling?: ProductSibling) => {
   if (!sibling) {
     hoveredColorLabel.value = undefined
     return

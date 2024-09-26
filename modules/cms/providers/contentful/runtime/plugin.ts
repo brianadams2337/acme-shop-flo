@@ -1,4 +1,4 @@
-import contentful, { createClient } from 'contentful'
+import { createClient } from 'contentful'
 import type { ContentfulRuntimeConfig } from '../types'
 import { useContentfulEditor } from '../composables/useContentfulEditor'
 import { defineNuxtPlugin, useRuntimeConfig } from '#app'
@@ -8,10 +8,6 @@ export default defineNuxtPlugin({
   setup() {
     const config = useRuntimeConfig()
     const cms = config.public.cms as ContentfulRuntimeConfig
-    const createContentfulApiClient =
-      process.env.NODE_ENV === 'development'
-        ? createClient
-        : contentful.createClient
 
     const { isInEditorMode } = useContentfulEditor()
 
@@ -28,7 +24,7 @@ export default defineNuxtPlugin({
         : cms.accessToken
 
     // https://contentful.github.io/contentful.js/contentful/7.14.8/contentful.html#.createClient
-    const client = createContentfulApiClient({
+    const client = createClient({
       accessToken,
       space: cms.space,
       host,

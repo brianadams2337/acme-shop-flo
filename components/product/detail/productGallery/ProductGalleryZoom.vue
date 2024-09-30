@@ -29,7 +29,7 @@
                 :image="productImage"
                 :alt="alt"
                 :data-testid="`product-image-zoom-${index}`"
-                sizes="100vw"
+                sizes="xs:100vw sm:100vw md:100vw lg:100vw xl:100vw"
                 :style="imageIndex === index ? style : {}"
                 class="transition-transform duration-75"
                 :with-mix-blend-darken="false"

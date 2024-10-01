@@ -4,4 +4,4 @@ The `patches/` directory is utilized in conjunction with the [`patch-package`](h
 
 The Storefront Boilerplate currently includes the following local patches:
 
-(none)
+- `@gtm-support/vue-gtm` Backport [property augmentation fix](https://github.com/gtm-support/vue-gtm/pull/467) to 2.x

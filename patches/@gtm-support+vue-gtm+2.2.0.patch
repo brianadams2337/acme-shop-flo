@@ -1,0 +1,26 @@
+diff --git a/node_modules/@gtm-support/vue-gtm/dist/index.d.cts b/node_modules/@gtm-support/vue-gtm/dist/index.d.cts
+index d784507..bfb2b6f 100644
+--- a/node_modules/@gtm-support/vue-gtm/dist/index.d.cts
++++ b/node_modules/@gtm-support/vue-gtm/dist/index.d.cts
+@@ -11,7 +11,7 @@ interface VueGtmUseOptions extends GtmSupportOptions {
+     trackOnNextTick?: boolean;
+ }
+ declare function createGtm(options: VueGtmUseOptions): VueGtmPlugin;
+-declare module '@vue/runtime-core' {
++declare module 'vue' {
+     interface ComponentCustomProperties {
+         $gtm: GtmSupport;
+     }
+diff --git a/node_modules/@gtm-support/vue-gtm/dist/index.d.ts b/node_modules/@gtm-support/vue-gtm/dist/index.d.ts
+index d784507..bfb2b6f 100644
+--- a/node_modules/@gtm-support/vue-gtm/dist/index.d.ts
++++ b/node_modules/@gtm-support/vue-gtm/dist/index.d.ts
+@@ -11,7 +11,7 @@ interface VueGtmUseOptions extends GtmSupportOptions {
+     trackOnNextTick?: boolean;
+ }
+ declare function createGtm(options: VueGtmUseOptions): VueGtmPlugin;
+-declare module '@vue/runtime-core' {
++declare module 'vue' {
+     interface ComponentCustomProperties {
+         $gtm: GtmSupport;
+     }

@@ -48,7 +48,7 @@
         <SFButton
           size="sm"
           type="raw"
-          class="size-9 rounded-xl bg-gray-200"
+          class="size-11 rounded-xl bg-gray-200"
           :disabled="disabled"
           @click="toggleGiftSelection()"
         >

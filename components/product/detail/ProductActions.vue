@@ -6,7 +6,7 @@
     {{ $t('pdp.sold_out') }}
   </div>
   <div v-else class="max-md:px-5">
-    <SiblingSelection :product="product" class="max-md:px-5" />
+    <SiblingSelection :product="product" />
 
     <div
       class="mt-7 text-md font-semi-bold-variable leading-[14px] text-gray-900"
@@ -35,12 +35,9 @@
       :disabled="isSoldOutOrOutOfStock"
       @click="addItemToBasket(basketItem)"
     >
-      <span v-if="!isSoldOutOrOutOfStock">
+      <template v-if="!isSoldOutOrOutOfStock">
         {{ $t('basket.add_to_basket') }}
-        <span v-if="!activeVariant" class="font-normal max-md:hidden">
-          {{ $t('pdp.select_size') }}
-        </span>
-      </span>
+      </template>
       <template v-else>
         {{ $t('global.sold_out') }}
       </template>
@@ -78,9 +75,6 @@
         <div class="flex w-full justify-between">
           <template v-if="!isSoldOutOrOutOfStock">
             {{ $t('basket.add_to_basket') }}
-            <span v-if="!activeVariant" class="font-normal max-md:hidden">
-              {{ $t('pdp.select_size') }}
-            </span>
           </template>
           <template v-else>
             {{ $t('global.sold_out') }}

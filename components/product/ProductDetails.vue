@@ -1,6 +1,6 @@
 <template>
   <div
-    class="px-5 text-2xl font-medium md:inset-x-0 md:m-auto md:max-w-screen-xl"
+    class="px-5 text-2xl font-medium md:inset-x-0 md:m-auto md:max-w-screen-xl md:px-4"
   >
     <div class="md:divide-y">
       <SFAccordionEntry

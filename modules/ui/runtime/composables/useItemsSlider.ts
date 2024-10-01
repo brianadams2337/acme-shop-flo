@@ -39,29 +39,33 @@ export function useItemsSlider(
   }
 
   // Note: Throttle onScroll callback to prevent layout thrashing. https://kellegous.com/j/2013/01/26/layout-performance/
-  const onScroll = useThrottleFn(() => {
-    if (import.meta.server || !sliderRef.value) {
-      return
-    }
+  const onScroll = useThrottleFn(
+    () => {
+      if (import.meta.server || !sliderRef.value) {
+        return
+      }
 
-    // Horizontal
-    const scrollLeft = sliderRef.value?.scrollLeft
-    arrivedRight.value =
-      scrollLeft + sliderRef.value?.clientWidth >=
-      sliderRef.value?.scrollWidth - ARRIVED_STATE_THRESHOLD_PIXELS
-    arrivedLeft.value = scrollLeft <= 0
-    x.value = scrollLeft
+      // Horizontal
+      const scrollLeft = sliderRef.value?.scrollLeft
+      arrivedRight.value =
+        scrollLeft + sliderRef.value?.clientWidth >=
+        sliderRef.value?.scrollWidth - ARRIVED_STATE_THRESHOLD_PIXELS
+      arrivedLeft.value = scrollLeft <= 0
+      x.value = scrollLeft
 
-    // Vertical
-    const scrollTop = sliderRef.value?.scrollTop
-    arrivedBottom.value =
-      scrollTop + sliderRef.value?.clientHeight >=
-      sliderRef.value?.scrollHeight - ARRIVED_STATE_THRESHOLD_PIXELS
-    arrivedTop.value = scrollTop <= 0
-    y.value = scrollTop
+      // Vertical
+      const scrollTop = sliderRef.value?.scrollTop
+      arrivedBottom.value =
+        scrollTop + sliderRef.value?.clientHeight >=
+        sliderRef.value?.scrollHeight - ARRIVED_STATE_THRESHOLD_PIXELS
+      arrivedTop.value = scrollTop <= 0
+      y.value = scrollTop
 
-    calculateActiveSlide()
-  }, 100)
+      calculateActiveSlide()
+    },
+    100,
+    true,
+  )
 
   const getSlideWidth = () => {
     const slideCount = sliderRef.value.children.length

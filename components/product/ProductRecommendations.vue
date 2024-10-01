@@ -34,14 +34,17 @@
     </template>
     <template #default>
       <template v-if="status === 'success'">
-        <ProductCard
+        <div
           v-for="(product, index) in products || []"
           :key="product.id"
-          :product="product"
-          multiple-images
-          class="w-1/2 shrink-0 px-2 md:w-1/3 lg:w-1/4"
-          @click="trackProductCardClick(product, index)"
-        />
+          class="w-1/2 shrink-0 snap-start px-2 md:w-1/3 lg:w-1/4"
+        >
+          <ProductCard
+            :product="product"
+            multiple-images
+            @click="trackProductCardClick(product, index)"
+          />
+        </div>
       </template>
       <template v-else>
         <SFSkeletonLoader

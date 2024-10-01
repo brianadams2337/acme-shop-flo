@@ -1,16 +1,16 @@
 <template>
   <AsyncDataWrapper :status="productDataStatus">
-    <div v-if="product" class="xl:container">
+    <div v-if="product" class="xl:container md:max-xl:mx-5">
       <div
-        class="flex flex-col items-start justify-between gap-8 max-md:space-y-5 md:flex-row"
+        class="flex flex-col items-start gap-8 max-md:space-y-5 md:flex-row md:justify-start"
       >
         <ProductGallery
           v-if="product"
           :product="product"
-          class="md:sticky md:top-8 md:w-1/2"
+          class="md:sticky md:top-8 md:max-w-[700px] md:shrink"
           product-image-slider-class="md:max-w-[528px]"
         />
-        <div class="flex w-full flex-col gap-4 md:w-1/2">
+        <div class="flex w-full flex-col gap-4 md:max-w-[500px] md:shrink-[4]">
           <ProductBreadcrumbs
             v-if="longestCategoryList"
             class="mb-8 hidden max-md:px-5 md:block"
@@ -77,9 +77,11 @@
           />
         </div>
       </div>
-      <ProductDetails :product="product" />
+      <ProductDetails :product="product" class="py-10 md:ml-24" />
+      <hr v-if="recommendedProductIds.length" class="mb-10 md:hidden" />
       <ProductRecommendations
         v-if="recommendedProductIds.length"
+        class="max-md:px-5"
         :product-ids="recommendedProductIds"
         :title="$t('global.product_recommendation')"
       />

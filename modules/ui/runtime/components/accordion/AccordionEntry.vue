@@ -1,16 +1,22 @@
 <template>
-  <div class="z-10 flex flex-col py-4 md:flex-row md:py-10">
-    <div class="md:w-1/2" :class="{ 'max-sm:mb-4': open }">
-      <div
-        class="flex w-full cursor-pointer gap-4 max-md:justify-between md:h-min md:flex-row-reverse md:justify-end"
-        @click="open = !open"
-      >
-        {{ title }}
-        <IconPlus v-if="!open" class="size-6 text-black" />
-        <IconMinus v-else class="size-6 text-black" />
-      </div>
-    </div>
+  <div class="flex flex-col py-4 md:flex-row md:py-10">
+    <details
+      ref="details"
+      class="group peer open:max-md:mb-4 md:w-1/2"
+      :aria-details="id"
+    >
+      <summary class="list-none">
+        <div
+          class="flex w-full cursor-pointer gap-4 max-md:justify-between md:h-min md:flex-row-reverse md:justify-end"
+        >
+          {{ title }}
+          <IconPlus class="size-6 text-black group-open:hidden" />
+          <IconMinus class="hidden size-6 text-black group-open:block" />
+        </div>
+      </summary>
+    </details>
     <div
+      :id="id"
       ref="content"
       class="overflow-hidden text-md transition-all md:w-1/2"
       :style="dynamicHeight"
@@ -21,13 +27,19 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed } from 'vue'
+import { computed, ref, useId } from 'vue'
+import { useEventListener } from '@vueuse/core'
 
 defineProps<{ title: string }>()
 
+const id = useId()
 const open = ref(false)
-const content = ref<HTMLDivElement>()
+const details = ref<HTMLDetailsElement>()
+useEventListener(details, 'toggle', (event: ToggleEvent) => {
+  open.value = event.newState === 'open'
+})
 
+const content = ref<HTMLDivElement>()
 const dynamicHeight = computed(() =>
   open.value ? `height: ${content.value?.scrollHeight}px` : `height: 0px`,
 )

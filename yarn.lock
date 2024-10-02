@@ -3088,10 +3088,10 @@
     defu "^6.1.4"
     knitwork "^1.1.0"
 
-"@scayle/omnichannel-nuxt@4.0.0":
-  version "4.0.0"
-  resolved "https://registry.yarnpkg.com/@scayle/omnichannel-nuxt/-/omnichannel-nuxt-4.0.0.tgz#8279bf7af2fb2c7b85abd506a7aa598606a5bb49"
-  integrity sha512-azK+qlFQ39/B6rJJhIvbTYP14r8bjJKKIotnt9PeWZB7XPRA9Y1beQCFzzISuNEMFKG8pMyD4XhqB4fE8EmJHQ==
+"@scayle/omnichannel-nuxt@4.0.1":
+  version "4.0.1"
+  resolved "https://registry.yarnpkg.com/@scayle/omnichannel-nuxt/-/omnichannel-nuxt-4.0.1.tgz#6935a60899f48ac5341dfce5fc0df14625ebe9e1"
+  integrity sha512-zoyYmZbjVzV2fUyi5nY07DskHnEwh+5LuM7nnxlr6ZkAuOe4EAty2NchDRyjsZdb6i0HN+7NXuaU7/fyHYsFOg==
   dependencies:
     "@nuxt/kit" "^3.12.2"
     qs "^6.12.2"

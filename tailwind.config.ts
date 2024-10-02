@@ -169,6 +169,15 @@ export default {
       ],
     },
     extend: {
+      height: {
+        13: '52px',
+      },
+      width: {
+        13: '52px',
+      },
+      size: {
+        13: '52px',
+      },
       boxShadow: {
         secondary: '0px 6px 16px -10px rgba(0, 0, 0, 0.04)',
       },

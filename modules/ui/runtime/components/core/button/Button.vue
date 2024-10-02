@@ -3,7 +3,7 @@
     :is="componentName"
     v-bind="{ to, disabled, ...(to && { raw: true }) }"
     :class="{
-      'h-[52px] px-6 py-4': !isRaw && isSize('xl'),
+      'h-13 px-6 py-4': !isRaw && isSize('xl'),
       'h-12 px-10': !isRaw && isSize('lg'),
       'h-11 px-10': !isRaw && isSize('md'),
       'h-9 px-6': !isRaw && isSize('sm'),

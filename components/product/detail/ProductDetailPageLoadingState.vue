@@ -71,8 +71,8 @@
 
         <!-- Add to basket and Wishlist-->
         <div class="flex gap-3 max-md:hidden">
-          <SFSkeletonLoader class="!size-[52px] grow" />
-          <SFSkeletonLoader class="!size-[52px]" />
+          <SFSkeletonLoader class="!size-13 grow" />
+          <SFSkeletonLoader class="!size-13" />
         </div>
       </div>
     </div>

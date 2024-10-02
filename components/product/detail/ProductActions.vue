@@ -51,7 +51,7 @@
     </SFButton>
     <WishlistToggle
       :product="product"
-      class="!size-[52px] !bg-gray-100 hover:!scale-100 hover:!bg-gray-200 hover:!text-black"
+      class="!size-13 !bg-gray-100 hover:!scale-100 hover:!bg-gray-200 hover:!text-black"
     />
   </div>
   <ProductSubscription
@@ -89,7 +89,7 @@
           </div>
         </div>
       </SFButton>
-      <ScrollToTopButton class="!size-[52px]" />
+      <ScrollToTopButton class="!size-13" />
     </FloatingContainer>
   </Teleport>
 </template>

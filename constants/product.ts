@@ -59,3 +59,19 @@ export const productListingMetaData = {
   name: 'PDP',
   id: 'PDP',
 } as const
+
+export const ProductColor: Record<string, string | string[]> = {
+  weiss_1: '#ffffff',
+  beige: '#e3dad1',
+  schwarz: '#000000',
+  grau: '#6b7280',
+  rot: '#ef4444',
+  blau: '#3b82f6',
+  gruen: '#22c55e',
+  gelb: '#eab308',
+  orange: '#f97316',
+  braun: '#bfa094',
+  pink: '#ec4899',
+  lila: '#a855f7',
+  mischfarben: ['#0000ff', '#ffa500', '#ff0000', '#008000'],
+}

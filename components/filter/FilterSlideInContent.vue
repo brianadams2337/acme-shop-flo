@@ -51,7 +51,7 @@
         <div class="flex flex-wrap gap-4">
           <template v-for="item in filter.values">
             <FilterColorChip
-              v-if="getColorCodeById(item.id)"
+              v-if="ProductColor[item.value]"
               :key="item.id"
               data-testid="filter-color-circle"
               :color="item"
@@ -115,7 +115,7 @@ import FilterColorChip from './FilterColorChip.vue'
 import FilterGroup from './FilterGroup.vue'
 import type { FilterItemWithValues } from '~/types/filter'
 import type { RangeTuple } from '#storefront-ui/components/form/RangeSlider.vue'
-import { getColorCodeById } from '~/utils'
+import { ProductColor } from '~/constants/product'
 import { SFCheckbox, SFChip, SFRangeSlider } from '#storefront-ui/components'
 
 type Props = {

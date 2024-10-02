@@ -48,27 +48,23 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import Color from 'color'
-import { getColorCodeById, type ProductColorCode } from '~/utils/product'
+import { ProductColor } from '~/constants/product'
 import type { AttributesFilterValue } from '~/types/filter'
 
 type Props = {
   color: AttributesFilterValue
   isChecked?: boolean
 }
-const props = withDefaults(defineProps<Props>(), {
-  isChecked: false,
-})
+const props = withDefaults(defineProps<Props>(), { isChecked: false })
 
-const colorCode = computed<ProductColorCode | undefined>(() => {
-  return getColorCodeById(props.color.id)
-})
+const colorCode = computed(() => ProductColor[props.color.value])
+
 const isBrightColor = computed(() => Color(colorCode.value).luminosity() > 0.7)
-const hasMixedColors = computed(() => Array.isArray(colorCode.value))
-const isNumberOfMixColorsOdd = computed<boolean>(() => {
-  if (!hasMixedColors.value || !colorCode.value) {
-    return false
-  }
 
+const hasMixedColors = computed(() => Array.isArray(colorCode.value))
+
+const isNumberOfMixColorsOdd = computed<boolean>(() => {
+  if (!hasMixedColors.value || !colorCode.value) return false
   return colorCode.value.length % 2 !== 0
 })
 </script>

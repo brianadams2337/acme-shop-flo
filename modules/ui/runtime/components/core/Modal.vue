@@ -1,33 +1,21 @@
 <template>
   <dialog
     v-dialog.modal="visible"
-    class="rounded backdrop:bg-black/50"
-    :class="{
-      'm-0 mt-auto max-h-[calc(100vh-40px)]': appearFromBottom,
-      'size-full': fullScreen,
-    }"
+    class="rounded p-8 backdrop:bg-black/50"
     @click="onClick"
     @cancel="onCancel"
   >
-    <div
-      class="relative m-auto w-full rounded-md bg-white"
-      :class="{
-        '!h-[95%] !w-[95%]': fullScreen,
-        'p-8': !disablePadding,
-        'md:w-[46.875rem]': !fullScreen,
-      }"
+    <button
+      v-if="!hideCloseButton"
+      data-testid="close-button"
+      class="group absolute right-6 top-6 z-50 cursor-pointer rounded-full p-2.5 transition-colors max-md:bg-gray-100 md:hover:bg-gray-100"
+      @click="onCancel"
     >
-      <slot name="headline" />
-      <button
-        v-if="!hideCloseButton"
-        data-testid="close-button"
-        class="group absolute right-6 top-6 z-50 cursor-pointer rounded-full p-2.5 transition-colors max-md:bg-gray-100 md:hover:bg-gray-100"
-        @click="onCancel"
-      >
-        <IconClose
-          class="size-5 transition-colors md:fill-gray-400 md:group-hover:fill-black"
-        />
-      </button>
+      <IconClose
+        class="size-5 transition-colors md:fill-gray-400 md:group-hover:fill-black"
+      />
+    </button>
+    <div class="m-auto w-full rounded-md bg-white md:min-w-[46rem]">
       <slot />
     </div>
   </dialog>
@@ -39,18 +27,12 @@ import { vDialog } from '../../directives/dialog'
 
 type Props = {
   hideCloseButton?: boolean
-  fullScreen?: boolean
   closeOnOutside?: boolean
-  disablePadding?: boolean
-  appearFromBottom?: boolean
 }
 
 const props = withDefaults(defineProps<Props>(), {
   hideCloseButton: false,
-  fullScreen: false,
   closeOnOutside: true,
-  disablePadding: false,
-  appearFromBottom: false,
 })
 
 const visible = defineModel<boolean>('visible', {

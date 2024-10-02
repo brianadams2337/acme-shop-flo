@@ -1,16 +1,12 @@
 <template>
   <SFFadeInTransition>
     <SFModal visible @update:visible="$emit('close:modal')">
-      <template #headline>
-        <div>
-          <SFHeadline size="xl" tag="h2" class="mb-4">
-            {{ $t('login_page.forgot_password.title') }}
-          </SFHeadline>
-          <p class="mb-4 text-sm">
-            {{ $t('login_page.forgot_password.description') }}
-          </p>
-        </div>
-      </template>
+      <SFHeadline size="xl" tag="h2" class="mb-4">
+        {{ $t('login_page.forgot_password.title') }}
+      </SFHeadline>
+      <p class="mb-4 text-sm">
+        {{ $t('login_page.forgot_password.description') }}
+      </p>
       <form>
         <SFValidatedInputGroup v-slot="{ isValid }" :errors="v.email.$errors">
           <SFTextInput

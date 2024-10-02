@@ -1,13 +1,9 @@
 <template>
   <SFFadeInTransition>
     <SFModal visible hide-close-button @update:visible="$emit('close:modal')">
-      <template #headline>
-        <div>
-          <SFHeadline size="xl" tag="h2" class="mb-4">
-            {{ $t('login_page.reset_password.title') }}
-          </SFHeadline>
-        </div>
-      </template>
+      <SFHeadline size="xl" tag="h2" class="mb-4">
+        {{ $t('login_page.reset_password.title') }}
+      </SFHeadline>
 
       <form>
         <SFValidatedInputGroup

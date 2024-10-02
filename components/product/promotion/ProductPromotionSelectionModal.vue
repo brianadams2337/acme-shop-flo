@@ -3,9 +3,7 @@
     <SFSlideInFromBottomTransition>
       <SFModal
         :visible="isGiftSelectionShown"
-        :appear-from-bottom="!isGreaterOrEqual('md')"
-        disable-padding
-        class="!rounded-t-xl max-sm:w-full md:!rounded-xl"
+        class="!rounded-t-xl !p-0 max-md:m-0 max-md:mt-auto max-md:max-h-[calc(100vh-40px)] max-md:w-full md:!rounded-xl"
         @update:visible="(open) => open || close()"
       >
         <div class="flex">
@@ -124,7 +122,6 @@ import ProductImage from '../ProductImage.vue'
 import VariantPicker from '../VariantPicker.vue'
 import ProductPromotionFreeGiftBadge from './gifts/ProductPromotionFreeGiftBadge.vue'
 import {
-  useDefaultBreakpoints,
   usePageState,
   useProductBaseInfo,
   usePromotionGiftSelection,
@@ -147,7 +144,6 @@ const props = defineProps<{
 }>()
 
 const { getProductDetailRoute } = useRouteHelpers()
-const { isGreaterOrEqual } = useDefaultBreakpoints()
 const { trackSelectItem } = useTrackingEvents()
 const route = useRoute()
 const { pageState } = usePageState()

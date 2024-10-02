@@ -5,7 +5,7 @@
       class="group peer open:max-md:mb-4 md:w-1/2"
       :aria-details="id"
     >
-      <summary class="list-none">
+      <summary class="list-none marker:hidden">
         <div
           class="flex w-full cursor-pointer gap-4 max-md:justify-between md:h-min md:flex-row-reverse md:justify-end"
         >

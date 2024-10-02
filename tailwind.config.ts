@@ -349,6 +349,13 @@ export default {
       // https://github.com/tailwindlabs/tailwindcss/pull/12040
       addVariant('starting', '@starting-style')
       addVariant('loaded', 'body.loaded &')
+      // Allow styling the marker of <summary/>
+      addVariant('marker', [
+        '&::marker',
+        '& *::marker',
+        '&::-webkit-details-marker',
+        '& *::-webkit-details-marker',
+      ])
     }),
   ],
 }

@@ -39,8 +39,8 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import type { Product } from '@scayle/storefront-nuxt'
+import { useProductBaseInfo } from '~/composables/useProductBaseInfo'
 import { getFilteredAttributeGroups } from '~/utils'
-import { useProductBaseInfo } from '#imports'
 import { SFAccordionEntry } from '#storefront-ui/components'
 
 const props = defineProps<{ product: Product }>()

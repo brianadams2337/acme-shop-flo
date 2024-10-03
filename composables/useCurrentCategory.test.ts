@@ -1,5 +1,5 @@
 import { vi, describe, it, expect } from 'vitest'
-import { useCurrentCategory } from '#imports'
+import { useCurrentCategory } from './useCurrentCategory'
 
 const mocks = vi.hoisted(() => {
   return {

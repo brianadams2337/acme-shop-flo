@@ -547,6 +547,17 @@ export default defineNuxtConfig({
   imports: {
     // https://nuxt.com/docs/guide/concepts/auto-imports#disabling-auto-imports
     autoImport: false,
+    dirs: [],
+    scan: false,
+  },
+
+  vueuse: {
+    autoImports: false,
+  },
+
+  components: {
+    dirs: [],
+    global: false,
   },
 
   // https://nuxt.com/docs/api/nuxt-config#vue-1

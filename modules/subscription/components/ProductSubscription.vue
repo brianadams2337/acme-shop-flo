@@ -40,7 +40,7 @@
       />
 
       <SFFadeInTransition :duration="150">
-        <LazyProductSubscriptionSelection
+        <ProductSubscriptionSelection
           v-if="variant && subscriptionVariantEligible"
           :product="product"
           :variant="variant"
@@ -57,11 +57,11 @@ import { toRefs } from 'vue'
 import type { Product, Variant } from '@scayle/storefront-nuxt'
 import { useSubscription } from '../composables/useSubscription'
 import type { PreferredDeliveryDate } from '../helpers/subscription'
+import ProductSubscriptionSelection from './ProductSubscriptionSelection.vue'
 import { useProductPromotions } from '~/composables/useProductPromotions'
 import type { AddToBasketItem } from '~/composables/useBasketActions'
 import { SFFadeInTransition } from '#storefront-ui/components'
 import ProductPrice from '~/components/product/ProductPrice.vue'
-import { LazyProductSubscriptionSelection } from '#components'
 
 type Props = {
   product: Product

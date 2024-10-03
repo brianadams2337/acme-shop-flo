@@ -60,12 +60,10 @@
 <script setup lang="ts">
 import type { Product } from '@scayle/storefront-nuxt'
 import ProductCard from './card/ProductCard.vue'
-import {
-  getDeepestCategoryForTracking,
-  usePageState,
-  useRoute,
-  useTrackingEvents,
-} from '#imports'
+import { getDeepestCategoryForTracking } from '~/utils/tracking'
+import { usePageState } from '~/composables/usePageState'
+import { useTrackingEvents } from '~/composables/useTrackingEvents'
+import { useRoute } from '#imports'
 import { useProductsByIds } from '#storefront/composables'
 import {
   SFButton,

@@ -9,6 +9,7 @@ import {
 type ModuleOptions = {
   overviewPagePath?: string
   cancellationPagePath?: string
+  autoImports?: boolean
 }
 
 export default defineNuxtModule<ModuleOptions>({
@@ -23,13 +24,16 @@ export default defineNuxtModule<ModuleOptions>({
   },
   async setup(options, nuxt) {
     const { resolve } = createResolver(import.meta.url)
-    await addComponentsDir({
-      path: resolve('./components'),
-      global: true,
-    })
 
-    addImportsDir(resolve('./composables'))
-    addImportsDir(resolve('./helpers'))
+    if (options.autoImports) {
+      await addComponentsDir({
+        path: resolve('./components'),
+        // Only auto import Vue components
+        extensions: ['vue'],
+      })
+      addImportsDir(resolve('./composables'))
+      addImportsDir(resolve('./helpers'))
+    }
 
     nuxt.options.alias['#storefront-subscription'] = resolve('./')
 

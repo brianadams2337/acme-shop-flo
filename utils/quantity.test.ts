@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { getQuantitySelectionList } from '#imports'
+import { getQuantitySelectionList } from './quantity'
 
 describe('getQuantitySelectionList', () => {
   it('get list including zero', () => {

@@ -28,8 +28,12 @@
 import { computed, defineOptions } from 'vue'
 import { useSeoMeta } from '@unhead/vue'
 import type { Product } from '@scayle/storefront-nuxt'
-import { definePageMeta, useTrackingEvents } from '#imports'
-import { usePageState, useProductsSearch } from '~/composables'
+import { definePageMeta } from '#imports'
+import {
+  usePageState,
+  useProductsSearch,
+  useTrackingEvents,
+} from '~/composables'
 import { useNuxtApp } from '#app'
 import { useRoute } from '#app/composables/router'
 import { categoryListingMetaData } from '~/constants'

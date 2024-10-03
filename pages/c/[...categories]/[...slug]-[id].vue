@@ -85,7 +85,7 @@ import {
   type Product,
   type Category,
 } from '@scayle/storefront-nuxt'
-import { definePageMeta, useServerSeoMeta, useSeoMeta } from '#imports'
+import { definePageMeta, useSeoMeta } from '#imports'
 import {
   useCurrentCategory,
   useProductsByCategory,
@@ -195,7 +195,6 @@ const {
 
 useJsonld(() => categoryBreadcrumbSchema.value)
 
-useServerSeoMeta({ robots: 'index,follow' })
 useSeoMeta({ robots })
 
 useHead(() => {

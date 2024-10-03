@@ -72,7 +72,7 @@
               :variant-id="activeVariant.id"
             />
           </SFFadeInTransition>
-          <LazyLocatorStoreLocatorSlideIn
+          <LazyStoreLocatorSlideIn
             v-if="activeVariant?.id"
             v-model:selected-store-id="selectedStoreId"
             :variant-id="activeVariant.id"
@@ -97,24 +97,25 @@
 <script setup lang="ts">
 import { whenever } from '@vueuse/core'
 import { useSeoMeta } from '@unhead/vue'
-import { computed, defineOptions, onMounted, ref } from 'vue'
+import {
+  computed,
+  defineOptions,
+  onMounted,
+  ref,
+  defineAsyncComponent,
+} from 'vue'
 import type { Price, Variant } from '@scayle/storefront-nuxt'
+import { useProductSeoData } from '~/composables/useProductSeoData'
+import { useJsonld } from '~/composables/useJsonld'
+import { getCombineWithProductIds } from '~/utils/product'
+import { usePageState } from '~/composables/usePageState'
+import { useTrackingEvents } from '~/composables/useTrackingEvents'
+import { useProductPromotions } from '~/composables/useProductPromotions'
+import { useBasket, useProduct } from '#storefront/composables'
+import { useProductBaseInfo } from '~/composables/useProductBaseInfo'
 import { isBuyXGetYType } from '~/utils/promotion'
 import { useFavoriteStore } from '~/composables/useFavoriteStore'
-import {
-  definePageMeta,
-  getCombineWithProductIds,
-  useBasket,
-  useHead,
-  useJsonld,
-  usePageState,
-  useProduct,
-  useProductBaseInfo,
-  useProductSeoData,
-  useProductPromotions,
-  useRoute,
-  useTrackingEvents,
-} from '#imports'
+import { definePageMeta, useHead, useRoute } from '#imports'
 import { PRODUCT_WITH_PARAMS } from '~/constants'
 import AsyncDataWrapper from '~/components/AsyncDataWrapper.vue'
 import ProductGallery from '~/components/product/detail/productGallery/ProductGallery.vue'
@@ -126,9 +127,12 @@ import ProductPromotionGifts from '~/components/product/promotion/gifts/ProductP
 import StoreVariantAvailability from '~/components/locator/StoreVariantAvailability.vue'
 import ProductDetails from '~/components/product/ProductDetails.vue'
 import ProductRecommendations from '~/components/product/ProductRecommendations.vue'
-import { LazyLocatorStoreLocatorSlideIn } from '#components'
 import { SFHeadline, SFFadeInTransition } from '#storefront-ui/components'
 import ProductDetailPageLoadingState from '~/components/product/detail/ProductDetailPageLoadingState.vue'
+
+const LazyStoreLocatorSlideIn = defineAsyncComponent(
+  () => import('~/components/locator/StoreLocatorSlideIn.vue'),
+)
 
 definePageMeta({
   validate(route) {

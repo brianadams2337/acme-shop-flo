@@ -1,6 +1,6 @@
 import { describe, it, vi, expect, beforeEach, type Mock } from 'vitest'
 import type { Category } from '@scayle/storefront-nuxt'
-import { useRootCategories } from '#imports'
+import { useRootCategories } from './useRootCategories'
 import type { NuxtError } from '#app'
 import { createError } from '#app/composables/error'
 

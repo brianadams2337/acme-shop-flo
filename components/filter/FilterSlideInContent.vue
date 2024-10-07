@@ -30,13 +30,11 @@
       v-if="filter.type === 'boolean'"
       :class="{ 'border-t': index !== 0 }"
     >
-      <SFCheckbox
+      <SFSwitch
         :id="filter.name"
         :model-value="appliedBooleanValues[filter.slug]"
-        :label="filter.name"
-        @change="
-          $emit('applyBooleanFilter', filter.slug, $event.target.checked)
-        "
+        :label="getBooleanFilterLabel(filter)"
+        @update:model-value="$emit('applyBooleanFilter', filter.slug, $event)"
       />
     </FilterGroup>
     <template v-if="filter.type === 'attributes'">
@@ -113,10 +111,19 @@ import type { CentAmount, ProductSearchQuery } from '@scayle/storefront-nuxt'
 import SortSelection from '../sorting/SortSelection.vue'
 import FilterColorChip from './FilterColorChip.vue'
 import FilterGroup from './FilterGroup.vue'
-import type { FilterItemWithValues } from '~/types/filter'
+import type {
+  BooleanFilterItemWithValues,
+  FilterItemWithValues,
+} from '~/types/filter'
 import type { RangeTuple } from '#storefront-ui/components/form/RangeSlider.vue'
 import { ProductColor } from '~/constants/product'
-import { SFCheckbox, SFChip, SFRangeSlider } from '#storefront-ui/components'
+import {
+  SFCheckbox,
+  SFSwitch,
+  SFChip,
+  SFRangeSlider,
+} from '#storefront-ui/components'
+import { useI18n } from '#i18n'
 
 type Props = {
   availableFilters: FilterItemWithValues[]
@@ -135,6 +142,8 @@ defineEmits<{
   applyAttributeFilter: [string, number]
 }>()
 
+const { t: $t } = useI18n()
+
 const getPriceRange = (
   currentMin: CentAmount,
   currentMax: CentAmount,
@@ -146,5 +155,9 @@ const getPriceRange = (
   const max = Math.min(currentMax, appliedMax ?? currentMax)
 
   return [min, max]
+}
+
+const getBooleanFilterLabel = ({ name, slug }: BooleanFilterItemWithValues) => {
+  return slug !== 'sale' ? name : $t('filter.only_sale')
 }
 </script>

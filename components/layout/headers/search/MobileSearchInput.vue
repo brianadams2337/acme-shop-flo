@@ -25,25 +25,17 @@
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue'
+import { defineModel } from 'vue'
 import { SFButton } from '#storefront-ui/components'
 
-const props = withDefaults(defineProps<{ modelValue?: string }>(), {
-  modelValue: '',
-})
-
 const emit = defineEmits<{
-  'update:model-value': [string]
   'keydown:enter': []
   cancel: []
   focus: []
   blur: []
 }>()
 
-const content = computed({
-  get: () => props.modelValue,
-  set: (newValue: string) => emit('update:model-value', newValue),
-})
+const content = defineModel<string>({ default: '' })
 
 const clear = () => {
   content.value = ''

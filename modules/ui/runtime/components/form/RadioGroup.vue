@@ -15,22 +15,10 @@
 </template>
 
 <script setup lang="ts" generic="Item extends { label: string; value: any }">
-import { computed } from 'vue'
+import { defineModel } from 'vue'
 import { SFRadioItem } from '#storefront-ui/components'
 
-type Props = {
-  modelValue?: string | number
-  items?: Item[]
-  title?: string
-}
-const props = defineProps<Props>()
+defineProps<{ items?: Item[]; title?: string }>()
 
-const emit = defineEmits<{
-  'update:model-value': [string | number | undefined]
-}>()
-
-const value = computed({
-  get: () => props.modelValue,
-  set: (value?: string | number) => emit('update:model-value', value),
-})
+const value = defineModel<string | number | undefined>()
 </script>

@@ -4,7 +4,7 @@
       {{ $t('filter.title') }}
     </SFHeadline>
     <SFButton
-      class="bg-gray-100 !p-3 md:bg-transparent md:!pr-0"
+      class="my-3 -mr-2 bg-gray-100 md:bg-transparent"
       fab
       type="raw"
       data-testid="close-filters"

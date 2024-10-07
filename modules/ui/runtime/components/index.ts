@@ -22,7 +22,7 @@ import SFPopover from './core/Popover.vue'
 // Form
 import SFCheckbox from './form/Checkbox.vue'
 import SFDropdown from './form/Dropdown.vue'
-import SFInputToggle from './form/InputToggle.vue'
+import SFSwitch from './form/Switch.vue'
 import SFPriceInput from './form/PriceInput.vue'
 import SFRadioItem from './form/RadioItem.vue'
 import SFRadioGroup from './form/RadioGroup.vue'
@@ -90,7 +90,7 @@ export {
   SFPopover,
   SFCheckbox,
   SFDropdown,
-  SFInputToggle,
+  SFSwitch,
   SFTextInput,
   SFPriceInput,
   SFRadioItem,

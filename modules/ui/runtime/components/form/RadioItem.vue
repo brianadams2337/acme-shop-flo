@@ -30,31 +30,17 @@
 </template>
 
 <script setup lang="ts" generic="Item extends { label: string; value: any }">
-import { computed } from 'vue'
+import { computed, defineModel } from 'vue'
 
 type Props = {
-  modelValue?: string | number
   value?: Item['value']
   label?: Item['label']
   name?: string
   disabled?: boolean
 }
-const props = withDefaults(defineProps<Props>(), {
-  modelValue: undefined,
-  value: undefined,
-  label: undefined,
-  name: '',
-  disabled: false,
-})
+const { value, label, name = '', disabled = false } = defineProps<Props>()
 
-const emit = defineEmits<{
-  'update:model-value': [string | number | undefined]
-}>()
+const selected = defineModel<string | number | undefined>()
 
-const selected = computed({
-  get: () => props.modelValue,
-  set: (value?: string | number) => emit('update:model-value', value),
-})
-
-const isActive = computed(() => props.modelValue === props.value)
+const isActive = computed<boolean>(() => selected.value === value)
 </script>

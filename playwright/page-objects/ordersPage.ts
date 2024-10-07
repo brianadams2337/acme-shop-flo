@@ -1,5 +1,6 @@
 import type { Locator, Page } from '@playwright/test'
 import { expect } from '../fixtures/fixtures'
+import { isMobile } from '../support/utils'
 
 export class OrdersPage {
   readonly page: Page
@@ -15,6 +16,7 @@ export class OrdersPage {
   readonly paymentShippingCost: Locator
   readonly headlineNoOrders: Locator
   readonly buttonContinueShopping: Locator
+  readonly addressMobile: Locator
 
   constructor(page: Page) {
     this.page = page
@@ -30,6 +32,7 @@ export class OrdersPage {
     this.paymentShippingCost = page.getByTestId('payment-shipping-cost')
     this.headlineNoOrders = page.getByTestId('headline-no-orders')
     this.buttonContinueShopping = page.getByTestId('button-continue-shopping')
+    this.addressMobile = page.getByTestId('address-card-mobile')
   }
 
   async visitOrdersPage(path: string, baseUrl: string) {
@@ -44,8 +47,13 @@ export class OrdersPage {
   }
 
   async assertOrderItem() {
+    await this.orderListItem.first().click()
     await this.orderItems.waitFor()
-    await expect(this.addressCard.first()).toBeVisible()
+    if (isMobile(this.page)) {
+      await expect(this.addressMobile.first()).toBeVisible()
+    } else {
+      await expect(this.addressCard.first()).toBeVisible()
+    }
     await expect(this.orderStatusBar).toBeVisible()
     await expect(this.orderItemCard).toBeVisible()
   }

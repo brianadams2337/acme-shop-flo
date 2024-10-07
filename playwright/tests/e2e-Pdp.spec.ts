@@ -43,6 +43,7 @@ test('C2141596: Verify PDP add to Basket for regular product one-size', async ({
   const productName = await productDetailPage.productName.textContent()
 
   await productDetailPage.addProductToBasket()
+  await header.basketNumItems.waitFor()
   await expect(header.basketNumItems).toHaveText('1')
   await expect(toastMessage.toastInfo).toBeVisible()
   await expect(toastMessage.toastInfo).toContainText(productName as string)

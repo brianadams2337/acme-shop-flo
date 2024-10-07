@@ -40,8 +40,9 @@ export const PLP_FILTER_DEEPLINK = {
 }
 
 export const PLP_PATH_MAIN_CATEGORY = '/frauen-50337'
-export const PLP_PATH_SUBCATEGORY_LVL_1 = '/c/frauen/bekleidung-50338'
-export const PLP_PATH_SUBCATEGORY_LVL_2 = '/c/frauen/sneaker/sneaker-low-50347'
+export const PLP_PATH_SUBCATEGORY_LVL_1 = '/de/c/frauen/bekleidung-50338'
+export const PLP_PATH_SUBCATEGORY_LVL_2 =
+  '/de/c/frauen/sneaker/sneaker-low-50347'
 export const PLP_BASE_PATH = /\/c/
 export const PLP_SIBLING_TEST_PRODUCT_PATH = /\/p\/sneaker-gazelle-bold-206062/
 export const PLP_SUBCATEGORY_NAME_DE = 'Bekleidung'
@@ -65,7 +66,7 @@ export const BASKET_TEST_DATA = {
   productRegularVariantId: 320096,
   productRegularName: `Hose 'Essentials'`,
   productRegularBrand: 'ADIDAS ORIGINALS',
-  productNameHappyPath: `Sweatshirt 'ESS'`,
+  productNameHappyPath: 'Jacke',
   itemKeyHappyPath: '15e3df16a020df6b0716b0cb351132ac',
   itemKeyBasketE2E: '7dac25e441f1472a2201cd7f493d139c',
 }
@@ -76,7 +77,7 @@ export const WISHLIST_PRODUCT_ID = 205651
 export const WISHLIST_PRODUCT_ID_ONESIZE = 206042
 
 export const USER_ACCOUNT = {
-  accountUserPath: '/account/user',
+  accountUserPath: '/de/account/user',
   userFirstName: 'Aqa',
   userLastName: 'Test',
   userBirthDateCorrect: '30.05.1981',
@@ -86,7 +87,7 @@ export const USER_ACCOUNT = {
 
 export const FOOTER = {
   linkGroup1: {
-    about: '/de/s/about-us',
+    about: '/de/s/about',
     shipping: '/de/s/shipping',
     philosophy: '/de',
     imprint: '/de/s/imprint',
@@ -95,7 +96,8 @@ export const FOOTER = {
     customerService: '/de',
     faq: '/de/s/faq',
     deliveryReturns: '/de/s/returns',
-    cancelSubscription: '/de/account/subscription-cancellations',
+    aboutStorefront:
+      'https://scayle.dev/en/storefront-guide/developer-guide/getting-started/about-storefront',
   },
   linkGroup3: {
     cookiePolicy: '/de',
@@ -121,4 +123,11 @@ export const PDP_E2E = {
   subscribeProductUrl: '/p/sneaker-forum-bold-206136',
   subscribeProductVariantId: '333734',
   subscribeNotEligibleVariantId: '333740',
+  happyPathProductUrl: '/de/p/jacke-205696',
+  happyPathProductVariantId: '337629',
+}
+
+export const LIGHTHOUSE_AUDIT_PATHS = {
+  plp: '/de/c/frauen/bekleidung-50338',
+  pdp: '/de/p/jacke-205696',
 }

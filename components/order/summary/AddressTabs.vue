@@ -24,7 +24,13 @@
         <div v-if="activeTab === idx" class="mx-auto h-0.5 w-8 bg-primary" />
       </div>
     </nav>
-    <section id="content" aria-live="polite" role="region" class="mt-6 text-sm">
+    <section
+      id="content"
+      aria-live="polite"
+      role="region"
+      class="mt-6 text-sm"
+      data-testid="address-card-mobile"
+    >
       <article
         v-for="({ name }, idx) in items"
         :id="`content-${name}`"

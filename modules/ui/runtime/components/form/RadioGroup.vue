@@ -8,7 +8,6 @@
         v-model="value"
         v-bind="item"
         class="mr-2"
-        :data-testid="`radio-button-${item.value}`"
       />
     </div>
   </div>

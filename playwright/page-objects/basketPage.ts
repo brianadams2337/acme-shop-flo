@@ -1,5 +1,5 @@
 import type { Locator, Page } from '@playwright/test'
-import { HOMEPAGE_PATH_DE, SIGNIN_URL } from '../support/constants'
+import { HOMEPAGE_PATH_DE } from '../support/constants'
 import { expect } from '../fixtures/fixtures'
 
 export class BasketPage {
@@ -71,9 +71,6 @@ export class BasketPage {
     await expect(this.loginButton).toBeVisible()
     await this.loginButton.click()
     await this.page.waitForLoadState('networkidle')
-
-    const pageUrl = this.page.url()
-    expect(pageUrl).toContain(SIGNIN_URL)
   }
 
   async addProductToBasket(

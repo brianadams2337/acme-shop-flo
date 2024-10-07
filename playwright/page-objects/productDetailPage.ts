@@ -5,7 +5,6 @@ import { expect } from '../fixtures/fixtures'
 export class ProductDetailPage {
   readonly page: Page
   readonly productSizePickerToggle: Locator
-  readonly productSizeValue: Locator
   readonly addToBasketButton: Locator
   readonly productImage: Locator
   readonly productBrand: Locator
@@ -26,9 +25,6 @@ export class ProductDetailPage {
     this.page = page
     this.productSizePickerToggle = page.getByTestId(
       'product-size-picker-toggle',
-    )
-    this.productSizeValue = page.locator(
-      '[data-testid="product-size"] >> button:not([disabled=""])',
     )
     this.addToBasketButton = page.getByTestId('add-item-to-basket-button')
     this.productImage = page.getByTestId('product-image')
@@ -55,12 +51,6 @@ export class ProductDetailPage {
 
   getVariant(variant: string): Locator {
     return this.page.getByTestId(`variant-option-${variant}`)
-  }
-
-  async pickProductSize() {
-    await this.productSizePickerToggle.click()
-    await this.productSizeValue.first().scrollIntoViewIfNeeded()
-    await this.productSizeValue.first().click()
   }
 
   async addProductToBasket() {

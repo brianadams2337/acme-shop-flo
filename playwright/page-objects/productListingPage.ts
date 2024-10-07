@@ -38,10 +38,6 @@ export class ProductListingPage {
     await this.wishlistButton.first().click()
   }
 
-  async openProductDetails() {
-    await this.productTile.first().click()
-  }
-
   async visitPlpWithFiltersUrl(path: string, filters = {}, baseUrl: string) {
     const formattedFilters = Object.entries(filters).map(
       ([key, value]) => `filters[${key}]=${value}`,
@@ -67,5 +63,9 @@ export class ProductListingPage {
       .getByRole('link', { name: subCategoryName })
       .first()
       .click()
+  }
+
+  getProductLink(productPath: string): Locator {
+    return this.page.locator(`a[href="${productPath}"]`)
   }
 }

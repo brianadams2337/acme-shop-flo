@@ -3,6 +3,7 @@ import { isMobile } from '../support/utils'
 import {
   BASKET_TEST_DATA,
   E2E_BASKET_URL,
+  PDP_E2E,
   PLP_PATH_MAIN_CATEGORY,
   PLP_SUBCATEGORY_NAME_DE,
 } from '../support/constants'
@@ -48,8 +49,15 @@ test('C2139186: E2E from Home to Checkout - happy path', async ({
 
   await test.step('Open PDP and add product to Basket', async () => {
     await expect(async () => {
-      await productListingPage.openProductDetails()
-      await productDetailPage.pickProductSize()
+      await productListingPage
+        .getProductLink(PDP_E2E.happyPathProductUrl)
+        .first()
+        .click()
+      await productDetailPage.variantPicker.waitFor()
+      await productDetailPage.variantPicker.click({ force: true })
+      await productDetailPage
+        .getVariant(PDP_E2E.happyPathProductVariantId)
+        .click()
       await productDetailPage.addProductToBasket()
     }).toPass()
   })

@@ -5,6 +5,7 @@ import {
   PLP_PATH_SUBCATEGORY_LVL_2,
   PLP_SIBLING_TEST_PRODUCT_PATH,
 } from '../support/constants'
+import { isMobile } from '../support/utils'
 
 test.beforeEach(async ({ productListingPage, baseURL }) => {
   await productListingPage.visitPlpNoFilters(
@@ -17,10 +18,15 @@ test('C2130723: Verify PLP standard components', async ({
   productListingPage,
   breadcrumb,
   pagination,
+  page,
 }) => {
   await expect(async () => {
-    await expect(productListingPage.sortDropdown).toBeVisible()
-    await expect(productListingPage.filterButton.first()).toBeVisible()
+    if (isMobile(page)) {
+      await expect(productListingPage.filterButton.nth(1)).toBeVisible()
+    } else {
+      await expect(productListingPage.sortDropdown.first()).toBeVisible()
+      await expect(productListingPage.filterButton.nth(0)).toBeVisible()
+    }
     await expect(breadcrumb.breadcrumbCategoryLvl0).toBeVisible()
     await expect(breadcrumb.breadcrumbCategoryLvl1).toBeVisible()
     await expect(breadcrumb.breadcrumbCategoryActive).toBeVisible()
@@ -42,29 +48,42 @@ test('C2130725: Verify PLP breadcrumb', async ({
   await expect(async () => {
     await expect(breadcrumb.breadcrumbCategoryLvl1).toBeVisible()
 
-    const subCategoryLvl2Text = await productListingPage.menuSubCategoryLvl2
-      .first()
-      .textContent()
+    if (isMobile(page)) {
+      const subCategoryLvl2Text = await productListingPage
+        .getProductPath(PLP_PATH_SUBCATEGORY_LVL_2)
+        .nth(1)
+        .textContent()
+      const activeBreadcrumbText =
+        await breadcrumb.breadcrumbCategoryActive.textContent()
 
-    const activeBreadcrumbText =
-      await breadcrumb.breadcrumbCategoryActive.textContent()
-
-    expect(activeBreadcrumbText?.toLowerCase()).toContain(
-      subCategoryLvl2Text?.toLowerCase(),
-    )
-
-    await productListingPage.menuSubCategoryLvl2.nth(0).click()
-
-    if (subCategoryLvl2Text) {
-      const currentUrl = page.url()
-
-      expect(currentUrl).toContain(
-        subCategoryLvl2Text.toLowerCase().replace(/ /g, '-'),
+      expect(activeBreadcrumbText?.toLowerCase()).toContain(
+        subCategoryLvl2Text?.toLowerCase(),
       )
     } else {
-      throw new Error(
-        'subCategoryLvl2Text is not available. Check the selector or webpage content.',
+      const subCategoryLvl2Text = await productListingPage.menuSubCategoryLvl2
+        .first()
+        .textContent()
+
+      const activeBreadcrumbText =
+        await breadcrumb.breadcrumbCategoryActive.textContent()
+
+      expect(activeBreadcrumbText?.toLowerCase()).toContain(
+        subCategoryLvl2Text?.toLowerCase(),
       )
+
+      await productListingPage.menuSubCategoryLvl2.nth(0).click()
+
+      if (subCategoryLvl2Text) {
+        const currentUrl = page.url()
+
+        expect(currentUrl).toContain(
+          subCategoryLvl2Text.toLowerCase().replace(/ /g, '-'),
+        )
+      } else {
+        throw new Error(
+          'subCategoryLvl2Text is not available. Check the selector or webpage content.',
+        )
+      }
     }
   }).toPass()
 })

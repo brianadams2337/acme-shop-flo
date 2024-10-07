@@ -1,11 +1,14 @@
 import { expect, test } from '../../fixtures/fixtures'
 import { runLighthouseAudit } from '../../support/lighthouseAudit'
-import { LIGHTHOUSE_THRESHOLDS } from '../../support/constants'
+import {
+  LIGHTHOUSE_AUDIT_PATHS,
+  LIGHTHOUSE_THRESHOLDS,
+} from '../../support/constants'
 
 test.describe.configure({ mode: 'serial', timeout: 120000 })
 
 test('C2139575: Lighthouse audit for PLP', async ({ baseURL }) => {
-  const plpUrl = new URL('/c/frauen/bekleidung-2048', baseURL)
+  const plpUrl = new URL(LIGHTHOUSE_AUDIT_PATHS.plp, baseURL)
   const averageScores = await runLighthouseAudit(plpUrl, 'plp')
 
   expect(averageScores.performance).toBeGreaterThanOrEqual(

@@ -1,11 +1,14 @@
 import { expect, test } from '../../fixtures/fixtures'
 import { runLighthouseAudit } from '../../support/lighthouseAudit'
-import { LIGHTHOUSE_THRESHOLDS } from '../../support/constants'
+import {
+  LIGHTHOUSE_AUDIT_PATHS,
+  LIGHTHOUSE_THRESHOLDS,
+} from '../../support/constants'
 
 test.describe.configure({ mode: 'serial', timeout: 120000 })
 
 test('C2139576: Lighthouse audit for PDP', async ({ baseURL }) => {
-  const pdpUrl = new URL('/p/sweater-ida-1193', baseURL)
+  const pdpUrl = new URL(LIGHTHOUSE_AUDIT_PATHS.pdp, baseURL)
 
   const averageScores = await runLighthouseAudit(pdpUrl, 'pdp')
 

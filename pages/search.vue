@@ -55,7 +55,10 @@ const {
   fetching: productsFetching,
   totalProductsCount,
   paginationOffset,
-} = await useProductsSearch({ options: { lazy: true } })
+} = await useProductsSearch({
+  options: { lazy: true },
+  params: { includeSoldOut: false },
+})
 
 const { trackSelectItem, trackViewItemList } = useTrackingEvents()
 

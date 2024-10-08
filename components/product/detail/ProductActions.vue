@@ -1,7 +1,7 @@
 <template>
   <div
     v-if="product.isSoldOut"
-    class="rounded-xl bg-red-100 p-4 text-md text-red max-md:px-5"
+    class="rounded-xl bg-red-100 p-4 text-md text-red max-md:mx-5"
   >
     {{ $t('pdp.sold_out') }}
   </div>

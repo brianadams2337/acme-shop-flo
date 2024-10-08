@@ -61,8 +61,12 @@ export function usePromotionGiftSelection(gift: Product) {
   )
 
   const price = computed(() => {
-    const nonGiftPrice = activeVariant.value
-      ? getPrice(activeVariant.value)
+    const selectedVariant = gift.variants?.find(
+      (variant) => variant.id === activeVariant.value?.id,
+    )
+
+    const nonGiftPrice = selectedVariant
+      ? getPrice(selectedVariant)
       : variantWithLowestPrice.value?.price
 
     if (!nonGiftPrice) {
@@ -82,6 +86,30 @@ export function usePromotionGiftSelection(gift: Product) {
         },
       ],
     })
+  })
+
+  const giftVariants = computed<Variant[]>(() => {
+    return (
+      gift.variants?.map((variant) => {
+        const price = createCustomPrice(variant.price, {
+          withTax: 0 as CentAmount,
+          appliedReductions: [
+            {
+              amount: {
+                absoluteWithTax: variant.price.withTax as CentAmount,
+                relative: 1,
+              },
+              type: 'relative',
+              category: 'promotion',
+            },
+          ],
+        })
+        return {
+          ...variant,
+          price,
+        }
+      }) ?? []
+    )
   })
 
   const handleSelectedSize = (value: Value) => {
@@ -148,6 +176,7 @@ export function usePromotionGiftSelection(gift: Product) {
       price,
       hasOneSizeVariantOnly,
       activeVariant,
+      giftVariants,
       isGiftSelectionShown,
       toggleGiftSelection,
     },

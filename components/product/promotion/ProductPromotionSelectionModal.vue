@@ -77,7 +77,7 @@
                 ref="variantPicker"
                 v-model="activeVariant"
                 v-model:visible="isVariantListVisible"
-                :variants="product.variants ?? []"
+                :variants="giftVariants"
                 :promotion="promotion"
                 class="md:mb-4"
               />
@@ -155,6 +155,7 @@ const { pageState } = usePageState()
 const {
   basketIdle,
   activeVariant,
+  giftVariants,
   price,
   hasOneSizeVariantOnly,
   addItemToBasket,
@@ -162,7 +163,9 @@ const {
   isGiftSelectionShown,
 } = usePromotionGiftSelection(props.product)
 
-const { name, brand, image } = useProductBaseInfo(props.product)
+const { name, brand, image, hasOneVariantOnly } = useProductBaseInfo(
+  props.product,
+)
 
 const selectItem = (product: Product) => {
   trackSelectItem({
@@ -194,7 +197,9 @@ const addToBasket = () => {
 }
 
 const close = () => {
-  activeVariant.value = undefined
+  if (!hasOneVariantOnly.value) {
+    activeVariant.value = undefined
+  }
   toggleGiftSelection()
 }
 </script>

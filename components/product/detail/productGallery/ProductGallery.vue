@@ -103,7 +103,10 @@
         :product="product"
         class="absolute left-5 max-md:bottom-5 md:top-5"
       />
-      <SFGoBackLink class="left-5 top-5 md:hidden" use-window-history />
+      <SFGoBackLink
+        class="left-5 top-5 md:hidden"
+        :fallback-link="categoryLink"
+      />
     </div>
   </div>
   <ProductGalleryZoom
@@ -116,7 +119,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { computed, ref } from 'vue'
 import type { Product } from '@scayle/storefront-nuxt'
 import WishlistToggle from '../../WishlistToggle.vue'
 import ProductBadges from '../../card/ProductBadges.vue'
@@ -127,12 +130,24 @@ import {
   SFItemsSlider,
   SFGoBackLink,
 } from '#storefront-ui/components'
-import { useProductBaseInfo } from '~/composables'
+import { useProductBaseInfo, useRouteHelpers } from '~/composables'
 
 const props = defineProps<{
   product: Product
   productImageSliderClass?: string
 }>()
+const { buildCategoryPath } = useRouteHelpers()
+const categoryLink = computed(() => {
+  const category = longestCategoryList.value.at(-1)
+  if (!category) {
+    return
+  }
+
+  return buildCategoryPath({
+    id: category.categoryId,
+    path: category.categoryUrl,
+  })
+})
 
 const image = ref()
 
@@ -148,5 +163,5 @@ const updateActiveSlide = (newSlide: number) => {
 
 const isZoomModalOpen = ref(false)
 
-const { alt, images } = useProductBaseInfo(props.product)
+const { alt, images, longestCategoryList } = useProductBaseInfo(props.product)
 </script>

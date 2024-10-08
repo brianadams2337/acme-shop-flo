@@ -1,6 +1,8 @@
 <template>
   <component
-    v-bind="useWindowHistory ? {} : { to, ...(to && { raw: true }) }"
+    v-bind="
+      hasHistory ? {} : { to: fallbackLink, ...(fallbackLink && { raw: true }) }
+    "
     :is="componentName"
     data-testid="back-button"
     class="absolute z-20 flex items-center gap-2 text-primary"
@@ -17,21 +19,23 @@ import type { RouteLocationRaw } from '#vue-router'
 import { SFLink } from '#storefront-ui/components'
 
 type Props = {
-  to?: RouteLocationRaw
-  useWindowHistory?: boolean
+  fallbackLink?: RouteLocationRaw
 }
 
-const props = withDefaults(defineProps<Props>(), {
-  to: '/',
-  useWindowHistory: false,
+withDefaults(defineProps<Props>(), {
+  fallbackLink: '/',
+})
+
+const hasHistory = computed(() => {
+  return import.meta.client && window.history.state.back
 })
 
 const backClickEventHandling = computed(() => {
-  return props.useWindowHistory ? { click: goBack } : {}
+  return hasHistory.value ? { click: goBack } : {}
 })
 
 const componentName = computed(() => {
-  return props.useWindowHistory ? 'button' : SFLink
+  return hasHistory.value ? 'button' : SFLink
 })
 
 const goBack = () => window?.history.back()

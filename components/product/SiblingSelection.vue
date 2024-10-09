@@ -14,11 +14,11 @@
       <div
         v-for="(sibling, index) in siblings"
         :key="sibling.id"
-        class="relative size-20 shrink-0 rounded-xl border-2 transition-all hover:border-black md:size-16"
+        class="relative size-20 shrink-0 rounded-xl border-2 transition-all supports-hover:hover:border-black md:size-16"
         :class="{
           'border-transparent': sibling.id !== product.id && !sibling.isSoldOut,
           'border-black text-black': sibling.id === product.id,
-          'bg-gray-100 text-gray-300 hover:bg-white hover:text-black':
+          'bg-gray-100 text-gray-300 supports-hover:hover:bg-white supports-hover:hover:text-black':
             sibling.id !== product.id,
           'border-gray-200': sibling.isSoldOut && sibling.id !== product.id,
         }"

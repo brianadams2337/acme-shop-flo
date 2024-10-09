@@ -365,6 +365,7 @@ export default {
         '&::-webkit-details-marker',
         '& *::-webkit-details-marker',
       ])
+      addVariant('supports-hover', ['@media(hover:hover)'])
     }),
   ],
 }

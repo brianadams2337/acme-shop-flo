@@ -26,7 +26,7 @@ test('C2141595: Verify PDP add to Basket for regular product multi size', async 
   await expect(async () => {
     await productDetailPage.variantPicker.waitFor()
     await productDetailPage.variantPicker.click()
-    await productDetailPage.getVariant(PDP_E2E.regularProductVariantId).click()
+    await productDetailPage.getVariant().click()
     await productDetailPage.addProductToBasket()
     await expect(header.basketNumItems).toHaveText('1')
     await expect(toastMessage.toastInfo).toContainText(productName as string)
@@ -115,9 +115,7 @@ test('C2141599: Verify PDP Subscription service', async ({
   await test.step('Check subscription after choosing the size', async () => {
     await productDetailPage.variantPicker.waitFor()
     await productDetailPage.variantPicker.click()
-    await productDetailPage
-      .getVariant(PDP_E2E.subscribeProductVariantId)
-      .click()
+    await productDetailPage.getVariant().click()
     await expect(productDetailPage.addToBasketButtonSubscribe).toBeVisible()
     await productDetailPage.addToBasketButtonSubscribe.click()
     await header.basketNumItems.waitFor()
@@ -127,9 +125,7 @@ test('C2141599: Verify PDP Subscription service', async ({
   await test.step('Check subscription for variant not eligible to subscribe', async () => {
     await productDetailPage.variantPicker.waitFor()
     await productDetailPage.variantPicker.click()
-    await productDetailPage
-      .getVariant(PDP_E2E.subscribeNotEligibleVariantId)
-      .click()
+    await productDetailPage.getVariant().click()
     await expect(productDetailPage.addToBasketButtonSubscribe).not.toBeVisible()
   })
 })

@@ -12,6 +12,7 @@ export class ProductListingPage {
   readonly productItem: Locator
   readonly removeFromWishlistButton: Locator
   readonly productSibling: Locator
+  readonly productImage: Locator
 
   constructor(page: Page) {
     this.page = page
@@ -32,6 +33,7 @@ export class ProductListingPage {
       'remove-item-from-wishlist-button',
     )
     this.productSibling = page.getByTestId('product-sibling')
+    this.productImage = page.getByTestId('product-image')
   }
 
   async addProductToWishlist() {

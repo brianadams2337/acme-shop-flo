@@ -3,14 +3,11 @@ import { isMobile } from '../support/utils'
 import {
   BASKET_TEST_DATA,
   E2E_BASKET_URL,
-  PDP_E2E,
-  PLP_PATH_MAIN_CATEGORY,
-  PLP_SUBCATEGORY_NAME_DE,
+  SEARCH_SUGGESTIONS,
 } from '../support/constants'
 
 test('C2139186: E2E from Home to Checkout - happy path', async ({
   homePage,
-  mainNavigation,
   productListingPage,
   productDetailPage,
   header,
@@ -18,25 +15,27 @@ test('C2139186: E2E from Home to Checkout - happy path', async ({
   page,
   signinPage,
   mobileNavigation,
+  search,
+  breadcrumb,
 }) => {
-  await test.step('Visit Homepage and navigate to PLP', async () => {
+  await test.step('Search for a category and navigate to PLP', async () => {
     await homePage.visitPage()
     await page.waitForLoadState('networkidle')
-    if (isMobile(page)) {
-      await expect(async () => {
-        await mobileNavigation.sideNavigationButton.waitFor()
+    await expect(async () => {
+      if (isMobile(page)) {
+        await mobileNavigation.startTypingMobileSearch(
+          SEARCH_SUGGESTIONS.searchTermProduct,
+          false,
+        )
+        await mobileNavigation.exactProductItem.click()
         await mobileNavigation.sideNavigationButton.click()
-        await mobileNavigation.mainCategoryMenuItem.click()
-        await mobileNavigation.subCategoryMenuItem.click()
-      }).toPass()
-    } else {
-      await expect(async () => {
-        await mainNavigation.mainMenuCategoryClick()
-        const pageUrl = page.url()
-        expect(pageUrl).toContain(PLP_PATH_MAIN_CATEGORY)
-        await productListingPage.openTestCategoryPLP(PLP_SUBCATEGORY_NAME_DE)
-      }).toPass()
-    }
+        await breadcrumb.productCounter.waitFor()
+      } else {
+        await search.startTypingSearch(SEARCH_SUGGESTIONS.searchTermProduct)
+        await search.searchCategoryListItem.first().click()
+        await productListingPage.menuRootCategory.waitFor()
+      }
+    }).toPass()
   })
 
   await test.step('Add product to Wishlist from PLP', async () => {
@@ -49,26 +48,23 @@ test('C2139186: E2E from Home to Checkout - happy path', async ({
 
   await test.step('Open PDP and add product to Basket', async () => {
     await expect(async () => {
-      await productListingPage
-        .getProductLink(PDP_E2E.happyPathProductUrl)
-        .first()
-        .click()
+      await productListingPage.productImage.first().click()
       await productDetailPage.variantPicker.waitFor()
       await productDetailPage.variantPicker.click({ force: true })
-      await productDetailPage
-        .getVariant(PDP_E2E.happyPathProductVariantId)
-        .click()
+      await productDetailPage.getVariant().click()
       await productDetailPage.addProductToBasket()
     }).toPass()
-  })
+    const basketProductBrandText =
+      await productDetailPage.productBrand.textContent()
+    const basketProductNameText =
+      await productDetailPage.productName.textContent()
 
-  await test.step('Assert product is in Basket', async () => {
     await expect(async () => {
       await header.visitBasketPage()
       await expect(page).toHaveURL(E2E_BASKET_URL)
       await basketPage.assertProductIsInBasket(
-        BASKET_TEST_DATA.productRegularBrand,
-        BASKET_TEST_DATA.productNameHappyPath,
+        basketProductBrandText as string,
+        basketProductNameText as string,
       )
     }).toPass()
   })

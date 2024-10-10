@@ -50,7 +50,7 @@ test('C2130725: Verify PLP breadcrumb', async ({
 
     if (isMobile(page)) {
       const subCategoryLvl2Text = await productListingPage
-        .getProductPath(PLP_PATH_SUBCATEGORY_LVL_2)
+        .getProductLink(PLP_PATH_SUBCATEGORY_LVL_2)
         .nth(1)
         .textContent()
       const activeBreadcrumbText =

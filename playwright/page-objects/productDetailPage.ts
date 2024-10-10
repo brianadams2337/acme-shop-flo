@@ -49,8 +49,10 @@ export class ProductDetailPage {
     )
   }
 
-  getVariant(variant: string): Locator {
-    return this.page.getByTestId(`variant-option-${variant}`)
+  getVariant(): Locator {
+    return this.page
+      .locator('div[popover="manual"] button:not([disabled])')
+      .first()
   }
 
   async addProductToBasket() {

@@ -1,23 +1,15 @@
+import { ref, computed } from 'vue'
 import { useDebounceFn } from '@vueuse/core'
-import {
-  getFirstAttributeValue,
-  type SearchV2With,
-} from '@scayle/storefront-nuxt'
-import { computed } from 'vue'
+import { getFirstAttributeValue } from '@scayle/storefront-nuxt'
 import { useRouteHelpers } from '~/composables/useRouteHelpers'
 import { useTrackingEvents } from '~/composables/useTrackingEvents'
-import { useState } from '#app/composables/state'
 import { useStorefrontSearch } from '#storefront/composables'
 import { isCategorySuggestion, isProductSuggestion } from '~/utils'
 import { DEBOUNCED_SEARCH_DURATION } from '~/constants'
 
-type SearchParams = Partial<{ categoryId: number; with: SearchV2With }>
-
-export function useSearchData(
-  key = 'storefront-search',
-  params?: SearchParams,
-) {
-  const searchQuery = useState<string>('search-query', () => '')
+export function useSearchData() {
+  const key = 'storefront-search'
+  const searchQuery = ref<string>('')
 
   const {
     getSearchRoute,
@@ -34,7 +26,7 @@ export function useSearchData(
     getSearchSuggestions,
     pending: fetching,
     ...searchData
-  } = useStorefrontSearch(searchQuery, { key, params })
+  } = useStorefrontSearch(searchQuery, { key })
 
   const allSuggestions = computed(() => data?.value?.suggestions ?? [])
 

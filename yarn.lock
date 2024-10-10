@@ -5306,7 +5306,29 @@ contentful-batch-libs@^9.4.1:
     lodash.clonedeep "^4.5.0"
     uuid "^9.0.1"
 
-contentful-export@7.19.155, contentful-export@^7.19.147:
+contentful-export@7.19.156:
+  version "7.19.156"
+  resolved "https://registry.yarnpkg.com/contentful-export/-/contentful-export-7.19.156.tgz#f311ce0c4c72e7f31a9540db1084f97f467a882f"
+  integrity sha512-9oY2llAVwa/L2XY2FYyQxCG26S416B6AVhZgDex7pcoBjQCC39U4vDBz1G2JRO4Wqay1928bgbsG8gSMXT/Gdg==
+  dependencies:
+    bfj "^8.0.0"
+    bluebird "^3.3.3"
+    cli-table3 "^0.6.0"
+    contentful "^11.0.3"
+    contentful-batch-libs "^9.4.1"
+    contentful-management "^11.0.1"
+    date-fns "^4.1.0"
+    figures "^3.2.0"
+    jsonwebtoken "^9.0.0"
+    listr "^0.14.1"
+    listr-update-renderer "^0.5.0"
+    listr-verbose-renderer "^0.6.0"
+    lodash.startcase "^4.4.0"
+    mkdirp "^2.0.0"
+    node-fetch "^2.6.7"
+    yargs "^17.1.1"
+
+contentful-export@^7.19.147:
   version "7.19.155"
   resolved "https://registry.yarnpkg.com/contentful-export/-/contentful-export-7.19.155.tgz#28b55a9dd0d4a746185dc929245847f389367c42"
   integrity sha512-IU+xVzHoAZa4DGMi2KA8IA8FeinOFKqeEOf6fRAPSc6/eAAaJB88znoUm1FbXG8JFCUvzhGVN/Fh31qUEAPZ3g==
@@ -5356,10 +5378,10 @@ contentful-sdk-core@^8.3.1:
     p-throttle "^4.1.1"
     qs "^6.11.2"
 
-contentful@11.1.0:
-  version "11.1.0"
-  resolved "https://registry.yarnpkg.com/contentful/-/contentful-11.1.0.tgz#74bac1493660999ceb21016de699b98b676a4722"
-  integrity sha512-maxO8Pu374QYUfA2BJmTY6xyc14Ckwnjtjz2ndl4sXsOErNX/HOjVPOXY7OrgATPp+TrrcYtki/H4qSCg7zTfA==
+contentful@11.1.3:
+  version "11.1.3"
+  resolved "https://registry.yarnpkg.com/contentful/-/contentful-11.1.3.tgz#3bb1dd476cf21906de730c68576c736875c5733a"
+  integrity sha512-CZOROryyNPffwxGkEW1TXmYIOpPImSphLkOJIOdhd+EtkbTsLYeGn7AwSKJNz+6NDBoaCRWcgk3nMWC7iO0CZA==
   dependencies:
     "@contentful/content-source-maps" "^0.11.0"
     "@contentful/rich-text-types" "^16.6.1"

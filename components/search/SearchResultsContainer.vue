@@ -6,7 +6,7 @@
     <SFFadeInTransition>
       <SearchResultSkeleton v-if="showSuggestionsLoader" />
       <div v-else>
-        <div v-if="resultsCount > 0" class="flex flex-col">
+        <div v-if="resultsCount && resultsCount > 0" class="flex flex-col">
           <SearchResults
             :products="products"
             :categories="categories"
@@ -35,10 +35,14 @@
 </template>
 
 <script setup lang="ts">
-import type { SearchEntity } from '@scayle/storefront-nuxt'
+import type {
+  SearchEntity,
+  CategorySearchSuggestion,
+  ProductSearchSuggestion,
+} from '@scayle/storefront-nuxt'
 import SearchResultSkeleton from './SearchResultSkeleton.vue'
 import SearchResults from './SearchResults.vue'
-import { useRouteHelpers, useSearchData } from '~/composables'
+import { useRouteHelpers } from '~/composables'
 import { SFLink, SFFadeInTransition } from '#storefront-ui/components'
 
 const emit = defineEmits<{
@@ -48,11 +52,12 @@ const emit = defineEmits<{
 
 const { getSearchRoute } = useRouteHelpers()
 
-const {
-  showSuggestionsLoader,
-  categories,
-  products,
-  searchQuery,
-  totalCount: resultsCount,
-} = useSearchData()
+defineProps<{
+  searchQuery: string
+  resultsCount?: number
+  products: ProductSearchSuggestion[]
+  categories: CategorySearchSuggestion[]
+  fetching: boolean
+  showSuggestionsLoader: boolean
+}>()
 </script>

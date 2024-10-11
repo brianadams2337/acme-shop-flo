@@ -52,6 +52,12 @@
     <SFFlyout ref="suggestionsFlyout" :is-open="isFlyoutOpened">
       <SearchResultsContainer
         v-if="showSuggestions"
+        :categories="categories"
+        :fetching="fetching"
+        :products="products"
+        :results-count="totalCount"
+        :search-query="searchQuery"
+        :show-suggestions-loader="showSuggestionsLoader"
         data-testid="search-results-flyout"
         @close="closeInput"
         @click:result="trackSuggestionClickAndClose"
@@ -77,6 +83,10 @@ const {
   searchQuery,
   resetSearch,
   totalCount,
+  products,
+  categories,
+  fetching,
+  showSuggestionsLoader,
   resolveSearchAndRedirect,
 } = useSearchData()
 

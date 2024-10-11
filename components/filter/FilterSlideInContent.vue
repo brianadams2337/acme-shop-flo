@@ -17,7 +17,7 @@
       :class="{ 'border-t': index !== 0 }"
       @click:reset="$emit('resetPriceFilter')"
     >
-      <SFRangeSlider
+      <SFPriceRangeSlider
         :model-value="getPriceRange(filter.values[0].min, filter.values[0].max)"
         class="mt-10"
         :max="filter.values[0]?.max"
@@ -115,13 +115,13 @@ import type {
   BooleanFilterItemWithValues,
   FilterItemWithValues,
 } from '~/types/filter'
-import type { RangeTuple } from '#storefront-ui/components/form/RangeSlider.vue'
+import type { RangeTuple } from '#storefront-ui/components/form/PriceRangeSlider.vue'
 import { ProductColor } from '~/constants/product'
 import {
   SFCheckbox,
   SFSwitch,
   SFChip,
-  SFRangeSlider,
+  SFPriceRangeSlider,
 } from '#storefront-ui/components'
 import { useI18n } from '#i18n'
 

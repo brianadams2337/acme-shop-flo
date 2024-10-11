@@ -26,7 +26,7 @@ import SFSwitch from './form/Switch.vue'
 import SFPriceInput from './form/PriceInput.vue'
 import SFRadioItem from './form/RadioItem.vue'
 import SFRadioGroup from './form/RadioGroup.vue'
-import SFRangeSlider from './form/RangeSlider.vue'
+import SFPriceRangeSlider from './form/PriceRangeSlider.vue'
 import SFTextInput from './form/TextInput.vue'
 import SFValidatedInputGroup from './form/ValidatedInputGroup.vue'
 
@@ -95,7 +95,7 @@ export {
   SFPriceInput,
   SFRadioItem,
   SFRadioGroup,
-  SFRangeSlider,
+  SFPriceRangeSlider,
   SFValidatedInputGroup,
   SFHeadline,
   SFHeadlineBadge,

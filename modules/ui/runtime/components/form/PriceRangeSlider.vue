@@ -9,17 +9,19 @@
       Source: https://github.com/NightCatSama/vue-slider-component/issues/343#issuecomment-482508771-->
     <ClientOnly>
       <VueSlider
-        v-model="range"
+        :model-value="[roundDownPrice(range[0]), roundUpPrice(range[1])]"
         :enable-cross="false"
-        :min="min"
-        :max="max"
+        :min="roundDownPrice(min)"
+        :max="roundUpPrice(max)"
         contained
         adsorb
         drag-on-click
         silent
+        :interval="10 ** decimalPlaces"
         height="2px"
         tooltip="always"
         tooltip-placement="top"
+        @update:model-value="updateRange"
         @change="emit('slider-change')"
         @drag-start="emit('drag-start', range)"
         @drag-end="emit('drag-end', range)"
@@ -42,7 +44,7 @@
     </ClientOnly>
     <div class="mt-4 flex items-center">
       <SFPriceInput
-        :model-value="range[0]"
+        :model-value="roundDownPrice(range[0])"
         :min="min"
         :max="modelValue[1]"
         :currency-code="currencyCode"
@@ -50,13 +52,13 @@
         :format-options="{
           minimumFractionDigits: 0,
         }"
-        @update:model-value="changeRangeAtIndex($event, 0)"
+        @update:model-value="changeRangeAtIndex(roundDownPrice($event), 0)"
       />
       <div class="mx-auto text-center text-xs font-semibold text-secondary">
         {{ $t('filter.to') }}
       </div>
       <SFPriceInput
-        :model-value="range[1]"
+        :model-value="roundUpPrice(range[1])"
         :min="modelValue[0]"
         :max="max"
         :currency-code="currencyCode"
@@ -64,7 +66,7 @@
         :format-options="{
           minimumFractionDigits: 0,
         }"
-        @update:model-value="changeRangeAtIndex($event, 1)"
+        @update:model-value="changeRangeAtIndex(roundUpPrice($event), 1)"
       />
     </div>
   </div>
@@ -82,6 +84,11 @@ import 'vue-slider-component/dist-css/vue-slider-component.css'
 import '@/assets/css/slider/default.css'
 import { useCurrentShop } from '#storefront/composables'
 import { SFPriceInput } from '#storefront-ui/components'
+import {
+  getDecimalPlacesForCurrency,
+  roundDown,
+  roundUp,
+} from '#storefront-ui/helpers/utils'
 import { ClientOnly } from '#components'
 
 export type RangeTuple = [start: number, end: number]
@@ -111,24 +118,45 @@ const changeRangeAtIndex = (newRangeValue: number, index: 0 | 1) => {
   emit('change', range.value)
 }
 
+const updateRange = (newRange: RangeTuple) => {
+  range.value = newRange
+  emit('change', range.value)
+}
+
+/**
+ * Price calculations:
+ *
+ * Prices are stored as integers in the minor unit of a currency (e.g. cents).
+ *
+ * In order to convert between the minor unit and major unit we need to know how many decimal places or how many minor units per major unit.
+ * In most cases this is 2. There are 100 cents to a Euro, so conversions are dividing or multiplying by 100. But since this is not always
+ * the case we determine the number of decimal places using the Intl.NumberFormat API then divide or multiple by 10^decimalPlaces (or`10 ** decimalPlaces` in JS).
+ * We do not handle currencies which use non-decimal fractions.
+ */
+
 const decimalPlaces = computed(() => {
   if (!currencyCode) {
     return 2
   }
 
-  const parts = new Intl.NumberFormat(locale, {
-    style: 'currency',
-    currency: currencyCode,
-  }).formatToParts(0)
-
-  const fraction = parts.find((p) => p.type === 'fraction')
-
-  if (!fraction) {
-    return 0
-  }
-
-  return fraction.value.length
+  return getDecimalPlacesForCurrency(currencyCode)
 })
+
+/**
+ * Round the price down to a whole value
+ * @param price
+ */
+const roundDownPrice = (price: number) => {
+  return roundDown(price, 10 ** decimalPlaces.value)
+}
+
+/**
+ * Round the price up to a whole value
+ * @param price
+ */
+const roundUpPrice = (price: number) => {
+  return roundUp(price, 10 ** decimalPlaces.value)
+}
 
 const formatCurrency = (value: number): string => {
   return (value / 10 ** decimalPlaces.value).toLocaleString(locale, {

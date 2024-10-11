@@ -5,7 +5,7 @@ import { useRoute, useRouter } from '#app/composables/router'
 import { useTrackingEvents, useAppliedFilters, useToast } from '~/composables'
 import { useFilters } from '#storefront/composables'
 import type { FilterItemWithValues } from '~/types/filter'
-import type { RangeTuple } from '#storefront-ui/components/form/RangeSlider.vue'
+import type { RangeTuple } from '#storefront-ui/components/form/PriceRangeSlider.vue'
 import { useI18n } from '#i18n'
 
 export function useFilter(

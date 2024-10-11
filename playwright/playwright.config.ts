@@ -52,7 +52,7 @@ export default defineConfig({
       use: { ...devices['Desktop Chrome'] },
     },
     {
-      name: 'Mobile Chrome',
+      name: 'mobile-chrome',
       use: { ...devices['Galaxy S9+'] },
     },
 
@@ -67,7 +67,7 @@ export default defineConfig({
     },
 
     {
-      name: 'Mobile Safari',
+      name: 'mobile-safari',
       use: { ...devices['iPhone 15'] },
     },
 

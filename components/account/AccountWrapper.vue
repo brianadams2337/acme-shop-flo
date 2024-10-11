@@ -26,13 +26,13 @@
                 {{ $t('my_account.no_orders_found') }}
               </div>
               <div class="border-t border-t-gray-350 bg-secondary-450 p-5">
-                <SFLink
+                <LocalizedLink
                   :to="routeList.home"
                   class="!block w-full rounded bg-white px-4 py-2 text-center text-xs"
                   data-testid="button-continue-shopping"
                 >
                   {{ $t('error.continue_shopping') }}
-                </SFLink>
+                </LocalizedLink>
               </div>
             </div>
             <div v-if="orders?.length" class="text-center">
@@ -65,6 +65,7 @@ import PageContent from '../layout/PageContent.vue'
 import AsyncDataWrapper from '../AsyncDataWrapper.vue'
 import OrderOverviewHeader from '../order/OrderOverviewHeader.vue'
 import OrderHistoryItem from '../order/OrderHistoryItem.vue'
+import LocalizedLink from '../LocalizedLink.vue'
 import AccountHeader from './AccountHeader.vue'
 import OrderListSkeletonLoader from './OrderListSkeletonLoader.vue'
 import { BasketListingMetadata } from '~/constants/listingMetadata'
@@ -74,7 +75,7 @@ import {
   useTrackingEvents,
   wishlistListingMetadata,
 } from '~/composables'
-import { SFSimplePagination, SFLink } from '#storefront-ui/components'
+import { SFSimplePagination } from '#storefront-ui/components'
 import { useBasket, useUser, useWishlist } from '#storefront/composables'
 import { useRoute } from '#app/composables/router'
 import { routeList } from '~/utils/route'

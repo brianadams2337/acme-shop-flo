@@ -3,7 +3,11 @@
     <SFButton type="primary" :to="checkoutOrHomeRoute" class="w-full">
       {{ $t('basket.checkout_label') }}
     </SFButton>
-    <SFButton type="secondary" :to="routeList.basket" class="w-full">
+    <SFButton
+      type="secondary"
+      :to="getLocalizedRoute(routeList.basket)"
+      class="w-full"
+    >
       {{ $t('basket.heading') }}
     </SFButton>
   </div>
@@ -14,10 +18,14 @@ import { computed } from 'vue'
 import { routeList } from '~/utils/route'
 import { useUser } from '#storefront/composables'
 import { SFButton } from '#storefront-ui/components'
+import { useRouteHelpers } from '~/composables'
 
 const { isLoggedIn } = useUser()
 
+const { getLocalizedRoute } = useRouteHelpers()
+
 const checkoutOrHomeRoute = computed(() => {
-  return isLoggedIn.value ? routeList.checkout : routeList.signin
+  const route = isLoggedIn.value ? routeList.checkout : routeList.signin
+  return getLocalizedRoute(route)
 })
 </script>

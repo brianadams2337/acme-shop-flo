@@ -3,7 +3,7 @@
     :root-categories="rootCategories"
     :fetching-categories="fetchingCategories"
     :all-categories="allCategories"
-  ></NuxtPage>
+  />
 </template>
 
 <script setup lang="ts">

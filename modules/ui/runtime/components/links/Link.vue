@@ -4,7 +4,7 @@
     :active-class="activeClass"
     :exact-active-class="exactActiveClass"
     :target="target"
-    :to="resolvedLink"
+    :to="to"
     :class="variantClass"
   >
     <slot />
@@ -15,7 +15,6 @@
 import { computed } from 'vue'
 import type { RouteLocationRaw } from '#vue-router'
 import { LinkVariant } from '#storefront-ui'
-import { useRouteHelpers } from '~/composables/useRouteHelpers'
 import { NuxtLink } from '#components'
 
 const LinkTypeClass = {
@@ -61,17 +60,5 @@ const activeClass = computed(() => {
 
 const exactActiveClass = computed(() => {
   return props.onlyExactActive && !props.raw ? ACTIVE_CLASS : ''
-})
-
-const { getLocalizedRoute } = useRouteHelpers()
-
-const resolvedLink = computed(() => {
-  const isExternal = typeof props.to === 'string' && props.to.startsWith('http')
-
-  if (isExternal) {
-    return props.to
-  }
-
-  return getLocalizedRoute(props.to)
 })
 </script>

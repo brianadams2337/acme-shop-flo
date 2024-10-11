@@ -5,12 +5,13 @@
         {{ blok.fields.headline }}
       </SFHeadline>
 
-      <SFLink
+      <CMSContentfulLink
         v-if="blok?.fields.ctaUrl && blok.fields.ctaLabel"
         :to="blok.fields.ctaUrl"
+        :raw="false"
       >
         {{ blok.fields.ctaLabel }}
-      </SFLink>
+      </CMSContentfulLink>
     </div>
 
     <SFItemsSlider
@@ -44,10 +45,11 @@ import { useStorefrontBreakpoints } from '../../../composables/storefront/useSto
 import type { CMSProductSliderProps } from '../types'
 import { useContentfulMargins } from '../composables/useContentfulMargins'
 import CMSProduct from './Product.vue'
+import CMSContentfulLink from './ContentfulLink.vue'
 import { useProductsByIds } from '#storefront/composables'
 import { usePageState } from '~/composables/usePageState'
 import { useRoute } from '#app/composables/router'
-import { SFHeadline, SFItemsSlider, SFLink } from '#storefront-ui/components'
+import { SFHeadline, SFItemsSlider } from '#storefront-ui/components'
 
 const props = defineProps<CMSProductSliderProps>()
 

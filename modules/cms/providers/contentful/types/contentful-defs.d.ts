@@ -90,6 +90,8 @@ export type CMSImageText = CMSComponentProps<
 
 export type CMSContentfulLink = {
   to: string | object
+  openInNewTab?: boolean
+  raw?: boolean
   target?: '_self' | '_blank' | '_parent' | '_top' | ''
 }
 

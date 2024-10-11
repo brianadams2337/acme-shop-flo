@@ -13,7 +13,7 @@
       "
     >
       <div class="mb-5 ml-5 mt-6 flex items-center text-xs">
-        <SFLink :to="routeList.home" @click="handleGoBack">
+        <SFLink :to="getLocalizedRoute(routeList.home)" @click="handleGoBack">
           <IconBack class="mr-1 size-3" />
           <p>{{ $t('global.back') }}</p>
         </SFLink>
@@ -82,7 +82,7 @@ const props = withDefaults(defineProps<Props>(), {
 
 const emit = defineEmits<{ 'click:navigationItem': [] }>()
 
-const { buildCategoryPath } = useRouteHelpers()
+const { buildCategoryPath, getLocalizedRoute } = useRouteHelpers()
 
 const route = useRoute()
 const activeParentCategory = ref<Category>()

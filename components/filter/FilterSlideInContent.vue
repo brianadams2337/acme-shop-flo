@@ -126,7 +126,7 @@ import {
 import { useI18n } from '#i18n'
 
 type Props = {
-  availableFilters: FilterItemWithValues[]
+  availableFilters?: FilterItemWithValues[]
   appliedAttributeValues: Record<string, number[]>
   appliedBooleanValues: Record<string, boolean>
   appliedFilter: ProductSearchQuery

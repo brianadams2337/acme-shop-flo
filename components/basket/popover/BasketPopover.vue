@@ -9,7 +9,7 @@
     @focusin="openBasketFlyout"
   >
     <template #action>
-      <SFLink
+      <LocalizedLink
         data-testid="basket-link"
         :to="routeList.basket"
         class="relative"
@@ -22,7 +22,7 @@
           {{ countWithoutSoldOutItems }}
         </FloatingBadge>
         <IconCart class="size-6" />
-      </SFLink>
+      </LocalizedLink>
       <div
         v-if="isBasketFlyoutOpen"
         class="absolute -bottom-3 h-0.5 w-8 bg-black"
@@ -43,9 +43,10 @@ import BasketPopoverActions from './BasketPopoverActions.vue'
 import { useBasket } from '#storefront/composables'
 import { useDefaultBreakpoints, useFlyouts } from '~/composables'
 import { routeList } from '~/utils/route'
-import { SFLink, SFPopover } from '#storefront-ui/components'
+import { SFPopover } from '#storefront-ui/components'
 import FloatingBadge from '~/components/layout/headers/FloatingBadge.vue'
 import AsyncDataWrapper from '~/components/AsyncDataWrapper.vue'
+import LocalizedLink from '~/components/LocalizedLink.vue'
 
 const { smaller } = useDefaultBreakpoints()
 

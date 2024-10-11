@@ -1,10 +1,9 @@
 <template>
   <div v-if="blok && imageSource.src" :class="marginClasses">
-    <SFLink
+    <CMSContentfulLink
       v-if="blok.fields.ctaUrl"
       :target="isLinkTypeUrl ? '_blank' : '_self'"
       :to="blok.fields.ctaUrl"
-      raw
       @click="clickObserver"
     >
       <Intersect :threshold="0.5" @enter="onIntersect">
@@ -17,7 +16,7 @@
           :sizes="sizes"
         />
       </Intersect>
-    </SFLink>
+    </CMSContentfulLink>
   </div>
 </template>
 
@@ -28,8 +27,8 @@ import { isStringURL } from '../../../utils/helpers'
 import type { CMSClickableImageProps } from '../types'
 import { useContentfulMargins } from '../composables/useContentfulMargins'
 import { useContentfulImageSanitizer } from '../composables/useContentfulImage'
+import CMSContentfulLink from './ContentfulLink.vue'
 import { NuxtImg } from '#components'
-import { SFLink } from '#storefront-ui/components'
 // TODO: This needs to be decoupled from the CMS module as it is coming from the SFB local components
 import Intersect from '~/components/Intersect.vue'
 

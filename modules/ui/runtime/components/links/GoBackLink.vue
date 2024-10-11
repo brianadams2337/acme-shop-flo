@@ -18,13 +18,9 @@ import { computed } from 'vue'
 import type { RouteLocationRaw } from '#vue-router'
 import { SFLink } from '#storefront-ui/components'
 
-type Props = {
+const { fallbackLink = '/' } = defineProps<{
   fallbackLink?: RouteLocationRaw
-}
-
-withDefaults(defineProps<Props>(), {
-  fallbackLink: '/',
-})
+}>()
 
 const hasHistory = computed(() => {
   return import.meta.client && window.history.state.back
@@ -34,9 +30,7 @@ const backClickEventHandling = computed(() => {
   return hasHistory.value ? { click: goBack } : {}
 })
 
-const componentName = computed(() => {
-  return hasHistory.value ? 'button' : SFLink
-})
+const componentName = computed(() => (hasHistory.value ? 'button' : SFLink))
 
 const goBack = () => window?.history.back()
 </script>

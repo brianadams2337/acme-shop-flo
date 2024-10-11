@@ -53,30 +53,29 @@ import { computed, defineOptions } from 'vue'
 import { useCMSAlignment } from '../composables/useCMSAlignment'
 import type { CMSImageTextProps } from '../types'
 import { useStoryblokImageSanitizer } from '../composables/useStoryblokImage'
-import { normalizeHomeLink } from '../../../utils/helpers'
+import { useLocalizedRoute } from '../../../composables/storefront/useLocalizedRoute'
 import { NuxtImg } from '#components'
 import { SFHeadline, SFButton } from '#storefront-ui/components'
 
-const props = withDefaults(defineProps<CMSImageTextProps>(), {
-  sizes: 'xs:100vw sm:100vw md:100vw lg:100vw xl:100vw xxl:100vw 2xl:100vw',
-})
+const {
+  blok,
+  sizes = 'xs:100vw sm:100vw md:100vw lg:100vw xl:100vw xxl:100vw 2xl:100vw',
+} = defineProps<CMSImageTextProps>()
+
+const { getLocalizedRoute } = useLocalizedRoute()
 
 const { sanitize } = useStoryblokImageSanitizer()
 
 const imageSource = computed(() => {
-  if (!props.blok?.image.length) {
-    return
-  }
-
-  return sanitize(props.blok?.image?.[0])
+  if (!blok?.image.length) return
+  return sanitize(blok?.image?.[0])
 })
 
-const { align, justify } = useCMSAlignment(props.blok)
-
-const hasCta = computed(() => props.blok?.cta && props.blok?.cta_link)
+const { align, justify } = useCMSAlignment(blok)
 
 const resolvedLink = computed(() => {
-  return hasCta.value && normalizeHomeLink(props.blok.cta_link?.cached_url)
+  const url = blok.cta_link?.cached_url
+  return url ? getLocalizedRoute(url) : null
 })
 
 defineOptions({ name: 'CMSImageText' })

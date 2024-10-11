@@ -10,19 +10,19 @@
         class="flex flex-col justify-center space-x-0 space-y-4 sm:flex-row sm:space-x-8 sm:space-y-0"
       >
         <SFContainerLink
-          :to="routeList.orders"
+          :to="getLocalizedRoute(routeList.orders)"
           :header="$t('my_account.orders_menu')"
           :sub-header="$t('my_account.orders_count', { count: orderCount })"
           class="w-full"
         />
         <SFContainerLink
-          :to="routeList.user"
+          :to="getLocalizedRoute(routeList.user)"
           :header="$t('my_account.profile_menu')"
           :sub-header="$t('my_account.personal_data_title')"
           class="w-full"
         />
         <SFContainerLink
-          :to="routeList.subscriptionOverview"
+          :to="getLocalizedRoute(routeList.subscriptionOverview)"
           :header="$t('my_account.subscriptions_menu')"
           :sub-header="$t('my_account.subscriptions_subtitle')"
           class="w-full"
@@ -50,7 +50,11 @@
 import { useSeoMeta } from '@unhead/vue'
 import { computed, defineOptions, onMounted } from 'vue'
 import { definePageMeta } from '#imports'
-import { useTrackingEvents, wishlistListingMetadata } from '~/composables'
+import {
+  useTrackingEvents,
+  wishlistListingMetadata,
+  useRouteHelpers,
+} from '~/composables'
 import { useNuxtApp } from '#app'
 import { useUser, useWishlist } from '#storefront/composables'
 import { routeList } from '~/utils/route'
@@ -63,6 +67,8 @@ const { user } = useUser()
 const wishlist = await useWishlist()
 
 const { trackWishlist, collectProductListItems } = useTrackingEvents()
+
+const { getLocalizedRoute } = useRouteHelpers()
 
 const { $i18n } = useNuxtApp()
 

@@ -16,13 +16,13 @@
 
 <script lang="ts" setup>
 import { computed } from 'vue'
-import { useNuxtApp } from '#app'
+import { useI18n } from '#i18n'
 
-const { $i18n } = useNuxtApp()
+const { t } = useI18n()
 
 const sellingPoints = computed(() => [
-  { icon: 'IconInvoice', text: $i18n.t('promises.pay_with_invoice') },
-  { icon: 'IconDelivery', text: $i18n.t('promises.free_return_and_shipping') },
-  { icon: 'IconReturn', text: $i18n.t('promises.return_policy') },
+  { icon: 'IconInvoice', text: t('promises.pay_with_invoice') },
+  { icon: 'IconDelivery', text: t('promises.free_return_and_shipping') },
+  { icon: 'IconReturn', text: t('promises.return_policy') },
 ])
 </script>

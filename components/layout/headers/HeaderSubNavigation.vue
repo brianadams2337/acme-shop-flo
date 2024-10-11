@@ -6,7 +6,7 @@
     <div class="container flex items-center space-x-16">
       <SFLink
         class="border-b-2 border-transparent px-1 py-2.5 font-normal hover:border-black sm:text-sm sm:font-semibold"
-        :to="routeList.home"
+        :to="getLocalizedRoute(routeList.home)"
         type="quiet"
       >
         {{ $t('global.home') }}
@@ -46,13 +46,11 @@ import { routeList } from '~/utils/route'
 import { SFLink } from '#storefront-ui/components'
 import NavigationTreeItem from '~/components/NavigationTreeItem.vue'
 
-withDefaults(defineProps<{ navigationTree?: NavigationTree }>(), {
-  navigationTree: undefined,
-})
+const { navigationTree } = defineProps<{ navigationTree?: NavigationTree }>()
 
 const { rootCategories } = useRootCategories()
 
-const { buildCategoryPath } = useRouteHelpers()
+const { buildCategoryPath, getLocalizedRoute } = useRouteHelpers()
 
 const { openFlyoutMenuForNavigationTree, openFlyoutMenu } = useFlyouts()
 </script>

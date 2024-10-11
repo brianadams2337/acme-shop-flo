@@ -7,7 +7,7 @@
     </div>
 
     <div class="flex w-full flex-col gap-4">
-      <SFLink
+      <LocalizedLink
         v-for="provider in providers"
         :key="provider.title"
         class="group inline-flex w-full items-center justify-center gap-2 truncate whitespace-nowrap rounded-md border p-3 text-sm font-semibold leading-5 tracking-wide text-white transition duration-100 ease-linear focus:ring-1 disabled:opacity-30"
@@ -16,14 +16,14 @@
         raw
       >
         {{ $t(`login_page.idp.${provider.title}`) }}
-      </SFLink>
+      </LocalizedLink>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
 import { computed } from 'vue'
-import { SFLink } from '#storefront-ui/components'
+import LocalizedLink from '../LocalizedLink.vue'
 
 const idpClasses: Record<string, string> = {
   google: 'bg-[#4285F4] text-white hover:bg-[#3869c1] focus:bg-[#3869c1]',

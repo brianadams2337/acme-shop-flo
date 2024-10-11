@@ -7,7 +7,7 @@
           categoryAncestors.length,
       }"
     >
-      <SFLink
+      <LocalizedLink
         v-for="({ to, value }, index) in categoryAncestors"
         :key="`breadcrumb-${value}`"
         :data-testid="`category-breadcrumb-${index}`"
@@ -23,7 +23,7 @@
         }"
       >
         <span class="leading-none">{{ value }}</span>
-      </SFLink>
+      </LocalizedLink>
     </div>
     <SFHeadline
       tag="h1"
@@ -48,13 +48,10 @@
 <script setup lang="ts">
 import type { Category } from '@scayle/storefront-nuxt'
 import { computed } from 'vue'
+import LocalizedLink from '../LocalizedLink.vue'
 import type { BreadcrumbItem } from '~/types/breadcrumbs'
 import { useBreadcrumbs } from '~/composables'
-import {
-  SFLink,
-  SFFadeInTransition,
-  SFHeadline,
-} from '#storefront-ui/components'
+import { SFFadeInTransition, SFHeadline } from '#storefront-ui/components'
 import { showDividerTag } from '#storefront-ui'
 
 type Props = {

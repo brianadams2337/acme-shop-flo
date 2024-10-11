@@ -14,6 +14,10 @@ export const hasLocalePrefix = (path: string, prefix?: string) => {
   return components[1] && components[1] === prefix
 }
 
+export const isExternalLink = (link: string): boolean => {
+  return typeof link === 'string' && link.startsWith('http')
+}
+
 type Link =
   | 'home'
   | 'checkout'

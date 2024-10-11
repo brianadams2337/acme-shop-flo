@@ -6,7 +6,7 @@
     >
       <SFHeadline size="sm" tag="p">
         <SFLink
-          :to="routeList.home"
+          :to="getLocalizedRoute(routeList.home)"
           type="quiet"
           class="text-sm"
           @click="forceCloseFlyout"
@@ -70,7 +70,7 @@ import { routeList } from '~/utils/route'
 import { SFLink, SFHeadline, SFTwoColumnList } from '#storefront-ui/components'
 
 const { closeFlyoutMenu, flyoutMenuCategory } = useFlyouts()
-const { buildCategoryPath } = useRouteHelpers()
+const { buildCategoryPath, getLocalizedRoute } = useRouteHelpers()
 
 const childlessCategoryItems = computed(() => {
   return flyoutMenuCategory.value.children.filter((item) => {

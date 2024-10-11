@@ -11,6 +11,7 @@ import { useI18n } from 'vue-i18n'
 import { useToast } from '~/composables/useToast'
 import { useTrackingEvents } from '~/composables/useTrackingEvents'
 import { useNuxtApp } from '#app'
+import { useRouteHelpers } from '~/composables'
 import {
   bundleBasketItemsByGroup,
   getPartitionedBasketItems,
@@ -47,6 +48,8 @@ export function useBasketActions() {
   const { trackRemoveFromBasket, trackBasket, collectBasketItems } =
     useTrackingEvents()
 
+  const { getLocalizedRoute } = useRouteHelpers()
+
   const basket = useBasket()
   const {
     fetching,
@@ -75,7 +78,7 @@ export function useBasketActions() {
 
     show(message, {
       action,
-      ...(isAddedToBasket && { to: routeList.basket }),
+      ...(isAddedToBasket && { to: getLocalizedRoute(routeList.basket) }),
     })
   }
 
@@ -145,7 +148,11 @@ export function useBasketActions() {
           productName: item.productName,
         })
 
-    show(message, { type: 'SUCCESS', action: 'ROUTE', to: routeList.basket })
+    show(message, {
+      type: 'SUCCESS',
+      action: 'ROUTE',
+      to: getLocalizedRoute(routeList.basket),
+    })
   }
 
   const addItem = async (item: AddToBasketItem) => {

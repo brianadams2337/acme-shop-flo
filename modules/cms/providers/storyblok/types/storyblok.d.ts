@@ -180,6 +180,8 @@ export type CMSImageTextProps = CMSComponentProps<
 
 export type CMSStoryblokLink = {
   to: RouteLocationRaw
+  openInNewTab?: boolean
+  raw?: boolean
   target?: '_self' | '_blank' | '_parent' | '_top'
 }
 

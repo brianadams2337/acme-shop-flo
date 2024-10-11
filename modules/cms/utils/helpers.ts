@@ -63,3 +63,16 @@ export const normalizeHomeLink = (link?: string): string | undefined => {
   if (!link) return
   return link === 'home' ? '/' : link
 }
+
+export const normalizePathRoute = (path: string) => {
+  return path.startsWith('/') ? path : `/${path}`
+}
+
+export const hasLocalePrefix = (path: string, prefix?: string) => {
+  const components = normalizePathRoute(path).split('/')
+  return components[1] && components[1] === prefix
+}
+
+export const isExternalLink = (link: string): boolean => {
+  return typeof link === 'string' && link.startsWith('http')
+}

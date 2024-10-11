@@ -10,7 +10,7 @@
       </span>
     </template>
     <template #item="{ item, selectItem }">
-      <SFLink
+      <LocalizedLink
         data-testid="sort-item"
         type="whisper"
         class="mb-1 w-full rounded p-2 !text-base !font-medium last-of-type:mb-0 hover:bg-gray-100"
@@ -30,14 +30,15 @@
             class="size-4 text-accent"
           />
         </span>
-      </SFLink>
+      </LocalizedLink>
     </template>
   </SFDropdown>
 </template>
 
 <script setup lang="ts">
+import LocalizedLink from '../LocalizedLink.vue'
 import { useTrackingEvents, useProductListSort } from '~/composables'
-import { SFDropdown, SFLink } from '#storefront-ui/components'
+import { SFDropdown } from '#storefront-ui/components'
 
 const { selectedSort, sortLinks } = useProductListSort()
 const { trackFilterApply } = useTrackingEvents()

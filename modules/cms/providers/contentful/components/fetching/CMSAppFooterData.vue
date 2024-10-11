@@ -53,17 +53,18 @@
 
       <div v-if="footerContent?.socialMedia" class="flex flex-col">
         <div class="flex flex-wrap gap-4">
-          <SFLink
+          <CMSContentfulLink
             v-for="social in footerContent.socialMedia"
             :key="social?.sys.id"
             :to="social?.fields.url ?? {}"
+            :raw="false"
             open-in-new-tab
           >
             <component
               :is="`IconSocial${getSocialName(social?.fields.type ?? '')}`"
               class="size-6"
             />
-          </SFLink>
+          </CMSContentfulLink>
         </div>
       </div>
     </div>
@@ -87,8 +88,8 @@ import { useCMSBySlug } from '../../composables/useCMS'
 import { useContentfulEditor } from '../../composables/useContentfulEditor'
 import CMSText from '../Text.vue'
 import CMSLink from '../Link.vue'
+import CMSContentfulLink from '../ContentfulLink.vue'
 import { useNavigationTreeItems } from '~/composables/useNavigationTreeItems'
-import { SFLink } from '#storefront-ui/components'
 // TODO: This needs to be decoupled from the CMS module as it is coming from the SFB local components
 import NavigationTreeItem from '~/components/NavigationTreeItem.vue'
 import FooterPromises from '~/components/layout/footer/FooterPromises.vue'

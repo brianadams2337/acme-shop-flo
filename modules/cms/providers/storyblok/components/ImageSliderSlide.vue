@@ -23,14 +23,15 @@
       >
         {{ blok.headline }}
       </SFHeadline>
-      <SFLink
+      <CMSStoryblokLink
         v-if="blok.cta_url.cached_url"
         class="mt-5 text-base font-bold underline"
         :to="blok.cta_url.cached_url"
+        :raw="false"
         @click="clickObserver"
       >
         {{ blok.cta_label }}
-      </SFLink>
+      </CMSStoryblokLink>
     </div>
   </article>
 </template>
@@ -40,8 +41,9 @@ import { computed, defineOptions, ref } from 'vue'
 import { useStorefrontTracking } from '../../../composables/storefront/useStorefrontTracking'
 import { useStorefrontBreakpoints } from '../../../composables/storefront/useStorefrontBreakpoints'
 import type { CMSImageSliderSlideProps } from '../types'
+import CMSStoryblokLink from './StoryblokLink.vue'
 import { NuxtImg } from '#components'
-import { SFLink, SFHeadline } from '#storefront-ui/components'
+import { SFHeadline } from '#storefront-ui/components'
 // TODO: This needs to be decoupled from the CMS module as it is coming from the SFB local components
 import Intersect from '~/components/Intersect.vue'
 

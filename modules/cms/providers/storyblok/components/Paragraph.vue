@@ -26,7 +26,7 @@
         <CMSStoryblokLink
           v-if="paragraphImage.name"
           :to="paragraphImage.name"
-          target="_blank"
+          open-in-new-tab
         >
           <NuxtPicture
             class="cms-picture picture-contain"

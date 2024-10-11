@@ -3,13 +3,13 @@
     <HeaderSearch class="hidden md:flex" />
     <div class="ml-1 flex h-full items-center justify-center space-x-4">
       <div class="inline-flex h-full items-center justify-center">
-        <SFLink
+        <LocalizedLink
           data-testid="store-location-link"
           :to="routeList.location"
           type="loud"
         >
           <IconLocationMenu class="size-6 cursor-pointer" />
-        </SFLink>
+        </LocalizedLink>
       </div>
       <UserPopover data-testid="user-popover" />
       <WishlistLink />
@@ -23,6 +23,6 @@ import HeaderSearch from './search/HeaderSearch.vue'
 import UserPopover from './user/UserPopover.vue'
 import WishlistLink from './WishlistLink.vue'
 import BasketPopover from '~/components/basket/popover/BasketPopover.vue'
-import { SFLink } from '#storefront-ui/components'
+import LocalizedLink from '~/components/LocalizedLink.vue'
 import { routeList } from '~/utils/route'
 </script>

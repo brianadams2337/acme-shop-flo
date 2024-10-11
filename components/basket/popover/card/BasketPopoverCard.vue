@@ -2,7 +2,7 @@
   <div
     class="relative m-3 flex flex-col rounded border p-3 text-primary hover:bg-secondary-450"
   >
-    <SFLink
+    <LocalizedLink
       v-if="mainItem"
       :to="getProductDetailRoute(mainItem.product.id, name)"
       class="flex text-sm"
@@ -17,7 +17,7 @@
         />
       </div>
       <BasketPopoverCardPrice :item="mainItem" />
-    </SFLink>
+    </LocalizedLink>
     <AddOnItems
       v-if="addOnItems.length"
       :items="addOnItems"
@@ -34,7 +34,7 @@ import AddOnItems from '../../addOns/AddOnItems.vue'
 import BasketPopoverCardImage from './BasketPopoverCardImage.vue'
 import BasketPopoverCardBaseInfo from './BasketPopoverCardBaseInfo.vue'
 import BasketPopoverCardPrice from './BasketPopoverCardPrice.vue'
-import { SFLink } from '#storefront-ui/components'
+import LocalizedLink from '~/components/LocalizedLink.vue'
 import { useBasketItem, useRouteHelpers } from '~/composables'
 
 type Props = {

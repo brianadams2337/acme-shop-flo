@@ -9,9 +9,9 @@
     @focusout="closeUserFlyout()"
   >
     <template #action>
-      <SFLink :to="link" raw>
+      <LocalizedLink :to="link" raw>
         <IconAccount class="size-6" />
-      </SFLink>
+      </LocalizedLink>
       <div
         v-if="isUserFlyoutOpen"
         class="absolute -bottom-3 h-0.5 w-8 bg-black"
@@ -34,8 +34,9 @@ import GuestActions from './GuestActions.vue'
 import { routeList } from '~/utils/route'
 import { useUser } from '#storefront/composables'
 import { useDefaultBreakpoints, useFlyouts } from '~/composables'
-import { SFPopover, SFLink } from '#storefront-ui/components'
+import { SFPopover } from '#storefront-ui/components'
 import AsyncDataWrapper from '~/components/AsyncDataWrapper.vue'
+import LocalizedLink from '~/components/LocalizedLink.vue'
 
 const { smaller } = useDefaultBreakpoints()
 

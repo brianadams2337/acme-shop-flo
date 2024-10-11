@@ -28,9 +28,10 @@
         {{ blok?.fields.headline }}
       </h2>
 
-      <SFLink
+      <CMSContentfulLink
         v-if="blok?.fields.ctaUrl && blok?.fields.ctaLabel"
         :to="blok?.fields.ctaUrl"
+        :raw="false"
         class="mt-10"
       >
         <button
@@ -44,7 +45,7 @@
         >
           {{ blok?.fields.ctaLabel }}
         </button>
-      </SFLink>
+      </CMSContentfulLink>
     </div>
   </div>
 </template>
@@ -59,7 +60,7 @@ import type {
   TypeImageSkeleton,
   TypeVideoSkeleton,
 } from '../types'
-import { SFLink } from '#storefront-ui/components'
+import CMSContentfulLink from './ContentfulLink.vue'
 
 const props = withDefaults(defineProps<CMSSlideProps>(), {
   preload: false,

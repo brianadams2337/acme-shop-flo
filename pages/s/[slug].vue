@@ -12,8 +12,8 @@
       <div v-else-if="data" class="mx-4 xl:container">
         <SFBreadcrumbs
           :items="[
-            { value: 'Home', to: routeList.home },
-            { value: data.name, to: data.slug },
+            { value: 'Home', to: getLocalizedRoute(routeList.home) },
+            { value: data.name, to: getLocalizedRoute(data.slug) },
           ]"
         />
 
@@ -29,6 +29,7 @@ import { useSeoMeta } from '@unhead/vue'
 import { useRoute } from '#app/composables/router'
 import { definePageMeta } from '#imports'
 import { routeList } from '~/utils'
+import { useRouteHelpers } from '~/composables/useRouteHelpers'
 import { SFSkeletonLoader, SFBreadcrumbs } from '#storefront-ui/components'
 import CMSServicePageData from '#storefront-cms/components/fetching/CMSServicePageData.vue'
 import CMSStory from '#storefront-cms/components/Story.vue'
@@ -37,6 +38,8 @@ const route = useRoute()
 const slug = computed(() =>
   Array.isArray(route.params.slug) ? route.params.slug[0] : route.params.slug,
 )
+
+const { getLocalizedRoute } = useRouteHelpers()
 
 useSeoMeta({
   robots: 'index,follow',

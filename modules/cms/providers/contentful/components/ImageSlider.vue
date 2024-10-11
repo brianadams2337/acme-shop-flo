@@ -5,12 +5,13 @@
         {{ blok.fields.headline }}
       </SFHeadline>
 
-      <SFLink
+      <CMSContentfulLink
         v-if="blok?.fields.ctaUrl && blok.fields.ctaLabel"
         :to="blok.fields.ctaUrl"
+        :raw="false"
       >
         {{ blok.fields.ctaUrl }}
-      </SFLink>
+      </CMSContentfulLink>
     </div>
     <SFItemsSlider
       with-arrows
@@ -32,7 +33,8 @@
 import { getComponentName } from '../../../utils/helpers'
 import type { CMSImageSliderProps } from '../types'
 import { useContentfulMargins } from '../composables/useContentfulMargins'
-import { SFLink, SFItemsSlider, SFHeadline } from '#storefront-ui/components'
+import CMSContentfulLink from './ContentfulLink.vue'
+import { SFItemsSlider, SFHeadline } from '#storefront-ui/components'
 
 const props = defineProps<CMSImageSliderProps>()
 const { marginClasses } = useContentfulMargins(props.blok?.fields.margin)

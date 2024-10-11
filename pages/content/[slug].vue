@@ -30,8 +30,8 @@
           <SFBreadcrumbs
             class="py-4"
             :items="[
-              { value: 'Home', to: routeList.home },
-              { value: data.name, to: data.slug },
+              { value: 'Home', to: getLocalizedRoute(routeList.home) },
+              { value: data.name, to: getLocalizedRoute(data.slug) },
             ]"
           />
 
@@ -45,6 +45,7 @@
 <script setup lang="ts">
 import { useSeoMeta } from '@unhead/vue'
 import { computed, defineOptions } from 'vue'
+import { useRouteHelpers } from '~/composables/useRouteHelpers'
 import { definePageMeta } from '#imports'
 import { useRoute } from '#app/composables/router'
 import { routeList } from '~/utils'
@@ -52,6 +53,8 @@ import { SFSkeletonLoader, SFBreadcrumbs } from '#storefront-ui/components'
 import CMSContentPageData from '#storefront-cms/components/fetching/CMSContentPageData.vue'
 import CMSStory from '#storefront-cms/components/Story.vue'
 import CMSImage from '#storefront-cms/components/Image.vue'
+
+const { getLocalizedRoute } = useRouteHelpers()
 
 const route = useRoute()
 const slug = computed(() =>

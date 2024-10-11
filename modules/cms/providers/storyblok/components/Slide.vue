@@ -27,9 +27,10 @@
         {{ blok.headline }}
       </h2>
 
-      <SFLink
+      <CMSStoryblokLink
         v-if="blok.cta_url?.cached_url && blok.cta_label"
         :to="blok.cta_url.cached_url"
+        :raw="false"
         class="mt-10"
       >
         <button
@@ -41,7 +42,7 @@
         >
           {{ blok.cta_label }}
         </button>
-      </SFLink>
+      </CMSStoryblokLink>
     </div>
   </div>
 </template>
@@ -50,7 +51,7 @@
 import { defineOptions } from 'vue'
 import { useCMSAlignment } from '../composables/useCMSAlignment'
 import type { SbCmsImage, SbSlide, SbVideo } from '../types'
-import { SFLink } from '#storefront-ui/components'
+import CMSStoryblokLink from './StoryblokLink.vue'
 
 type Props = { blok: SbSlide; preload?: boolean }
 

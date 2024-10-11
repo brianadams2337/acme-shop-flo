@@ -30,7 +30,7 @@
       </SFValidatedInputGroup>
 
       <div class="py-2 text-right">
-        <SFLink
+        <LocalizedLink
           :to="{
             name: routeList.signin.name,
             query: { ['forgot-password']: 'true' },
@@ -42,7 +42,7 @@
           <span
             class="absolute inset-x-0 -bottom-0.5 h-px bg-gray-600 transition-all group-hover:-inset-x-1 group-hover:bg-black"
           />
-        </SFLink>
+        </LocalizedLink>
       </div>
 
       <SFButton
@@ -67,6 +67,7 @@
 <script setup lang="ts">
 import { computed, reactive } from 'vue'
 import useVuelidate from '@vuelidate/core'
+import LocalizedLink from '../LocalizedLink.vue'
 import IDPForm from './IDPForm.vue'
 import {
   useAuthentication,
@@ -80,7 +81,6 @@ import {
   SFButton,
   SFTextInput,
   SFValidatedInputGroup,
-  SFLink,
 } from '#storefront-ui/components'
 
 const route = useRoute()

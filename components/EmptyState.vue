@@ -23,13 +23,13 @@
       >
         <SFButton
           v-if="!isLoggedIn"
-          :to="routeList.signin"
+          :to="getLocalizedRoute(routeList.signin)"
           data-testid="button-signin"
         >
           {{ $t('global.sign_in_label') }}
         </SFButton>
         <SFButton
-          :to="routeList.home"
+          :to="getLocalizedRoute(routeList.home)"
           type="tertiary"
           data-testid="button-continue-shopping"
         >
@@ -47,6 +47,7 @@ import { useUser } from '#storefront/composables'
 import { routeList } from '~/utils/route'
 import { IconEmptyBasket, IconEmptyWishlist } from '#components'
 import { SFButton, SFHeadline } from '#storefront-ui/components'
+import { useRouteHelpers } from '~/composables'
 
 type Props = {
   title?: string
@@ -55,16 +56,18 @@ type Props = {
   showDefaultActions?: boolean
 }
 
-const props = withDefaults(defineProps<Props>(), {
-  title: '',
-  description: '',
-  icon: 'EmptyBasket',
-  showDefaultActions: false,
-})
+const {
+  title = '',
+  description = '',
+  icon = 'EmptyBasket',
+  showDefaultActions = false,
+} = defineProps<Props>()
 
 const { isLoggedIn } = useUser()
 
+const { getLocalizedRoute } = useRouteHelpers()
+
 const iconComponent = computed(() => {
-  return props.icon === 'EmptyBasket' ? IconEmptyBasket : IconEmptyWishlist
+  return icon === 'EmptyBasket' ? IconEmptyBasket : IconEmptyWishlist
 })
 </script>

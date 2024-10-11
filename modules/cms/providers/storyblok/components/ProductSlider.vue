@@ -4,10 +4,13 @@
       <SFHeadline v-if="blok.headline" tag="p" size="base" is-uppercase>
         {{ blok.headline }}
       </SFHeadline>
-
-      <SFLink v-if="blok.cta_url && blok.cta_label" :to="blok.cta_url">
+      <CMSStoryblokLink
+        v-if="blok.cta_url && blok.cta_label"
+        :to="blok.cta_url"
+        :raw="false"
+      >
         {{ blok.cta_label }}
-      </SFLink>
+      </CMSStoryblokLink>
     </div>
     <SFItemsSlider
       class="mt-4"
@@ -40,13 +43,14 @@ import { useStorefrontBreakpoints } from '../../../composables/storefront/useSto
 import type { CMSProductSliderProps } from '../types'
 import { useStoryblokMargins } from '../composables/useStoryblokMargins'
 import CMSProduct from './Product.vue'
+import CMSStoryblokLink from './StoryblokLink.vue'
 import {
   useProductsByIds,
   useProductsByReferenceKeys,
 } from '#storefront/composables'
 import { usePageState } from '~/composables/usePageState'
 import { useRoute } from '#app/composables/router'
-import { SFHeadline, SFItemsSlider, SFLink } from '#storefront-ui/components'
+import { SFHeadline, SFItemsSlider } from '#storefront-ui/components'
 
 const props = defineProps<CMSProductSliderProps>()
 

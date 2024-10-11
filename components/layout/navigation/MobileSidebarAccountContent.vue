@@ -2,13 +2,13 @@
   <div class="border-0 border-b border-gray-350 bg-secondary-450 px-5">
     <div v-if="!user" class="flex justify-center py-1">
       <div class="flex space-x-1 text-center font-semibold">
-        <SFLink :to="routeList.signin" @click="closeSideNavigation">
+        <LocalizedLink :to="routeList.signin" @click="closeSideNavigation">
           {{ $t('global.sign_in') }}
-        </SFLink>
+        </LocalizedLink>
         <span>/</span>
-        <SFLink :to="routeList.signup" @click="closeSideNavigation">
+        <LocalizedLink :to="routeList.signup" @click="closeSideNavigation">
           {{ $t('global.register') }}
-        </SFLink>
+        </LocalizedLink>
       </div>
     </div>
     <div v-else class="flex flex-wrap items-center justify-between py-2">
@@ -24,12 +24,16 @@
         >
           {{ $t('global.sign_out') }}
         </SFButton>
-        <SFLink v-else :to="routeList.account" @click="closeSideNavigation">
+        <LocalizedLink
+          v-else
+          :to="routeList.account"
+          @click="closeSideNavigation"
+        >
           <div class="inline-flex items-center">
             <IconUserSecondary class="mr-1 size-3" />
             <span class="font-medium">{{ $t('navigation.my_account') }}</span>
           </div>
-        </SFLink>
+        </LocalizedLink>
       </div>
     </div>
   </div>
@@ -40,7 +44,8 @@ import { computed } from 'vue'
 import { useAuthentication, useSideNavigation } from '~/composables'
 import { useUser } from '#storefront/composables'
 import { routeList } from '~/utils/route'
-import { SFButton, SFLink } from '#storefront-ui/components'
+import { SFButton } from '#storefront-ui/components'
+import LocalizedLink from '~/components/LocalizedLink.vue'
 
 const { user } = useUser()
 const { closeSideNavigation } = useSideNavigation()

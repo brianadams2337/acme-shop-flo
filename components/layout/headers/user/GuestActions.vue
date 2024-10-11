@@ -4,7 +4,7 @@
       <SFButton
         type="secondary"
         class="w-full"
-        :to="routeList.signin"
+        :to="getLocalizedRoute(routeList.signin)"
         @click="closeUserFlyout"
       >
         {{ $t('global.sign_in') }}
@@ -16,7 +16,7 @@
       </span>
       <SFButton
         type="raw"
-        :to="routeList.signup"
+        :to="getLocalizedRoute(routeList.signup)"
         class="text-xs font-semibold leading-5 !tracking-wide"
       >
         {{ $t('global.register') }}
@@ -29,6 +29,8 @@
 import { useFlyouts } from '~/composables/useFlyouts'
 import { routeList } from '~/utils/route'
 import { SFButton } from '#storefront-ui/components'
+import { useRouteHelpers } from '~/composables'
 
+const { getLocalizedRoute } = useRouteHelpers()
 const { closeUserFlyout } = useFlyouts()
 </script>

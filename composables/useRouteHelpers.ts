@@ -12,6 +12,7 @@ import { useLocalePath } from '#i18n'
 import {
   buildFiltersQuery,
   hasLocalePrefix,
+  isExternalLink,
   isCategorySuggestion,
   isProductSuggestion,
   normalizePathRoute,
@@ -101,6 +102,8 @@ export function useRouteHelpers() {
 
       return isLocalePath ? route : localePath(route)
     }
+
+    if (isExternalLink(route)) return route
 
     const normalizedPath = normalizePathRoute(route)
 

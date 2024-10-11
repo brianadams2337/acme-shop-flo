@@ -15,14 +15,12 @@
 </template>
 
 <script setup lang="ts">
+import SFLink from './Link.vue'
 import type { RouteLocationRaw } from '#vue-router'
-import { SFLink } from '#storefront-ui/components'
 
-type Props = {
+defineProps<{
   to: RouteLocationRaw
   header: string
   subHeader?: string
-}
-
-withDefaults(defineProps<Props>(), { subHeader: undefined })
+}>()
 </script>

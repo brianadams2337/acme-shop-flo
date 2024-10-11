@@ -23,14 +23,16 @@
       >
         {{ blok?.fields.headline }}
       </SFHeadline>
-      <SFLink
+
+      <CMSContentfulLink
         v-if="blok?.fields.ctaUrl"
         class="mt-5 text-base font-bold underline"
         :to="blok?.fields.ctaUrl"
+        :raw="false"
         @click="clickObserver"
       >
         {{ blok?.fields.ctaLabel }}
-      </SFLink>
+      </CMSContentfulLink>
     </div>
   </article>
 </template>
@@ -40,8 +42,10 @@ import { computed, defineOptions, ref } from 'vue'
 import { useStorefrontTracking } from '../../../composables/storefront/useStorefrontTracking'
 import { useStorefrontBreakpoints } from '../../../composables/storefront/useStorefrontBreakpoints'
 import type { CMSImageSliderSlideProps } from '../types'
+import CMSContentfulLink from './ContentfulLink.vue'
 import { NuxtImg } from '#components'
-import { SFLink, SFHeadline } from '#storefront-ui/components'
+import { SFHeadline } from '#storefront-ui/components'
+
 // TODO: This needs to be decoupled from the CMS module as it is coming from the SFB local components
 import Intersect from '~/components/Intersect.vue'
 

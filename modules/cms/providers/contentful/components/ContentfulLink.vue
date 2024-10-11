@@ -1,9 +1,11 @@
 <template>
   <SFLink
     v-if="!isInEditorMode"
-    raw
-    :to="resolvedLink"
+    v-bind="$attrs"
+    :raw="raw"
+    :to="getLocalizedRoute(to)"
     :target="target ? target : '_self'"
+    :open-in-new-tab="openInNewTab"
   >
     <slot />
   </SFLink>
@@ -13,22 +15,22 @@
 </template>
 
 <script lang="ts" setup>
-import { computed, defineOptions } from 'vue'
+import { defineOptions } from 'vue'
 import type { CMSContentfulLink } from '../types'
 import { useContentfulHelpers } from '../composables/useContentfulHelpers'
-import { type LinkList, routeList } from '~/utils/route'
+import { useLocalizedRoute } from '../../../composables/storefront/useLocalizedRoute'
 import { SFLink } from '#storefront-ui/components'
 
+const {
+  to,
+  target = '',
+  openInNewTab = false,
+  raw = true,
+} = defineProps<CMSContentfulLink>()
+
 const { isInEditorMode } = useContentfulHelpers()
-const props = withDefaults(defineProps<CMSContentfulLink>(), { target: '' })
 
-const resolvedLink = computed(() => {
-  if (typeof props.to !== 'string') {
-    return props.to
-  }
-  const isPathRoute = props.to.includes('/')
+const { getLocalizedRoute } = useLocalizedRoute()
 
-  return isPathRoute ? props.to : routeList[props.to as keyof LinkList].path
-})
 defineOptions({ name: 'CMSContentfulLink' })
 </script>

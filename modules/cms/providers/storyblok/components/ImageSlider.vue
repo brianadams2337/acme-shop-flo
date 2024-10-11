@@ -4,10 +4,13 @@
       <SFHeadline v-if="blok.headline" tag="p" size="base" is-uppercase>
         {{ blok.headline }}
       </SFHeadline>
-
-      <SFLink v-if="blok.cta_url && blok.cta_label" :to="blok.cta_url">
+      <CMSStoryblokLink
+        v-if="blok.cta_url && blok.cta_label"
+        :to="blok.cta_url"
+        :raw="false"
+      >
         {{ blok.cta_label }}
-      </SFLink>
+      </CMSStoryblokLink>
     </div>
     <SFItemsSlider
       with-arrows
@@ -30,7 +33,8 @@ import { defineOptions } from 'vue'
 import { getComponentName } from '../../../utils/helpers'
 import type { CMSImageSliderProps } from '../types'
 import { useStoryblokMargins } from '../composables/useStoryblokMargins'
-import { SFLink, SFItemsSlider, SFHeadline } from '#storefront-ui/components'
+import CMSStoryblokLink from './StoryblokLink.vue'
+import { SFItemsSlider, SFHeadline } from '#storefront-ui/components'
 
 const props = defineProps<CMSImageSliderProps>()
 const { marginClasses } = useStoryblokMargins(props.blok)

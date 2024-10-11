@@ -39,10 +39,10 @@
         :key="`store-${paragraphImage.id}`"
         class="flex flex-row space-x-8"
       >
-        <StoryblokLink
+        <CMSStoryblokLink
           v-if="paragraphImage.name"
           :to="paragraphImage.name"
-          target="_blank"
+          open-in-new-tab
         >
           <NuxtPicture
             class="cms-picture picture-contain"
@@ -51,7 +51,7 @@
             :src="paragraphImage.filename"
             :alt="paragraphImage.alt"
           />
-        </StoryblokLink>
+        </CMSStoryblokLink>
         <NuxtPicture
           v-else
           class="cms-picture picture-contain"
@@ -73,7 +73,7 @@ import { computed, defineOptions } from 'vue'
 import type { SbNestedParagraph } from '../types/storyblok'
 import { getComponentName } from '../../../utils/helpers'
 import CMSText from './Text.vue'
-import StoryblokLink from './StoryblokLink.vue'
+import CMSStoryblokLink from './StoryblokLink.vue'
 import { NuxtPicture } from '#components'
 import { SFHeadline, SFButton } from '#storefront-ui/components'
 

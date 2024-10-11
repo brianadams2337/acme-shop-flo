@@ -27,14 +27,14 @@ type Props = {
   primary?: boolean
 }
 
-const props = withDefaults(defineProps<Props>(), { value: '', primary: false })
+const { value = '', primary = false } = defineProps<Props>()
 
 const baseClass = computed(() => {
-  return !props.primary
+  return !primary
     ? 'flex flex-row items-center gap-2 lg:flex-col lg:items-start lg:gap-0'
     : ''
 })
 
-const labelClass = computed(() => (props.primary ? 'text-xs' : 'text-2xs'))
-const valueClass = computed(() => (props.primary ? 'text-sm' : 'text-xs'))
+const labelClass = computed(() => (primary ? 'text-xs' : 'text-2xs'))
+const valueClass = computed(() => (primary ? 'text-sm' : 'text-xs'))
 </script>

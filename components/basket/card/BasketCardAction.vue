@@ -23,9 +23,7 @@ type Props = {
   disabled?: boolean
 }
 
-withDefaults(defineProps<Props>(), { icon: '', disabled: false })
+const { icon = '', disabled = false } = defineProps<Props>()
 
-const emit = defineEmits<{
-  (e: 'click'): void
-}>()
+const emit = defineEmits<{ click: [] }>()
 </script>

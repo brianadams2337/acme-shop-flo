@@ -11,7 +11,7 @@
           @click.capture="selectItem"
           @keydown.enter="selectItem"
         >
-          <SFLink
+          <LocalizedLink
             :to="getProductDetailRoute(product.id, name)"
             class="grid h-full grid-cols-1 grid-rows-1 rounded-md bg-gray-200 p-2"
           >
@@ -35,14 +35,14 @@
                 class="absolute bottom-2 left-2"
               />
             </SFFadeInTransition>
-          </SFLink>
+          </LocalizedLink>
         </div>
         <div
           class="flex flex-1 flex-col justify-center gap-2 overflow-hidden lg:flex-row lg:gap-0 lg:p-0"
         >
           <div class="flex grow flex-col justify-between gap-2 lg:pt-4">
             <div>
-              <SFLink
+              <LocalizedLink
                 :to="getProductDetailRoute(product.id, name)"
                 class="block !whitespace-normal"
                 @click.capture="selectItem"
@@ -55,7 +55,7 @@
                   primary
                   data-testid="basket-product-brand"
                 />
-              </SFLink>
+              </LocalizedLink>
             </div>
             <BasketCardDetail
               v-if="size"
@@ -240,11 +240,8 @@ import {
 } from '~/composables'
 import { getBackgroundColorStyle, getTextColorStyle, routeList } from '~/utils'
 import { AlphaColorMap } from '~/constants'
-import {
-  SFFadeInTransition,
-  SFLink,
-  SFDropdown,
-} from '#storefront-ui/components'
+import { SFFadeInTransition, SFDropdown } from '#storefront-ui/components'
+import LocalizedLink from '~/components/LocalizedLink.vue'
 import ProductImage from '~/components/product/ProductImage.vue'
 import ProductCardBadgesFooter from '~/components/product/card/badges/ProductCardBadgesFooter.vue'
 
@@ -288,7 +285,7 @@ const {
   getBasketItemPrice,
   hasCampaignReduction,
 } = useBasketReductions()
-const { getProductDetailRoute } = useRouteHelpers()
+const { getProductDetailRoute, getLocalizedRoute } = useRouteHelpers()
 const mainItem = computed(() => {
   const basketItem = props.itemsGroup
     ? props.itemsGroup.find((item) => item.itemGroup?.isMainItem)
@@ -374,7 +371,10 @@ const addToWishlist = async () => {
   const message = $i18n.t('wishlist.notification.add_to_wishlist', {
     productName: name.value || $i18n.t('wishlist.product'),
   })
-  toast.show(message, { action: 'ROUTE', to: routeList.wishlist })
+  toast.show(message, {
+    action: 'ROUTE',
+    to: getLocalizedRoute(routeList.wishlist),
+  })
 }
 
 const removeFromWishlist = async () => {

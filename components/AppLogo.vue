@@ -1,5 +1,5 @@
 <template>
-  <SFLink :to="routeList.home" raw>
+  <LocalizedLink :to="routeList.home" raw>
     <svg
       :height="height"
       :width="width"
@@ -27,15 +27,15 @@
         fill-rule="evenodd"
       />
     </svg>
-  </SFLink>
+  </LocalizedLink>
 </template>
 
 <script setup lang="ts">
+import LocalizedLink from './LocalizedLink.vue'
 import { routeList } from '~/utils/route'
-import { SFLink } from '#storefront-ui/components'
 
-withDefaults(defineProps<{ width: number; height: number }>(), {
-  width: 92,
-  height: 24,
-})
+const { width = 94, height = 24 } = defineProps<{
+  width: number
+  height: number
+}>()
 </script>

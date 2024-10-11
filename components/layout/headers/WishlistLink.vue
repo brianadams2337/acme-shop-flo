@@ -1,6 +1,6 @@
 <template>
   <div class="inline-flex h-full items-center justify-center">
-    <SFLink
+    <LocalizedLink
       :to="routeList.wishlist"
       data-testid="wishlist-link"
       class="relative"
@@ -16,7 +16,7 @@
         </FloatingBadge>
       </AsyncDataWrapper>
       <IconHeartBold class="size-6" />
-    </SFLink>
+    </LocalizedLink>
   </div>
 </template>
 
@@ -25,7 +25,7 @@ import FloatingBadge from './FloatingBadge.vue'
 import AsyncDataWrapper from '~/components/AsyncDataWrapper.vue'
 import { useWishlist } from '#storefront/composables'
 import { routeList } from '~/utils/route'
-import { SFLink } from '#storefront-ui/components'
+import LocalizedLink from '~/components/LocalizedLink.vue'
 
 const { count, status } = useWishlist()
 </script>

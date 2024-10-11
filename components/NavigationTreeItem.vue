@@ -19,44 +19,39 @@ import { SFLink } from '#storefront-ui/components'
 
 type Props = {
   navigationItem: NavigationTreeItem | null
-  wrapper?: string
   type?: LinkVariant
 }
 
-const props = withDefaults(defineProps<Props>(), {
-  navigationItem: null,
-  wrapper: '',
-  type: undefined,
-})
+const { navigationItem = null, type } = defineProps<Props>()
 
-const { buildCategoryPath } = useRouteHelpers()
+const { buildCategoryPath, getLocalizedRoute } = useRouteHelpers()
 
 const emit = defineEmits<{ 'mouseenter:navigation-item': [] }>()
 
 const pathParams = computed(() => {
-  if (!props.navigationItem) {
+  if (!navigationItem) {
     return
   }
-  if (
-    props.navigationItem.type === 'category' &&
-    props.navigationItem.category
-  ) {
+  if (navigationItem.type === 'category' && navigationItem.category) {
     return {
-      path: buildCategoryPath(props.navigationItem.category),
+      path: buildCategoryPath(navigationItem.category),
       openInNew: false,
     }
   }
-  if (props.navigationItem.type === 'page') {
-    return { path: props.navigationItem.page, openInNew: true }
+  if (navigationItem.type === 'page') {
+    return {
+      path: getLocalizedRoute(navigationItem.page),
+      openInNew: true,
+    }
   }
 
-  if (props.navigationItem.type === 'external') {
+  if (navigationItem.type === 'external') {
     return {
-      path: props.navigationItem.options?.url ?? '',
-      openInNew: props.navigationItem.options?.isOpenInNewWindows ?? false,
+      path: getLocalizedRoute(navigationItem.options?.url ?? ''),
+      openInNew: navigationItem.options?.isOpenInNewWindows ?? false,
     }
   }
   return null
 })
-const displayName = computed(() => props.navigationItem?.name)
+const displayName = computed(() => navigationItem?.name)
 </script>

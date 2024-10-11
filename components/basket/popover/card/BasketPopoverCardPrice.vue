@@ -7,7 +7,7 @@
           :class="{
             'flex-col justify-end':
               hasSaleReduction(item) && !hasPromotionReduction(item),
-            'mb-[.125rem] flex-row items-center':
+            'mb-0.5 flex-row items-center':
               hasSaleReduction(item) && hasPromotionReduction(item),
           }"
         >
@@ -38,7 +38,7 @@
           tag="p"
           size="base"
           is-uppercase
-          class="mb-[.125rem] inline rounded p-1 text-base leading-5"
+          class="mb-0.5 inline rounded p-1 text-base leading-5"
           :style="{
             ...getBackgroundColorStyle(
               item.promotion?.customData.colorHex,

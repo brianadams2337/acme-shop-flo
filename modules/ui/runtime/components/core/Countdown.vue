@@ -6,7 +6,7 @@
       class="flex text-center font-semibold"
     >
       <div v-if="shouldShowValue(key, value)" class="inline-flex">
-        <span v-if="shouldShowSeparator(key)" class="mx-[.125rem]">:</span>
+        <span v-if="shouldShowSeparator(key)" class="mx-0.5">:</span>
         <span v-if="value !== undefined" class="min-w-[2ch] tabular-nums">
           {{ formatValue(value) }}
         </span>

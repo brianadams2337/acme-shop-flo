@@ -6,7 +6,7 @@
         :src="blok?.fields.image?.fields.file?.url"
         sizes="xs:80vw sm:25vw md:25vw lg:25vw xl:25vw xxl:25vw 2xl:25vw"
         provider="contentful"
-        class="aspect-[3/4] w-full"
+        class="aspect-3/4 w-full"
       />
     </Intersect>
     <div class="mt-4 flex flex-col">

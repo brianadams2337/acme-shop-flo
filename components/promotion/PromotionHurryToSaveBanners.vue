@@ -4,7 +4,7 @@
       isAutomaticDiscountType(promotion) &&
       shouldShowAutomaticDiscountBanner(promotion.productId)
     "
-    class="mb-1 flex h-fit flex-wrap items-center justify-between gap-y-[.125rem] rounded-md bg-blue px-4 py-3 text-xs font-semibold text-white"
+    class="mb-1 flex h-fit flex-wrap items-center justify-between gap-y-0.5 rounded-md bg-blue px-4 py-3 text-xs font-semibold text-white"
     :style="getBackgroundColorStyle(promotion.customData.colorHex)"
   >
     <SFHeadline

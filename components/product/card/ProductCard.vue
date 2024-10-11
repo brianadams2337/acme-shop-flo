@@ -9,7 +9,7 @@
     @enter="emit('intersect:product', props.product.id)"
   >
     <div
-      class="group relative flex aspect-[3/4] max-h-md items-center justify-center overflow-hidden rounded-lg bg-white-smoke"
+      class="group relative flex aspect-3/4 max-h-md items-center justify-center overflow-hidden rounded-lg bg-white-smoke"
       :class="
         edgeBorderless &&
         (isRightSideBorderless

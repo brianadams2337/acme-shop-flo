@@ -28,7 +28,7 @@
     <SFHeadline
       tag="h1"
       data-testid="active-category-breadcrumb"
-      class="mt-1.5 !font-semi-bold-variable text-gray-900 max-sm:text-[1.5rem] max-sm:leading-6 sm:mt-0"
+      class="mt-1.5 !font-semi-bold-variable text-gray-900 max-sm:text-2xl max-sm:leading-6 sm:mt-0"
       :class="{ 'pl-2 max-sm:pl-0': categoryAncestors.length }"
     >
       {{ category.name }}

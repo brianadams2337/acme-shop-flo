@@ -14,7 +14,7 @@
     <div class="flex h-full flex-col" :class="[...justify, ...align]">
       <h3
         v-if="blok?.fields.topline"
-        class="text-[.875rem] font-bold md:text-[1rem]"
+        class="text-sm font-bold md:text-base"
         :class="blok?.fields.isDark ? 'text-primary' : 'text-white'"
       >
         {{ blok?.fields.topline }}

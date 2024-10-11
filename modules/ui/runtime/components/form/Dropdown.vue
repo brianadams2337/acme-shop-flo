@@ -7,7 +7,7 @@
         class="group inline-flex size-full justify-between gap-0 rounded-md border border-gray-300 bg-secondary-200 !px-3.5 !py-2 font-semi-bold-variable leading-5 hover:bg-white"
         :disabled="disabled"
         :class="{
-          'py-[0.825rem]': isLarge,
+          'py-3.5': isLarge,
           'rounded-md': radius == 'md',
           'rounded-[10px]': radius == 'lg',
           'rounded-xl': radius == 'xl',

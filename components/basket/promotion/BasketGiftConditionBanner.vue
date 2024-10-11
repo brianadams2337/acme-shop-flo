@@ -3,7 +3,7 @@
     v-if="promotion"
     :promotion="promotion"
     :background-color="giftBackgroundColorStyle.backgroundColor"
-    class="flex flex-col items-start gap-y-[.125rem] rounded-md px-4 py-2 text-white md:items-center lg:flex-nowrap"
+    class="flex flex-col items-start gap-y-0.5 rounded-md px-4 py-2 text-white md:items-center lg:flex-nowrap"
   >
     <template #default="{ headlineParts, scheduledTo }">
       <div class="flex w-full items-center justify-between">

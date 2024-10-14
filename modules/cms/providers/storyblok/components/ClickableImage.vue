@@ -6,53 +6,53 @@
       :to="blok.cta_url.cached_url"
       @click="clickObserver"
     >
-      <Intersect :threshold="0.5" @enter="onIntersect">
-        <NuxtImg
-          provider="storyblok"
-          class="size-full object-cover"
-          :src="imageSource.src"
-          :alt="imageSource.alt"
-          loading="lazy"
-          :sizes="sizes"
-        />
-      </Intersect>
+      <NuxtImg
+        v-element-visibility="[onVisible, { threshold: 0.5 }]"
+        provider="storyblok"
+        class="size-full object-cover"
+        :src="imageSource.src"
+        :alt="imageSource.alt"
+        loading="lazy"
+        :sizes="sizes"
+      />
     </CMSStoryblokLink>
   </div>
 </template>
 
 <script setup lang="ts">
-import { computed, defineOptions } from 'vue'
+import { computed, ref, defineOptions } from 'vue'
+import { vElementVisibility } from '@vueuse/components'
 import { useStorefrontTracking } from '../../../composables/storefront/useStorefrontTracking'
 import type { CMSClickableImageProps } from '../types'
 import { useStoryblokMargins } from '../composables/useStoryblokMargins'
 import { useStoryblokImageSanitizer } from '../composables/useStoryblokImage'
 import CMSStoryblokLink from './StoryblokLink.vue'
 import { NuxtImg } from '#components'
-// TODO: This needs to be decoupled from the CMS module as it is coming from the SFB local components
-import Intersect from '~/components/Intersect.vue'
 
-const props = withDefaults(defineProps<CMSClickableImageProps>(), {
-  sizes: 'xs:100vw sm:100vw md:100vw lg:100vw xl:100vw xxl:100vw 2xl:100vw',
-})
+const {
+  sizes = 'xs:100vw sm:100vw md:100vw lg:100vw xl:100vw xxl:100vw 2xl:100vw',
+  blok,
+} = defineProps<CMSClickableImageProps>()
 
-const { marginClasses } = useStoryblokMargins(props.blok)
+const { marginClasses } = useStoryblokMargins(blok)
 const tracking = useStorefrontTracking()
-const image = computed(() => props.blok?.image[0])
+const image = computed(() => blok?.image[0])
 const { sanitize } = useStoryblokImageSanitizer()
 const imageSource = computed(() => sanitize(image.value))
+const hasBeenVisible = ref(false)
 
-const isLinkTypeUrl = computed(() => props.blok.cta_url.linktype === 'url')
+const isLinkTypeUrl = computed(() => blok.cta_url.linktype === 'url')
 
-const onIntersect = (_: IntersectionObserverEntry, stop: () => void) => {
-  if (!props.blok.promotion_id) {
+const onVisible = (state: boolean) => {
+  if (!blok.promotion_id || !state || hasBeenVisible.value) {
     return
   }
 
-  if (tracking) {
-    tracking.trackPromotion('view_promotion', props.blok)
-  }
+  hasBeenVisible.value = true
 
-  stop()
+  if (tracking) {
+    tracking.trackPromotion('view_promotion', blok)
+  }
 }
 
 const clickObserver = image.value.promotion_id

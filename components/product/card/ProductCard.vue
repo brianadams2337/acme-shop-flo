@@ -1,12 +1,12 @@
 <template>
-  <Intersect
+  <article
     :id="id"
+    v-element-visibility="onVisible"
     data-testid="article"
-    tag="article"
     class="group/product-card relative flex h-full flex-col"
     @mouseover="onMouseOver"
     @mouseleave="onMouseLeave"
-    @enter="emit('intersect:product', props.product.id)"
+    @enter="emit('intersect:product', product.id)"
   >
     <div
       class="group relative flex aspect-3/4 max-h-md items-center justify-center overflow-hidden rounded-lg bg-white-smoke"
@@ -61,19 +61,19 @@
       :link="link"
       @click.capture="$emit('click:product')"
     />
-  </Intersect>
+  </article>
 </template>
 
 <script setup lang="ts">
 import { computed, ref } from 'vue'
 import type { Product } from '@scayle/storefront-nuxt'
+import { vElementVisibility } from '@vueuse/components'
 import WishlistToggle from '../WishlistToggle.vue'
 import ProductCardImage from './ProductCardImage.vue'
 import ProductCardImageSlider from './imageSlider/ProductCardImageSlider.vue'
 import ProductCardBadgesFooter from './badges/ProductCardBadgesFooter.vue'
 import ProductCardBadgesHeader from './badges/ProductCardBadgesHeader.vue'
 import ProductCardDetails from './ProductCardDetails.vue'
-import Intersect from '~/components/Intersect.vue'
 import { useProductBaseInfo } from '~/composables'
 
 type Props = {
@@ -86,15 +86,25 @@ type Props = {
   hideBadges?: boolean
 }
 
-const props = withDefaults(defineProps<Props>(), {
-  index: -1,
-  multipleImages: false,
-  listingMetaData: undefined,
-  isRightSideBorderless: false,
-  edgeBorderless: false,
-  hideBadges: false,
-})
+const {
+  product,
+  listingMetaData,
+  index = -1,
+  multipleImages = false,
+  isRightSideBorderless = false,
+  edgeBorderless = false,
+  hideBadges = false,
+} = defineProps<Props>()
 
+const hasBeenVisible = ref(false)
+
+const onVisible = (state: boolean) => {
+  if (!state) {
+    return
+  }
+  emit('intersect:product', product.id)
+  hasBeenVisible.value = true
+}
 const isProductHovered = ref(false)
 
 const onMouseOver = () => {
@@ -107,13 +117,13 @@ const onMouseLeave = () => {
   emit('product-image:mouseleave')
 }
 
-const { alt, image, images, link } = useProductBaseInfo(props.product)
+const { alt, image, images, link } = useProductBaseInfo(product)
 
 const shouldShowSingleImage = computed(() => {
-  return !props.multipleImages || images.value.length === 1
+  return !multipleImages || images.value.length === 1 || !hasBeenVisible.value
 })
 
-const id = computed(() => `product-${props.product.id}`)
+const id = computed(() => `product-${product.id}`)
 
 const emit = defineEmits<{
   'intersect:product': [number]

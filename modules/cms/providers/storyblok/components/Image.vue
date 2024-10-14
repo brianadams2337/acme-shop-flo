@@ -1,18 +1,21 @@
 <template>
-  <Intersect v-if="blok" v-editable="blok" @enter="onIntersect">
-    <NuxtPicture
-      v-if="imageSource?.src"
-      provider="storyblok"
-      class="picture h-full bg-gray-200"
-      :class="isCover ? 'picture-cover' : 'picture-contain'"
-      :src="imageSource?.src"
-      loading="lazy"
-    />
-  </Intersect>
+  <NuxtPicture
+    v-if="blok && imageSource?.src"
+    v-element-visibility="onVisible"
+    v-editable="blok"
+    provider="storyblok"
+    class="picture h-full bg-gray-200"
+    :preload="preload"
+    :sizes="sizes"
+    :class="isCover ? 'picture-cover' : 'picture-contain'"
+    :src="imageSource?.src"
+    loading="lazy"
+  />
 </template>
 
 <script setup lang="ts">
-import { computed, defineOptions } from 'vue'
+import { computed, ref, defineOptions } from 'vue'
+import { vElementVisibility } from '@vueuse/components'
 import { useStorefrontTracking } from '../../../composables/storefront/useStorefrontTracking'
 import type { CMSImageProps } from '../types'
 import {
@@ -21,35 +24,34 @@ import {
   hasTeaser,
 } from '../composables/useStoryblokImage'
 import { NuxtPicture } from '#components'
-// TODO: This needs to be decoupled from the CMS module as it is coming from the SFB local components
-import Intersect from '~/components/Intersect.vue'
 
-const props = withDefaults(defineProps<CMSImageProps>(), {
-  preload: false,
-  isTeaser: false,
-  isCover: false,
-  sizes: 'xs:100vw sm:100vw md:100vw lg:100vw xl:100vw xxl:100vw 2xl:100vw',
-})
+const {
+  blok,
+  preload,
+  isTeaser = false,
+  isCover = false,
+  sizes = 'xs:100vw sm:100vw md:100vw lg:100vw xl:100vw xxl:100vw 2xl:100vw',
+} = defineProps<CMSImageProps>()
 
 const tracking = useStorefrontTracking()
 const { sanitize } = useStoryblokImageSanitizer()
 
-const imageSource = computed(() =>
-  props.isTeaser && hasTeaser(props.blok)
-    ? getTeaserImage(props.blok)
-    : sanitize(props.blok),
-)
+const hasBeenVisible = ref(false)
 
-const onIntersect = (_: IntersectionObserverEntry, stop: () => void) => {
-  if (!props.blok.promotion_id) {
+const imageSource = computed(() => {
+  return isTeaser && hasTeaser(blok) ? getTeaserImage(blok) : sanitize(blok)
+})
+
+const onVisible = (state: boolean) => {
+  if (!blok.promotion_id || !state || hasBeenVisible.value) {
     return
   }
 
-  if (tracking) {
-    tracking.trackPromotion('view_promotion', props.blok)
-  }
+  hasBeenVisible.value = true
 
-  stop()
+  if (tracking) {
+    tracking.trackPromotion('view_promotion', blok)
+  }
 }
 
 defineOptions({ name: 'CMSImage' })

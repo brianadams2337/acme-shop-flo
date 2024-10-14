@@ -13,12 +13,16 @@
         leave-to-class="opacity-0 -translate-y-4"
         leave-active-class="transform transition ease-out duration-300 "
       >
-        <Intersect
-          v-if="storefrontBanner && storefrontBanner.isOpen"
-          :threshold="0.5"
+        <div
+          v-if="storefrontBanner?.isOpen"
+          v-element-visibility="[onVisible, { threshold: 0.5 }]"
           class="relative z-50 flex w-full items-center"
-          :class="classes"
-          @enter="onIntersect"
+          :class="{
+            'bg-cyan-500 text-black': is('info'),
+            'bg-amber-500 text-white': is('sale'),
+            'bg-lime-500 text-black': is('highlight'),
+            'bg-black text-white': is('alert'),
+          }"
         >
           <section
             class="container flex flex-col items-center justify-center gap-2 text-center sm:relative sm:flex-row"
@@ -64,74 +68,65 @@
               </SFButton>
             </slot>
           </section>
-        </Intersect>
+        </div>
       </Transition>
     </slot>
   </component>
 </template>
 
 <script setup lang="ts">
-import { computed, defineOptions, resolveComponent } from 'vue'
+import { computed, ref, defineOptions, resolveComponent } from 'vue'
 import { useStorefrontTracking } from '../../../composables/storefront/useStorefrontTracking'
 import { useStorefrontBanner } from '../../../composables/storefront/useStorefrontBanner'
 import type { CMSBannerProps } from '../types'
 import CMSText from './Text.vue'
 import CMSScrollableLinkList from './ScrollableLinkList.vue'
 import { SFButton, SFCountdown } from '#storefront-ui/components'
-// TODO: This needs to be decoupled from the CMS module as it is coming from the SFB local components
-import Intersect from '~/components/Intersect.vue'
 
-const props = withDefaults(defineProps<CMSBannerProps>(), {
-  type: '',
-})
+const { type = '', blok, publishedAt } = defineProps<CMSBannerProps>()
 
 const storefrontBanner = useStorefrontBanner()
 const storefrontTracking = useStorefrontTracking()
+const hasBeenVisible = ref(false)
+
 const isActive = computed(() => {
-  return Object.values(props.blok || {}).length === 0
-    ? true
-    : props.blok.is_active
+  return Object.values(blok || {}).length === 0 ? true : blok.is_active
 })
 
-const shouldBeVisible = computed(
-  () => storefrontBanner && storefrontBanner.shouldBeVisible(props.publishedAt),
-)
+const shouldBeVisible = computed(() => {
+  return storefrontBanner && storefrontBanner.shouldBeVisible(publishedAt)
+})
 
 const is = (value: string | string[]) => {
   return (
-    (props.type && value.includes(props.type)) ||
-    (props.blok.type && value.includes(props.blok.type))
+    (type && value.includes(type)) || (blok.type && value.includes(blok.type))
   )
 }
 
-const hasScrollableLinks = computed(
-  () => Object.values(props.blok?.links || {}).length !== 0,
-)
-const cachedUrl = computed(() => props.blok.cta_url?.cached_url)
+const hasScrollableLinks = computed(() => {
+  return Object.values(blok?.links || {}).length !== 0
+})
+
+const cachedUrl = computed(() => blok.cta_url?.cached_url)
+
 const baseTag = computed(() => {
   return cachedUrl.value ? resolveComponent('CMSStoryblokLink') : 'div'
 })
+
 const bindings = computed(() => {
   return cachedUrl.value ? { to: cachedUrl.value } : {}
 })
 
-const classes = computed(() => ({
-  'bg-cyan-500 text-black': is('info'),
-  'bg-amber-500 text-white': is('sale'),
-  'bg-lime-500 text-black': is('highlight'),
-  'bg-black text-white': is('alert'),
-}))
-
-const onIntersect = (_: IntersectionObserverEntry, stop: () => void) => {
-  if (!props.blok.promotion_id) {
+const onVisible = (state: boolean) => {
+  if (!blok.promotion_id || !state || hasBeenVisible.value) {
     return
   }
 
-  if (storefrontTracking) {
-    storefrontTracking.trackPromotion('view_promotion', props.blok)
-  }
+  hasBeenVisible.value = true
 
-  stop()
+  if (storefrontTracking) {
+    storefrontTracking.trackPromotion('view_promotion', blok)
+  }
 }
 
 defineOptions({ name: 'CMSBanner' })

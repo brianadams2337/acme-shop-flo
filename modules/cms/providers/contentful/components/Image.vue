@@ -1,20 +1,21 @@
 <template>
-  <Intersect v-if="blok" @enter="onIntersect">
-    <NuxtPicture
-      v-if="imageSource.src"
-      provider="contentful"
-      class="picture h-full bg-gray-200"
-      :class="isCover ? 'picture-cover' : 'picture-contain'"
-      :sizes="sizes"
-      :src="imageSource.src"
-      loading="lazy"
-      :alt="imageSource.alt"
-    />
-  </Intersect>
+  <NuxtPicture
+    v-if="blok && imageSource.src"
+    v-element-visibility="onVisible"
+    provider="contentful"
+    class="picture h-full bg-gray-200"
+    :class="isCover ? 'picture-cover' : 'picture-contain'"
+    :sizes="sizes"
+    :src="imageSource.src"
+    :preload="preload"
+    loading="lazy"
+    :alt="imageSource.alt"
+  />
 </template>
 
 <script setup lang="ts">
-import { computed, defineOptions } from 'vue'
+import { computed, ref, defineOptions } from 'vue'
+import { vElementVisibility } from '@vueuse/components'
 import {
   getTeaserImage,
   useContentfulImageSanitizer,
@@ -25,36 +26,37 @@ import type {
   TypePageWithoutUnresolvableLinksResponse,
 } from '../types'
 import { NuxtPicture } from '#components'
-// TODO: This needs to be decoupled from the CMS module as it is coming from the SFB local components
-import Intersect from '~/components/Intersect.vue'
 
-const props = withDefaults(defineProps<CMSImageProps>(), {
-  _uid: '',
-  preload: false,
-  isTeaser: false,
-  isCover: false,
-  sizes: 'xs:100vw sm:100vw md:100vw lg:100vw xl:100vw xxl:100vw 2xl:100vw',
-})
+const {
+  blok,
+  preload,
+  isTeaser = false,
+  isCover = false,
+  sizes = 'xs:100vw sm:100vw md:100vw lg:100vw xl:100vw xxl:100vw 2xl:100vw',
+} = defineProps<CMSImageProps>()
 
 const tracking = useStorefrontTracking()
 const { sanitize } = useContentfulImageSanitizer()
+const hasBeenVisible = ref(false)
 
 const imageSource = computed(() =>
-  props.isTeaser
-    ? getTeaserImage(props.blok as TypePageWithoutUnresolvableLinksResponse)
-    : sanitize(props.blok),
+  isTeaser
+    ? getTeaserImage(blok as TypePageWithoutUnresolvableLinksResponse)
+    : sanitize(blok),
 )
 
-const onIntersect = (_: IntersectionObserverEntry, stop: () => void) => {
-  if (!props.blok?.fields.tracking?.fields.promotion_id) {
+const onVisible = (state: boolean) => {
+  const promotionId = blok?.fields.tracking?.fields.promotion_id
+
+  if (!promotionId || !state || hasBeenVisible.value) {
     return
   }
 
-  if (tracking) {
-    tracking.trackPromotion('view_promotion', props.blok.fields.tracking.fields)
-  }
+  hasBeenVisible.value = true
 
-  stop()
+  if (tracking) {
+    tracking.trackPromotion('view_promotion', blok.fields.tracking.fields)
+  }
 }
 
 defineOptions({ name: 'CMSImage' })

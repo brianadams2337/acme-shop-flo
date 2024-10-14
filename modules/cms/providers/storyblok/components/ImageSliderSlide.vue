@@ -1,14 +1,13 @@
 <template>
   <article v-editable="blok" class="box-border w-4/5 shrink-0 sm:w-1/4">
-    <Intersect @enter="onIntersect">
-      <NuxtImg
-        v-if="isInViewport"
-        :src="blok.image.filename"
-        sizes="xs:80vw sm:25vw md:25vw lg:25vw xl:25vw xxl:25vw 2xl:25vw"
-        provider="storyblok"
-        class="aspect-3/4 w-full"
-      />
-    </Intersect>
+    <NuxtImg
+      v-if="isInViewport"
+      v-element-visibility="onVisible"
+      :src="blok.image.filename"
+      sizes="xs:80vw sm:25vw md:25vw lg:25vw xl:25vw xxl:25vw 2xl:25vw"
+      provider="storyblok"
+      class="aspect-[3/4] w-full"
+    />
     <div class="mt-4 flex flex-col">
       <div
         class="pb-1 text-2xs font-bold leading-4 sm:pb-0 sm:text-xs sm:leading-6"
@@ -38,37 +37,37 @@
 
 <script setup lang="ts">
 import { computed, defineOptions, ref } from 'vue'
+import { vElementVisibility } from '@vueuse/components'
 import { useStorefrontTracking } from '../../../composables/storefront/useStorefrontTracking'
 import { useStorefrontBreakpoints } from '../../../composables/storefront/useStorefrontBreakpoints'
 import type { CMSImageSliderSlideProps } from '../types'
 import CMSStoryblokLink from './StoryblokLink.vue'
 import { NuxtImg } from '#components'
 import { SFHeadline } from '#storefront-ui/components'
-// TODO: This needs to be decoupled from the CMS module as it is coming from the SFB local components
-import Intersect from '~/components/Intersect.vue'
 
-const props = defineProps<CMSImageSliderSlideProps>()
+const { blok } = defineProps<CMSImageSliderSlideProps>()
 
 const storefrontBreakpoints = useStorefrontBreakpoints()
 const tracking = useStorefrontTracking()
 
 const isInViewport = ref(true)
+const hasBeenVisible = ref(false)
 
-const onIntersect = (_: IntersectionObserverEntry, stop: () => void) => {
-  if (!props.blok.promotion_id) {
+const onVisible = (state: boolean) => {
+  if (!blok.promotion_id || !state || hasBeenVisible.value) {
     return
   }
 
-  if (tracking) {
-    tracking.trackPromotion('view_promotion', props.blok)
-  }
+  hasBeenVisible.value = true
 
-  stop()
+  if (tracking) {
+    tracking.trackPromotion('view_promotion', blok)
+  }
 }
 
 const clickObserver = () => {
-  if (props.blok?.promotion_id && tracking) {
-    tracking.trackPromotion('select_promotion', props.blok)
+  if (blok?.promotion_id && tracking) {
+    tracking.trackPromotion('select_promotion', blok)
   }
 }
 const headlineSize = computed(() =>

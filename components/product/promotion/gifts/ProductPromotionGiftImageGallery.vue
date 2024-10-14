@@ -4,12 +4,14 @@
     slider-class="bg-gray-200"
     with-arrows
   >
-    <Intersect
+    <div
       v-for="(item, imageIndex) in images"
       :key="item.hash"
-      :threshold="[0.5]"
+      v-element-visibility="[
+        () => setActiveIndex(imageIndex),
+        { threshold: 0.5 },
+      ]"
       class="relative min-w-full snap-start snap-always"
-      @enter="setActiveIndex(imageIndex)"
     >
       <ProductImage
         :image="item"
@@ -19,7 +21,7 @@
         image-loading="eager"
         class="absolute inset-0"
       />
-    </Intersect>
+    </div>
     <template #thumbnails="{ scrollImageIntoView }">
       <div class="mt-2 flex justify-center">
         <div
@@ -43,8 +45,8 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import type { ProductImage as ProductImageType } from '@scayle/storefront-nuxt'
+import { vElementVisibility } from '@vueuse/components'
 import ProductImage from '../../ProductImage.vue'
-import Intersect from '~/components/Intersect.vue'
 import { SFItemsSlider } from '#storefront-ui/components'
 
 defineProps<{ images: ProductImageType[] }>()

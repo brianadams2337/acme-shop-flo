@@ -509,7 +509,6 @@ export default defineNuxtConfig({
         provider: '~/providers/scayle',
       },
     },
-    intersectOptions: { rootMargin: '50px' },
     screens: {
       ...breakpoints,
       xxl: breakpoints['2xl'],

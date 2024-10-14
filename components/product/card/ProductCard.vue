@@ -6,7 +6,6 @@
     class="group/product-card relative flex h-full flex-col"
     @mouseover="onMouseOver"
     @mouseleave="onMouseLeave"
-    @enter="emit('intersect:product', product.id)"
   >
     <div
       class="group relative flex aspect-3/4 max-h-md items-center justify-center overflow-hidden rounded-lg bg-white-smoke"

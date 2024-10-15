@@ -3283,15 +3283,15 @@
   resolved "https://registry.yarnpkg.com/@scayle/eslint-plugin-vue-composable/-/eslint-plugin-vue-composable-0.2.1.tgz#862a63d5ec6a0c105aa02b4de8d5675526543d71"
   integrity sha512-BT2Mengo5/Zd6y8F/WiYx7Y7IbkIT0eVZi+H3U7x7Qcqer69x9n/w0cEs7ChFwZeERdu14X+pKGr+uwTvMjdhQ==
 
-"@scayle/h3-session@^0.4.0":
-  version "0.4.0"
-  resolved "https://registry.yarnpkg.com/@scayle/h3-session/-/h3-session-0.4.0.tgz#e2a80abb525eb11321c53eff7ec7265f251aa598"
-  integrity sha512-fUlY6Nq0Gi4egNcKyrvFGvoOL6+2b9g/y9R0Vl2ukAYPAwzCnFZ3cDtuMVy+ovJ/xvDkk0+yPMTUlcEYaT2mtw==
+"@scayle/h3-session@^0.4.1":
+  version "0.4.1"
+  resolved "https://registry.yarnpkg.com/@scayle/h3-session/-/h3-session-0.4.1.tgz#0f9b82e32ea1cca38d78991c29c7761ec55a63a2"
+  integrity sha512-uTG5nwnRGoEPwW44moeIABK5ycd/2Vd2ZQkO3SvSLpi+h1LkogpQ5CmC2e3nFXvUdONUq4Y2xLShuYGM392uVA==
   dependencies:
-    defu "6.1.4"
-    uncrypto "0.1.3"
-    unstorage "1.10.2"
-    zod "3.23.5"
+    defu "^6.1.4"
+    uncrypto "^0.1.3"
+    unstorage "^1.10.2"
+    zod "^3.23.8"
 
 "@scayle/nuxt-opentelemetry@0.3.4":
   version "0.3.4"
@@ -3347,16 +3347,16 @@
   optionalDependencies:
     redis "4"
 
-"@scayle/storefront-nuxt@7.85.12":
-  version "7.85.12"
-  resolved "https://registry.yarnpkg.com/@scayle/storefront-nuxt/-/storefront-nuxt-7.85.12.tgz#8f31afbc362121c3680d72206e30d597a3df3534"
-  integrity sha512-g8LyvXC4zyJtk3t6ztcINsLSmI+RJNFyxrTOrzFxUDtcmXadhiQIcbPUGcLb7HBIgNjnczHIp21onnq9PEI+fA==
+"@scayle/storefront-nuxt@7.85.13":
+  version "7.85.13"
+  resolved "https://registry.yarnpkg.com/@scayle/storefront-nuxt/-/storefront-nuxt-7.85.13.tgz#e47a4af93554d7b3cfc2e04b090500a09bf12494"
+  integrity sha512-lgLrrMFi7uIwiVB6KMUksqd9fJPGRpDvnj5QpYHOhxppm0QYq0HjA+i3GjnyDWFxqi+oSb7D3LbQewsQU/E0iQ==
   dependencies:
     "@nuxt/kit" "^3.12.2"
     "@opentelemetry/api" "^1.9.0"
-    "@scayle/h3-session" "^0.4.0"
+    "@scayle/h3-session" "^0.4.1"
     "@scayle/storefront-core" "7.65.5"
-    "@scayle/unstorage-compression-driver" "^0.1.3"
+    "@scayle/unstorage-compression-driver" "^0.1.4"
     "@vueuse/core" "11.1.0"
     consola "^3.2.3"
     core-js "^3.37.1"
@@ -3372,13 +3372,13 @@
     vue-router "^4.4.0"
     zod "^3.23.8"
 
-"@scayle/unstorage-compression-driver@^0.1.3":
-  version "0.1.3"
-  resolved "https://registry.yarnpkg.com/@scayle/unstorage-compression-driver/-/unstorage-compression-driver-0.1.3.tgz#62cd4d65cec2cb1230f0687e2ec372192ccd919a"
-  integrity sha512-5BJuWx2EthLhA+SpNkegX3d1yhVRcLHjs2wm6Jmp/H56iIcCbrV5bfkwcnH13PQw2Jwid0O7BxkOIxkIjL6U1g==
+"@scayle/unstorage-compression-driver@^0.1.4":
+  version "0.1.4"
+  resolved "https://registry.yarnpkg.com/@scayle/unstorage-compression-driver/-/unstorage-compression-driver-0.1.4.tgz#14535ba8ead2451850f5c8c6be9bd3f8ba2ddd76"
+  integrity sha512-ucc0WOvfLU8SO0JiO6dweqWJkRgxIMUQDe8fwX/q/o6Nl9RM1DyDbd3DMHcyqgqMZt5+wtRgEBbuIkpLdz+Wqg==
   dependencies:
     destr "2.0.3"
-    unstorage "1.10.2"
+    unstorage "1.12.0"
 
 "@sindresorhus/is@^0.14.0":
   version "0.14.0"
@@ -5942,7 +5942,7 @@ define-lazy-prop@^3.0.0:
   resolved "https://registry.yarnpkg.com/define-lazy-prop/-/define-lazy-prop-3.0.0.tgz#dbb19adfb746d7fc6d734a06b72f4a00d021255f"
   integrity sha512-N+MeXYoqr3pOgn8xfyRPREN7gHakLYjhsHhWGT3fWAiL4IkAt0iDw14QiiEm2bE30c5XX5q0FtAA3CK5f9/BUg==
 
-defu@6.1.4, defu@^6.1.2, defu@^6.1.4:
+defu@^6.1.2, defu@^6.1.4:
   version "6.1.4"
   resolved "https://registry.yarnpkg.com/defu/-/defu-6.1.4.tgz#4e0c9cf9ff68fe5f3d7f2765cc1a012dfdcb0479"
   integrity sha512-mEQCMmwJu317oSz8CwdIOdwf3xMif1ttiM8LTufzc3g6kR+9Pe236twL8j3IYT1F7GfRgGcW6MWxzZjLIkuHIg==
@@ -7631,7 +7631,7 @@ gzip-size@^7.0.0:
   dependencies:
     duplexer "^0.1.2"
 
-h3@^1.10.0, h3@^1.11.1, h3@^1.12.0:
+h3@^1.10.0, h3@^1.12.0:
   version "1.13.0"
   resolved "https://registry.yarnpkg.com/h3/-/h3-1.13.0.tgz#b5347a8936529794b6754b440e26c0ab8a60dceb"
   integrity sha512-vFEAu/yf8UMUcB4s43OaDaigcqpQd14yanmOsn+NcRX3/guSKncyE2rOYhq8RIchgJrPSs/QiIddnTTR1ddiAg==
@@ -9944,7 +9944,7 @@ node-addon-api@^7.0.0:
   resolved "https://registry.yarnpkg.com/node-addon-api/-/node-addon-api-7.1.1.tgz#1aba6693b0f255258a049d621329329322aad558"
   integrity sha512-5m3bsyrjFWE1xf7nz7YXdN4udnVtXK6/Yfgn5qnahL6bCkf2yKt4k3nuTKAtT4r3IG8JNR2ncsIMdZuAzJjHQQ==
 
-node-fetch-native@^1.6.2, node-fetch-native@^1.6.3, node-fetch-native@^1.6.4:
+node-fetch-native@^1.6.3, node-fetch-native@^1.6.4:
   version "1.6.4"
   resolved "https://registry.yarnpkg.com/node-fetch-native/-/node-fetch-native-1.6.4.tgz#679fc8fd8111266d47d7e72c379f1bed9acff06e"
   integrity sha512-IhOigYzAKHd244OC0JIMIUrjzctirCmPkaIfhDeGcEETWof5zKYUW7e7MYvChGWh/4CJeXEgsRyGzuF334rOOQ==
@@ -12790,7 +12790,7 @@ typical@^5.2.0:
   resolved "https://registry.yarnpkg.com/typical/-/typical-5.2.0.tgz#4daaac4f2b5315460804f0acf6cb69c52bb93066"
   integrity sha512-dvdQgNDNJo+8B2uBQoqdb11eUCE1JQXhvjC/CZtgvZseVd5TYMXnq0+vuUemXbd/Se29cTaUuPX3YIc2xgbvIg==
 
-ufo@1.5.4, ufo@^1.1.2, ufo@^1.3.1, ufo@^1.3.2, ufo@^1.4.0, ufo@^1.5.3, ufo@^1.5.4:
+ufo@1.5.4, ufo@^1.1.2, ufo@^1.3.1, ufo@^1.3.2, ufo@^1.5.3, ufo@^1.5.4:
   version "1.5.4"
   resolved "https://registry.yarnpkg.com/ufo/-/ufo-1.5.4.tgz#16d6949674ca0c9e0fbbae1fa20a71d7b1ded754"
   integrity sha512-UsUk3byDzKd04EyoZ7U4DOlxQaD14JUKQl6/P7wiX4FNvUfm3XL246n9W5AmqwW5RSFJ27NAuM0iLscAOYUiGQ==
@@ -12800,7 +12800,7 @@ ultrahtml@^1.5.3:
   resolved "https://registry.yarnpkg.com/ultrahtml/-/ultrahtml-1.5.3.tgz#e7a903a4b28a0e49b71b0801b444050bb0a369c7"
   integrity sha512-GykOvZwgDWZlTQMtp5jrD4BVL+gNn2NVlVafjcFUJ7taY20tqYdwdoWBFy6GBJsNTZe1GkGPkSl5knQAjtgceg==
 
-uncrypto@0.1.3, uncrypto@^0.1.3:
+uncrypto@^0.1.3:
   version "0.1.3"
   resolved "https://registry.yarnpkg.com/uncrypto/-/uncrypto-0.1.3.tgz#e1288d609226f2d02d8d69ee861fa20d8348ef2b"
   integrity sha512-Ql87qFHB3s/De2ClA9e0gsnS6zXG27SkTiSJwjCc9MebbfapQfuPzumMIUMi38ezPZVNFcHI9sUIepeQfw8J8Q==
@@ -12953,23 +12953,7 @@ unplugin@^1.1.0, unplugin@^1.10.0, unplugin@^1.10.1, unplugin@^1.12.2, unplugin@
     acorn "^8.12.1"
     webpack-virtual-modules "^0.6.2"
 
-unstorage@1.10.2:
-  version "1.10.2"
-  resolved "https://registry.yarnpkg.com/unstorage/-/unstorage-1.10.2.tgz#fb7590ada8b30e83be9318f85100158b02a76dae"
-  integrity sha512-cULBcwDqrS8UhlIysUJs2Dk0Mmt8h7B0E6mtR+relW9nZvsf/u4SkAYyNliPiPW7XtFNb5u3IUMkxGxFTTRTgQ==
-  dependencies:
-    anymatch "^3.1.3"
-    chokidar "^3.6.0"
-    destr "^2.0.3"
-    h3 "^1.11.1"
-    listhen "^1.7.2"
-    lru-cache "^10.2.0"
-    mri "^1.2.0"
-    node-fetch-native "^1.6.2"
-    ofetch "^1.3.3"
-    ufo "^1.4.0"
-
-unstorage@^1.10.1, unstorage@^1.10.2, unstorage@^1.12.0:
+unstorage@1.12.0, unstorage@^1.10.1, unstorage@^1.10.2, unstorage@^1.12.0:
   version "1.12.0"
   resolved "https://registry.yarnpkg.com/unstorage/-/unstorage-1.12.0.tgz#a215895dfdef01ffb8ff529bb3869dbf947d8498"
   integrity sha512-ARZYTXiC+e8z3lRM7/qY9oyaOkaozCeNd2xoz7sYK9fv7OLGhVsf+BZbmASqiK/HTZ7T6eAlnVq9JynZppyk3w==
@@ -13641,11 +13625,6 @@ zip-stream@^6.0.1:
     archiver-utils "^5.0.0"
     compress-commons "^6.0.2"
     readable-stream "^4.0.0"
-
-zod@3.23.5:
-  version "3.23.5"
-  resolved "https://registry.yarnpkg.com/zod/-/zod-3.23.5.tgz#c7b7617d017d4a2f21852f533258d26a9a5ae09f"
-  integrity sha512-fkwiq0VIQTksNNA131rDOsVJcns0pfVUjHzLrNBiF/O/Xxb5lQyEXkhZWcJ7npWsYlvs+h0jFWXXy4X46Em1JA==
 
 zod@^3.23.8:
   version "3.23.8"

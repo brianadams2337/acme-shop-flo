@@ -12,7 +12,6 @@
         class="size-full object-cover"
         :src="imageSource.src"
         :alt="imageSource.alt"
-        loading="lazy"
         :sizes="sizes"
       />
     </CMSStoryblokLink>

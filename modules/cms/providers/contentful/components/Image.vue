@@ -8,7 +8,6 @@
     :sizes="sizes"
     :src="imageSource.src"
     :preload="preload"
-    loading="lazy"
     :alt="imageSource.alt"
   />
 </template>

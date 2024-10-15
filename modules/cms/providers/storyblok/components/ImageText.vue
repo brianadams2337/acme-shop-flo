@@ -11,7 +11,6 @@
       :sizes="sizes"
       :src="imageSource.src"
       :alt="imageSource.alt"
-      loading="lazy"
     />
 
     <div

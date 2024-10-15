@@ -18,7 +18,6 @@
         sizes="xs:100vw sm:100vw md:100vw"
         height="311"
         fit="cover"
-        image-loading="eager"
         class="absolute inset-0"
       />
     </div>
@@ -34,7 +33,6 @@
             :image="image"
             sizes="xs:100vw sm:100vw md:100vw"
             fit="cover"
-            image-loading="eager"
           />
         </div>
       </div>

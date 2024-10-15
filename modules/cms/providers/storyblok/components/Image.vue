@@ -9,7 +9,6 @@
     :sizes="sizes"
     :class="isCover ? 'picture-cover' : 'picture-contain'"
     :src="imageSource?.src"
-    loading="lazy"
   />
 </template>
 

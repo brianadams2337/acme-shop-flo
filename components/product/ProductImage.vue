@@ -55,7 +55,7 @@ const props = withDefaults(defineProps<Props>(), {
   isCentered: false,
   withMixBlendDarken: true,
   fit: 'contain',
-  imageLoading: 'lazy',
+  imageLoading: 'eager',
   preload: false,
   alt: undefined,
   quality: 75,

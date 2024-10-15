@@ -29,7 +29,7 @@
 <script setup lang="ts">
 import { defineOptions, onMounted } from 'vue'
 import { useHead } from '@unhead/vue'
-import { useCurrentPromotions } from '#storefront/composables'
+import { useCurrentPromotions, useCurrentShop } from '#storefront/composables'
 import {
   USE_BANNER_KEY,
   USE_DEFAULT_BREAKPOINTS_KEY,
@@ -66,6 +66,7 @@ createContext(USE_DEFAULT_BREAKPOINTS_KEY, useDefaultBreakpoints())
 createContext(USE_BANNER_KEY, useBanner())
 
 const { data: _promotionData } = useCurrentPromotions()
+const currentShop = useCurrentShop()
 
 onMounted(async () => {
   trackingEvents.trackShopInit()
@@ -75,6 +76,9 @@ onMounted(async () => {
 useHead({
   bodyAttrs: () => ({
     class: ['relative'],
+  }),
+  htmlAttrs: () => ({
+    lang: new Intl.Locale(currentShop.value.locale).language,
   }),
   script: [
     {

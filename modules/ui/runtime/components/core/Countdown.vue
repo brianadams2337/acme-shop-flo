@@ -6,13 +6,13 @@
       class="flex text-center font-semibold"
     >
       <div v-if="shouldShowValue(key, value)" class="inline-flex">
-        <span v-if="shouldShowSeparator(key)" class="mx-0.5">:</span>
-        <span v-if="value !== undefined" class="min-w-[2ch] tabular-nums">
-          {{ formatValue(value) }}
+        <span v-if="value !== undefined" class="tabular-nums">
+          {{ value }}
         </span>
         <span v-if="showUnits">
           <span>{{ renderUnit($t(`global.${key}`)) }}</span>
         </span>
+        &nbsp;
       </div>
     </div>
   </div>
@@ -41,10 +41,6 @@ const emit = defineEmits<{ finished: [] }>()
 const timeUntil = computed(() => Date.parse(props.timeUntil))
 const countdown = ref<{ [k in CountdownUnit]?: number }>({})
 
-const formatValue = (value: number) => {
-  return value <= 9 && value >= 0 ? `0${value}` : value
-}
-
 const renderUnit = (unit: string) => {
   return props.unitSize === 'short' ? unit.substring(0, 1).toUpperCase() : unit
 }
@@ -54,13 +50,6 @@ const shouldShowValue = (key: CountdownUnit, value?: number) => {
     return false
   }
   return !(key === 'seconds' && countdown.value.days !== 0)
-}
-
-const shouldShowSeparator = (key: CountdownUnit) => {
-  if (key === 'days') {
-    return false
-  }
-  return !(key === 'hours' && countdown.value.days === 0)
 }
 
 const start = () => {

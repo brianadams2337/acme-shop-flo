@@ -3331,10 +3331,10 @@
   resolved "https://registry.yarnpkg.com/@scayle/storefront-api/-/storefront-api-17.8.0.tgz#5b67f402975a174470809a2acf53175bfd1a51bc"
   integrity sha512-/oSufQ3krG3/ZUxvAy+GHlqdP6R7NOaHs2p074rqeurP61rfw10g7gD2u4/6tlk0GqKOEvlS72SL1eIidMAyUQ==
 
-"@scayle/storefront-core@7.65.5":
-  version "7.65.5"
-  resolved "https://registry.yarnpkg.com/@scayle/storefront-core/-/storefront-core-7.65.5.tgz#5d28de30a593506ea9d510cd4d4feb8a9ba0d784"
-  integrity sha512-ZP1eJ+Kl68T/9zWAIjqQmAqkft6II+jTGl3xST4ipQtqZ9pf1o9CQu13DWJ0H+3vhFfHRE32KTIsIw2hrEiuYw==
+"@scayle/storefront-core@7.65.6":
+  version "7.65.6"
+  resolved "https://registry.yarnpkg.com/@scayle/storefront-core/-/storefront-core-7.65.6.tgz#5a9fa7a109ab52b259dd7a9cb025afc9850864ad"
+  integrity sha512-Fl3saDR81RDo/L1+CFwxyAGxN1t5v5wnPeYH+ViRPNZzrJ66IaZxiL14nTRu4pvPag/PORjVISf9f8WbZIDHzA==
   dependencies:
     "@scayle/storefront-api" "17.8.0"
     crypto-js "^4.2.0"
@@ -3347,15 +3347,15 @@
   optionalDependencies:
     redis "4"
 
-"@scayle/storefront-nuxt@7.85.13":
-  version "7.85.13"
-  resolved "https://registry.yarnpkg.com/@scayle/storefront-nuxt/-/storefront-nuxt-7.85.13.tgz#e47a4af93554d7b3cfc2e04b090500a09bf12494"
-  integrity sha512-lgLrrMFi7uIwiVB6KMUksqd9fJPGRpDvnj5QpYHOhxppm0QYq0HjA+i3GjnyDWFxqi+oSb7D3LbQewsQU/E0iQ==
+"@scayle/storefront-nuxt@7.85.14":
+  version "7.85.14"
+  resolved "https://registry.yarnpkg.com/@scayle/storefront-nuxt/-/storefront-nuxt-7.85.14.tgz#4b7c7b20fbfb9fccc3b9a064c0e05a7b47d8aade"
+  integrity sha512-6ZUJM0YPU3+CHtRoSEhp1aSYHv+8MbwMf3WmEojZuMyLF2rho5MIkwKREMQRlPkRTP39hcc5fnZ1JdUOtLP5/Q==
   dependencies:
     "@nuxt/kit" "^3.12.2"
     "@opentelemetry/api" "^1.9.0"
     "@scayle/h3-session" "^0.4.1"
-    "@scayle/storefront-core" "7.65.5"
+    "@scayle/storefront-core" "7.65.6"
     "@scayle/unstorage-compression-driver" "^0.1.4"
     "@vueuse/core" "11.1.0"
     consola "^3.2.3"

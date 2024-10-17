@@ -7,7 +7,7 @@
       :promotions="allCurrentPromotions"
     />
     <SFToastContainer />
-    <CountryDetection />
+    <CountryDetection @switch-shop="switchShop" />
     <div
       class="translate-y-0 transition-transform duration-300 ease-in-out"
       :class="{ 'lg:translate-y-[-3.25rem]': !isPromotionBannerShown }"
@@ -33,6 +33,7 @@
 <script setup lang="ts">
 import { defineOptions, onMounted } from 'vue'
 import { useHead } from '@unhead/vue'
+import { useSwitchLocalePath } from '#i18n'
 import { useCurrentPromotions, useCurrentShop } from '#storefront/composables'
 import {
   USE_BANNER_KEY,
@@ -50,7 +51,9 @@ import {
 import HeaderMetaBar from '~/components/layout/headers/HeaderMetaBar.vue'
 import AppHeader from '~/components/layout/headers/AppHeader.vue'
 import MobileSidebar from '~/components/layout/navigation/MobileSidebar.vue'
-import CountryDetection from '~/components/CountryDetection.vue'
+import CountryDetection, {
+  type ShopInfo,
+} from '~/components/CountryDetection.vue'
 import PromotionBanner from '~/components/promotion/PromotionBanner.vue'
 import CMSAppFooterData from '#storefront-cms/components/fetching/CMSAppFooterData.vue'
 import { SFToastContainer } from '#storefront-ui/components'
@@ -92,6 +95,14 @@ useHead({
     },
   ],
 })
+
+const switchLocalePath = useSwitchLocalePath()
+const switchShop = (shop: ShopInfo) => {
+  trackingEvents.trackShopChange()
+  if (shop.path) {
+    window.location.replace(switchLocalePath(shop.path).split('?')[0])
+  }
+}
 
 defineOptions({ name: 'AppDefault' })
 </script>

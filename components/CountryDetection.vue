@@ -1,3 +1,4 @@
+<!-- NOTE: Related to @scayle/storefront-country-detection -->
 <template>
   <SFFadeInTransition>
     <SFModal v-model:visible="modalOpen">
@@ -32,28 +33,18 @@
 </template>
 
 <script lang="ts" setup>
-import { computed, ref, onMounted } from 'vue'
-import { useSessionStorage } from '@vueuse/core'
+import { computed, ref } from 'vue'
+import { useSessionStorage, whenever } from '@vueuse/core'
 import { useNuxtApp } from '#app'
-import { useSwitchLocalePath } from '#i18n'
-import { useTrackingEvents } from '~/composables'
-import {
-  useUser,
-  useAvailableShops,
-  useCurrentShop,
-} from '#storefront/composables'
-import { getCurrentCountryFromTimezone } from '~/utils'
+import { useCurrentShop } from '#storefront/composables'
 import {
   SFButton,
   SFFadeInTransition,
   SFModal,
 } from '#storefront-ui/components'
+import { useCountryDetection } from '#storefront-country-detection/useCountryDetection'
 
-const trackingEvents = useTrackingEvents()
-const switchLocalePath = useSwitchLocalePath()
 const currentShop = useCurrentShop()
-const availableShops = useAvailableShops()
-const { isLoggedIn } = useUser()
 const { $i18n } = useNuxtApp()
 
 const hasPromptedUser = useSessionStorage<boolean>(
@@ -67,22 +58,20 @@ const hasPromptedUser = useSessionStorage<boolean>(
   },
 )
 
-interface ShopInfo {
+export interface ShopInfo {
   path?: string
   locale: string
   shopId: number
 }
-
-const suggestedShops = ref<ShopInfo[]>([])
 const modalOpen = ref<boolean>()
 
+const emit = defineEmits<{
+  (e: 'switchShop', targetShop: ShopInfo): void
+}>()
 const switchToShop = function (shop: ShopInfo) {
   modalOpen.value = false
   hasPromptedUser.value = true
-  trackingEvents.trackShopChange()
-  if (shop.path) {
-    window.location.replace(switchLocalePath(shop.path).split('?')[0])
-  }
+  emit('switchShop', shop)
 }
 
 const stayInShop = function () {
@@ -90,35 +79,16 @@ const stayInShop = function () {
   hasPromptedUser.value = true
 }
 
-/**
- * Get the shops matching a region code
- * @param region The two character region code to search for
- * @param fallbackShopId The shop ID to use if there is no match
- */
-function getShopsForRegion(region: string, fallbackShopId?: number) {
-  const shopsForRegion = availableShops.value.filter(
-    (shop) => new Intl.Locale(shop.locale).region === region,
-  )
-  if (shopsForRegion.length === 0 && fallbackShopId) {
-    return availableShops.value.filter((shop) => shop.shopId === fallbackShopId)
-  }
-
-  return shopsForRegion
-}
-
+// translations
 const regionNames = new Intl.DisplayNames([currentShop.value.locale], {
   type: 'region',
 })
 const languageNames = new Intl.DisplayNames([currentShop.value.locale], {
   type: 'language',
 })
-
 const currentCountry = computed<string | undefined>(() => {
   return getShopCountryName(currentShop.value, false)
 })
-
-const suggestedCountry = ref<string | undefined>()
-
 const getShopCountryName = (shop: ShopInfo, includeLanguage: boolean) => {
   const locale = new Intl.Locale(shop.locale)
   if (!locale.region) {
@@ -143,30 +113,12 @@ const getShopCountryName = (shop: ShopInfo, includeLanguage: boolean) => {
   return regionName
 }
 
-onMounted(async () => {
-  // Do not show the country modal if the user is logged in or the user has already dismissed the modal
-  if (isLoggedIn.value || hasPromptedUser.value) {
-    return
-  }
+const suggestedCountry = ref<string>()
+const { suggestedShops, detectedRegion, suggestionActive } =
+  useCountryDetection({ hasPromptedUser })
 
-  const detectedRegion = getCurrentCountryFromTimezone()
-  if (!detectedRegion) {
-    return
-  }
-
-  // If the locale of the current shop matches the detected region => don't show the modal
-  if (new Intl.Locale(currentShop.value.locale).region === detectedRegion) {
-    return
-  }
-
-  const otherShops = getShopsForRegion(detectedRegion).filter(
-    (shop) => shop.shopId !== currentShop.value.shopId,
-  )
-
-  if (otherShops.length) {
-    suggestedShops.value = otherShops
-    suggestedCountry.value = regionNames.of(detectedRegion)
-    modalOpen.value = true
-  }
+whenever(suggestionActive, () => {
+  suggestedCountry.value = regionNames.of(detectedRegion.value)
+  modalOpen.value = true
 })
 </script>

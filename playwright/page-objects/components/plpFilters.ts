@@ -7,11 +7,11 @@ export class PlpFilters {
   readonly filterSectionHeadline: Locator
   readonly filterApplyButton: Locator
   readonly filterResetButton: Locator
-  readonly filterPriceFrom: Locator
-  readonly filterPriceTo: Locator
+  readonly filterPriceInput: Locator
   readonly filterSizeCheckbox: Locator
   readonly filterFormCheckbox: Locator
   readonly filterGroupCounter: Locator
+  readonly filterSaleSwitch: Locator
 
   constructor(page: Page) {
     this.page = page
@@ -20,10 +20,10 @@ export class PlpFilters {
     this.filterSectionHeadline = page.getByTestId('headline')
     this.filterApplyButton = page.getByTestId('apply-filter-button')
     this.filterResetButton = page.getByTestId('reset-filter-button')
-    this.filterPriceFrom = page.getByRole('textbox').first()
-    this.filterPriceTo = page.getByRole('spinbutton').first()
+    this.filterPriceInput = page.getByTestId('price-input')
     this.filterSizeCheckbox = page.getByTestId('checkbox-chip')
     this.filterFormCheckbox = page.getByTestId('form-checkbox')
     this.filterGroupCounter = page.getByTestId('filter-group-counter')
+    this.filterSaleSwitch = page.getByRole('switch')
   }
 }

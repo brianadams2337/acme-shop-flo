@@ -15,9 +15,11 @@ test('C2132186 C2132187 Verify Basket empty state as a guest and logged in user'
   basketPage,
   signinPage,
   page,
+  countryDetector,
 }) => {
   await test.step('Verify guest user', async () => {
     await homePage.visitPage()
+    await countryDetector.closeModal()
     await header.headerBasketButton.click()
     await page.waitForURL(E2E_BASKET_URL)
 
@@ -59,9 +61,11 @@ test('C2132198 Verify add to Basket as a guest user', async ({
   homePage,
   header,
   basketPage,
+  countryDetector,
 }) => {
   await expect(async () => {
     await homePage.visitPage()
+    await countryDetector.closeModal()
     await basketPage.addProductToBasket(
       BASKET_TEST_DATA.productRegularVariantId,
       1,
@@ -82,11 +86,12 @@ test('C2132199 Verify add to Basket as a logged in user', async ({
   basketPage,
   signinPage,
   page,
+  countryDetector,
 }) => {
   await test.step('Deleting Basket items to have a clean state', async () => {
     await expect(async () => {
       await homePage.visitPage()
-
+      await countryDetector.closeModal()
       await header.clickLoginHeaderButton()
       await signinPage.fillLoginData(
         LOGGED_IN_USER_DATA.email,

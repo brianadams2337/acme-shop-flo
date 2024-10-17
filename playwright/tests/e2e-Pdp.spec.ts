@@ -4,9 +4,11 @@ import { PDP_E2E } from '../support/constants'
 test('C2141594: Verify PDP name, brand and price for regular product', async ({
   productDetailPage,
   baseURL,
+  countryDetector,
 }) => {
   await productDetailPage.visitPDP(PDP_E2E.regularProductUrl, baseURL as string)
   await expect(async () => {
+    await countryDetector.closeModal()
     await expect(productDetailPage.productBrand).toBeVisible()
     await expect(productDetailPage.productName).toBeVisible()
     await expect(productDetailPage.priceRegular.first()).toBeVisible()
@@ -19,11 +21,13 @@ test('C2141595: Verify PDP add to Basket for regular product multi size', async 
   baseURL,
   header,
   toastMessage,
+  countryDetector,
 }) => {
   await productDetailPage.visitPDP(PDP_E2E.regularProductUrl, baseURL as string)
   const productName = await productDetailPage.productName.textContent()
 
   await expect(async () => {
+    await countryDetector.closeModal()
     await productDetailPage.variantPicker.waitFor()
     await productDetailPage.variantPicker.click()
     await productDetailPage.getVariant().click()
@@ -38,10 +42,11 @@ test('C2141596: Verify PDP add to Basket for regular product one-size', async ({
   baseURL,
   header,
   toastMessage,
+  countryDetector,
 }) => {
   await productDetailPage.visitPDP(PDP_E2E.oneSizeProductUrl, baseURL as string)
   const productName = await productDetailPage.productName.textContent()
-
+  await countryDetector.closeModal()
   await productDetailPage.addProductToBasket()
   await header.basketNumItems.waitFor()
   await expect(header.basketNumItems).toHaveText('1')
@@ -54,10 +59,11 @@ test('C2141597: Verify PDP quantity selector', async ({
   baseURL,
   header,
   page,
+  countryDetector,
 }) => {
   await productDetailPage.visitPDP(PDP_E2E.oneSizeProductUrl, baseURL as string)
   await page.waitForLoadState('domcontentloaded')
-
+  await countryDetector.closeModal()
   await expect(productDetailPage.quantityValue).toHaveValue('1')
   await expect(productDetailPage.quantityMinus).toBeDisabled()
   await expect(productDetailPage.quantityPlus).toBeEnabled()
@@ -77,10 +83,11 @@ test('C2141598: Verify PDP add and remove to/from Wishlist', async ({
   baseURL,
   header,
   page,
+  countryDetector,
 }) => {
   await productDetailPage.visitPDP(PDP_E2E.regularProductUrl, baseURL as string)
   await page.waitForLoadState('domcontentloaded')
-
+  await countryDetector.closeModal()
   await test.step('Adding product to Wishlist', async () => {
     await productDetailPage.assertAddToWishlistIconVisibility()
     await page.waitForLoadState('networkidle')
@@ -100,13 +107,14 @@ test('C2141599: Verify PDP Subscription service', async ({
   baseURL,
   page,
   header,
+  countryDetector,
 }) => {
   await productDetailPage.visitPDP(
     PDP_E2E.subscribeProductUrl,
     baseURL as string,
   )
   await page.waitForLoadState('domcontentloaded')
-
+  await countryDetector.closeModal()
   await test.step('Check subscription before choosing the size', async () => {
     await expect(productDetailPage.subscriptionService).toBeVisible()
     await expect(productDetailPage.addToBasketButtonSubscribe).not.toBeVisible()

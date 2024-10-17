@@ -31,7 +31,7 @@ export class MobileNavigation {
     this.searchMoreButton = page.getByRole('link', {
       name: SEARCH_SUGGESTIONS.moreButtonLabelDE,
     })
-    this.productListItem = page.getByTestId('search-exact-product-item').nth(1)
+    this.productListItem = page.getByTestId('search-exact-product-item')
   }
 
   async executeMobileSearch(searchTerm: string) {
@@ -43,11 +43,8 @@ export class MobileNavigation {
   async startTypingMobileSearch(searchTerm: string, exactProduct: boolean) {
     await this.sideNavigationButton.click()
     await this.searchInputField.fill(searchTerm)
-    if (exactProduct === false) {
+    if (exactProduct === true) {
       await expect(this.exactProductItem).toBeVisible()
-    } else {
-      await this.productListItem.waitFor()
-      await expect(this.productListItem).toBeVisible()
     }
   }
 

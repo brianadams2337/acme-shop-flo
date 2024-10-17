@@ -35,7 +35,7 @@ export class WishlistPage {
     this.wishlistItemsWrapper = page.getByTestId('wishlist-items-wrapper')
     this.wishlistCard = this.wishlistItemsWrapper.getByTestId('wishlist-card')
     this.article = this.wishlistCard.getByTestId('article')
-    this.productBrand = this.article.getByTestId('product-brand')
+    this.productBrand = page.getByTestId('product-card-product-brand')
     this.productName = this.article.getByTestId('product-name')
     this.buttonSize = this.article.getByTestId('wishlist-card-product-size')
     this.buttonAddtoCart = page.getByTestId('wishlist-card-add-to-cart')

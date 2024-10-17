@@ -1,20 +1,23 @@
 import { expect, test } from '../fixtures/fixtures'
-
 import {
   HOMEPAGE_PATH_DE,
   LOGGED_IN_USER_DATA,
   LOGIN_WRONG_CREDENTIALS,
 } from '../support/constants'
 
+test.beforeEach(async ({ homePage, page, countryDetector }) => {
+  await homePage.visitPage()
+  await page.waitForLoadState('networkidle')
+  await countryDetector.closeModal()
+})
+
 test('C2130648: Verify User login and log out', async ({
-  homePage,
   signinPage,
   header,
   accountPage,
   toastMessage,
   page,
 }) => {
-  await homePage.visitPage()
   await expect(async () => {
     await header.clickLoginHeaderButton()
     await signinPage.fillLoginData(
@@ -37,12 +40,10 @@ test('C2130648: Verify User login and log out', async ({
 })
 
 test('C2130649: Verify User login with wrong credentials', async ({
-  homePage,
   signinPage,
   header,
   toastMessage,
 }) => {
-  await homePage.visitPage()
   await expect(async () => {
     await header.clickLoginHeaderButton()
     await signinPage.fillLoginData(

@@ -59,6 +59,7 @@ export class ProductDetailPage {
     if (isMobile(this.page)) {
       await this.addToBasketButtonMobile.click()
     } else {
+      await this.page.waitForLoadState('networkidle')
       await this.addToBasketButton.click()
     }
   }

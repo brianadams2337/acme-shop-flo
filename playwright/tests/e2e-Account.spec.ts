@@ -6,10 +6,11 @@ import {
   USER_ACCOUNT,
 } from '../support/constants'
 
-test.beforeEach(async ({ signinPage, page, baseURL }) => {
+test.beforeEach(async ({ signinPage, page, baseURL, countryDetector }) => {
   await expect(async () => {
     const url = baseURL + SIGNIN_URL
     await page.goto(url, { waitUntil: 'load' })
+    await countryDetector.closeModal()
     await signinPage.fillLoginData(
       LOGGED_IN_USER_DATA.email,
       LOGGED_IN_USER_DATA.password,

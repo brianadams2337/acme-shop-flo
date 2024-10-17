@@ -60,7 +60,7 @@ export class Search {
   }
 
   async clickExactProductItem() {
-    expect(this.searchExactProduct).toBeVisible()
+    await expect(this.searchExactProduct).toBeVisible()
     await this.searchExactProduct.click()
   }
 

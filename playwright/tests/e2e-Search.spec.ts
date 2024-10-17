@@ -2,9 +2,10 @@ import { expect, test } from '../fixtures/fixtures'
 import { SEARCH_SUGGESTIONS } from '../support/constants'
 import { isMobile } from '../support/utils'
 
-test.beforeEach(async ({ homePage, page }) => {
+test.beforeEach(async ({ homePage, page, countryDetector }) => {
   await homePage.visitPage()
   await page.waitForLoadState('networkidle')
+  await countryDetector.closeModal()
 })
 
 test('C2139814: Verify Search no results page', async ({

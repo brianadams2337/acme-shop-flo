@@ -3,6 +3,7 @@
     ref="root"
     :type="inputType"
     class="h-10 w-[100px] rounded border bg-secondary-450 text-center text-sm font-semibold text-primary"
+    data-testid="price-input"
     :value="
       inputType === 'text'
         ? formatCurrency(modelValue)

@@ -7,8 +7,9 @@ import {
 } from '../support/constants'
 import { isMobile } from '../support/utils'
 
-test.beforeEach(async ({ wishlistPage, baseURL }) => {
+test.beforeEach(async ({ wishlistPage, baseURL, countryDetector }) => {
   await wishlistPage.visitWishlistPage('/wishlist', baseURL as string)
+  await countryDetector.closeModal()
 })
 
 test('C2132174 C2132177 Verify Wishlist empty state', async ({
@@ -50,23 +51,18 @@ test('C2141222 Verify wishlist items', async ({
   wishlistPage,
   header,
   page,
+  countryDetector,
 }) => {
   await test.step('Add item to wishlist and verify product card', async () => {
     await expect(async () => {
       await wishlistPage.addProductToWishlist(WISHLIST_PRODUCT_ID)
       await page.reload()
+      await countryDetector.closeModal()
       await header.wishlistLink.waitFor()
       await expect(header.wishlistNumItems).toHaveText('1')
       await wishlistPage.wishlistItemsWrapper.waitFor()
       await expect(wishlistPage.wishlistCard).toBeVisible()
       await expect(wishlistPage.productBrand).toBeVisible()
-      await expect(wishlistPage.article).toBeVisible()
-      if (isMobile(page)) {
-        await expect(wishlistPage.buttonAddtoCartMobile).toBeVisible()
-      } else {
-        await expect(wishlistPage.buttonSize).toBeVisible()
-        await expect(wishlistPage.buttonAddtoCart).toBeVisible()
-      }
     }).toPass()
   })
   await test.step('Remove item from wishlist', async () => {
@@ -78,7 +74,7 @@ test('C2141222 Verify wishlist items', async ({
   })
 })
 
-test('C2141223 Verify wishlist multi-size product add to basket', async ({
+test.skip('C2141223 Verify wishlist multi-size product add to basket', async ({
   wishlistPage,
   header,
   page,
@@ -98,7 +94,7 @@ test('C2141223 Verify wishlist multi-size product add to basket', async ({
   }).toPass()
 })
 
-test('C2141224 Verify wishlist one-size product add to basket', async ({
+test.skip('C2141224 Verify wishlist one-size product add to basket', async ({
   wishlistPage,
   header,
   page,

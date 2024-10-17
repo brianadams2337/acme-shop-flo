@@ -1,7 +1,8 @@
 import { expect, test } from '../fixtures/fixtures'
 
-test.beforeEach(async ({ homePage }) => {
+test.beforeEach(async ({ homePage, countryDetector }) => {
   await homePage.visitPage()
+  await countryDetector.closeModal()
 })
 
 test('C2140757 Verify Promotion bar shown and hidden state', async ({
@@ -32,7 +33,9 @@ test('C2140759 C2140758 Verify Promotion bar expanded state features', async ({
   })
   await test.step('Scroll to bottom and check sticky behavior', async () => {
     await expect(async () => {
-      await page.mouse.wheel(0, 10000)
+      await page.evaluate(() => {
+        window.scrollTo(0, document.body.scrollHeight)
+      })
       await promotions.assertScrollBehavior()
     }).toPass()
   })

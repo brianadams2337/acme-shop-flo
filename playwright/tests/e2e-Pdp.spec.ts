@@ -133,7 +133,9 @@ test('C2141599: Verify PDP Subscription service', async ({
   await test.step('Check subscription for variant not eligible to subscribe', async () => {
     await productDetailPage.variantPicker.waitFor()
     await productDetailPage.variantPicker.click()
-    await productDetailPage.getVariant().click()
+    await productDetailPage
+      .getVariant(PDP_E2E.subscribeNotEligibleVariantId)
+      .click()
     await expect(productDetailPage.addToBasketButtonSubscribe).not.toBeVisible()
   })
 })

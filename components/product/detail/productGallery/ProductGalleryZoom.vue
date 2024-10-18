@@ -28,7 +28,13 @@
           >
             <ProductImage
               :image="productImage"
-              :alt="alt"
+              :alt="
+                $t('product_image.alt_with_image_index', {
+                  alt,
+                  index: index + 1,
+                  total: images.length,
+                })
+              "
               :data-testid="`product-image-zoom-${index}`"
               sizes="xs:100vw sm:100vw md:100vw lg:100vw xl:100vw"
               :style="imageIndex === index ? style : {}"

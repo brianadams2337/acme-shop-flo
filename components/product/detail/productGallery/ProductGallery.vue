@@ -18,7 +18,17 @@
         @mouseenter="scrollImageIntoView(index)"
         @click="isZoomModalOpen = true"
       >
-        <ProductImage :image="productThumbnail" :alt="alt" sizes="96px" />
+        <ProductImage
+          :image="productThumbnail"
+          :alt="
+            $t('product_image.alt_with_image_index', {
+              alt,
+              index: index + 1,
+              total: images.length,
+            })
+          "
+          sizes="96px"
+        />
       </div>
       <template #prev-button="{ prev, isPrevEnabled }">
         <button
@@ -54,7 +64,13 @@
           :image="productImage"
           :image-loading="index === 0 ? 'eager' : 'lazy'"
           :preload="index === 0"
-          :alt="alt"
+          :alt="
+            $t('product_image.alt_with_image_index', {
+              alt,
+              index: index + 1,
+              total: images.length,
+            })
+          "
           :data-testid="`product-image-${index}`"
           sizes="xs:100vw sm:100vw md:50vw lg:50vw xl:50vw"
           class="min-w-full cursor-pointer snap-start snap-always self-start overflow-hidden md:rounded-md"

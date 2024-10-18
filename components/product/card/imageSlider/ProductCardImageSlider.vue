@@ -26,7 +26,13 @@
       <ProductImage
         v-if="item"
         :image="item"
-        :alt="alt"
+        :alt="
+          $t('product_image.alt_with_image_index', {
+            alt,
+            index: imageIndex + 1,
+            total: images.length,
+          })
+        "
         :image-loading="getImageLoading(imageIndex)"
         :preload="shouldPreload(imageIndex)"
         sizes="xs:50vw sm:50vw md:40vw lg:33vw xl:320px"

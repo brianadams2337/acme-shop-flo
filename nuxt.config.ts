@@ -285,6 +285,7 @@ export default defineNuxtConfig({
           return {
             cache: {
               driver: 'vercelKV',
+              compression: 'gzip',
               // If deployed to Vercel, the respective environment variable value of `KV_REST_API_URL`
               // will be used for `url` and `KV_REST_API_TOKEN` for `token`.
             },
@@ -300,7 +301,7 @@ export default defineNuxtConfig({
           cache: {
             // Redis Options: https://redis.github.io/ioredis/index.html#RedisOptions
             driver: 'redis', // Override: NUXT_STOREFRONT_STORAGE_CACHE_PROVIDER
-            // compression: 'gzip', // Override: NUXT_STOREFRONT_STORAGE_CACHE_COMPRESSION
+            compression: 'brotli', // Override: NUXT_STOREFRONT_STORAGE_CACHE_COMPRESSION
             host: 'localhost', // Override: NUXT_STOREFRONT_STORAGE_CACHE_HOST
             port: 6379, // Override: NUXT_STOREFRONT_STORAGE_CACHE_PORT
             username: '', // Override: NUXT_STOREFRONT_STORAGE_CACHE_USERNAME
@@ -317,6 +318,7 @@ export default defineNuxtConfig({
             // Redis Options: https://redis.github.io/ioredis/index.html#RedisOptions
             driver: 'redis', // Override: NUXT_STOREFRONT_STORAGE_SESSION_PROVIDER
             host: 'localhost', // Override: NUXT_STOREFRONT_STORAGE_SESSION_HOST
+
             port: 6379, // Override: NUXT_STOREFRONT_STORAGE_SESSION_PORT
             db: 1, // Override: NUXT_STOREFRONT_STORAGE_SESSION_DB
             username: '', // Override: NUXT_STOREFRONT_STORAGE_SESSION_USERNAME

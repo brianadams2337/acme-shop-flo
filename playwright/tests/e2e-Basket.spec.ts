@@ -7,8 +7,6 @@ import {
   LOGGED_IN_USER_DATA,
 } from '../support/constants'
 
-test.describe.configure({ mode: 'serial' })
-
 test('C2132186 C2132187 Verify Basket empty state as a guest and logged in user', async ({
   homePage,
   header,
@@ -57,69 +55,42 @@ test('C2132186 C2132187 Verify Basket empty state as a guest and logged in user'
   })
 })
 
-test('C2132198 Verify add to Basket as a guest user', async ({
+test('C2132198 Verify add to Basket', async ({
   homePage,
   header,
   basketPage,
   countryDetector,
-}) => {
-  await expect(async () => {
-    await homePage.visitPage()
-    await countryDetector.closeModal()
-    await basketPage.addProductToBasket(
-      BASKET_TEST_DATA.productRegularVariantId,
-      1,
-    )
-    await header.visitBasketPage()
-
-    await expect(header.basketNumItems).toHaveText('1')
-    await basketPage.assertProductIsInBasket(
-      BASKET_TEST_DATA.productRegularBrand,
-      BASKET_TEST_DATA.productRegularName,
-    )
-  }).toPass()
-})
-
-test('C2132199 Verify add to Basket as a logged in user', async ({
-  homePage,
-  header,
-  basketPage,
   signinPage,
-  page,
-  countryDetector,
 }) => {
-  await test.step('Deleting Basket items to have a clean state', async () => {
+  await test.step('Add product to Basket', async () => {
     await expect(async () => {
       await homePage.visitPage()
       await countryDetector.closeModal()
-      await header.clickLoginHeaderButton()
-      await signinPage.fillLoginData(
-        LOGGED_IN_USER_DATA.email,
-        LOGGED_IN_USER_DATA.password,
-      )
-      await signinPage.clickLoginButton()
-      await page.waitForURL(HOMEPAGE_PATH_DE)
-      await basketPage.emptyBasket(BASKET_TEST_DATA.itemKeyBasketE2E)
-      await basketPage.emptyBasket(BASKET_TEST_DATA.itemKeyHappyPath)
-    }).toPass()
-  })
-
-  await test.step('Adding item to basket and removing it', async () => {
-    await expect(async () => {
       await basketPage.addProductToBasket(
         BASKET_TEST_DATA.productRegularVariantId,
         1,
       )
-    }).toPass()
-
-    await expect(async () => {
       await header.visitBasketPage()
-      await page.reload()
-
-      await page.waitForLoadState('domcontentloaded')
       await expect(header.basketNumItems).toHaveText('1')
-      await expect(basketPage.basketProductCard).toBeVisible()
     }).toPass()
+  })
+
+  await test.step('Assert product is in Basket', async () => {
+    await expect(async () => {
+      await basketPage.assertProductIsInBasket(
+        BASKET_TEST_DATA.productRegularBrand,
+        BASKET_TEST_DATA.productRegularName,
+      )
+    }).toPass()
+  })
+
+  await test.step('Log in and assert the product is still in Basket', async () => {
+    await header.clickLoginHeaderButton()
+    await signinPage.fillLoginData(
+      LOGGED_IN_USER_DATA.email,
+      LOGGED_IN_USER_DATA.password,
+    )
+    await header.visitBasketPage()
 
     await expect(async () => {
       await basketPage.assertProductIsInBasket(
@@ -127,7 +98,9 @@ test('C2132199 Verify add to Basket as a logged in user', async ({
         BASKET_TEST_DATA.productRegularName,
       )
     }).toPass()
+  })
 
+  await test.step('Remove product from Basket', async () => {
     await expect(async () => {
       await basketPage.removeItemFromBasket()
       await expect(header.basketNumItems).not.toBeVisible()

@@ -453,7 +453,6 @@ export const didWishlistDataChange = (
   )
 }
 
-// same as formatPrice from @scayle/storefront-nuxt2 without using the useContext
 export const formatPriceWithCurrency = (
   value: number,
   locale: string,

@@ -15,12 +15,11 @@ import type { Product } from '@scayle/storefront-nuxt'
 import ProductCard from '~/components/product/card/ProductCard.vue'
 
 type CMSProductProps = {
-  width?: string
   multipleImages?: boolean
   product: Product
 }
 
-defineProps<CMSProductProps>()
+const { multipleImages = false } = defineProps<CMSProductProps>()
 
 const emit = defineEmits(['intersect:product'])
 

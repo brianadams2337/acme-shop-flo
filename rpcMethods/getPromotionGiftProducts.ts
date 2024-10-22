@@ -24,10 +24,14 @@ export const getPromotionGiftProducts: RpcHandler<
     context,
   )
 
-  return uniqueProducts.map((product) => {
-    const filteredVariants = product.variants?.filter(({ id }) => {
-      return variantIds.includes(id)
+  return uniqueProducts
+    .filter(({ isActive }) => isActive)
+    .map((product) => {
+      return {
+        ...product,
+        variants: product.variants?.filter(({ id }) => {
+          return variantIds.includes(id)
+        }),
+      }
     })
-    return { ...product, variants: filteredVariants }
-  })
 }

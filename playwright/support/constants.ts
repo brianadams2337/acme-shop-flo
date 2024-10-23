@@ -132,3 +132,12 @@ export const LIGHTHOUSE_AUDIT_PATHS = {
   plp: '/de/c/frauen/bekleidung-50338',
   pdp: '/de/p/jacke-205696',
 }
+
+export const TEST_USERS = {
+  testUserEmail1: process.env.TEST_USER_EMAIL as string,
+  testUserEmail2: process.env.TEST_USER_EMAIL2 as string,
+  testUserEmail3: process.env.TEST_USER_EMAIL3 as string,
+  testUserEmail4: process.env.TEST_USER_EMAIL4 as string,
+  testUserEmail5: process.env.TEST_USER_EMAIL5 as string,
+  testUserPassword: process.env.TEST_USER_PASSWORD as string,
+}

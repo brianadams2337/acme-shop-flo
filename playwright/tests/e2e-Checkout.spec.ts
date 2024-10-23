@@ -1,17 +1,12 @@
 import { expect, test } from '../fixtures/fixtures'
-import {
-  BASKET_TEST_DATA,
-  CHECKOUT_URL,
-  LOGGED_IN_USER_DATA,
-} from '../support/constants'
+import { getUserForBrowser } from '../support/utils'
+import { BASKET_TEST_DATA, CHECKOUT_URL } from '../support/constants'
 
-test.describe.configure({ mode: 'serial' })
+test.beforeEach(async ({ accountPage }, testInfo) => {
+  const projectName = testInfo.project.name
+  const { email, password } = getUserForBrowser(projectName)
 
-test.beforeEach(async ({ accountPage }) => {
-  await accountPage.userAuthentication(
-    LOGGED_IN_USER_DATA.email,
-    LOGGED_IN_USER_DATA.password,
-  )
+  await accountPage.userAuthentication(email, password)
 })
 
 test('C2132536 Verify Checkout order overview', async ({

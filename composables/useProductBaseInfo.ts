@@ -1,5 +1,6 @@
 import {
   type Product,
+  getAttributeValueTuples,
   getFirstAttributeValue,
   getProductAndSiblingsColors,
 } from '@scayle/storefront-nuxt'
@@ -96,7 +97,9 @@ export function useProductBaseInfo(
   const alt = computed(() => {
     return t('product_image.alt', {
       productName: name.value,
-      colors: formatColors(colors.value),
+      colors: formatColors(
+        getAttributeValueTuples(product.value?.attributes, 'color'),
+      ),
       brand: brand.value,
     })
   })

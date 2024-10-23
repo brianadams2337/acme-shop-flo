@@ -614,9 +614,7 @@ describe('useProductBaseInfo', () => {
       const product = productFactory.build()
       const { alt } = useProductBaseInfo(product)
 
-      expect(alt.value).toBe(
-        'product_image.alt-Brand Name-Test Product-Weiß & Weiß',
-      )
+      expect(alt.value).toBe('product_image.alt-Brand Name-Test Product-Weiß')
     })
   })
 

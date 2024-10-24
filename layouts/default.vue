@@ -12,7 +12,7 @@
       class="translate-y-0 transition-transform duration-300 ease-in-out"
       :class="{ 'lg:translate-y-[-3.25rem]': !isPromotionBannerShown }"
     >
-      <HeaderMetaBar />
+      <HeaderTopBar />
       <AppHeader />
       <MobileSidebar />
       <div class="mt-8 grow">
@@ -45,7 +45,7 @@ import {
   useUserItemsTrackingWatcher,
   useCustomerDataChangeWatcher,
 } from '~/composables'
-import HeaderMetaBar from '~/components/layout/headers/HeaderMetaBar.vue'
+import HeaderTopBar from '~/components/layout/headers/HeaderTopBar.vue'
 import AppHeader from '~/components/layout/headers/AppHeader.vue'
 import MobileSidebar from '~/components/layout/navigation/MobileSidebar.vue'
 import CountryDetection, {

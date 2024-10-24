@@ -12,14 +12,14 @@
         data-testid="shopping-promise-invoice"
       >
         <IconInvoice class="size-4 md:size-6" />
-        {{ $t('promises.pay_with_invoice') }}
+        {{ $t('promises.flexible_payment') }}
       </p>
       <p
         class="inline-flex items-center gap-2 text-xs md:gap-4"
         data-testid="shopping-promise-shipping"
       >
         <IconDelivery class="size-4 md:size-6" />
-        {{ $t('promises.free_return_and_shipping') }}
+        {{ $t('promises.free_shipping', { currency: currentShop.currency }) }}
       </p>
       <p
         class="inline-flex items-center gap-2 text-xs md:gap-4"
@@ -31,3 +31,8 @@
     </div>
   </div>
 </template>
+<script setup lang="ts">
+import { useCurrentShop } from '#storefront/composables'
+
+const currentShop = useCurrentShop()
+</script>

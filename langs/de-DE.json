@@ -118,9 +118,9 @@
     "page_title": "Suchergebnisse fürh \"{term}\""
   },
   "promises": {
-    "pay_with_invoice": "Per Rechnung bezahlen",
-    "free_return_and_shipping": "Kostenloser Versand und Rückversand",
-    "return_policy": "100 Tage Rückgaberecht"
+    "flexible_payment": "Flexible Zahlungsmöglichkeiten",
+    "free_shipping": "Kostenloser Versand bei Bestellungen über 50 {currency}",
+    "return_policy": "50 Tage kostenlose Rückgabegarantie"
   },
   "banner": {
     "close": "Schließen"

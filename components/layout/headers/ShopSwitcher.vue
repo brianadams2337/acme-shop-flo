@@ -6,15 +6,20 @@
     class="shrink-0"
   >
     <SFListboxButton
-      class="h-full"
+      class="h-full gap-1.5 px-2 -outline-offset-4"
       :list-name="list"
       data-testid="language-listbox"
     >
-      <div class="text-xs uppercase text-gray-350">
+      <IconNewGlobe class="size-3.5" />
+      <div class="text-sm text-white">
         <span v-if="selectedCountry">{{ selectedCountry }}</span>
         <span v-if="selectedCountry" class="mx-1">|</span>
-        <span class="opacity-60">{{ selectedLanguage }}</span>
+        <span>{{ selectedLanguage }}</span>
       </div>
+      <IconChevronDown
+        class="size-3.5 text-white transition-all"
+        :class="{ 'rotate-180': isOpen }"
+      />
     </SFListboxButton>
     <div class="relative">
       <Transition

@@ -17,12 +17,17 @@
 <script lang="ts" setup>
 import { computed } from 'vue'
 import { useI18n } from '#i18n'
+import { useCurrentShop } from '#storefront/composables'
 
 const { t } = useI18n()
+const currentShop = useCurrentShop()
 
 const sellingPoints = computed(() => [
-  { icon: 'IconInvoice', text: t('promises.pay_with_invoice') },
-  { icon: 'IconDelivery', text: t('promises.free_return_and_shipping') },
+  { icon: 'IconInvoice', text: t('promises.flexible_payment') },
+  {
+    icon: 'IconDelivery',
+    text: t('promises.free_shipping', { currency: currentShop.value.currency }),
+  },
   { icon: 'IconReturn', text: t('promises.return_policy') },
 ])
 </script>

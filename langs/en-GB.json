@@ -118,9 +118,9 @@
     "page_title": "Search results for  \"{term}\""
   },
   "promises": {
-    "pay_with_invoice": "Pay with invoice",
-    "free_return_and_shipping": "Free return and shipping",
-    "return_policy": "100 days free return policy"
+    "flexible_payment": "Flexible payment options",
+    "free_shipping": "Free delivery on orders over 50 {currency}",
+    "return_policy": "50 days free return policy"
   },
   "banner": {
     "close": "Close"

@@ -1,5 +1,5 @@
 import { vi } from 'vitest'
-
+import '@testing-library/jest-dom/vitest'
 /**
  * This file is used for global mocks that should be executed before every test file.
  * Add mocks that are needed in multiple places to avoid code duplication.

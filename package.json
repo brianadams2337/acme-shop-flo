@@ -49,6 +49,8 @@
     "@scayle/eslint-config-storefront": "4.3.2",
     "@scayle/eslint-plugin-vue-composable": "0.2.1",
     "@scayle/prettier-config-storefront": "2.0.2",
+    "@testing-library/jest-dom": "6.6.2",
+    "@testing-library/vue": "8.1.0",
     "@types/color": "3.0.6",
     "@types/node": "20.17.0",
     "@typescript-eslint/scope-manager": "8.11.0",

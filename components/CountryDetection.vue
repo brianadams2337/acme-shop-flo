@@ -1,7 +1,7 @@
 <!-- NOTE: Related to @scayle/storefront-country-detection -->
 <template>
   <SFFadeInTransition>
-    <SFModal v-model:visible="modalOpen">
+    <SFModal v-model:visible="modalOpen" data-testid="country-detection-dialog">
       <div class="mt-8 flex flex-col items-center gap-4">
         <div>
           {{ $t('country_selection.prompt', { country: suggestedCountry }) }}
@@ -123,8 +123,12 @@ const suggestedCountry = ref<string>()
 const { suggestedShops, detectedRegion, suggestionActive } =
   useCountryDetection({ hasPromptedUser })
 
-whenever(suggestionActive, () => {
-  suggestedCountry.value = regionNames.of(detectedRegion.value)
-  modalOpen.value = true
-})
+whenever(
+  suggestionActive,
+  () => {
+    suggestedCountry.value = regionNames.of(detectedRegion.value)
+    modalOpen.value = true
+  },
+  { immediate: true, once: true },
+)
 </script>

@@ -233,3 +233,25 @@ test('C2132074: Verify PLP Product siblings', async ({
   const pageUrl = page.url()
   expect(pageUrl).toContain(productSiblingPath)
 })
+
+test('C2141756: Verify PLP page title', async ({ breadcrumb, page }) => {
+  await breadcrumb.breadcrumbCategoryLvl0.waitFor()
+  const category = await breadcrumb.breadcrumbCategoryLvl0.textContent()
+  const subCategory = await breadcrumb.breadcrumbCategoryLvl1.textContent()
+  const breadrumbActive =
+    await breadcrumb.breadcrumbCategoryActive.textContent()
+  const productCounter = await breadcrumb.productCounter.textContent()
+
+  const activeCategory =
+    breadrumbActive !== null
+      ? breadrumbActive
+          .replace(new RegExp(productCounter as string, 'g'), '')
+          .trim()
+      : ''
+
+  const pageTitle = await page.title()
+
+  expect(pageTitle).toContain(
+    `${category} - ${subCategory} - ${activeCategory}`,
+  )
+})

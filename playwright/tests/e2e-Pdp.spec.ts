@@ -141,3 +141,15 @@ test('C2141599: Verify PDP Subscription service', async ({
     await expect(productDetailPage.addToBasketButtonSubscribe).not.toBeVisible()
   })
 })
+
+test('C2141757: Verify PDP page title', async ({
+  productDetailPage,
+  page,
+  baseURL,
+}) => {
+  await productDetailPage.visitPDP(PDP_E2E.regularProductUrl, baseURL as string)
+  await productDetailPage.productName.waitFor()
+  const productName = await productDetailPage.productName.textContent()
+  const pageTitle = await page.title()
+  expect(pageTitle).toContain(productName)
+})

@@ -1,10 +1,9 @@
 import { expect, test } from '../fixtures/fixtures'
-
+import { getUserForBrowser } from '../support/utils'
 import {
   BASKET_TEST_DATA,
   E2E_BASKET_URL,
   HOMEPAGE_PATH_DE,
-  LOGGED_IN_USER_DATA,
 } from '../support/constants'
 
 test('C2132186 C2132187 Verify Basket empty state as a guest and logged in user', async ({
@@ -14,7 +13,7 @@ test('C2132186 C2132187 Verify Basket empty state as a guest and logged in user'
   signinPage,
   page,
   countryDetector,
-}) => {
+}, testInfo) => {
   await test.step('Verify guest user', async () => {
     await homePage.visitPage()
     await countryDetector.closeModal()
@@ -41,13 +40,11 @@ test('C2132186 C2132187 Verify Basket empty state as a guest and logged in user'
     }).toPass()
 
     await expect(async () => {
-      await signinPage.fillLoginData(
-        LOGGED_IN_USER_DATA.email,
-        LOGGED_IN_USER_DATA.password,
-      )
+      const projectName = testInfo.project.name
+      const { email, password } = getUserForBrowser(projectName)
+      await signinPage.fillLoginData(email, password)
       await signinPage.clickLoginButton()
       await page.waitForURL(HOMEPAGE_PATH_DE)
-
       await header.headerBasketButton.click()
       await basketPage.assertContinueButton()
       await expect(basketPage.loginButton).not.toBeVisible()
@@ -61,7 +58,7 @@ test('C2132198 Verify add to Basket', async ({
   basketPage,
   countryDetector,
   signinPage,
-}) => {
+}, testInfo) => {
   await test.step('Add product to Basket', async () => {
     await expect(async () => {
       await homePage.visitPage()
@@ -86,10 +83,9 @@ test('C2132198 Verify add to Basket', async ({
 
   await test.step('Log in and assert the product is still in Basket', async () => {
     await header.clickLoginHeaderButton()
-    await signinPage.fillLoginData(
-      LOGGED_IN_USER_DATA.email,
-      LOGGED_IN_USER_DATA.password,
-    )
+    const projectName = testInfo.project.name
+    const { email, password } = getUserForBrowser(projectName)
+    await signinPage.fillLoginData(email, password)
     await header.visitBasketPage()
 
     await expect(async () => {

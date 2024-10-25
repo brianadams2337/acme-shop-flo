@@ -17,10 +17,12 @@ test('C2139186: E2E from Home to Checkout - happy path', async ({
   mobileNavigation,
   search,
   breadcrumb,
+  countryDetector,
 }) => {
   await test.step('Search for a category and navigate to PLP', async () => {
     await homePage.visitPage()
     await page.waitForLoadState('networkidle')
+    await countryDetector.closeModal()
     await expect(async () => {
       if (isMobile(page)) {
         await mobileNavigation.startTypingMobileSearch(

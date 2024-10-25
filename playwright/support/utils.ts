@@ -8,19 +8,18 @@ export const isMobile = (page: Page) => {
 }
 
 export async function getAllLinksFromPage(page: Page) {
-  const link = page.getByRole('link')
-  const allLinks = await link.all()
-  const allLinkHrefs: (string | null)[] = await Promise.all(
+  const links = page.locator('a')
+
+  const allLinks = await links.all()
+  const allLinkHrefs = await Promise.all(
     allLinks.map((link) => link.getAttribute('href')),
   )
-
   return allLinkHrefs.reduce((links, link) => {
-    expect(link, 'link has no a proper href').not.toBeFalsy()
+    expect.soft(link, 'link is missing href attribute').not.toBeFalsy()
 
     if (link && !link?.startsWith('mailto:') && !link?.startsWith('#')) {
       links.add(new URL(link, page.url()).href)
     }
-
     return links
   }, new Set<string>())
 }

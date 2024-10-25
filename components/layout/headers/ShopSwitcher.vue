@@ -1,11 +1,15 @@
 <template>
   <SFListbox
-    v-slot="{ isOpen, list }"
+    v-slot="{ isOpen, list, close }"
     :value="currentShop?.path"
     name="language-switch"
     class="shrink-0"
   >
     <SFListboxButton
+      ref="button"
+      :aria-label="
+        $t('shop_selector.aria_label', { selectedCountry, selectedLanguage })
+      "
       class="h-full gap-1.5 px-2 -outline-offset-4"
       :list-name="list"
       data-testid="language-listbox"
@@ -29,19 +33,25 @@
       >
         <SFListboxOptions
           v-if="isOpen"
-          class="absolute right-0 top-0 z-60 max-h-32 w-32 overflow-y-auto bg-white shadow-md"
+          class="absolute right-0 top-0 z-60 max-h-32 overflow-y-auto bg-white shadow-md"
+          @close="
+            (direction) => {
+              close()
+              focus(direction)
+            }
+          "
         >
           <SFListboxOption
             v-for="{ shopId, path, locale } in availableShops"
             :key="shopId"
-            class="text-xs"
+            class="px-2 py-1 text-xs"
             :list-name="list"
           >
             <SFButton
               :key="`${locale}-locale`"
               type="raw"
               is-full-width
-              class="!justify-start rounded-none px-4 py-2 text-xs uppercase hover:bg-gray-200"
+              class="!justify-start rounded-xl px-4 py-2 text-sm hover:bg-gray-200"
               :class="{ 'font-bold': locale === currentShop?.locale }"
               @click="changeShop(path)"
             >
@@ -55,7 +65,8 @@
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue'
+import { useTemplateRef, computed } from 'vue'
+import { tabbable } from 'tabbable'
 import { useSwitchLocalePath } from '#i18n'
 import { useTrackingEvents } from '~/composables/useTrackingEvents'
 import { useAvailableShops, useCurrentShop } from '#storefront/composables'
@@ -103,12 +114,40 @@ const selectedCountry = computed(() => {
   return region ? regionTranslator.value?.of(region) : null
 })
 
-const getShopName = (locale: string) => {
-  const [languageCode] = locale.split('-')
+const buttonRef = useTemplateRef('button')
 
-  return new Intl.DisplayNames([locale], {
+const focus = (direction: 'next' | 'previous' | undefined) => {
+  setTimeout(() => {
+    const button: HTMLButtonElement = buttonRef.value?.$el
+    const tabbables = tabbable(document.body).filter(
+      (el) => el === button || !button.parentNode?.contains(el),
+    )
+    if (!button) {
+      return
+    }
+    const index = tabbables.indexOf(button)
+
+    if (direction === undefined || index === -1) {
+      button.focus()
+    } else if (direction === 'next' && tabbables[index + 1]) {
+      tabbables[index + 1].focus()
+    } else if (direction === 'previous' && tabbables[index - 1]) {
+      tabbables[index - 1].focus()
+    }
+  })
+}
+
+const getShopName = (locale: string) => {
+  const [languageCode, regionCode] = locale.split('-')
+
+  const language = new Intl.DisplayNames([locale], {
     type: 'language',
   }).of(languageCode)
+  const region = new Intl.DisplayNames([locale], {
+    type: 'region',
+  }).of(regionCode)
+
+  return `${region} | ${language}`
 }
 
 const changeShop = (value?: string) => {

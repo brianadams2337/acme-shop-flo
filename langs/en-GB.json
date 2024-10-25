@@ -51,6 +51,9 @@
     "hide_my_promotions": "Hide my promotions",
     "not_available": "No promotion available"
   },
+  "shop_selector": {
+    "aria_label": "Change shop, current shop: {selectedCountry}, {selectedLanguage}"
+  },
   "validation": {
     "email": "The {field} field must be a valid email",
     "password": "The {field} field must have an uppercase letter, a special character, a number and no spaces",

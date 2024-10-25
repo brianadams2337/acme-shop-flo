@@ -111,6 +111,7 @@
     "@vueuse/components": "11.1.0",
     "@vueuse/core": "11.1.0",
     "@vueuse/gesture": "2.0.0",
+    "@vueuse/integrations": "11.1.0",
     "@vueuse/nuxt": "11.1.0",
     "axios": "1.7.7",
     "cf-content-types-generator": "2.15.5",
@@ -121,6 +122,7 @@
     "contentful": "11.2.0",
     "contentful-export": "7.19.158",
     "dotenv": "16.4.5",
+    "focus-trap": "7.6.0",
     "global": "4.4.0",
     "globby": "14.0.2",
     "knitwork": "1.1.0",
@@ -131,6 +133,7 @@
     "redis": "4.7.0",
     "schema-dts": "1.1.2",
     "storyblok-js-client": "6.10.1",
+    "tabbable": "6.2.0",
     "ufo": "1.5.4",
     "vue": "3.5.12",
     "vue-slider-component": "4.1.0-beta.7"

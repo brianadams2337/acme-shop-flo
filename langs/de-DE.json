@@ -51,6 +51,9 @@
     "hide_my_promotions": "Verstecke meine Angebote",
     "not_available": "Keine Angebote verfügbar"
   },
+  "shop_selector": {
+    "aria_label": "Shop ändern, aktueller Shop: {selectedCountry}, {selectedLanguage}"
+  },
   "validation": {
     "email": "Das Feld {field} muss eine gültige E-Mail Adresse sein",
     "password": "Das {field} Feld erfordert einen Großbuchstaben, ein Sonderzeichen, eine Zahl und keine Leerzeichen.",

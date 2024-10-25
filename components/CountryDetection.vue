@@ -40,7 +40,7 @@
 
 <script lang="ts" setup>
 import { computed, ref } from 'vue'
-import { useSessionStorage, whenever } from '@vueuse/core'
+import { whenever } from '@vueuse/core'
 import { useNuxtApp } from '#app'
 import { useCurrentShop } from '#storefront/composables'
 import {
@@ -52,17 +52,6 @@ import { useCountryDetection } from '#storefront-country-detection/useCountryDet
 
 const currentShop = useCurrentShop()
 const { $i18n } = useNuxtApp()
-
-const hasPromptedUser = useSessionStorage<boolean>(
-  'hasPromptedCountrySwitch',
-  null,
-  {
-    serializer: {
-      read: (value) => (value ? JSON.parse(value) : false),
-      write: (value) => JSON.stringify(value),
-    },
-  },
-)
 
 export interface ShopInfo {
   path?: string
@@ -76,13 +65,13 @@ const emit = defineEmits<{
 }>()
 const switchToShop = function (shop: ShopInfo) {
   modalOpen.value = false
-  hasPromptedUser.value = true
+  markUserAsPrompted()
   emit('switchShop', shop)
 }
 
 const stayInShop = function () {
   modalOpen.value = false
-  hasPromptedUser.value = true
+  markUserAsPrompted()
 }
 
 // translations
@@ -120,8 +109,8 @@ const getShopCountryName = (shop: ShopInfo, includeLanguage: boolean) => {
 }
 
 const suggestedCountry = ref<string>()
-const { suggestedShops, detectedRegion, suggestionActive } =
-  useCountryDetection({ hasPromptedUser })
+const { suggestedShops, detectedRegion, suggestionActive, markUserAsPrompted } =
+  useCountryDetection({})
 
 whenever(
   suggestionActive,

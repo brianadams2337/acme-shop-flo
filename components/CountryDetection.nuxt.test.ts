@@ -37,6 +37,7 @@ vi.mock('#storefront-country-detection/useCountryDetection', () => ({
     ]),
     detectedRegion: ref('US'),
     suggestionActive,
+    markUserAsPrompted: vi.fn(),
   }),
 }))
 

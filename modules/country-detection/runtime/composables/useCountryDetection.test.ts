@@ -42,7 +42,6 @@ describe('useCountryDetection', () => {
   })
   it('suggestionActive should be true for not logged in user with different locale that has never been prompted', async () => {
     const wrapper = getTestComponentWrapper({
-      hasPromptedUser: () => false,
       getDetectedCountryCode: () => 'US',
     })
     await flushPromises()
@@ -51,7 +50,6 @@ describe('useCountryDetection', () => {
   it('suggestionActive should be false for logged in user with different locale that has never been prompted', async () => {
     isLoggedIn = true
     const wrapper = getTestComponentWrapper({
-      hasPromptedUser: () => false,
       getDetectedCountryCode: () => 'US',
     })
     await flushPromises()
@@ -59,15 +57,14 @@ describe('useCountryDetection', () => {
   })
   it('suggestionActive should be false for not logged in user with different locale that has been prompted before', async () => {
     const wrapper = getTestComponentWrapper({
-      hasPromptedUser: () => true,
       getDetectedCountryCode: () => 'US',
     })
+    wrapper.vm.markUserAsPrompted()
     await flushPromises()
     expect(wrapper.vm.suggestionActive).toBe(false)
   })
   it('suggestionActive should be false for not logged in user with same locale that has never prompted before', async () => {
     const wrapper = getTestComponentWrapper({
-      hasPromptedUser: () => false,
       getDetectedCountryCode: () => 'DE',
     })
     await flushPromises()
@@ -77,7 +74,6 @@ describe('useCountryDetection', () => {
   it('should respect shouldPromptUser overwrite', async () => {
     const shouldPromptUser = vi.fn().mockReturnValue(false)
     const wrapper = getTestComponentWrapper({
-      hasPromptedUser: () => false,
       getDetectedCountryCode: () => 'US',
       shouldPromptUser,
     })
@@ -87,7 +83,6 @@ describe('useCountryDetection', () => {
   })
   it('should return detected region', async () => {
     const wrapper = getTestComponentWrapper({
-      hasPromptedUser: () => false,
       getDetectedCountryCode: () => 'US',
     })
     await flushPromises()
@@ -95,7 +90,6 @@ describe('useCountryDetection', () => {
   })
   it('should return suggested shops', async () => {
     const wrapper = getTestComponentWrapper({
-      hasPromptedUser: () => false,
       getDetectedCountryCode: () => 'US',
     })
     await flushPromises()

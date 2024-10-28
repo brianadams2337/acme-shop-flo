@@ -1,5 +1,5 @@
 <template>
-  <ul id="scayle-listbox-options" ref="target" role="menu">
+  <ul id="scayle-listbox-options" role="menu">
     <slot />
   </ul>
 </template>

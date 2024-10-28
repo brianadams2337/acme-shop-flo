@@ -1,3 +1,4 @@
+export * from './useDropdownKeyboardBehavior'
 export * from './useListbox'
 export * from './useItemsSlider'
 export * from './useSlideIn'

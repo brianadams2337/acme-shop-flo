@@ -35,6 +35,7 @@
     >
       <div
         v-show="isDropdownListVisible"
+        ref="options"
         v-popover="isDropdownListVisible"
         class="absolute m-0 w-full rounded-md bg-white p-2 shadow-secondary ring-1 ring-gray-300 focus:outline-none max-md:backdrop:bg-primary/50"
         :class="[
@@ -79,11 +80,12 @@
 </template>
 
 <script setup lang="ts" generic="T">
-import { defineModel, ref, watch } from 'vue'
-import { onClickOutside, useEventListener } from '@vueuse/core'
+import { defineModel, ref, useTemplateRef, watch } from 'vue'
+import { useEventListener } from '@vueuse/core'
 import { vPopover } from '../../directives/popover'
 import { useDefaultBreakpoints } from '~/composables'
 import { SFButton } from '#storefront-ui/components'
+import { useDropdownKeyboardBehavior } from '#storefront-ui'
 
 type Props = {
   items: NonNullable<T>[]
@@ -113,14 +115,22 @@ const selectItem = (item: T) => {
 
 const dropdownContainer = ref()
 
-onClickOutside(dropdownContainer, () => {
-  isDropdownListVisible.value = false
-})
-
 const button = ref()
 const itemsContainerStyle = ref()
 const { smaller } = useDefaultBreakpoints()
 const isMobile = smaller('md')
+
+const buttonRef = useTemplateRef('button')
+const rootRef = useTemplateRef('dropdownContainer')
+const optionsRef = useTemplateRef('options')
+useDropdownKeyboardBehavior(
+  { rootRef, buttonRef, optionsRef },
+  {
+    isOpen: isDropdownListVisible,
+    close: () => (isDropdownListVisible.value = false),
+    open: () => (isDropdownListVisible.value = true),
+  },
+)
 
 const calculateDropdown = () => {
   if (!button.value) {

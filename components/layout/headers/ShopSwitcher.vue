@@ -12,9 +12,7 @@
       >
         <IconNewGlobe class="size-3.5" />
         <div class="text-sm text-white">
-          <span v-if="selectedCountry">{{ selectedCountry }}</span>
-          <span v-if="selectedCountry" class="mx-1">|</span>
-          <span>{{ selectedLanguage }}</span>
+          {{ getShopName(currentShop.locale, multipleShopsForCountry) }}
         </div>
         <IconChevronDown
           class="size-3.5 text-white transition-all"
@@ -25,24 +23,21 @@
     <template #options="{ isOpen, list }">
       <SFListboxOptions
         v-if="isOpen"
-        class="absolute right-0 top-0 z-60 max-h-32 overflow-y-auto bg-white shadow-md"
+        class="absolute right-0 top-0 z-60 flex max-h-64 flex-col gap-1 overflow-y-auto rounded-[10px] bg-white p-2 shadow-md"
       >
         <SFListboxOption
           v-for="{ shopId, path, locale } in availableShops"
           :key="shopId"
-          class="px-2 py-1 text-xs"
           :list-name="list"
         >
-          <SFButton
+          <ShopSwitcherItem
             :key="`${locale}-locale`"
-            type="raw"
-            is-full-width
-            class="!justify-start rounded-xl px-4 py-2 text-sm hover:bg-gray-200"
-            :class="{ 'font-bold': locale === currentShop?.locale }"
+            :locale="locale"
+            :is-current="locale === currentShop?.locale"
+            include-flag
+            :include-language="multipleShopsForCountry"
             @click="changeShop(path)"
-          >
-            {{ getShopName(locale) }}
-          </SFButton>
+          />
         </SFListboxOption>
       </SFListboxOptions>
     </template>
@@ -51,16 +46,17 @@
 
 <script setup lang="ts">
 import { computed } from 'vue'
+import ShopSwitcherItem from './ShopSwitcherItem.vue'
 import { useSwitchLocalePath } from '#i18n'
 import { useTrackingEvents } from '~/composables/useTrackingEvents'
 import { useAvailableShops, useCurrentShop } from '#storefront/composables'
 import {
-  SFButton,
   SFListbox,
   SFListboxOption,
   SFListboxOptions,
   SFListboxButton,
 } from '#storefront-ui/components'
+import { getShopName, hasMultipleShopsForCountry } from '~/utils'
 
 const currentShop = useCurrentShop()
 const availableShops = useAvailableShops()
@@ -98,18 +94,9 @@ const selectedCountry = computed(() => {
   return region ? regionTranslator.value?.of(region) : null
 })
 
-const getShopName = (locale: string) => {
-  const [languageCode, regionCode] = locale.split('-')
-
-  const language = new Intl.DisplayNames([locale], {
-    type: 'language',
-  }).of(languageCode)
-  const region = new Intl.DisplayNames([locale], {
-    type: 'region',
-  }).of(regionCode)
-
-  return `${region} | ${language}`
-}
+const multipleShopsForCountry = computed(() =>
+  hasMultipleShopsForCountry(availableShops.value),
+)
 
 const changeShop = (value?: string) => {
   if (!value) {

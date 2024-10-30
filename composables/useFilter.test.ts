@@ -98,126 +98,65 @@ describe('useFilter', () => {
     vi.clearAllMocks()
   })
 
-  it('should have correct filterable values', () => {
-    const { availableFilters } = useFilter()
+  describe('onSlideInClose', () => {
+    it('should show toast message on filter applied and modal closed', async () => {
+      mocks.useAppliedFilters.appliedFilter.value = {
+        attributes: [
+          { key: 'newAttribute', values: [2, 3, 4], type: 'attributes' },
+        ],
+      }
 
-    expect(availableFilters.value).toHaveLength(3)
-    expect(availableFilters.value).toStrictEqual([
-      {
-        id: 1,
-        name: 'Brand',
-        slug: 'brand',
-        type: 'attributes',
-        values: [
-          {
-            id: 2,
-            name: 'value',
-            productCount: 10,
-            value: 123,
-          },
-        ],
-      },
-      {
-        id: 12,
-        name: 'Sale',
-        slug: 'sale',
-        type: 'boolean',
-        values: [
-          {
-            name: true,
-            productCount: 12,
-          },
-          {
-            name: false,
-            productCount: 2,
-          },
-        ],
-      },
-      {
-        id: 3,
-        name: 'Prices',
-        slug: 'prices',
-        type: 'range',
-        values: [
-          {
-            max: 300,
-            min: 10,
-            productCount: 30,
-          },
-        ],
-      },
-    ])
-  })
+      const { applyAttributeFilter, onSlideInClose } = useFilter()
+      await applyAttributeFilter('newAttribute', 1)
+      onSlideInClose()
+      expect(mocks.useToast.show).toBeCalledWith(
+        'filter.updated_notification_filter',
+        { type: 'SUCCESS' },
+      )
+    })
+    it('should show toast message on sort applied and modal closed', async () => {
+      mocks.route.query = {
+        sort: 'price',
+      }
 
-  it('should filter our boolean filter without products', () => {
-    mocks.useFilters.data.value.filters = [
-      {
-        id: 12,
-        slug: 'sale',
-        name: 'Sale',
-        values: [
-          {
-            name: true,
-            productCount: 0,
-          },
-          {
-            name: false,
-            productCount: 2,
-          },
-        ],
-        type: 'boolean',
-      },
-      {
-        id: 12,
-        slug: 'otherBoolean',
-        name: 'other',
-        values: [
-          {
-            name: true,
-            productCount: 0,
-          },
-          {
-            name: false,
-            productCount: 2,
-          },
-        ],
-        type: 'boolean',
-      },
-      {
-        id: 12,
-        slug: 'existingBoolean',
-        name: 'Existing',
-        values: [
-          {
-            name: true,
-            productCount: 12,
-          },
-          {
-            name: false,
-            productCount: 2,
-          },
-        ],
-        type: 'boolean',
-      },
-    ]
+      const { onSlideInClose } = useFilter()
+      mocks.route.query = {
+        sort: 'new',
+      }
+      onSlideInClose()
+      expect(mocks.useToast.show).toBeCalledWith(
+        'filter.updated_notification_sort',
+        { type: 'SUCCESS' },
+      )
+    })
 
-    const { availableFilters } = useFilter()
-    expect(availableFilters.value).toHaveLength(1)
-    expect(availableFilters.value[0]).toStrictEqual({
-      id: 12,
-      name: 'Existing',
-      slug: 'existingBoolean',
-      type: 'boolean',
-      values: [
-        {
-          name: true,
-          productCount: 12,
-        },
-        {
-          name: false,
-          productCount: 2,
-        },
-      ],
+    it('should show toast message on filter and sort applied and modal closed', async () => {
+      mocks.useAppliedFilters.appliedFilter.value = {
+        attributes: [
+          { key: 'newAttribute', values: [2, 3, 4], type: 'attributes' },
+        ],
+      }
+      mocks.route.query = {
+        sort: 'price',
+      }
+
+      const { applyAttributeFilter, onSlideInClose } = useFilter()
+      mocks.route.query = {
+        ...mocks.route.query,
+        sort: 'new',
+      }
+      await applyAttributeFilter('newAttribute', 1)
+      onSlideInClose()
+      expect(mocks.useToast.show).toBeCalledWith(
+        'filter.updated_notification_all',
+        { type: 'SUCCESS' },
+      )
+    })
+
+    it('should not show toast message on modal closed', async () => {
+      const { onSlideInClose } = useFilter()
+      onSlideInClose()
+      expect(mocks.useToast.show).not.toBeCalled()
     })
   })
 
@@ -295,66 +234,6 @@ describe('useFilter', () => {
       const { applyAttributeFilter } = useFilter()
       applyAttributeFilter('newAttribute', 2)
       expect(mocks.router.push).toBeCalledWith({ query: {} })
-    })
-
-    it('should show toast message on filter applied and modal closed', async () => {
-      mocks.useAppliedFilters.appliedFilter.value = {
-        attributes: [
-          { key: 'newAttribute', values: [2, 3, 4], type: 'attributes' },
-        ],
-      }
-
-      const { applyAttributeFilter, onSlideInClose } = useFilter()
-      await applyAttributeFilter('newAttribute', 1)
-      onSlideInClose()
-      expect(mocks.useToast.show).toBeCalledWith(
-        'filter.updated_notification_filter',
-        { type: 'SUCCESS' },
-      )
-    })
-    it('should show toast message on sort applied and modal closed', async () => {
-      mocks.route.query = {
-        sort: 'price',
-      }
-
-      const { onSlideInClose } = useFilter()
-      mocks.route.query = {
-        sort: 'new',
-      }
-      onSlideInClose()
-      expect(mocks.useToast.show).toBeCalledWith(
-        'filter.updated_notification_sort',
-        { type: 'SUCCESS' },
-      )
-    })
-
-    it('should show toast message on filter and sort applied and modal closed', async () => {
-      mocks.useAppliedFilters.appliedFilter.value = {
-        attributes: [
-          { key: 'newAttribute', values: [2, 3, 4], type: 'attributes' },
-        ],
-      }
-      mocks.route.query = {
-        sort: 'price',
-      }
-
-      const { applyAttributeFilter, onSlideInClose } = useFilter()
-      mocks.route.query = {
-        ...mocks.route.query,
-        sort: 'new',
-      }
-      await applyAttributeFilter('newAttribute', 1)
-      onSlideInClose()
-      expect(mocks.useToast.show).toBeCalledWith(
-        'filter.updated_notification_all',
-        { type: 'SUCCESS' },
-      )
-    })
-
-    it('should not show toast message on modal closed', async () => {
-      const { onSlideInClose } = useFilter()
-      onSlideInClose()
-      expect(mocks.useToast.show).not.toBeCalled()
     })
 
     it('should reset page param when attribute filter is applied', () => {

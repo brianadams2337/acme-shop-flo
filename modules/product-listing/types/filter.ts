@@ -55,3 +55,5 @@ export interface RangeFilterItemWithValues {
   values: RangeFilterValue
   type: 'range'
 }
+
+export type RangeTuple = [start: number, end: number]

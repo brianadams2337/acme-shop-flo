@@ -114,8 +114,8 @@ import FilterGroup from './FilterGroup.vue'
 import type {
   BooleanFilterItemWithValues,
   FilterItemWithValues,
-} from '~/types/filter'
-import type { RangeTuple } from '#storefront-ui/components/form/PriceRangeSlider.vue'
+  RangeTuple,
+} from '#storefront-product-listing'
 import { ProductColor } from '~/constants/product'
 import {
   SFCheckbox,

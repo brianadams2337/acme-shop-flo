@@ -1,5 +1,7 @@
 import { addImportsDir, createResolver, defineNuxtModule } from '@nuxt/kit'
 
+export * from './types'
+
 type ModuleOptions = {
   autoImports?: boolean
 }
@@ -17,9 +19,14 @@ export default defineNuxtModule<ModuleOptions>({
   setup(options, nuxt) {
     const { resolve } = createResolver(import.meta.url)
 
-    nuxt.options.alias['#storefront-product-listing'] = resolve(
+    nuxt.options.alias['#storefront-product-listing/composables'] = resolve(
       './runtime/composables',
     )
+
+    nuxt.options.alias['#storefront-product-listing/utils'] =
+      resolve('./runtime/utils')
+
+    nuxt.options.alias['#storefront-product-listing'] = resolve('./')
 
     if (options.autoImports) {
       addImportsDir(resolve('./runtime/composables'))

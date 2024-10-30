@@ -19,7 +19,7 @@
     <template #slide-in-actions>
       <FilterActions
         :are-filters-cleared="areFiltersCleared"
-        :unfiltered-count="unfilteredCount ?? 0"
+        :unfiltered-count="unfilteredCount"
         @reset="resetFilters"
       />
     </template>

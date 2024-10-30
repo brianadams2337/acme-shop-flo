@@ -1,1 +1,1 @@
-// Storefront listing composables
+export * from './useProductListFilter'

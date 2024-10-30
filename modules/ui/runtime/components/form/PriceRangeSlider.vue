@@ -90,8 +90,7 @@ import {
   roundUp,
 } from '#storefront-ui/helpers/utils'
 import { ClientOnly } from '#components'
-
-export type RangeTuple = [start: number, end: number]
+import type { RangeTuple } from '#storefront-product-listing'
 
 type Props = {
   min?: number

@@ -49,7 +49,7 @@
 import { computed } from 'vue'
 import Color from 'color'
 import { ProductColor } from '~/constants/product'
-import type { AttributesFilterValue } from '~/types/filter'
+import type { AttributesFilterValue } from '#storefront-product-listing'
 
 type Props = {
   color: AttributesFilterValue

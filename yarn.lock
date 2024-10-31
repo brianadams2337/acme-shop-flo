@@ -4503,13 +4503,13 @@
     upath "^2.0.1"
     vue-demi "*"
 
-"@vueuse/integrations@11.1.0":
-  version "11.1.0"
-  resolved "https://registry.yarnpkg.com/@vueuse/integrations/-/integrations-11.1.0.tgz#1e2c1d43b2d389fc4b4d0a7ee08091665698b9ad"
-  integrity sha512-O2ZgrAGPy0qAjpoI2YR3egNgyEqwG85fxfwmA9BshRIGjV4G6yu6CfOPpMHAOoCD+UfsIl7Vb1bXJ6ifrHYDDA==
+"@vueuse/integrations@11.2.0":
+  version "11.2.0"
+  resolved "https://registry.yarnpkg.com/@vueuse/integrations/-/integrations-11.2.0.tgz#c4c2dd82260265697e0ec8d6356a7d2744acb896"
+  integrity sha512-zGXz3dsxNHKwiD9jPMvR3DAxQEOV6VWIEYTGVSB9PNpk4pTWR+pXrHz9gvXWcP2sTk3W2oqqS6KwWDdntUvNVA==
   dependencies:
-    "@vueuse/core" "11.1.0"
-    "@vueuse/shared" "11.1.0"
+    "@vueuse/core" "11.2.0"
+    "@vueuse/shared" "11.2.0"
     vue-demi ">=0.14.10"
 
 "@vueuse/metadata@11.1.0":

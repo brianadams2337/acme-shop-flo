@@ -27,8 +27,8 @@ test.describe('Test from Berlin against US shop', () => {
     page,
   }) => {
     await expect(async () => {
-      await countryDetector.switchShopButton.waitFor()
-      await countryDetector.switchShopButton.click()
+      await countryDetector.switchShopButton.first().waitFor()
+      await countryDetector.switchShopButton.first().click()
       await page.waitForLoadState('networkidle')
       const pageUrl = page.url()
       expect(pageUrl).toContain(HOMEPAGE_PATH_DE)

@@ -169,6 +169,9 @@ export default {
       ],
     },
     extend: {
+      borderRadius: {
+        10: '10px',
+      },
       height: {
         13: '52px',
       },

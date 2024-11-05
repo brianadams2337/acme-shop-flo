@@ -23,7 +23,7 @@
     <template #options="{ isOpen, list }">
       <SFListboxOptions
         v-if="isOpen"
-        class="absolute right-0 top-0 z-60 flex max-h-64 flex-col gap-1 overflow-y-auto rounded-[10px] bg-white p-2 shadow-md"
+        class="absolute right-0 top-0 z-60 flex max-h-64 flex-col gap-1 overflow-y-auto rounded-10 bg-white p-2 shadow-md"
       >
         <SFListboxOption
           v-for="{ shopId, path, locale } in availableShops"

@@ -9,7 +9,7 @@
         :class="{
           'py-3.5': isLarge,
           'rounded-md': radius == 'md',
-          'rounded-[10px]': radius == 'lg',
+          'rounded-10': radius == 'lg',
           'rounded-xl': radius == 'xl',
         }"
         @click="isDropdownListVisible = !isDropdownListVisible"
@@ -41,7 +41,7 @@
         :class="[
           {
             'rounded-t-md md:rounded-md': radius == 'md',
-            'rounded-t-[10px] md:rounded-[10px]': radius == 'lg',
+            'rounded-t-10 md:rounded-10': radius == 'lg',
             'rounded-t-xl md:rounded-xl': radius == 'xl',
             'block-scrolling': isDropdownListVisible && isMobile,
           },
@@ -52,7 +52,7 @@
           class="max-h-[330px] overflow-y-auto bg-white p-2 scrollbar-hide md:p-0"
           :class="{
             'rounded-md': radius == 'md',
-            'rounded-[10px]': radius == 'lg',
+            'rounded-10': radius == 'lg',
             'rounded-xl': radius == 'xl',
           }"
         >
@@ -63,7 +63,7 @@
                 class="flex w-full cursor-pointer items-center justify-between space-x-2 p-2 transition-all hover:bg-gray-200"
                 :class="{
                   'rounded-md': radius == 'md',
-                  'rounded-[10px]': radius == 'lg',
+                  'rounded-10': radius == 'lg',
                   'rounded-xl': radius == 'xl',
                 }"
                 @keydown.enter="selectItem(item)"

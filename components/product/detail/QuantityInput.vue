@@ -1,7 +1,5 @@
 <template>
-  <div
-    class="flex justify-between gap-2 rounded-[10px] border border-gray-100 p-2"
-  >
+  <div class="flex justify-between gap-2 rounded-10 border border-gray-100 p-2">
     <SFButton
       type="raw"
       :disabled="quantity <= 1"

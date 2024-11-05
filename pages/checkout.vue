@@ -78,5 +78,5 @@ useSeoMeta({
   title: $i18n.t('navigation.checkout'),
 })
 defineOptions({ name: 'CheckoutPage' })
-definePageMeta({ pageType: 'checkout' })
+definePageMeta({ pageType: 'checkout', layout: 'simple' })
 </script>

@@ -17,20 +17,15 @@
         </div>
         <AppLogo class="ml-4 flex-initial" :width="138" :height="32" />
         <div class="flex flex-1 justify-end">
-          <HeaderMainMenu v-if="!isCheckoutPage" />
+          <HeaderMainMenu />
         </div>
       </div>
     </div>
     <HeaderSubNavigation
-      v-if="!isCheckoutPage"
       :navigation-tree="navigationTreeItems[0]"
       @mouseleave="closeFlyoutMenu"
     />
-    <SFFlyoutMenu
-      v-if="!isCheckoutPage"
-      :is-open="isFlyoutMenuOpen"
-      @mouseleave="closeFlyoutMenu"
-    >
+    <SFFlyoutMenu :is-open="isFlyoutMenuOpen" @mouseleave="closeFlyoutMenu">
       <!--- THE ID's ARE IMPORTANT TO NOT CLOSE FLYOUT WHILE FAST MOVING MOUSE TO ITEMS -->
       <div id="flyout-menu-items-container" class="flex space-x-20">
         <CategoryFlyout />
@@ -46,12 +41,9 @@
 <script setup lang="ts">
 import CategoryFlyout from './CategoryFlyout.vue'
 import NavigationFlyout from './NavigationFlyout.vue'
-import { routeList } from '~/utils/route'
-import { useLink } from '#vue-router'
 import {
   useFlyouts,
   useNavigationTreeItems,
-  useRouteHelpers,
   useSideNavigation,
 } from '~/composables'
 import AppLogo from '~/components/AppLogo.vue'
@@ -62,11 +54,6 @@ import { SFButton, SFFlyoutMenu } from '#storefront-ui/components'
 const { isFlyoutMenuOpen, closeFlyoutMenu } = useFlyouts()
 
 const { isSideNavigationOpen, toggleSideNavigation } = useSideNavigation()
-const { getLocalizedRoute } = useRouteHelpers()
 
 const { navigationTreeItems } = useNavigationTreeItems('header')
-
-const { isExactActive: isCheckoutPage } = useLink({
-  to: getLocalizedRoute(routeList.checkout.path),
-})
 </script>

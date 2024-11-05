@@ -15,6 +15,8 @@
     "hours": "Stunde | Stunden",
     "days": "Tag | Tage",
     "back": "Zurück",
+    "back-to-shop": "Zurück zum Shop",
+    "to-shop": "Zum Shop",
     "continue_shopping_label": "Weiter einkaufen",
     "sign_in_label": "Anmelden",
     "or": "oder",
@@ -516,5 +518,8 @@
       "ZZ": "Internationalen"
     },
     "country_with_language": "{country} ({language})"
+  },
+  "footer": {
+    "copyright": "© {current_year} SCAYLE, Alle Rechte vorbehalten."
   }
 }

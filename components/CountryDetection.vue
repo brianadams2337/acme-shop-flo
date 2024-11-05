@@ -48,7 +48,7 @@ import {
   SFFadeInTransition,
   SFModal,
 } from '#storefront-ui/components'
-import { useCountryDetection } from '#storefront-country-detection/composables'
+import { useCountryDetection } from '#storefront-country-detection/useCountryDetection'
 
 const currentShop = useCurrentShop()
 const { $i18n } = useNuxtApp()

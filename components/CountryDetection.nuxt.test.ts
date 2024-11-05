@@ -21,7 +21,7 @@ vi.mock('#storefront/composables', () => ({
   useCurrentShop: () => ref({ locale: new Intl.Locale('de-DE') }),
 }))
 const suggestionActive = ref(true)
-vi.mock('#storefront-country-detection/composables', () => ({
+vi.mock('#storefront-country-detection/useCountryDetection', () => ({
   useCountryDetection: () => ({
     suggestedShops: ref([
       {

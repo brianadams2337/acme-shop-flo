@@ -3581,10 +3581,10 @@
     "@storyblok/richtext" "^3.0.0"
     storyblok-js-client "^6.10.0"
 
-"@storyblok/nuxt@6.1.0":
-  version "6.1.0"
-  resolved "https://registry.yarnpkg.com/@storyblok/nuxt/-/nuxt-6.1.0.tgz#6a1e1532716e6059388663d8dd5403e1e2ef7bb8"
-  integrity sha512-gfjpoXJtKZslFr7+b0p/hCulmlZnGBPFZgHkOt87zyzTF0d7iG1AtaXmEtl6E5scOwkFAOCYvD4+PG6Y1uMj8g==
+"@storyblok/nuxt@6.1.1":
+  version "6.1.1"
+  resolved "https://registry.yarnpkg.com/@storyblok/nuxt/-/nuxt-6.1.1.tgz#7ba79ffa775aa88607be77d2df6d7d931230c6e2"
+  integrity sha512-1MchaZ9rnuIU//G5JSAsdki1NXMxDBmknGJbe9SscItZ1Cb3FxU0CxMvs6OLbj+3S9gFrC87pZR6v2ydxBxvxQ==
   dependencies:
     "@storyblok/vue" "^8.1.1"
 
@@ -8713,11 +8713,6 @@ is-typedarray@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/is-typedarray/-/is-typedarray-1.0.0.tgz#e479c80858df0c1b11ddda6940f96011fcda4a9a"
   integrity sha512-cyA56iCMHAh5CdzjJIa4aohJyeO1YbwLi3Jc35MmRU6poroFjIGZzUzupGiRPOjgHg9TLu43xbpwXk523fMxKA==
-
-is-unicode-supported@^1.3.0:
-  version "1.3.0"
-  resolved "https://registry.yarnpkg.com/is-unicode-supported/-/is-unicode-supported-1.3.0.tgz#d824984b616c292a2e198207d4a609983842f714"
-  integrity sha512-43r2mRvz+8JRIKnWJ+3j8JtjRKZ6GmjzfaE/qiBJnikNnYv/6bagRJ1kUhNk8R5EX/GkobD+r+sfxCPJsiKBLQ==
 
 is-weakmap@^2.0.2:
   version "2.0.2"

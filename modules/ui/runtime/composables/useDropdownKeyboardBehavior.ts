@@ -69,21 +69,33 @@ export function useDropdownKeyboardBehavior(
 
   const ARROW_KEYS = ['ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown']
 
-  onKeyStroke(ARROW_KEYS, (event: KeyboardEvent) => {
-    // Prevent scrolling the page on arrow keys
-    event.preventDefault()
-  })
-
-  onKeyStroke('Escape', () => {
-    close()
-  })
-
-  onKeyStroke('Tab', (event: KeyboardEvent) => {
-    if (isOpen.value) {
+  onKeyStroke(
+    ARROW_KEYS,
+    (event: KeyboardEvent) => {
+      // Prevent scrolling the page on arrow keys
       event.preventDefault()
-      deactivate()
+    },
+    { target: rootRef },
+  )
+
+  onKeyStroke(
+    'Escape',
+    () => {
       close()
-      tabOut(event.shiftKey ? 'previous' : 'next')
-    }
-  })
+    },
+    { target: rootRef },
+  )
+
+  onKeyStroke(
+    'Tab',
+    (event: KeyboardEvent) => {
+      if (isOpen.value) {
+        event.preventDefault()
+        deactivate()
+        close()
+        tabOut(event.shiftKey ? 'previous' : 'next')
+      }
+    },
+    { target: rootRef },
+  )
 }

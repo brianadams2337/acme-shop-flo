@@ -3556,17 +3556,17 @@
   dependencies:
     prettier-config-standard "^7.0.0"
 
-"@scayle/storefront-api@17.9.3":
-  version "17.9.3"
-  resolved "https://registry.yarnpkg.com/@scayle/storefront-api/-/storefront-api-17.9.3.tgz#32415f3ec17203231e47bca2ced5a56bcad768d2"
-  integrity sha512-GMUcut6u+xm7uoe658vZ8pZl4cpqOc3L4KHzpJUXHBR+SJJ0exTZrx75lxXB6aFMOvCEkKAGHwsbhyPzI3q/Tw==
+"@scayle/storefront-api@17.9.4":
+  version "17.9.4"
+  resolved "https://registry.yarnpkg.com/@scayle/storefront-api/-/storefront-api-17.9.4.tgz#cdec601d6a1f164121e2b76920c56fe68054faa9"
+  integrity sha512-oZImHfQ8vkrvcrO0ldSY665005Y/N4dvTAKEYRnx6Dm9MxTVjQsgZMqGWIZnG1jxW4KCUVNcsemsm7hM8VI1lw==
 
-"@scayle/storefront-core@7.66.1":
-  version "7.66.1"
-  resolved "https://registry.yarnpkg.com/@scayle/storefront-core/-/storefront-core-7.66.1.tgz#b1be5c81e34fe17b47de025b8ff3edba8896db4b"
-  integrity sha512-lZVBFABdsLC+hwZQv/cB+Ge685WkDDEBcaa063cKXiyoXFgW0pzvAqXrgnHfQVjChredRtJgHDu8dWSHOKt7TA==
+"@scayle/storefront-core@7.66.2":
+  version "7.66.2"
+  resolved "https://registry.yarnpkg.com/@scayle/storefront-core/-/storefront-core-7.66.2.tgz#7bd9cbe95d918d11b311be72beeac9f00c732255"
+  integrity sha512-3xUDHU1sXveGwsnuEIsiZj3GacXLAl3++Ifqju0AGJfahzeKEWrTP0/SBRIQXUaKjf83Sads6KfHhayOMTaIhw==
   dependencies:
-    "@scayle/storefront-api" "17.9.3"
+    "@scayle/storefront-api" "17.9.4"
     crypto-js "^4.2.0"
     hookable "^5.5.3"
     jose "^5.6.3"
@@ -3577,16 +3577,16 @@
   optionalDependencies:
     redis "4"
 
-"@scayle/storefront-nuxt@7.88.1":
-  version "7.88.1"
-  resolved "https://registry.yarnpkg.com/@scayle/storefront-nuxt/-/storefront-nuxt-7.88.1.tgz#44c88046d64877b9995114a39846ace6feb6faff"
-  integrity sha512-LmH1iqvZcxOsbciVQfpa+Qgj89M5zK6BTYA1A3cupO/VBLEI+yjs8YUqc9jKkxO44qinrQ8QO8ERqEseyCwFvQ==
+"@scayle/storefront-nuxt@7.91.0":
+  version "7.91.0"
+  resolved "https://registry.yarnpkg.com/@scayle/storefront-nuxt/-/storefront-nuxt-7.91.0.tgz#da0724f49cfa77295deb1d0c2f1bc3b2e041c647"
+  integrity sha512-nC6Ch+AcQAGfCr6AGi2FwQDuCtYAF6aNBVevU0d4yxGKWu88VDeGZf0Aq8mKIgqXKBOK7xFETUK24HmKxR5Y9w==
   dependencies:
     "@nuxt/kit" "^3.12.2"
     "@opentelemetry/api" "^1.9.0"
     "@scayle/h3-session" "^0.4.1"
-    "@scayle/storefront-core" "7.66.1"
-    "@scayle/unstorage-compression-driver" "^0.1.4"
+    "@scayle/storefront-core" "7.66.2"
+    "@scayle/unstorage-compression-driver" "^0.1.5"
     "@vueuse/core" "11.2.0"
     consola "^3.2.3"
     core-js "^3.37.1"
@@ -3596,19 +3596,20 @@
     knitwork "^1.1.0"
     nitropack "^2.9.7"
     ofetch "^1.3.4"
-    ufo "^1.5.3"
+    schema-dts "1.1.2"
+    ufo "^1.5.4"
     uncrypto "^0.1.3"
     unstorage "^1.10.2"
     vue-router "^4.4.0"
     zod "^3.23.8"
 
-"@scayle/unstorage-compression-driver@^0.1.4":
-  version "0.1.4"
-  resolved "https://registry.yarnpkg.com/@scayle/unstorage-compression-driver/-/unstorage-compression-driver-0.1.4.tgz#14535ba8ead2451850f5c8c6be9bd3f8ba2ddd76"
-  integrity sha512-ucc0WOvfLU8SO0JiO6dweqWJkRgxIMUQDe8fwX/q/o6Nl9RM1DyDbd3DMHcyqgqMZt5+wtRgEBbuIkpLdz+Wqg==
+"@scayle/unstorage-compression-driver@^0.1.5":
+  version "0.1.5"
+  resolved "https://registry.yarnpkg.com/@scayle/unstorage-compression-driver/-/unstorage-compression-driver-0.1.5.tgz#540b74963a52a11cc63756df5c717f6b3ff0c2bb"
+  integrity sha512-7IjLuZRgWU/36e9vAkDg8xLEiB+EYlazbKzqO5iFRiQKd6/DY3d5tTz8DBuC+2+wvuub5iZkm6Dwtn7AxN/XAw==
   dependencies:
     destr "2.0.3"
-    unstorage "1.12.0"
+    unstorage "1.13.1"
 
 "@sindresorhus/is@^0.14.0":
   version "0.14.0"
@@ -9325,7 +9326,7 @@ lint-staged@15.2.10:
     string-argv "~0.3.2"
     yaml "~2.5.0"
 
-listhen@^1.5.6, listhen@^1.7.2:
+listhen@^1.5.6, listhen@^1.7.2, listhen@^1.9.0:
   version "1.9.0"
   resolved "https://registry.yarnpkg.com/listhen/-/listhen-1.9.0.tgz#59355f7e4fc1eefda6bc494ae7e9ed13aa7658ef"
   integrity sha512-I8oW2+QL5KJo8zXNWX046M134WchxsXC7SawLPvRQpogCbkyQIaFxPE89A2HiwR7vAK2Dm2ERBAmyjTYGYEpBg==
@@ -13615,7 +13616,23 @@ unplugin@^1.1.0, unplugin@^1.10.0, unplugin@^1.10.1, unplugin@^1.12.2, unplugin@
     acorn "^8.12.1"
     webpack-virtual-modules "^0.6.2"
 
-unstorage@1.12.0, unstorage@^1.10.1, unstorage@^1.10.2, unstorage@^1.12.0:
+unstorage@1.13.1:
+  version "1.13.1"
+  resolved "https://registry.yarnpkg.com/unstorage/-/unstorage-1.13.1.tgz#090b30de978ee8755b3ad7bbc00acfade124ac13"
+  integrity sha512-ELexQHUrG05QVIM/iUeQNdl9FXDZhqLJ4yP59fnmn2jGUh0TEulwOgov1ubOb3Gt2ZGK/VMchJwPDNVEGWQpRg==
+  dependencies:
+    anymatch "^3.1.3"
+    chokidar "^3.6.0"
+    citty "^0.1.6"
+    destr "^2.0.3"
+    h3 "^1.13.0"
+    listhen "^1.9.0"
+    lru-cache "^10.4.3"
+    node-fetch-native "^1.6.4"
+    ofetch "^1.4.1"
+    ufo "^1.5.4"
+
+unstorage@^1.10.1, unstorage@^1.10.2, unstorage@^1.12.0:
   version "1.12.0"
   resolved "https://registry.yarnpkg.com/unstorage/-/unstorage-1.12.0.tgz#a215895dfdef01ffb8ff529bb3869dbf947d8498"
   integrity sha512-ARZYTXiC+e8z3lRM7/qY9oyaOkaozCeNd2xoz7sYK9fv7OLGhVsf+BZbmASqiK/HTZ7T6eAlnVq9JynZppyk3w==

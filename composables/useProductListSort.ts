@@ -55,13 +55,16 @@ export function useProductListSort() {
 
   const sortLinks = computed(() => {
     const links = []
+
+    const { page, ...query } = route.query
+
     for (const key in sortingOptions) {
       links.push({
         key,
         ...sortingOptions[key],
         to: {
           path: route.path,
-          query: { ...route.query, sort: key },
+          query: { ...query, sort: key },
         },
         label: t(`sorting_select.${key}`),
       })

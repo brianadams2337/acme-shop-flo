@@ -1,33 +1,69 @@
 <template>
-  <CMSAppFooterData>
-    <template #promises>
-      <FooterPromises />
-    </template>
-    <template #navigation-tree-items>
-      <div
-        v-for="{ id, name, items } in navigationTreeItems"
-        :key="`footer-navigation-tree-${id}`"
-        class="flex flex-col"
-      >
-        <h5 class="mb-3 text-sm font-bold">
-          {{ name }}
-        </h5>
-        <NavigationTreeItem
-          v-for="tree in items"
-          :key="`footer-navigation-sub-tree-${tree.id}`"
-          :navigation-item="tree"
-          class="block py-2 text-xs font-semibold !leading-4 text-gray-750 md:py-1"
+  <footer class="bg-white">
+    <div class="flex flex-col gap-4 border-t px-10 py-5 md:gap-8 md:py-7">
+      <div>
+        <SFLink :to="routeList.home" raw :aria-label="shopName">
+          <IconNewLogo class="size-7" aria-hidden="true" />
+        </SFLink>
+      </div>
+
+      <div class="grid grid-cols-1 gap-y-5 text-base md:grid-cols-4">
+        <FooterLinkSection
+          v-for="(section, index) in footerLinks?.items"
+          :key="section.id"
+          :section="section"
+          :horizontal="footerLinks?.items.length === index + 1"
         />
       </div>
-    </template>
-  </CMSAppFooterData>
+    </div>
+
+    <div
+      class="flex flex-col gap-4 border-t px-10 py-5 text-md md:flex-row md:gap-8 md:py-7"
+    >
+      <div class="mr-auto text-gray-900">
+        {{ $t('footer.copyright', { current_year: new Date().getFullYear() }) }}
+      </div>
+      <ul class="flex flex-row gap-4 text-gray-600 md:contents">
+        <li
+          v-for="navItem in footerTree?.items"
+          :key="`footer-link-${navItem.id}`"
+        >
+          <NavigationTreeItem
+            class="rounded-md p-1 hover:bg-gray-100"
+            raw
+            :navigation-item="navItem"
+          />
+        </li>
+      </ul>
+    </div>
+  </footer>
 </template>
 
 <script setup lang="ts">
-import CMSAppFooterData from '#storefront-cms/components/fetching/CMSAppFooterData.vue'
-import FooterPromises from '~/components/layout/footer/FooterPromises.vue'
+import FooterLinkSection from './FooterLinkSection.vue'
+import { useNuxtApp } from '#app/nuxt'
+import { useNavigationTreeByName } from '#storefront/composables'
+import { SFLink } from '#storefront-ui/components'
 import NavigationTreeItem from '~/components/NavigationTreeItem.vue'
-import { useNavigationTreeItems } from '~/composables/useNavigationTreeItems'
+import { routeList } from '~/utils/route'
 
-const { navigationTreeItems } = useNavigationTreeItems('footer')
+const {
+  $config: {
+    public: { shopName },
+  },
+} = useNuxtApp()
+
+const { data: footerTree } = useNavigationTreeByName(
+  {
+    params: { treeName: 'Simplified Footer' },
+  },
+  'footer-tree',
+)
+
+const { data: footerLinks } = useNavigationTreeByName(
+  {
+    params: { treeName: 'Footer' },
+  },
+  'footer-tree',
+)
 </script>

@@ -3,7 +3,6 @@
     v-if="pathParams && pathParams.path"
     :to="pathParams.path"
     :type="type"
-    :raw="raw"
     :open-in-new-tab="pathParams.openInNew"
     @mouseenter="emit('mouseenter:navigation-item')"
   >
@@ -21,10 +20,9 @@ import { SFLink } from '#storefront-ui/components'
 type Props = {
   navigationItem: NavigationTreeItem | null
   type?: LinkVariant
-  raw?: boolean
 }
 
-const { navigationItem = null, type, raw = false } = defineProps<Props>()
+const { navigationItem = null, type } = defineProps<Props>()
 
 const { buildCategoryPath, getLocalizedRoute } = useRouteHelpers()
 

@@ -2,4 +2,4 @@
 '@scayle/storefront-boilerplate-nuxt': minor
 ---
 
-Update Header top bar with new design and USPs
+Header Refresh: Updated the header design with a fresh look to align with the new PLP and PDP

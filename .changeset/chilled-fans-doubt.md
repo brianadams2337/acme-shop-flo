@@ -2,4 +2,4 @@
 '@scayle/storefront-boilerplate-nuxt': patch
 ---
 
-Fix rounding in the PLP price filter
+PLP: Fixed price rounding in the price filter.

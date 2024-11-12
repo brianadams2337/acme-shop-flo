@@ -2,4 +2,8 @@
 '@scayle/storefront-boilerplate-nuxt': patch
 ---
 
-Add to Basket End-to-End test improvements by combining "Add to Basket" step for Guest and Logged-in users to achieve better stability, faster execution and covering additional case to assert if the product remains in Basket after user authentication. Additional execution speed achieved with removing `serial` execution of Basket test cases.
+E2E: Streamlined our Add to Basket end-to-end tests by combining the guest user and logged-in user flows. This change results in:
+
+- Improved Stability: Reduced the potential for inter-test interference during parallel execution.
+- Faster Execution: Eliminated redundant steps by merging separate test cases.
+- Expanded Coverage: Added a new assertion to verify that products remain in the basket after user authentication, covering a crucial aspect of the user journey.

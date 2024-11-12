@@ -2,7 +2,4 @@
 '@scayle/storefront-boilerplate-nuxt': patch
 ---
 
-Improvements in mobile Search test to make it more stable.
-
-- Simplified exactProductItem locator.
-- Not checking if the Search category list is visible, just checking if the list item is visible and then clicking on it in mobileNavigation.ts.
+E2E: Optimized mobile search tests by streamlining the `exactProductItem` locator to be more robust and less prone to errors and removing a redundant check for search category list visibility within `mobileNavigation.ts`. The test now directly verifies if the desired list item is visible and proceeds to click it, resulting in a more efficient and stable interaction flow.

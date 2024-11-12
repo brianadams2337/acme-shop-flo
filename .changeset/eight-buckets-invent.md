@@ -2,4 +2,4 @@
 '@scayle/storefront-boilerplate-nuxt': minor
 ---
 
-Created End-to-End tests in `e2e-CountryDetector.spec.ts` to check Country Detector features: close the modal window, switch the shop, and stay in the initial shop.
+E2E: Implemented end-to-end tests (`e2e-CountryDetector.spec.ts`) to ensure robust functionality of the Country Detector feature. These tests cover key user flows such as closing the modal window, switching to a different shop, and remaining in the initial shop.

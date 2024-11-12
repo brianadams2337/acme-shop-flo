@@ -2,6 +2,4 @@
 '@scayle/storefront-boilerplate-nuxt': minor
 ---
 
-Enable brotli compression by default for the cache storage.
-
-This can be controlled through the environment variable `NUXT_STOREFRONT_STORAGE_CACHE_COMPRESSION` or changed in the `nuxt.config.ts` under the `storefront.storage.cache` option.
+Architecture: Improved page load speed by enabling Brotli compression by default for cached data. This optimization can be customized via the `NUXT_STOREFRONT_STORAGE_CACHE_COMPRESSION` environment variable or the `storefront.storage.cache` option in `nuxt.config.ts`.

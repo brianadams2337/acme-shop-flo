@@ -2,4 +2,4 @@
 '@scayle/storefront-boilerplate-nuxt': patch
 ---
 
-`useDropdownKeyboardBehavior` did register some key down events handlers globally. These event listener are now limited to elements of a dropdown.
+A11y: Enhanced the `useDropdownKeyboardBehavior` function to prevent potential conflicts by limiting its keydown event listeners to elements within the dropdown itself. This ensures that keyboard interactions are correctly scoped and do not unintentionally affect other page elements.

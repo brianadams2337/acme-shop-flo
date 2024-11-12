@@ -2,4 +2,4 @@
 '@scayle/storefront-boilerplate-nuxt': patch
 ---
 
-Added `{ force: true }` on `variantPicker.click()` in PDP End-to-End tests due to issues with Chrome Mobile. Clicking the Variant picker in most cases is unsuccessful. Playwright retries the action automatically, but at the end it results in timeout and failed test. Since the test is executed without any issues in Mobile Safari, desktop Chrome, Firefox and Safari, `{ force: true }` is added to avoid test failure.
+E2E: Addressed an issue affecting PDP end-to-end tests specifically within Chrome Mobile, where clicking the Variant Picker was frequently unsuccessful. While Playwright implements automatic retries for such actions, this often resulted in test timeouts. As the issue appears isolated to Chrome Mobile, we've introduced `{ force: true }` to the `variantPicker.click() `action to bypass the problematic default click behavior and ensure consistent test execution across all browser environments.

@@ -2,4 +2,4 @@
 '@scayle/storefront-boilerplate-nuxt': minor
 ---
 
-Update default Node version to v22
+Architecture: Update default `node` version to v22

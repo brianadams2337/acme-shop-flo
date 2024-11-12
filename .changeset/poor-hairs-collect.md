@@ -2,4 +2,4 @@
 '@scayle/storefront-boilerplate-nuxt': patch
 ---
 
-Remove colons from Countdown widget
+UI: Removed the colons from the Countdown widget to create a cleaner and more visually appealing display.

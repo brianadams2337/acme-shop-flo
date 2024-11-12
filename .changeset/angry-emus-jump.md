@@ -2,4 +2,4 @@
 '@scayle/storefront-boilerplate-nuxt': patch
 ---
 
-Fixed an issue with CMS teaser images height on product listing page by using non-arbitrary value for height class.
+CMS: Fixed inconsistent heights of teaser images on product listing pages.

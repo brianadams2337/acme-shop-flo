@@ -4,17 +4,20 @@
     :to="pathParams.path"
     :type="type"
     :target="pathParams.openInNew ? '_blank' : '_self'"
-    :class="{ '!p-0': iconUrl }"
+    class="block w-fit"
     @mouseenter="emit('mouseenter:navigation-item')"
   >
-    <div v-if="iconUrl" class="flex size-9 rounded-md border bg-gray-50">
+    <div v-if="iconUrl" class="flex items-center gap-2 rounded-md">
       <object
+        v-if="iconUrl"
         :data="iconUrl"
         type="image/svg+xml"
-        :aria-label="displayName"
-        class="pointer-events-none m-auto size-4"
+        :aria-labelledby="id"
+        aria-hidden="true"
+        class="pointer-events-none size-4"
         tabindex="-1"
       ></object>
+      <span :id="id">{{ displayName }}</span>
     </div>
     <span v-else>
       {{ displayName }}
@@ -23,7 +26,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue'
+import { computed, useId } from 'vue'
 import type { NavigationTreeItem } from '@scayle/storefront-nuxt'
 import { useRuntimeConfig } from '#imports'
 import type { LinkVariant } from '#storefront-ui'
@@ -37,6 +40,8 @@ type Props = {
 
 const { navigationItem = null, type } = defineProps<Props>()
 
+const id = useId()
+
 const { buildCategoryPath, getLocalizedRoute } = useRouteHelpers()
 
 const {
@@ -45,10 +50,11 @@ const {
 
 const iconUrl = computed(() => {
   const assets = Object.values(navigationItem?.assets ?? {})
-  if (!cdnUrl || !assets.length || !assets[0].endsWith('svg')) {
+  const icon = assets.find((asset) => asset.endsWith('svg'))
+  if (!cdnUrl || !icon) {
     return
   }
-  return cdnUrl + assets[0]
+  return cdnUrl + icon
 })
 
 const emit = defineEmits<{ 'mouseenter:navigation-item': [] }>()

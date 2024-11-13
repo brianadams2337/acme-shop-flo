@@ -1,8 +1,7 @@
 <template>
   <div class="flex flex-col gap-5">
     <div
-      class="cursor-pointer items-center p-1 text-lg font-semibold text-gray-900 md:cursor-default md:text-sm"
-      :class="horizontal ? 'hidden md:flex' : 'flex'"
+      class="flex cursor-pointer items-center p-1 text-lg font-semibold text-gray-900 md:cursor-default md:text-sm"
       @click="expanded = !expanded"
     >
       <h2>{{ section.name }}</h2>
@@ -13,12 +12,10 @@
     </div>
     <ul
       ref="content"
-      class="gap-x-2 gap-y-5 transition-all md:flex"
+      class="flex-col gap-x-2 gap-y-5 transition-all md:flex"
       :class="{
-        'flex-col': !horizontal,
-        'flex-row': horizontal,
-        flex: expanded || horizontal,
-        hidden: !expanded && !horizontal,
+        flex: expanded,
+        hidden: !expanded,
       }"
     >
       <li v-for="item in section.children" :key="item.id">
@@ -36,9 +33,8 @@ import { ref } from 'vue'
 import type { NavigationItems } from '@scayle/storefront-nuxt'
 import NavigationTreeItem from '~/components/NavigationTreeItem.vue'
 
-const { horizontal = false } = defineProps<{
+defineProps<{
   section: NavigationItems[0]
-  horizontal: boolean
 }>()
 
 const expanded = ref(false)

@@ -2,17 +2,16 @@
   <footer class="bg-white">
     <div class="flex flex-col gap-4 border-t px-10 py-5 md:gap-8 md:py-7">
       <div>
-        <SFLink :to="routeList.home" raw :aria-label="shopName">
+        <LocalizedLink :to="routeList.home" raw :aria-label="shopName">
           <IconNewLogo class="size-7" aria-hidden="true" />
-        </SFLink>
+        </LocalizedLink>
       </div>
 
       <div class="grid grid-cols-1 gap-y-5 text-base md:grid-cols-4">
         <FooterLinkSection
-          v-for="(section, index) in footerLinks?.items"
+          v-for="section in footerLinks?.items"
           :key="section.id"
           :section="section"
-          :horizontal="footerLinks?.items.length === index + 1"
         />
       </div>
     </div>
@@ -41,9 +40,9 @@
 
 <script setup lang="ts">
 import FooterLinkSection from './FooterLinkSection.vue'
+import LocalizedLink from './LocalizedLink.vue'
 import { useNuxtApp } from '#app/nuxt'
 import { useNavigationTreeByName } from '#storefront/composables'
-import { SFLink } from '#storefront-ui/components'
 import NavigationTreeItem from '~/components/NavigationTreeItem.vue'
 import { routeList } from '~/utils/route'
 

@@ -5,7 +5,6 @@
     :raw="raw"
     :to="getLocalizedRoute(to)"
     :target="target ? target : '_self'"
-    :open-in-new-tab="openInNewTab"
   >
     <slot />
   </SFLink>
@@ -21,12 +20,7 @@ import { useContentfulHelpers } from '../composables/useContentfulHelpers'
 import { useLocalizedRoute } from '../../../composables/storefront/useLocalizedRoute'
 import { SFLink } from '#storefront-ui/components'
 
-const {
-  to,
-  target = '',
-  openInNewTab = false,
-  raw = true,
-} = defineProps<CMSContentfulLink>()
+const { to, target = '', raw = true } = defineProps<CMSContentfulLink>()
 
 const { isInEditorMode } = useContentfulHelpers()
 

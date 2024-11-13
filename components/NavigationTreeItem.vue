@@ -3,7 +3,7 @@
     v-if="pathParams && pathParams.path"
     :to="pathParams.path"
     :type="type"
-    :open-in-new-tab="pathParams.openInNew"
+    :target="pathParams.openInNew ? '_blank' : '_self'"
     @mouseenter="emit('mouseenter:navigation-item')"
   >
     {{ displayName }}

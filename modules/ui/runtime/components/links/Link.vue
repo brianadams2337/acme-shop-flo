@@ -1,6 +1,5 @@
 <template>
   <NuxtLink
-    :open-in-new-tab="openInNewTab"
     :active-class="activeClass"
     :exact-active-class="exactActiveClass"
     :target="target"
@@ -31,7 +30,6 @@ type Props = {
   to: RouteLocationRaw
   onlyExactActive?: boolean
   type?: LinkVariant
-  openInNewTab?: boolean
   raw?: boolean
   target?: '_self' | '_blank' | '_parent' | '_top'
 }

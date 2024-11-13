@@ -4,7 +4,6 @@
     :raw="raw"
     :to="getLocalizedRoute(to)"
     :target="target"
-    :open-in-new-tab="openInNewTab"
   >
     <slot />
   </SFLink>
@@ -20,12 +19,7 @@ import { useStoryblokHelpers } from '../composables/useStoryblokHelpers'
 import { useLocalizedRoute } from '../../../composables/storefront/useLocalizedRoute'
 import { SFLink } from '#storefront-ui/components'
 
-const {
-  to,
-  target = '_self',
-  openInNewTab = false,
-  raw = true,
-} = defineProps<CMSStoryblokLink>()
+const { to, target = '_self', raw = true } = defineProps<CMSStoryblokLink>()
 
 const { isInEditorMode } = useStoryblokHelpers()
 

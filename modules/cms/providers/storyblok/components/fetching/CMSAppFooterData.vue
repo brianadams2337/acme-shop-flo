@@ -51,7 +51,7 @@
             :key="social?._uid"
             :to="social?.url?.cached_url ?? {}"
             :raw="false"
-            open-in-new-tab
+            target="_blank"
           >
             <component
               :is="`IconSocial${getSocialName(social?.type ?? '')}`"

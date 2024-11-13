@@ -24,7 +24,7 @@
         <CMSContentfulLink
           v-if="paragraphImage?.fields.file"
           :to="paragraphImage.fields.file?.url"
-          open-in-new-tab
+          target="_blank"
         >
           <NuxtPicture
             class="cms-picture picture-contain"

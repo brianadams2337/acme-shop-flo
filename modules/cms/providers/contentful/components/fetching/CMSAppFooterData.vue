@@ -42,7 +42,7 @@
             :key="social?.sys.id"
             :to="social?.fields.url ?? {}"
             :raw="false"
-            open-in-new-tab
+            target="_blank"
           >
             <component
               :is="`IconSocial${getSocialName(social?.fields.type ?? '')}`"

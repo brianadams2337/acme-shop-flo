@@ -19,7 +19,7 @@ describe('getBackgroundColorStyle', () => {
 
   it('should return fallback background color if color is not provided', () => {
     const backgroundColor = getBackgroundColorStyle()
-    expect(backgroundColor).toEqual({ backgroundColor: '#007aff' })
+    expect(backgroundColor).toEqual({ backgroundColor: 'rgba(0,122,255,0.1)' })
   })
 
   it('should return background color style object with alpha value', () => {
@@ -38,7 +38,7 @@ describe('getTextColorStyle', () => {
 
   it('should return fallback text color if color is not provided', () => {
     const color = getTextColorStyle()
-    expect(color).toEqual({ color: '#007aff' })
+    expect(color).toEqual({ color: 'rgba(0,122,255,1)' })
   })
 
   it('should return text color style object with alpha value', () => {

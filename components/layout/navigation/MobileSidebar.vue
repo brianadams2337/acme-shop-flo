@@ -69,7 +69,6 @@ import SearchResults from '~/components/search/SearchResults.vue'
 import EmptyState from '~/components/EmptyState.vue'
 import SearchResultSkeleton from '~/components/search/SearchResultSkeleton.vue'
 import {
-  useDefaultBreakpoints,
   useMobileSearch,
   useRootCategories,
   useRouteHelpers,
@@ -82,6 +81,7 @@ import {
   SFSlideInFromLeftTransition,
   SFLink,
 } from '#storefront-ui/components'
+import { useDefaultBreakpoints } from '#storefront-ui/composables'
 
 const { getSearchRoute } = useRouteHelpers()
 

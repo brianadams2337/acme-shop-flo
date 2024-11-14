@@ -1,6 +1,7 @@
 import { useBreakpoints } from '@vueuse/core'
-import breakpoints from '../config/breakpoints'
+import { useRuntimeConfig } from '#imports'
 
 export function useDefaultBreakpoints() {
+  const { breakpoints } = useRuntimeConfig().public.storefrontUI
   return useBreakpoints(breakpoints)
 }

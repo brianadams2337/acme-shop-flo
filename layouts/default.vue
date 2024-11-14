@@ -39,7 +39,6 @@ import {
   createContext,
   useBanner,
   useBasketPromotions,
-  useDefaultBreakpoints,
   useTrackingEvents,
   usePromotionActions,
   useUserItemsTrackingWatcher,
@@ -52,6 +51,7 @@ import CountryDetection, {
   type ShopInfo,
 } from '~/components/CountryDetection.vue'
 import PromotionBanner from '~/components/promotion/PromotionBanner.vue'
+import { useDefaultBreakpoints } from '#storefront-ui/composables'
 import { SFToastContainer } from '#storefront-ui/components'
 import { NuxtPage } from '#components'
 import AppFooter from '~/components/AppFooter.vue'

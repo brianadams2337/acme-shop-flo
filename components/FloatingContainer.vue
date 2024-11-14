@@ -9,7 +9,8 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import { useMounted } from '@vueuse/core'
-import { useDefaultBreakpoints, usePromotionActions } from '~/composables'
+import { usePromotionActions } from '~/composables'
+import { useDefaultBreakpoints } from '#storefront-ui/composables'
 import { SFFadeInTransition } from '#storefront-ui/components'
 
 const { bottomBannerRef, isPromotionBannerShown } = usePromotionActions()

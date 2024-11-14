@@ -500,6 +500,17 @@ export default defineNuxtConfig({
     rpcMethodOverrides: [],
   },
 
+  'storefront-ui': {
+    breakpoints: {
+      xs: breakpoints.xs,
+      sm: breakpoints.sm,
+      md: breakpoints.md,
+      lg: breakpoints.lg,
+      xl: breakpoints.xl,
+      xxl: breakpoints['2xl'],
+    },
+  },
+
   // https://github.com/cpsoinos/nuxt-svgo/blob/main/README.md#usage
   svgo: {
     autoImportPath: './assets/icons',

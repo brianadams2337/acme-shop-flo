@@ -20,7 +20,8 @@ import { computed, defineOptions, ref } from 'vue'
 import { useIntersectionObserver } from '@vueuse/core'
 import type { CMSVideoProps } from '../types'
 import { useStoryblokMargins } from '../composables/useStoryblokMargins'
-import { useDefaultBreakpoints, useTrackingEvents } from '~/composables'
+import { useTrackingEvents } from '~/composables'
+import { useDefaultBreakpoints } from '#storefront-ui/composables'
 import { useImage } from '#imports'
 
 const props = defineProps<CMSVideoProps>()

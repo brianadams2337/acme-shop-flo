@@ -5,7 +5,7 @@ import {
   isFirstIndexOfRow,
 } from '@scayle/storefront-nuxt'
 import { useRoute } from '#app/composables/router'
-import { useDefaultBreakpoints } from '~/composables'
+import { useDefaultBreakpoints } from '#storefront-ui/composables'
 import { ProductsPerRow, PRODUCTS_PER_PAGE } from '~/constants'
 
 export function useRowIntersection(products: Ref<Product[]>) {

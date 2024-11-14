@@ -83,7 +83,7 @@
 import { defineModel, ref, useTemplateRef, watch } from 'vue'
 import { useEventListener } from '@vueuse/core'
 import { vPopover } from '../../directives/popover'
-import { useDefaultBreakpoints } from '~/composables'
+import { useDefaultBreakpoints } from '#storefront-ui/composables'
 import { SFButton } from '#storefront-ui/components'
 import { useDropdownKeyboardBehavior } from '#storefront-ui'
 

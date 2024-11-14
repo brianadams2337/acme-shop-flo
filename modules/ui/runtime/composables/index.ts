@@ -1,3 +1,4 @@
+export * from './useDefaultBreakpoints'
 export * from './useDropdownKeyboardBehavior'
 export * from './useListbox'
 export * from './useItemsSlider'

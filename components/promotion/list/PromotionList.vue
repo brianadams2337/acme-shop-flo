@@ -29,9 +29,10 @@ import { ref } from 'vue'
 import type { MaybeElementRef } from '@vueuse/core'
 import ClosePromotionListButton from '../buttons/ClosePromotionListButton.vue'
 import PromotionItem from './PromotionItem.vue'
-import { useDefaultBreakpoints, usePromotionActions } from '~/composables'
+import { usePromotionActions } from '~/composables'
 import { SFItemsSlider } from '#storefront-ui/components'
 import type { Promotion } from '~/types/promotion'
+import { useDefaultBreakpoints } from '#storefront-ui/composables'
 
 defineProps<{ items: Promotion[] }>()
 

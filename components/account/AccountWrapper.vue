@@ -69,11 +69,11 @@ import AccountHeader from './AccountHeader.vue'
 import OrderListSkeletonLoader from './OrderListSkeletonLoader.vue'
 import { BasketListingMetadata } from '~/constants/listingMetadata'
 import {
-  useDefaultBreakpoints,
   useRouteHelpers,
   useTrackingEvents,
   wishlistListingMetadata,
 } from '~/composables'
+import { useDefaultBreakpoints } from '#storefront-ui/composables'
 import { SFSimplePagination, SFPageContainer } from '#storefront-ui/components'
 import { useBasket, useUser, useWishlist } from '#storefront/composables'
 import { useRoute } from '#app/composables/router'

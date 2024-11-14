@@ -1,7 +1,7 @@
 import { inject, provide, type InjectionKey } from 'vue'
 import type { usePromotionEvents } from '../tracking'
 import type { useBanner } from '~/composables/useBanner'
-import type { useDefaultBreakpoints } from '~/composables/useDefaultBreakpoints'
+import type { useDefaultBreakpoints } from '#storefront-ui/composables'
 import type { useTrackingEvents } from '~/composables/useTrackingEvents'
 
 export function createContext<T>(

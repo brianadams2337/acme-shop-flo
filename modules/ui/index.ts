@@ -5,9 +5,12 @@ import {
   addComponentsDir,
 } from '@nuxt/kit'
 
+import type { Breakpoints } from '@vueuse/core'
+
 export type ModuleOptions = {
   prefix?: string
   autoImports?: boolean
+  breakpoints?: Breakpoints
 }
 
 export default defineNuxtModule<ModuleOptions>({
@@ -38,9 +41,28 @@ export default defineNuxtModule<ModuleOptions>({
       addImportsDir(resolve('./runtime/helpers'))
     }
 
+    nuxt.options.runtimeConfig.public.storefrontUI = {
+      breakpoints: options.breakpoints ?? {
+        xs: 320,
+        sm: 640,
+        md: 768,
+        lg: 1024,
+        xl: 1280,
+        xxl: 1440,
+      },
+    }
+
     nuxt.options.alias['#storefront-ui'] = resolve('./runtime')
     nuxt.options.alias['#storefront-ui/components'] = resolve(
       './runtime/components',
     )
   },
 })
+
+declare module '@nuxt/schema' {
+  interface PublicRuntimeConfig {
+    storefrontUI: {
+      breakpoints: Breakpoints
+    }
+  }
+}

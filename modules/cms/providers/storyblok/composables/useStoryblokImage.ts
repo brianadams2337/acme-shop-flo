@@ -1,5 +1,5 @@
 import type { SbCmsImage, Sbasset } from '../types/storyblok'
-import { useDefaultBreakpoints } from '~/composables/useDefaultBreakpoints'
+import { useDefaultBreakpoints } from '#storefront-ui/composables'
 
 type SanitizedImage = {
   src: string

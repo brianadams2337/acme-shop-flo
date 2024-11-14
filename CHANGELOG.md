@@ -24,6 +24,7 @@ Additionally, enabling Brotli compression by default for the [Storefront Cache](
 - **\[Accessibility\]** Enhanced the accessibility of the ShopSwitcher component by adding `aria-*` attributes to provide better context and functionality for assistive technologies. Additionally, we optimized keyboard navigation to ensure a smooth and intuitive experience for all users.
 - **\[Architecture\]** Introduced `LocalizedLink`, a new wrapper component built around the existing `SFLink` of the local UI module. This component simplifies the implementation of localized links across the UI, ensuring a smoother experience for international shops.
 - **\[UI\]** The ShopSelector component has been redesigned with an updated look and feel for a more intuitive and user-friendly experience.
+- **\[Product Price\]** Implemented a feature to display the lowest price observed within the last 30 days alongside the current product price.
 
 ### 💅 Minor Changes
 

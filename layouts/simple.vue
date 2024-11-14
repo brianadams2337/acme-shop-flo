@@ -45,21 +45,7 @@
     <footer
       class="flex flex-col gap-4 border-t bg-gray-50 px-10 py-5 text-base text-gray-600 md:flex-row md:gap-8 md:py-7 md:text-gray-900"
     >
-      <div class="mx-auto text-gray-900 md:ml-0 md:mr-auto md:text-gray-600">
-        {{ $t('footer.copyright', { current_year: new Date().getFullYear() }) }}
-      </div>
-      <ul class="mx-auto flex flex-row gap-4 md:contents">
-        <li
-          v-for="navItem in footerTree?.items"
-          :key="`footer-link-${navItem.id}`"
-        >
-          <NavigationTreeItem
-            class="rounded-md p-1 hover:bg-gray-100"
-            raw
-            :navigation-item="navItem"
-          />
-        </li>
-      </ul>
+      <BottomFooter />
     </footer>
   </div>
 </template>
@@ -76,15 +62,9 @@ import {
 import { NuxtPage } from '#components'
 import NavigationTreeItem from '~/components/NavigationTreeItem.vue'
 import { routeList } from '~/utils/route'
+import BottomFooter from '~/components/BottomFooter.vue'
 
 const currentShop = useCurrentShop()
-
-const { data: footerTree } = useNavigationTreeByName(
-  {
-    params: { treeName: 'Simplified Footer' },
-  },
-  'footer-tree',
-)
 
 const { data: headerTree } = useNavigationTreeByName(
   {

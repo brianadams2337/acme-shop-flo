@@ -3390,10 +3390,10 @@
   resolved "https://registry.yarnpkg.com/@scayle/storefront-api/-/storefront-api-17.11.0.tgz#7d63ad4ac30164157f28faed5e12ef945de40732"
   integrity sha512-yNIY+g43m0K+OQ5E4EWmRn8DJE+s5AU/B3POTS22HiYaeA/O8fV5hm55iaH6enHJ8N/k9VE01iJJYBfCpr58aA==
 
-"@scayle/storefront-core@7.69.0":
-  version "7.69.0"
-  resolved "https://registry.yarnpkg.com/@scayle/storefront-core/-/storefront-core-7.69.0.tgz#c8c98355c41f820d4be3620b04eff47011729f2c"
-  integrity sha512-cdsFwT5AzRIGeR5SriXyXaYp7CFfNLJSL9lyx2EfSulrijUmucLi8Ge6mQ8GecuETgIlyzBp1gJgu8OgRYlCKw==
+"@scayle/storefront-core@7.69.1":
+  version "7.69.1"
+  resolved "https://registry.yarnpkg.com/@scayle/storefront-core/-/storefront-core-7.69.1.tgz#8350d8c6443d0223e2d3afff4a872a8a4c639bc1"
+  integrity sha512-SPupiuLugaN6qnmmG5ZFdB/OquNyKrYscjiMwSRop8qpb76DV+mHZl2LZQX1a1hz6UVryQL9qOjY98VRnJWkNg==
   dependencies:
     "@scayle/storefront-api" "17.11.0"
     crypto-js "^4.2.0"
@@ -3411,15 +3411,15 @@
   resolved "https://registry.yarnpkg.com/@scayle/storefront-country-detection/-/storefront-country-detection-0.2.0.tgz#63ff3d1cb67ffe0316b7075d5302a1a3870d0e6c"
   integrity sha512-enYF05Nwp6o5CdyWOtdwK6P6U7xIFHQ/bCXYRY+s9d1BTdwG/UwJG5S6H1UEMQDVw4823mRazkga1M08kA958g==
 
-"@scayle/storefront-nuxt@7.95.0":
-  version "7.95.0"
-  resolved "https://registry.yarnpkg.com/@scayle/storefront-nuxt/-/storefront-nuxt-7.95.0.tgz#c067f5f338e0a52b2c4d08e0eeab361df3eedc02"
-  integrity sha512-3tC2pP3NaGJQm9Y02mvfz6GiKbt9HR2WY9173vRIYYC3gkacYvmfDlspoe2vJw8i8wF36vStssrhTmKSr+7smQ==
+"@scayle/storefront-nuxt@7.95.1":
+  version "7.95.1"
+  resolved "https://registry.yarnpkg.com/@scayle/storefront-nuxt/-/storefront-nuxt-7.95.1.tgz#1382910b5a66246d082e95675918dc1438a765f4"
+  integrity sha512-2fBjyR36bdpr2CfrBOtBcBrBZWKEZcruRGah4QbrxdXNty4Gatt6GTzSa0fZkLhfdgrz2tsLEtugyb2NyBFj2g==
   dependencies:
     "@nuxt/kit" "^3.12.2"
     "@opentelemetry/api" "^1.9.0"
     "@scayle/h3-session" "^0.4.1"
-    "@scayle/storefront-core" "7.69.0"
+    "@scayle/storefront-core" "7.69.1"
     "@scayle/unstorage-compression-driver" "^0.1.5"
     "@vueuse/core" "11.2.0"
     consola "^3.2.3"

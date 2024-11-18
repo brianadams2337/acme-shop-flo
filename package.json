@@ -3,14 +3,14 @@
   "description": "SCAYLE Storefront demo shop application based on Nuxt 3",
   "version": "1.5.0",
   "private": true,
+  "workspaces": [
+    "./"
+  ],
   "engines": {
     "node": ">= 20.7.0"
   },
   "website": "https://scayle.dev/en/storefront-guide/developer-guide/getting-started/about-storefront",
   "type": "module",
-  "workspaces": [
-    "./"
-  ],
   "scripts": {
     "assert-mandatory-env-vars": "echo 'skipped'",
     "build": "nuxt build",
@@ -95,6 +95,7 @@
     "@contentful/live-preview": "4.5.14",
     "@contentful/rich-text-html-renderer": "17.0.0",
     "@googlemaps/js-api-loader": "1.16.8",
+    "@nuxt/fonts": "0.10.2",
     "@scayle/nuxt-opentelemetry": "0.4.0",
     "@scayle/omnichannel-nuxt": "4.0.2",
     "@scayle/storefront-country-detection": "0.2.0",
@@ -112,8 +113,8 @@
     "@vuelidate/validators": "2.0.4",
     "@vueuse/components": "11.2.0",
     "@vueuse/core": "11.2.0",
-    "@vueuse/integrations": "11.2.0",
     "@vueuse/gesture": "2.0.0",
+    "@vueuse/integrations": "11.2.0",
     "@vueuse/nuxt": "11.2.0",
     "axios": "1.7.7",
     "cf-content-types-generator": "2.15.5",

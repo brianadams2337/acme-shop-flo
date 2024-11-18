@@ -455,6 +455,8 @@ export default defineNuxtConfig({
     '@nuxtjs/tailwindcss',
     // https://github.com/cpsoinos/nuxt-svgo
     'nuxt-svgo',
+    // https://fonts.nuxt.com/get-started/usage
+    '@nuxt/fonts',
     // https://image.nuxt.com/
     '@nuxt/image',
     // https://i18n.nuxtjs.org/
@@ -473,6 +475,7 @@ export default defineNuxtConfig({
     './modules/eslint-auto-explicit-import',
     // https://scayle.dev/en/storefront-guide/developer-guide/integrations/open-telemetry
     '@scayle/nuxt-opentelemetry',
+    // SCAYLE Storefront Feature Packages
     '@scayle/storefront-country-detection',
     '@scayle/storefront-product-detail',
     '@scayle/storefront-product-listing',
@@ -516,6 +519,14 @@ export default defineNuxtConfig({
     autoImportPath: './assets/icons',
     defaultImport: 'component',
     componentPrefix: 'Icon',
+  },
+
+  // https://fonts.nuxt.com/get-started/configuration
+  fonts: {
+    assets: {
+      // The baseURL where font files are served.
+      prefix: '/_fonts/',
+    },
   },
 
   // https://image.nuxt.com/get-started/configuration

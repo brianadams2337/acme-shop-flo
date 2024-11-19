@@ -22,8 +22,20 @@
         class="mt-10"
         :max="filter.values[0]?.max"
         :min="filter.values[0]?.min"
-        @drag-end="$emit('applyPriceFilter', $event)"
-        @change="$emit('applyPriceFilter', $event)"
+        @drag-end="
+          handleApplyOrResetPriceFilterEmit(
+            $event,
+            filter.values[0].min,
+            filter.values[0].max,
+          )
+        "
+        @change="
+          handleApplyOrResetPriceFilterEmit(
+            $event,
+            filter.values[0].min,
+            filter.values[0].max,
+          )
+        "
       />
     </FilterGroup>
     <FilterGroup
@@ -134,7 +146,7 @@ type Props = {
 
 const props = defineProps<Props>()
 
-defineEmits<{
+const emit = defineEmits<{
   resetPriceFilter: []
   applyPriceFilter: [RangeTuple]
   applyBooleanFilter: [string, boolean]
@@ -143,6 +155,24 @@ defineEmits<{
 }>()
 
 const { t: $t } = useI18n()
+
+/**
+ * Emits an event based on whether the provided event values match the filter limits.
+ * This ensures that the price filter can be reset even when the right / left slider
+ * is at its highest position, addressing the issue where the filter would
+ * otherwise remain applied.
+ */
+const handleApplyOrResetPriceFilterEmit = (
+  event: RangeTuple,
+  filterMin: number,
+  filterMax: number,
+) => {
+  if (event[0] === filterMin && event[1] === filterMax) {
+    emit('resetPriceFilter')
+  } else {
+    emit('applyPriceFilter', event)
+  }
+}
 
 const getPriceRange = (
   currentMin: CentAmount,

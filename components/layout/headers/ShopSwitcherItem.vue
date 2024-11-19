@@ -1,6 +1,6 @@
 <template>
   <SFButton
-    type="raw"
+    variant="raw"
     is-full-width
     class="!justify-start !rounded-md px-3 py-2 text-base hover:!bg-gray-100 hover:!text-gray-900"
     :class="{

@@ -238,9 +238,10 @@ const selectedStoreId = ref<number | undefined>(
 )
 
 const { getBreadcrumbsFromProductCategories } = useBreadcrumbs()
-const breadcrumbs = getBreadcrumbsFromProductCategories(
-  longestCategoryList.value || [],
+const breadcrumbs = computed(() =>
+  getBreadcrumbsFromProductCategories(longestCategoryList.value ?? []),
 )
+
 const { getImage } = useImage()
 const images = computed(() => {
   const options = {
@@ -253,18 +254,20 @@ const images = computed(() => {
 
 const { $config } = useNuxtApp()
 
+const productInfo = computed(() => ({
+  name: name.value,
+  brand: brand.value,
+  productDescription: description.value,
+  variants: variants.value,
+}))
+
 // SEO
 const { canonicalLink, robots, title, productJsonLd, productBreadcrumbJsonLd } =
   useProductSeoData(
     breadcrumbs,
     { baseUrl: $config.public.baseUrl, fullPath: route.fullPath },
-    images.value,
-    {
-      name: name.value,
-      brand: brand.value,
-      productDescription: description.value,
-      variants: variants.value,
-    },
+    images,
+    productInfo,
   )
 
 const i18n = useI18n()

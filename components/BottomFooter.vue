@@ -20,6 +20,6 @@ const { data: footerTree } = useNavigationTreeByName(
   {
     params: { treeName: 'Simplified Footer' },
   },
-  'footer-tree',
+  'simple-footer-tree',
 )
 </script>

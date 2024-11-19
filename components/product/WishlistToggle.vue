@@ -9,17 +9,19 @@
         ? 'remove-item-from-wishlist-button'
         : 'add-item-to-wishlist-button'
     "
-    :loading="fetching"
+    :loading="mounted && fetching"
     :aria-label="
       isInWishlist
         ? $t('basket_card.remove_from_wishlist_label')
         : $t('basket_card.add_to_wishlist_label')
     "
+    :aria-busy="mounted && fetching"
+    aria-live="off"
     :disabled="isWishlistToggling"
     @click="onToggleWishlist"
   >
     <template #icon="{ _class }">
-      <AsyncDataWrapper :status="status">
+      <AsyncDataWrapper :status="wishlistStatus">
         <IconHeartInactive
           v-if="
             (!isInWishlist && !isWishlistToggling) ||
@@ -42,6 +44,7 @@
 <script setup lang="ts">
 import { computed, defineOptions, ref, toRef } from 'vue'
 import type { Product } from '@scayle/storefront-nuxt'
+import { useMounted } from '@vueuse/core'
 import AsyncDataWrapper from '../AsyncDataWrapper.vue'
 import { useWishlistActions } from '~/composables'
 import { useWishlist } from '#storefront/composables'
@@ -57,6 +60,7 @@ const props = withDefaults(defineProps<Props>(), { listingMetaData: undefined })
 
 defineOptions({ inheritAttrs: false })
 
+const mounted = useMounted()
 const isWishlistToggling = ref(false)
 const product = toRef(props, 'product')
 const productId = computed(() => product.value.id)
@@ -80,5 +84,9 @@ const onToggleWishlist = async () => {
 
 const isInWishlist = computed(() => {
   return contains({ productId: productId.value })
+})
+
+const wishlistStatus = computed(() => {
+  return mounted.value ? status.value : 'pending'
 })
 </script>

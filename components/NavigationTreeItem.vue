@@ -2,7 +2,7 @@
   <SFLink
     v-if="pathParams && pathParams.path && !disabledLink"
     :to="pathParams.path"
-    :variant="type"
+    :variant="variant"
     :target="pathParams.openInNew ? '_blank' : '_self'"
     class="block w-fit"
     @mouseenter="emit('mouseenter:navigation-item')"
@@ -12,12 +12,12 @@
         v-if="iconUrl"
         :data="iconUrl"
         type="image/svg+xml"
-        :aria-labelledby="id"
+        :aria-labelledby="`${navigationItem.id}`"
         aria-hidden="true"
         class="pointer-events-none size-4"
         tabindex="-1"
       ></object>
-      <span :id="id">{{ displayName }}</span>
+      <span :id="`${navigationItem.id}`">{{ displayName }}</span>
     </div>
     <span v-else>
       {{ displayName }}
@@ -27,7 +27,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed, useId } from 'vue'
+import { computed } from 'vue'
 import type { NavigationTreeItem } from '@scayle/storefront-nuxt'
 import { useRuntimeConfig } from '#imports'
 import type { LinkVariant } from '#storefront-ui'
@@ -35,18 +35,12 @@ import { useRouteHelpers } from '~/composables'
 import { SFLink } from '#storefront-ui/components'
 
 type Props = {
-  navigationItem: NavigationTreeItem | null
+  navigationItem: NavigationTreeItem
   variant?: LinkVariant
   disabledLink?: boolean
 }
 
-const {
-  navigationItem = null,
-  variant: type,
-  disabledLink = false,
-} = defineProps<Props>()
-
-const id = useId()
+const { navigationItem, variant, disabledLink = false } = defineProps<Props>()
 
 const { buildCategoryPath, getLocalizedRoute } = useRouteHelpers()
 

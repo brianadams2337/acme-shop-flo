@@ -1,6 +1,6 @@
 <template>
   <AsyncDataWrapper :status="productDataStatus">
-    <div v-if="product" class="xl:container md:max-xl:mx-5">
+    <div v-if="product" class="xl:container md:pt-4 md:max-xl:mx-5">
       <div
         class="flex flex-col items-start gap-8 max-md:space-y-5 md:flex-row md:justify-start"
       >

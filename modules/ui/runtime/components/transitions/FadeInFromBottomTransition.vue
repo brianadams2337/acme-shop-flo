@@ -12,5 +12,9 @@
 </template>
 
 <script setup lang="ts">
-withDefaults(defineProps<{ duration?: number }>(), { duration: 200 })
+import type { TransitionDuration } from '~/modules/ui/types'
+
+withDefaults(defineProps<{ duration?: TransitionDuration }>(), {
+  duration: 200,
+})
 </script>

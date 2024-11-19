@@ -27,7 +27,12 @@ const screens = Object.entries(breakpoints).reduce(
 
 export default {
   content: ['modules/**/*.{vue,js, ts}'],
-  safelist: ['overflow-hidden'],
+  safelist: [
+    'overflow-hidden',
+    {
+      pattern: /duration-\d+/,
+    },
+  ],
   theme: {
     screens,
     container: {

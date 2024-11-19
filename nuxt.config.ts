@@ -442,6 +442,7 @@ export default defineNuxtConfig({
 
   tailwindcss: {
     cssPath: '~/assets/css/main.css',
+    exposeConfig: true,
   },
 
   // https://nuxt.com/docs/api/nuxt-config#modules-1

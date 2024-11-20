@@ -1,4 +1,5 @@
 import * as dotenv from 'dotenv'
+import type { ReporterDescription } from '@playwright/test'
 import { defineConfig, devices } from '@playwright/test'
 
 /**
@@ -9,6 +10,16 @@ import { defineConfig, devices } from '@playwright/test'
 dotenv.config({ path: '../.env' })
 
 const BASE_URL = process.env.BASE_URL ?? 'https://localhost:3000/de/' // Try to use local .env BASE_URL or fallback
+
+const reporters: ReporterDescription[] = [
+  ['junit', { outputFile: 'test-results/results.xml' }],
+  ['list', { printSteps: true }],
+]
+
+// Only add the testrail reporter if the host is configured
+if (process.env.TESTRAIL_HOST) {
+  reporters.push(['playwright-testrail-reporter'])
+}
 
 /**
  * See https://playwright.dev/docs/test-configuration.
@@ -24,11 +35,7 @@ export default defineConfig({
   /* Opt out of parallel tests on CI. */
   workers: process.env.CI ? 1 : undefined,
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
-  reporter: [
-    ['junit', { outputFile: 'test-results/results.xml' }],
-    ['playwright-testrail-reporter'],
-    ['list', { printSteps: true }],
-  ],
+  reporter: reporters,
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
     /* Base URL to use in actions like `await page.goto('/')`. */

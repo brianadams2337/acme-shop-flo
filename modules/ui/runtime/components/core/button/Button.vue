@@ -8,7 +8,7 @@
       'h-11 px-10': !isRaw && isSize('md'),
       'h-9 px-6': !isRaw && isSize('sm'),
       'h-8 px-3': !isRaw && isSize('xs'),
-      'rounded-xl bg-primary font-semibold text-white outline-none hover:bg-accent':
+      'rounded-xl bg-primary font-semibold text-white hover:bg-accent':
         isPrimary,
       'rounded-xl border border-gray-300 bg-white font-medium text-gray-500 hover:bg-gray-100 hover:text-gray-600':
         isSecondary,

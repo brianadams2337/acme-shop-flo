@@ -151,8 +151,6 @@
               </span>
               <p
                 v-if="
-                  isLowestPreviousPriceActive &&
-                  reducedPrice &&
                   lowestPriorPrice?.withTax &&
                   lowestPriorPrice?.relativeDifferenceToPrice
                 "
@@ -305,7 +303,6 @@ const {
   color,
   onCancelDelete,
   onConfirmDelete,
-  isLowestPreviousPriceActive,
   changeQuantity,
   price,
   availableQuantity,

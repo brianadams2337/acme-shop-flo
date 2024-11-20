@@ -7,7 +7,6 @@ import {
   getTotalAppliedReductions,
   isInStock,
   extendPromise,
-  type PublicShopConfig,
 } from '@scayle/storefront-nuxt'
 import { type Ref, computed, nextTick } from 'vue'
 import { isBuyXGetYType } from '~/utils/promotion'
@@ -17,7 +16,7 @@ import { usePageState } from '~/composables/usePageState'
 import { useProductBaseInfo } from '~/composables/useProductBaseInfo'
 import { useProductPromotions } from '~/composables/useProductPromotions'
 import { useTrackingEvents } from '~/composables/useTrackingEvents'
-import { useCurrentShop, useBasket } from '#storefront/composables'
+import { useBasket } from '#storefront/composables'
 import { getQuantitySelectionList, getVariantIds } from '~/utils'
 import { useRoute } from '#app/composables/router'
 
@@ -26,7 +25,6 @@ export function useBasketItem(basketItem: Ref<BasketItem>) {
 
   const route = useRoute()
   const { pageState } = usePageState()
-  const currentShop = useCurrentShop()
 
   const { trackAddToBasket, trackRemoveFromBasket, trackSelectItem } =
     useTrackingEvents()
@@ -127,11 +125,6 @@ export function useBasketItem(basketItem: Ref<BasketItem>) {
     await nextTick()
   }
 
-  const isLowestPreviousPriceActive = computed(() => {
-    return !!(currentShop.value as PublicShopConfig)
-      ?.isLowestPreviousPriceActive
-  })
-
   const trackProductClick = () => {
     trackSelectItem({
       product: product.value,
@@ -168,7 +161,6 @@ export function useBasketItem(basketItem: Ref<BasketItem>) {
       quantity,
       availableQuantity,
       inStock,
-      isLowestPreviousPriceActive,
       changeQuantity,
       trackProductClick,
       removeItem,

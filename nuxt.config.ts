@@ -32,11 +32,9 @@ declare module '@scayle/storefront-nuxt' {
   export interface AdditionalShopConfig {
     paymentProviders: string[]
     appKeys: typeof DEFAULT_APP_KEYS
-    isLowestPreviousPriceActive?: boolean
   }
   // Extend PublicShopConfig to make types available on currentShop
   export interface PublicShopConfig {
-    isLowestPreviousPriceActive?: boolean
     paymentProviders: string[]
   }
 }
@@ -135,7 +133,7 @@ export default defineNuxtConfig({
     storefront: {
       /** Storefront Core - Additional server-side context properties exposed to client-side
        * https://scayle.dev/en/storefront-guide/developer-guide/basic-setup/introduction#public-shop-data */
-      publicShopData: ['paymentProviders', 'isLowestPreviousPriceActive'], // Override: NUXT_PUBLIC_PUBLIC_SHOP_DATA
+      publicShopData: ['paymentProviders'], // Override: NUXT_PUBLIC_PUBLIC_SHOP_DATA
 
       /** Storefront Core - Configure format for AppKey generation for baskets and wishlists
        * https://scayle.dev/en/storefront-guide/developer-guide/basic-setup/authentication#app-keys */
@@ -219,8 +217,6 @@ export default defineNuxtConfig({
             domain: baseShopDomain(shop.code),
 
             locale: shop.locale, // Override: NUXT_STOREFRONT_SHOPS_{UNIQUE_IDENTIFIER}_LOCALE
-
-            isLowestPreviousPriceActive: false, // Override: NUXT_STOREFRONT_SHOPS_{UNIQUE_IDENTIFIER}_IS_LOWEST_PREVIOUS_PRICE_ACTIVE,
 
             /** Storefront Core - Shop-specific authentication configurations
              * NOTE: Currently only `resetPasswordUrl` is supported

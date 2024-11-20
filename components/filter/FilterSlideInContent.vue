@@ -43,7 +43,7 @@
       :class="{ 'border-t': index !== 0 }"
     >
       <SFSwitch
-        :id="filter.name"
+        :id="filter.slug"
         :model-value="appliedBooleanValues[filter.slug]"
         :label="getBooleanFilterLabel(filter)"
         @update:model-value="$emit('applyBooleanFilter', filter.slug, $event)"

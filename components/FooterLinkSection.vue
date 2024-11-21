@@ -34,6 +34,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import type { NavigationItems } from '@scayle/storefront-nuxt'
+import { useRouter } from '#app/composables/router'
 import NavigationTreeItem from '~/components/NavigationTreeItem.vue'
 
 defineProps<{
@@ -41,4 +42,9 @@ defineProps<{
 }>()
 
 const expanded = ref(false)
+
+// Reset `expanded` if current route is left
+useRouter().afterEach(() => {
+  expanded.value = false
+})
 </script>

@@ -1,10 +1,11 @@
 <template>
-  <footer class="bg-white">
+  <footer class="bg-white" data-testid="footer">
     <div class="flex flex-col gap-5 border-t p-5 md:gap-8 md:px-10 md:py-7">
       <LocalizedLink
         :to="routeList.home"
         raw
         :aria-label="shopName"
+        data-testid="footer-logo"
         class="flex w-7"
       >
         <IconNewLogo class="size-7" aria-hidden="true" />

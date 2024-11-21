@@ -87,22 +87,30 @@ export const USER_ACCOUNT = {
 
 export const FOOTER = {
   linkGroup1: {
-    about: '/de/s/about',
-    shipping: '/de/s/shipping',
-    philosophy: '/de',
-    imprint: '/de/s/imprint',
+    scayleStorefront: '/de/s/about',
+    scayle: 'https://www.scayle.com/',
+    storefrontGuide:
+      'https://scayle.dev/en/storefront-guide/developer-guide/getting-started/what-is-storefront',
+    cmsComponents: '/de/content/cms-component-showcase',
   },
   linkGroup2: {
-    customerService: '/de',
     faq: '/de/s/faq',
-    deliveryReturns: '/de/s/returns',
-    aboutStorefront:
-      'https://scayle.dev/en/storefront-guide/developer-guide/getting-started/what-is-storefront',
+    helpdesk:
+      'https://github.com/scayle/storefront-boilerplate-support/discussions',
+    shipping: '/de/s/shipping',
+    returns: '/de/s/returns',
   },
   linkGroup3: {
-    cookiePolicy: '/de',
-    privacyPolicy: '/de',
-    termsConditions: '/de/s/imprint',
+    termsConditions: '/de/s/agb',
+    privacyPolicy: '/de/s/data-privacy',
+    imprint: '/de/s/imprint',
+  },
+  linkGroup4: {
+    instagram: 'https://www.instagram.com/',
+    facebook: 'https://www.facebook.com/',
+    pinterest: 'https://pinterest.com/',
+    tiktok: 'https://www.tiktok.com/',
+    youtube: 'https://www.youtube.com/',
   },
 }
 

@@ -8,7 +8,9 @@ export class Footer {
   readonly shoppingPromiseInvoice: Locator
   readonly shoppingPromiseShipping: Locator
   readonly shoppingPromiseReturn: Locator
-  readonly footerGroupTitle: Locator
+  readonly footerLinkSection: Locator
+  readonly footerLinkSectionTitle: Locator
+  readonly footerLogo: Locator
 
   constructor(page: Page) {
     this.page = page
@@ -23,7 +25,9 @@ export class Footer {
     this.shoppingPromiseReturn = this.shoppingPromises.getByTestId(
       'shopping-promise-return',
     )
-    this.footerGroupTitle = page.getByTestId('footer-group-title')
+    this.footerLinkSection = page.getByTestId('footer-link-section')
+    this.footerLinkSectionTitle = page.getByTestId('footer-link-section-title')
+    this.footerLogo = page.getByTestId('footer-logo')
   }
 
   async verifyFooterLinks(linksGroup: { [key: string]: string }) {

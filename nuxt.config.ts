@@ -734,8 +734,8 @@ export default defineNuxtConfig({
   nitro: {
     vercel: {
       functions: {
-        // Vercel only supports node20 so hardcode that value
-        runtime: 'nodejs20.x',
+        // Default to the latest Node LTS
+        runtime: 'nodejs22.x',
       },
     },
   },

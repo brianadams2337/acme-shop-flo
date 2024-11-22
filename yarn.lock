@@ -3391,10 +3391,10 @@
     unstorage "^1.10.2"
     zod "^3.23.8"
 
-"@scayle/nuxt-opentelemetry@0.4.2":
-  version "0.4.2"
-  resolved "https://registry.yarnpkg.com/@scayle/nuxt-opentelemetry/-/nuxt-opentelemetry-0.4.2.tgz#912ff5a20c5e70a9ba4a64de3fc23259e9c2f042"
-  integrity sha512-Rv2RYexdceUT1UA1mnkybCy23Ms9XB+m90qDJ97yYkcIse8PIAOiWLETQjv16/wByyG8yRN6kTY2069gcvXyxg==
+"@scayle/nuxt-opentelemetry@0.5.0":
+  version "0.5.0"
+  resolved "https://registry.yarnpkg.com/@scayle/nuxt-opentelemetry/-/nuxt-opentelemetry-0.5.0.tgz#b8985a904142db9fe091f0efe0d258e8380d3f4d"
+  integrity sha512-kdGJu432wwoSUnwCl3WKj2p9NMPclFbiYEVEHHxDkJIqgjlKtidn6ly/3GOQOVxjQ84nM+9h2uJEXS8VcpjOTQ==
   dependencies:
     "@nuxt/kit" "^3.12.3"
     "@opentelemetry/api" "1.9.0"

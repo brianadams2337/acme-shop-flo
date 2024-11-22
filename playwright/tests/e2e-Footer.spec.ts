@@ -46,13 +46,20 @@ test('C2143604 Verify footer Social section', async ({ footer }) => {
   }).toPass()
 })
 
-test('C2143605 Verify footer logo', async ({ footer, page, baseURL }) => {
+test('C2143605 Verify footer logo', async ({
+  footer,
+  page,
+  baseURL,
+  header,
+}) => {
   await test.step('Verify logo click from Homepage', async () => {
     await expect(async () => {
       await expect(footer.footerLogo).toBeVisible()
       const pageUrl = page.url()
       await footer.footerLogo.click()
       expect(page.url()).toEqual(pageUrl)
+      await page.waitForTimeout(1000)
+      await expect(header.mainHeader).toBeInViewport()
       const scrollPosition = await page.evaluate(() => window.scrollY)
       expect(scrollPosition).toBe(0)
     }).toPass()
@@ -62,6 +69,8 @@ test('C2143605 Verify footer logo', async ({ footer, page, baseURL }) => {
       await page.goto('/s/agb', { waitUntil: 'commit' })
       await expect(footer.footerLogo).toBeVisible()
       await footer.footerLogo.click()
+      await page.waitForLoadState('domcontentloaded')
+      await expect(header.mainHeader).toBeInViewport()
       expect(page.url()).toEqual(baseURL + HOMEPAGE_PATH_DE)
     }).toPass()
   })

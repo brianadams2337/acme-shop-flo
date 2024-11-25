@@ -30,10 +30,11 @@
     </LocalizedLink>
 
     <nav class="h-full grow max-lg:hidden" data-testid="nav-categories">
-      <ul class="flex h-full grow-[2] space-x-2">
+      <ul class="flex h-full grow-[2]">
         <HeaderNavigationItem
           v-for="item in mainNavigationItems"
           :key="item.id"
+          class="pl-2 first:pl-0"
           :item="item"
         />
       </ul>

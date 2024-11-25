@@ -14,7 +14,7 @@
     <SFSlideInFromLeftTransition>
       <MobileSidebar
         v-popover="isSideNavigationOpen"
-        class="absolute top-13 !m-0 h-[calc(100vh-52px)] w-screen bg-white !p-0"
+        class="absolute top-13 !m-0 h-[calc(100dvh-52px)] w-screen bg-white !p-0"
         :class="{
           'block-scrolling': isSideNavigationOpen,
           hidden: !isSideNavigationOpen,

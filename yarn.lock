@@ -12611,15 +12611,15 @@ storyblok-js-client@6.10.3:
   resolved "https://registry.yarnpkg.com/storyblok-js-client/-/storyblok-js-client-6.10.3.tgz#db5dd9fe46e35e8d034eaf611168a41461914558"
   integrity sha512-q6YK/f+F8PAJLsKR7jzlTRO9yIUXWLON2Fy02QjywYaSYwyS9ETzIuOtmCSstLrDAP5I+Vnw9PzEU30roxS15g==
 
-storyblok-js-client@^6.10.0, storyblok-js-client@^6.9.1:
+storyblok-js-client@^6.10.0:
   version "6.10.2"
   resolved "https://registry.yarnpkg.com/storyblok-js-client/-/storyblok-js-client-6.10.2.tgz#0ebd7973589ec183bfedd27911072a9747838fc6"
   integrity sha512-LtJuwAhCMQGFjkmEz4lalzQ8KytjSCCcr1Dp8ijgaMPXWJ8LLMzHhCUmyM/nFxOAYq6A6Q0hPLeR9xUym1aYig==
 
-storyblok@3.35.0:
-  version "3.35.0"
-  resolved "https://registry.yarnpkg.com/storyblok/-/storyblok-3.35.0.tgz#d9ff38e2d2328aaacbbcfecff5072db4556344f0"
-  integrity sha512-qR60cylwAroyIrrdDada7shc5AWafewTjKSvDHbdzP0g6pYmnnBQkeTEmZDV9354+wsFTRaOQNHuCbD20mHDTw==
+storyblok@3.35.1:
+  version "3.35.1"
+  resolved "https://registry.yarnpkg.com/storyblok/-/storyblok-3.35.1.tgz#f3f8866a0b41d01542b4b963b22976fb553e6157"
+  integrity sha512-zQUF6ylQBMlD/5ua9GGY+GM+nFyPBV2dTypSRaIHSZ9bJZT1VX/1rsGeT2s74xZnTdkZB011PJ3rQp6sA3gRlg==
   dependencies:
     "@storyblok/region-helper" "^1.0.0"
     axios "^0.27.2"
@@ -12640,7 +12640,7 @@ storyblok@3.35.0:
     p-series "^2.1.0"
     path "^0.12.7"
     simple-uuid "^0.0.1"
-    storyblok-js-client "^6.9.1"
+    storyblok-js-client "6.10.3"
     update-notifier "^5.1.0"
     xml-js "^1.6.11"
 

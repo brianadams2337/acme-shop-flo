@@ -10,7 +10,7 @@ import { AccountPage } from '../page-objects/accountPage'
 import { ToastMessage } from '../page-objects/components/toastMessage'
 import { Breadcrumb } from '../page-objects/components/breadcrumb'
 import { Pagination } from '../page-objects/components/pagination'
-import { PlpFilters } from '../page-objects/components/plpFilters'
+import { Filters } from '../page-objects/components/filters'
 import { Search } from '../page-objects/components/search'
 import { MobileNavigation } from '../page-objects/components/mobileNavigation'
 import { WishlistPage } from '../page-objects/wishlistPage'
@@ -32,7 +32,7 @@ interface Fixtures {
   toastMessage: ToastMessage
   breadcrumb: Breadcrumb
   pagination: Pagination
-  plpFilters: PlpFilters
+  filters: Filters
   search: Search
   mobileNavigation: MobileNavigation
   wishlistPage: WishlistPage
@@ -90,9 +90,9 @@ export const test = base.extend<Fixtures>({
     const pagination = new Pagination(page)
     await use(pagination)
   },
-  plpFilters: async ({ page }, use) => {
-    const plpFilters = new PlpFilters(page)
-    await use(plpFilters)
+  filters: async ({ page }, use) => {
+    const filters = new Filters(page)
+    await use(filters)
   },
   search: async ({ page }, use) => {
     const search = new Search(page)

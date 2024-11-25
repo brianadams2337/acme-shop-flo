@@ -126,3 +126,48 @@ test('C2132173: Verify Search suggestions exact product match', async ({
     await search.assertPdpIsLoaded()
   }).toPass()
 })
+
+test('C2140718: Verify Search results page Filters ', async ({
+  search,
+  page,
+  mobileNavigation,
+  filters,
+}) => {
+  await test.step('Search for a term and check Filter initial state', async () => {
+    await expect(async () => {
+      if (isMobile(page)) {
+        await mobileNavigation.executeMobileSearch(
+          SEARCH_SUGGESTIONS.searchTermBrand,
+        )
+      } else {
+        await search.executeSearch(SEARCH_SUGGESTIONS.searchTermBrand)
+      }
+      await page.waitForURL(SEARCH_SUGGESTIONS.searchUrl)
+      await expect(filters.filterToggleCounter).not.toBeVisible()
+    }).toPass()
+  })
+
+  await test.step('Apply filters and check filter counter', async () => {
+    await expect(async () => {
+      await filters.openFilters()
+      await expect(filters.closeFiltersButton).toBeVisible()
+      await filters.filterPriceInput.nth(1).clear()
+      await filters.filterPriceInput.nth(1).fill('100')
+      await filters.filterPriceInput.nth(1).press('Enter')
+      await filters.filterColorChip.first().scrollIntoViewIfNeeded()
+      await page.waitForLoadState('domcontentloaded')
+      await filters.filterColorChip.first().setChecked(true)
+      await filters.filterApplyButton.click()
+      await expect(filters.filterToggleCounter.first()).toHaveText('2')
+    }).toPass()
+  })
+
+  await test.step('Reset filters and check filter counter', async () => {
+    await expect(async () => {
+      await filters.openFilters()
+      await filters.filterResetButton.click()
+      await page.waitForLoadState('domcontentloaded')
+      await expect(filters.filterToggleCounter.first()).not.toBeVisible()
+    }).toPass()
+  })
+})

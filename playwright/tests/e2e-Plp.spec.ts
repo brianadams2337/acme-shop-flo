@@ -19,13 +19,14 @@ test('C2130723: Verify PLP standard components', async ({
   breadcrumb,
   pagination,
   page,
+  filters,
 }) => {
   await expect(async () => {
     if (isMobile(page)) {
-      await expect(productListingPage.filterButton.nth(1)).toBeVisible()
+      await expect(filters.filterButton.nth(1)).toBeVisible()
     } else {
       await expect(productListingPage.sortDropdown.first()).toBeVisible()
-      await expect(productListingPage.filterButton.nth(0)).toBeVisible()
+      await expect(filters.filterButton.nth(0)).toBeVisible()
     }
     await expect(breadcrumb.breadcrumbCategoryLvl0).toBeVisible()
     await expect(breadcrumb.breadcrumbCategoryLvl1).toBeVisible()
@@ -89,9 +90,8 @@ test('C2130725: Verify PLP breadcrumb', async ({
 })
 
 test('C2130727: Verify PLP Filters and Product Count', async ({
-  productListingPage,
   breadcrumb,
-  plpFilters,
+  filters,
   toastMessage,
   page,
 }) => {
@@ -100,50 +100,50 @@ test('C2130727: Verify PLP Filters and Product Count', async ({
   await test.step('Verify initial state', async () => {
     await expect(async () => {
       await expect(breadcrumb.productCounter).toBeVisible()
-      await productListingPage.openFilters()
-      await expect(plpFilters.filterSectionHeadline.first()).toBeVisible()
-      await expect(plpFilters.closeFiltersButton).toBeVisible()
+      await filters.openFilters()
+      await expect(filters.filterSectionHeadline.first()).toBeVisible()
+      await expect(filters.closeFiltersButton).toBeVisible()
     }).toPass()
   })
 
   await test.step('Apply price filters', async () => {
     await expect(async () => {
-      await plpFilters.filterPriceInput.first().clear()
-      await plpFilters.filterPriceInput.first().fill('80')
-      await plpFilters.filterPriceInput.first().press('Enter')
-      await plpFilters.filterPriceInput.nth(1).clear()
-      await plpFilters.filterPriceInput.nth(1).fill('100')
-      await plpFilters.filterPriceInput.nth(1).press('Enter')
+      await filters.filterPriceInput.first().clear()
+      await filters.filterPriceInput.first().fill('80')
+      await filters.filterPriceInput.first().press('Enter')
+      await filters.filterPriceInput.nth(1).clear()
+      await filters.filterPriceInput.nth(1).fill('100')
+      await filters.filterPriceInput.nth(1).press('Enter')
       await page.waitForLoadState('domcontentloaded')
     }).toPass()
   })
 
   await test.step('Apply color and size filters', async () => {
     await expect(async () => {
-      await plpFilters.filterColorChip.first().scrollIntoViewIfNeeded()
+      await filters.filterColorChip.first().scrollIntoViewIfNeeded()
       await page.waitForLoadState('domcontentloaded')
-      await plpFilters.filterColorChip.first().setChecked(true)
+      await filters.filterColorChip.first().setChecked(true)
     }).toPass()
 
     await expect(async () => {
-      await plpFilters.filterSizeCheckbox.first().scrollIntoViewIfNeeded()
+      await filters.filterSizeCheckbox.first().scrollIntoViewIfNeeded()
       await page.waitForLoadState('domcontentloaded')
-      await plpFilters.filterSizeCheckbox.first().setChecked(true)
-      await expect(plpFilters.filterGroupCounter.nth(2)).toBeVisible()
+      await filters.filterSizeCheckbox.first().setChecked(true)
+      await expect(filters.filterGroupCounter.nth(2)).toBeVisible()
     }).toPass()
 
-    const sizeFilterValue = await plpFilters.filterSizeCheckbox
+    const sizeFilterValue = await filters.filterSizeCheckbox
       .first()
       .getAttribute('value')
-    const colorFilterValue = await plpFilters.filterColorChip
+    const colorFilterValue = await filters.filterColorChip
       .first()
       .getAttribute('data-color-id')
 
     await expect(async () => {
-      await plpFilters.filterApplyButton.click()
+      await filters.filterApplyButton.click()
       await toastMessage.assertToastInfoIsVisible()
-      await expect(plpFilters.closeFiltersButton).not.toBeVisible()
-      await expect(productListingPage.filterButton.first()).toContainText('3')
+      await expect(filters.closeFiltersButton).not.toBeVisible()
+      await expect(filters.filterButton.first()).toContainText('3')
     }).toPass()
 
     await page.waitForLoadState('domcontentloaded')
@@ -157,17 +157,17 @@ test('C2130727: Verify PLP Filters and Product Count', async ({
   })
 
   await test.step('Reset filters', async () => {
-    await productListingPage.openFilters()
+    await filters.openFilters()
 
-    await plpFilters.filterResetButton.click()
-    await plpFilters.closeFiltersButton.click()
-    await expect(productListingPage.filterButton.first()).not.toContainText('3')
+    await filters.filterResetButton.click()
+    await filters.closeFiltersButton.click()
+    await expect(filters.filterButton.first()).not.toContainText('3')
   })
 })
 
 test('C2139744: Verify PLP Filters deeplink', async ({
   productListingPage,
-  plpFilters,
+  filters,
   baseURL,
   countryDetector,
 }) => {
@@ -177,16 +177,16 @@ test('C2139744: Verify PLP Filters deeplink', async ({
     baseURL as string,
   )
   await countryDetector.closeModal()
-  await expect(productListingPage.filterButton.first()).toContainText('3')
+  await expect(filters.filterButton.first()).toContainText('3')
   await expect(async () => {
-    await productListingPage.openFilters()
-    await plpFilters.closeFiltersButton.waitFor()
+    await filters.openFilters()
+    await filters.closeFiltersButton.waitFor()
   }).toPass()
 
   await expect(async () => {
-    await plpFilters.closeFiltersButton.waitFor()
-    await expect(plpFilters.filterSizeCheckbox.nth(0)).toBeChecked()
-    await expect(plpFilters.filterSaleSwitch).toBeChecked()
+    await filters.closeFiltersButton.waitFor()
+    await expect(filters.filterSizeCheckbox.nth(0)).toBeChecked()
+    await expect(filters.filterSaleSwitch).toBeChecked()
   }).toPass()
 })
 

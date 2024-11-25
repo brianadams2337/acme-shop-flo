@@ -1,6 +1,8 @@
 import type { Locator, Page } from '@playwright/test'
+import { isMobile } from '../../support/utils'
+import { expect } from '../../fixtures/fixtures'
 
-export class PlpFilters {
+export class Filters {
   readonly page: Page
   readonly closeFiltersButton: Locator
   readonly filterColorChip: Locator
@@ -12,6 +14,8 @@ export class PlpFilters {
   readonly filterFormCheckbox: Locator
   readonly filterGroupCounter: Locator
   readonly filterSaleSwitch: Locator
+  readonly filterButton: Locator
+  readonly filterToggleCounter: Locator
 
   constructor(page: Page) {
     this.page = page
@@ -25,5 +29,18 @@ export class PlpFilters {
     this.filterFormCheckbox = page.getByTestId('form-checkbox')
     this.filterGroupCounter = page.getByTestId('filter-group-counter')
     this.filterSaleSwitch = page.getByRole('switch')
+    this.filterButton = page.getByTestId('filter-toggle-button')
+    this.filterToggleCounter = page.getByTestId('filter-toggle-counter')
+  }
+
+  async openFilters() {
+    if (isMobile(this.page)) {
+      await expect(this.filterButton.nth(1)).toBeVisible()
+      await this.filterButton.nth(1).click()
+    } else {
+      await expect(this.filterButton.first()).toBeVisible()
+      await this.filterButton.first().click()
+    }
+    await this.page.waitForLoadState('domcontentloaded')
   }
 }

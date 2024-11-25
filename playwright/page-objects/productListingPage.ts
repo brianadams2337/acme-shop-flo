@@ -1,13 +1,10 @@
 import type { Locator, Page } from '@playwright/test'
-import { expect } from '@playwright/test'
-import { isMobile } from '../support/utils'
 
 export class ProductListingPage {
   readonly page: Page
   readonly wishlistButton: Locator
   readonly productTile: Locator
   readonly sortDropdown: Locator
-  readonly filterButton: Locator
   readonly menuRootCategory: Locator
   readonly menuSubCategoryLvl1: Locator
   readonly menuSubCategoryLvl2: Locator
@@ -23,7 +20,6 @@ export class ProductListingPage {
     )
     this.productTile = page.locator('[id^="product-"]')
     this.sortDropdown = page.getByTestId('sort-dropdown')
-    this.filterButton = page.getByTestId('filter-toggle-button')
     this.menuRootCategory = page.getByTestId('root-category-0')
     this.menuSubCategoryLvl1 = page.getByTestId('sub-category-0')
     this.menuSubCategoryLvl2 = page
@@ -71,16 +67,5 @@ export class ProductListingPage {
 
   getProductLink(productPath: string): Locator {
     return this.page.locator(`a[href="${productPath}"]`)
-  }
-
-  async openFilters() {
-    if (isMobile(this.page)) {
-      await expect(this.filterButton.nth(1)).toBeVisible()
-      await this.filterButton.nth(1).click()
-    } else {
-      await expect(this.filterButton.first()).toBeVisible()
-      await this.filterButton.first().click()
-    }
-    await this.page.waitForLoadState('domcontentloaded')
   }
 }

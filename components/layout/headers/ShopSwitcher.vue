@@ -2,35 +2,56 @@
   <SFListbox
     :value="currentShop?.path"
     :name="'language-switch-' + id"
-    class="shrink-0"
+    class="shrink-0 max-lg:py-2"
   >
     <template #default="{ isOpen, list }">
       <SFListboxButton
         :id="id"
         ref="button"
         :aria-label="
-          $t('shop_selector.aria_label', { selectedCountry, selectedLanguage })
+          $t('shop_selector.aria_label', {
+            selectedCountry,
+            selectedLanguage,
+          })
         "
-        class="h-full gap-1.5 px-2 -outline-offset-4 hover:bg-indigo-200/10"
+        class="h-full gap-1.5 px-2 !text-gray-600 -outline-offset-4 hover:bg-indigo-200/10 lg:!text-white"
         :list-name="list"
         data-testid="language-listbox"
       >
-        <IconNewGlobe class="size-3.5" />
-        <div class="text-sm text-white">
+        <IconNewGlobe class="size-5 lg:size-3.5" />
+        <div class="mt-1 text-[15px] lg:text-sm">
           {{ getShopName(currentShop.locale, multipleShopsForCountry) }}
         </div>
         <IconChevronDown
-          class="size-3.5 text-white transition-all"
+          class="size-3.5 transition-all"
           :class="{ 'rotate-180': isOpen }"
         />
       </SFListboxButton>
     </template>
-    <template #options="{ isOpen, list }">
+    <template #options="{ isOpen, list, close }">
       <SFListboxOptions
         v-if="isOpen"
         :id="id"
-        class="absolute right-0 top-0 z-60 flex max-h-64 flex-col gap-1 overflow-y-auto rounded-10 bg-white p-2 shadow-md"
+        class="absolute z-60 flex max-h-[80vh] flex-col gap-1 overflow-y-auto rounded-10 bg-white p-2 shadow-md max-lg:bottom-0 max-lg:w-full max-lg:border-t lg:right-0 lg:top-0 lg:max-h-64"
       >
+        <div class="-mx-2 flex flex-col gap-1 border-b px-4 py-2 lg:hidden">
+          <div class="flex">
+            <div class="text-2xl font-semi-bold-variable">
+              {{ $t('shop_selector.choose_shop') }}
+            </div>
+            <SFButton variant="raw" class="ml-auto" @click="close">
+              <IconClose class="size-5 text-gray-400" />
+            </SFButton>
+          </div>
+          <div class="text-base">
+            <span class="font-semi-bold-variable">
+              {{ $t('shop_selector.current_shop') }}:
+            </span>
+            <span class="text-gray-600">
+              {{ getShopName(currentShop.locale, multipleShopsForCountry) }}
+            </span>
+          </div>
+        </div>
         <SFListboxOption
           v-for="{ shopId, path, locale } in availableShops"
           :key="shopId"
@@ -56,6 +77,7 @@ import { useSwitchLocalePath } from '#i18n'
 import { useTrackingEvents } from '~/composables/useTrackingEvents'
 import { useAvailableShops, useCurrentShop } from '#storefront/composables'
 import {
+  SFButton,
   SFListbox,
   SFListboxOption,
   SFListboxOptions,

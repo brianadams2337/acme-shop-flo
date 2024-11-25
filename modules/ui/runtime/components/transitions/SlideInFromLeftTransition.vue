@@ -1,11 +1,11 @@
 <template>
   <Transition
-    :enter-active-class="`transition transition duration-${duration} ease-in-out`"
-    :leave-active-class="`transition transition duration-${duration} ease-in-out`"
     enter-from-class="-translate-x-full"
     enter-to-class="translate-x-0"
     leave-from-class="translate-x-0"
     leave-to-class="-translate-x-full"
+    :enter-active-class="`transition-[display,transform,overlay] transition-discrete starting:-translate-x-full duration-${duration} ease-in-out`"
+    :leave-active-class="`transition-[display,transform,overlay] transition-discrete starting:-translate-x-full duration-${duration} ease-in-out`"
   >
     <slot />
   </Transition>

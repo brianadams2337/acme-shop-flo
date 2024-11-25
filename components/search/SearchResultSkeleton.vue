@@ -1,10 +1,18 @@
 <template>
-  <div class="flex h-full py-2">
-    <div class="flex-1 space-y-2">
-      <div v-for="n in 3" :key="n" class="mt-6 flex items-center">
-        <SFSkeletonLoader class="h-16" full-width type="headline" />
-      </div>
+  <div class="space-y-5" data-testid="skeleton">
+    <div class="space-y-3">
+      <SFSkeletonLoader class="h-3.5" type="headline" />
+      <SFSkeletonLoader class="h-16" type="button" full-width />
     </div>
+    <div class="space-y-3">
+      <SFSkeletonLoader class="h-3.5" type="headline" />
+      <SFSkeletonLoader class="h-16" type="button" full-width />
+    </div>
+    <div class="space-y-3">
+      <SFSkeletonLoader class="h-3.5" type="headline" />
+      <SFSkeletonLoader class="h-16" type="button" full-width />
+    </div>
+    <SFSkeletonLoader class="h-3.5" type="button" />
   </div>
 </template>
 

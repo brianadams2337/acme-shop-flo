@@ -1,7 +1,8 @@
 <template>
   <div
     id="search-results"
-    class="absolute top-12 mt-2 w-full overflow-y-auto overscroll-none rounded border border-primary bg-white p-4"
+    role="popup"
+    class="fixed z-10 mt-2 w-full space-y-5 border-gray-300 bg-white p-4 max-lg:bottom-0 max-lg:top-20 max-lg:mt-5 max-lg:overflow-y-auto lg:absolute lg:rounded-lg lg:border lg:shadow-md"
   >
     <SFFadeInTransition>
       <SearchResultSkeleton v-if="showSuggestionsLoader" />
@@ -10,22 +11,16 @@
           <SearchResults
             :products="products"
             :categories="categories"
-            :results-count="resultsCount"
+            :navigation-items="navigationItems"
+            :search-term="searchQuery"
             @click:result="emit('click:result', $event)"
+            @close="emit('close')"
           />
-          <SFLink
-            :to="getSearchRoute(searchQuery)"
-            raw
-            class="mx-auto mt-3 rounded px-4 py-2 text-xs font-semibold underline transition-all duration-200 ease-in-out hover:bg-secondary-450 hover:font-bold"
-            data-testid="search-more-button"
-            @click="emit('close')"
-          >
-            {{ $t('search.more') }}
-          </SFLink>
         </div>
         <section
           v-else-if="!resultsCount && searchQuery"
           class="px-8 py-4 text-center"
+          data-testid="no-result"
         >
           <p>{{ $t('search.no_result') }}</p>
         </section>
@@ -35,29 +30,31 @@
 </template>
 
 <script setup lang="ts">
+import { computed, defineAsyncComponent } from 'vue'
 import type {
   SearchEntity,
   CategorySearchSuggestion,
   ProductSearchSuggestion,
+  NavigationItemSuggestion,
 } from '@scayle/storefront-nuxt'
 import SearchResultSkeleton from './SearchResultSkeleton.vue'
-import SearchResults from './SearchResults.vue'
-import { useRouteHelpers } from '~/composables'
-import { SFLink, SFFadeInTransition } from '#storefront-ui/components'
+import { SFFadeInTransition } from '#storefront-ui/components'
 
+const SearchResults = defineAsyncComponent(() => import('./SearchResults.vue'))
 const emit = defineEmits<{
   close: []
   'click:result': [event: SearchEntity]
 }>()
 
-const { getSearchRoute } = useRouteHelpers()
-
-defineProps<{
+const { products, categories, navigationItems } = defineProps<{
   searchQuery: string
-  resultsCount?: number
   products: ProductSearchSuggestion[]
   categories: CategorySearchSuggestion[]
-  fetching: boolean
+  navigationItems: NavigationItemSuggestion[]
   showSuggestionsLoader: boolean
 }>()
+
+const resultsCount = computed(() => {
+  return products.length + navigationItems.length + categories.length
+})
 </script>

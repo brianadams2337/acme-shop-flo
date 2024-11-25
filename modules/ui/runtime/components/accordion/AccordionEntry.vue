@@ -1,15 +1,32 @@
 <template>
-  <div class="flex flex-col py-4 md:flex-row md:py-10">
+  <div
+    class="flex flex-col py-4"
+    :class="
+      variant === 'wide' ? 'md:flex-row md:py-10' : 'lg:flex-row lg:py-10'
+    "
+  >
     <details
       ref="details"
-      class="group peer open:max-md:mb-4 md:w-1/2"
+      class="group peer"
+      :class="
+        variant === 'wide'
+          ? 'open:max-md:mb-4 md:w-1/2'
+          : 'open:max-lg:mb-4 lg:w-1/2'
+      "
       :aria-details="id"
     >
       <summary class="list-none marker:hidden">
         <div
-          class="flex w-full cursor-pointer gap-4 max-md:justify-between md:h-min md:flex-row-reverse md:justify-end"
+          class="flex w-full cursor-pointer gap-4"
+          :class="
+            variant === 'wide'
+              ? 'max-md:justify-between md:h-min md:flex-row-reverse md:justify-end'
+              : 'max-lg:justify-between lg:h-min lg:flex-row-reverse lg:justify-end'
+          "
         >
-          {{ title }}
+          <slot name="title">
+            {{ title }}
+          </slot>
           <IconPlus class="size-6 text-black group-open:hidden" />
           <IconMinus class="hidden size-6 text-black group-open:block" />
         </div>
@@ -19,6 +36,7 @@
       :id="id"
       ref="content"
       class="overflow-hidden text-md transition-all md:w-1/2"
+      :class="variant === 'wide' ? 'md:w-1/2' : 'lg:w-1/2'"
       :style="dynamicHeight"
     >
       <slot />
@@ -30,7 +48,10 @@
 import { computed, ref, useId } from 'vue'
 import { useEventListener } from '@vueuse/core'
 
-defineProps<{ title: string }>()
+const { variant = 'wide' } = defineProps<{
+  title?: string
+  variant?: 'narrow' | 'wide'
+}>()
 
 const id = useId()
 const open = ref(false)

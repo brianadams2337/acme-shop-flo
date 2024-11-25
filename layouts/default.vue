@@ -10,17 +10,16 @@
     <CountryDetection @switch-shop="switchShop" />
     <div
       class="translate-y-0 transition-transform duration-300 ease-in-out"
-      :class="{ 'lg:translate-y-[-3.25rem]': !isPromotionBannerShown }"
+      :class="{ 'lg:-translate-y-13': !isPromotionBannerShown }"
     >
       <HeaderTopBar />
-      <AppHeader />
-      <MobileSidebar />
-      <div class="grow">
+      <Header />
+      <main class="mt-8 grow">
         <NuxtPage />
-      </div>
-      <AppFooter
+      </main>
+      <Footer
         class="mt-16"
-        :class="{ 'lg:translate-y-[3.25rem]': !isPromotionBannerShown }"
+        :class="{ 'lg:translate-y-13': !isPromotionBannerShown }"
       />
     </div>
   </div>
@@ -45,8 +44,6 @@ import {
   useCustomerDataChangeWatcher,
 } from '~/composables'
 import HeaderTopBar from '~/components/layout/headers/HeaderTopBar.vue'
-import AppHeader from '~/components/layout/headers/AppHeader.vue'
-import MobileSidebar from '~/components/layout/navigation/MobileSidebar.vue'
 import CountryDetection, {
   type ShopInfo,
 } from '~/components/CountryDetection.vue'
@@ -54,7 +51,8 @@ import PromotionBanner from '~/components/promotion/PromotionBanner.vue'
 import { useDefaultBreakpoints } from '#storefront-ui/composables'
 import { SFToastContainer } from '#storefront-ui/components'
 import { NuxtPage } from '#components'
-import AppFooter from '~/components/AppFooter.vue'
+import Footer from '~/components/Footer.vue'
+import Header from '~/components/layout/headers/Header.vue'
 
 // Initialize data
 const { allCurrentPromotions } = useBasketPromotions()
@@ -80,6 +78,7 @@ const {
     public: { shopName },
   },
 } = useNuxtApp()
+
 // Meta tags
 useHead({
   bodyAttrs: () => ({

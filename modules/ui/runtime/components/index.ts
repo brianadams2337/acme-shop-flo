@@ -67,6 +67,7 @@ import SFFadeInTransition from './transitions/FadeInTransition.vue'
 import SFFadeInFromBottomTransition from './transitions/FadeInFromBottomTransition.vue'
 import SFFadeInFromBottomGroupTransition from './transitions/FadeInFromBottomGroupTransition.vue'
 import SFSlideInFromLeftTransition from './transitions/SlideInFromLeftTransition.vue'
+import SFSlideInFromRightTransition from './transitions/SlideInFromRightTransition.vue'
 import SFSlideInFromTopTransition from './transitions/SlideInFromTopTransition.vue'
 import SFSlideInFromBottomTransition from './transitions/SlideInFromBottomTransition.vue'
 
@@ -119,6 +120,7 @@ export {
   SFSlideInFromBottomTransition,
   SFSlideInFromTopTransition,
   SFSlideInFromLeftTransition,
+  SFSlideInFromRightTransition,
   SFAccordionEntry,
   SFPageContainer,
 }

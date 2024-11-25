@@ -5,7 +5,11 @@ export default defineVitestConfig({
   // any custom vitest config you require
   test: {
     environment: 'happy-dom',
-    setupFiles: ['./vitest.setup.ts'],
+    setupFiles: [
+      './test/vitest-setup/jest-dom.ts',
+      './test/vitest-setup/storefront-nuxt.ts',
+      './test/vitest-setup/i18n.ts',
+    ],
     globals: true,
     include: ['**/*.test.?(c|m)[jt]s?(x)'],
     coverage: {
@@ -29,7 +33,7 @@ export default defineVitestConfig({
     clearMocks: true,
     onConsoleLog: (log) => {
       // Silence logs coming from vue <Suspense> is experimental, and stdout | unknown component before it
-      if (log.includes('<Suspense')) {
+      if (log.includes('<Suspense') || log.includes('Directive "t"')) {
         return false
       }
     },

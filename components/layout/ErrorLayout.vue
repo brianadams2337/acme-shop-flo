@@ -16,8 +16,7 @@
     <div v-if="isInDevMode" class="max-w-full overflow-auto">
       <div>{{ statusCode }} {{ statusMessage }}</div>
       <pre class="font-bold">{{ errorMessage }}</pre>
-      <!-- eslint-disable-next-line vue/no-v-html -->
-      <code v-if="stack" v-html="stack" />
+      <code v-if="stack" v-sanitized-html="stack" />
     </div>
   </div>
 </template>
@@ -30,6 +29,7 @@ import { HttpStatusCode } from '@scayle/storefront-nuxt'
 import { useNuxtApp } from '#app'
 import type { NuxtError } from '#app'
 import { SFButton, SFHeadline } from '#storefront-ui/components'
+import { vSanitizedHtml } from '~/directives/sanitized-html'
 
 type AppError =
   | NuxtError

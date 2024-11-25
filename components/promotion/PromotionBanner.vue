@@ -1,7 +1,7 @@
 <template>
   <div
     class="relative z-[65] translate-y-0 transition-all duration-300 ease-in-out"
-    :class="{ 'translate-y-[-3.25rem]': !isPromotionBannerShown }"
+    :class="{ '-translate-y-13': !isPromotionBannerShown }"
   >
     <div
       :ref="(element) => setBannerRef(element as HTMLElement, 'top')"
@@ -46,7 +46,7 @@
     <SFFadeInTransition>
       <TogglePromotionBannerButton
         v-if="!isPromotionListShown"
-        class="absolute top-[3.25rem] hidden !rounded-none !rounded-b-md lg:inline-flex"
+        class="absolute top-13 hidden !rounded-none !rounded-b-md lg:inline-flex"
       />
     </SFFadeInTransition>
   </div>

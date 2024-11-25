@@ -1,5 +1,6 @@
 import type {
   CategorySearchSuggestion,
+  NavigationItemSuggestion,
   ProductSearchSuggestion,
   SearchEntity,
 } from '@scayle/storefront-nuxt'
@@ -61,6 +62,11 @@ export const isCategorySuggestion = (
   suggestion: SearchEntity,
 ): suggestion is CategorySearchSuggestion => {
   return suggestion.type === 'category'
+}
+export const isNavigationItemSuggestion = (
+  suggestion: SearchEntity,
+): suggestion is NavigationItemSuggestion => {
+  return suggestion.type === 'navigationItem'
 }
 
 export const getSuggestionName = (

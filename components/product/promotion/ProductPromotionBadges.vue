@@ -7,7 +7,7 @@
     <div
       v-for="{ id, customData, priority } in orderedPromotions"
       :key="id"
-      class="z-10 mb-1 flex flex-wrap items-center justify-center gap-[0.5ch] bg-blue px-2 py-1.5 text-center text-2xs uppercase text-white last-of-type:mb-0"
+      class="mb-1 flex flex-wrap items-center justify-center gap-[0.5ch] bg-blue px-2 py-1.5 text-center text-2xs uppercase text-white last-of-type:mb-0"
       :class="isFullWidth ? 'last-of-type:rounded-b-none' : 'rounded-md'"
       :style="getBackgroundColorStyle(customData.colorHex)"
     >

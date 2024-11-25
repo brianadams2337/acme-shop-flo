@@ -1,6 +1,6 @@
 <template>
-  <div class="hidden h-9 w-full bg-accent font-medium md:flex">
-    <div class="container flex">
+  <div class="hidden h-9 w-full bg-accent font-medium lg:flex">
+    <div class="flex w-full px-4 lg:px-7">
       <div class="ml-auto flex gap-5 text-sm">
         <LocalizedLink
           data-testid="store-location-link"

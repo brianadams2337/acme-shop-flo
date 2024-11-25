@@ -1,8 +1,0 @@
-<template>
-  <span
-    class="absolute z-20 box-content h-4 w-auto min-w-4 rounded-full border border-white bg-primary p-px text-center text-[11px] font-bold leading-4 text-white"
-    data-testid="floating-badge"
-  >
-    <slot />
-  </span>
-</template>

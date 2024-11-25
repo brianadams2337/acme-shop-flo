@@ -2,6 +2,7 @@ import type { Attributes, Product } from '@scayle/storefront-nuxt'
 import { Factory } from 'fishery'
 import { attributeGroupFactory } from './attribute'
 import { variantFactory } from './variant'
+import { priceFactory } from './price'
 
 export const productFactory = Factory.define<Product>((options) => {
   const attributes = {
@@ -59,5 +60,9 @@ export const productFactory = Factory.define<Product>((options) => {
       variantFactory.build({ id: 1 }),
       variantFactory.build({ id: 2 }),
     ],
+    priceRange: {
+      min: priceFactory.build(),
+      max: priceFactory.build(),
+    },
   }
 })

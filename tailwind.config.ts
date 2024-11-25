@@ -29,6 +29,7 @@ export default {
   content: ['modules/**/*.{vue,js, ts}'],
   safelist: [
     'overflow-hidden',
+    'font-semibold',
     {
       pattern: /duration-\d+/,
     },
@@ -299,6 +300,9 @@ export default {
         // percentage based
         '1/5': '20%',
       },
+      spacing: {
+        13: '3.25rem',
+      },
       animation: {
         'ping-small': 'ping 1s cubic-bezier(0, 0, 0.2, 1) infinite',
         grow: 'grow 0.3s forwards',
@@ -307,7 +311,7 @@ export default {
     },
   },
   plugins: [
-    plugin(({ addUtilities, addVariant }) => {
+    plugin(({ addUtilities, addVariant, addBase }) => {
       const utilities = {
         '.top-white-shadow': {
           boxShadow: '0 -22px 10px 0 #fff',
@@ -364,6 +368,37 @@ export default {
           background:
             'linear-gradient(to left top, transparent 49%, currentColor, currentColor, transparent 52.25%)',
         },
+        '.scroll-shadow': {
+          background: `/* Shadow Cover TOP */
+            linear-gradient(
+              white 30%,
+              rgba(255, 255, 255, 0)
+            ) center top,
+            
+            /* Shadow Cover BOTTOM */
+            linear-gradient(
+              rgba(255, 255, 255, 0), 
+              white 70%
+            ) center bottom,
+            
+            /* Shadow TOP */
+            radial-gradient(
+              farthest-side at 50% 0,
+              rgba(0, 0, 0, 0.2),
+              rgba(0, 0, 0, 0)
+            ) center top,
+            
+            /* Shadow BOTTOM */
+            radial-gradient(
+              farthest-side at 50% 100%,
+              rgba(0, 0, 0, 0.2),
+              rgba(0, 0, 0, 0)
+            ) center bottom;
+          `,
+          'background-repeat': `no-repeat`,
+          'background-size': `100% 40px, 100% 40px, 100% 14px, 100% 14px`,
+          'background-attachment': `local, local, scroll, scroll`,
+        },
       }
       addUtilities(utilities)
       // https://github.com/tailwindlabs/tailwindcss/pull/12040
@@ -377,6 +412,16 @@ export default {
         '& *::-webkit-details-marker',
       ])
       addVariant('supports-hover', ['@media(hover:hover)'])
+
+      // Add reset for search input fields on safari
+      addBase({
+        '[type="search"]::-webkit-search-decoration': { display: 'none' },
+        '[type="search"]::-webkit-search-cancel-button': { display: 'none' },
+        '[type="search"]::-webkit-search-results-button': { display: 'none' },
+        '[type="search"]::-webkit-search-results-decoration': {
+          display: 'none',
+        },
+      })
     }),
   ],
 }

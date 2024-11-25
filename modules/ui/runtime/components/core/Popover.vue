@@ -1,5 +1,6 @@
 <template>
   <div
+    data-testid="popoverContainer"
     class="relative h-full"
     @mouseenter="emit('mouseenter')"
     @mouseleave="emit('mouseleave')"
@@ -9,11 +10,11 @@
     </div>
     <SFFadeInFromBottomTransition appear>
       <div
-        v-show="!disablePopoverContent && isOpen"
-        class="absolute right-0 z-30 min-w-max overflow-hidden"
+        v-if="!disablePopoverContent && isOpen"
+        class="absolute right-0 z-30 hidden min-w-max overflow-hidden border-t-4 border-transparent bg-clip-content supports-hover:block"
       >
         <div
-          class="overflow-hidden rounded border border-black bg-white"
+          class="overflow-hidden rounded-lg border border-gray-300 bg-white"
           :class="contentWrapperClass"
         >
           <slot name="content" />

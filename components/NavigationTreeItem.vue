@@ -1,13 +1,27 @@
 <template>
-  <SFLink
-    v-if="pathParams && pathParams.path && !disabledLink"
-    :to="pathParams.path"
-    :variant="variant"
-    :target="pathParams.openInNew ? '_blank' : '_self'"
-    class="block w-fit"
+  <component
+    :is="isLink ? SFLink : 'div'"
+    v-bind="
+      isLink
+        ? {
+            to: pathParams?.path,
+            target: pathParams?.openInNew ? '_blank' : '_self',
+            variant,
+            raw: true,
+          }
+        : {}
+    "
+    :class="{
+      'mr-3 block w-fit content-center rounded py-1 text-base font-normal leading-5 text-[var(--textColor)] transition-all hover:mr-0 hover:bg-[var(--backgroundColor)] hover:px-1.5':
+        !raw && isLink,
+      'mr-0 bg-[var(--backgroundColor)] px-1.5': isActive && !raw && isLink,
+      'w-fit py-1 text-base font-semi-bold-variable leading-5 text-[var(--textColor)]':
+        !raw && !isLink,
+    }"
+    :style="style"
     @mouseenter="emit('mouseenter:navigation-item')"
   >
-    <div v-if="iconUrl" class="flex items-center gap-2 rounded-md">
+    <div v-if="iconUrl" class="flex items-center gap-2 rounded-md leading-none">
       <object
         v-if="iconUrl"
         :data="iconUrl"
@@ -17,30 +31,47 @@
         class="pointer-events-none size-4"
         tabindex="-1"
       ></object>
-      <span :id="`${navigationItem.id}`">{{ displayName }}</span>
+      <span :id="`${navigationItem.id}`">
+        <slot>
+          {{ displayName }}
+        </slot>
+      </span>
     </div>
     <span v-else>
-      {{ displayName }}
+      <slot>
+        {{ displayName }}
+      </slot>
     </span>
-  </SFLink>
-  <span v-else>{{ displayName }}</span>
+  </component>
 </template>
 
 <script setup lang="ts">
 import { computed } from 'vue'
 import type { NavigationTreeItem } from '@scayle/storefront-nuxt'
+import Color from 'color'
 import { useRuntimeConfig } from '#imports'
 import type { LinkVariant } from '#storefront-ui'
 import { useRouteHelpers } from '~/composables'
 import { SFLink } from '#storefront-ui/components'
+import { theme } from '#tailwind-config'
 
 type Props = {
   navigationItem: NavigationTreeItem
   variant?: LinkVariant
+  raw?: boolean
+  isActive?: boolean
   disabledLink?: boolean
+  textColor?: `#${string}`
+  backgroundColor?: `#${string}`
 }
-
-const { navigationItem, variant, disabledLink = false } = defineProps<Props>()
+const {
+  navigationItem,
+  raw = false,
+  isActive = false,
+  textColor,
+  backgroundColor,
+  disabledLink = undefined,
+} = defineProps<Props>()
 
 const { buildCategoryPath, getLocalizedRoute } = useRouteHelpers()
 
@@ -88,4 +119,39 @@ const pathParams = computed(() => {
   return null
 })
 const displayName = computed(() => navigationItem?.name)
+const disabled = computed<boolean>(() =>
+  disabledLink !== undefined
+    ? disabledLink
+    : !!navigationItem?.customData?.disabledLink,
+)
+
+const getStyle = (
+  navigationTreeItem: NavigationTreeItem,
+  fallbackBackgroundColor: `#${string}`,
+  fallbackTextColor: `#${string}`,
+) => {
+  const linkColor = navigationTreeItem?.customData?.linkColor
+  if (!linkColor) {
+    return {
+      '--backgroundColor': Color(fallbackBackgroundColor).hex(),
+      '--textColor': Color(fallbackTextColor).hex(),
+    }
+  }
+  return {
+    '--backgroundColor': Color(linkColor).alpha(0.1).hexa(),
+    '--textColor': Color(linkColor).hex(),
+  }
+}
+
+const isLink = computed(() => {
+  return pathParams.value?.path && !disabled.value
+})
+const style = computed(() => {
+  return getStyle(
+    navigationItem,
+    backgroundColor ?? theme.colors.gray[100],
+    textColor ??
+      (isLink.value ? theme.colors.gray[600] : theme.colors.gray[900]),
+  )
+})
 </script>

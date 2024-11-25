@@ -92,7 +92,16 @@ export default withNuxt(
   {
     rules: {
       'eslint-comments/no-unlimited-disable': 'off',
-      'vue/html-self-closing': 'off',
+      'vue/html-self-closing': [
+        'error',
+        {
+          html: {
+            void: 'any',
+            normal: 'any',
+            component: 'always',
+          },
+        },
+      ],
       '@typescript-eslint/no-empty-object-type': [
         'error',
         {

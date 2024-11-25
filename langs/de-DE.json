@@ -25,7 +25,8 @@
       "two": ".",
       "few": ".",
       "other": "."
-    }
+    },
+    "cancel": "Abbrechen"
   },
   "notification": {
     "ok": "OK",
@@ -54,7 +55,9 @@
     "not_available": "Keine Angebote verfügbar"
   },
   "shop_selector": {
-    "aria_label": "Shop ändern, aktueller Shop: {selectedCountry}, {selectedLanguage}"
+    "aria_label": "Shop ändern, aktueller Shop: {selectedCountry}, {selectedLanguage}",
+    "choose_shop": "Shop ändern",
+    "current_shop": "Aktueller Shop"
   },
   "validation": {
     "email": "Das Feld {field} muss eine gültige E-Mail Adresse sein",
@@ -106,22 +109,25 @@
     "search": "Suchen",
     "checkout": "Kasse",
     "osp": "Bestellbestätigung",
-    "location": "Store Finden"
+    "location": "Store Finden",
+    "wishlist-aria-label": "Wunschliste | Wunschliste, {count} Artikel | Wunschliste, {count} Artikel",
+    "basket-aria-label": "Warenkorb | Warenkorb, {count} Artikel | Warenkorb, {count} Artikel"
   },
   "search": {
     "placeholder": "Suche Produkte, Kategorien oder Marken",
     "recent_searches": "Bisherige Suchen",
-    "search_results": "Zeige alle Ergebnisse",
+    "search_results": "Alle Ergebnisse für {searchTerm} anzeigen",
     "no_result": "Deine Suchanfrage ergab keine Treffer.",
     "search_term_match_count": "{count} Treffer für \"{term}\"",
     "search_try_again": "Versuch es mit einem anderen Begriff",
     "search_try_again_description": "Suche nach Artikel oder Marken",
     "result": "Deine Suche nach \"{term}\" ergab {resultsCount} Treffer.",
     "result_loading": "Lade Suchergebnisse für \"{term}\"...",
-    "product": "Produkt",
-    "categories": "Kategorie",
+    "product": "Produkte",
+    "categories": "Kategorien",
     "more": "Mehr",
-    "page_title": "Suchergebnisse für \"{term}\""
+    "page_title": "Suchergebnisse fürh \"{term}\"",
+    "navigation_items": "Seiten"
   },
   "promises": {
     "flexible_payment": "Flexible Zahlungsmöglichkeiten",
@@ -201,7 +207,7 @@
   },
   "incl_tax": "inkl. MwSt.",
   "my_account": {
-    "navigation": "Konto",
+    "navigation": "Mein Konto",
     "redirecting": "Weiterleitung",
     "profile_menu": "Kontoeinstellungen",
     "password": "Passwort",
@@ -242,6 +248,9 @@
       "password_update_error": "Das Aktualisieren des Passworts hat nicht funktioniert. Versuchen Sie es bitte erneut!",
       "email_change_hint": "Bitte wenden Sie sich an den Kundendienst, um Ihre E-Mail-Adresse zu ändern.",
       "password_pattern_hint": "Erfordert einen Großbuchstaben, ein Sonderzeichen, eine Zahl und keine Leerzeichen"
+    },
+    "popover": {
+      "greeting": "Hallo {firstName} {lastName}"
     }
   },
   "pdp": {
@@ -440,6 +449,7 @@
     }
   },
   "store_locator": {
+    "button": "Store finden",
     "headline": "Store auswählen",
     "modal_headline": "Store in Deiner Nähe finden",
     "subline": "Bitte geben Sie Ihre Postleitzahl oder Stadt ein, um Stores in Deiner Nähe anzuzeigen.",

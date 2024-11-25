@@ -25,7 +25,8 @@
       "two": "nd",
       "few": "rd",
       "other": "th"
-    }
+    },
+    "cancel": "Cancel"
   },
   "notification": {
     "ok": "OK",
@@ -54,7 +55,9 @@
     "not_available": "No promotion available"
   },
   "shop_selector": {
-    "aria_label": "Change shop, current shop: {selectedCountry}, {selectedLanguage}"
+    "aria_label": "Change shop, current shop: {selectedCountry}, {selectedLanguage}",
+    "choose_shop": "Choose shop",
+    "current_shop": "Current shop"
   },
   "validation": {
     "email": "The {field} field must be a valid email",
@@ -106,20 +109,23 @@
     "search": "Search",
     "checkout": "Checkout",
     "osp": "Order Confirmation",
-    "location": "Find a Store"
+    "location": "Find a Store",
+    "wishlist-aria-label": "Wishlist | Wishlist, {count} item | Wishlist, {count} items",
+    "basket-aria-label": "Basket | Basket, {count} item | Basket, {count} items"
   },
   "search": {
     "placeholder": "Search for product, category or brand",
     "recent_searches": "Recent searches",
-    "search_results": "Display all matches",
+    "search_results": "See all {searchTerm} results",
     "no_result": "Deine Suchanfrage ergab keine Treffer.",
     "search_term_match_count": "{count} Results for  \"{term}\"",
     "result": "Your search for \"{term}\" returned {resultsCount} hits.",
     "result_loading": "Loading search results for \"{term}\"...",
     "search_try_again": "Try again using a different term",
     "search_try_again_description": "Search for items or brands",
-    "product": "Produkt",
-    "categories": "Kategorie",
+    "product": "Products",
+    "categories": "Categories",
+    "navigation_items": "Pages",
     "more": "More",
     "page_title": "Search results for  \"{term}\""
   },
@@ -201,7 +207,7 @@
   },
   "incl_tax": "incl. VAT.",
   "my_account": {
-    "navigation": "Account",
+    "navigation": "My Account",
     "redirecting": "Redirecting",
     "profile_menu": "Account settings",
     "password": "Password",
@@ -241,6 +247,9 @@
       "password_update_error": "The password update did not work, try again!",
       "password_pattern_hint": "Requires an uppercase letter, a special character, a number and no spaces",
       "email_change_hint": "Please contact customer service to change your email."
+    },
+    "popover": {
+      "greeting": "Hello {firstName} {lastName}"
     }
   },
   "pdp": {
@@ -439,6 +448,7 @@
     }
   },
   "store_locator": {
+    "button": "Find a store",
     "headline": "Choose store",
     "modal_headline": "Find a store near you",
     "subline": "Please enter your zip code or city to see stores near you.",

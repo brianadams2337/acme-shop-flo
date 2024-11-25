@@ -1,37 +1,20 @@
 <template>
-  <li
-    class="h-auto break-all rounded border p-2 transition-colors hover:border-primary hover:bg-secondary-450"
+  <LocalizedLink
+    :to="to"
+    raw
+    class="block cursor-pointer space-y-2 rounded-lg border border-gray-600 p-4 hover:border-gray-900 hover:bg-gray-100 focus:border-gray-900 focus:bg-gray-100"
   >
-    <SFLink
-      class="flex w-full flex-1 items-center transition-colors duration-100 ease-in-out"
-      :to="to"
-      data-testid="search-exact-product-item"
-      @click="emit('click:result')"
-    >
-      <NuxtImg
-        v-if="imageUrl"
-        :src="imageUrl"
-        height="48"
-        width="38"
-        provider="scayle"
-        class="mr-3 rounded border"
-      />
-      <slot />
-    </SFLink>
-  </li>
+    <slot />
+  </LocalizedLink>
 </template>
 
 <script setup lang="ts">
+import LocalizedLink from '../LocalizedLink.vue'
 import type { RouteLocationRaw } from '#vue-router'
-import { SFLink } from '#storefront-ui/components'
-import { NuxtImg } from '#components'
 
 type Props = {
-  imageUrl?: string
-  to?: RouteLocationRaw
+  to: RouteLocationRaw
 }
 
-withDefaults(defineProps<Props>(), { imageUrl: '', to: '' })
-
-const emit = defineEmits<{ 'click:result': [] }>()
+defineProps<Props>()
 </script>

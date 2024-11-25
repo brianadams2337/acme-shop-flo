@@ -4,7 +4,11 @@ import { getFirstAttributeValue } from '@scayle/storefront-nuxt'
 import { useRouteHelpers } from '~/composables/useRouteHelpers'
 import { useTrackingEvents } from '~/composables/useTrackingEvents'
 import { useStorefrontSearch } from '#storefront/composables'
-import { isCategorySuggestion, isProductSuggestion } from '~/utils'
+import {
+  isCategorySuggestion,
+  isNavigationItemSuggestion,
+  isProductSuggestion,
+} from '~/utils'
 import { DEBOUNCED_SEARCH_DURATION } from '~/constants'
 
 export function useSearchData() {
@@ -38,8 +42,16 @@ export function useSearchData() {
     return allSuggestions.value.filter(isCategorySuggestion)
   })
 
+  const navigationItems = computed(() =>
+    allSuggestions.value.filter(isNavigationItemSuggestion),
+  )
+
   const totalCount = computed(() => {
-    return products.value.length + categories.value.length
+    return (
+      products.value.length +
+      categories.value.length +
+      navigationItems.value.length
+    )
   })
 
   const noSuggestions = computed(() => totalCount.value === 0)
@@ -92,6 +104,7 @@ export function useSearchData() {
     fetching,
     products,
     categories,
+    navigationItems,
     noSuggestions,
     totalCount,
     resolveSearchAndRedirect,

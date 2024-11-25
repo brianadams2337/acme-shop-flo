@@ -16,7 +16,7 @@ export const navigationItemExternalFactory =
     visibleTo: null,
     children: [],
     type: 'individual-link',
-    options: { url: 'https://google.com', isOpenInNewWindows: true },
+    options: { url: 'https://google.com', isOpenInNewWindow: true },
   }))
 
 export const navigationItemPageFactory = Factory.define<NavigationItemPage>(

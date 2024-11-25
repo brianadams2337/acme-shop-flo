@@ -88,7 +88,7 @@ it('should return false when the navigation item is not of type "category"', () 
       type: 'individual-link',
       id: 1,
       name: 'Link',
-      options: { isOpenInNewWindows: false, url: '' },
+      options: { isOpenInNewWindow: false, url: '' },
       assets: {},
       languages: {},
       visibleFrom: null,

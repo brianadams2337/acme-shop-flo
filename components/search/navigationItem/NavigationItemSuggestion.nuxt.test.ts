@@ -36,7 +36,7 @@ it('should work with individual link navigation items', async () => {
     visibleTo: null,
     children: [],
     type: 'individual-link',
-    options: { url: 'https://google.com', isOpenInNewWindows: true },
+    options: { url: 'https://google.com', isOpenInNewWindow: true },
   }
   const { getByRole } =
     await getNavigationItemSuggestionComponent(navigationItem)
@@ -96,7 +96,7 @@ it('should should emit a "click:result" event', async () => {
     visibleTo: null,
     children: [],
     type: 'individual-link',
-    options: { url: 'https://google.com', isOpenInNewWindows: true },
+    options: { url: 'https://google.com', isOpenInNewWindow: true },
   }
   const { getByRole, emitted } =
     await getNavigationItemSuggestionComponent(navigationItem)
@@ -123,7 +123,7 @@ it('should highlight the search term', async () => {
     visibleTo: null,
     children: [],
     type: 'individual-link',
-    options: { url: 'https://google.com', isOpenInNewWindows: true },
+    options: { url: 'https://google.com', isOpenInNewWindow: true },
   }
   const { getByRole } = await getNavigationItemSuggestionComponent(
     navigationItem,

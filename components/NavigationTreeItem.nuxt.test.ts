@@ -127,13 +127,13 @@ describe('active Link', () => {
     expect(item).toHaveAttribute('target', '_blank')
   })
 
-  it('should open individual link navigation items in new tab when they have `isOpenInNewWindows` set to true', async () => {
+  it('should open individual link navigation items in new tab when they have `isOpenInNewWindow` set to true', async () => {
     const { getByRole } = await renderSuspended(NavigationTreeItem, {
       props: {
         navigationItem: navigationItemExternalFactory.build({
           name: 'Item',
           options: {
-            isOpenInNewWindows: true,
+            isOpenInNewWindow: true,
           },
         }),
       },
@@ -143,13 +143,13 @@ describe('active Link', () => {
     expect(item).toHaveAttribute('target', '_blank')
   })
 
-  it('should open individual link navigation items in same tab when they have `isOpenInNewWindows` set to false', async () => {
+  it('should open individual link navigation items in same tab when they have `isOpenInNewWindow` set to false', async () => {
     const { getByRole } = await renderSuspended(NavigationTreeItem, {
       props: {
         navigationItem: navigationItemExternalFactory.build({
           name: 'Item',
           options: {
-            isOpenInNewWindows: false,
+            isOpenInNewWindow: false,
           },
         }),
       },
@@ -162,13 +162,13 @@ describe('active Link', () => {
     expect(item).toHaveAttribute('target', '_self')
   })
 
-  it('should open individual link navigation items in same tab when `isOpenInNewWindows` is not set', async () => {
+  it('should open individual link navigation items in same tab when `isOpenInNewWindow` is not set', async () => {
     const { getByRole } = await renderSuspended(NavigationTreeItem, {
       props: {
         navigationItem: navigationItemExternalFactory.build({
           name: 'Item',
           options: {
-            isOpenInNewWindows: undefined,
+            isOpenInNewWindow: undefined,
           },
         }),
       },

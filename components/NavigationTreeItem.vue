@@ -113,7 +113,7 @@ const pathParams = computed(() => {
   ) {
     return {
       path: getLocalizedRoute(navigationItem.options?.url ?? ''),
-      openInNew: navigationItem.options?.isOpenInNewWindows ?? false,
+      openInNew: navigationItem.options?.isOpenInNewWindow ?? false,
     }
   }
   return null

@@ -3507,7 +3507,7 @@
   resolved "https://registry.yarnpkg.com/@sindresorhus/merge-streams/-/merge-streams-2.3.0.tgz#719df7fb41766bc143369eaa0dd56d8dc87c9958"
   integrity sha512-LtoMMhxAlorcGhmFYI+LhPgbPZCkgP6ra1YL604EeF6U98pLlQ3iWIGMdWSC+vWmPBWBNgmDBAhnAobLROJmwg==
 
-"@storyblok/js@^3.1.7":
+"@storyblok/js@^3.1.7", "@storyblok/js@^3.1.9":
   version "3.1.9"
   resolved "https://registry.yarnpkg.com/@storyblok/js/-/js-3.1.9.tgz#01830a03814e053e65fccfa885f17fbcb16ab4f6"
   integrity sha512-N8QB/yn8wQxM+G9kV/RHTsynuTyaMNwiAI2KFiwuT9QPo+Zea4EmikNJY1KxrA1Q8G8YiZEm7OBp1B3QDycA6g==
@@ -3532,7 +3532,14 @@
   resolved "https://registry.yarnpkg.com/@storyblok/richtext/-/richtext-3.0.0.tgz#dae218a9bbe7745d83e4d7ba191f1ffd8038c6ce"
   integrity sha512-EpqnASTkn0nLv3buxlUGNhfWqhTgUFBJx6QUdE4dW8l0Dg0c3B97ZGithUC5uxXy3dqmsm5x6pCF97CVLNC6JQ==
 
-"@storyblok/vue@8.1.5", "@storyblok/vue@^8.1.1":
+"@storyblok/vue@8.1.6":
+  version "8.1.6"
+  resolved "https://registry.yarnpkg.com/@storyblok/vue/-/vue-8.1.6.tgz#5ef8b56ebac230dd5645dd321d188df8997cfee4"
+  integrity sha512-K24UVQSC++sb0ouQIjr9twNFYulLPVE7uuROV+rTR4x7gLFNtJjdEKi0luhISoG072jbMlxGCbrbhfOGPFNbhQ==
+  dependencies:
+    "@storyblok/js" "^3.1.9"
+
+"@storyblok/vue@^8.1.1":
   version "8.1.5"
   resolved "https://registry.yarnpkg.com/@storyblok/vue/-/vue-8.1.5.tgz#e819962144bac4b533de93090d96cab79ba2fe7b"
   integrity sha512-H5mu0AKPHhHuLyzwTzaRMd1o1Vuk14l9GtmH7yCdqoMgXcVPxhvzx62v1V7qZII3nZhaja/bUejkUqwIuRmxOg==

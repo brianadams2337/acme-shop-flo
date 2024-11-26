@@ -78,6 +78,11 @@ import { useSearchData, useTrackingEvents } from '~/composables'
 import SearchResultsContainer from '~/components/search/SearchResultsContainer.vue'
 import { useSearchInputKeybindings } from '~/composables/useSearchInputKeybindings'
 
+const emit = defineEmits<{
+  close: []
+  'click:result': [event: SearchEntity]
+}>()
+
 const {
   searchQuery,
   debouncedSearch,
@@ -122,6 +127,7 @@ const { trackSearchSuggestionClick } = useTrackingEvents()
 const trackSuggestionClickAndClose = (suggestion: SearchEntity) => {
   trackSearchSuggestionClick(searchQuery.value, suggestion)
   closeAndReset()
+  emit('click:result', suggestion)
 }
 
 const goToSearchPage = async () => {

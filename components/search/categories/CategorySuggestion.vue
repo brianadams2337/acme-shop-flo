@@ -1,16 +1,26 @@
 <template>
   <SearchResultItem :to="to" @click="emit('click:result', categorySuggestion)">
-    <div class="flex space-x-2 text-gray-600">
+    <div ref="container" class="flex space-x-2 text-gray-600">
       <template v-for="({ value }, index) in breadcrumbs" :key="value">
         <span
           :class="{
-            'min-w-[3ch] truncate': index > 0,
+            hidden: isOverflowing && index > 0,
             'shrink-0': index === 0,
           }"
         >
           {{ value }}
         </span>
-        <span v-if="index < breadcrumbs.length">|</span>
+        <span
+          v-if="index < breadcrumbs.length"
+          :class="{
+            hidden: isOverflowing && index > 0,
+          }"
+          >|</span
+        >
+      </template>
+      <template v-if="isOverflowing">
+        <span>...</span>
+        <span>|</span>
       </template>
       <span class="shrink-0 font-semi-bold-variable">
         {{ category.categorySuggestion.category.name }}
@@ -30,7 +40,8 @@
 
 <script setup lang="ts">
 import type { CategorySearchSuggestion } from '@scayle/storefront-core'
-import { computed } from 'vue'
+import { computed, onMounted, ref, useTemplateRef } from 'vue'
+import { useResizeObserver } from '@vueuse/core'
 import SearchResultItem from '../SearchResultItem.vue'
 import { useBreadcrumbs, useRouteHelpers } from '~/composables'
 import { getSearchFilterLabels } from '~/utils'
@@ -54,4 +65,52 @@ const { getBreadcrumbsFromCategory } = useBreadcrumbs()
 const breadcrumbs = getBreadcrumbsFromCategory(
   category.categorySuggestion.category,
 )
+
+const container = useTemplateRef('container')
+const suggestionLengthInPixel = ref(0)
+const isOverflowing = ref(false)
+
+/**
+ * Calculates the width required to display the suggested category
+ * and its full ancestry in a single line.
+ *
+ * The calculation is performed by measuring the text width
+ * using the `measureText` method of the CanvasRenderingContext2D
+ * associated with an HTMLCanvasElement.
+ */
+const getSuggestionNameLength = () => {
+  const canvas = document.createElement('canvas')
+  const context = canvas.getContext('2d')
+  if (!context || !container.value) {
+    return 0
+  }
+
+  const style = window.getComputedStyle(container.value)
+  const weight = style.getPropertyValue('font-weight')
+  const size = style.getPropertyValue('font-size')
+  const font = style.getPropertyValue('font-family')
+  context.font = `${weight} ${size} ${font}`
+
+  const spacing = 18
+  const breadcrumbsWidth = breadcrumbs.reduce((acc, category) => {
+    return (
+      acc +
+      context.measureText(category.value).width +
+      spacing +
+      context.measureText('|').width
+    )
+  }, 0)
+  return (
+    breadcrumbsWidth +
+    context.measureText(category.categorySuggestion.category.name).width
+  )
+}
+
+onMounted(() => {
+  suggestionLengthInPixel.value = getSuggestionNameLength()
+})
+useResizeObserver(container, () => {
+  isOverflowing.value =
+    (container.value?.clientWidth || 0) < suggestionLengthInPixel.value
+})
 </script>

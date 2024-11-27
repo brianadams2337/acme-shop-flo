@@ -95,7 +95,7 @@ describe('active Link', () => {
     expect(item).toHaveStyle('--backgroundColor: #F2F2F2;')
     expect(item).toHaveStyle('--textColor: #666666;')
     expect(item).toHaveClass('text-[var(--textColor)]')
-    expect(item).toHaveClass('hover:bg-[var(--backgroundColor)]')
+    expect(item).toHaveClass('supports-hover:hover:bg-[var(--backgroundColor)]')
   })
 
   it('should open category navigation items in same tab', async () => {
@@ -197,7 +197,7 @@ describe('active Link', () => {
     expect(item).toHaveStyle('--textColor: #1A1A1B;')
     expect(item).toHaveStyle('--backgroundColor: #1A1A1B1A;')
     expect(item).toHaveClass('text-[var(--textColor)]')
-    expect(item).toHaveClass('hover:bg-[var(--backgroundColor)]')
+    expect(item).toHaveClass('supports-hover:hover:bg-[var(--backgroundColor)]')
   })
 
   it('should have no classes when "raw" is set', async () => {

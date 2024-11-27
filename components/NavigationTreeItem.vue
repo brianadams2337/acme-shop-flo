@@ -12,7 +12,7 @@
         : {}
     "
     :class="{
-      'mr-3 block w-fit content-center rounded py-1 text-base font-normal leading-5 text-[var(--textColor)] transition-all hover:mr-0 hover:bg-[var(--backgroundColor)] hover:px-1.5':
+      'mr-3 block w-fit content-center rounded py-1 text-base font-normal leading-5 text-[var(--textColor)] transition-all supports-hover:hover:mr-0 supports-hover:hover:bg-[var(--backgroundColor)] supports-hover:hover:px-1.5':
         !raw && isLink,
       'mr-0 bg-[var(--backgroundColor)] px-1.5': isActive && !raw && isLink,
       'min-h-5 w-fit py-1 text-base font-semi-bold-variable leading-5 text-[var(--textColor)]':

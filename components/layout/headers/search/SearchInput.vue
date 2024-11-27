@@ -123,6 +123,7 @@ const closeAndReset = async () => {
   hasFocus.value = false
   await nextTick()
   searchBox.value?.focus()
+  emit('close')
 }
 const { trackSearchSuggestionClick } = useTrackingEvents()
 const trackSuggestionClickAndClose = (suggestion: SearchEntity) => {

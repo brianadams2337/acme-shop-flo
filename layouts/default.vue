@@ -18,7 +18,7 @@
         <NuxtPage />
       </main>
       <Footer
-        class="mt-16"
+        class="mt-16 max-lg:mb-4"
         :class="{ 'lg:translate-y-13': !isPromotionBannerShown }"
       />
     </div>

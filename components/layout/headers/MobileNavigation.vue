@@ -41,7 +41,7 @@
             disabled-link
           />
         </SFButton>
-        <div class="flex flex-col gap-y-2">
+        <div class="flex flex-col gap-y-4">
           <template v-for="item in selectedItem.children" :key="item.id">
             <SFAccordionEntry
               v-if="item.children.length"
@@ -50,7 +50,7 @@
             >
               <template #title>
                 <NavigationTreeItem
-                  class="min-h-[42px] py-0 !text-xl font-semi-bold-variable"
+                  class="min-h-[42px] content-center py-0 !text-xl font-semi-bold-variable"
                   disabled-link
                   :navigation-item="item"
                   :text-color="theme.colors.gray[900]"

@@ -11,7 +11,7 @@
       :class="
         variant === 'wide'
           ? 'open:max-md:mb-4 md:w-1/2'
-          : 'open:max-lg:mb-4 lg:w-1/2'
+          : 'open:max-lg:mb-0.5 lg:w-1/2'
       "
       :aria-details="id"
     >
@@ -20,8 +20,8 @@
           class="flex w-full cursor-pointer gap-4"
           :class="
             variant === 'wide'
-              ? 'max-md:justify-between md:h-min md:flex-row-reverse md:justify-end'
-              : 'max-lg:justify-between lg:h-min lg:flex-row-reverse lg:justify-end'
+              ? 'max-md:justify-between md:h-min md:flex-row-reverse md:justify-end items-center'
+              : 'max-lg:justify-between lg:h-min lg:flex-row-reverse lg:justify-end items-center'
           "
         >
           <slot name="title">

@@ -49,7 +49,7 @@
       <div v-if="selectedItem" class="mt-2 inline w-full shrink-0">
         <SFButton
           variant="raw"
-          class="mb-5 min-h-11"
+          class="mb-5 h-11"
           @click="selectedItem = undefined"
         >
           <IconBack class="size-4" />
@@ -60,7 +60,7 @@
             disabled-link
           />
         </SFButton>
-        <div class="flex flex-col gap-y-4">
+        <div class="flex flex-col gap-y-5">
           <template v-for="item in selectedItem.children" :key="item.id">
             <SFAccordionEntry
               v-if="item.children.length"
@@ -69,7 +69,7 @@
             >
               <template #title>
                 <NavigationTreeItem
-                  class="min-h-11 content-center py-0 !text-xl font-semi-bold-variable"
+                  class="h-11 content-center py-0 !text-xl font-semi-bold-variable"
                   disabled-link
                   :navigation-item="item"
                   :text-color="theme.colors.gray[900]"
@@ -84,7 +84,7 @@
                   <NavigationTreeItem
                     :navigation-item="child"
                     :text-color="theme.colors.gray[900]"
-                    class="min-h-11 text-lg"
+                    class="h-11 text-lg"
                     @click="$emit('clickLink')"
                   />
                 </div>

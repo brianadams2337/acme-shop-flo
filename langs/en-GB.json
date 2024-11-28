@@ -116,7 +116,6 @@
     "placeholder": "Search for product, category or brand",
     "recent_searches": "Recent searches",
     "search_results": "See all {searchTerm} results",
-    "no_result": "Deine Suchanfrage ergab keine Treffer.",
     "search_term_match_count": "{count} Results for  \"{term}\"",
     "result": "Your search for \"{term}\" returned {resultsCount} hits.",
     "result_loading": "Loading search results for \"{term}\"...",

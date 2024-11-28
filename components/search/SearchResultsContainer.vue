@@ -20,10 +20,13 @@
         </div>
         <section
           v-else-if="!resultsCount && searchQuery"
-          class="px-8 py-4 text-center"
+          class="py-2"
           data-testid="no-result"
         >
-          <p>{{ $t('search.no_result') }}</p>
+          <ShowAllResultsLink
+            :search-term="searchQuery"
+            @click="emit('close')"
+          />
         </section>
       </div>
     </SFFadeInTransition>
@@ -39,6 +42,7 @@ import type {
   NavigationItemSuggestion,
 } from '@scayle/storefront-nuxt'
 import SearchResultSkeleton from './SearchResultSkeleton.vue'
+import ShowAllResultsLink from './ShowAllResultsLink.vue'
 import { SFFadeInTransition } from '#storefront-ui/components'
 
 const SearchResults = defineAsyncComponent(() => import('./SearchResults.vue'))

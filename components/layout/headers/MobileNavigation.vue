@@ -23,13 +23,15 @@
             :navigation-item="item"
             :text-color="theme.colors.gray[900]"
             class="min-h-11 !text-2xl font-semi-bold-variable"
-            @click="$emit('clickLink')"
+            :role="item.children.length ? 'button' : 'link'"
+            :disabled-link="item.children.length > 0"
+            @click="selectItem(item, $event)"
           />
           <SFButton
             v-if="item.children.length"
             variant="accent"
             class="ml-auto !h-auto min-h-11 rounded-md bg-gray-200 !p-3"
-            @click="selectedItem = item"
+            @click="selectItem(item)"
           >
             <IconChevronRight class="size-4 text-gray-600" />
           </SFButton>
@@ -103,7 +105,10 @@
 </template>
 <script setup lang="ts">
 import { ref, watch } from 'vue'
-import type { NavigationItems } from '@scayle/storefront-core'
+import type {
+  NavigationItems,
+  NavigationTreeItem as NavigationTreeItemType,
+} from '@scayle/storefront-core'
 import { SFButton, SFAccordionEntry } from '#storefront-ui/components'
 import NavigationTreeItem from '~/components/NavigationTreeItem.vue'
 import { theme } from '#tailwind-config'
@@ -113,9 +118,17 @@ const { isOpen, navigationItems } = defineProps<{
   navigationItems: NavigationItems | undefined
 }>()
 
-defineEmits(['clickLink'])
+const emit = defineEmits(['clickLink'])
 
-const selectedItem = ref<NavigationItems[0] | undefined>(undefined)
+const selectedItem = ref<NavigationTreeItemType | undefined>(undefined)
+const selectItem = (category: NavigationTreeItemType, event?: Event) => {
+  if (category.children.length === 0) {
+    emit('clickLink')
+    return
+  }
+  event?.preventDefault()
+  selectedItem.value = category
+}
 
 watch(
   () => isOpen,

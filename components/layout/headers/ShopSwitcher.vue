@@ -18,12 +18,19 @@
         :list-name="list"
         data-testid="language-listbox"
       >
-        <IconNewGlobe class="size-5 lg:size-3.5" />
-        <div class="text-[15px] lg:text-sm">
+        <IconNewGlobe
+          class="size-5 lg:size-3.5"
+          data-testid="shop-switcher-globe-icon"
+        />
+        <div
+          class="text-[15px] lg:text-sm"
+          data-testid="shop-switcher-current-shop"
+        >
           {{ getShopName(currentShop.locale, multipleShopsForCountry) }}
         </div>
         <IconChevronDown
           class="size-3.5 transition-all"
+          data-testid="shop-icon-chevron"
           :class="{ 'rotate-180': isOpen }"
         />
       </SFListboxButton>
@@ -33,6 +40,7 @@
         v-if="isOpen"
         :id="id"
         class="absolute z-60 flex max-h-[80vh] flex-col gap-1 overflow-y-auto rounded-10 bg-white p-2 shadow-md max-lg:bottom-0 max-lg:w-full max-lg:border-t lg:right-0 lg:top-0 lg:max-h-64"
+        data-testid="shop-selector-list"
       >
         <div class="-mx-2 flex flex-col gap-1 border-b px-4 py-2 lg:hidden">
           <div class="flex">
@@ -47,7 +55,10 @@
             <span class="font-semi-bold-variable">
               {{ $t('shop_selector.current_shop') }}:
             </span>
-            <span class="text-gray-600">
+            <span
+              class="text-gray-600"
+              data-testid="shop-switcher-current-shop-mobile"
+            >
               {{ getShopName(currentShop.locale, multipleShopsForCountry) }}
             </span>
           </div>

@@ -9,6 +9,7 @@
       '!text-gray-600': !isCurrent,
       'max-md:!bg-gray-100': isCurrent,
     }"
+    :data-testid="`shop-language-item${isCurrent ? '-current' : ''}`"
   >
     {{ shopName(locale) }}
   </SFButton>

@@ -12,8 +12,8 @@
     :loading="mounted && fetching"
     :aria-label="
       isInWishlist
-        ? $t('basket_card.remove_from_wishlist_label')
-        : $t('basket_card.add_to_wishlist_label')
+        ? $t('wishlist.toggle.remove_from_wishlist_label')
+        : $t('wishlist.toggle.add_to_wishlist_label')
     "
     :aria-busy="mounted && fetching"
     aria-live="off"

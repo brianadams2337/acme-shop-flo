@@ -142,7 +142,11 @@
     "heading": "Wishlist",
     "no_items_info": "You have no items in your wishlist.",
     "continue_shopping_info": "Shop our newest products or sign in to see your saved wishlist.",
-    "product": "Produkt"
+    "product": "Produkt",
+    "toggle": {
+      "remove_from_wishlist_label": "Remove from wishlist",
+      "add_to_wishlist_label": "Add to wishlist"
+    }
   },
   "basket": {
     "add_to_basket": "Add to basket",

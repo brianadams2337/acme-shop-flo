@@ -142,7 +142,11 @@
     "heading": "Wunschliste",
     "no_items_info": "Du hast noch keine Artikel auf Deiner Wunschliste.",
     "continue_shopping_info": "Jetzt unsere neuesten Artikel entdecken oder einloggen um gespeicherte Artikel anzuzeigen.",
-    "product": "Artikel"
+    "product": "Artikel",
+    "toggle": {
+      "remove_from_wishlist_label": "Von Wunschliste entfernen",
+      "add_to_wishlist_label": "Zur Wunschliste hinzufügen"
+    }
   },
   "basket": {
     "add_to_basket": "Zum Warenkorb hinzufügen",

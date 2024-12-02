@@ -1,11 +1,15 @@
 <template>
-  <div class="overflow-hidden overflow-y-auto pb-0 scrollbar-hide">
+  <div
+    class="overflow-hidden overflow-y-auto pb-0 scrollbar-hide"
+    data-testid="location-store-list"
+  >
     <div class="mt-5 p-5">
       <div
         v-for="(store, index) in stores"
         :key="store.id"
         ref="storeContainers"
         class="mb-5 rounded border-2 bg-white p-5 text-sm"
+        data-testid="location-store-list-item"
         :class="{
           'border-primary': selectedStoreId === store.id,
           'border-gray-350': selectedStoreId !== store.id,

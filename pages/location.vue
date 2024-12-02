@@ -35,6 +35,7 @@
           <SFTextInput
             v-model="searchAddress"
             class="mr-2"
+            data-testid="location-text-input"
             type="text"
             required
             :readonly="searching"
@@ -46,6 +47,7 @@
           <SFButton
             variant="primary"
             class="ml-auto"
+            data-testid="location-search-button"
             :disabled="!searchAddress?.length || searching"
             :loading="searching"
             @click="searchForStores()"

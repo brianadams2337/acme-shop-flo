@@ -13,7 +13,11 @@
       />
       <div class="mt-auto">
         <div class="p-2">
-          <LocalizedLink :to="routeList.location" class="text-gray-600">
+          <LocalizedLink
+            :to="routeList.location"
+            class="text-gray-600"
+            data-testid="store-location-link-mobile"
+          >
             <IconLocation class="size-5" />
             <div class="mt-1 text-[15px] font-normal lg:text-sm">
               {{ $t('store_locator.button') }}

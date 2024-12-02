@@ -152,3 +152,9 @@ export const TEST_USERS = {
 export const LIGHTHOUSE_VIEWPORT_SIZE = Number.parseInt(
   process.env.LIGHTHOUSE_VIEWPORT_SIZE as string,
 )
+
+export const LOCATION = {
+  city: 'hamburg',
+  zipCode: '20095',
+  zipCodeInvalid: '000000000',
+}

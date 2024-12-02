@@ -6,9 +6,9 @@ import { computed } from 'vue'
 import { useProducts } from '#storefront/composables'
 import { useRoute } from '#app/composables/router'
 import {
-  SEARCH_PRODUCTS_WITH_PARAMS,
   SEARCH_PRODUCTS_PER_PAGE,
   FETCH_PRODUCTS_CACHE_TTL,
+  PRODUCT_TILE_WITH_PARAMS,
 } from '~/constants'
 import {
   useAppliedFilters,
@@ -39,7 +39,7 @@ export function useProductsSearch({
       ...(route.query.page && { page: +route.query.page }),
       sort: selectedSort.value,
       perPage: SEARCH_PRODUCTS_PER_PAGE,
-      with: SEARCH_PRODUCTS_WITH_PARAMS,
+      with: PRODUCT_TILE_WITH_PARAMS,
       category: '/',
       includeSoldOut,
       includeSellableForFree,

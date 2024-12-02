@@ -116,7 +116,7 @@ import { isBuyXGetYType } from '~/utils/promotion'
 import { useFavoriteStore } from '~/composables/useFavoriteStore'
 import { definePageMeta, useHead, useImage, useRoute } from '#imports'
 import { useI18n } from '#i18n'
-import { PRODUCT_WITH_PARAMS } from '~/constants'
+import { PRODUCT_DETAIL_WITH_PARAMS } from '~/constants'
 import AsyncDataWrapper from '~/components/AsyncDataWrapper.vue'
 import ProductGallery from '~/components/product/detail/productGallery/ProductGallery.vue'
 import ProductBreadcrumbs from '~/components/product/ProductBreadcrumbs.vue'
@@ -160,7 +160,7 @@ const {
 } = useProduct({
   params: {
     id: productId.value,
-    with: PRODUCT_WITH_PARAMS,
+    with: PRODUCT_DETAIL_WITH_PARAMS,
   },
   key: `PDP-${productId.value}`,
 })

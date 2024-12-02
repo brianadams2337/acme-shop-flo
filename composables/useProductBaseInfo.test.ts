@@ -3,8 +3,6 @@ import type { CentAmount } from '@scayle/storefront-nuxt'
 import { useProductBaseInfo } from './useProductBaseInfo'
 import { productFactory } from '~/test/factories/product'
 import { attributeGroupFactory } from '~/test/factories/attribute'
-import { variantFactory } from '~/test/factories/variant'
-import { priceFactory } from '~/test/factories/price'
 
 vi.mock('#i18n', () => ({
   useI18n: vi.fn().mockReturnValue({
@@ -83,21 +81,19 @@ describe('useProductBaseInfo', () => {
   describe('price', () => {
     it('should return the correct default value for price', () => {
       const product = productFactory.build({
-        variants: [
-          variantFactory.build({
-            price: priceFactory.build({
-              withoutTax: 10 as CentAmount,
-              withTax: 1 as CentAmount,
-              tax: {
-                vat: {
-                  amount: 2 as CentAmount,
-                  rate: 1,
-                },
+        priceRange: {
+          min: {
+            withoutTax: 10 as CentAmount,
+            withTax: 1 as CentAmount,
+            tax: {
+              vat: {
+                amount: 2 as CentAmount,
+                rate: 1,
               },
-              currencyCode: 'USD',
-            }),
-          }),
-        ],
+            },
+            currencyCode: 'USD',
+          },
+        },
       })
       const { price } = useProductBaseInfo(product)
 
@@ -122,78 +118,27 @@ describe('useProductBaseInfo', () => {
     })
   })
 
-  describe('variantWithLowestPrice', () => {
-    it('should return the correct default value for variantWithLowestPrice', () => {
-      const product = productFactory.build({
-        variants: [
-          variantFactory.build({
-            id: 1,
-            price: priceFactory.build({
-              withoutTax: 10 as CentAmount,
-              withTax: 12 as CentAmount,
-              tax: {
-                vat: {
-                  amount: 2 as CentAmount,
-                  rate: 1,
-                },
-              },
-              currencyCode: 'USD',
-            }),
-          }),
-          variantFactory.build({
-            id: 2,
-            price: priceFactory.build({
-              withoutTax: 8 as CentAmount,
-              withTax: 10 as CentAmount,
-              tax: {
-                vat: {
-                  amount: 2 as CentAmount,
-                  rate: 1,
-                },
-              },
-              currencyCode: 'USD',
-            }),
-          }),
-        ],
-      })
-      const { variantWithLowestPrice } = useProductBaseInfo(product)
-
-      expect(variantWithLowestPrice.value?.id).toBe(2)
-    })
-
-    it('should return empty default value for variantWithLowestPrice', () => {
-      const product = productFactory.build({ variants: undefined })
-      const { variantWithLowestPrice } = useProductBaseInfo(product)
-
-      expect(variantWithLowestPrice.value).toBeUndefined()
-    })
-  })
-
   describe('lowestPriorPrice', () => {
     it('should return the correct default value for lowestPriorPrice', () => {
       const product = productFactory.build({
-        variants: [
-          variantFactory.build({
-            lowestPriorPrice: {
-              withTax: 23,
-              relativeDifferenceToPrice: null,
-            },
-          }),
-        ],
+        lowestPriorPrice: {
+          withTax: 23,
+          relativeDifferenceToPrice: 0.11,
+        },
       })
       const { lowestPriorPrice } = useProductBaseInfo(product)
 
       expect(lowestPriorPrice.value).toStrictEqual({
-        relativeDifferenceToPrice: null,
+        relativeDifferenceToPrice: 0.11,
         withTax: 23,
       })
     })
 
     it('should return undefined default value for lowestPriorPrice', () => {
-      const product = productFactory.build({ variants: [] })
-      const { variantWithLowestPrice } = useProductBaseInfo(product)
+      const product = productFactory.build({ lowestPriorPrice: undefined })
+      const { lowestPriorPrice } = useProductBaseInfo(product)
 
-      expect(variantWithLowestPrice.value).toBeUndefined()
+      expect(lowestPriorPrice.value).toBeUndefined()
     })
   })
 

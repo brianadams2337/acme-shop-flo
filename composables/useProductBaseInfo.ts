@@ -7,8 +7,6 @@ import {
 import { type MaybeRefOrGetter, toRef, computed } from 'vue'
 import { useRouteHelpers } from '~/composables'
 import {
-  getLowestPriceBetweenVariants,
-  getVariantWithLowestPrice,
   formatColors,
   getProductSiblings,
   sortProductImages,
@@ -45,17 +43,11 @@ export function useProductBaseInfo(
   })
 
   const price = computed(() => {
-    return product.value
-      ? getLowestPriceBetweenVariants(product.value)
-      : undefined
+    return product.value ? product.value.priceRange?.min : undefined
   })
 
-  const variantWithLowestPrice = computed(() =>
-    getVariantWithLowestPrice(product.value?.variants || []),
-  )
-
   const lowestPriorPrice = computed(() => {
-    return variantWithLowestPrice.value?.lowestPriorPrice
+    return product.value ? product.value.lowestPriorPrice : undefined
   })
 
   const colors = computed(() => {
@@ -138,7 +130,6 @@ export function useProductBaseInfo(
     siblings,
     nonSoldOutSiblings,
     link,
-    variantWithLowestPrice,
     longestCategoryList,
     variants,
     hasOneVariantOnly,

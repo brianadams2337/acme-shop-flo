@@ -73,7 +73,7 @@
                 {{ $t('pdp.size_heading') }}
               </div>
               <VariantPicker
-                v-if="!hasOneSizeVariantOnly"
+                v-if="!hasOneVariantOnly"
                 ref="variantPicker"
                 v-model="activeVariant"
                 v-model:visible="isVariantListVisible"
@@ -158,7 +158,6 @@ const {
   activeVariant,
   giftVariants,
   price,
-  hasOneSizeVariantOnly,
   addItemToBasket,
   toggleGiftSelection,
   isGiftSelectionShown,

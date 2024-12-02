@@ -71,6 +71,7 @@ import {
   SFSkeletonLoader,
   SFItemsSlider,
 } from '#storefront-ui/components'
+import { PRODUCT_TILE_WITH_PARAMS } from '~/constants'
 
 type Props = {
   title: string
@@ -79,7 +80,7 @@ type Props = {
 const props = defineProps<Props>()
 
 const { data: products, status } = useProductsByIds({
-  params: { ids: props.productIds },
+  params: { ids: props.productIds, with: PRODUCT_TILE_WITH_PARAMS },
 })
 
 const { trackSelectItem } = useTrackingEvents()

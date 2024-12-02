@@ -95,22 +95,25 @@ const props = withDefaults(defineProps<Props>(), {
 
 const { toggleGiftSelection } = usePromotionGiftSelection(props.product)
 
-const { name, image, variantWithLowestPrice, brand, alt } = useProductBaseInfo(
-  props.product,
-)
+const {
+  name,
+  image,
+  price: productPrice,
+  brand,
+  alt,
+} = useProductBaseInfo(props.product)
 
 const price = computed(() => {
-  if (!variantWithLowestPrice.value) {
+  if (!productPrice.value) {
     return
   }
 
-  return createCustomPrice(variantWithLowestPrice.value?.price, {
+  return createCustomPrice(productPrice.value, {
     withTax: 0 as CentAmount,
     appliedReductions: [
       {
         amount: {
-          absoluteWithTax: variantWithLowestPrice.value?.price
-            .withTax as CentAmount,
+          absoluteWithTax: productPrice.value.withTax as CentAmount,
           relative: 1,
         },
         type: 'relative',

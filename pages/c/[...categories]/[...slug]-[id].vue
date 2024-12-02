@@ -95,7 +95,7 @@ import {
 import { createError } from '#app/composables/error'
 import { useRoute } from '#app/composables/router'
 import { getCategoryId } from '~/utils'
-import { categoryListingMetaData } from '~/constants'
+import { categoryListingMetaData, PRODUCT_TILE_WITH_PARAMS } from '~/constants'
 import CMSCategoryData from '#storefront-cms/components/fetching/CMSCategoryData.vue'
 import CMSImage from '#storefront-cms/components/Image.vue'
 import CategorySideNavigation from '~/components/category/CategorySideNavigation.vue'
@@ -133,6 +133,9 @@ const {
   totalProductsCount,
   paginationOffset,
 } = useProductsByCategory(currentCategoryId, route, {
+  params: {
+    with: PRODUCT_TILE_WITH_PARAMS,
+  },
   fetchingOptions: { lazy: true },
 })
 

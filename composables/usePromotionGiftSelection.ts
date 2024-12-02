@@ -1,12 +1,8 @@
 import {
   ExistingItemHandling,
   type Product,
-  type Value,
   type Variant,
   type CentAmount,
-  getFirstAttributeValue,
-  getPrice,
-  getVariantBySize,
   extendPromise,
 } from '@scayle/storefront-nuxt'
 import { computed } from 'vue'
@@ -18,7 +14,7 @@ import { useTrackingEvents } from '~/composables/useTrackingEvents'
 import { useState } from '#app/composables/state'
 import { useNuxtApp } from '#app'
 import { useBasket } from '#storefront/composables'
-import { createCustomPrice, hasOneSizeProductVariantOnly } from '~/utils'
+import { createCustomPrice } from '~/utils'
 
 export function usePromotionGiftSelection(gift: Product) {
   const { $i18n } = useNuxtApp()
@@ -26,8 +22,12 @@ export function usePromotionGiftSelection(gift: Product) {
 
   const { trackAddToBasket } = useTrackingEvents()
 
-  const { name, variantWithLowestPrice, hasOneVariantOnly } =
-    useProductBaseInfo(gift)
+  const {
+    name,
+    price: productPrice,
+    lowestPriorPrice: productLowestPriorPrice,
+    hasOneVariantOnly,
+  } = useProductBaseInfo(gift)
   const activeVariant = useState<Variant | undefined>(
     `active-gift-variant-${gift.id}`,
   )
@@ -53,24 +53,18 @@ export function usePromotionGiftSelection(gift: Product) {
 
   const isGiftSelectionShown = computed(() => isSelectionShown.value)
 
-  const lowestPriorPrice = computed(
-    () =>
-      activeVariant.value?.lowestPriorPrice ||
-      variantWithLowestPrice.value?.lowestPriorPrice ||
-      gift?.lowestPriorPrice,
+  const lowestPriorPrice = computed(() =>
+    activeVariant.value ? activeVariant.value : productLowestPriorPrice.value,
   )
 
   const price = computed(() => {
-    const selectedVariant = gift.variants?.find(
-      (variant) => variant.id === activeVariant.value?.id,
-    )
+    if (activeVariant.value) {
+      return activeVariant.value.price
+    }
 
-    const nonGiftPrice = selectedVariant
-      ? getPrice(selectedVariant)
-      : variantWithLowestPrice.value?.price
-
+    const nonGiftPrice = productPrice.value
     if (!nonGiftPrice) {
-      return
+      return undefined
     }
 
     return createCustomPrice(nonGiftPrice, {
@@ -112,27 +106,6 @@ export function usePromotionGiftSelection(gift: Product) {
     )
   })
 
-  const handleSelectedSize = (value: Value) => {
-    if (gift.variants) {
-      activeVariant.value = getVariantBySize(gift.variants, value, 'size')
-    }
-  }
-
-  const size = computed(() => {
-    return getFirstAttributeValue(activeVariant.value?.attributes, 'size')
-      ?.value
-  })
-
-  const hasOneSizeVariantOnly = computed(() => {
-    return hasOneSizeProductVariantOnly(gift)
-  })
-
-  const hasSpecial = computed(() => {
-    return Boolean(
-      !activeVariant.value && price.value?.appliedReductions.length,
-    )
-  })
-
   const addItemToBasket = async (promotionId?: string) => {
     if (!activeVariant.value) {
       toast.show($i18n.t('basket.notification.select_size'), {
@@ -168,13 +141,9 @@ export function usePromotionGiftSelection(gift: Product) {
     Promise.all([basket, basketActions]).then(() => ({})),
     {
       basketIdle,
-      hasSpecial,
       addItemToBasket,
       lowestPriorPrice,
-      handleSelectedSize,
-      size,
       price,
-      hasOneSizeVariantOnly,
       activeVariant,
       giftVariants,
       isGiftSelectionShown,

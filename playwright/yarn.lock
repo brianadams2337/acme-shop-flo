@@ -3308,10 +3308,10 @@ unbzip2-stream@^1.4.3:
     buffer "^5.2.1"
     through "^2.3.8"
 
-undici-types@7.0.0:
-  version "7.0.0"
-  resolved "https://registry.yarnpkg.com/undici-types/-/undici-types-7.0.0.tgz#7a130f803f7411a28ee0704fda82cf2f82db26f1"
-  integrity sha512-KGeRdWTIBFYWOPvnssHfsmYsWSdcLWOcdvchHZ5tqdhGWuKg3wBXc5o2eTe/KORc3Yinrrddt8+zYBdSr46Pkw==
+undici-types@7.1.0:
+  version "7.1.0"
+  resolved "https://registry.yarnpkg.com/undici-types/-/undici-types-7.1.0.tgz#4561b2df582a6c8cf38d37964f13837aadd7f048"
+  integrity sha512-IdycojzhJm9g7sblozLpNkyPG2dJ7bsrpfc4hq2QKrnwbDK+ebiGL3UFSwq6B3IzB3R0m3u1b4in3hrZtMnm8g==
 
 undici-types@~6.19.8:
   version "6.19.8"

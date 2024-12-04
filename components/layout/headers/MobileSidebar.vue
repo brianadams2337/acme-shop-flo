@@ -1,10 +1,6 @@
 <template>
   <div class="flex flex-col">
-    <SearchInput
-      class="mt-1"
-      @click:result="$emit('close')"
-      @close="$emit('close')"
-    />
+    <SearchInput class="mt-1" @click:result="$emit('close')" />
     <div class="flex grow flex-col p-5">
       <MobileNavigation
         :is-open="isOpen"

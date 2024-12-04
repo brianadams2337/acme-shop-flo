@@ -17,7 +17,8 @@
         <div
           v-for="item in navigationItems"
           :key="item.id"
-          class="flex items-center pr-4"
+          class="flex cursor-pointer items-center pr-4"
+          @click="selectItem(item)"
         >
           <NavigationTreeItem
             :navigation-item="item"
@@ -31,7 +32,6 @@
             v-if="item.children.length"
             variant="accent"
             class="ml-auto !h-auto min-h-11 rounded-md bg-gray-200 !p-3"
-            @click="selectItem(item)"
           >
             <IconChevronRight class="size-4 text-gray-600" />
           </SFButton>

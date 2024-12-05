@@ -17,6 +17,7 @@ export function useSearchInputKeybindings(
   activate: (opts?: ActivateOptions) => void,
   deactivate: (opts?: DeactivateOptions) => void,
   openAndFocus: () => void,
+  reset: () => void,
   closeAndReset: () => void,
   searchQuery: Ref<string>,
   totalCount: Ref<number>,
@@ -39,7 +40,7 @@ export function useSearchInputKeybindings(
     'Escape',
     (event) => {
       event.stopPropagation()
-      closeAndReset()
+      reset()
     },
     { target: searchBox },
   )
@@ -101,7 +102,6 @@ export function useSearchInputKeybindings(
   onKeyStroke(
     'Tab',
     (event) => {
-      console.log(event)
       if (!event.shiftKey) {
         return
       }

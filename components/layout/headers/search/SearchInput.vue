@@ -118,13 +118,18 @@ const openAndFocus = () => {
   hasFocus.value = true
 }
 
-const closeAndReset = async () => {
+const reset = async () => {
   resetSearch()
   hasFocus.value = false
   await nextTick()
   searchBox.value?.focus()
+}
+
+const closeAndReset = async () => {
+  await reset()
   emit('close')
 }
+
 const { trackSearchSuggestionClick } = useTrackingEvents()
 const trackSuggestionClickAndClose = (suggestion: SearchEntity) => {
   trackSearchSuggestionClick(searchQuery.value, suggestion)
@@ -155,7 +160,7 @@ onClickOutside(root, () => {
   if (!hasFocus.value) {
     return
   }
-  closeAndReset()
+  reset()
 })
 
 const { activate, deactivate } = useFocusTrap(resultContainer, {
@@ -177,6 +182,7 @@ useSearchInputKeybindings(
   activate,
   deactivate,
   openAndFocus,
+  reset,
   closeAndReset,
   searchQuery,
   totalCount,

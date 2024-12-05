@@ -38,7 +38,7 @@ export const PLP_FILTER_DEEPLINK = {
   maxPrice: 4000,
 }
 
-export const PLP_PATH_MAIN_CATEGORY = '/frauen-50337'
+export const PLP_PATH_MAIN_CATEGORY = '/de/c/frauen-50337'
 export const PLP_PATH_SUBCATEGORY_LVL_1 = '/de/c/frauen/bekleidung-50338'
 export const PLP_PATH_SUBCATEGORY_LVL_2 =
   '/de/c/frauen/sneaker/sneaker-low-50347'

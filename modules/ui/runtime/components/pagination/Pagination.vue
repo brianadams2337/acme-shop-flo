@@ -8,7 +8,11 @@
         :previous-page="previousPage"
         name="previous-button"
       >
-        <SFPaginationButton :disabled="!canNavigateLeft" :page="previousPage">
+        <SFPaginationButton
+          :disabled="!canNavigateLeft"
+          :page="previousPage"
+          data-testid="paginationButton-previousPage"
+        >
           <IconChevronLeft class="size-4" />
         </SFPaginationButton>
       </slot>
@@ -17,6 +21,7 @@
         <SFPaginationButton
           v-if="firstPage && isFirstOrLastPageButtonShown"
           :page="firstPage"
+          data-testid="paginationButton-firstPage"
         />
       </slot>
 
@@ -48,6 +53,7 @@
         <SFPaginationButton
           v-if="lastPage && isFirstOrLastPageButtonShown"
           :page="lastPage"
+          data-testid="paginationButton-lastPage"
         />
       </slot>
 
@@ -60,6 +66,7 @@
           v-if="nextPage"
           :disabled="!canNavigateRight"
           :page="nextPage"
+          data-testid="paginationButton-nextPage"
         >
           <IconChevronRight class="size-4" />
         </SFPaginationButton>

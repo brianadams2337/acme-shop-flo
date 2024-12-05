@@ -1,6 +1,6 @@
 <template>
   <SFLink
-    data-testid="paginationButton"
+    :data-testid="`paginationButton-${page.number}`"
     :to="page.to"
     :class="{
       '!border-accent !text-accent': page.isActive && !disabled,

@@ -3,6 +3,7 @@ import {
   PLP_FILTER_DEEPLINK,
   PLP_PATH_SUBCATEGORY_LVL_1,
   PLP_PATH_SUBCATEGORY_LVL_2,
+  PLP_PATH_MAIN_CATEGORY,
 } from '../support/constants'
 import { isMobile } from '../support/utils'
 
@@ -13,11 +14,11 @@ test.beforeEach(async ({ productListingPage, baseURL, countryDetector }) => {
   )
   await countryDetector.closeModal()
 })
+test.setTimeout(45000)
 
 test('C2130723: Verify PLP standard components', async ({
   productListingPage,
   breadcrumb,
-  pagination,
   page,
   filters,
 }) => {
@@ -34,9 +35,6 @@ test('C2130723: Verify PLP standard components', async ({
     await expect(productListingPage.productItem.first()).toBeVisible()
 
     await breadcrumb.clickBreadcrumbLvl1()
-    await pagination.scrollToPagination()
-
-    await expect(pagination.paginationButton.first()).toBeVisible()
     await expect(breadcrumb.productCounter).toBeVisible()
   }).toPass()
 })
@@ -254,4 +252,62 @@ test('C2141756: Verify PLP page title', async ({ breadcrumb, page }) => {
   expect(pageTitle).toContain(
     `${category} - ${subCategory} - ${activeCategory}`,
   )
+})
+
+test('Verify PLP Pagination', async ({
+  productListingPage,
+  baseURL,
+  countryDetector,
+  pagination,
+}) => {
+  await productListingPage.visitPlpNoFilters(
+    PLP_PATH_MAIN_CATEGORY,
+    baseURL as string,
+  )
+  await countryDetector.closeModal()
+
+  await test.step('Verify Previous/Next page buttons initial state', async () => {
+    await pagination.assertPaginationInitialState()
+  })
+
+  await test.step('Verify page navigation using Previous/Next page buttons', async () => {
+    await pagination.assertNextPageClick('2')
+    await pagination.assertPreviousPageClick('1', true)
+  })
+
+  await test.step('Verify page navigation using exact page number pagination button', async () => {
+    await pagination.assertExactPageClick('3')
+  })
+})
+
+test('Verify PLP Pagination setting filters', async ({
+  productListingPage,
+  baseURL,
+  countryDetector,
+  pagination,
+  filters,
+  page,
+}) => {
+  await productListingPage.visitPlpNoFilters(
+    PLP_PATH_MAIN_CATEGORY,
+    baseURL as string,
+  )
+  await countryDetector.closeModal()
+
+  await test.step('Navigate to page 3 and set filter', async () => {
+    await pagination.assertExactPageClick('3')
+    await filters.openFilters()
+    await page.waitForTimeout(300)
+
+    await filters.filterPriceInput.nth(1).clear()
+    await filters.filterPriceInput.nth(1).fill('100')
+    await filters.filterPriceInput.nth(1).press('Enter')
+    await page.waitForLoadState('domcontentloaded')
+
+    await filters.filterApplyButton.click()
+    await page.waitForLoadState('domcontentloaded')
+
+    const pageUrl = page.url()
+    expect(pageUrl).not.toContain('?page=')
+  })
 })

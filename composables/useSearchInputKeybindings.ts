@@ -17,7 +17,7 @@ export function useSearchInputKeybindings(
   activate: (opts?: ActivateOptions) => void,
   deactivate: (opts?: DeactivateOptions) => void,
   openAndFocus: () => void,
-  closeAndReset: () => void,
+  reset: () => void,
   searchQuery: Ref<string>,
   totalCount: Ref<number>,
 ) {
@@ -39,7 +39,7 @@ export function useSearchInputKeybindings(
     'Escape',
     (event) => {
       event.stopPropagation()
-      closeAndReset()
+      reset()
     },
     { target: searchBox },
   )
@@ -93,7 +93,7 @@ export function useSearchInputKeybindings(
       if (totalCount.value > 0) {
         return
       }
-      closeAndReset()
+      reset()
     },
     { target: resetButton },
   )
@@ -105,7 +105,7 @@ export function useSearchInputKeybindings(
       if (!event.shiftKey) {
         return
       }
-      closeAndReset()
+      reset()
     },
     { target: input },
   )

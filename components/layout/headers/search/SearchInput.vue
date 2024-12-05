@@ -65,7 +65,7 @@
       :search-query="searchQuery"
       :show-suggestions-loader="showSuggestionsLoader"
       @click:result="trackSuggestionClickAndClose"
-      @close="closeAndReset"
+      @close="reset"
     />
   </section>
 </template>
@@ -80,7 +80,6 @@ import SearchResultsContainer from '~/components/search/SearchResultsContainer.v
 import { useSearchInputKeybindings } from '~/composables/useSearchInputKeybindings'
 
 const emit = defineEmits<{
-  close: []
   'click:result': [event: SearchEntity]
 }>()
 
@@ -118,17 +117,16 @@ const openAndFocus = () => {
   hasFocus.value = true
 }
 
-const closeAndReset = async () => {
+const reset = async () => {
   resetSearch()
   hasFocus.value = false
   await nextTick()
   searchBox.value?.focus()
-  emit('close')
 }
 const { trackSearchSuggestionClick } = useTrackingEvents()
 const trackSuggestionClickAndClose = (suggestion: SearchEntity) => {
   trackSearchSuggestionClick(searchQuery.value, suggestion)
-  closeAndReset()
+  reset()
   emit('click:result', suggestion)
 }
 
@@ -137,7 +135,7 @@ const goToSearchPage = async () => {
     return
   }
   await resolveSearchAndRedirect()
-  closeAndReset()
+  reset()
 }
 
 const ARROW_KEYS = ['ArrowUp', 'ArrowDown']
@@ -155,7 +153,7 @@ onClickOutside(root, () => {
   if (!hasFocus.value) {
     return
   }
-  closeAndReset()
+  reset()
 })
 
 const { activate, deactivate } = useFocusTrap(resultContainer, {
@@ -177,7 +175,7 @@ useSearchInputKeybindings(
   activate,
   deactivate,
   openAndFocus,
-  closeAndReset,
+  reset,
   searchQuery,
   totalCount,
 )

@@ -199,28 +199,6 @@ describe('useProductsSearch', () => {
     })
   })
 
-  describe('fetching', () => {
-    it('should return "true" if fetching is in process', () => {
-      useProducts.mockReturnValue({
-        then: vi.fn(),
-        fetching: toRef(false),
-        data: vi.fn(),
-      })
-      const { fetching } = useProductsSearch()
-      expect(fetching.value).toEqual(false)
-    })
-
-    it('should return "false" if fetching is done', () => {
-      useProducts.mockReturnValue({
-        then: vi.fn(),
-        fetching: toRef(true),
-        data: vi.fn(),
-      })
-      const { fetching } = useProductsSearch()
-      expect(fetching.value).toEqual(true)
-    })
-  })
-
   describe('error', () => {
     it('should return "null" if there is no error', () => {
       useProducts.mockReturnValue({

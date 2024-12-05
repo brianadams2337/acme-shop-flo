@@ -33,10 +33,8 @@ describe('useRootCategories', () => {
       error: toRef(null),
     })
 
-    const { fetchingCategories, rootCategories, error, allCategories } =
-      useRootCategories()
+    const { rootCategories, error, allCategories } = useRootCategories()
 
-    expect(fetchingCategories.value).toBe(false)
     expect(rootCategories.value.map(({ id }) => id)).toEqual([1, 2])
     expect(allCategories.value.map(({ id }) => id)).toEqual([1, 2])
     expect(error.value).toBe(null)
@@ -54,10 +52,8 @@ describe('useRootCategories', () => {
       error: toRef(null),
     })
 
-    const { fetchingCategories, rootCategories, error, allCategories } =
-      useRootCategories()
+    const { rootCategories, error, allCategories } = useRootCategories()
 
-    expect(fetchingCategories.value).toBe(false)
     expect(rootCategories.value.map(({ id }) => id)).toEqual([1])
     expect(allCategories.value.map(({ id }) => id)).toEqual([1])
     expect(error.value).toBe(null)
@@ -71,10 +67,8 @@ describe('useRootCategories', () => {
       fetching: toRef(false),
     })
 
-    const { fetchingCategories, rootCategories, error, allCategories } =
-      useRootCategories()
+    const { rootCategories, error, allCategories } = useRootCategories()
 
-    expect(fetchingCategories.value).toBe(false)
     expect(rootCategories.value).toEqual([])
     expect(allCategories.value).toEqual([])
     expect(error.value).toBe(null)
@@ -90,10 +84,8 @@ describe('useRootCategories', () => {
       fetching: toRef(false),
     })
 
-    const { fetchingCategories, rootCategories, error, allCategories } =
-      useRootCategories()
+    const { rootCategories, error, allCategories } = useRootCategories()
 
-    expect(fetchingCategories.value).toBe(false)
     expect(rootCategories.value).toEqual([])
     expect(allCategories.value).toEqual([])
     expect(error.value).toBe(mockError)

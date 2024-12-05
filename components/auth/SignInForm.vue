@@ -1,6 +1,6 @@
 <template>
   <ClientOnly>
-    <div v-if="!isLoggedIn && !isFetching">
+    <div v-if="!isLoggedIn && status !== 'pending'">
       <WelcomeBackLoginForm
         v-if="lastLoggedInUser.email && !$route.query.register"
         class="mt-10 px-2"
@@ -60,7 +60,7 @@ const props = withDefaults(defineProps<{ showGuestLogin?: boolean }>(), {
 })
 
 const { $i18n } = useNuxtApp()
-const { lastLoggedInUser, isLoggedIn, isFetching } = await useLastLoggedInUser()
+const { lastLoggedInUser, isLoggedIn, status } = await useLastLoggedInUser()
 
 const route = useRoute()
 

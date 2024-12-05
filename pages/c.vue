@@ -1,7 +1,7 @@
 <template>
   <NuxtPage
     :root-categories="rootCategories"
-    :fetching-categories="fetchingCategories"
+    :fetching-categories="status === 'pending'"
     :all-categories="allCategories"
   />
 </template>
@@ -10,10 +10,8 @@
 import { NuxtPage } from '#components'
 import { useRootCategories } from '~/composables/useRootCategories'
 
-const { rootCategories, fetchingCategories, allCategories } = useRootCategories(
-  {
-    key: 'category-navigation-tree',
-    children: 5,
-  },
-)
+const { rootCategories, status, allCategories } = useRootCategories({
+  key: 'category-navigation-tree',
+  children: 5,
+})
 </script>

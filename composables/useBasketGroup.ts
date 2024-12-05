@@ -14,7 +14,7 @@ type AggregateGroupParams = {
 export function useBasketGroup(
   withParams?: MaybeRefOrGetter<BasketWithOptions>,
 ) {
-  const { fetch: refreshBasket } = useBasket()
+  const { refresh: refreshBasket } = useBasket()
   const addGroupToBasketRpc = useRpcCall('addGroupToBasket')
 
   const aggregateAsGroup = ({

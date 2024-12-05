@@ -3433,10 +3433,10 @@
   resolved "https://registry.yarnpkg.com/@scayle/storefront-api/-/storefront-api-17.13.0.tgz#bf7c55e03c66511efb12f58ade43fc22c8963a50"
   integrity sha512-51w7kvs2Ku/3dA8DUjnCyAyEm1Rt2j3ZdVFN6zUGNe0SYzZ1JyJsTreZnc2UiSuwBad3sdbHzpOHaHXYFsGc0w==
 
-"@scayle/storefront-core@7.69.3":
-  version "7.69.3"
-  resolved "https://registry.yarnpkg.com/@scayle/storefront-core/-/storefront-core-7.69.3.tgz#35bf163ae0f2259f454d947faf672834884be141"
-  integrity sha512-hWABNNDT+bBVaXBFK+vwvhBs9KNjZySpv7suC1G5WnOYBL8gxRx3TPuNA2ObxRINjoEdd7IMaLXyxx3mmEAdKg==
+"@scayle/storefront-core@8.0.0":
+  version "8.0.0"
+  resolved "https://registry.yarnpkg.com/@scayle/storefront-core/-/storefront-core-8.0.0.tgz#954d6e76df5188bd785c49724a907cee28aa8c55"
+  integrity sha512-XuPgJUQ5y8IgmXlqB8tPr6BN4BJT9YSN1gLOD4rq8z7Jt/iCvXaWvJUAM5tMMfUBLkDv0XbFeoV999KGEo+IPw==
   dependencies:
     "@scayle/storefront-api" "17.13.0"
     crypto-js "^4.2.0"
@@ -3446,25 +3446,23 @@
     ufo "^1.5.3"
     uncrypto "^0.1.3"
     utility-types "^3.11.0"
-  optionalDependencies:
-    redis "4"
 
-"@scayle/storefront-country-detection@0.2.0":
-  version "0.2.0"
-  resolved "https://registry.yarnpkg.com/@scayle/storefront-country-detection/-/storefront-country-detection-0.2.0.tgz#63ff3d1cb67ffe0316b7075d5302a1a3870d0e6c"
-  integrity sha512-enYF05Nwp6o5CdyWOtdwK6P6U7xIFHQ/bCXYRY+s9d1BTdwG/UwJG5S6H1UEMQDVw4823mRazkga1M08kA958g==
+"@scayle/storefront-country-detection@0.3.0":
+  version "0.3.0"
+  resolved "https://registry.yarnpkg.com/@scayle/storefront-country-detection/-/storefront-country-detection-0.3.0.tgz#ff8ddd5d346177a665abbcf47ab39b195871387d"
+  integrity sha512-xVIFeLoWz+/iSz0+SEQz3dcIK7TUzGl36aNUzQX03MWgqcZOO7lbJ5sE1L2FXSDmw/7+UKNsY1tThYv7Qpjtew==
 
-"@scayle/storefront-nuxt@7.95.4":
-  version "7.95.4"
-  resolved "https://registry.yarnpkg.com/@scayle/storefront-nuxt/-/storefront-nuxt-7.95.4.tgz#66b97e8d5dc77d1efb708d64cdad4bdec95b75db"
-  integrity sha512-a0lseCXt534nfSQeE5Xj6PXFqLK3HRNABTcNl1Fk5CPW69ZEE3E9UUsC6IBSZ0OeqZ/+Fig+7f9DM3b1eGCiGA==
+"@scayle/storefront-nuxt@8.0.0":
+  version "8.0.0"
+  resolved "https://registry.yarnpkg.com/@scayle/storefront-nuxt/-/storefront-nuxt-8.0.0.tgz#be4237a55d9c0420a62d098441b29aae35a3d5e8"
+  integrity sha512-zIOIcCdbvf1rjU3XbYBqpP8S1z+QJYq0gvRneUyGfWkVviUC4F8C8BERYKfUYqKO6qRtL++k7dsbQYnal2JUxg==
   dependencies:
     "@nuxt/kit" "^3.12.2"
     "@opentelemetry/api" "^1.9.0"
     "@scayle/h3-session" "^0.4.1"
-    "@scayle/storefront-core" "7.69.3"
+    "@scayle/storefront-core" "8.0.0"
     "@scayle/unstorage-compression-driver" "^0.1.5"
-    "@vueuse/core" "11.3.0"
+    "@vueuse/core" "12.0.0"
     consola "^3.2.3"
     core-js "^3.37.1"
     defu "^6.1.4"
@@ -3479,15 +3477,15 @@
     vue-router "^4.4.0"
     zod "^3.23.8"
 
-"@scayle/storefront-product-detail@0.2.1":
-  version "0.2.1"
-  resolved "https://registry.yarnpkg.com/@scayle/storefront-product-detail/-/storefront-product-detail-0.2.1.tgz#c92f254e7c58d8f26fce8d7cd56537dbdf8e2c89"
-  integrity sha512-jue/PpUN9TsyoYFGFujExsZvWSGFyIZBCHJtOREJvunP00X5Gjn1jfWRqn619ZEENbtM3vNW+joGkTsX+PRx2w==
+"@scayle/storefront-product-detail@0.3.0":
+  version "0.3.0"
+  resolved "https://registry.yarnpkg.com/@scayle/storefront-product-detail/-/storefront-product-detail-0.3.0.tgz#c31644726ccf463b9bb07c688f43a494ea00eb3f"
+  integrity sha512-AMJFaJ9ELuHbz83VsJN6F6qhGEiESoypUCVXFaABcaLfW0y+fdJisJGUB+GdekKTSvZeozj/pTVJ3AfKMtKXbA==
 
-"@scayle/storefront-product-listing@0.4.2":
-  version "0.4.2"
-  resolved "https://registry.yarnpkg.com/@scayle/storefront-product-listing/-/storefront-product-listing-0.4.2.tgz#710c4b80006d29eb91d1d504d28c7d0d118a61c0"
-  integrity sha512-8ot32MdebxPERbQf7Q58ZDbPO90BJQy8B8eWIwzzjyNIy27bvAvx3SQ9KlKWIY+W6rrS6t5bryqqnZPWHwEooQ==
+"@scayle/storefront-product-listing@0.5.0":
+  version "0.5.0"
+  resolved "https://registry.yarnpkg.com/@scayle/storefront-product-listing/-/storefront-product-listing-0.5.0.tgz#401b72ed0a41a7911ed57c1bce710dba03f6fac6"
+  integrity sha512-ca6GW28GRTl9NKXD0mp+K9PPY/Y7C0QD0hFTKBtj7SLcyQnuC/DNIMts5r+8b2MOnOUk3rwJbvEFItF3HQWO7A==
 
 "@scayle/unstorage-compression-driver@^0.1.5":
   version "0.1.5"
@@ -4501,16 +4499,6 @@
     "@vueuse/shared" "12.0.0"
     vue "^3.5.13"
 
-"@vueuse/core@11.3.0":
-  version "11.3.0"
-  resolved "https://registry.yarnpkg.com/@vueuse/core/-/core-11.3.0.tgz#bb0bd1f0edd5435d20694dbe51091cf548653a4d"
-  integrity sha512-7OC4Rl1f9G8IT6rUfi9JrKiXy4bfmHhZ5x2Ceojy0jnd3mHNEvV4JaRygH362ror6/NZ+Nl+n13LPzGiPN8cKA==
-  dependencies:
-    "@types/web-bluetooth" "^0.0.20"
-    "@vueuse/metadata" "11.3.0"
-    "@vueuse/shared" "11.3.0"
-    vue-demi ">=0.14.10"
-
 "@vueuse/core@12.0.0":
   version "12.0.0"
   resolved "https://registry.yarnpkg.com/@vueuse/core/-/core-12.0.0.tgz#9b07923ca24a6b5873bf614888c7d0f796cef7d2"
@@ -4540,11 +4528,6 @@
     "@vueuse/shared" "12.0.0"
     vue "^3.5.13"
 
-"@vueuse/metadata@11.3.0":
-  version "11.3.0"
-  resolved "https://registry.yarnpkg.com/@vueuse/metadata/-/metadata-11.3.0.tgz#be7ac12e3016c0353a3667b372a73aeeee59194e"
-  integrity sha512-pwDnDspTqtTo2HwfLw4Rp6yywuuBdYnPYDq+mO38ZYKGebCUQC/nVj/PXSiK9HX5otxLz8Fn7ECPbjiRz2CC3g==
-
 "@vueuse/metadata@12.0.0":
   version "12.0.0"
   resolved "https://registry.yarnpkg.com/@vueuse/metadata/-/metadata-12.0.0.tgz#ba6c279528fdb3c821825302f8a45c5ce327db01"
@@ -4560,13 +4543,6 @@
     "@vueuse/metadata" "12.0.0"
     local-pkg "^0.5.1"
     vue "^3.5.13"
-
-"@vueuse/shared@11.3.0":
-  version "11.3.0"
-  resolved "https://registry.yarnpkg.com/@vueuse/shared/-/shared-11.3.0.tgz#086a4f35bf5bcec5655a03b80eae582605a4b21d"
-  integrity sha512-P8gSSWQeucH5821ek2mn/ciCk+MS/zoRKqdQIM3bHq6p7GXDAJLmnRRKmF5F65sAVJIfzQlwR3aDzwCn10s8hA==
-  dependencies:
-    vue-demi ">=0.14.10"
 
 "@vueuse/shared@12.0.0":
   version "12.0.0"
@@ -12096,7 +12072,7 @@ redis-parser@^3.0.0:
   dependencies:
     redis-errors "^1.0.0"
 
-redis@4, redis@4.7.0:
+redis@4.7.0:
   version "4.7.0"
   resolved "https://registry.yarnpkg.com/redis/-/redis-4.7.0.tgz#b401787514d25dd0cfc22406d767937ba3be55d6"
   integrity sha512-zvmkHEAdGMn+hMRXuMBtu4Vo5P6rHQjLoHftu+lBqq8ZTA3RCVC/WzD790bkKKiNFp7d5/9PcSD19fJyyRvOdQ==
@@ -12867,7 +12843,7 @@ string-format@^2.0.0:
   resolved "https://registry.yarnpkg.com/string-format/-/string-format-2.0.0.tgz#f2df2e7097440d3b65de31b6d40d54c96eaffb9b"
   integrity sha512-bbEs3scLeYNXLecRRuk6uJxdXUSj6le/8rNPHChIJTn2V79aXVTR1EH2OH5zLKKoz0V02fOUKZZcw01pLUShZA==
 
-"string-width-cjs@npm:string-width@^4.2.0":
+"string-width-cjs@npm:string-width@^4.2.0", "string-width@^1.0.2 || 2 || 3 || 4", string-width@^4.0.0, string-width@^4.1.0, string-width@^4.2.0, string-width@^4.2.2, string-width@^4.2.3:
   version "4.2.3"
   resolved "https://registry.yarnpkg.com/string-width/-/string-width-4.2.3.tgz#269c7117d27b05ad2e536830a8ec895ef9c6d010"
   integrity sha512-wKyQRQpjJ0sIp62ErSZdGsjMJWsap5oRNihHhu6G7JVO/9jIB6UyevL+tXuOqrng8j/cxKTWyWUwvSTriiZz/g==
@@ -12884,15 +12860,6 @@ string-width@^1.0.1:
     code-point-at "^1.0.0"
     is-fullwidth-code-point "^1.0.0"
     strip-ansi "^3.0.0"
-
-"string-width@^1.0.2 || 2 || 3 || 4", string-width@^4.0.0, string-width@^4.1.0, string-width@^4.2.0, string-width@^4.2.2, string-width@^4.2.3:
-  version "4.2.3"
-  resolved "https://registry.yarnpkg.com/string-width/-/string-width-4.2.3.tgz#269c7117d27b05ad2e536830a8ec895ef9c6d010"
-  integrity sha512-wKyQRQpjJ0sIp62ErSZdGsjMJWsap5oRNihHhu6G7JVO/9jIB6UyevL+tXuOqrng8j/cxKTWyWUwvSTriiZz/g==
-  dependencies:
-    emoji-regex "^8.0.0"
-    is-fullwidth-code-point "^3.0.0"
-    strip-ansi "^6.0.1"
 
 string-width@^2.1.1:
   version "2.1.1"
@@ -12934,7 +12901,7 @@ string_decoder@~1.1.1:
   dependencies:
     safe-buffer "~5.1.0"
 
-"strip-ansi-cjs@npm:strip-ansi@^6.0.1":
+"strip-ansi-cjs@npm:strip-ansi@^6.0.1", strip-ansi@^6.0.0, strip-ansi@^6.0.1:
   version "6.0.1"
   resolved "https://registry.yarnpkg.com/strip-ansi/-/strip-ansi-6.0.1.tgz#9e26c63d30f53443e9489495b2105d37b67a85d9"
   integrity sha512-Y38VPSHcqkFrCpFnQ9vuSXmquuv5oXOKpGeT6aGrr3o3Gc9AlVa6JBfUSOCnbxGGZF+/0ooI7KrPuUSztUdU5A==
@@ -12954,13 +12921,6 @@ strip-ansi@^4.0.0:
   integrity sha512-4XaJ2zQdCzROZDivEVIDPkcQn8LMFSa8kj8Gxb/Lnwzv9A8VctNZ+lfivC/sV3ivW8ElJTERXZoPBRrZKkNKow==
   dependencies:
     ansi-regex "^3.0.0"
-
-strip-ansi@^6.0.0, strip-ansi@^6.0.1:
-  version "6.0.1"
-  resolved "https://registry.yarnpkg.com/strip-ansi/-/strip-ansi-6.0.1.tgz#9e26c63d30f53443e9489495b2105d37b67a85d9"
-  integrity sha512-Y38VPSHcqkFrCpFnQ9vuSXmquuv5oXOKpGeT6aGrr3o3Gc9AlVa6JBfUSOCnbxGGZF+/0ooI7KrPuUSztUdU5A==
-  dependencies:
-    ansi-regex "^5.0.1"
 
 strip-ansi@^7.0.1, strip-ansi@^7.1.0:
   version "7.1.0"
@@ -14130,7 +14090,7 @@ vue-component-type-helpers@^2.0.0:
   resolved "https://registry.yarnpkg.com/vue-component-type-helpers/-/vue-component-type-helpers-2.1.10.tgz#9f80c56a141e85ec577cf4f0b6965a61b6f1e1ef"
   integrity sha512-lfgdSLQKrUmADiSV6PbBvYgQ33KF3Ztv6gP85MfGaGaSGMTXORVaHT1EHfsqCgzRNBstPKYDmvAV9Do5CmJ07A==
 
-vue-demi@*, vue-demi@>=0.14.10:
+vue-demi@*:
   version "0.14.10"
   resolved "https://registry.yarnpkg.com/vue-demi/-/vue-demi-0.14.10.tgz#afc78de3d6f9e11bf78c55e8510ee12814522f04"
   integrity sha512-nMZBOwuzabUO0nLgIcc6rycZEebF6eeUfaiQx9+WSk8e29IbLvPU9feI6tqW4kTo3hvoYAJkMh8n8D0fuISphg==
@@ -14327,7 +14287,7 @@ wordwrapjs@^4.0.0:
     reduce-flatten "^2.0.0"
     typical "^5.2.0"
 
-"wrap-ansi-cjs@npm:wrap-ansi@^7.0.0":
+"wrap-ansi-cjs@npm:wrap-ansi@^7.0.0", wrap-ansi@^7.0.0:
   version "7.0.0"
   resolved "https://registry.yarnpkg.com/wrap-ansi/-/wrap-ansi-7.0.0.tgz#67e145cff510a6a6984bdf1152911d69d2eb9e43"
   integrity sha512-YVGIj2kamLSTxw6NsZjoBxfSwsn0ycdesmc4p+Q21c5zPuZ1pl+NfxVdxPtdHvmNVOQ6XSYG4AUtyt/Fi7D16Q==
@@ -14343,15 +14303,6 @@ wrap-ansi@^3.0.1:
   dependencies:
     string-width "^2.1.1"
     strip-ansi "^4.0.0"
-
-wrap-ansi@^7.0.0:
-  version "7.0.0"
-  resolved "https://registry.yarnpkg.com/wrap-ansi/-/wrap-ansi-7.0.0.tgz#67e145cff510a6a6984bdf1152911d69d2eb9e43"
-  integrity sha512-YVGIj2kamLSTxw6NsZjoBxfSwsn0ycdesmc4p+Q21c5zPuZ1pl+NfxVdxPtdHvmNVOQ6XSYG4AUtyt/Fi7D16Q==
-  dependencies:
-    ansi-styles "^4.0.0"
-    string-width "^4.1.0"
-    strip-ansi "^6.0.0"
 
 wrap-ansi@^8.1.0:
   version "8.1.0"

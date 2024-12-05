@@ -44,7 +44,7 @@ export function usePromotionGiftSelection(gift: Product) {
   const basket = useBasket()
   const basketActions = useBasketActions()
 
-  const { fetching: basketIdle } = basket
+  const { status } = basket
   const { addItem } = basketActions
 
   const toggleGiftSelection = () => {
@@ -140,7 +140,7 @@ export function usePromotionGiftSelection(gift: Product) {
   return extendPromise(
     Promise.all([basket, basketActions]).then(() => ({})),
     {
-      basketIdle,
+      status,
       addItemToBasket,
       lowestPriorPrice,
       price,

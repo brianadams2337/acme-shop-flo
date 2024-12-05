@@ -17,7 +17,7 @@ export const setUserDefault = (): LastLoggedInUser => ({
 export async function useLastLoggedInUser() {
   const currentShop = useCurrentShop()
 
-  const { user, isLoggedIn, fetching } = useUser()
+  const { user, isLoggedIn, status } = useUser()
 
   const localStorage = useLocalStorage<LastLoggedInUser>(
     `${USER_KEY}-${currentShop.value.shopId}`,
@@ -58,6 +58,6 @@ export async function useLastLoggedInUser() {
     lastLoggedInUser: localStorage,
     removeLastLoggedInUser,
     isLoggedIn,
-    isFetching: fetching,
+    status,
   }
 }

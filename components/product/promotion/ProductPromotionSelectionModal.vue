@@ -88,7 +88,7 @@
                   variant="accent"
                   :disabled="product.isSoldOut"
                   :title="product.isSoldOut ? $t('badge_labels.sold_out') : ''"
-                  :loading="basketIdle"
+                  :loading="status === 'pending'"
                   class="w-full justify-between !px-4"
                   @click="addToBasket"
                 >
@@ -154,7 +154,7 @@ const route = useRoute()
 const { pageState } = usePageState()
 
 const {
-  basketIdle,
+  status,
   activeVariant,
   giftVariants,
   price,

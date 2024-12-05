@@ -1,5 +1,5 @@
 <template>
-  <div v-if="blok && !fetching" :class="marginClasses">
+  <div v-if="blok && status !== 'pending'" :class="marginClasses">
     <div class="flex w-full justify-between px-5 sm:px-14">
       <SFHeadline v-if="blok?.fields.headline" tag="p" size="base" is-uppercase>
         {{ blok.fields.headline }}
@@ -69,30 +69,32 @@ const productIds = computed(() => {
   return props.blok?.fields.productIds?.split(',').map(Number).filter(Boolean)
 })
 
-const { data, fetching } = await useProductsByIds({
-  params: {
-    ids: productIds.value || [],
-    with: {
-      attributes: {
-        withKey: ['color', 'brand', 'name'],
-      },
-      variants: {
+const { data, status } = await useProductsByIds(
+  {
+    params: {
+      ids: productIds.value || [],
+      with: {
         attributes: {
-          withKey: ['price', 'size'],
+          withKey: ['color', 'brand', 'name'],
         },
+        variants: {
+          attributes: {
+            withKey: ['price', 'size'],
+          },
+          lowestPriorPrice: true,
+        },
+        images: {
+          attributes: {
+            withKey: ['imageType', 'imageView', 'imageBackground', 'imageKind'],
+          },
+        },
+        priceRange: true,
         lowestPriorPrice: true,
       },
-      images: {
-        attributes: {
-          withKey: ['imageType', 'imageView', 'imageBackground', 'imageKind'],
-        },
-      },
-      priceRange: true,
-      lowestPriorPrice: true,
     },
   },
-  key: `productSlider-${props.blok?.fields.uid}`,
-})
+  `productSlider-${props.blok?.fields.uid}`,
+)
 
 const trackingCollector = ref<Product[]>([])
 const products = computed(() => data.value)

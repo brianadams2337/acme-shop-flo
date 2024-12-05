@@ -37,7 +37,7 @@ export function useCheckoutWebComponent() {
     ],
   })
 
-  const { data, fetch: fetchCheckoutToken } = useRpc(
+  const { data, refresh: fetchCheckoutToken } = useRpc(
     'getCheckoutToken',
     'getCheckoutToken',
     undefined,

@@ -11,10 +11,12 @@ export function useOrderDetails(key?: string) {
   const route = useRoute()
   const paramId = computed(() => +route.params.id)
 
-  const { data, fetching } = useOrder({
-    params: computed(() => ({ orderId: paramId.value })),
-    key: `orderId-${key}`,
-  })
+  const { data, status } = useOrder(
+    {
+      params: computed(() => ({ orderId: paramId.value })),
+    },
+    `orderId-${key}`,
+  )
 
   // NOTE: Explicitly casting returned data from useOrder to mitigate returned any data type
   const orderDetails = data as Ref<Order>
@@ -53,14 +55,16 @@ export function useOrderDetails(key?: string) {
     return [...new Map(ids.map((id) => [id, id])).values()]
   })
 
-  const { data: orderVariants } = useVariant({
-    params: computed(() => ({ ids: variantIds.value })),
-    key: `variant-${key}`,
-  })
+  const { data: orderVariants } = useVariant(
+    {
+      params: computed(() => ({ ids: variantIds.value })),
+    },
+    `variant-${key}`,
+  )
 
   return {
     orderDetails,
-    fetching,
+    status,
     orderVariants,
     totalAmount,
     billingAddress,

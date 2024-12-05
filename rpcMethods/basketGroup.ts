@@ -10,6 +10,7 @@ import {
   type Variant,
   rpcMethods,
 } from '@scayle/storefront-nuxt'
+import type { AddOrUpdateItemError } from '@scayle/storefront-api'
 
 const getWithParams = (
   params: { with?: BasketWithOptions },
@@ -19,8 +20,15 @@ const getWithParams = (
 }
 
 export const addGroupToBasket: RpcHandler<
-  { items: AddOrUpdateItemType[]; with?: BasketWithOptions },
-  BasketResponseData<Product, Variant>
+  {
+    items: AddOrUpdateItemType[]
+    with?: BasketWithOptions
+    orderCustomData?: Record<string, unknown>
+  },
+  {
+    basket: BasketResponseData<Product, Variant>
+    errors?: AddOrUpdateItemError[]
+  }
 > = async function addGroupToBasket(options, context: RpcContext) {
   const resolvedWith: BasketWithOptions = getWithParams(
     { with: options.with },

@@ -1,6 +1,6 @@
 <template>
   <SFPageContainer>
-    <div v-if="fetching" class="container flex gap-2">
+    <div v-if="status === 'pending'" class="container flex gap-2">
       <ProductCardSkeleton v-for="index in 2" :key="`osp-loading-${index}`" />
     </div>
     <div v-if="orderData" class="px-6 sm:mx-auto sm:flex sm:flex-wrap md:px-0">
@@ -35,7 +35,7 @@ import type { OrderProduct, OrderVariant } from '~/types/order'
 const route = useRoute()
 const cbdToken = String(route.query.cbd)
 
-const { data: orderData, fetching } = await useOrderConfirmation<
+const { data: orderData, status } = await useOrderConfirmation<
   OrderProduct,
   OrderVariant
 >({
@@ -55,9 +55,9 @@ if (import.meta.client && user.isLoggedIn) {
 
 onMounted(() => {
   watch(
-    fetching,
-    (isFetching) => {
-      if (!isFetching && orderData.value) {
+    status,
+    (newStatus) => {
+      if (newStatus !== 'pending' && orderData.value) {
         trackPurchaseEvent(orderData.value)
       }
     },

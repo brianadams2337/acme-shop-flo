@@ -34,32 +34,34 @@ export function useProductsSearch({
 
   const term = computed(() => String(route.query.term || ''))
 
-  const productsData = useProducts({
-    params: () => ({
-      ...(route.query.page && { page: +route.query.page }),
-      sort: selectedSort.value,
-      perPage: SEARCH_PRODUCTS_PER_PAGE,
-      with: PRODUCT_TILE_WITH_PARAMS,
-      category: '/',
-      includeSoldOut,
-      includeSellableForFree,
-      pricePromotionKey,
-      orFiltersOperator,
-      cache: {
-        ttl: FETCH_PRODUCTS_CACHE_TTL,
-        cacheKeyPrefix: `SEARCH:${term}`,
-      },
-      where: {
-        ...appliedFilter.value,
-        term: term.value,
-      },
-      ...restParams,
-    }),
-    key: `search-products-${term.value}`,
-    options,
-  })
+  const productsData = useProducts(
+    {
+      params: () => ({
+        ...(route.query.page && { page: +route.query.page }),
+        sort: selectedSort.value,
+        perPage: SEARCH_PRODUCTS_PER_PAGE,
+        with: PRODUCT_TILE_WITH_PARAMS,
+        category: '/',
+        includeSoldOut,
+        includeSellableForFree,
+        pricePromotionKey,
+        orFiltersOperator,
+        cache: {
+          ttl: FETCH_PRODUCTS_CACHE_TTL,
+          cacheKeyPrefix: `SEARCH:${term}`,
+        },
+        where: {
+          ...appliedFilter.value,
+          term: term.value,
+        },
+        ...restParams,
+      }),
+      options,
+    },
+    `search-products-${term.value}`,
+  )
 
-  const { data, fetching, error } = productsData
+  const { data, status, error } = productsData
 
   const products = computed(() => data.value?.products ?? [])
   const pagination = computed(() => data.value?.pagination)
@@ -78,7 +80,7 @@ export function useProductsSearch({
       products,
       pagination,
       error,
-      fetching,
+      status,
       totalProductsCount,
       paginationOffset,
     },

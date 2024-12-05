@@ -1,9 +1,8 @@
 import {
   type BasketItem,
   type BasketResponseData,
-  FetchError,
   getFirstAttributeValue,
-  HttpStatusCode,
+  AddToBasketFailureKind,
 } from '@scayle/storefront-nuxt'
 
 export type BundledBasketItems<T = unknown> = Partial<Record<string, T[]>>
@@ -66,10 +65,12 @@ export const bundleBasketItemsByGroup = (
 }
 
 export const getBasketToastErrorMessageKey = (error: unknown) => {
-  if (error instanceof FetchError) {
-    if (error.response.status === HttpStatusCode.PRECONDITION_FAILED) {
+  if (error instanceof Error) {
+    if (error.cause === AddToBasketFailureKind.ItemAddedWithReducedQuantity) {
+      return 'basket.notification.add_with_reduced_quantity_error'
+    } else if (error.cause === AddToBasketFailureKind.ItemUnvailable) {
       return 'basket.notification.add_to_basket_variant_out_of_stock_error'
-    } else if (error.response.status === HttpStatusCode.CONTENT_TOO_LARGE) {
+    } else if (error.cause === AddToBasketFailureKind.MaximumItemCountReached) {
       return 'basket.notification.add_to_basket_max_basket_items_error'
     }
   }

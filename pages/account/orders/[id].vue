@@ -1,8 +1,10 @@
 <template>
   <SFPageContainer class="p-0 md:mt-0">
     <div v-if="paramId">
-      <OrderLoadingState v-if="fetching" />
-      <template v-else-if="orderDetails && orderVariants && !fetching">
+      <OrderLoadingState v-if="status === 'pending'" />
+      <template
+        v-else-if="orderDetails && orderVariants && status === 'success'"
+      >
         <template
           v-if="itemCount && orderDetails.shop?.id && orderDetails.confirmedAt"
         >
@@ -51,7 +53,7 @@ const paramId = computed(() => +route.params.id)
 
 const {
   orderDetails,
-  fetching,
+  status,
   shippingAddress,
   billingAddress,
   itemCount,

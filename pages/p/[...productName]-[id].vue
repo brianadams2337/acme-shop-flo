@@ -157,13 +157,15 @@ const {
   data: product,
   status: productDataStatus,
   error,
-} = useProduct({
-  params: {
-    id: productId.value,
-    with: PRODUCT_DETAIL_WITH_PARAMS,
+} = useProduct(
+  {
+    params: {
+      id: productId.value,
+      with: PRODUCT_DETAIL_WITH_PARAMS,
+    },
   },
-  key: `PDP-${productId.value}`,
-})
+  `PDP-${productId.value}`,
+)
 
 whenever(error, () => {
   throw error.value

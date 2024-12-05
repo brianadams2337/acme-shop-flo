@@ -33,26 +33,28 @@ export function useSubscription(
   key?: string,
 ) {
   const { $i18n } = useNuxtApp()
-  const productPromise = useProduct({
-    params: {
-      id: product.value.id,
-      with: {
-        variants: {
-          attributes: {
-            withKey: [
-              SUBSCRIPTION_ELIGIBILITY_ATTRIBUTE_NAME,
-              SUBSCRIPTION_INTERVALS_ATTRIBUTE_NAME,
-              SUBSCRIPTION_TERM,
-              SUBSCRIPTION_CANCELLATION_POLICY,
-            ],
+  const productPromise = useProduct(
+    {
+      params: {
+        id: product.value.id,
+        with: {
+          variants: {
+            attributes: {
+              withKey: [
+                SUBSCRIPTION_ELIGIBILITY_ATTRIBUTE_NAME,
+                SUBSCRIPTION_INTERVALS_ATTRIBUTE_NAME,
+                SUBSCRIPTION_TERM,
+                SUBSCRIPTION_CANCELLATION_POLICY,
+              ],
+            },
+            lowestPriorPrice: true,
           },
-          lowestPriorPrice: true,
         },
+        pricePromotionKey: pricePromotionKey.value,
       },
-      pricePromotionKey: pricePromotionKey.value,
     },
-    key: `product-subscription-${key}`,
-  })
+    `product-subscription-${key}`,
+  )
 
   const { data: subscriptionProduct } = productPromise
 

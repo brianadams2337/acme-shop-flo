@@ -24,13 +24,8 @@ export function useSearchData() {
 
   const { trackSearchSuggestionClick } = useTrackingEvents()
 
-  const {
-    data,
-    resolveSearch,
-    getSearchSuggestions,
-    pending: fetching,
-    ...searchData
-  } = useStorefrontSearch(searchQuery, { key })
+  const { data, resolveSearch, getSearchSuggestions, status, ...searchData } =
+    useStorefrontSearch(searchQuery, {}, key)
 
   const allSuggestions = computed(() => data?.value?.suggestions ?? [])
 
@@ -87,21 +82,23 @@ export function useSearchData() {
 
   const debouncedSearch = useDebounceFn(async () => {
     if (!hasSearchQuery.value) {
-      fetching.value = false
+      status.value = 'idle'
       return
     }
     await getSearchSuggestions()
   }, DEBOUNCED_SEARCH_DURATION)
 
   const showSuggestionsLoader = computed(() => {
-    return fetching.value && (!searchQuery.value || noSuggestions.value)
+    return (
+      status.value === 'pending' && (!searchQuery.value || noSuggestions.value)
+    )
   })
 
   return {
     ...searchData,
     searchQuery,
     data,
-    fetching,
+    status,
     products,
     categories,
     navigationItems,

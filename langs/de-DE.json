@@ -168,7 +168,8 @@
       "subscription_already_in_basket_error": "{productName} befindet sich bereits im Warenkorb. Ein Artikel kann nicht mehr als einmal als Abonnement in einer Bestellung enthalten sein.",
       "add_to_basket_variant_out_of_stock_error": "Diese Größe ist derzeit ausverkauft",
       "add_to_basket_max_basket_items_error": "Ups! Du hast die maximale Anzahl an Artikeln in deinem Warenkorb erreicht.",
-      "add_subscription_to_basket_success": "Das {productName} {interval} Abonnement wurde deinem Warenkorb hinzugefügt"
+      "add_subscription_to_basket_success": "Das {productName} {interval} Abonnement wurde deinem Warenkorb hinzugefügt",
+      "add_with_reduced_quantity_error": "Es sind keine weiteren Artikel in dieser Größe verfügbar. Der gesamte verfügbare Bestand wurde bereits deinem Warenkorb hinzugefügt."
     },
     "discount": "Rabatt",
     "to_checkout": "Zur Kasse",

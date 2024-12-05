@@ -26,9 +26,9 @@ import { useNuxtApp } from '#app'
 
 const { accessToken, checkoutJwt, fetchCheckoutToken } =
   useCheckoutWebComponent()
-const { fetch: fetchBasket, fetching } = useBasket()
+const { refresh: refreshBasket, status } = useBasket()
 
-const { user, fetch: fetchUser } = useUser()
+const { user, refresh: refreshUser } = useUser()
 
 const { $i18n } = useNuxtApp()
 
@@ -57,11 +57,11 @@ const onCheckoutUpdate = async (
 
 // Refresh basket if the user changes quantity or removes an item at checkout
 useEventListener('message', (event) =>
-  onCheckoutUpdate(event, fetching.value, fetchBasket),
+  onCheckoutUpdate(event, status.value === 'pending', refreshBasket),
 )
 
 onBeforeMount(async () => {
-  await Promise.all([fetchBasket(), fetchUser(), fetchCheckoutToken()])
+  await Promise.all([refreshBasket(), refreshUser(), fetchCheckoutToken()])
 })
 
 const handleError = (payload = {}) => {

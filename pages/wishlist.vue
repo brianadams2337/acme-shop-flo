@@ -15,7 +15,7 @@
       </SFFadeInTransition>
     </SFHeadline>
 
-    <template v-if="fetching">
+    <template v-if="status === 'pending'">
       <div class="mt-8 grid w-auto grid-cols-12 gap-4 xl:max-2xl:grid-cols-10">
         <ProductCardSkeleton
           v-for="index in 12"
@@ -66,14 +66,14 @@ import EmptyState from '~/components/EmptyState.vue'
 import ProductCard from '~/components/product/card/ProductCard.vue'
 import { SFHeadline, SFFadeInTransition } from '#storefront-ui/components'
 
-const { count, fetching, items, products } = useWishlist()
+const { count, status, items, products } = useWishlist()
 const { $i18n } = useNuxtApp()
 
 const { trackWishlistPage } = useWishlistTracking()
 
 // Track the wishlist once it is loaded
 whenever(
-  () => !fetching.value,
+  () => status.value !== 'pending',
   () => {
     trackWishlistPage(products.value)
   },

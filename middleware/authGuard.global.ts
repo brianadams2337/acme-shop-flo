@@ -21,7 +21,7 @@ export default defineNuxtRouteMiddleware(async (to, from) => {
   const userComposable = await useUser({ key: 'authGuard-user' })
 
   if (!nuxt.ssrContext && !userComposable.user.value) {
-    await userComposable.fetch()
+    await userComposable.refresh()
   }
 
   const user = nuxt?.ssrContext

@@ -29,7 +29,7 @@
               />
               <CategoryBreadcrumbs
                 v-if="currentCategory"
-                :products-fetching="productsFetching"
+                :products-fetching="productsStatus === 'pending'"
                 :category="currentCategory"
                 :products-count="totalProductsCount"
               />
@@ -52,7 +52,7 @@
             :products="products"
             :pagination="pagination"
             :current-category="currentCategory"
-            :loading="productsFetching"
+            :loading="productsStatus === 'pending'"
             class="mt-8"
             @click:product="trackProductClick"
             @intersect:row="trackViewListing"
@@ -129,7 +129,7 @@ const currentCategoryId = computed(() => getCategoryId(route.params))
 const {
   products,
   pagination,
-  fetching: productsFetching,
+  status: productsStatus,
   totalProductsCount,
   paginationOffset,
 } = useProductsByCategory(currentCategoryId, route, {
@@ -143,14 +143,17 @@ const currentCategoryPromise = useCurrentCategory(currentCategoryId.value)
 
 const {
   data: currentCategory,
-  fetching: isCategoryFetching,
+  status: categoryStatus,
   error: categoryError,
 } = currentCategoryPromise
 
 const validateCategoryExists = async () => {
   await currentCategoryPromise
 
-  if (categoryError.value || (!isCategoryFetching && !currentCategory.value)) {
+  if (
+    categoryError.value ||
+    (categoryStatus.value !== 'pending' && !currentCategory.value)
+  ) {
     throw createError({ statusCode: HttpStatusCode.NOT_FOUND, fatal: true })
   }
 }

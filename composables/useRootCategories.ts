@@ -12,21 +12,19 @@ export function useRootCategories(
 ) {
   const { immediate = true, children, key } = options
 
-  const categoriesData = useCategories({
-    params: {
-      path: '/',
-      ...(children && { children }),
-      properties: { withName: ['sale'] },
+  const categoriesData = useCategories(
+    {
+      params: {
+        path: '/',
+        ...(children && { children }),
+        properties: { withName: ['sale'] },
+      },
+      options: { immediate },
     },
-    options: { immediate },
-    key: key ?? 'category-navigation',
-  })
+    key ?? 'category-navigation',
+  )
 
-  const {
-    data: rootCategoriesData,
-    fetching: fetchingCategories,
-    error,
-  } = categoriesData
+  const { data: rootCategoriesData, status, error } = categoriesData
 
   const rootCategories = computed<Category[]>(() => {
     if (!rootCategoriesData.value) {
@@ -44,7 +42,7 @@ export function useRootCategories(
   return extendPromise(
     categoriesData.then(() => ({})),
     {
-      fetchingCategories,
+      status,
       rootCategories,
       error,
       allCategories,

@@ -84,7 +84,7 @@ import {
   SFButton,
 } from '#storefront-ui/components'
 
-const { updatePassword, fetch: refresh } = useUser()
+const { updatePassword, refresh } = useUser()
 const { $i18n } = useNuxtApp()
 const validationRules = useValidationRules()
 

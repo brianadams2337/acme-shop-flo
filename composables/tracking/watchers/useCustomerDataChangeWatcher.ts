@@ -6,7 +6,7 @@ import { useTrackingEvents } from '~/composables/useTrackingEvents'
 export const useCustomerDataChangeWatcher = async () => {
   const scope = getCurrentScope()
   const { trackCustomerData } = useTrackingEvents()
-  const { isLoggedIn, customerType, user, fetching } = await useUser()
+  const { isLoggedIn, customerType, user, status } = await useUser()
 
   scope?.run(() => {
     watch(
@@ -31,9 +31,9 @@ export const useCustomerDataChangeWatcher = async () => {
   onNuxtReady(() => {
     scope?.run(() => {
       watch(
-        () => fetching.value,
-        (newFetching) => {
-          if (newFetching || isLoggedIn.value) {
+        () => status.value,
+        (newStatus) => {
+          if (newStatus === 'pending' || isLoggedIn.value) {
             return
           }
           trackCustomerData({

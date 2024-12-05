@@ -52,7 +52,6 @@ export function useBasketActions() {
 
   const basket = useBasket()
   const {
-    fetching,
     isEmpty: isBasketEmpty,
     data: basketData,
     count: basketCount,
@@ -180,7 +179,6 @@ export function useBasketActions() {
     {
       removeItem,
       orderedItems,
-      fetching,
       basketData,
       basketCount,
       listingMetaData,

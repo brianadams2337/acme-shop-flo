@@ -100,20 +100,24 @@ const isUsingReferenceKeys = computed(() => {
 })
 
 const { data } = isUsingReferenceKeys.value
-  ? await useProductsByReferenceKeys({
-      params: {
-        referenceKeys: productReferenceKeys.value || [],
-        with: productSliderWithParams,
+  ? await useProductsByReferenceKeys(
+      {
+        params: {
+          referenceKeys: productReferenceKeys.value || [],
+          with: productSliderWithParams,
+        },
       },
-      key: `productSlider-${props.blok._uid}`,
-    })
-  : await useProductsByIds({
-      params: {
-        ids: productIds.value || [],
-        with: productSliderWithParams,
+      `productSlider-${props.blok._uid}`,
+    )
+  : await useProductsByIds(
+      {
+        params: {
+          ids: productIds.value || [],
+          with: productSliderWithParams,
+        },
       },
-      key: `productSlider-${props.blok._uid}`,
-    })
+      `productSlider-${props.blok._uid}`,
+    )
 
 const trackingCollector = ref<Product[]>([])
 const products = computed(() => {

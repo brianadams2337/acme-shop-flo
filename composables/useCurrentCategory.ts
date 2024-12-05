@@ -1,12 +1,14 @@
 import { useCategoryById } from '#storefront/composables'
 
 export function useCurrentCategory(id: number) {
-  return useCategoryById({
-    key: `current-category-${id}`,
-    params: {
-      id,
-      children: 0,
-      properties: { withName: ['sale'] },
+  return useCategoryById(
+    {
+      params: {
+        id,
+        children: 0,
+        properties: { withName: ['sale'] },
+      },
     },
-  })
+    `current-category-${id}`,
+  )
 }

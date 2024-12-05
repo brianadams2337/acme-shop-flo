@@ -3,7 +3,7 @@
     <div class="flex w-full flex-wrap justify-between gap-4">
       <SFHeadline is-uppercase>
         {{
-          productsFetching
+          status === 'pending'
             ? $t('search.result_loading', { term })
             : $t('search.result', { term, resultsCount })
         }}
@@ -19,7 +19,7 @@
     <ProductList
       :pagination="pagination"
       :products="products"
-      :loading="productsFetching"
+      :loading="status === 'pending'"
       class="mt-8"
       @click:product="trackProductClick"
       @intersect:row="trackViewListing"
@@ -52,16 +52,11 @@ const route = useRoute()
 const { $i18n } = useNuxtApp()
 const term = computed(() => route.query.term || '')
 const { pageState } = usePageState()
-const {
-  products,
-  pagination,
-  fetching: productsFetching,
-  totalProductsCount,
-  paginationOffset,
-} = await useProductsSearch({
-  options: { lazy: true },
-  params: { includeSoldOut: false },
-})
+const { products, pagination, status, totalProductsCount, paginationOffset } =
+  await useProductsSearch({
+    options: { lazy: true },
+    params: { includeSoldOut: false },
+  })
 
 const { trackSelectItem, trackViewItemList } = useTrackingEvents()
 

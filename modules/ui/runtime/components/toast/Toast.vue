@@ -1,9 +1,9 @@
 <template>
   <div
-    class="flex h-16 w-full items-center space-x-2 rounded-md p-3 px-4 font-semi-bold-variable leading-none md:h-11 md:w-max md:max-w-[90vw] md:items-end"
+    class="flex min-h-16 w-full items-center justify-center space-x-2 rounded-md p-3 px-4 font-semi-bold-variable leading-none md:h-11 md:w-max md:max-w-[90vw]"
     :class="notification.type?.classes"
   >
-    <component :is="notification.type?.iconComponent" class="my-auto size-4" />
+    <component :is="notification.type?.iconComponent" class="size-4 shrink-0" />
     <span>{{ notification.message }}</span>
     <template v-for="action in notification.actions">
       <SFLink

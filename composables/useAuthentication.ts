@@ -56,9 +56,9 @@ export function useAuthentication(
     $i18n.t(`login_page.${event}.status.success`),
   )
 
-  const { fetch: refreshWishlist } = useWishlist()
-  const { fetch: refreshBasket } = useBasket()
-  const { user, fetch: refreshUser, customerType } = useUser()
+  const { refresh: refreshWishlist } = useWishlist()
+  const { refresh: refreshBasket } = useBasket()
+  const { user, refresh: refreshUser, customerType } = useUser()
 
   const refresh = async () => {
     await Promise.all([refreshUser(), refreshWishlist(), refreshBasket()])

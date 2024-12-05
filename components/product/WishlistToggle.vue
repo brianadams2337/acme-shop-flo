@@ -9,13 +9,13 @@
         ? 'remove-item-from-wishlist-button'
         : 'add-item-to-wishlist-button'
     "
-    :loading="mounted && fetching"
+    :loading="mounted && status === 'pending'"
     :aria-label="
       isInWishlist
         ? $t('wishlist.toggle.remove_from_wishlist_label')
         : $t('wishlist.toggle.add_to_wishlist_label')
     "
-    :aria-busy="mounted && fetching"
+    :aria-busy="mounted && status === 'pending'"
     aria-live="off"
     :disabled="isWishlistToggling"
     @click="onToggleWishlist"
@@ -65,7 +65,7 @@ const isWishlistToggling = ref(false)
 const product = toRef(props, 'product')
 const productId = computed(() => product.value.id)
 
-const { toggleItem, fetching, contains, status } = useWishlist()
+const { toggleItem, contains, status } = useWishlist()
 
 const { trackWishlistItemEvent } = useWishlistTracking()
 

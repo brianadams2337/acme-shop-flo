@@ -3476,10 +3476,10 @@
   resolved "https://registry.yarnpkg.com/@scayle/storefront-country-detection/-/storefront-country-detection-0.3.0.tgz#ff8ddd5d346177a665abbcf47ab39b195871387d"
   integrity sha512-xVIFeLoWz+/iSz0+SEQz3dcIK7TUzGl36aNUzQX03MWgqcZOO7lbJ5sE1L2FXSDmw/7+UKNsY1tThYv7Qpjtew==
 
-"@scayle/storefront-nuxt@8.0.1":
-  version "8.0.1"
-  resolved "https://registry.yarnpkg.com/@scayle/storefront-nuxt/-/storefront-nuxt-8.0.1.tgz#a0b6ae886fafa26c9d265658dea88a141baa28da"
-  integrity sha512-ipWDrP+vZliY8+95b+rCVkVqJpIO0ocYMY1NvJb0tid8hx0kl59dDQihRWBvK7Kiwxx03lpke8pZiQzLIVj1ng==
+"@scayle/storefront-nuxt@8.1.0":
+  version "8.1.0"
+  resolved "https://registry.yarnpkg.com/@scayle/storefront-nuxt/-/storefront-nuxt-8.1.0.tgz#a99965d8d8987f3bbb27a97372b5d9a501748f20"
+  integrity sha512-jJUtuy02UosegX4Z/LSp0Ezlrzm8US49jN6AUEmltPYhThe//50uj0Sitr/pFbYEaQ8a4M1VfAC/rEHCpFlssQ==
   dependencies:
     "@nuxt/kit" "^3.12.2"
     "@opentelemetry/api" "^1.9.0"

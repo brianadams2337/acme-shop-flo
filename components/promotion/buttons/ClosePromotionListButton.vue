@@ -1,14 +1,14 @@
 <template>
   <SFButton
     variant="raw"
-    size="xs"
+    size="sm"
     fab
     class="absolute z-100 bg-primary !p-1 !text-white"
     :class="positionClass"
     @click="togglePromotionList()"
   >
     <template #icon="{ _class }">
-      <IconClose :class="_class" />
+      <IconCloseSBold :class="_class" />
     </template>
   </SFButton>
 </template>

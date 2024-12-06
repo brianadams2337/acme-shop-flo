@@ -3489,10 +3489,10 @@
   resolved "https://registry.yarnpkg.com/@scayle/storefront-api/-/storefront-api-17.13.0.tgz#bf7c55e03c66511efb12f58ade43fc22c8963a50"
   integrity sha512-51w7kvs2Ku/3dA8DUjnCyAyEm1Rt2j3ZdVFN6zUGNe0SYzZ1JyJsTreZnc2UiSuwBad3sdbHzpOHaHXYFsGc0w==
 
-"@scayle/storefront-core@8.1.0":
-  version "8.1.0"
-  resolved "https://registry.yarnpkg.com/@scayle/storefront-core/-/storefront-core-8.1.0.tgz#c2d2a51eec59f28bff19785affd182173f1ce3c1"
-  integrity sha512-jQBMNS/j8oAsipWEr8oJC27wXsZFgwuRN8Czr2/kTaTq6/ki6gxa3rtdVVdkasm6mQYbHX7goqqJ2t2uesJobA==
+"@scayle/storefront-core@8.1.1":
+  version "8.1.1"
+  resolved "https://registry.yarnpkg.com/@scayle/storefront-core/-/storefront-core-8.1.1.tgz#93eee4f9ebf85e1c1a218dc5ba7169354799f617"
+  integrity sha512-F+goVztQElyy8HupMIIvNXrgXqPseA0Mo3AoqxTyqERptJadpvGRQZXn1EBy0zs3NVS1rpj9uz55LuiSVQ0Ubg==
   dependencies:
     "@scayle/storefront-api" "17.13.0"
     crypto-js "^4.2.0"
@@ -3508,15 +3508,15 @@
   resolved "https://registry.yarnpkg.com/@scayle/storefront-country-detection/-/storefront-country-detection-0.3.0.tgz#ff8ddd5d346177a665abbcf47ab39b195871387d"
   integrity sha512-xVIFeLoWz+/iSz0+SEQz3dcIK7TUzGl36aNUzQX03MWgqcZOO7lbJ5sE1L2FXSDmw/7+UKNsY1tThYv7Qpjtew==
 
-"@scayle/storefront-nuxt@8.1.0":
-  version "8.1.0"
-  resolved "https://registry.yarnpkg.com/@scayle/storefront-nuxt/-/storefront-nuxt-8.1.0.tgz#a99965d8d8987f3bbb27a97372b5d9a501748f20"
-  integrity sha512-jJUtuy02UosegX4Z/LSp0Ezlrzm8US49jN6AUEmltPYhThe//50uj0Sitr/pFbYEaQ8a4M1VfAC/rEHCpFlssQ==
+"@scayle/storefront-nuxt@8.1.1":
+  version "8.1.1"
+  resolved "https://registry.yarnpkg.com/@scayle/storefront-nuxt/-/storefront-nuxt-8.1.1.tgz#b9888e961b6832d3447af042695daf5452190ac5"
+  integrity sha512-sL6haLEQ4yejUssRQNDtnDUvWmHwt5suEKOpQChoJebcWrfSBgbTZqedELbSZdrq5ylE5i0+hgehQn6QXZ7xMw==
   dependencies:
     "@nuxt/kit" "^3.12.2"
     "@opentelemetry/api" "^1.9.0"
     "@scayle/h3-session" "^0.4.1"
-    "@scayle/storefront-core" "8.1.0"
+    "@scayle/storefront-core" "8.1.1"
     "@scayle/unstorage-compression-driver" "^0.1.5"
     "@vueuse/core" "12.0.0"
     consola "^3.2.3"

@@ -171,3 +171,29 @@ test('C2140718: Verify Search results page Filters ', async ({
     }).toPass()
   })
 })
+
+test('C2162007: Verify Search suggestions tags', async ({
+  search,
+  page,
+  mobileNavigation,
+  filters,
+}) => {
+  await expect(async () => {
+    if (isMobile(page)) {
+      await mobileNavigation.startTypingMobileSearch(
+        SEARCH_SUGGESTIONS.searchTermTags,
+        false,
+      )
+      await page.waitForLoadState('networkidle')
+    } else {
+      await search.startTypingSearch(SEARCH_SUGGESTIONS.searchTermTags)
+    }
+    await expect(search.searchSuggestionsTagGroup.first()).toBeVisible()
+    await expect(
+      search.searchSuggestionTag(SEARCH_SUGGESTIONS.searchTestTagValue).first(),
+    ).toBeVisible()
+    await search.searchCategoryListItem.first().click()
+    await page.waitForLoadState('domcontentloaded')
+    await expect(filters.filterToggleCounter.first()).toHaveText('1')
+  }).toPass()
+})

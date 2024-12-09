@@ -26,11 +26,16 @@
         {{ category.categorySuggestion.category.name }}
       </span>
     </div>
-    <div v-if="filters.length" class="flex flex-wrap gap-2">
+    <div
+      v-if="filters.length"
+      class="flex flex-wrap gap-2"
+      data-testid="search-suggestion-tag-group"
+    >
       <div
         v-for="label in filters"
         :key="label"
         class="flex h-5 items-center rounded-md bg-gray-200 p-1 text-2xs leading-none text-gray-600"
+        :data-testid="`search-suggestion-tag-${label}`"
       >
         {{ label }}
       </div>

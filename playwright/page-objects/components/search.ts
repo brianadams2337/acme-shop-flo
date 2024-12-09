@@ -12,6 +12,7 @@ export class Search {
   readonly searchResultsFlyout: Locator
   readonly searchDisplayAllResults: Locator
   readonly searchExactProduct: Locator
+  readonly searchSuggestionsTagGroup: Locator
 
   constructor(page: Page) {
     this.page = page
@@ -23,6 +24,13 @@ export class Search {
     this.searchResultsHeadline = page.getByTestId('headline')
     this.searchDisplayAllResults = page.getByTestId('display-all-results')
     this.searchExactProduct = page.getByTestId('search-exact-product-item')
+    this.searchSuggestionsTagGroup = page.getByTestId(
+      'search-suggestion-tag-group',
+    )
+  }
+
+  searchSuggestionTag(suggestionTag: string): Locator {
+    return this.page.getByTestId(`search-suggestion-tag-${suggestionTag}`)
   }
 
   async executeSearch(searchTerm: string) {

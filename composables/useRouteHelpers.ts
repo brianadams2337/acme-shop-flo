@@ -1,6 +1,7 @@
 import {
   type Category,
   type CategorySearchSuggestion,
+  type NavigationTreeItem,
   type SearchEntity,
   getFirstAttributeValue,
   slugify,
@@ -121,6 +122,33 @@ export function useRouteHelpers() {
     return localePath(`${routeList.category.path}${path}-${id}`)
   }
 
+  const buildNavigationTreeItemRoute = (navigationItem: NavigationTreeItem) => {
+    switch (navigationItem.type) {
+      case 'category':
+        if (navigationItem.category) {
+          return {
+            path: buildCategoryPath(navigationItem.category),
+            openInNew: false,
+          }
+        }
+        return undefined
+
+      case 'page':
+        return {
+          path: getLocalizedRoute(navigationItem.page),
+          openInNew: true,
+        }
+      case 'external':
+      case 'individual-link':
+        return {
+          path: getLocalizedRoute(navigationItem.options?.url ?? ''),
+          openInNew: navigationItem.options?.isOpenInNewWindow ?? false,
+        }
+      default:
+        return undefined
+    }
+  }
+
   return {
     localizedNavigateTo,
     getProductDetailRoute,
@@ -130,5 +158,6 @@ export function useRouteHelpers() {
     getLocalizedRoute,
     buildCategorySuggestionRoute,
     buildCategoryPath,
+    buildNavigationTreeItemRoute,
   }
 }

@@ -5,6 +5,11 @@ import { useRouteHelpers } from './useRouteHelpers'
 import { categoryFactory } from '~/test/factories/category'
 import { productFactory } from '~/test/factories/product'
 import { attributeGroupFactory } from '~/test/factories/attribute'
+import {
+  navigationItemCategoryFactory,
+  navigationItemExternalFactory,
+  navigationItemPageFactory,
+} from '~/test/factories/navigationTreeItem'
 
 vi.mock('#storefront/composables', () => ({
   useCurrentShop: () => ({
@@ -169,6 +174,67 @@ describe('useRouteHelpers', () => {
       const category = { id: 1, path: '/category-path' }
       const categoryPath = buildCategoryPath(category)
       expect(categoryPath).toBe('/de/c/category-path-1')
+    })
+  })
+
+  describe('buildNavigationTreeItemRoute', () => {
+    it('should return correct path for a category navigation item ', () => {
+      const { buildNavigationTreeItemRoute } = useRouteHelpers()
+      const route = buildNavigationTreeItemRoute(
+        navigationItemCategoryFactory.build({
+          category: categoryFactory.build({ path: '/category', id: 10 }),
+        }),
+      )
+      expect(route?.path).toBe('/de/c/category-10')
+      expect(route?.openInNew).toBe(false)
+    })
+
+    it('should return bo route when category of category navigation item is missing ', () => {
+      const { buildNavigationTreeItemRoute } = useRouteHelpers()
+      const route = buildNavigationTreeItemRoute(
+        navigationItemCategoryFactory.build({
+          category: undefined,
+        }),
+      )
+      expect(route).toBeUndefined()
+    })
+
+    it('should return correct route for a page navigation item', () => {
+      const { buildNavigationTreeItemRoute } = useRouteHelpers()
+      const route = buildNavigationTreeItemRoute(
+        navigationItemPageFactory.build({
+          page: '/page',
+        }),
+      )
+      expect(route?.path).toBe('/page')
+      expect(route?.openInNew).toBe(true)
+    })
+
+    it('should return correct route for an external navigation item that opens in a new tab', () => {
+      const { buildNavigationTreeItemRoute } = useRouteHelpers()
+      const route = buildNavigationTreeItemRoute(
+        navigationItemExternalFactory.build({
+          options: {
+            isOpenInNewWindow: true,
+            url: 'https://scayle.dev',
+          },
+        }),
+      )
+      expect(route?.path).toBe('https://scayle.dev')
+      expect(route?.openInNew).toBe(true)
+    })
+    it('should return correct route for an external navigation item', () => {
+      const { buildNavigationTreeItemRoute } = useRouteHelpers()
+      const route = buildNavigationTreeItemRoute(
+        navigationItemExternalFactory.build({
+          options: {
+            url: 'https://scayle.dev',
+            isOpenInNewWindow: false,
+          },
+        }),
+      )
+      expect(route?.path).toBe('https://scayle.dev')
+      expect(route?.openInNew).toBe(false)
     })
   })
 })

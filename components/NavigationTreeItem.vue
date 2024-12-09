@@ -73,7 +73,7 @@ const {
   disabledLink = undefined,
 } = defineProps<Props>()
 
-const { buildCategoryPath, getLocalizedRoute } = useRouteHelpers()
+const { buildNavigationTreeItemRoute } = useRouteHelpers()
 
 const {
   public: { cdnUrl },
@@ -94,29 +94,7 @@ const pathParams = computed(() => {
   if (!navigationItem) {
     return
   }
-  if (navigationItem.type === 'category' && navigationItem.category) {
-    return {
-      path: buildCategoryPath(navigationItem.category),
-      openInNew: false,
-    }
-  }
-  if (navigationItem.type === 'page') {
-    return {
-      path: getLocalizedRoute(navigationItem.page),
-      openInNew: true,
-    }
-  }
-
-  if (
-    navigationItem.type === 'external' ||
-    navigationItem.type === 'individual-link'
-  ) {
-    return {
-      path: getLocalizedRoute(navigationItem.options?.url ?? ''),
-      openInNew: navigationItem.options?.isOpenInNewWindow ?? false,
-    }
-  }
-  return null
+  return buildNavigationTreeItemRoute(navigationItem)
 })
 const displayName = computed(() => navigationItem?.name)
 const disabled = computed<boolean>(() =>

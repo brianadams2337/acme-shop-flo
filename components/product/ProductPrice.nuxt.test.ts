@@ -81,7 +81,7 @@ describe('ProductPrice.vue', () => {
       const { getByText } = await renderSuspended(ProductPrice, {
         props: { price, showPriceFrom: true },
       })
-      expect(getByText('von 1€')).toBeVisible()
+      expect(getByText('ab 1€')).toBeVisible()
     })
 
     it('should not show price form', async () => {

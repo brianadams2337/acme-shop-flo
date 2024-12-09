@@ -6,7 +6,7 @@
     "home": "Home",
     "user_greeting": "Hallo {name}",
     "you_are_not_user": "Nicht {name}?",
-    "not_registered": "Noch nicht Kunde?",
+    "not_registered": "Noch kein Kunde?",
     "sign_in": "Einloggen",
     "sign_out": "Ausloggen",
     "product_recommendation": "Empfohlene Kombinationen",
@@ -38,8 +38,8 @@
     "terms": "Allgemeine Geschäftsbedingungen für Werbeaktionen",
     "show_deals_label": "Deal-Artikel anzeigen",
     "my_deals_label": "Meine Angebote",
-    "cart_reached": "Warenkorb erreicht! Fügen Sie Promotion Produkte hinzu und erhalten Sie {discount}% Rabatt darauf",
-    "cart_reached_for_gifts": "Warenkorb erreicht! Fügen Sie Promotionsprodukte hinzu, um ein kostenloses Geschenk zu erhalten",
+    "cart_reached": "Warenkorb erreicht! Fügen Sie Aktionsprodukte hinzu und erhalten Sie {discount}% Rabatt darauf",
+    "cart_reached_for_gifts": "Warenkorb erreicht! Fügen Sie Aktionsprodukte hinzu, um ein kostenloses Geschenk zu erhalten",
     "full_progress_message": "Sie sparen {amount} bei Ihrer Bestellung",
     "automatic_discount_headline": {
       "add_label": "Fügen Sie",
@@ -60,14 +60,14 @@
     "current_shop": "Aktueller Shop"
   },
   "validation": {
-    "email": "Das Feld {field} muss eine gültige E-Mail Adresse sein",
+    "email": "Das Feld {field} muss eine gültige E-Mail Adresse sein.",
     "password": "Das {field} Feld erfordert einen Großbuchstaben, ein Sonderzeichen, eine Zahl und keine Leerzeichen.",
     "required": "Das Feld {field} ist ein Pflichtfeld.",
-    "same_as": "Das Feld {field} muss gleich zum Feld {otherField} sein",
-    "max_length": "Das Feld {field} muss {max} oder weniger Zeichen haben ",
-    "date": "Das Feld {field} muss ein gültiges Datum sein",
-    "future_date": "Das Feld {field} kann kein Datum in der Zukunft sein",
-    "name": "Das Feld {field} ist nicht korrekt formatiert"
+    "same_as": "Das Feld {field} muss gleich zum Feld {otherField} sein.",
+    "max_length": "Das Feld {field} muss {max} oder weniger Zeichen haben.",
+    "date": "Das Feld {field} muss ein gültiges Datum sein.",
+    "future_date": "Das Feld {field} kann kein Datum in der Zukunft sein.",
+    "name": "Das Feld {field} ist nicht korrekt formatiert."
   },
   "form_fields": {
     "first_name": "Vorname",
@@ -124,7 +124,7 @@
     "product": "Produkte",
     "categories": "Kategorien",
     "more": "Mehr",
-    "page_title": "Suchergebnisse fürh \"{term}\"",
+    "page_title": "Suchergebnisse für \"{term}\"",
     "navigation_items": "Seiten"
   },
   "promises": {
@@ -162,13 +162,13 @@
     "checkout_label": "Zur Kasse",
     "notification": {
       "select_size": "Bitte Größe wählen, um zum Warenkorb hinzuzufügen.",
-      "add_to_basket_success": "{productName} wurde zum Warenkorb hinzugefügt",
-      "add_to_basket_error": "{productName} konnte nicht zum Warenkorb hinzugefügt werden",
-      "add_to_basket": "{productName} wurde Ihrem Warenkorb hinzugefügt",
+      "add_to_basket_success": "{productName} wurde zum Warenkorb hinzugefügt.",
+      "add_to_basket_error": "{productName} konnte nicht zum Warenkorb hinzugefügt werden.",
+      "add_to_basket": "{productName} wurde Ihrem Warenkorb hinzugefügt.",
       "subscription_already_in_basket_error": "{productName} befindet sich bereits im Warenkorb. Ein Artikel kann nicht mehr als einmal als Abonnement in einer Bestellung enthalten sein.",
-      "add_to_basket_variant_out_of_stock_error": "Diese Größe ist derzeit ausverkauft",
+      "add_to_basket_variant_out_of_stock_error": "Diese Größe ist derzeit ausverkauft.",
       "add_to_basket_max_basket_items_error": "Ups! Du hast die maximale Anzahl an Artikeln in deinem Warenkorb erreicht.",
-      "add_subscription_to_basket_success": "Das {productName} {interval} Abonnement wurde deinem Warenkorb hinzugefügt",
+      "add_subscription_to_basket_success": "Das {productName} {interval} Abonnement wurde deinem Warenkorb hinzugefügt.",
       "add_with_reduced_quantity_error": "Es sind keine weiteren Artikel in dieser Größe verfügbar. Der gesamte verfügbare Bestand wurde bereits deinem Warenkorb hinzugefügt."
     },
     "discount": "Rabatt",
@@ -226,21 +226,21 @@
       "billing_address_label": "Rechnungsadresse",
       "expected_delivery_from": "Erwartet",
       "delivery": "Lieferung",
-      "shipment_detail": "Sendungsdetail",
+      "shipment_detail": "Versandinformationen",
       "details": "Sendungsverfolgung",
       "shipping_free": "",
       "subtotal": "Zwischensumme"
     },
     "user": {
-      "save_message": "Ihre Daten wurden erfolgreich gespeichert",
-      "save_error": "Die Daten konnten nicht gespeichert werden",
+      "save_message": "Ihre Daten wurden erfolgreich gespeichert.",
+      "save_error": "Die Daten konnten nicht gespeichert werden.",
       "save_label": "Speichern",
       "update_password_label": "Passwort aktualisieren",
-      "password_mismatch_error": "Stimmt nicht mit dem neuen Passwort überein",
+      "password_mismatch_error": "Stimmt nicht mit dem neuen Passwort überein.",
       "password_update_success": "Passwort aktualisiert",
       "password_update_error": "Das Aktualisieren des Passworts hat nicht funktioniert. Versuchen Sie es bitte erneut!",
       "email_change_hint": "Bitte wenden Sie sich an den Kundendienst, um Ihre E-Mail-Adresse zu ändern.",
-      "password_pattern_hint": "Erfordert einen Großbuchstaben, ein Sonderzeichen, eine Zahl und keine Leerzeichen"
+      "password_pattern_hint": "Erfordert einen Großbuchstaben, ein Sonderzeichen, eine Zahl und keine Leerzeichen."
     },
     "popover": {
       "greeting": "Hallo {firstName}"
@@ -264,15 +264,15 @@
     },
     "promotion": {
       "free_gift_conditions_met": {
-        "headline": "Lösen Sie Ihr kostenloses Geschenk ein",
+        "headline": "Lösen Sie Ihr kostenloses Geschenk ein.",
         "description": "Sie haben die Bedingung erfüllt. Wählen Sie gerne ein kostenloses Geschenk aus."
       },
       "free_gift_conditions_not_met": {
         "headline": "Schalten Sie Ihr kostenloses Geschenk frei",
         "description": "Erfüllen Sie die Aktionsbedingungen, um ein kostenloses Geschenk auszuwählen."
       },
-      "cart_reached": "Warenkorb erreicht! Fügen Sie Promotionsprodukte hinzu und erhalten Sie {discount}% Rabatt darauf",
-      "cart_reached_for_gifts": "Warenkorb erreicht! Fügen Sie Werbeartikel hinzu, um ein kostenloses Geschenk zu erhalten",
+      "cart_reached": "Warenkorb erreicht! Fügen Sie Aktionsprodukte hinzu und erhalten Sie {discount}% Rabatt darauf.",
+      "cart_reached_for_gifts": "Warenkorb erreicht! Fügen Sie Werbeartikel hinzu, um ein kostenloses Geschenk zu erhalten.",
       "add_free_gift_when_cart_reached": "Warenkorb erreicht! Wählen Sie ein kostenloses Geschenk aus.",
       "full_progress_message": "Sie sparen {amount} bei diesem Angebot",
       "free_label": "Gratis"
@@ -288,13 +288,13 @@
     }
   },
   "price": {
-    "starting_from": "von",
+    "starting_from": "ab",
     "including_vat": "inkl. Mwst.",
     "best_price_30d": "30-Tage-Bestpreis:"
   },
   "plp": {
     "filter": "Filter",
-    "seo_description": "Kaufen Sie {category} bei SCAYLE. Entdecken Sie eine große Auswahl an {category}",
+    "seo_description": "Kaufen Sie {category} bei SCAYLE. Entdecken Sie eine große Auswahl an {category}.",
     "back_navigation_button_label": "Zurück",
     "no_results": {
       "title": "Keine Ergebnisse 🫣",
@@ -342,7 +342,7 @@
     "deliver_costs": "Versandkosten",
     "deliver_address": "Lieferadresse",
     "email_send": "Die Bestellbestätigung wurde an Deine hinterlegte E-Mail-Adresse gesendet.",
-    "estimated_deliver_date": "Vorraussichtliche Lieferung",
+    "estimated_deliver_date": "Voraussichtliche Lieferung",
     "intro": "Vielen Dank für Deine Bestellung,",
     "net_price": "Nettowarenwert",
     "order_data": "Bestelldaten",
@@ -362,7 +362,7 @@
   },
   "login_page": {
     "forgot_password": {
-      "description": "Geben Sie bitte Ihre Email-Adresse ein. Wir senden Ihnen eine E-Mail, damit Sie Ihr Passwort zurücksetzen können.",
+      "description": "Geben Sie bitte Ihre Email-Adresse ein. Wir senden Ihnen eine E-Mail zu, damit Sie Ihr Passwort zurücksetzen können.",
       "cancel": "Zurück",
       "status": {
         "error": {
@@ -371,7 +371,7 @@
           "403_user_deactivated": "Dieser Benutzer ist deaktiviert.",
           "404_not_found": "Ups! Email wurde nicht gefunden."
         },
-        "success": "Es wurde eine E-Mail gesendet, um Ihr Passwort zurückzusetzen"
+        "success": "Es wurde eine E-Mail gesendet, um Ihr Passwort zurückzusetzen."
       },
       "submit": "Einreichen",
       "title": "Passwort vergessen?"
@@ -406,7 +406,7 @@
       "cancel": "Zurück",
       "status": {
         "error": {
-          "400_bad_request": "Ihre Anfrage führte zu einem Fehler",
+          "400_bad_request": "Ihre Anfrage führte zu einem Fehler.",
           "401_unauthorized": "Autorisierung erforderlich",
           "406_hash_has_expired": "Ihr Token wurde bereits verwendet oder ist abgelaufen. Bitte fordern Sie eine neue E-Mail zum Zurücksetzen des Passworts an."
         },

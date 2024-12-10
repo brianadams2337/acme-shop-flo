@@ -69,7 +69,7 @@
     "eslint-plugin-vuejs-accessibility": "2.4.1",
     "fishery": "2.2.2",
     "happy-dom": "15.11.7",
-    "lint-staged": "15.2.10",
+    "lint-staged": "15.2.11",
     "nuxt": "3.13.2",
     "nuxt-svgo": "4.0.9",
     "ofetch": "1.4.1",

@@ -93,8 +93,6 @@ test('C2130727: Verify PLP Filters and Product Count', async ({
   toastMessage,
   page,
 }) => {
-  const initialProductCount = breadcrumb.productCounter.textContent()
-
   await test.step('Verify initial state', async () => {
     await expect(async () => {
       await expect(breadcrumb.productCounter).toBeVisible()
@@ -105,6 +103,7 @@ test('C2130727: Verify PLP Filters and Product Count', async ({
   })
 
   await test.step('Apply price filters', async () => {
+    const initialProductCount = await breadcrumb.productCounter.textContent()
     await expect(async () => {
       await filters.filterPriceInput.first().clear()
       await filters.filterPriceInput.first().fill('80')
@@ -114,9 +113,12 @@ test('C2130727: Verify PLP Filters and Product Count', async ({
       await filters.filterPriceInput.nth(1).press('Enter')
       await page.waitForLoadState('domcontentloaded')
     }).toPass()
+    const currentProductCount = await breadcrumb.productCounter.textContent()
+    expect(currentProductCount).not.toEqual(initialProductCount)
   })
 
   await test.step('Apply color and size filters', async () => {
+    const initialProductCount = await breadcrumb.productCounter.textContent()
     await expect(async () => {
       await filters.filterColorChip.first().scrollIntoViewIfNeeded()
       await page.waitForLoadState('domcontentloaded')
@@ -137,6 +139,9 @@ test('C2130727: Verify PLP Filters and Product Count', async ({
       .first()
       .getAttribute('data-color-id')
 
+    const currentProductCount = await breadcrumb.productCounter.textContent()
+    expect(currentProductCount).not.toEqual(initialProductCount)
+
     await expect(async () => {
       await filters.filterApplyButton.click()
       await toastMessage.assertToastInfoIsVisible()
@@ -150,8 +155,6 @@ test('C2130727: Verify PLP Filters and Product Count', async ({
     expect(pageUrl).toContain('filters[minPrice]=8000&filters[maxPrice]=10000')
     expect(pageUrl).toContain(`filters[color]=${colorFilterValue}`)
     expect(pageUrl).toContain(`filters[size]=${sizeFilterValue}`)
-    const filteredProductCount = breadcrumb.productCounter.textContent()
-    expect(filteredProductCount).not.toBe(initialProductCount)
   })
 
   await test.step('Reset filters', async () => {

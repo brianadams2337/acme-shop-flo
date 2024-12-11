@@ -3516,16 +3516,16 @@
   resolved "https://registry.yarnpkg.com/@scayle/storefront-country-detection/-/storefront-country-detection-0.3.0.tgz#ff8ddd5d346177a665abbcf47ab39b195871387d"
   integrity sha512-xVIFeLoWz+/iSz0+SEQz3dcIK7TUzGl36aNUzQX03MWgqcZOO7lbJ5sE1L2FXSDmw/7+UKNsY1tThYv7Qpjtew==
 
-"@scayle/storefront-nuxt@8.1.2":
-  version "8.1.2"
-  resolved "https://registry.yarnpkg.com/@scayle/storefront-nuxt/-/storefront-nuxt-8.1.2.tgz#d2e3600f2a44eabe03fe030dbca44d009ebc9655"
-  integrity sha512-UGxjQDrxr5dYakB/FMJu4Gg8vaON5atou8Ufvm1hC0CVorMIhqd9uef/DJRE5kH2yWqcTb9YycS1bNR/6IKkJw==
+"@scayle/storefront-nuxt@8.1.3":
+  version "8.1.3"
+  resolved "https://registry.yarnpkg.com/@scayle/storefront-nuxt/-/storefront-nuxt-8.1.3.tgz#9db2cc65dc139b596d125462f76234938c0ae11f"
+  integrity sha512-w5XhGR2elyY4rruWG5f4So0LzFn7DuTp0zT14GSDu1PCmsYgDhM63cI8zMiVsv0z4GTiZKU14AG18CubN806gQ==
   dependencies:
     "@nuxt/kit" "^3.12.2"
     "@opentelemetry/api" "^1.9.0"
     "@scayle/h3-session" "^0.4.1"
     "@scayle/storefront-core" "8.1.2"
-    "@scayle/unstorage-compression-driver" "^0.1.5"
+    "@scayle/unstorage-compression-driver" "^0.2.0"
     "@vueuse/core" "12.0.0"
     consola "^3.2.3"
     core-js "^3.37.1"
@@ -3551,10 +3551,10 @@
   resolved "https://registry.yarnpkg.com/@scayle/storefront-product-listing/-/storefront-product-listing-0.6.0.tgz#c6784fdae2062aec6fedb9cac954018262c2d712"
   integrity sha512-PuU/yWIhHohJrPDB+Olj8BNW86mVRS6FzzuaAvSqTkUSUQmRF2gavSqsQfMafQcLO4u9QyG2zRpzsSKxMWLhQg==
 
-"@scayle/unstorage-compression-driver@^0.1.5":
-  version "0.1.5"
-  resolved "https://registry.yarnpkg.com/@scayle/unstorage-compression-driver/-/unstorage-compression-driver-0.1.5.tgz#540b74963a52a11cc63756df5c717f6b3ff0c2bb"
-  integrity sha512-7IjLuZRgWU/36e9vAkDg8xLEiB+EYlazbKzqO5iFRiQKd6/DY3d5tTz8DBuC+2+wvuub5iZkm6Dwtn7AxN/XAw==
+"@scayle/unstorage-compression-driver@^0.2.0":
+  version "0.2.1"
+  resolved "https://registry.yarnpkg.com/@scayle/unstorage-compression-driver/-/unstorage-compression-driver-0.2.1.tgz#9dc581b8cf4ded61dd50b8609aee0e7e4c7da615"
+  integrity sha512-GMDSRy5/ZhI4e5bOEkEU45eLaMprVIiRtq/KTF/kRXO+/qe/7j2/D3tf49dVs/9XyqdUfOhcxMYl39jLRy0gnw==
   dependencies:
     destr "2.0.3"
     unstorage "1.13.1"

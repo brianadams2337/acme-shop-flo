@@ -3,16 +3,16 @@
     data-testid="toggle-promotion-banner-button"
     variant="raw"
     size="xs"
-    class="min-h-9 !w-fit items-center !px-2 !py-1 text-xs font-semibold leading-5 text-white hover:text-white"
+    class="min-h-9 min-w-44 items-center !px-2 !py-1 text-xs font-semibold leading-5 text-white hover:text-white"
     :aria-expanded="isPromotionBannerShown.toString()"
     :style="backgroundColorStyle"
     :class="{ [borderClass]: isPromotionBannerShown }"
     @click="togglePromotionBanner()"
   >
     <IconGift class="size-3" />
-    <span v-if="isPromotionBannerShown">{{
-      $t('promotion.hide_my_promotions')
-    }}</span>
+    <span v-if="isPromotionBannerShown">
+      {{ $t('promotion.hide_my_promotions') }}
+    </span>
     <span v-else> {{ $t('promotion.see_my_promotions') }}</span>
     <template #append-icon="{ _class }">
       <component

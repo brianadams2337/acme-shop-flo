@@ -59,7 +59,7 @@
       />
     </div>
     <TogglePromotionBannerButton
-      class="absolute left-0 mt-[-2.875rem] inline-flex !rounded-none !rounded-t-lg"
+      class="absolute left-0 -mt-13 inline-flex !rounded-none !rounded-t-lg"
       data-testid="toggle-promo-button-mobile"
       is-mobile-view
     />

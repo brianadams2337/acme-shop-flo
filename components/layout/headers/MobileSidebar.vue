@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col overscroll-contain">
+  <aside class="flex flex-col overscroll-contain">
     <SearchInput
       class="mt-1"
       @click:result="$emit('close')"
@@ -28,8 +28,9 @@
         <ShopSwitcher />
       </div>
     </div>
-  </div>
+  </aside>
 </template>
+
 <script setup lang="ts">
 import type { NavigationItems } from '@scayle/storefront-core'
 import ShopSwitcher from './ShopSwitcher.vue'
@@ -40,7 +41,8 @@ import LocalizedLink from '~/components/LocalizedLink.vue'
 
 const { isOpen, navigationItems } = defineProps<{
   isOpen: boolean
-  navigationItems: NavigationItems | undefined
+  navigationItems?: NavigationItems
 }>()
+
 defineEmits(['close'])
 </script>

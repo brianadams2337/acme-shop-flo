@@ -1,5 +1,5 @@
 <template>
-  <div class="h-dvh pb-8">
+  <aside class="h-dvh pb-8">
     <ul class="h-full overflow-y-scroll scrollbar-hide">
       <li
         v-for="(category, index) in rootCategories"
@@ -21,7 +21,7 @@
         />
       </li>
     </ul>
-  </div>
+  </aside>
 </template>
 
 <script setup lang="ts">

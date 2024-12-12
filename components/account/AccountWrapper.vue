@@ -3,7 +3,7 @@
     <AccountHeader :title="title" />
     <SFPageContainer>
       <div class="flex flex-col md:flex-row">
-        <div
+        <aside
           class="mt-6 w-full pb-10 md:mt-0 md:w-1/3 lg:w-1/4"
           :class="{ 'hidden md:block': route.params.id || isAccountPage }"
         >
@@ -49,7 +49,7 @@
               <OrderListSkeletonLoader :orders-per-page="ORDERS_PER_PAGE" />
             </template>
           </AsyncDataWrapper>
-        </div>
+        </aside>
         <div class="w-full md:w-2/3 md:pl-14 lg:w-3/4 lg:pl-28">
           <slot />
         </div>

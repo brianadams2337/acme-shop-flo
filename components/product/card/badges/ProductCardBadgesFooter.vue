@@ -1,7 +1,7 @@
 <template>
   <div
     data-testid="product-card-footer-badges"
-    class="flex flex-col"
+    class="z-10 flex flex-col"
     :class="
       isPromotionBadgeFullWidth ? 'bottom-0 max-w-full ' : 'items-start w-full'
     "

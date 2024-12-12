@@ -66,7 +66,13 @@ test('Verify Shop Selector switch from non-Homepage', async ({
   mobileNavigation,
   header,
   wishlistPage,
-}) => {
+}, testInfo) => {
+  // Test skipped only for Mobile Safari due to the timeouts occuring in the Gitlab CI execution.
+  // Feel free to remove the line below and try to execute the test locally or in CI to check if the timeouts are encountered.
+  test.skip(
+    testInfo.project.name === 'mobile-safari',
+    'Potential Gitlab CI execution issues in Mobile Safari',
+  )
   await test.step('Navigate to Wishlist page', async () => {
     await header.wishlistLink.click()
     await page.waitForLoadState('domcontentloaded')

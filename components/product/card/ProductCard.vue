@@ -6,6 +6,7 @@
     tabindex="0"
     data-testid="article"
     class="group/product-card relative flex h-full flex-col rounded-lg"
+    :aria-label="name"
     @mouseover="onMouseOver"
     @mouseleave="onMouseLeave"
   >
@@ -77,7 +78,7 @@ import ProductCardImageSlider from './imageSlider/ProductCardImageSlider.vue'
 import ProductCardBadgesFooter from './badges/ProductCardBadgesFooter.vue'
 import ProductCardBadgesHeader from './badges/ProductCardBadgesHeader.vue'
 import ProductCardDetails from './ProductCardDetails.vue'
-import { useProductBaseInfo } from '~/composables'
+import { useProductBaseInfo, useRouteHelpers } from '~/composables'
 import type { ListItem } from '~/types/tracking'
 
 type Props = {
@@ -121,7 +122,7 @@ const onMouseLeave = () => {
   emit('product-image:mouseleave')
 }
 
-const { alt, image, images, link } = useProductBaseInfo(product)
+const { alt, image, images, link, name } = useProductBaseInfo(product)
 
 const shouldShowSingleImage = computed(() => {
   return !multipleImages || images.value.length === 1 || !hasBeenVisible.value
@@ -156,5 +157,17 @@ onKeyStroke(
     )
   },
   { target: productCard },
+)
+
+const { getProductDetailRoute, localizedNavigateTo } = useRouteHelpers()
+onKeyStroke(
+  'Enter',
+  async () => {
+    const route = getProductDetailRoute(product.id, name.value)
+    await localizedNavigateTo(route)
+  },
+  {
+    target: productCard,
+  },
 )
 </script>

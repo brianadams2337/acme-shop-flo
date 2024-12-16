@@ -95,6 +95,12 @@ test('C2130727: Verify PLP Filters and Product Count', async ({
   toastMessage,
   page,
 }) => {
+  const initialProductCountText = await breadcrumb.productCounter.textContent()
+  let initialProductCount: number | null = null
+  if (initialProductCountText) {
+    initialProductCount = parseInt(initialProductCountText, 10)
+  }
+
   await test.step('Verify initial state', async () => {
     await expect(async () => {
       await expect(breadcrumb.productCounter).toBeVisible()
@@ -105,7 +111,6 @@ test('C2130727: Verify PLP Filters and Product Count', async ({
   })
 
   await test.step('Apply price filters', async () => {
-    const initialProductCount = await breadcrumb.productCounter.textContent()
     await expect(async () => {
       await filters.filterPriceInput.first().clear()
       await filters.filterPriceInput.first().fill('80')
@@ -120,7 +125,6 @@ test('C2130727: Verify PLP Filters and Product Count', async ({
   })
 
   await test.step('Apply color and size filters', async () => {
-    const initialProductCount = await breadcrumb.productCounter.textContent()
     await expect(async () => {
       await filters.filterColorChip.first().scrollIntoViewIfNeeded()
       await page.waitForLoadState('domcontentloaded')
@@ -141,7 +145,21 @@ test('C2130727: Verify PLP Filters and Product Count', async ({
       .first()
       .getAttribute('data-color-id')
 
-    const currentProductCount = await breadcrumb.productCounter.textContent()
+    let currentProductCount: number | null = null
+    const currentProductCountText =
+      await breadcrumb.productCounter.textContent()
+    const filteredButtonLabel = await filters.filterApplyButton.textContent()
+
+    if (currentProductCountText) {
+      currentProductCount = parseInt(currentProductCountText, 10)
+    }
+
+    if (filteredButtonLabel) {
+      const regex = /\d+/g
+      const match = filteredButtonLabel.match(regex)
+      const counterFilterButton = match ? parseInt(match[0], 10) : null
+      expect(currentProductCount).toEqual(counterFilterButton)
+    }
     expect(currentProductCount).not.toEqual(initialProductCount)
 
     await expect(async () => {

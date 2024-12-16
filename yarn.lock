@@ -3327,10 +3327,10 @@
   resolved "https://registry.yarnpkg.com/@scayle/eslint-plugin-vue-composable/-/eslint-plugin-vue-composable-0.2.1.tgz#862a63d5ec6a0c105aa02b4de8d5675526543d71"
   integrity sha512-BT2Mengo5/Zd6y8F/WiYx7Y7IbkIT0eVZi+H3U7x7Qcqer69x9n/w0cEs7ChFwZeERdu14X+pKGr+uwTvMjdhQ==
 
-"@scayle/h3-session@^0.4.1":
-  version "0.4.1"
-  resolved "https://registry.yarnpkg.com/@scayle/h3-session/-/h3-session-0.4.1.tgz#0f9b82e32ea1cca38d78991c29c7761ec55a63a2"
-  integrity sha512-uTG5nwnRGoEPwW44moeIABK5ycd/2Vd2ZQkO3SvSLpi+h1LkogpQ5CmC2e3nFXvUdONUq4Y2xLShuYGM392uVA==
+"@scayle/h3-session@^0.4.2":
+  version "0.4.2"
+  resolved "https://registry.yarnpkg.com/@scayle/h3-session/-/h3-session-0.4.2.tgz#e9de29e22a7caf77d19cce21ffde8714240cf786"
+  integrity sha512-CG4IDdN9NUHn1tv7aGvBugA+ID4qR0P4tDrHvdyg0j2AAh+x+W4XxsLhOVL5jm3rqo+YcGQvAkK2DV5PMEEd9A==
   dependencies:
     defu "^6.1.4"
     uncrypto "^0.1.3"
@@ -3394,14 +3394,14 @@
   resolved "https://registry.yarnpkg.com/@scayle/storefront-country-detection/-/storefront-country-detection-1.0.1.tgz#afea3b527679da70c1f57568ac68944a1e678a69"
   integrity sha512-a1+MXos69N/NgdMvkA1n62LxFstVHI4wT2TO5K+MISIz8PQbH3slu8E5VoK1DrPPRxVq/+f1AcaOHucmREWFsQ==
 
-"@scayle/storefront-nuxt@8.1.4":
-  version "8.1.4"
-  resolved "https://registry.yarnpkg.com/@scayle/storefront-nuxt/-/storefront-nuxt-8.1.4.tgz#a78369c0ea12e3e08f12819fef758e8722f9d0c4"
-  integrity sha512-Yf4QgE9pspeEPiCXDeVCYaB3H+ZAnpMh3stOss3QJqkdQXdPK55vxlZ7IFAxu7BSivQsKogZODb6cA9vj7u4EA==
+"@scayle/storefront-nuxt@8.1.5":
+  version "8.1.5"
+  resolved "https://registry.yarnpkg.com/@scayle/storefront-nuxt/-/storefront-nuxt-8.1.5.tgz#f94de9d347af84463805135b15463f58ee429b16"
+  integrity sha512-LHDsd2YcDgTB0Y1L7WhRumzqksRatKc6BiSOSgGr4kQYBSWSE9XtYYJQo0LgucARvoCOsqT03HM2p7ajkN00nQ==
   dependencies:
     "@nuxt/kit" "^3.12.2"
     "@opentelemetry/api" "^1.9.0"
-    "@scayle/h3-session" "^0.4.1"
+    "@scayle/h3-session" "^0.4.2"
     "@scayle/storefront-core" "8.1.2"
     "@scayle/unstorage-compression-driver" "^0.2.0"
     "@vueuse/core" "12.0.0"

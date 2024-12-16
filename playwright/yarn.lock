@@ -3343,10 +3343,10 @@ unbzip2-stream@^1.4.3:
     buffer "^5.2.1"
     through "^2.3.8"
 
-undici-types@7.1.0:
-  version "7.1.0"
-  resolved "https://registry.yarnpkg.com/undici-types/-/undici-types-7.1.0.tgz#4561b2df582a6c8cf38d37964f13837aadd7f048"
-  integrity sha512-IdycojzhJm9g7sblozLpNkyPG2dJ7bsrpfc4hq2QKrnwbDK+ebiGL3UFSwq6B3IzB3R0m3u1b4in3hrZtMnm8g==
+undici-types@7.1.1:
+  version "7.1.1"
+  resolved "https://registry.yarnpkg.com/undici-types/-/undici-types-7.1.1.tgz#9902007137afaa06bb568c404c6122fb84bce8d9"
+  integrity sha512-mHbN00TC1eXAlNt8V3fdsPi5clP7ictht+L7SzrLueTV1IFDEGdLJMWLphrlq6ba09UoYZiO9VpLrOYQ6do1LQ==
 
 undici-types@~6.19.8:
   version "6.19.8"

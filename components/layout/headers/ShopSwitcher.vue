@@ -85,7 +85,7 @@
 import { computed, useId } from 'vue'
 import type { Locale } from '@nuxtjs/i18n/dist/runtime/composables'
 import ShopSwitcherItem from './ShopSwitcherItem.vue'
-import { useSwitchLocalePath } from '#i18n'
+import { useSwitchLocalePath, useI18n } from '#i18n'
 import { useTrackingEvents } from '~/composables/useTrackingEvents'
 import { useAvailableShops, useCurrentShop } from '#storefront/composables'
 import {
@@ -139,6 +139,10 @@ const multipleShopsForCountry = computed(() =>
   hasMultipleShopsForCountry(availableShops.value),
 )
 
+const { switchToHomePage = true } = defineProps<{
+  switchToHomePage?: boolean
+}>()
+const i18n = useI18n()
 /**
  * Updates the shop's locale to the specified value.
  * If `locale` matches the current locale, the function will exit early and close the dropdown.
@@ -154,7 +158,20 @@ const changeShop = (path?: string, locale?: string, close?: () => void) => {
   }
 
   trackShopChange()
-  const newLocalePath = switchLocalePath(path as Locale).split('?')[0]
-  window.location.replace(newLocalePath)
+  if (switchToHomePage) {
+    if (i18n.differentDomains) {
+      // When `i18n.differentDomains` is true, `switchLocalePath()` will return a full URL.
+      // We only need the origin to redirect to the home page.
+      const { origin } = new URL(switchLocalePath(path as Locale))
+      window.location.replace(`${origin}`)
+    } else {
+      // For path based shop selection, the homepage is under `/<shopPath>`. We just redirect to the passed path.
+      window.location.replace(`/${path}`)
+    }
+  } else {
+    // When `i18n.differentDomains` is false we preserve the current path and only change the origin or shop path using `switchLocalePath()`
+    const newLocalePath = switchLocalePath(path as Locale).split('?')[0]
+    window.location.replace(newLocalePath)
+  }
 }
 </script>

@@ -4968,13 +4968,14 @@ axios@1.7.9, axios@^1.7.8:
     form-data "^4.0.0"
     proxy-from-env "^1.1.0"
 
-axios@^0.27.2:
-  version "0.27.2"
-  resolved "https://registry.yarnpkg.com/axios/-/axios-0.27.2.tgz#207658cc8621606e586c85db4b41a750e756d972"
-  integrity sha512-t+yRIyySRTp/wua5xEr+z1q60QmLq8ABsS5O9Me1AsE5dfKqgnCFzwiCZZ/cGNd1lq4/7akDWMxdhVlucjmnOQ==
+axios@^0.29.0:
+  version "0.29.0"
+  resolved "https://registry.yarnpkg.com/axios/-/axios-0.29.0.tgz#5eed1a0bc4c0ffe060624eb7900aff66b7881eeb"
+  integrity sha512-Kjsq1xisgO5DjjNQwZFsy0gpcU1P2j36dZeQDXVhpIU26GVgkDUnROaHLSuluhMqtDE7aKA2hbKXG5yu5DN8Tg==
   dependencies:
-    follow-redirects "^1.14.9"
+    follow-redirects "^1.15.4"
     form-data "^4.0.0"
+    proxy-from-env "^1.1.0"
 
 axios@^1.7.4:
   version "1.7.7"
@@ -7736,7 +7737,7 @@ focus-trap@7.6.2:
   dependencies:
     tabbable "^6.2.0"
 
-follow-redirects@^1.14.9, follow-redirects@^1.15.6:
+follow-redirects@^1.15.4, follow-redirects@^1.15.6:
   version "1.15.9"
   resolved "https://registry.yarnpkg.com/follow-redirects/-/follow-redirects-1.15.9.tgz#a604fa10e443bf98ca94228d9eebcc2e8a2c8ee1"
   integrity sha512-gew4GsXizNgdoRyqmyfMHyAmXsZDk6mHkSxZFCzW9gwlbtOW44CDtYavM+y+72qD/Vq2l550kMF52DT8fOLJqQ==
@@ -8016,10 +8017,10 @@ giget@^1.2.3:
     pathe "^1.1.2"
     tar "^6.2.0"
 
-git-clone@^0.1.0:
-  version "0.1.0"
-  resolved "https://registry.yarnpkg.com/git-clone/-/git-clone-0.1.0.tgz#0d76163778093aef7f1c30238f2a9ef3f07a2eb9"
-  integrity sha512-zs9rlfa7HyaJAKG9o+V7C6qfMzyc+tb1IIXdUFcOBcR1U7siKy/uPdauLlrH1mc0vOgUwIv4BF+QxPiiTYz3Rw==
+git-clone@^0.2.0:
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/git-clone/-/git-clone-0.2.0.tgz#9dce00facbab227d2562150052cd4a3a7ec15c41"
+  integrity sha512-1UAkEPIFbyjHaddljUKvPhhLRnrKaImT71T7rdvSvWLXw95nLdhdi6Qmlx0KOWoV1qqvHGLq5lMLJEZM0JXk8A==
 
 git-config-path@^2.0.0:
   version "2.0.0"
@@ -12907,13 +12908,13 @@ storyblok-js-client@6.10.3, storyblok-js-client@^6.10.3:
   resolved "https://registry.yarnpkg.com/storyblok-js-client/-/storyblok-js-client-6.10.3.tgz#db5dd9fe46e35e8d034eaf611168a41461914558"
   integrity sha512-q6YK/f+F8PAJLsKR7jzlTRO9yIUXWLON2Fy02QjywYaSYwyS9ETzIuOtmCSstLrDAP5I+Vnw9PzEU30roxS15g==
 
-storyblok@3.35.1:
-  version "3.35.1"
-  resolved "https://registry.yarnpkg.com/storyblok/-/storyblok-3.35.1.tgz#f3f8866a0b41d01542b4b963b22976fb553e6157"
-  integrity sha512-zQUF6ylQBMlD/5ua9GGY+GM+nFyPBV2dTypSRaIHSZ9bJZT1VX/1rsGeT2s74xZnTdkZB011PJ3rQp6sA3gRlg==
+storyblok@3.35.2:
+  version "3.35.2"
+  resolved "https://registry.yarnpkg.com/storyblok/-/storyblok-3.35.2.tgz#b481244928eabd51e6d6746eabbcf29cb77a42f8"
+  integrity sha512-G8OjOTPDjhQo5Nx4ajxASBj1dep99tzbruAjen9oMs2vmLsvD9sM4pV1hKt5iAplnq/G+Kjm0x16x8oOG92kWA==
   dependencies:
     "@storyblok/region-helper" "^1.0.0"
-    axios "^0.27.2"
+    axios "^0.29.0"
     chalk "^4.1.0"
     clear "0.1.0"
     commander "^5.1.0"
@@ -12921,7 +12922,7 @@ storyblok@3.35.1:
     figlet "^1.5.0"
     form-data "^3.0.0"
     fs-extra "^9.0.1"
-    git-clone "^0.1.0"
+    git-clone "^0.2.0"
     inquirer "^7.3.2"
     json-schema-to-typescript "^13.1.2"
     lodash "^4.17.21"

@@ -1,8 +1,10 @@
+import type { Locale } from '@nuxtjs/i18n/dist/runtime/composables'
+
 interface ShopAndLocaleConfig {
   /** A BCP-47 format locale code (e.g. 'de-DE') */
   locale: string
   /** A unique identifying code for the shop/locale. Also used to create the shop's default path prefix. (e.g. 'de') */
-  code: string | string[]
+  code: Locale | Locale[]
   /** The shopId */
   shopId: number
   /** The ISO 4217 currency code for the shop (e.g. 'EUR') */

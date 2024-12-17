@@ -543,13 +543,13 @@ export default defineNuxtConfig({
     cookieStore: true,
   },
 
-  // https://v8.i18n.nuxtjs.org/getting-started/basic-usage
+  // https://i18n.nuxtjs.org/docs/getting-started
+  // https://i18n.nuxtjs.org/docs/guide/migrating#upgrading-from-nuxtjsi18n-v8x-to-v9x
   i18n: {
     locales,
     differentDomains: DOMAIN_PER_LOCALE,
     detectBrowserLanguage: false,
     defaultLocale: i18nDefaultLocale,
-    langDir: 'langs/',
     lazy: true,
     strategy: getI18nStrategy(),
   },

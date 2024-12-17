@@ -29,7 +29,7 @@
 import { defineOptions, onMounted } from 'vue'
 import { useHead } from '@unhead/vue'
 import { useNuxtApp } from '#app/nuxt'
-import { useSwitchLocalePath } from '#i18n'
+import { useSwitchLocalePath, type Locale } from '#i18n'
 import { useCurrentPromotions, useCurrentShop } from '#storefront/composables'
 import {
   USE_BANNER_KEY,
@@ -100,7 +100,7 @@ const switchLocalePath = useSwitchLocalePath()
 const switchShop = (shop: ShopInfo) => {
   trackingEvents.trackShopChange()
   if (shop.path) {
-    window.location.replace(switchLocalePath(shop.path).split('?')[0])
+    window.location.replace(switchLocalePath(shop.path as Locale).split('?')[0])
   }
 }
 

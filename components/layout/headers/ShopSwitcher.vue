@@ -83,6 +83,7 @@
 
 <script setup lang="ts">
 import { computed, useId } from 'vue'
+import type { Locale } from '@nuxtjs/i18n/dist/runtime/composables'
 import ShopSwitcherItem from './ShopSwitcherItem.vue'
 import { useSwitchLocalePath } from '#i18n'
 import { useTrackingEvents } from '~/composables/useTrackingEvents'
@@ -153,7 +154,7 @@ const changeShop = (path?: string, locale?: string, close?: () => void) => {
   }
 
   trackShopChange()
-  const newLocalePath = switchLocalePath(path).split('?')[0]
+  const newLocalePath = switchLocalePath(path as Locale).split('?')[0]
   window.location.replace(newLocalePath)
 }
 </script>

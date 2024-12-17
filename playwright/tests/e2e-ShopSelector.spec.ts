@@ -91,6 +91,6 @@ test('Verify Shop Selector switch from non-Homepage', async ({
       await shopSelector.switchShop(0)
     }
     const pageUrl = page.url()
-    expect(pageUrl).toContain('/wishlist')
+    expect(pageUrl).not.toContain('/wishlist')
   })
 })

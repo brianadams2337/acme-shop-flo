@@ -1,4 +1,3 @@
-export * from './attributes'
 export * from './color'
 export * from './listingMetadata'
 export * from './mask'

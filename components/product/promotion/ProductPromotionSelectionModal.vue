@@ -73,10 +73,10 @@
                 {{ $t('pdp.size_heading') }}
               </div>
               <VariantPicker
-                v-if="!hasOneVariantOnly"
                 ref="variantPicker"
                 v-model="activeVariant"
                 v-model:visible="isVariantListVisible"
+                :has-one-variant-only="hasOneVariantOnly"
                 :variants="giftVariants"
                 :promotion="promotion"
                 class="md:mb-4"

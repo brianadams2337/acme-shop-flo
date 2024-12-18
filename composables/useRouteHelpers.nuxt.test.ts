@@ -52,7 +52,7 @@ describe('useRouteHelpers', () => {
       const { getSearchRoute } = useRouteHelpers()
 
       const searchRoute = getSearchRoute('test')
-      expect(searchRoute).toStrictEqual('/de/search?term=test')
+      expect(searchRoute).toStrictEqual('/de/search?filters[term]=test')
     })
   })
 

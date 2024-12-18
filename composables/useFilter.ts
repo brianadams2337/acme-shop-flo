@@ -115,7 +115,7 @@ export function useFilter(
     }
     const query = {
       sort: route.query.sort,
-      term: route.query.term,
+      term: route.query['filters[term]'],
       ...filter,
     }
 

@@ -50,7 +50,7 @@ import { SFHeadline, SFPageContainer } from '#storefront-ui/components'
 const route = useRoute()
 
 const { $i18n } = useNuxtApp()
-const term = computed(() => route.query.term || '')
+const term = computed(() => route.query['filters[term]'] || '')
 const { pageState } = usePageState()
 const { products, pagination, status, totalProductsCount, paginationOffset } =
   await useProductsSearch({

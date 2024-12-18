@@ -44,7 +44,7 @@ export function useRouteHelpers() {
   const getSearchRoute = (term: string): string => {
     return localePath({
       name: routeList.search.name,
-      query: { term },
+      query: { 'filters[term]': term },
     })
   }
 

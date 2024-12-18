@@ -32,7 +32,7 @@ export function useProductsSearch({
   const { appliedFilter } = useAppliedFilters(route)
   const { selectedSort } = useProductListSort(route)
 
-  const term = computed(() => String(route.query.term || ''))
+  const term = computed(() => appliedFilter.value?.term || '')
 
   const productsData = useProducts(
     {
@@ -50,10 +50,7 @@ export function useProductsSearch({
           ttl: FETCH_PRODUCTS_CACHE_TTL,
           cacheKeyPrefix: `SEARCH:${term}`,
         },
-        where: {
-          ...appliedFilter.value,
-          term: term.value,
-        },
+        where: appliedFilter.value,
         ...restParams,
       }),
       options,

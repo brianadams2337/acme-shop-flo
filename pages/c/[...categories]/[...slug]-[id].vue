@@ -223,7 +223,7 @@ const breadcrumbs = computed(() =>
 )
 
 const { title, robots, canonicalLink, categoryBreadcrumbSchema } =
-  useProductListingSeoData(breadcrumbs.value, route, {
+  useProductListingSeoData(breadcrumbs, route, {
     baseUrl: $config.public.baseUrl,
     fullPath: route.fullPath,
   })

@@ -2,6 +2,25 @@
   <div
     class="flex min-h-screen flex-col text-primary antialiased anchor-scrolling-none"
   >
+    <div
+      id="a11y-skip-links"
+      class="flex h-0 items-center justify-center gap-4 opacity-0 focus-within:h-20 focus-within:opacity-100"
+    >
+      <SFButton
+        variant="secondary"
+        :aria-label="$t('a11y.skip_to_main')"
+        @click="focusMainContent"
+      >
+        {{ $t('a11y.skip_to_main') }}
+      </SFButton>
+      <SFButton
+        variant="secondary"
+        :aria-label="$t('a11y.skip_to_search')"
+        @click="focusSearch"
+      >
+        {{ $t('a11y.skip_to_search') }}
+      </SFButton>
+    </div>
     <PromotionBanner
       v-if="allCurrentPromotions.length"
       :promotions="allCurrentPromotions"
@@ -13,8 +32,8 @@
       :class="{ 'lg:-translate-y-13': !isPromotionBannerShown }"
     >
       <HeaderTopBar />
-      <Header />
-      <main class="grow">
+      <Header v-model:is-mobile-sidebar-open="isMobileSidebarOpen" />
+      <main id="main-content" class="grow focus:outline-none" tabindex="-1">
         <NuxtPage />
       </main>
       <Footer
@@ -26,7 +45,7 @@
 </template>
 
 <script setup lang="ts">
-import { defineOptions, onMounted } from 'vue'
+import { defineOptions, nextTick, onMounted, ref } from 'vue'
 import { useHead } from '@unhead/vue'
 import { useNuxtApp } from '#app/nuxt'
 import { useSwitchLocalePath, type Locale } from '#i18n'
@@ -49,7 +68,7 @@ import CountryDetection, {
 } from '~/components/CountryDetection.vue'
 import PromotionBanner from '~/components/promotion/PromotionBanner.vue'
 import { useDefaultBreakpoints } from '#storefront-ui/composables'
-import { SFToastContainer } from '#storefront-ui/components'
+import { SFToastContainer, SFButton } from '#storefront-ui/components'
 import { NuxtPage } from '#components'
 import Footer from '~/components/Footer.vue'
 import Header from '~/components/layout/headers/Header.vue'
@@ -102,6 +121,42 @@ const switchShop = (shop: ShopInfo) => {
   if (shop.path) {
     window.location.replace(switchLocalePath(shop.path as Locale).split('?')[0])
   }
+}
+
+const isMobileSidebarOpen = ref(false)
+const { greaterOrEqual } = useDefaultBreakpoints()
+const isDesktopLayout = greaterOrEqual('lg')
+/**
+ * Provides a way to skip all focusable elements and jump directly to the search field.
+ * This improves accessibility by allowing users to bypass navigation links and other repetitive elements.
+ *
+ * @see https://webaim.org/techniques/skipnav/
+ */
+const focusSearch = async () => {
+  const id = isDesktopLayout.value ? 'search-desktop' : 'search-mobile'
+  const search = document.getElementById(id)
+  const form = search?.querySelector('form')
+
+  if (!search || !form) {
+    return
+  }
+
+  if (!isDesktopLayout.value) {
+    isMobileSidebarOpen.value = true
+    await nextTick()
+  }
+
+  form.focus({ preventScroll: true })
+}
+
+/**
+ * Provides a way to skip all focusable elements and jump directly to the main content.
+ * This improves accessibility by allowing users to bypass navigation links and other repetitive elements.
+ *
+ * @see https://webaim.org/techniques/skipnav/
+ */
+const focusMainContent = () => {
+  document.querySelector('main')?.focus({ preventScroll: true })
 }
 
 defineOptions({ name: 'AppDefault' })

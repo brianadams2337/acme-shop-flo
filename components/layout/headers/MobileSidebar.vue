@@ -1,6 +1,7 @@
 <template>
   <aside class="flex flex-col overscroll-contain">
     <SearchInput
+      id="search-mobile"
       class="mt-1"
       @click:result="$emit('close')"
       @close="$emit('close')"

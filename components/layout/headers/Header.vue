@@ -46,7 +46,7 @@
         />
       </ul>
     </nav>
-    <SearchInput class="shrink grow max-lg:hidden" />
+    <SearchInput id="search-desktop" class="shrink grow max-lg:hidden" />
     <div class="flex items-center max-lg:grow max-lg:justify-end">
       <UserNavigationItem
         class="mr-[1ch]"
@@ -63,7 +63,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed } from 'vue'
+import { computed } from 'vue'
 import { whenever } from '@vueuse/core'
 import UserNavigationItem from './UserNavigationItem.vue'
 import BasketNavigationItem from './BasketNavigationItem.vue'
@@ -82,13 +82,16 @@ import {
 import { useNavigationTreeByName } from '#storefront/composables'
 import { useDefaultBreakpoints } from '~/modules/ui/runtime'
 
+const isSideNavigationOpen = defineModel('isMobileSidebarOpen', {
+  type: Boolean,
+  default: false,
+})
+
 const {
   $config: {
     public: { shopName },
   },
 } = useNuxtApp()
-
-const isSideNavigationOpen = ref(false)
 
 const { greaterOrEqual } = useDefaultBreakpoints()
 const isDesktopLayout = greaterOrEqual('lg')

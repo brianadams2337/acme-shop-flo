@@ -4069,7 +4069,7 @@
   resolved "https://registry.yarnpkg.com/@scayle/eslint-plugin-vue-composable/-/eslint-plugin-vue-composable-0.2.1.tgz#862a63d5ec6a0c105aa02b4de8d5675526543d71"
   integrity sha512-BT2Mengo5/Zd6y8F/WiYx7Y7IbkIT0eVZi+H3U7x7Qcqer69x9n/w0cEs7ChFwZeERdu14X+pKGr+uwTvMjdhQ==
 
-"@scayle/h3-session@^0.5.0":
+"@scayle/h3-session@0.5.0":
   version "0.5.0"
   resolved "https://registry.yarnpkg.com/@scayle/h3-session/-/h3-session-0.5.0.tgz#0bbc8c3b19854fba5b75b4ca738c6c119db16318"
   integrity sha512-yHmwDNOvH5un+7qNvsvSt50emNYCpzsirktnSxevXJnTnCnxE3GHcItxX4+l3TsXq8hR8uBbYHIagyl/cG6WKA==
@@ -4135,14 +4135,14 @@
   resolved "https://registry.yarnpkg.com/@scayle/storefront-country-detection/-/storefront-country-detection-1.0.1.tgz#afea3b527679da70c1f57568ac68944a1e678a69"
   integrity sha512-a1+MXos69N/NgdMvkA1n62LxFstVHI4wT2TO5K+MISIz8PQbH3slu8E5VoK1DrPPRxVq/+f1AcaOHucmREWFsQ==
 
-"@scayle/storefront-nuxt@8.1.6":
-  version "8.1.6"
-  resolved "https://registry.yarnpkg.com/@scayle/storefront-nuxt/-/storefront-nuxt-8.1.6.tgz#deaea1bdcb8df31d8ff0f9e338e5600a63799bb1"
-  integrity sha512-WTAtF0gqDJvGUkRIwHZ6t32jtvgprEK3UwIJYlmh5B+4ckIXrCN0JuveGCag1qbW0oMIJ6Bj1dfL9wX1Ujf5tg==
+"@scayle/storefront-nuxt@8.2.0":
+  version "8.2.0"
+  resolved "https://registry.yarnpkg.com/@scayle/storefront-nuxt/-/storefront-nuxt-8.2.0.tgz#7f512b0f6fe53c858044d18218068f9066a63f4b"
+  integrity sha512-/1Ty0driL/hs0UQJugoCtRrzuYFVx/9cc7FCMAeYk8HcKzPzQ+YfrSQUfPt9K9GWelkao4uWiXRoShEIigUbGA==
   dependencies:
     "@nuxt/kit" "^3.12.2"
     "@opentelemetry/api" "^1.9.0"
-    "@scayle/h3-session" "^0.5.0"
+    "@scayle/h3-session" "0.5.0"
     "@scayle/storefront-core" "8.1.2"
     "@scayle/unstorage-compression-driver" "^0.2.2"
     "@vueuse/core" "12.0.0"

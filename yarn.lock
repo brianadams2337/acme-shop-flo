@@ -4069,15 +4069,14 @@
   resolved "https://registry.yarnpkg.com/@scayle/eslint-plugin-vue-composable/-/eslint-plugin-vue-composable-0.2.1.tgz#862a63d5ec6a0c105aa02b4de8d5675526543d71"
   integrity sha512-BT2Mengo5/Zd6y8F/WiYx7Y7IbkIT0eVZi+H3U7x7Qcqer69x9n/w0cEs7ChFwZeERdu14X+pKGr+uwTvMjdhQ==
 
-"@scayle/h3-session@^0.4.2":
-  version "0.4.2"
-  resolved "https://registry.yarnpkg.com/@scayle/h3-session/-/h3-session-0.4.2.tgz#e9de29e22a7caf77d19cce21ffde8714240cf786"
-  integrity sha512-CG4IDdN9NUHn1tv7aGvBugA+ID4qR0P4tDrHvdyg0j2AAh+x+W4XxsLhOVL5jm3rqo+YcGQvAkK2DV5PMEEd9A==
+"@scayle/h3-session@^0.5.0":
+  version "0.5.0"
+  resolved "https://registry.yarnpkg.com/@scayle/h3-session/-/h3-session-0.5.0.tgz#0bbc8c3b19854fba5b75b4ca738c6c119db16318"
+  integrity sha512-yHmwDNOvH5un+7qNvsvSt50emNYCpzsirktnSxevXJnTnCnxE3GHcItxX4+l3TsXq8hR8uBbYHIagyl/cG6WKA==
   dependencies:
     defu "^6.1.4"
     uncrypto "^0.1.3"
     unstorage "^1.10.2"
-    zod "^3.23.8"
 
 "@scayle/nuxt-opentelemetry@0.5.3":
   version "0.5.3"
@@ -4136,16 +4135,16 @@
   resolved "https://registry.yarnpkg.com/@scayle/storefront-country-detection/-/storefront-country-detection-1.0.1.tgz#afea3b527679da70c1f57568ac68944a1e678a69"
   integrity sha512-a1+MXos69N/NgdMvkA1n62LxFstVHI4wT2TO5K+MISIz8PQbH3slu8E5VoK1DrPPRxVq/+f1AcaOHucmREWFsQ==
 
-"@scayle/storefront-nuxt@8.1.5":
-  version "8.1.5"
-  resolved "https://registry.yarnpkg.com/@scayle/storefront-nuxt/-/storefront-nuxt-8.1.5.tgz#f94de9d347af84463805135b15463f58ee429b16"
-  integrity sha512-LHDsd2YcDgTB0Y1L7WhRumzqksRatKc6BiSOSgGr4kQYBSWSE9XtYYJQo0LgucARvoCOsqT03HM2p7ajkN00nQ==
+"@scayle/storefront-nuxt@8.1.6":
+  version "8.1.6"
+  resolved "https://registry.yarnpkg.com/@scayle/storefront-nuxt/-/storefront-nuxt-8.1.6.tgz#deaea1bdcb8df31d8ff0f9e338e5600a63799bb1"
+  integrity sha512-WTAtF0gqDJvGUkRIwHZ6t32jtvgprEK3UwIJYlmh5B+4ckIXrCN0JuveGCag1qbW0oMIJ6Bj1dfL9wX1Ujf5tg==
   dependencies:
     "@nuxt/kit" "^3.12.2"
     "@opentelemetry/api" "^1.9.0"
-    "@scayle/h3-session" "^0.4.2"
+    "@scayle/h3-session" "^0.5.0"
     "@scayle/storefront-core" "8.1.2"
-    "@scayle/unstorage-compression-driver" "^0.2.0"
+    "@scayle/unstorage-compression-driver" "^0.2.2"
     "@vueuse/core" "12.0.0"
     consola "^3.2.3"
     core-js "^3.37.1"
@@ -4171,13 +4170,13 @@
   resolved "https://registry.yarnpkg.com/@scayle/storefront-product-listing/-/storefront-product-listing-1.1.2.tgz#e60ccb87bc9e7198bf4edf6225ca47ea65fe5c12"
   integrity sha512-8avJdFLUnox0G+gFnS/qYiub22SeBf0mvvZ1h41/FDIC8YKf2XxPUsN/PfrFUS1uOic/fBdEdsFuUVgZp7M72Q==
 
-"@scayle/unstorage-compression-driver@^0.2.0":
-  version "0.2.1"
-  resolved "https://registry.yarnpkg.com/@scayle/unstorage-compression-driver/-/unstorage-compression-driver-0.2.1.tgz#9dc581b8cf4ded61dd50b8609aee0e7e4c7da615"
-  integrity sha512-GMDSRy5/ZhI4e5bOEkEU45eLaMprVIiRtq/KTF/kRXO+/qe/7j2/D3tf49dVs/9XyqdUfOhcxMYl39jLRy0gnw==
+"@scayle/unstorage-compression-driver@^0.2.2":
+  version "0.2.2"
+  resolved "https://registry.yarnpkg.com/@scayle/unstorage-compression-driver/-/unstorage-compression-driver-0.2.2.tgz#2769c0d708ba8da75048510f1f897567d0a17f7d"
+  integrity sha512-PKUB+sH2tHc0oB4vCVdferW938v4uYE18jG6WNkt2sMPKHYAE/aE4NcGPq6MNzBjzbOvv3JkFhhQCb8LE8/xyg==
   dependencies:
     destr "2.0.3"
-    unstorage "1.13.1"
+    unstorage "1.14.0"
 
 "@sindresorhus/is@^0.14.0":
   version "0.14.0"
@@ -15139,7 +15138,23 @@ unplugin@^2.0.0:
     acorn "^8.14.0"
     webpack-virtual-modules "^0.6.2"
 
-unstorage@1.13.1, unstorage@^1.10.1, unstorage@^1.10.2, unstorage@^1.13.1:
+unstorage@1.14.0:
+  version "1.14.0"
+  resolved "https://registry.yarnpkg.com/unstorage/-/unstorage-1.14.0.tgz#21e030a9736845518174e23d9cb642761dd2b0fc"
+  integrity sha512-FjkD8JSdZyktjzPUR9KbR1Pc2tD9b+rEMMNMyvrlpBwQCftL9WgU7iAvb95QDBi5wDL75SQyTovQASBPzt3a9g==
+  dependencies:
+    anymatch "^3.1.3"
+    chokidar "^3.6.0"
+    citty "^0.1.6"
+    destr "^2.0.3"
+    h3 "^1.13.0"
+    listhen "^1.9.0"
+    lru-cache "^10.4.3"
+    node-fetch-native "^1.6.4"
+    ofetch "^1.4.1"
+    ufo "^1.5.4"
+
+unstorage@^1.10.1, unstorage@^1.10.2, unstorage@^1.13.1:
   version "1.13.1"
   resolved "https://registry.yarnpkg.com/unstorage/-/unstorage-1.13.1.tgz#090b30de978ee8755b3ad7bbc00acfade124ac13"
   integrity sha512-ELexQHUrG05QVIM/iUeQNdl9FXDZhqLJ4yP59fnmn2jGUh0TEulwOgov1ubOb3Gt2ZGK/VMchJwPDNVEGWQpRg==

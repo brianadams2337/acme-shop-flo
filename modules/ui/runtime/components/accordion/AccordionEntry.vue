@@ -45,15 +45,15 @@
 </template>
 
 <script setup lang="ts">
-import { computed, ref, useId } from 'vue'
+import { computed, ref } from 'vue'
 import { useEventListener } from '@vueuse/core'
 
 const { variant = 'wide' } = defineProps<{
   title?: string
   variant?: 'narrow' | 'wide'
+  id: string
 }>()
 
-const id = useId()
 const open = ref(false)
 const details = ref<HTMLDetailsElement>()
 useEventListener(details, 'toggle', (event: ToggleEvent) => {

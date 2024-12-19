@@ -87,6 +87,7 @@
           <template v-for="item in selectedItem.children" :key="item.id">
             <SFAccordionEntry
               v-if="item.children.length"
+              :id="`${item.id}`"
               class="!py-0"
               variant="narrow"
             >

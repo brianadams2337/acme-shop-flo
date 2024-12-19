@@ -1,7 +1,12 @@
 <template>
   <div ref="listbox">
     <div ref="button" class="contents">
-      <slot :is-open="isOpen" :list="name" :close="close" :open="open" />
+      <slot
+        :is-open="isOpen"
+        :close="close"
+        :open="open"
+        :toggle-listbox-open="toggleListboxOpen"
+      />
     </div>
     <div ref="options" class="relative">
       <Transition
@@ -13,7 +18,7 @@
           v-if="isOpen"
           name="options"
           :is-open="isOpen"
-          :list="name"
+          :toggle-listbox-open="toggleListboxOpen"
           :close="close"
           :open="open"
         />
@@ -23,16 +28,14 @@
 </template>
 
 <script lang="ts" setup>
-import { useTemplateRef } from 'vue'
-import { useListbox, useDropdownKeyboardBehavior } from '#storefront-ui'
+import { ref, useTemplateRef } from 'vue'
+import { useDropdownKeyboardBehavior } from '#storefront-ui'
 
-type Props = {
-  name: string
-}
+const isOpen = ref(false)
 
-const props = defineProps<Props>()
-
-const { isOpen, close, open } = useListbox(props.name)
+const toggleListboxOpen = () => (isOpen.value = !isOpen.value)
+const open = () => (isOpen.value = true)
+const close = () => (isOpen.value = false)
 
 const rootRef = useTemplateRef('listbox')
 const buttonRef = useTemplateRef('button')

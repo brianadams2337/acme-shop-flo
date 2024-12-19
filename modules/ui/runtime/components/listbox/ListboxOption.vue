@@ -10,20 +10,16 @@
 </template>
 
 <script setup lang="ts" generic="T extends { disabled?: boolean }">
-import { useListbox } from '#storefront-ui'
-
 type Props = {
-  listName: string
   value?: T
+  toggleListboxOpen: () => void
 }
-const props = withDefaults(defineProps<Props>(), { value: undefined })
-
-const { toggle } = useListbox(props.listName)
+const { value = undefined, toggleListboxOpen } = defineProps<Props>()
 
 const handleClick = () => {
-  if (!props.value || ('disabled' in props.value && props.value?.disabled)) {
+  if (!value || ('disabled' in value && value?.disabled)) {
     return
   }
-  toggle()
+  toggleListboxOpen()
 }
 </script>

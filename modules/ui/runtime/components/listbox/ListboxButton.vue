@@ -4,24 +4,22 @@
     :disabled="disabled"
     variant="raw"
     aria-haspopup="true"
-    :aria-controls="id"
-    @click="toggle"
+    :aria-controls="listboxButtonAriaId"
+    @click="toggleListboxOpen"
   >
     <slot />
   </SFButton>
 </template>
 
 <script setup lang="ts">
-import { useListbox } from '#storefront-ui'
 import { SFButton } from '#storefront-ui/components'
 
 type Props = {
-  listName: string
   disabled?: boolean
-  id: string
+  listboxButtonAriaId: string
+  toggleListboxOpen: () => void
+  isOpen: boolean
 }
 
-const props = withDefaults(defineProps<Props>(), { disabled: false })
-
-const { toggle, isOpen } = useListbox(props.listName)
+withDefaults(defineProps<Props>(), { disabled: false })
 </script>

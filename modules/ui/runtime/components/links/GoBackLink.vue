@@ -15,15 +15,16 @@
 
 <script setup lang="ts">
 import { computed } from 'vue'
+import { useMounted } from '@vueuse/core'
 import type { RouteLocationRaw } from '#vue-router'
 import { SFLink } from '#storefront-ui/components'
 
 const { fallbackLink = '/' } = defineProps<{
   fallbackLink?: RouteLocationRaw
 }>()
-
+const mounted = useMounted()
 const hasHistory = computed(() => {
-  return import.meta.client && window.history.state.back
+  return mounted.value && window.history.state.back
 })
 
 const backClickEventHandling = computed(() => {

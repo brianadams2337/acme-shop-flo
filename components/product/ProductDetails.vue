@@ -5,6 +5,7 @@
     <div class="md:divide-y">
       <SFAccordionEntry
         v-for="[key, values] in filteredAttributeGroups"
+        :id="`${key}`"
         :key="key"
         :title="$t('pdp.information.' + key)"
       >
@@ -20,7 +21,10 @@
           </ul>
         </div>
       </SFAccordionEntry>
-      <SFAccordionEntry :title="$t('pdp.shipping_return_heading')">
+      <SFAccordionEntry
+        id="product-details-shipping"
+        :title="$t('pdp.shipping_return_heading')"
+      >
         <div class="mb-8">{{ $t('pdp.shipping.general_info') }}</div>
         <div class="mb-1 font-semi-bold-variable">
           {{ $t('pdp.shipping.dhl_headline') }}

@@ -26,7 +26,7 @@
             </div>
           </LocalizedLink>
         </div>
-        <ShopSwitcher />
+        <ShopSwitcher listbox-button-aria-id="mobile-shop-switcher" />
       </div>
     </div>
   </aside>

@@ -11,7 +11,7 @@
           <IconLocationMenu class="size-3.5" />
           {{ $t('navigation.location') }}
         </LocalizedLink>
-        <ShopSwitcher />
+        <ShopSwitcher listbox-button-aria-id="desktop-shop-switcher" />
       </div>
     </div>
   </div>

@@ -1,13 +1,11 @@
 <template>
-  <SFListbox
-    :value="currentShop?.path"
-    :name="'language-switch-' + id"
-    class="shrink-0 max-lg:py-2"
-  >
-    <template #default="{ isOpen, list }">
+  <SFListbox :value="currentShop?.path" class="shrink-0 max-lg:py-2">
+    <template #default="{ isOpen, toggleListboxOpen }">
       <SFListboxButton
-        :id="id"
         ref="button"
+        :listbox-button-aria-id="listboxButtonAriaId"
+        :toggle-listbox-open="toggleListboxOpen"
+        :is-open="isOpen"
         :aria-label="
           $t('shop_selector.aria_label', {
             selectedCountry,
@@ -15,7 +13,6 @@
           })
         "
         class="h-full gap-1.5 px-2 !text-gray-600 -outline-offset-4 hover:bg-indigo-200/10 lg:!text-white"
-        :list-name="list"
         data-testid="language-listbox"
       >
         <IconNewGlobe
@@ -35,10 +32,10 @@
         />
       </SFListboxButton>
     </template>
-    <template #options="{ isOpen, list, close }">
+    <template #options="{ isOpen, toggleListboxOpen, close }">
       <SFListboxOptions
         v-if="isOpen"
-        :id="id"
+        :id="listboxButtonAriaId"
         class="absolute z-60 flex max-h-[80vh] flex-col gap-1 overflow-y-auto rounded-10 bg-white p-2 shadow-md max-lg:bottom-0 max-lg:w-full max-lg:border-t lg:right-0 lg:top-0 lg:max-h-64"
         data-testid="shop-selector-list"
       >
@@ -66,7 +63,7 @@
         <SFListboxOption
           v-for="{ shopId, path, locale } in availableShops"
           :key="shopId"
-          :list-name="list"
+          :toggle-listbox-open="toggleListboxOpen"
         >
           <ShopSwitcherItem
             :key="`${locale}-locale`"
@@ -82,7 +79,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed, useId } from 'vue'
+import { computed } from 'vue'
 import type { Locale } from '@nuxtjs/i18n/dist/runtime/composables'
 import ShopSwitcherItem from './ShopSwitcherItem.vue'
 import { useSwitchLocalePath, useI18n } from '#i18n'
@@ -102,8 +99,6 @@ const availableShops = useAvailableShops()
 const switchLocalePath = useSwitchLocalePath()
 
 const { trackShopChange } = useTrackingEvents()
-
-const id = useId()
 
 const languageTranslator = computed(() => {
   if (!currentShop.value) {
@@ -141,6 +136,7 @@ const multipleShopsForCountry = computed(() =>
 
 const { switchToHomePage = true } = defineProps<{
   switchToHomePage?: boolean
+  listboxButtonAriaId: string
 }>()
 const i18n = useI18n()
 /**

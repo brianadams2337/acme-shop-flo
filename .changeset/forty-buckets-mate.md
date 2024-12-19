@@ -2,4 +2,4 @@
 '@scayle/storefront-boilerplate-nuxt': patch
 ---
 
-E2E: Update focuses on improving the stability and consistency of end-to-end tests for the Basket and Shop Selector features specifically within the mobile Safari browser.
+**\[E2E\]** Improved the stability and consistency of tests for the Basket and Shop Selector features specifically targeting mobile Safari browser.

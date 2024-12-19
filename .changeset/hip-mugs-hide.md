@@ -2,4 +2,4 @@
 '@scayle/storefront-boilerplate-nuxt': patch
 ---
 
-Move `useDefaultBreakpoints` to the UI module
+**\[Utilities\]** Moved `useDefaultBreakpoints` to the UI module.

@@ -2,7 +2,7 @@
 '@scayle/storefront-boilerplate-nuxt': minor
 ---
 
-Rename the search query parameter `term` to `filters[term]` to adhere to the established filter naming convention. This alignment ensures that search results only display filters matching the available products.
+**\[Search\]** Rename the search query parameter `term` to `filters[term]` to adhere to the established filter naming convention. This alignment ensures that search results only display filters matching the available products.
 
 To maintain existing functionality, all instances of accessing `route.query.term` need to be updated to `route.query.['filters[term]']`.
 

@@ -2,4 +2,4 @@
 '@scayle/storefront-boilerplate-nuxt': minor
 ---
 
-Update the design of the page footer
+**\[Header & Footer \]** We've updated the design of the page footer.

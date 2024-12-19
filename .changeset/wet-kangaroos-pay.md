@@ -2,7 +2,7 @@
 '@scayle/storefront-boilerplate-nuxt': minor
 ---
 
-Wishlist: Overhaul wishlist implementation and design to be aligned with the rest of the application
+**\[Wishlist\]** We overhauled the wishlist implementation and design align with the new design language of the Storefront Boilerplate
 
 - Removes unnecessary tracking from other pages
 - Improves grid handling for the Wishlist

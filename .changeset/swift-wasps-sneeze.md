@@ -2,4 +2,4 @@
 '@scayle/storefront-boilerplate-nuxt': patch
 ---
 
-Remove hardcoded ID from ListBox to avoid conflicts
+**\[UI\]** Remove hardcoded ID from `ListBox` to avoid conflicts.

@@ -2,35 +2,35 @@
 '@scayle/storefront-boilerplate-nuxt': minor
 ---
 
-Replace the composable `useCategorySeoData` with `useProductListingSeoData` from `@scayle/storefront-product-listing`.
+**\[Storefront Feature Packages\]** Replace the composable `useCategorySeoData` with `useProductListingSeoData` from `@scayle/storefront-product-listing`.
 
-Old implementation:
+- Previous implementation:
 
-```ts
-const {
-  title,
-  metaDescription,
-  robots,
-  canonicalLink,
-  categoryBreadcrumbSchema,
-} = useCategorySeoData(currentCategory)
-```
+  ```ts
+  const {
+    title,
+    metaDescription,
+    robots,
+    canonicalLink,
+    categoryBreadcrumbSchema,
+  } = useCategorySeoData(currentCategory)
+  ```
 
-New implementation:
+- Current implementation:
 
-```ts
-const route = useRoute()
-const { getBreadcrumbsFromCategory } = useBreadcrumbs()
+  ```ts
+  const route = useRoute()
+  const { getBreadcrumbsFromCategory } = useBreadcrumbs()
 
-const breadcrumbs = computed(() =>
-  currentCategory.value
-    ? getBreadcrumbsFromCategory(currentCategory.value, true)
-    : [],
-)
+  const breadcrumbs = computed(() =>
+    currentCategory.value
+      ? getBreadcrumbsFromCategory(currentCategory.value, true)
+      : [],
+  )
 
-const { title, robots, canonicalLink, categoryBreadcrumbSchema } =
-  useProductListingSeoData(breadcrumbs.value, route, {
-    baseUrl: $config.public.baseUrl,
-    fullPath: route.fullPath,
-  })
-```
+  const { title, robots, canonicalLink, categoryBreadcrumbSchema } =
+    useProductListingSeoData(breadcrumbs.value, route, {
+      baseUrl: $config.public.baseUrl,
+      fullPath: route.fullPath,
+    })
+  ```

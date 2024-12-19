@@ -2,7 +2,7 @@
 '@scayle/storefront-boilerplate-nuxt': minor
 ---
 
-We've updated to `nuxt/i18n@9.x`. This introduces a new directory structure for localization to align with the upcoming changes of Nuxt 4.
+**\[Dependencies\]** We've updated to `nuxt/i18n@9.x`. This introduces a new directory structure for localization to align with the upcoming changes of Nuxt 4.
 
 - `lang/` directory has been renamed to `i18n/`
 - `i18n.config.ts` has been moved to `i18n/i18n.config.ts`

@@ -17,7 +17,7 @@
     "
     :aria-busy="mounted && status === 'pending'"
     aria-live="off"
-    :disabled="isWishlistToggling"
+    :aria-disabled="isWishlistToggling"
     @click="onToggleWishlist"
   >
     <template #icon="{ _class }">
@@ -70,6 +70,10 @@ const { toggleItem, contains, status } = useWishlist()
 const { trackWishlistItemEvent } = useWishlistTracking()
 
 const onToggleWishlist = async () => {
+  if (isWishlistToggling.value) {
+    return
+  }
+
   const wasInWishlist = contains({ productId: productId.value })
 
   trackWishlistItemEvent(!wasInWishlist ? 'added' : 'removed', {

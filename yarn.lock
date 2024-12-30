@@ -5250,14 +5250,14 @@
   resolved "https://registry.yarnpkg.com/@vueuse/metadata/-/metadata-12.2.0.tgz#446ed1e0900d0133a2d63924fa854892f0a2b2a9"
   integrity sha512-x6zynZtTh1l52m0y8d/EgzpshnMjg8cNZ2KWoncJ62Z5qPSGoc4FUunmMVrrRM/I/5542rTEY89CGftngZvrkQ==
 
-"@vueuse/nuxt@12.0.0":
-  version "12.0.0"
-  resolved "https://registry.yarnpkg.com/@vueuse/nuxt/-/nuxt-12.0.0.tgz#6bd9840becd053657c6a7323a42db258cd9ecf71"
-  integrity sha512-ZSxphoQAX5/EzIUKADcqmoKOpIya7Qi/Lma2iGuLv0YdEAdIcyhTvJ3HwboSuVCPzzovyitY1Ozo+6b0nZ5j5Q==
+"@vueuse/nuxt@12.2.0":
+  version "12.2.0"
+  resolved "https://registry.yarnpkg.com/@vueuse/nuxt/-/nuxt-12.2.0.tgz#d336a251b5b29aec454e868c79ed3460f228c3d4"
+  integrity sha512-ffAQOeIahFmp7NmI3dDrKeo3pLMV8S58p+TuEbNYPZ25gET7R3PRq0DpxaWghHXtVXOKVYR+U1nimx9XtpAVyg==
   dependencies:
     "@nuxt/kit" "^3.14.1592"
-    "@vueuse/core" "12.0.0"
-    "@vueuse/metadata" "12.0.0"
+    "@vueuse/core" "12.2.0"
+    "@vueuse/metadata" "12.2.0"
     local-pkg "^0.5.1"
     vue "^3.5.13"
 

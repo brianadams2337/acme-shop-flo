@@ -1,5 +1,10 @@
 <template>
-  <SFItemsSlider with-arrows mode="horizontal" data-testid="product-thumbnails">
+  <SFItemsSlider
+    with-arrows
+    mode="horizontal"
+    data-testid="product-thumbnails"
+    disable-focus
+  >
     <template #header>
       <div class="mb-4 flex justify-between">
         <div class="flex gap-2 text-md">

@@ -206,7 +206,9 @@ test('C2139744: Verify PLP Filters deeplink', async ({
 
   await expect(async () => {
     await filters.closeFiltersButton.waitFor()
-    await expect(filters.filterSizeCheckbox.nth(0)).toBeChecked()
+    await expect(
+      filters.filterSizeCheckboxValue(PLP_FILTER_DEEPLINK.size),
+    ).toBeChecked()
     await expect(filters.filterSaleSwitch).toBeChecked()
   }).toPass()
 })

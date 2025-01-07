@@ -33,6 +33,12 @@ export class Filters {
     this.filterToggleCounter = page.getByTestId('filter-toggle-counter')
   }
 
+  filterSizeCheckboxValue(value: number): Locator {
+    return this.page.locator(
+      `input[data-testid='checkbox-chip'][value="${value}"]`,
+    )
+  }
+
   async openFilters() {
     if (isMobile(this.page)) {
       await expect(this.filterButton.nth(1)).toBeVisible()

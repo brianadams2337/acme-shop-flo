@@ -11921,10 +11921,10 @@ number-is-nan@^1.0.0:
   resolved "https://registry.yarnpkg.com/number-is-nan/-/number-is-nan-1.0.1.tgz#097b602b53422a522c1afb8790318336941a011d"
   integrity sha512-4jbtZXNAsfZbAHiiqjLPBiCl16dES1zI4Hpzzxw61Tk+loF+sBDBKx1ICKKKwIqQ7M0mFn1TmkN7euSncWgHiQ==
 
-nuxi@3.18.0:
-  version "3.18.0"
-  resolved "https://registry.yarnpkg.com/nuxi/-/nuxi-3.18.0.tgz#f62349e5473d45cfd4a4b43dc7f8ef30ceb331d5"
-  integrity sha512-VpqeQoCgecyC8kPCBPJCez/9SJerKwi46dI8mZk0ckEng/uUjTpQEZ6QaQCBBT547ZJgyArxdR7tBoufTYZ6FA==
+nuxi@3.18.2:
+  version "3.18.2"
+  resolved "https://registry.yarnpkg.com/nuxi/-/nuxi-3.18.2.tgz#44fa0d0bcca7fdcb657945ee05587f38029521df"
+  integrity sha512-JKpbXJ5suXSBJxPvosw8eqdJOniNs6RUmi91aaRQG4jmKcDCZgbZIPUBBJNdllCIcrE0jQQO40BfFLxnzx8Ipg==
 
 nuxi@^3.15.0:
   version "3.16.0"

@@ -5,6 +5,9 @@
       icon="IconUserSecondary"
     />
     <SFPageContainer>
+      <SFHeadline class="mb-10 max-md:hidden" size="xl" tag="h1">
+        {{ $t('login_page.login.title') }}
+      </SFHeadline>
       <div
         v-if="user"
         class="flex flex-col justify-center space-x-0 space-y-4 sm:flex-row sm:space-x-8 sm:space-y-0"
@@ -60,6 +63,7 @@ import {
   SFContainerLink,
   SFPageContainer,
   SFSkeletonLoader,
+  SFHeadline,
 } from '#storefront-ui/components'
 
 const { user } = useUser()

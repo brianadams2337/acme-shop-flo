@@ -10,13 +10,13 @@
           }"
         />
         <div class="flex flex-col">
-          <div class="font-bold">
+          <SFHeadline size="lg" tag="h2" is-bold class="leading-6">
             {{
               selectedStoreData.available
                 ? $t('store_locator.labels.available')
                 : $t('store_locator.labels.not_available')
             }}
-          </div>
+          </SFHeadline>
           <div class="text-xs">
             {{ selectedStoreData.storeName }}
           </div>
@@ -51,7 +51,7 @@
 import { computed, watch } from 'vue'
 import { useStoreLocator } from '#omnichannel/composables'
 import { useSlideIn } from '#storefront-ui/composables'
-import { SFButton } from '#storefront-ui/components'
+import { SFButton, SFHeadline } from '#storefront-ui/components'
 
 interface Props {
   selectedStoreId: number | undefined

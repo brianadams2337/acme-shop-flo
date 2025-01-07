@@ -61,7 +61,7 @@
       </div>
       <FilterSlideIn :current-category-id="currentCategoryId" />
       <Teleport to="#teleports">
-        <FloatingContainer class="right-4">
+        <FloatingContainer class="right-4 md:bottom-16">
           <ScrollToTopButton />
         </FloatingContainer>
       </Teleport>

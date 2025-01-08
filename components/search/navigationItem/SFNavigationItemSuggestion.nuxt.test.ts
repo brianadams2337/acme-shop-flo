@@ -30,7 +30,6 @@ it('should work with individual link navigation items', async () => {
   const navigationItem: NavigationItemExternal = {
     id: 5717,
     assets: {},
-    languages: {},
     name: 'Home',
     visibleFrom: null,
     visibleTo: null,
@@ -49,7 +48,6 @@ it('should work with categories navigation items', async () => {
   const categoryItem: NavigationItemCategory = {
     id: 5717,
     assets: {},
-    languages: {},
     name: 'CategoryName',
     visibleFrom: null,
     visibleTo: null,
@@ -57,6 +55,7 @@ it('should work with categories navigation items', async () => {
     extraFilters: {},
     type: 'category',
     categoryId: 1,
+    filters: [],
     category: categoryFactory.build({ id: 1, path: '/path' }),
   }
   const { getByRole } = await getNavigationItemSuggestionComponent(categoryItem)
@@ -69,7 +68,6 @@ it('should work with page  navigation items', async () => {
   const pageItem: NavigationItemPage = {
     id: 5717,
     assets: {},
-    languages: {},
     name: 'PageName',
     visibleFrom: null,
     visibleTo: null,
@@ -90,7 +88,6 @@ it('should should emit a "click:result" event', async () => {
   const navigationItem: NavigationItemExternal = {
     id: 5717,
     assets: {},
-    languages: {},
     name: 'Home',
     visibleFrom: null,
     visibleTo: null,
@@ -117,7 +114,6 @@ it('should highlight the search term', async () => {
   const navigationItem: NavigationItemExternal = {
     id: 5717,
     assets: {},
-    languages: {},
     name: 'Home',
     visibleFrom: null,
     visibleTo: null,

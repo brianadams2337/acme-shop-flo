@@ -37,12 +37,12 @@ export const navigationItemCategoryFactory =
   Factory.define<NavigationItemCategory>(() => ({
     id: 5717,
     assets: {},
-    languages: {},
     name: 'CategoryName',
     visibleFrom: null,
     visibleTo: null,
     children: [],
     extraFilters: {},
+    filters: [],
     type: 'category',
     categoryId: 1,
     category: categoryFactory.build({ id: 1, path: '/path' }),

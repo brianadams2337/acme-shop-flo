@@ -1,5 +1,6 @@
 import type { Locator, Page } from '@playwright/test'
 import { isMobile } from '../support/utils'
+import { SHOPS } from '../support/constants'
 
 export class WishlistPage {
   readonly page: Page
@@ -61,9 +62,12 @@ export class WishlistPage {
 
   async addProductToWishlist(productId: number) {
     try {
-      await this.page.request.post('/de/api/rpc/addItemToWishlist', {
+      await this.page.request.post('/api/rpc/addItemToWishlist', {
         data: {
           payload: { productId },
+        },
+        headers: {
+          'X-Shop-Id': SHOPS.de,
         },
       })
     } catch (error) {

@@ -1,5 +1,5 @@
 import type { Locator, Page } from '@playwright/test'
-import { HOMEPAGE_PATH_DE } from '../support/constants'
+import { HOMEPAGE_PATH_DE, SHOPS } from '../support/constants'
 import { expect } from '../fixtures/fixtures'
 
 export class BasketPage {
@@ -80,9 +80,12 @@ export class BasketPage {
     promotionId?: number,
   ) {
     try {
-      await this.page.request.post('/de/api/rpc/addItemToBasket', {
+      await this.page.request.post('/api/rpc/addItemToBasket', {
         data: {
           payload: { promotionId, variantId, quantity },
+        },
+        headers: {
+          'X-Shop-Id': SHOPS.de,
         },
       })
     } catch (error) {
@@ -100,9 +103,12 @@ export class BasketPage {
 
   async emptyBasket(itemKey: string) {
     try {
-      await this.page.request.post('/de/api/rpc/removeItemFromBasket', {
+      await this.page.request.post('/api/rpc/removeItemFromBasket', {
         data: {
           payload: { itemKey },
+        },
+        headers: {
+          'X-Shop-Id': SHOPS.de,
         },
       })
     } catch (error) {

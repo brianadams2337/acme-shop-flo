@@ -1,4 +1,5 @@
 import type { Locator, Page } from '@playwright/test'
+import { SHOPS } from '../support/constants'
 
 export class AccountPage {
   readonly page: Page
@@ -113,9 +114,12 @@ export class AccountPage {
 
   async userAuthentication(email: string, password: string) {
     try {
-      await this.page.request.post('/de/api/rpc/oauthLogin', {
+      await this.page.request.post('/api/rpc/oauthLogin', {
         data: {
           payload: { email, password },
+        },
+        headers: {
+          'X-Shop-Id': SHOPS.de,
         },
       })
     } catch (error) {

@@ -1,0 +1,67 @@
+<template>
+  <div
+    id="a11y-skip-links"
+    class="flex h-0 items-center justify-center gap-4 opacity-0 focus-within:h-20 focus-within:opacity-100"
+  >
+    <SFButton
+      variant="secondary"
+      :aria-label="$t('a11y.skip_to_main')"
+      @click="focusMainContent"
+    >
+      {{ $t('a11y.skip_to_main') }}
+    </SFButton>
+    <SFButton
+      variant="secondary"
+      :aria-label="$t('a11y.skip_to_search')"
+      @click="focusSearch"
+    >
+      {{ $t('a11y.skip_to_search') }}
+    </SFButton>
+  </div>
+</template>
+
+<script setup lang="ts">
+import { nextTick } from 'vue'
+import { SFButton } from '#storefront-ui/components'
+import { useDefaultBreakpoints } from '#storefront-ui/composables'
+
+const isMobileSidebarOpen = defineModel('isMobileSidebarOpen', {
+  type: Boolean,
+})
+
+const { greaterOrEqual } = useDefaultBreakpoints()
+const isDesktopLayout = greaterOrEqual('lg')
+
+/**
+ * Provides a way to skip all focusable elements and jump directly to the search field.
+ * This improves accessibility by allowing users to bypass navigation links and other repetitive elements.
+ *
+ * @see https://webaim.org/techniques/skipnav/
+ */
+const focusSearch = async () => {
+  const id = isDesktopLayout.value ? 'search-desktop' : 'search-mobile'
+  const search = document.getElementById(id)
+  const form = search?.querySelector('form')
+
+  if (!search || !form) {
+    return
+  }
+
+  if (!isDesktopLayout.value) {
+    isMobileSidebarOpen.value = true
+    await nextTick()
+  }
+
+  form.focus({ preventScroll: true })
+}
+
+/**
+ * Provides a way to skip all focusable elements and jump directly to the main content.
+ * This improves accessibility by allowing users to bypass navigation links and other repetitive elements.
+ *
+ * @see https://webaim.org/techniques/skipnav/
+ */
+const focusMainContent = () => {
+  document.querySelector('main')?.focus({ preventScroll: true })
+}
+</script>

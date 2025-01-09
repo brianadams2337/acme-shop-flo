@@ -1,4 +1,4 @@
-import type { ISbStoriesParams } from 'storyblok-js-client'
+import type { ISbStoriesParams } from '@storyblok/vue'
 import { useStoryblokApi } from '@storyblok/vue'
 import type { SbStory } from '../types/storyblok'
 import { useDefaultStoryblokOptions } from './useDefaultStoryblokOptions'

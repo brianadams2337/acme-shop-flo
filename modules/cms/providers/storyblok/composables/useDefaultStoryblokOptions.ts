@@ -1,4 +1,4 @@
-import type { ISbStoriesParams } from 'storyblok-js-client'
+import type { ISbStoriesParams } from '@storyblok/vue'
 import { useRoute } from '#app/composables/router'
 import { useCurrentShop } from '#storefront/composables'
 

@@ -1,4 +1,4 @@
-import type { ISbLinkURLObject, ISbStoryData } from 'storyblok-js-client'
+import type { ISbLinkURLObject, ISbStoryData } from '@storyblok/vue'
 import type * as Storyblok from './storyblok.gen.d'
 import type { RouteLocationRaw } from '#vue-router'
 

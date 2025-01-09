@@ -1,12 +1,12 @@
 <script setup lang="ts">
-import type { ISbComponentType } from 'storyblok-js-client'
+import type { StoryblokComponentType } from '@storyblok/vue'
 import { ref, resolveDynamicComponent } from 'vue'
 import { getComponentName } from '../../../utils/helpers'
 
 export type SbBlokKeyDataTypes = string | number | object | boolean | undefined
 
 const props = defineProps<{
-  blok: ISbComponentType<string>
+  blok: StoryblokComponentType<string>
 }>()
 
 const blokRef = ref()

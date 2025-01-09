@@ -4,10 +4,10 @@
   </div>
 </template>
 
-<script setup lang="ts" generic="T extends ISbComponentType<string>">
+<script setup lang="ts" generic="T extends StoryblokComponentType<string>">
 import { computed, defineOptions } from 'vue'
 import { useSeoMeta } from '@unhead/vue'
-import type { ISbStoryData, ISbComponentType } from 'storyblok-js-client'
+import type { ISbStoryData, StoryblokComponentType } from '@storyblok/vue'
 import type { SbSeo, SbContentPage, SbPage } from '../types'
 import CMSStoryblokComponent from './CMSStoryblokComponent.vue'
 

@@ -6,7 +6,7 @@
     />
     <SFPageContainer>
       <SFHeadline class="mb-10 max-md:hidden" size="xl" tag="h1">
-        {{ $t('login_page.login.title') }}
+        {{ $t('navigation.my_account') }}
       </SFHeadline>
       <div
         v-if="user"

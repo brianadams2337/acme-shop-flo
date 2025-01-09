@@ -4233,10 +4233,10 @@
     defu "^6.1.4"
     knitwork "^1.1.0"
 
-"@scayle/omnichannel-nuxt@4.0.3":
-  version "4.0.3"
-  resolved "https://registry.yarnpkg.com/@scayle/omnichannel-nuxt/-/omnichannel-nuxt-4.0.3.tgz#d061ed9bbe0ac0289259181691eac869bd39559b"
-  integrity sha512-zUjHNxLx9acBrJQcXYIiSgRV7zgpNx9I7Ajewuithfpswm2X6Y3L94A6gXKzHuQ8ng4+rAx+59xBRt7ejrQfBQ==
+"@scayle/omnichannel-nuxt@4.0.4":
+  version "4.0.4"
+  resolved "https://registry.yarnpkg.com/@scayle/omnichannel-nuxt/-/omnichannel-nuxt-4.0.4.tgz#043f4e5b7da06792b42dd1814f41d226a4ee5c7c"
+  integrity sha512-AR/pSqm5ker2ezElO12vdGTv5c6apSuE+4zHtWVPcYigz65dmd2G/VBqxZoZenPBQSUWG3KJ5ggdF2bCrJYq9A==
   dependencies:
     "@nuxt/kit" "^3.12.2"
     qs "^6.12.2"

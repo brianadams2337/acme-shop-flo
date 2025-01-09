@@ -1,10 +1,10 @@
 <template>
   <SFLink
-    class="inline-block w-fit px-1 py-px text-base tracking-tighter text-gray-600 duration-300 ease-out hover:translate-x-1 hover:rounded-[4px] hover:bg-gray-100 hover:transition-transform"
+    class="inline-block w-fit rounded px-1 py-px text-base tracking-tighter text-gray-600 duration-300 ease-out hover:bg-gray-100"
     :class="{
       'text-status-error hover:bg-status-error/10': isSale,
       'bg-status-error/10': isSale && isActive,
-      'translate-x-1 rounded-[4px] bg-gray-100 font-medium text-gray-900 transition-transform':
+      'translate-x-1 rounded bg-gray-100 font-medium text-gray-900 transition-transform':
         isActive,
     }"
     :to="buildCategoryPath(props.category)"

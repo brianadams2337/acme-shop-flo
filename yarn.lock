@@ -2757,24 +2757,25 @@
     vue-i18n "^10.0.3"
     vue-router "^4.5.0"
 
-"@nuxtjs/tailwindcss@6.12.2":
-  version "6.12.2"
-  resolved "https://registry.yarnpkg.com/@nuxtjs/tailwindcss/-/tailwindcss-6.12.2.tgz#3fa41b0b9361cd69ec14934f800e66225b3c9e1f"
-  integrity sha512-qPJiFH67CkTj/2kBGBzqXihOD1rQXMsbVS4vdQvfBxOBLPfGhU1yw7AATdhPl2BBjO2krjJLuZj39t7dnDYOwg==
+"@nuxtjs/tailwindcss@6.13.0":
+  version "6.13.0"
+  resolved "https://registry.yarnpkg.com/@nuxtjs/tailwindcss/-/tailwindcss-6.13.0.tgz#1e9a93f7e00a074f664079440478fdff32af6963"
+  integrity sha512-AU3PEJZujQBR53I16NMywmhgQw2AJlIjgE8X25BBk3o+6XcW8WI1y80m7THaCNOm/AX1YHPM3ZQbJuW7um3kWw==
   dependencies:
-    "@nuxt/kit" "^3.13.2"
+    "@nuxt/kit" "^3.15.1"
     autoprefixer "^10.4.20"
-    consola "^3.2.3"
+    c12 "^2.0.1"
+    consola "^3.3.3"
     defu "^6.1.4"
-    h3 "^1.13.0"
+    h3 "^1.13.1"
     klona "^2.0.6"
-    pathe "^1.1.2"
-    postcss "^8.4.47"
-    postcss-nesting "^13.0.0"
+    pathe "^2.0.1"
+    postcss "^8.4.49"
+    postcss-nesting "^13.0.1"
     tailwind-config-viewer "^2.0.4"
-    tailwindcss "~3.4.13"
+    tailwindcss "~3.4.17"
     ufo "^1.5.4"
-    unctx "^2.3.1"
+    unctx "^2.4.1"
 
 "@oclif/core@^3.27.0":
   version "3.27.0"
@@ -10778,7 +10779,7 @@ levn@~0.3.0:
     prelude-ls "~1.1.2"
     type-check "~0.3.2"
 
-lilconfig@^2.0.5, lilconfig@^2.1.0:
+lilconfig@^2.0.5:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/lilconfig/-/lilconfig-2.1.0.tgz#78e23ac89ebb7e1bfbf25b18043de756548e7f52"
   integrity sha512-utWOt/GHzuUxnLKxB6dk81RoOeoNeHgbrXiuGk4yyF5qlRz+iIVWu56E2fqGHFrXz0QNUhLB/8nKqvRH66JKGQ==
@@ -13066,7 +13067,7 @@ postcss-nested@^6.2.0:
   dependencies:
     postcss-selector-parser "^6.1.1"
 
-postcss-nesting@^13.0.0:
+postcss-nesting@^13.0.1:
   version "13.0.1"
   resolved "https://registry.yarnpkg.com/postcss-nesting/-/postcss-nesting-13.0.1.tgz#c405796d7245a3e4c267a9956cacfe9670b5d43e"
   integrity sha512-VbqqHkOBOt4Uu3G8Dm8n6lU5+9cJFxiuty9+4rcoyRPO9zZS1JIs6td49VIoix3qYqELHlJIn46Oih9SAKo+yQ==
@@ -14846,7 +14847,7 @@ tailwind-config-viewer@^2.0.4:
     portfinder "^1.0.26"
     replace-in-file "^6.1.0"
 
-tailwindcss@3.4.17:
+tailwindcss@3.4.17, tailwindcss@~3.4.17:
   version "3.4.17"
   resolved "https://registry.yarnpkg.com/tailwindcss/-/tailwindcss-3.4.17.tgz#ae8406c0f96696a631c790768ff319d46d5e5a63"
   integrity sha512-w33E2aCvSDP0tW9RZuNXadXlkHXqFzSkQew/aIa2i/Sj8fThxwovwlXHSPXTbAHwEIhBFXAedUhP2tueAKP8Og==
@@ -14861,34 +14862,6 @@ tailwindcss@3.4.17:
     is-glob "^4.0.3"
     jiti "^1.21.6"
     lilconfig "^3.1.3"
-    micromatch "^4.0.8"
-    normalize-path "^3.0.0"
-    object-hash "^3.0.0"
-    picocolors "^1.1.1"
-    postcss "^8.4.47"
-    postcss-import "^15.1.0"
-    postcss-js "^4.0.1"
-    postcss-load-config "^4.0.2"
-    postcss-nested "^6.2.0"
-    postcss-selector-parser "^6.1.2"
-    resolve "^1.22.8"
-    sucrase "^3.35.0"
-
-tailwindcss@~3.4.13:
-  version "3.4.15"
-  resolved "https://registry.yarnpkg.com/tailwindcss/-/tailwindcss-3.4.15.tgz#04808bf4bf1424b105047d19e7d4bfab368044a9"
-  integrity sha512-r4MeXnfBmSOuKUWmXe6h2CcyfzJCEk4F0pptO5jlnYSIViUkVmsawj80N5h2lO3gwcmSb4n3PuN+e+GC1Guylw==
-  dependencies:
-    "@alloc/quick-lru" "^5.2.0"
-    arg "^5.0.2"
-    chokidar "^3.6.0"
-    didyoumean "^1.2.2"
-    dlv "^1.1.3"
-    fast-glob "^3.3.2"
-    glob-parent "^6.0.2"
-    is-glob "^4.0.3"
-    jiti "^1.21.6"
-    lilconfig "^2.1.0"
     micromatch "^4.0.8"
     normalize-path "^3.0.0"
     object-hash "^3.0.0"
@@ -15366,6 +15339,16 @@ unctx@^2.3.1:
     magic-string "^0.30.0"
     unplugin "^1.3.1"
 
+unctx@^2.4.1:
+  version "2.4.1"
+  resolved "https://registry.yarnpkg.com/unctx/-/unctx-2.4.1.tgz#93346a98d4a38c64cc5861f6098f4ce7c6f8164a"
+  integrity sha512-AbaYw0Nm4mK4qjhns67C+kgxR2YWiwlDBPzxrN8h8C6VtAdCgditAY5Dezu3IJy4XVqAnbrXt9oQJvsn3fyozg==
+  dependencies:
+    acorn "^8.14.0"
+    estree-walker "^3.0.3"
+    magic-string "^0.30.17"
+    unplugin "^2.1.0"
+
 underscore@1.12.1:
   version "1.12.1"
   resolved "https://registry.yarnpkg.com/underscore/-/underscore-1.12.1.tgz#7bb8cc9b3d397e201cf8553336d262544ead829e"
@@ -15596,7 +15579,7 @@ unplugin@^2.0.0:
     acorn "^8.14.0"
     webpack-virtual-modules "^0.6.2"
 
-unplugin@^2.1.2:
+unplugin@^2.1.0, unplugin@^2.1.2:
   version "2.1.2"
   resolved "https://registry.yarnpkg.com/unplugin/-/unplugin-2.1.2.tgz#3a0939061c0076f1a8178e5d4223df63ee62c741"
   integrity sha512-Q3LU0e4zxKfRko1wMV2HmP8lB9KWislY7hxXpxd+lGx0PRInE4vhMBVEZwpdVYHvtqzhSrzuIfErsob6bQfCzw==

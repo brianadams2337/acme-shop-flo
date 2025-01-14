@@ -13013,14 +13013,14 @@ postcss-discard-overridden@^7.0.0:
   resolved "https://registry.yarnpkg.com/postcss-discard-overridden/-/postcss-discard-overridden-7.0.0.tgz#b123ea51e3d4e1d0a254cf71eaff1201926d319c"
   integrity sha512-GmNAzx88u3k2+sBTZrJSDauR0ccpE24omTQCVmaTTZFz1du6AasspjaUPMJ2ud4RslZpoFKyf+6MSPETLojc6w==
 
-postcss-html@1.7.0:
-  version "1.7.0"
-  resolved "https://registry.yarnpkg.com/postcss-html/-/postcss-html-1.7.0.tgz#06c7408f9a1be3b89643c916d5dcd99fb1f069a0"
-  integrity sha512-MfcMpSUIaR/nNgeVS8AyvyDugXlADjN9AcV7e5rDfrF1wduIAGSkL4q2+wgrZgA3sHVAHLDO9FuauHhZYW2nBw==
+postcss-html@1.8.0:
+  version "1.8.0"
+  resolved "https://registry.yarnpkg.com/postcss-html/-/postcss-html-1.8.0.tgz#2ea1e9d6c53f04ea994135219d3bd8a9e380e13b"
+  integrity sha512-5mMeb1TgLWoRKxZ0Xh9RZDfwUUIqRrcxO2uXO+Ezl1N5lqpCiSU5Gk6+1kZediBfBHFtPCdopr2UZ2SgUsKcgQ==
   dependencies:
     htmlparser2 "^8.0.0"
     js-tokens "^9.0.0"
-    postcss "^8.4.0"
+    postcss "^8.5.0"
     postcss-safe-parser "^6.0.0"
 
 postcss-import@16.1.0:
@@ -13265,7 +13265,7 @@ postcss-value-parser@^4.0.0, postcss-value-parser@^4.2.0:
   resolved "https://registry.yarnpkg.com/postcss-value-parser/-/postcss-value-parser-4.2.0.tgz#723c09920836ba6d3e5af019f92bc0971c02e514"
   integrity sha512-1NNCs6uurfkVbeXG4S8JFT9t19m45ICnif8zWLd5oPSZ50QnwMfK+H3jv408d4jw/7Bttv5axS5IiHoLaVNHeQ==
 
-postcss@8.5.0:
+postcss@8.5.0, postcss@^8.5.0:
   version "8.5.0"
   resolved "https://registry.yarnpkg.com/postcss/-/postcss-8.5.0.tgz#15244b9fd65f809b2819682456f0e7e1e30c145b"
   integrity sha512-27VKOqrYfPncKA2NrFOVhP5MGAfHKLYn/Q0mz9cNQyRAKYi3VNHwYU2qKKqPCqgBmeeJ0uAFB56NumXZ5ZReXg==
@@ -13274,7 +13274,7 @@ postcss@8.5.0:
     picocolors "^1.1.1"
     source-map-js "^1.2.1"
 
-postcss@^8.4.0, postcss@^8.4.4, postcss@^8.4.43, postcss@^8.4.47, postcss@^8.4.48, postcss@^8.4.49:
+postcss@^8.4.4, postcss@^8.4.43, postcss@^8.4.47, postcss@^8.4.48, postcss@^8.4.49:
   version "8.4.49"
   resolved "https://registry.yarnpkg.com/postcss/-/postcss-8.4.49.tgz#4ea479048ab059ab3ae61d082190fabfd994fe19"
   integrity sha512-OCVPnIObs4N29kxTjzLfUryOkvZEq+pf8jTF0lg8E7uETuWHA+v7j3c/xJmiqpX450191LlmZfUKkXxkTry7nA==

@@ -1,10 +1,6 @@
 import { expect, test } from '../fixtures/fixtures'
 import { isMobile } from '../support/utils'
-import {
-  BASKET_TEST_DATA,
-  E2E_BASKET_URL,
-  SEARCH_SUGGESTIONS,
-} from '../support/constants'
+import { E2E_BASKET_URL, SEARCH_SUGGESTIONS } from '../support/constants'
 
 test('C2139186: E2E from Home to Checkout - happy path', async ({
   homePage,
@@ -81,7 +77,9 @@ test('C2139186: E2E from Home to Checkout - happy path', async ({
 
   await test.step('Empty Basket to have clean state after test execution', async () => {
     await expect(async () => {
-      await basketPage.emptyBasket(BASKET_TEST_DATA.itemKeyBasketE2E)
+      await header.visitBasketPage()
+      await expect(page).toHaveURL(E2E_BASKET_URL)
+      await basketPage.removeItemFromBasket()
     }).toPass()
   })
 })

@@ -1,9 +1,11 @@
 import type { Locator, Page } from '@playwright/test'
-import { HOMEPAGE_PATH_DE, SHOPS } from '../support/constants'
+import { HOMEPAGE_PATH_DE } from '../support/constants'
 import { expect } from '../fixtures/fixtures'
+import type { RPC } from './components/rpc'
 
 export class BasketPage {
   readonly page: Page
+  readonly rpc: RPC
   readonly checkoutButton: Locator
   readonly productInBasket: Locator
   readonly productImage: Locator
@@ -18,8 +20,9 @@ export class BasketPage {
   readonly removeItemButton: Locator
   readonly confirmRemoveItemButton: Locator
 
-  constructor(page: Page) {
+  constructor(page: Page, rpc: RPC) {
     this.page = page
+    this.rpc = rpc
     this.checkoutButton = page.getByTestId('checkout-link')
     this.productInBasket = page.getByTestId('basket-card')
     this.productImage = page
@@ -74,19 +77,11 @@ export class BasketPage {
     await this.page.waitForLoadState('networkidle')
   }
 
-  async addProductToBasket(
-    variantId: number,
-    quantity: number,
-    promotionId?: number,
-  ) {
+  async addProductToBasket(variantId: number, quantity: number) {
     try {
-      await this.page.request.post('/api/rpc/addItemToBasket', {
-        data: {
-          payload: { promotionId, variantId, quantity },
-        },
-        headers: {
-          'X-Shop-Id': SHOPS.de,
-        },
+      await this.rpc.call('addItemToBasket', {
+        variantId,
+        quantity,
       })
     } catch (error) {
       console.error('Error adding item to basket:', error)
@@ -103,13 +98,8 @@ export class BasketPage {
 
   async emptyBasket(itemKey: string) {
     try {
-      await this.page.request.post('/api/rpc/removeItemFromBasket', {
-        data: {
-          payload: { itemKey },
-        },
-        headers: {
-          'X-Shop-Id': SHOPS.de,
-        },
+      await this.rpc.call('removeItemFromBasket', {
+        itemKey,
       })
     } catch (error) {
       console.error('Error removing item from basket:', error)

@@ -168,8 +168,3 @@ export const SORTING = {
   priceAsc: 'price_asc',
   reductionDesc: 'reduction_desc',
 }
-
-export const SHOPS = {
-  de: '1918',
-  us: '1919',
-}

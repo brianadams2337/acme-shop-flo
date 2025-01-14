@@ -6,8 +6,10 @@ test('C2132533 Verify Orders page - user has orders', async ({
   homePage,
   accountPage,
   baseURL,
+  page,
 }) => {
   await homePage.visitPage()
+  await page.waitForLoadState('networkidle')
   await accountPage.userAuthentication(
     LOGGED_IN_USER_DATA.email,
     LOGGED_IN_USER_DATA.password,
@@ -25,8 +27,10 @@ test('C2132126 Verify Orders page - user without orders', async ({
   homePage,
   accountPage,
   baseURL,
+  page,
 }) => {
   await homePage.visitPage()
+  await page.waitForLoadState('networkidle')
   await accountPage.userAuthentication(
     USER_WITHOUT_ORDERS.email,
     USER_WITHOUT_ORDERS.password,

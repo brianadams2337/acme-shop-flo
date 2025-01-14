@@ -1,9 +1,11 @@
 import type { Locator, Page } from '@playwright/test'
 import { isMobile } from '../support/utils'
-import { SHOPS } from '../support/constants'
+import type { RPC } from './components/rpc'
 
 export class WishlistPage {
-  readonly page: Page
+  private readonly page: Page
+  readonly rpc: RPC
+
   readonly emptyState: Locator
   readonly wishlistCount: Locator
   readonly buttonContinueShopping: Locator
@@ -24,8 +26,9 @@ export class WishlistPage {
   readonly buttonRemoveFromWishlist: Locator
   readonly slideInOverflow: Locator
 
-  constructor(page: Page) {
+  constructor(page: Page, rpc: RPC) {
     this.page = page
+    this.rpc = rpc
     this.emptyState = page.getByTestId('empty-state')
     this.wishlistCount = page.getByTestId('wishlist-count')
     this.buttonContinueShopping = page.getByTestId('button-continue-shopping')
@@ -62,13 +65,8 @@ export class WishlistPage {
 
   async addProductToWishlist(productId: number) {
     try {
-      await this.page.request.post('/api/rpc/addItemToWishlist', {
-        data: {
-          payload: { productId },
-        },
-        headers: {
-          'X-Shop-Id': SHOPS.de,
-        },
+      await this.rpc.call('addItemToWishlist', {
+        productId,
       })
     } catch (error) {
       console.error('Error adding item to wishlist:', error)

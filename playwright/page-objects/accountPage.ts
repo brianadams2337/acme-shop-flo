@@ -1,8 +1,9 @@
 import type { Locator, Page } from '@playwright/test'
-import { SHOPS } from '../support/constants'
+import type { RPC } from './components/rpc'
 
 export class AccountPage {
   readonly page: Page
+  readonly rpc: RPC
   readonly logoutButton: Locator
   readonly genderButtonGroup: Locator
   readonly userFirstName: Locator
@@ -22,8 +23,9 @@ export class AccountPage {
   readonly sectionPasswordRepeat: Locator
   readonly birthdateValidationLabel: Locator
 
-  constructor(page: Page) {
+  constructor(page: Page, rpc: RPC) {
     this.page = page
+    this.rpc = rpc
     this.logoutButton = page.getByTestId('logout-button')
     this.genderButtonGroup = page.getByTestId('radio-group-gender')
     this.userFirstName = page.getByTestId('user-first-name')
@@ -114,13 +116,9 @@ export class AccountPage {
 
   async userAuthentication(email: string, password: string) {
     try {
-      await this.page.request.post('/api/rpc/oauthLogin', {
-        data: {
-          payload: { email, password },
-        },
-        headers: {
-          'X-Shop-Id': SHOPS.de,
-        },
+      await this.rpc.call('oauthLogin', {
+        email,
+        password,
       })
     } catch (error) {
       console.error('Error authenticating user:', error)

@@ -22,8 +22,10 @@ import { CountryDetector } from '../page-objects/components/countryDetector'
 import { ShopSelector } from '../page-objects/components/shopSelector'
 import { StoreLocator } from '../page-objects/components/storeLocator'
 import { Sorting } from '../page-objects/components/sorting'
+import { RPC } from '../page-objects/components/rpc'
 
 interface Fixtures {
+  rpc: RPC
   homePage: HomePage
   mainNavigation: MainNavigation
   productListingPage: ProductListingPage
@@ -52,6 +54,9 @@ interface Fixtures {
 export type OutputMode = 'json' | 'html' | 'csv'
 
 export const test = base.extend<Fixtures>({
+  rpc: async ({ page }, use) => {
+    await use(new RPC(page))
+  },
   homePage: async ({ page }, use) => {
     const homePage = new HomePage(page)
     await use(homePage)
@@ -72,16 +77,16 @@ export const test = base.extend<Fixtures>({
     const header = new Header(page)
     await use(header)
   },
-  basketPage: async ({ page }, use) => {
-    const basketPage = new BasketPage(page)
+  basketPage: async ({ page, rpc }, use) => {
+    const basketPage = new BasketPage(page, rpc)
     await use(basketPage)
   },
   signinPage: async ({ page }, use) => {
     const signinPage = new SignInPage(page)
     await use(signinPage)
   },
-  accountPage: async ({ page }, use) => {
-    const accountPage = new AccountPage(page)
+  accountPage: async ({ page, rpc }, use) => {
+    const accountPage = new AccountPage(page, rpc)
     await use(accountPage)
   },
   toastMessage: async ({ page }, use) => {
@@ -108,8 +113,8 @@ export const test = base.extend<Fixtures>({
     const mobileNavigation = new MobileNavigation(page)
     await use(mobileNavigation)
   },
-  wishlistPage: async ({ page }, use) => {
-    const wishlistPage = new WishlistPage(page)
+  wishlistPage: async ({ page, rpc }, use) => {
+    const wishlistPage = new WishlistPage(page, rpc)
     await use(wishlistPage)
   },
   footer: async ({ page }, use) => {

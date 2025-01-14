@@ -2,10 +2,12 @@ import { expect, test } from '../fixtures/fixtures'
 import { getUserForBrowser } from '../support/utils'
 import { BASKET_TEST_DATA, CHECKOUT_URL } from '../support/constants'
 
-test.beforeEach(async ({ accountPage }, testInfo) => {
+test.beforeEach(async ({ accountPage, homePage, page }, testInfo) => {
   const projectName = testInfo.project.name
   const { email, password } = getUserForBrowser(projectName)
 
+  await homePage.visitPage()
+  await page.waitForLoadState('networkidle')
   await accountPage.userAuthentication(email, password)
 })
 

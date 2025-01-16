@@ -35,5 +35,6 @@ export class MainNavigation {
     await this.getMainCategory(mainCategory).hover()
     await this.desktopNavigationFlyout.waitFor()
     await this.getSubCategory(subCategory).click()
+    await this.page.waitForLoadState('domcontentloaded')
   }
 }

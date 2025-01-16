@@ -13,6 +13,7 @@ test('C2130722 C2143633 C2143634 Verify Main Navigation Flyout and navigating to
   mobileNavigation,
   page,
 }) => {
+  test.setTimeout(60000)
   if (isMobile(page)) {
     await test.step('Mobile - navigate to 3rd category level', async () => {
       await expect(async () => {

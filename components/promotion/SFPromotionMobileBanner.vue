@@ -2,7 +2,6 @@
   <SFPromotionMobileList v-if="isPromotionListShown" :items="promotions" />
   <div
     v-else
-    :key="currentPromotion?.id"
     :ref="(element) => setBannerRef(element as HTMLElement, 'bottom')"
     class="fixed bottom-0 z-80 flex max-h-32 w-full translate-y-0 cursor-pointer flex-col items-center justify-start rounded-tr-lg bg-blue p-4 text-sm text-white transition-transform duration-300 ease-in-out lg:hidden"
     :style="backgroundColorStyle"

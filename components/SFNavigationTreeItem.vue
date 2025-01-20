@@ -89,7 +89,7 @@ const iconUrl = computed(() => {
   if (!cdnUrl || !icon) {
     return
   }
-  return cdnUrl + icon
+  return URL.parse(icon, cdnUrl)?.toString()
 })
 
 const emit = defineEmits<{ 'mouseenter:navigation-item': [] }>()

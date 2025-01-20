@@ -18,6 +18,7 @@ import {
   isProductSuggestion,
   normalizePathRoute,
   routeList,
+  isNavigationItemSuggestion,
 } from '~/utils'
 
 export function useRouteHelpers() {
@@ -84,6 +85,13 @@ export function useRouteHelpers() {
     if (isCategorySuggestion(suggestion)) {
       const route = buildCategorySuggestionRoute(suggestion)
       return localePath(route)
+    }
+
+    if (isNavigationItemSuggestion(suggestion)) {
+      const route = buildNavigationTreeItemRoute(
+        suggestion.navigationItemSuggestion.navigationItem,
+      )
+      return route ? localePath(route.path) : undefined
     }
   }
 

@@ -49,6 +49,5 @@ it('should emit "click" result event when option was clicked', async () => {
   const { emitted, getAllByRole } = await getSearchResultsComponent()
   const options = await getAllByRole('option')
   await Promise.all(options.map((option) => fireEvent.click(option)))
-  expect(emitted()['click:result']).toHaveLength(3)
-  expect(emitted()['close']).toHaveLength(1)
+  expect(emitted()['click:result']).toHaveLength(4)
 })

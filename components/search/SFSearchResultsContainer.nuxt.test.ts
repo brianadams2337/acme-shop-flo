@@ -78,18 +78,6 @@ it('should render suggestions', async () => {
   expect(await getAllByRole('option')).toHaveLength(4)
 })
 
-it('should emit "close" event when "display all" link was clicked', async () => {
-  const { getByTestId, emitted } = await getSearchResultsContainerComponent(
-    'Test',
-    false,
-    categorySuggestion,
-    productSuggestion,
-    navigationItemSuggestion,
-  )
-  await fireEvent.click(getByTestId('display-all-results'))
-  expect(emitted()['close']).toHaveLength(1)
-})
-
 it('should emit "click:result" event when suggestion was clicked', async () => {
   const { getAllByRole, emitted } = await getSearchResultsContainerComponent(
     'Test',
@@ -100,5 +88,5 @@ it('should emit "click:result" event when suggestion was clicked', async () => {
   )
   const options = await getAllByRole('option')
   await Promise.all(options.map((option) => fireEvent.click(option)))
-  expect(emitted()['click:result']).toHaveLength(3)
+  expect(emitted()['click:result']).toHaveLength(4)
 })

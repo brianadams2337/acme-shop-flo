@@ -19,7 +19,7 @@
     <SFShowAllResultsLink
       :search-term="searchTerm"
       role="option"
-      @click="$emit('close')"
+      @click="$emit('click:result', 'show_all')"
     />
   </div>
 </template>
@@ -45,7 +45,7 @@ type Props = {
 defineProps<Props>()
 
 defineEmits<{
-  (e: 'click:result', value: SearchEntity): void
+  (e: 'click:result', value: SearchEntity | 'show_all'): void
   (e: 'close'): void
 }>()
 </script>

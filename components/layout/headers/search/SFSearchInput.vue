@@ -148,6 +148,7 @@ const trackSearchClickAndClose = (suggestion: SearchEntity | 'show_all') => {
       searchAction: 'search_term',
       searchDestination: route,
     })
+    closeAndReset()
     return
   }
   trackSearchSuggestionClick(searchQuery.value, suggestion)

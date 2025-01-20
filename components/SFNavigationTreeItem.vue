@@ -4,7 +4,7 @@
     v-bind="
       isLink
         ? {
-            to: pathParams?.path,
+            to: pathParams?.route,
             target: pathParams?.openInNew ? '_blank' : '_self',
             variant,
             raw: true,
@@ -95,18 +95,14 @@ const iconUrl = computed(() => {
 const emit = defineEmits<{ 'mouseenter:navigation-item': [] }>()
 
 const pathParams = computed(() => {
-  if (!navigationItem) {
-    return
-  }
   return buildNavigationTreeItemRoute(navigationItem)
 })
-const displayName = computed(() => navigationItem?.name)
+const displayName = computed(() => navigationItem.name)
 const disabled = computed<boolean>(() =>
   disabledLink !== undefined
     ? disabledLink
-    : !!navigationItem?.customData?.disabledLink,
+    : !!navigationItem.customData?.disabledLink,
 )
-
 const getStyle = (
   navigationTreeItem: NavigationTreeItem,
   fallbackBackgroundColor: `#${string}`,
@@ -126,7 +122,7 @@ const getStyle = (
 }
 
 const isLink = computed(() => {
-  return pathParams.value?.path && !disabled.value
+  return pathParams.value?.route && !disabled.value
 })
 const style = computed(() => {
   return getStyle(

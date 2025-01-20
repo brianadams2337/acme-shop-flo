@@ -178,18 +178,68 @@ describe('useRouteHelpers', () => {
   })
 
   describe('buildNavigationTreeItemRoute', () => {
-    it('should return correct path for a category navigation item ', () => {
+    it('should return correct path for a category navigation item', () => {
       const { buildNavigationTreeItemRoute } = useRouteHelpers()
       const route = buildNavigationTreeItemRoute(
         navigationItemCategoryFactory.build({
           category: categoryFactory.build({ path: '/category', id: 10 }),
+          filters: [],
         }),
       )
-      expect(route?.path).toBe('/de/c/category-10')
-      expect(route?.openInNew).toBe(false)
+      expect(route).toEqual({
+        route: {
+          path: '/de/c/category-10',
+          query: {},
+        },
+        openInNew: false,
+      })
     })
 
-    it('should return bo route when category of category navigation item is missing ', () => {
+    it('should return correct path for a category navigation item with filters', () => {
+      const { buildNavigationTreeItemRoute } = useRouteHelpers()
+      const route = buildNavigationTreeItemRoute(
+        navigationItemCategoryFactory.build({
+          category: categoryFactory.build({ path: '/category', id: 10 }),
+          filters: [
+            {
+              type: 'attribute',
+              attributeFilter: {
+                group: {
+                  id: 1001,
+                  key: 'color',
+                  label: 'Detail Color',
+                  type: '',
+                  multiSelect: false,
+                },
+                values: [
+                  {
+                    id: 10,
+                    value: 'blau',
+                    label: 'Blau',
+                  },
+                  {
+                    id: 13,
+                    value: 'rot',
+                    label: 'Rot',
+                  },
+                ],
+              },
+            },
+          ],
+        }),
+      )
+      expect(route).toEqual({
+        route: {
+          path: '/de/c/category-10',
+          query: {
+            'filters[color]': '10,13',
+          },
+        },
+        openInNew: false,
+      })
+    })
+
+    it('should return bo route when category of category navigation item is missing', () => {
       const { buildNavigationTreeItemRoute } = useRouteHelpers()
       const route = buildNavigationTreeItemRoute(
         navigationItemCategoryFactory.build({
@@ -206,8 +256,11 @@ describe('useRouteHelpers', () => {
           page: '/page',
         }),
       )
-      expect(route?.path).toBe('/page')
-      expect(route?.openInNew).toBe(true)
+
+      expect(route).toEqual({
+        route: '/page',
+        openInNew: true,
+      })
     })
 
     it('should return correct route for an external navigation item that opens in a new tab', () => {
@@ -220,8 +273,11 @@ describe('useRouteHelpers', () => {
           },
         }),
       )
-      expect(route?.path).toBe('https://scayle.dev')
-      expect(route?.openInNew).toBe(true)
+
+      expect(route).toEqual({
+        route: 'https://scayle.dev',
+        openInNew: true,
+      })
     })
     it('should return correct route for an external navigation item', () => {
       const { buildNavigationTreeItemRoute } = useRouteHelpers()
@@ -233,8 +289,11 @@ describe('useRouteHelpers', () => {
           },
         }),
       )
-      expect(route?.path).toBe('https://scayle.dev')
-      expect(route?.openInNew).toBe(false)
+
+      expect(route).toEqual({
+        route: 'https://scayle.dev',
+        openInNew: false,
+      })
     })
   })
 })

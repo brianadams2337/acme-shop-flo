@@ -130,28 +130,36 @@ export function useRouteHelpers() {
     return localePath(`${routeList.category.path}${path}-${id}`)
   }
 
-  const buildNavigationTreeItemRoute = (navigationItem: NavigationTreeItem) => {
+  const buildNavigationTreeItemRoute = (
+    navigationItem: NavigationTreeItem,
+  ): { route: RouteLocationRaw; openInNew: boolean } | undefined => {
     switch (navigationItem.type) {
-      case 'category':
+      case 'category': {
         if (navigationItem.category) {
           return {
-            path: buildCategoryPath(navigationItem.category),
+            route: {
+              path: buildCategoryPath(navigationItem.category),
+              query: buildFiltersQuery(navigationItem.filters),
+            },
             openInNew: false,
           }
         }
         return undefined
+      }
 
-      case 'page':
+      case 'page': {
         return {
-          path: getLocalizedRoute(navigationItem.page),
+          route: getLocalizedRoute(navigationItem.page),
           openInNew: true,
         }
-      case 'external':
-      case 'individual-link':
+      }
+
+      case 'individual-link': {
         return {
-          path: getLocalizedRoute(navigationItem.options?.url ?? ''),
+          route: getLocalizedRoute(navigationItem.options?.url ?? ''),
           openInNew: navigationItem.options?.isOpenInNewWindow ?? false,
         }
+      }
       default:
         return undefined
     }

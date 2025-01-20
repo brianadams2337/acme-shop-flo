@@ -25,7 +25,7 @@
           <template v-if="item.children.length === 0">
             <SFLink
               class="grow"
-              :to="buildNavigationTreeItemRoute(item)?.path || ''"
+              :to="buildNavigationTreeItemRoute(item)?.route || ''"
               :target="
                 buildNavigationTreeItemRoute(item)?.openInNew
                   ? '_blank'

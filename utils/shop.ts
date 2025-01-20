@@ -3,14 +3,11 @@ import type { PublicShopConfig } from '@scayle/storefront-nuxt'
 export function getShopName(locale: string, includeLanguage: boolean = false) {
   const [languageCode, regionCode] = locale.split('-')
 
-  const language = new Intl.DisplayNames([locale], {
-    type: 'language',
-  }).of(languageCode)
   const region = new Intl.DisplayNames([locale], {
     type: 'region',
   }).of(regionCode)
 
-  return includeLanguage ? `${region} | ${language}` : region
+  return includeLanguage ? `${region} | ${languageCode.toUpperCase()}` : region
 }
 
 export function hasMultipleShopsForCountry(

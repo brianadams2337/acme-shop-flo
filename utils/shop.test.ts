@@ -9,11 +9,11 @@ describe('getShopName', () => {
     expect(getShopName('es-US')).toBe('Estados Unidos')
   })
 
-  it('should include the language when includeLanguage = true', () => {
-    expect(getShopName('en-DE', true)).toBe('Germany | English')
-    expect(getShopName('de-DE', true)).toBe('Deutschland | Deutsch')
-    expect(getShopName('en-US', true)).toBe('United States | English')
-    expect(getShopName('es-US', true)).toBe('Estados Unidos | español')
+  it('should include the language code when includeLanguage = true', () => {
+    expect(getShopName('en-DE', true)).toBe('Germany | EN')
+    expect(getShopName('de-DE', true)).toBe('Deutschland | DE')
+    expect(getShopName('en-US', true)).toBe('United States | EN')
+    expect(getShopName('es-US', true)).toBe('Estados Unidos | ES')
   })
 })
 

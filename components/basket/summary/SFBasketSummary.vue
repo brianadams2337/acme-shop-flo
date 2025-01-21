@@ -7,8 +7,8 @@
     </SFHeadline>
     <div class="flex justify-between">
       <h2>{{ $t('basket.subtotal') }}</h2>
-      <span v-if="totalCost">
-        {{ formatCurrency(totalCost) }}
+      <span v-if="subtotal">
+        {{ formatCurrency(subtotal) }}
       </span>
     </div>
     <div class="flex justify-between">
@@ -50,7 +50,16 @@ import { useBasketReductions } from '~/composables'
 
 const { cost, items } = await useBasket()
 
-const totalCost = computed<number | undefined>(() => cost.value?.withTax)
+const subtotal = computed(() => {
+  if (!cost.value) {
+    return
+  }
+  const totalReductions = cost.value.appliedReductions.reduce(
+    (total, { amount }) => total + amount.absoluteWithTax,
+    0,
+  )
+  return cost.value.withTax + totalReductions
+})
 
 const { hasReductions } = useBasketReductions(cost, items)
 

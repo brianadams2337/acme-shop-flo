@@ -13,14 +13,16 @@
           {{ selectedInterval?.label }}
         </template>
         <template #item="{ item, selectItem }">
-          <div
+          <SFButton
             :key="JSON.stringify(item)"
-            class="block cursor-pointer px-4 py-2 text-sm text-gray-700 hover:bg-gray-200 active:bg-gray-300"
+            variant="raw"
+            is-full-width
+            class="inline cursor-pointer !justify-start px-4 py-2 text-sm text-gray-700 hover:bg-gray-200 active:bg-gray-300"
             @keydown.enter="selectItem(item)"
             @click="selectItem(item)"
           >
             {{ item?.label }}
-          </div>
+          </SFButton>
         </template>
       </SFDropdown>
     </div>
@@ -43,9 +45,11 @@
           }}
         </template>
         <template #item="{ item, selectItem }">
-          <div
+          <SFButton
             :key="JSON.stringify(item)"
-            class="block cursor-pointer px-4 py-2 text-sm text-gray-700 hover:bg-gray-200 active:bg-gray-300"
+            variant="raw"
+            is-full-width
+            class="block cursor-pointer !justify-start px-4 py-2 text-sm text-gray-700 hover:bg-gray-200 active:bg-gray-300"
             @keydown.enter="selectItem(item)"
             @click="selectItem(item)"
           >
@@ -55,7 +59,7 @@
                   item?.day + $t(`global.ordinal_suffixes.${ordinalSuffixKey}`),
               })
             }}
-          </div>
+          </SFButton>
         </template>
       </SFDropdown>
     </div>

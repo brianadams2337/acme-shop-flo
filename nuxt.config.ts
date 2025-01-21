@@ -110,8 +110,7 @@ export default defineNuxtConfig({
   debug: stringToBoolean(process.env.NUXT_DEBUGGING_ENABLED),
 
   // https://nuxt.com/blog/v3-10#bundler-module-resolution
-  // Some dependencies are currently not yet compatible with `moduleResolution: bundler`:
-  // - nuxt-gtm
+  // Some dependencies are currently not yet compatible with `moduleResolution: bundler`.
   future: {
     typescriptBundlerResolution: false,
   },
@@ -387,7 +386,7 @@ export default defineNuxtConfig({
         'view_promotion',
       ],
       /** nuxt-gtm Module Runtime Configuration
-       * https://github.com/zadigetvoltaire/nuxt-gtm#readme */
+       * see `./modules/gtm/README.md` */
       gtm: {
         id: process.env.NUXT_PUBLIC_GTM_ID ?? '', // Override: NUXT_PUBLIC_GTM_ID
         debug: false, // Override: NUXT_PUBLIC_GTM_DEBUG
@@ -461,8 +460,6 @@ export default defineNuxtConfig({
     '@vueuse/nuxt',
     // https://github.com/cpreston321/nuxt-swiper
     'nuxt-swiper',
-    // https://github.com/zadigetvoltaire/nuxt-gtm
-    '@zadigetvoltaire/nuxt-gtm',
     // https://nuxt.com/docs/getting-started/testing
     '@nuxt/test-utils/module',
     // https://eslint.nuxt.com/packages/module

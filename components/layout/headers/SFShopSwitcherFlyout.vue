@@ -1,5 +1,5 @@
 <template>
-  <SFSlideIn name="ShopSwitcherSlideIn">
+  <SFSlideIn ref="slideIn" name="ShopSwitcherSlideIn">
     <template #slide-in-header="">
       <div class="flex w-full items-center justify-between">
         <SFHeadline
@@ -25,7 +25,7 @@
     </template>
     <template #slide-in-body>
       <div class="flex flex-col overflow-hidden p-5 lg:w-96" role="menu">
-        <div v-if="availableLanguages.length > 1" class="mb-5">
+        <div v-if="showLanguageList" ref="languageList" class="mb-5">
           <div class="mb-4 text-md font-semi-bold-variable">
             {{ $t('shop_selector.choose_language') }}
           </div>
@@ -45,7 +45,8 @@
           </div>
         </div>
         <div
-          v-if="availableCountries.length > 1"
+          v-if="showCountryList"
+          ref="countryList"
           class="flex flex-col overflow-hidden"
         >
           <div class="mb-4 text-md font-semi-bold-variable">
@@ -78,14 +79,16 @@
   </SFSlideIn>
 </template>
 <script lang="ts" setup>
-import { computed } from 'vue'
+import { computed, useTemplateRef, watch, nextTick } from 'vue'
+import { useEventListener, onKeyStroke } from '@vueuse/core'
+import { useFocusTrap } from '@vueuse/integrations/useFocusTrap'
 import { useSwitchLocalePath, useI18n } from '#i18n'
 import { SFSlideIn, SFHeadline, SFButton } from '#storefront-ui/components'
 import { useSlideIn } from '#storefront-ui/composables'
 import { useCurrentShop, useAvailableShops } from '#storefront/composables'
 import { useTrackingEvents } from '~/composables/useTrackingEvents'
 
-const { close } = useSlideIn('ShopSwitcherSlideIn')
+const { close, isOpen } = useSlideIn('ShopSwitcherSlideIn')
 const currentShop = useCurrentShop()
 const availableShops = useAvailableShops()
 
@@ -122,19 +125,96 @@ const availableCountries = computed(() => {
     (shop) => shop.locale.split('-')[1],
   )
 
-  return (
-    Object.entries(grouped)
-      // .filter(([regionCode]) => regionCode !== currentRegion.value)
-      .map(([regionCode, shops]) => ({
-        name: regionTranslator.value.of(regionCode),
-        code: regionCode,
-        shop: shops[0],
-      }))
-      .toSorted((a, b) =>
-        a.name.localeCompare(b.name, currentShop.value.locale),
-      )
-  )
+  return Object.entries(grouped)
+    .map(([regionCode, shops]) => ({
+      name: regionTranslator.value.of(regionCode),
+      code: regionCode,
+      shop: shops[0],
+    }))
+    .toSorted((a, b) => a.name.localeCompare(b.name, currentShop.value.locale))
 })
+
+const showCountryList = computed(() => availableCountries.value.length > 1)
+const showLanguageList = computed(() => availableLanguages.value.length > 1)
+
+const slideInRef = useTemplateRef('slideIn')
+const { activate: activateSlideInTrap, deactivate: deactivateSlideInTrap } =
+  useFocusTrap(slideInRef, { escapeDeactivates: false })
+watch(isOpen, async (value) => {
+  if (value) {
+    await nextTick()
+    activateSlideInTrap()
+    if (showLanguageList.value) {
+      activateLanguageList()
+    } else {
+      activateCountryList()
+    }
+  } else {
+    deactivateCountryList()
+    deactivateLanguageList()
+    deactivateSlideInTrap()
+  }
+})
+
+onKeyStroke(
+  'Esc',
+  () => {
+    close()
+  },
+  { target: slideInRef },
+)
+
+const countryList = useTemplateRef('countryList')
+const { activate: activateCountryList, deactivate: deactivateCountryList } =
+  useFocusTrap(countryList, {
+    isKeyBackward: (keyEvent) => keyEvent.code === 'ArrowUp',
+    isKeyForward: (keyEvent) => keyEvent.code === 'ArrowDown',
+    escapeDeactivates: false,
+    allowOutsideClick: true,
+  })
+
+useEventListener(countryList, 'focusin', () => {
+  activateCountryList()
+})
+
+onKeyStroke(
+  'Tab',
+  (event) => {
+    if (showLanguageList.value) {
+      deactivateCountryList()
+      activateLanguageList()
+      event.stopPropagation()
+      event.preventDefault()
+    }
+  },
+  { target: countryList },
+)
+
+const languageList = useTemplateRef('languageList')
+const { activate: activateLanguageList, deactivate: deactivateLanguageList } =
+  useFocusTrap(languageList, {
+    isKeyBackward: (keyEvent) => keyEvent.code === 'ArrowUp',
+    isKeyForward: (keyEvent) => keyEvent.code === 'ArrowDown',
+    escapeDeactivates: false,
+    allowOutsideClick: true,
+  })
+
+useEventListener(languageList, 'focusin', () => {
+  activateLanguageList()
+})
+
+onKeyStroke(
+  'Tab',
+  () => {
+    if (showCountryList.value) {
+      deactivateLanguageList()
+      activateCountryList()
+      event.stopPropagation()
+      event.preventDefault()
+    }
+  },
+  { target: languageList },
+)
 
 const { switchToHomePage = true } = defineProps<{
   switchToHomePage?: boolean

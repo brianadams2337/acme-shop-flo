@@ -5016,13 +5016,13 @@
   dependencies:
     vue-demi "^0.13.11"
 
-"@vueuse/components@12.4.0":
-  version "12.4.0"
-  resolved "https://registry.yarnpkg.com/@vueuse/components/-/components-12.4.0.tgz#c56264a2c42459cd5bfb905c7102c415024e46f2"
-  integrity sha512-SVg7ymnBP7u814D1S+OfTIinT7Jq978/0wLgoS8knwDVZplPzn0zFrs+/fl8dcdeYGIv5hU45X0/+EUBEUFQDg==
+"@vueuse/components@12.5.0":
+  version "12.5.0"
+  resolved "https://registry.yarnpkg.com/@vueuse/components/-/components-12.5.0.tgz#9f7b2ef1b3bc585425847c9c426538c2966c4364"
+  integrity sha512-aLgEW8bidRZ4qkVOIl958NAev+XKYTtbfsIj5ObjiDwvBDqxmGVCwMQvWHUQN37tb8JSkRF22gTUbXNt0iSwLQ==
   dependencies:
-    "@vueuse/core" "12.4.0"
-    "@vueuse/shared" "12.4.0"
+    "@vueuse/core" "12.5.0"
+    "@vueuse/shared" "12.5.0"
     vue "^3.5.13"
 
 "@vueuse/core@12.4.0":
@@ -5055,13 +5055,13 @@
     upath "^2.0.1"
     vue-demi "*"
 
-"@vueuse/integrations@12.4.0":
-  version "12.4.0"
-  resolved "https://registry.yarnpkg.com/@vueuse/integrations/-/integrations-12.4.0.tgz#52c07910852f87b277b1748e08be919a4e762a1c"
-  integrity sha512-EZm+TLoZMeEwDnccnEqB54CvvcVKbVnJubOF380HqdyZAxWfQ8egnFCESdlXWEIbxFgjfhcGfZUvQx5Nqw9Ofw==
+"@vueuse/integrations@12.5.0":
+  version "12.5.0"
+  resolved "https://registry.yarnpkg.com/@vueuse/integrations/-/integrations-12.5.0.tgz#6496ea24772d087c8fec3973a471a6ab50f9e7c0"
+  integrity sha512-HYLt8M6mjUfcoUOzyBcX2RjpfapIwHPBmQJtTmXOQW845Y/Osu9VuTJ5kPvnmWJ6IUa05WpblfOwZ+P0G4iZsQ==
   dependencies:
-    "@vueuse/core" "12.4.0"
-    "@vueuse/shared" "12.4.0"
+    "@vueuse/core" "12.5.0"
+    "@vueuse/shared" "12.5.0"
     vue "^3.5.13"
 
 "@vueuse/metadata@12.4.0":

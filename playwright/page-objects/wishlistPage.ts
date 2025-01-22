@@ -35,7 +35,9 @@ export class WishlistPage {
     this.buttonSignIn = page.getByTestId('button-signin')
     this.emptyStateIcon = this.emptyState.getByTestId('empty-state-icon')
     this.emptyStateHeadline = this.emptyState.getByTestId('headline').nth(0)
-    this.emptyStateSubheadline = this.emptyState.getByTestId('headline').nth(1)
+    this.emptyStateSubheadline = this.emptyState.getByTestId(
+      'empty-state-subheadline',
+    )
     this.wishlistItemsWrapper = page.getByTestId('wishlist-items-wrapper')
     this.wishlistCard = this.wishlistItemsWrapper.getByTestId('wishlist-card')
     this.article = this.wishlistCard.getByTestId('article')

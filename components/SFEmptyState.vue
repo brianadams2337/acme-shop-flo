@@ -13,6 +13,7 @@
       <p
         v-if="description"
         class="mt-4 !block text-lg font-normal leading-5 text-gray-600"
+        data-testid="empty-state-subheadline"
       >
         {{ description }}
       </p>

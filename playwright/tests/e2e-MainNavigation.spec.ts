@@ -23,7 +23,7 @@ test('C2130722 C2143633 C2143634 Verify Main Navigation Flyout and navigating to
           NAVIGATION_TEST_ITEMS.categoryLevel3,
         )
         await expect(page).toHaveTitle(
-          `${NAVIGATION_TEST_ITEMS.mainCategory} - ${NAVIGATION_TEST_ITEMS.categoryLevel2} - ${NAVIGATION_TEST_ITEMS.categoryLevel3} - ${NAVIGATION_TEST_ITEMS.shopName}`,
+          `${NAVIGATION_TEST_ITEMS.mainCategory} - ${NAVIGATION_TEST_ITEMS.categoryLevel2} - ${NAVIGATION_TEST_ITEMS.categoryLevel3} | ${NAVIGATION_TEST_ITEMS.shopName}`,
         )
       }).toPass()
     })
@@ -42,7 +42,7 @@ test('C2130722 C2143633 C2143634 Verify Main Navigation Flyout and navigating to
           NAVIGATION_TEST_ITEMS.mainCategory,
         )
         await expect(page).toHaveTitle(
-          `${NAVIGATION_TEST_ITEMS.mainCategory} - ${NAVIGATION_TEST_ITEMS.shopName}`,
+          `${NAVIGATION_TEST_ITEMS.mainCategory} | ${NAVIGATION_TEST_ITEMS.shopName}`,
         )
       }).toPass()
     })
@@ -53,7 +53,7 @@ test('C2130722 C2143633 C2143634 Verify Main Navigation Flyout and navigating to
           NAVIGATION_TEST_ITEMS.categoryLevel3,
         )
         await expect(page).toHaveTitle(
-          `${NAVIGATION_TEST_ITEMS.mainCategory} - ${NAVIGATION_TEST_ITEMS.categoryLevel2} - ${NAVIGATION_TEST_ITEMS.categoryLevel3} - ${NAVIGATION_TEST_ITEMS.shopName}`,
+          `${NAVIGATION_TEST_ITEMS.mainCategory} - ${NAVIGATION_TEST_ITEMS.categoryLevel2} - ${NAVIGATION_TEST_ITEMS.categoryLevel3} | ${NAVIGATION_TEST_ITEMS.shopName}`,
         )
       }).toPass()
     })

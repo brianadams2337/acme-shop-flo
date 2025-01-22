@@ -10,7 +10,7 @@ export class BasketPage {
   readonly productInBasket: Locator
   readonly productImage: Locator
   readonly basketProductCard: Locator
-  readonly basketContainer: Locator
+  readonly emptyState: Locator
   readonly basketTitle: Locator
   readonly basketSubTitle: Locator
   readonly loginButton: Locator
@@ -29,9 +29,9 @@ export class BasketPage {
       .getByTestId('basket-card')
       .getByTestId('product-image')
     this.basketProductCard = page.getByTestId('basket-card')
-    this.basketContainer = page.getByTestId('basket-container')
-    this.basketTitle = this.basketContainer.getByTestId('headline').nth(0)
-    this.basketSubTitle = this.basketContainer.getByTestId('headline').nth(1)
+    this.emptyState = page.getByTestId('empty-state')
+    this.basketTitle = this.emptyState.getByTestId('headline').nth(0)
+    this.basketSubTitle = this.emptyState.getByTestId('empty-state-subheadline')
     this.loginButton = page.getByTestId('button-signin')
     this.continueButton = page.getByTestId('button-continue-shopping')
     this.productBrand = page

@@ -63,7 +63,7 @@ export const SEARCH_SUGGESTIONS = {
 export const BASKET_TEST_DATA = {
   emptyBasketTitleDE: 'Dein Warenkorb ist leer.',
   emptyBasketSubtitleDE:
-    'Du siehst hier eine Auflistung Deiner Produkte sobald sie in deinem Warenkorb sind.',
+    'Du siehst hier eine Auflistung deiner Produkte sobald sie in deinem Warenkorb sind.',
   productRegularVariantId: 320096,
   productRegularName: `Hose 'Essentials'`,
   productRegularBrand: 'ADIDAS ORIGINALS',

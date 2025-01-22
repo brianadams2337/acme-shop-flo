@@ -30,6 +30,7 @@
       >
         <template #dot>
           <button
+            tabindex="-1"
             class="flex size-4 cursor-pointer rounded-full bg-primary focus:outline-none"
           >
             <span class="m-auto size-3 rounded-full bg-white" />

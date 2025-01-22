@@ -6338,7 +6338,29 @@ contentful-batch-libs@^9.4.1:
     lodash.clonedeep "^4.5.0"
     uuid "^9.0.1"
 
-contentful-export@7.21.15, contentful-export@^7.19.147:
+contentful-export@7.21.16:
+  version "7.21.16"
+  resolved "https://registry.yarnpkg.com/contentful-export/-/contentful-export-7.21.16.tgz#c7b563c871c75f82f2c1cb56dad7d01e35f1d346"
+  integrity sha512-Dx+v+rcq9XkBfFCvjhp1/bQuEUnwq8gxterhhobnc/MEpka3mJvDu8BgL4/YLDhSlHI66Wf5m972aZL8/t3TdA==
+  dependencies:
+    axios "^1.7.8"
+    bfj "^8.0.0"
+    bluebird "^3.3.3"
+    cli-table3 "^0.6.0"
+    contentful "^11.1.4"
+    contentful-batch-libs "^9.4.1"
+    contentful-management "^11.36.0"
+    date-fns "^4.1.0"
+    figures "^3.2.0"
+    jsonwebtoken "^9.0.0"
+    listr "^0.14.1"
+    listr-update-renderer "^0.5.0"
+    listr-verbose-renderer "^0.6.0"
+    lodash.startcase "^4.4.0"
+    mkdirp "^2.0.0"
+    yargs "^17.1.1"
+
+contentful-export@^7.19.147:
   version "7.21.15"
   resolved "https://registry.yarnpkg.com/contentful-export/-/contentful-export-7.21.15.tgz#4e6a83b0b95f42fadad01b103f637546f72d48e3"
   integrity sha512-nQjnDWvmzpN7PdYceRF321NBAbJpHk5M8mMGvwQGWJu0mHqcV6zAKDVdj2cVaWbA99SfJ56GZufdWQDKOhag5A==

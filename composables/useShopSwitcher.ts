@@ -52,7 +52,9 @@ interface ShopSwitcherUtils {
  * This composable provides utilities for switching between different shops
  * in the storefront application.
  */
-export function useShopSwitcher(switchToHomePage: boolean): ShopSwitcherUtils {
+export function useShopSwitcher(
+  switchToHomePage: boolean = true,
+): ShopSwitcherUtils {
   const currentShop = useCurrentShop()
   const availableShops = useAvailableShops()
 

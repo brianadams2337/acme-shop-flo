@@ -12,16 +12,16 @@
 import { useTemplateRef, watch, nextTick } from 'vue'
 import { useFocusTrap } from '@vueuse/integrations/useFocusTrap'
 import { onKeyStroke } from '@vueuse/core'
-import SFShopSwitcherFlyoutBody from './SFShopSwitcherFlyoutBody'
-import SFShopSwitcherFlyoutHeader from './SFShopSwitcherFlyoutHeader'
+import SFShopSwitcherFlyoutBody from './SFShopSwitcherFlyoutBody.vue'
+import SFShopSwitcherFlyoutHeader from './SFShopSwitcherFlyoutHeader.vue'
 import { SFSlideIn } from '#storefront-ui/components'
 import { useSlideIn } from '#storefront-ui/composables'
 
 const { close, isOpen } = useSlideIn('ShopSwitcherSlideIn')
-const slideInRef = useTemplateRef('slideIn')
+const slideIn = useTemplateRef<HTMLDialogElement>('slideIn')
 
 const { activate: activateSlideInTrap, deactivate: deactivateSlideInTrap } =
-  useFocusTrap(slideInRef, {
+  useFocusTrap(slideIn, {
     escapeDeactivates: false,
     isKeyBackward: (keyEvent) =>
       keyEvent.code === 'ArrowLeft' ||
@@ -47,6 +47,6 @@ onKeyStroke(
   () => {
     close()
   },
-  { target: slideInRef },
+  { target: slideIn },
 )
 </script>

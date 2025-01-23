@@ -7,8 +7,8 @@
       <div class="grid grid-cols-2 gap-5">
         <SFButton
           v-for="{ shop, code, name } in availableLanguages"
-          :key="shop.id"
-          :variant="code === currentLocale.language ? 'accent' : 'secondary'"
+          :key="shop.shopId"
+          :variant="code === currentLocale?.language ? 'accent' : 'secondary'"
           @click="switchShopAndClose(shop.path, shop.locale)"
         >
           {{ name }}
@@ -26,11 +26,11 @@
       <div class="grid grid-cols-1 gap-2 overflow-auto p-1">
         <SFButton
           v-for="country in availableCountries"
-          :key="country.shops[0].id"
+          :key="country.shops[0].shopId"
           variant="secondary"
           class="!justify-start"
           :data-testid="
-            country.code === currentLocale.region
+            country.code === currentLocale?.region
               ? 'shop-selector-current-country'
               : 'shop-selector-country'
           "
@@ -39,11 +39,11 @@
           "
         >
           <span
-            :class="{ 'font-bold': country.code === currentLocale.region }"
+            :class="{ 'font-bold': country.code === currentLocale?.region }"
             >{{ country.name }}</span
           >
           <IconCheck
-            v-if="country.code === currentLocale.region"
+            v-if="country.code === currentLocale?.region"
             class="ml-auto size-4 text-accent"
           />
         </SFButton>
@@ -69,7 +69,7 @@ const { switchToHomePage = true } = defineProps<{
 const { availableCountries, availableLanguages, changeShop } =
   useShopSwitcher(switchToHomePage)
 
-const switchShopAndClose = (path: string, locale: string) => {
+const switchShopAndClose = (path?: string, locale?: string) => {
   changeShop(path, locale)
   close()
 }

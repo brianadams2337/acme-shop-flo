@@ -89,10 +89,10 @@ const getShopCountryName = (shop: ShopInfo, includeLanguage: boolean) => {
     `country_selection.override_codes.${locale.region.toUpperCase()}`,
   )
     ? $i18n.t(`country_selection.override_codes.${locale.region.toUpperCase()}`)
-    : regionTranslator.value.of(locale.region)
+    : regionTranslator.value?.of(locale.region)
 
   if (includeLanguage && locale.language) {
-    const languageName = languageTranslator.value.of(locale.language)
+    const languageName = languageTranslator.value?.of(locale.language)
     return $i18n.t(`country_selection.country_with_language`, {
       country: regionName,
       language: languageName,
@@ -112,7 +112,7 @@ whenever(
     if (!detectedRegion.value) {
       return
     }
-    suggestedCountry.value = regionTranslator.value.of(detectedRegion.value)
+    suggestedCountry.value = regionTranslator.value?.of(detectedRegion.value)
     modalOpen.value = true
   },
   { immediate: true, once: true },

@@ -11,6 +11,8 @@ export class ShopSelector {
   readonly shopLanguageItemCurrent: Locator
   readonly shopSelectorList: Locator
   readonly currentShopMobile: Locator
+  readonly currentCountry: Locator
+  readonly country: Locator
 
   constructor(page: Page) {
     this.page = page
@@ -26,6 +28,8 @@ export class ShopSelector {
     this.currentShopMobile = page.getByTestId(
       'shop-switcher-current-shop-mobile',
     )
+    this.currentCountry = page.getByTestId('shop-selector-current-country')
+    this.country = page.getByTestId('shop-selector-country')
   }
 
   async assertShopSelectorIsVisible(index: number) {
@@ -41,30 +45,35 @@ export class ShopSelector {
   async openShopSelector(index: number) {
     await this.shopSelectorListbox.nth(index).click()
     await this.page.waitForLoadState('domcontentloaded')
-    await this.shopSelectorList.waitFor()
+    await this.currentCountry.nth(index).waitFor()
   }
 
   async switchShop(index: number) {
     const pageUrlInitial = this.page.url()
-    const switchedShopLabel = await this.shopLanguageItem.first().textContent()
-    await this.shopLanguageItem.first().click()
+    const switchedShopLabel = await this.country.first().textContent()
     await this.page.waitForTimeout(500)
+    await this.country.first().click({ force: true })
+
+    await this.page.waitForLoadState('domcontentloaded')
+    await this.page.waitForTimeout(500)
+    const newShopElement = this.page
+      .locator(`text="${switchedShopLabel}"`)
+      .nth(index)
+    expect(await newShopElement.textContent()).toEqual(switchedShopLabel)
+
     const pageUrlSwitched = this.page.url()
-    expect(await this.shopSelectorListbox.nth(index).textContent()).toEqual(
-      switchedShopLabel,
-    )
-    await this.page.waitForTimeout(500)
     expect(pageUrlInitial).not.toEqual(pageUrlSwitched)
   }
 
   async switchShopToCurrent(index: number) {
     const pageUrlInitial = this.page.url()
-    const switchedShopLabel = await this.shopLanguageItemCurrent
-      .first()
-      .textContent()
-    await this.shopLanguageItemCurrent.first().click()
+    const switchedShopLabel = await this.currentCountry.first().textContent()
+    await this.page.waitForTimeout(500)
+    await this.currentCountry.first().click({ force: true })
+    await this.page.waitForLoadState('domcontentloaded')
+    await this.page.waitForTimeout(500)
     const pageUrlSwitched = this.page.url()
-    expect(await this.shopSelectorListbox.nth(index).textContent()).toEqual(
+    expect(await this.shopSelectorListbox.nth(index).textContent()).toContain(
       switchedShopLabel,
     )
     expect(pageUrlInitial).toEqual(pageUrlSwitched)

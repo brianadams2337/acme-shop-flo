@@ -29,6 +29,11 @@
           :key="country.shops[0].id"
           variant="secondary"
           class="!justify-start"
+          :data-testid="
+            country.code === currentLocale.region
+              ? 'shop-selector-current-country'
+              : 'shop-selector-country'
+          "
           @click="
             country.code === currentLocale.region
               ? close()

@@ -2,7 +2,7 @@
   <section
     class="hidden max-w-88 flex-col gap-4 text-base font-variable leading-3.5 lg:flex"
   >
-    <SFHeadline tag="h1" data-testid="headline">
+    <SFHeadline tag="h2" data-testid="headline">
       {{ $t('basket.total') }}
     </SFHeadline>
     <div class="flex justify-between">
@@ -18,7 +18,9 @@
         {{ formatCurrency(0) }}*
       </span>
     </div>
-    <template v-if="cost && items?.length">
+    <template
+      v-if="cost && cost?.appliedReductions.length > 0 && items?.length"
+    >
       <SFFadeInFromBottomTransition>
         <SFBasketSummaryReductions
           v-if="hasReductions"

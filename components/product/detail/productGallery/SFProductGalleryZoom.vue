@@ -1,80 +1,78 @@
 <template>
-  <SFFadeInTransition>
-    <SFModal
-      v-model:visible="visible"
-      full-screen
-      class="size-full max-h-screen max-w-screen !p-0"
-      @close="$emit('close')"
+  <SFModal
+    v-model:visible="visible"
+    full-screen
+    class="size-full max-h-screen max-w-screen !p-0"
+    @close="$emit('close')"
+  >
+    <div
+      class="h-dvh overflow-hidden max-md:my-auto max-md:bg-white-smoke md:mx-auto md:aspect-3/4"
     >
-      <div
-        class="h-dvh overflow-hidden max-md:my-auto max-md:bg-white-smoke md:mx-auto md:aspect-3/4"
+      <SFItemsSlider
+        ref="slider"
+        with-arrows
+        @update:active-slide="updateSlide"
       >
-        <SFItemsSlider
-          ref="slider"
-          with-arrows
-          @update:active-slide="updateSlide"
+        <div
+          v-for="(productImage, index) in images"
+          ref="slides"
+          :key="productImage.hash"
+          :class="
+            scale >= 2 && index === imageIndex
+              ? 'cursor-zoom-out'
+              : 'cursor-zoom-in'
+          "
+          class="flex h-dvh min-w-full grow snap-start snap-always items-center self-start overflow-hidden max-md:bg-white-smoke"
+          @click="toggleDoubleZoom"
         >
-          <div
-            v-for="(productImage, index) in images"
-            ref="slides"
-            :key="productImage.hash"
-            :class="
-              scale >= 2 && index === imageIndex
-                ? 'cursor-zoom-out'
-                : 'cursor-zoom-in'
+          <SFProductImage
+            :image="productImage"
+            :alt="
+              $t('product_image.alt_with_image_index', {
+                alt,
+                index: index + 1,
+                total: images.length,
+              })
             "
-            class="flex h-dvh min-w-full grow snap-start snap-always items-center self-start overflow-hidden max-md:bg-white-smoke"
-            @click="toggleDoubleZoom"
+            :data-testid="`product-image-zoom-${index}`"
+            sizes="xs:100vw sm:100vw md:100vw lg:100vw xl:100vw"
+            :style="imageIndex === index ? productImageStyle : {}"
+            class="transition-transform duration-75"
+            :with-mix-blend-darken="false"
+            @mousemove="updateZoomOffset"
+          />
+        </div>
+        <template #prev-button="{ prev, isPrevEnabled }">
+          <SFProductCardImageSliderButton
+            class="top-1/2 -translate-y-1/2 bg-gray-200 max-md:hidden"
+            :disabled="!isPrevEnabled"
+            direction="left"
+            @click="prev()"
+          />
+        </template>
+        <template #next-button="{ next, isNextEnabled }">
+          <SFProductCardImageSliderButton
+            class="top-1/2 -translate-y-1/2 bg-gray-200 max-md:hidden"
+            :disabled="!isNextEnabled"
+            direction="right"
+            @click="next()"
+          />
+        </template>
+        <template v-if="images.length > 1" #thumbnails>
+          <div
+            class="absolute bottom-4 left-1/2 flex -translate-x-1/2 space-x-1"
           >
-            <SFProductImage
-              :image="productImage"
-              :alt="
-                $t('product_image.alt_with_image_index', {
-                  alt,
-                  index: index + 1,
-                  total: images.length,
-                })
-              "
-              :data-testid="`product-image-zoom-${index}`"
-              sizes="xs:100vw sm:100vw md:100vw lg:100vw xl:100vw"
-              :style="imageIndex === index ? style : {}"
-              class="transition-transform duration-75"
-              :with-mix-blend-darken="false"
-              @mousemove="updateZoomOffset"
+            <div
+              v-for="i in images.length"
+              :key="i"
+              class="size-1 rounded-full bg-gray-300 transition-all duration-300"
+              :class="{ 'w-3 !bg-black': i - 1 === imageIndex }"
             />
           </div>
-          <template #prev-button="{ prev, isPrevEnabled }">
-            <SFProductCardImageSliderButton
-              class="top-1/2 -translate-y-1/2 bg-gray-200 max-md:hidden"
-              :disabled="!isPrevEnabled"
-              direction="left"
-              @click="prev()"
-            />
-          </template>
-          <template #next-button="{ next, isNextEnabled }">
-            <SFProductCardImageSliderButton
-              class="top-1/2 -translate-y-1/2 bg-gray-200 max-md:hidden"
-              :disabled="!isNextEnabled"
-              direction="right"
-              @click="next()"
-            />
-          </template>
-          <template v-if="images.length > 1" #thumbnails>
-            <div
-              class="absolute bottom-4 left-1/2 flex -translate-x-1/2 space-x-1"
-            >
-              <div
-                v-for="i in images.length"
-                :key="i"
-                class="size-1 rounded-full bg-gray-300 transition-all duration-300"
-                :class="{ 'w-3 !bg-black': i - 1 === imageIndex }"
-              />
-            </div>
-          </template>
-        </SFItemsSlider>
-      </div>
-    </SFModal>
-  </SFFadeInTransition>
+        </template>
+      </SFItemsSlider>
+    </div>
+  </SFModal>
 </template>
 
 <script setup lang="ts">
@@ -91,11 +89,7 @@ import { useEventListener } from '@vueuse/core'
 import type { ProductImage as ProductImageType } from '@scayle/storefront-nuxt'
 import SFProductImage from '../../SFProductImage.vue'
 import SFProductCardImageSliderButton from '../../card/imageSlider/SFProductCardImageSliderButton.vue'
-import {
-  SFItemsSlider,
-  SFModal,
-  SFFadeInTransition,
-} from '#storefront-ui/components'
+import { SFItemsSlider, SFModal } from '#storefront-ui/components'
 
 type Props = {
   alt: string
@@ -159,9 +153,7 @@ onScopeDispose(() => {
   dragController?.clean()
 })
 
-defineEmits<{
-  (e: 'close'): void
-}>()
+defineEmits<{ (e: 'close'): void }>()
 
 const slider = ref<InstanceType<typeof SFItemsSlider>>()
 
@@ -216,13 +208,10 @@ const updateZoomOffset = (event: MouseEvent) => {
   }
 }
 
-const style = computed(() => {
-  // translate did cause jitter on desktop, and transform-origin did cause jitter with touch
-  // therefore we use different approaches here
-  return isTouchSupported
-    ? `transform: scale(${scale.value}) translate(${zoomOffsetX.value}px, ${zoomOffsetY.value}px)`
-    : `transform: scale(${scale.value}); transform-origin: ${zoomOffsetX.value}px ${zoomOffsetY.value}px;`
-})
+const productImageStyle = computed(() => ({
+  transform: `translate3d(${zoomOffsetX.value}px, ${zoomOffsetY.value}px, 0) scale(${scale.value})`,
+  transformOrigin: `${zoomOffsetX.value}px ${zoomOffsetY.value}px`,
+}))
 
 // desktop zoom
 const MAX_ZOOM_DESKTOP = 1.5

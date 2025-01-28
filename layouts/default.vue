@@ -26,6 +26,7 @@
         }"
       />
     </div>
+    <SFShopSwitcherFlyout />
   </div>
 </template>
 
@@ -61,6 +62,7 @@ import SFHeader from '~/components/layout/headers/SFHeader.vue'
 import { routeList } from '~/utils'
 import { useShopSwitcher } from '~/composables/useShopSwitcher'
 import { useLocalePath } from '#i18n'
+import SFShopSwitcherFlyout from '~/components/layout/headers/SFShopSwitcherFlyout.vue'
 
 const { changeShop } = useShopSwitcher()
 

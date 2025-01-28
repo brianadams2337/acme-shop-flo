@@ -29,15 +29,11 @@
         :class="{ 'rotate-180': isOpen }"
       />
     </SFButton>
-    <Teleport to="#teleports">
-      <SFShopSwitcherFlyout :switch-to-home-page="switchToHomePage" />
-    </Teleport>
   </div>
 </template>
 
 <script setup lang="ts">
 import { computed } from 'vue'
-import SFShopSwitcherFlyout from './SFShopSwitcherFlyout.vue'
 import { useAvailableShops, useCurrentShop } from '#storefront/composables'
 import { SFButton } from '#storefront-ui/components'
 import { useSlideIn } from '~/modules/ui/runtime/composables/useSlideIn'
@@ -71,9 +67,7 @@ const selectedCountry = computed(() => {
 const multipleShopsForCountry = computed(() =>
   hasMultipleShopsForCountry(availableShops.value),
 )
-
-const { switchToHomePage = true } = defineProps<{
-  switchToHomePage?: boolean
+defineProps<{
   listboxButtonAriaId: string
 }>()
 </script>

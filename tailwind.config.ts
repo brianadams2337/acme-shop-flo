@@ -309,11 +309,15 @@ export default {
       fontSize: {
         '2xs': '0.625rem',
       },
-      maxHeight: { ...defaultSizes },
+      maxHeight: {
+        ...defaultSizes,
+        dialog: '94vh',
+      },
       minHeight: { ...defaultSizes },
       maxWidth: {
         ...defaultSizes,
         screen: '100vw',
+        dialog: '94vw',
         156: '39rem',
         88: '22rem',
       },

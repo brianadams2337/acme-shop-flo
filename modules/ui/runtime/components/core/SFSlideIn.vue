@@ -19,7 +19,7 @@
     <dialog
       v-dialog.modal="isOpen"
       :name="name"
-      class="h-full overflow-hidden transition-all backdrop:bg-black/50 max-sm:m-0 max-sm:h-dvh max-sm:w-screen md:mr-0 md:rounded-xl"
+      class="h-full overflow-hidden transition-all backdrop:bg-black/50 max-sm:m-0 max-sm:h-dvh max-sm:max-h-screen max-sm:w-screen max-sm:max-w-screen md:mr-0 md:rounded-xl"
       @click="onClick"
       @cancel="onCancel"
     >

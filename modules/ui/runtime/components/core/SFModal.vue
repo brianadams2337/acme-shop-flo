@@ -1,7 +1,7 @@
 <template>
   <dialog
     v-dialog.modal="visible"
-    class="rounded p-8 backdrop:bg-black/50"
+    class="max-h-dialog max-w-dialog rounded p-8 backdrop:bg-black/50"
     @click="onClick"
     @cancel="onCancel"
   >

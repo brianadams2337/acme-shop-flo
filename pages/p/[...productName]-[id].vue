@@ -143,6 +143,7 @@ import {
   useProductSeoData,
 } from '#storefront-product-detail'
 import { useBreadcrumbs } from '~/composables'
+import { hasSubscriptionCustomData } from '#storefront-subscription/helpers/subscription'
 
 const SFLazyStoreLocatorSlideIn = defineAsyncComponent(
   () => import('~/components/locator/SFStoreLocatorSlideIn.vue'),
@@ -211,7 +212,11 @@ onMounted(() => {
 const basketItem = computed(
   () =>
     items.value?.find(
-      (basketItem) => basketItem.variant.id === activeVariant.value?.id,
+      (basketItem) =>
+        basketItem.variant.id === activeVariant.value?.id &&
+        !hasSubscriptionCustomData(
+          basketItem.customData as Record<string, unknown>,
+        ),
     ),
 )
 

@@ -3,7 +3,7 @@
     variant="secondary"
     size="xs"
     class="pr-1 text-xs"
-    @click="goToCategory()"
+    @click.stop.prevent="goToCategory()"
   >
     {{ props.category?.ctaLabel || $t('promotion.show_deals_label') }}
     <template #append-icon="{ _class }">

@@ -55,7 +55,7 @@
               class="size-11 rounded-lg outline-offset-0 hover:bg-gray-200 focus-visible:shadow-inner-solid-sm max-lg:bg-gray-200 lg:size-8"
               data-testid="basket-remove-item-button"
               :aria-label="$t('basket_card.remove_long')"
-              @click:stop="$emit('delete')"
+              @click="$emit('delete')"
             >
               <IconTrash class="size-4 shrink-0 stroke-2" aria-hidden="true" />
             </SFButton>

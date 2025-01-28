@@ -14,9 +14,12 @@ describe('button', () => {
   })
 
   it('should emit a click event when clicked', async () => {
-    const button = await mountSuspended(SFButton)
-    button.trigger('click')
-    expect(button.emitted().click).toBeTruthy()
+    const clicked = vi.fn()
+    const button = await mountSuspended(SFButton, {
+      props: { onClick: clicked },
+    })
+    await button.trigger('click')
+    expect(clicked).toHaveBeenCalled()
   })
 
   it('should render correctly', async () => {

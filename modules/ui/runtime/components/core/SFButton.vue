@@ -28,8 +28,6 @@
       'text-md': (isSize('md') || isSize('lg') || isSize('xl')) && !isRaw,
     }"
     class="group inline-flex items-center justify-center gap-2 truncate whitespace-nowrap transition duration-100 ease-linear disabled:border disabled:border-secondary-600 disabled:bg-secondary-200 disabled:text-gray-400"
-    @click.prevent="emit('click')"
-    @click.stop="emit('click:stop')"
   >
     <slot
       name="icon"
@@ -105,6 +103,4 @@ const isSlider = computed(() => variant === ButtonVariant.SLIDER)
 const { isSize } = getSizeUtils(size)
 
 const componentName = computed(() => (to ? SFLink : 'button'))
-
-const emit = defineEmits<{ click: []; 'click:stop': [] }>()
 </script>

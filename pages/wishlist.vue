@@ -5,27 +5,18 @@
       class="mt-1.5 !font-semi-bold-variable text-gray-900 max-sm:text-2xl max-sm:leading-6 sm:mt-0"
     >
       {{ $t('wishlist.heading') }}
-      <SFFadeInTransition>
-        <span
-          v-if="count !== undefined && count > 0"
-          class="ml-0.5 inline-flex h-4.5 items-center rounded-full bg-gray-900 px-2 text-xs font-semibold leading-4 text-white"
-        >
-          {{ count }}
-        </span>
-      </SFFadeInTransition>
+      <ClientOnly>
+        <SFFadeInTransition v-if="count !== undefined && count > 0" appear>
+          <span
+            class="ml-0.5 inline-flex h-4.5 items-center rounded-full bg-gray-900 px-2 text-xs font-semibold leading-4 text-white"
+          >
+            {{ count }}
+          </span>
+        </SFFadeInTransition>
+      </ClientOnly>
     </SFHeadline>
 
-    <template v-if="status === 'pending'">
-      <div class="mt-8 grid w-auto grid-cols-12 gap-4 xl:max-2xl:grid-cols-10">
-        <SFProductCardSkeleton
-          v-for="index in 12"
-          :key="`product-loading-${index}`"
-          type="custom"
-          class="col-span-6 mb-4 sm:col-span-4 lg:col-span-3 xl:col-span-2"
-        />
-      </div>
-    </template>
-    <template v-else>
+    <SFAsyncDataWrapper :status="status">
       <div
         v-if="count"
         class="mt-8 grid w-auto grid-cols-12 gap-4 xl:max-2xl:grid-cols-10"
@@ -47,7 +38,20 @@
         :description="$t('wishlist.continue_shopping_info')"
         icon="EmptyWishlist"
       />
-    </template>
+
+      <template #loading>
+        <div
+          class="mt-8 grid w-auto grid-cols-12 gap-4 xl:max-2xl:grid-cols-10"
+        >
+          <SFProductCardSkeleton
+            v-for="index in 12"
+            :key="`product-loading-${index}`"
+            type="custom"
+            class="col-span-6 mb-4 sm:col-span-4 lg:col-span-3 xl:col-span-2"
+          />
+        </div>
+      </template>
+    </SFAsyncDataWrapper>
   </div>
 </template>
 
@@ -56,6 +60,7 @@ import { useSeoMeta } from '@unhead/vue'
 import { defineOptions } from 'vue'
 import { whenever } from '@vueuse/core'
 import SFProductCardSkeleton from '~/components/product/card/SFProductCardSkeleton.vue'
+import SFAsyncDataWrapper from '~/components/SFAsyncDataWrapper.vue'
 import { useNuxtApp } from '#app/nuxt'
 import { definePageMeta } from '#imports'
 import { useWishlistTracking } from '~/composables'
@@ -63,6 +68,7 @@ import { useWishlist } from '#storefront/composables'
 import SFEmptyState from '~/components/SFEmptyState.vue'
 import SFProductCard from '~/components/product/card/SFProductCard.vue'
 import { SFHeadline, SFFadeInTransition } from '#storefront-ui/components'
+import { ClientOnly } from '#components'
 
 const { count, status, items, products } = useWishlist()
 const { $i18n } = useNuxtApp()

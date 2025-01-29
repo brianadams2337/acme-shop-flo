@@ -108,33 +108,55 @@ describe('isProductSubscriptionEligible', () => {
 })
 
 describe('getSubscriptionItemGroup', () => {
-  it('should reuse item group of existing subscription item', () => {
+  vi.mock('nanoid', () => {
+    return {
+      nanoid: () => 'nanoid',
+    }
+  })
+  it('should reuse item group of existing subscription item with the same subscription definition', () => {
+    const subscriptionDefinition = {}
     const basketItems = [
       basketItemFactory.build({
         variant: { id: 1 },
         customData: {
-          subscriptionDefinition: {},
+          subscriptionDefinition,
         },
         itemGroup: { id: 'test', isMainItem: true, isRequired: true },
       }),
     ]
-
-    expect(getSubscriptionItemGroup(1, basketItems)).toEqual({
+    expect(
+      getSubscriptionItemGroup(1, basketItems, subscriptionDefinition),
+    ).toEqual({
       id: 'test',
       isMainItem: true,
       isRequired: true,
     })
   })
 
-  it('should create a new item group for subscription item', () => {
-    vi.mock('nanoid', () => {
-      return {
-        nanoid: () => 'nanoid',
-      }
+  it('should create a new item group of existing subscription item with the different subscription definition', () => {
+    const subscriptionDefinition = { interval: 5 }
+    const basketItems = [
+      basketItemFactory.build({
+        variant: { id: 1 },
+        customData: {
+          subscriptionDefinition,
+        },
+        itemGroup: { id: 'test', isMainItem: true, isRequired: true },
+      }),
+    ]
+    expect(getSubscriptionItemGroup(1, basketItems, { interval: 10 })).toEqual({
+      id: 'nanoid',
+      isMainItem: true,
+      isRequired: true,
     })
+  })
 
+  it('should create a new item group for subscription item', () => {
+    const subscriptionDefinition = {}
     const basketItems: BasketItem[] = []
-    expect(getSubscriptionItemGroup(1, basketItems)).toEqual({
+    expect(
+      getSubscriptionItemGroup(1, basketItems, subscriptionDefinition),
+    ).toEqual({
       id: 'nanoid',
       isMainItem: true,
       isRequired: true,

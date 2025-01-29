@@ -94,6 +94,7 @@ export function useSubscription(
       itemGroup: getSubscriptionItemGroup(
         selectedVariant.value?.id,
         basketItems.value || [],
+        customData.value.subscriptionDefinition,
       ),
     }
   })

@@ -7,6 +7,7 @@ import {
   getAttributeValueTuples,
 } from '@scayle/storefront-nuxt'
 import { nanoid } from 'nanoid'
+import { isEqual } from '~/utils'
 
 export const SUBSCRIPTION_ELIGIBILITY_ATTRIBUTE_NAME = 'subscriptionEligibility'
 export const SUBSCRIPTION_INTERVALS_ATTRIBUTE_NAME =
@@ -105,12 +106,18 @@ export const isSubscriptionAlreadyInBasket = (
 export const getSubscriptionItemGroup = (
   variantId: number,
   basketItems: BasketItem[],
+  subscriptionConditions: Record<string, unknown>,
 ): ItemGroup => {
   const existingSubscription = basketItems?.find((basketItem) => {
     return (
       basketItem.variant.id === variantId &&
       hasSubscriptionCustomData(
         basketItem.customData as Record<string, unknown>,
+      ) &&
+      isEqual(
+        subscriptionConditions,
+        (basketItem.customData as Record<string, unknown>)
+          .subscriptionDefinition,
       )
     )
   })

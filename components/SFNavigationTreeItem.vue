@@ -12,10 +12,10 @@
         : {}
     "
     :class="{
-      'mr-3 block w-fit content-center rounded px-1.5 py-1 text-base font-normal leading-5 text-[var(--textColor)] transition-all supports-hover:hover:bg-[var(--backgroundColor)]':
+      'mr-3 block w-fit content-center rounded p-1 text-base font-normal leading-5 text-[var(--textColor)] transition-all supports-hover:hover:bg-[var(--backgroundColor)]':
         !raw && isLink,
       'mr-0 bg-[var(--backgroundColor)]': isActive && !raw && isLink,
-      'min-h-5 w-fit py-1 text-base font-semi-bold-variable leading-5 text-[var(--textColor)]':
+      'min-h-5 w-fit p-1 text-base font-semi-bold-variable leading-5 text-[var(--textColor)]':
         !raw && !isLink,
     }"
     :style="style"

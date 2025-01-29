@@ -1,7 +1,7 @@
 <template>
   <div class="flex flex-col gap-5" data-testid="footer-link-section">
     <div
-      class="flex cursor-pointer items-center p-1 text-lg font-semibold text-gray-900 md:cursor-default md:text-sm"
+      class="flex cursor-pointer items-center text-lg font-semibold text-gray-900 md:cursor-default md:text-sm"
       data-testid="footer-link-section-title"
       @click="expanded = !expanded"
     >
@@ -15,7 +15,7 @@
     </div>
     <ul
       ref="content"
-      class="flex-col gap-x-2 gap-y-5 px-1 transition-all md:flex"
+      class="flex-col gap-x-2 gap-y-5 transition-all md:flex"
       :class="{
         flex: expanded,
         hidden: !expanded,

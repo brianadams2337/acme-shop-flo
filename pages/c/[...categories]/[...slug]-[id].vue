@@ -251,7 +251,7 @@ useHead(() => {
       {
         name: 'description',
         content: i18n.t('plp.seo_description', {
-          category: currentCategory.value,
+          category: currentCategory.value.name,
         }),
       },
     ],

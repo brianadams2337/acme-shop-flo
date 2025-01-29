@@ -27,7 +27,7 @@
       v-if="!hideWishlistToggle"
       class="absolute left-auto right-1 top-2 z-10 flex h-8 w-auto cursor-pointer p-1 transition lg:right-0 lg:top-0 lg:h-12 lg:p-3"
     >
-      <SFWishlistToggle :product="basketItem.product" />
+      <SFWishlistToggle :product="basketItem.product" @click.stop />
     </div>
   </div>
 </template>

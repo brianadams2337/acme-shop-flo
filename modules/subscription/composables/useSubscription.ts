@@ -9,7 +9,7 @@ import {
   extendPromise,
 } from '@scayle/storefront-nuxt'
 
-import { computed, ref, type Ref } from 'vue'
+import { computed, ref, toValue, type MaybeRefOrGetter } from 'vue'
 import {
   type PreferredDeliveryDate,
   SUBSCRIPTION_CANCELLATION_POLICY,
@@ -28,9 +28,10 @@ const selectedInterval = ref<Value | undefined>()
 const selectedPreferredDeliveryDate = ref<PreferredDeliveryDate | undefined>()
 
 export function useSubscription(
-  product: Ref<Product>,
-  pricePromotionKey: Ref<string>,
-  variant: Ref<Variant | undefined>,
+  product: MaybeRefOrGetter<Product>,
+  pricePromotionKey: MaybeRefOrGetter<string>,
+  variant: MaybeRefOrGetter<Variant | undefined>,
+  quantity: MaybeRefOrGetter<number>,
   key?: string,
 ) {
   const { $i18n } = useNuxtApp()
@@ -38,7 +39,7 @@ export function useSubscription(
   const productPromise = useProduct(
     {
       params: {
-        id: product.value.id,
+        id: toValue(product).id,
         with: {
           variants: {
             attributes: {
@@ -52,7 +53,7 @@ export function useSubscription(
             lowestPriorPrice: true,
           },
         },
-        pricePromotionKey: pricePromotionKey.value,
+        pricePromotionKey: toValue(pricePromotionKey),
       },
     },
     `product-subscription-${key}`,
@@ -82,14 +83,14 @@ export function useSubscription(
     if (!selectedVariant.value) {
       return
     }
-
     return {
       variantId: selectedVariant.value?.id,
-      quantity: 1,
+      quantity: toValue(quantity),
       customData: customData.value,
       displayData: displayData.value,
       productName:
-        getFirstAttributeValue(product.value.attributes, 'name')?.label || '',
+        getFirstAttributeValue(toValue(product).attributes, 'name')?.label ||
+        '',
       interval: selectedInterval.value?.label,
       itemGroup: getSubscriptionItemGroup(
         selectedVariant.value?.id,
@@ -108,7 +109,7 @@ export function useSubscription(
         subscriptionCancellationPolicy:
           subscriptionCancellationPolicy.value?.value,
       },
-      pricePromotionKey: pricePromotionKey.value,
+      pricePromotionKey: toValue(pricePromotionKey),
     }
   })
 
@@ -162,7 +163,7 @@ export function useSubscription(
 
   const selectedVariant = computed(() => {
     return subscriptionProduct.value?.variants?.find(
-      (subscriptionVariant) => subscriptionVariant.id === variant.value?.id,
+      (subscriptionVariant) => subscriptionVariant.id === toValue(variant)?.id,
     )
   })
 

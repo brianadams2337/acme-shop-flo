@@ -56,6 +56,7 @@
     v-if="isProductSubscriptionEligible(product)"
     :product="product"
     :variant="activeVariant"
+    :quantity="quantity"
     class="mt-4"
     @add-item-to-basket="addItemToBasket($event)"
   />

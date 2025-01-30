@@ -44,6 +44,7 @@
           v-if="variant && subscriptionVariantEligible"
           :product="product"
           :variant="variant"
+          :quantity="quantity"
           :preferred-delivery-date="preferredDeliveryDate"
           :price-promotion-key="pricePromotionKey"
           @add-item-to-basket="$emit('addItemToBasket', $event)"
@@ -53,7 +54,6 @@
   </div>
 </template>
 <script setup lang="ts">
-import { toRefs } from 'vue'
 import type { Product, Variant } from '@scayle/storefront-nuxt'
 import { useSubscription } from '../composables/useSubscription'
 import type { PreferredDeliveryDate } from '../helpers/subscription'
@@ -68,34 +68,36 @@ type Props = {
   variant?: Variant
   preferredDeliveryDate?: Array<PreferredDeliveryDate>
   pricePromotionKey?: string
+  quantity: number
 }
 
-const props = withDefaults(defineProps<Props>(), {
-  preferredDeliveryDate: () => [
+const {
+  variant,
+  product,
+  pricePromotionKey = 'subscription',
+  quantity,
+  preferredDeliveryDate = [
     { day: 1, label: 'day_of_month_selection_caption' },
     { day: 15, label: 'day_of_month_selection_caption' },
   ],
-  pricePromotionKey: 'subscription',
-  variant: undefined,
-})
+} = defineProps<Props>()
 
 defineEmits<{
   (e: 'addItemToBasket', item: AddToBasketItem | undefined): void
 }>()
 
-const { product, variant, pricePromotionKey } = toRefs(props)
 const {
   selectedPreferredDeliveryDate,
   subscriptionPrice,
   subscriptionVariantEligible,
 } = useSubscription(
-  product,
-  pricePromotionKey,
-  variant,
+  () => product,
+  () => pricePromotionKey,
+  () => variant,
   'product-subscription.vue',
 )
 
-selectedPreferredDeliveryDate.value = props.preferredDeliveryDate[0]
+selectedPreferredDeliveryDate.value = preferredDeliveryDate[0]
 
 const { promotion } = useProductPromotions(product)
 </script>

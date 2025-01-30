@@ -77,7 +77,7 @@
   </div>
 </template>
 <script setup lang="ts">
-import { computed, toRefs, watch } from 'vue'
+import { computed, watch } from 'vue'
 import type { Product, Variant } from '@scayle/storefront-nuxt'
 import { useSubscription } from '../composables/useSubscription'
 import type { PreferredDeliveryDate } from '../helpers/subscription'
@@ -89,17 +89,16 @@ type Props = {
   variant?: Variant
   preferredDeliveryDate: Array<PreferredDeliveryDate>
   pricePromotionKey: string
+  quantity: number
 }
 
-const props = withDefaults(defineProps<Props>(), {
-  variant: undefined,
-})
+const { product, variant, preferredDeliveryDate, pricePromotionKey, quantity } =
+  defineProps<Props>()
 
 defineEmits<{
   (e: 'addItemToBasket', item: AddToBasketItem | undefined): void
 }>()
 
-const { product, variant, pricePromotionKey } = toRefs(props)
 const {
   subscriptionIntervals,
   selectedInterval,
@@ -108,15 +107,16 @@ const {
   subscriptionVariantEligible,
   ordinalSuffixKey,
 } = useSubscription(
-  product,
-  pricePromotionKey,
-  variant,
+  () => product,
+  () => pricePromotionKey,
+  () => variant,
+  () => quantity,
   'product-subscription-selection.vue',
 )
 
 const subscriptionState = computed(() => ({
-  isInitial: !props.variant,
-  isEligible: !!props.variant && subscriptionVariantEligible.value,
+  isInitial: !variant,
+  isEligible: !!variant && subscriptionVariantEligible.value,
 }))
 
 watch(

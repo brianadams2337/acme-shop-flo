@@ -6387,10 +6387,10 @@ contentful-batch-libs@^9.4.1:
     lodash.clonedeep "^4.5.0"
     uuid "^9.0.1"
 
-contentful-export@7.21.18:
-  version "7.21.18"
-  resolved "https://registry.yarnpkg.com/contentful-export/-/contentful-export-7.21.18.tgz#6946e01b3d4f961a1e9d8a180741b4bf76a8fd9e"
-  integrity sha512-Qzk6teCN+D2vghKnfmtUHqDo3vVM6/XIeI0fAq6wlQXk//I1XbcfuSNRQw+YDXW/jvQGCr68WyZrMjjqM516CQ==
+contentful-export@7.21.20:
+  version "7.21.20"
+  resolved "https://registry.yarnpkg.com/contentful-export/-/contentful-export-7.21.20.tgz#3a1fbaaed09a5ba6b0fdabb53c03ec29d8bfc682"
+  integrity sha512-Ns7sVjz/9I8IBdRwSwD0pIz96Kjnnz+sXcfTAlurjxknwhNPIphGmqwe1SlQ9HuxOPhRLoerfUMqPyvnGNNdaw==
   dependencies:
     axios "^1.7.8"
     bfj "^8.0.0"

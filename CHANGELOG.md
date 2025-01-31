@@ -6,13 +6,11 @@
 
 #### 🛒 Basket Enhancements for a Streamlined Shopping Experience
 
-This release significantly enhances the basket, focusing on a smoother user experience, greater transparency, and streamlined functionality.
+This release delivers a significantly enhanced basket experience, prioritizing user clarity, streamlined functionality, and a smoother checkout process. We've refined the basket's underlying architecture and SEO performance through comprehensive component refactoring and metadata improvements. Key enhancements include clear labeling of sold-out items, prominent badging for promotional offers, a helpful voucher disclaimer, and integrated subscription details directly on relevant items. Transparency is further improved with a detailed breakdown of all discounts in the basket summary.
 
-We've consolidated basket logic and boosted SEO through component refactoring and improved metadata. Sold-out items are now clearly labeled, promotional offers are highlighted with badges, and a helpful voucher disclaimer has been added. Subscription details appear directly on relevant items, and all discounts are clearly displayed in the basket summary.
+Visually, the basket boasts a refreshed design, featuring updated empty basket and wishlist states and a redesigned item card. A new confirmation modal prevents accidental deletions, while a convenient basket preview in the top navigation allows for quick access and management. The checkout flow is streamlined with a dedicated final summary section, clearly displaying the final price and a direct checkout link.
 
-Enjoy an updated look with redesigned empty basket and wishlist states and a new basket item card. Accidental deletions are now prevented with a confirmation modal. Manage your basket quickly with the new preview in the top navigation. The basket is streamlined with a dedicated final summary section, including the final price and a direct checkout link.
-
-Behind the scenes, we've added utility functions for precise price calculations and included sections summarizing applied promotions and regular product prices. Promotional gifts are now automatically added to your basket.
+Under the hood, we've implemented new utility functions for precise price calculations, along with summaries of applied promotions and regular product prices for increased transparency. Promotional gifts are now automatically added to your basket for a seamless shopping experience.
 
 #### 🧑‍🦯 Pushing Accessibility
 

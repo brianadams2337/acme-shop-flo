@@ -1,5 +1,184 @@
 # @scayle/storefront-boilerplate-nuxt
 
+## 1.7.0
+
+### Minor Changes
+
+- b98bbdd: [Internationalization] Introduced `useCurrentShopLocale` and `useCurrentShopTranslators` composables to simplify access to relevant shop localization data for the ShopSwitcher.
+- 4d516a7: [Basket] Refactored the basket summary component to integrate `SFBasketSummaryMobile` into `SFBasketSummary` for centralized logic.
+- eb563cb: [Basket] Sold-out items in the basket now display an additional title to clearly indicate their unavailability.
+- ebdc33f: [UI] Removed the `stop` and `prevent` event modifiers from the `SFButton` component. These modifiers were complicating the reasoning about the expected behavior of buttons in various contexts, potentially leading to unintended side effects. This change simplifies the component's logic and makes it easier to predict how buttons will interact with other elements on the page.
+- 7b85c89: [Performance] Addressed a hydration mismatch issue in the wishlist page (`/pages/wishlist.vue`) that was impacting performance. The count badge update is now delayed until hydration is complete, and the content is wrapped within an `<SFAsyncDataWrapper>` to ensure proper server/client synchronization. This prevents content flickering and improves the overall loading experience.
+- eb563cb: [Subscription] Introduced the `itemGroup` property to distinguish between standard and subscription product variants within the basket. This allows customers to add both variants of the same product to their basket simultaneously.
+- 421c049: [Accessibility] Added `aria-label` and translation to `SFSearchInput` button.
+- eb563cb: [Basket] Added structured data and metadata to the basket page for improved SEO performance.
+- eb563cb: [Basket] Added a visual badge to basket cards to clearly indicate when a promotional offer is applied to an item.
+- ec78e4f: [Performance] Resolved a hydration mismatch issue in the `SFQuantityInput` component specifically affecting Firefox. The disabled attribute was sometimes missing from the JavaScript DOM Node object, triggering hydration warnings. To prevent these warnings without impacting functionality, the `data-allow-mismatch="attribute"` attribute has been added. This tells the hydration process to tolerate mismatches on this specific attribute.
+- eb563cb: [Basket] Added a voucher disclaimer to the basket page.
+- eb563cb: [Basket] Introduced a new UI design for empty basket and wishlist states. This includes changes to the reusable `SFEmptyState` component.
+- 2dc9383: [Basket] Added a utility function called `getTotalPriceWithoutReductions` for calculating the total basket price before any reductions are applied.
+- eb563cb: [Basket] Implemented a new section in the basket view that summarizes applied promotions and their corresponding reductions.
+- 9474397: [E2E] Enhanced end-to-end tests to ensure accurate price calculations in the shopping basket, covering scenarios with regular prices, sales, and promotions.
+- 8fec6e3: [E2E] Implemented end-to-end (E2E) tests to validate client-side hydration against server-rendered content.
+- eb563cb: [Basket] Implemented functionality to add promotional gifts to the basket if they are not already present.
+- 2f7f1bb: [E2E] Introduced an RPC fixture to streamline end-to-end testing. This fixture allows direct RPC calls from test code, enabling efficient setup of server-side state without requiring UI interaction. This significantly reduces test execution time and complexity.
+
+        ```ts
+        test('Some description', async ({ rpc }) => {
+          const res = await rpc.call('addItemToWishlist', {
+            productId: 123,
+          })
+
+          expect(res).toMatchObject({ productId: 123 })
+        })
+        ```
+
+- b586894: [Architecture] Updated Nuxt configuration (`nuxt.config.ts`) to utilize the recommended `bundler` module resolution introduced in Nuxt v3.10, removing the `future.typescriptBundlerResolution: false` flag. This aligns our project with Vite/Vue best practices and improves compatibility with third-party libraries.
+
+  While this change is generally beneficial, some packages might encounter issues. If you experience any problems, please report them in the affected library's repository. You can temporarily revert this change by adding `future.typescriptBundlerResolution: false` back to your `nuxt.config.ts` file.
+
+  This update allows for correct imports of third-party packages with well-defined exports, such as:
+
+        ```ts
+        import {
+          costFactory,
+          basketItemsFactory,
+        } from '@scayle/storefront-nuxt/test/factories'
+        ```
+
+  For further details on bundler module resolution and its advantages, refer to the [official Nuxt blog post](https://nuxt.com/blog/v3-10#bundler-module-resolution).
+
+- eb563cb: [Translations] Removed unused translation entries from the project.
+- a232528: [Promotions] Refactored the handling of the bottom promotion banner height to improve performance and address several issues. Previously, the entire banner element was stored as a reference, leading to unnecessary layout re-renders and duplicated category API calls within the "Show deals" button triggered overlay due to `KeepAlive` issues. The implementation now uses a new `usePromotionBanner` composable to store only the banner's height. This simplifies gap calculations between the floating container and the banner, eliminates redundant re-renders, and resolves the API call duplication.
+- eb563cb: [Basket] Implemented a new section in the basket view that summarizes the prices of regular products, excluding discounts and promotions.
+- 2bc694a: [Architecture] As part of ongoing improvements to support the development and maintenance of tenant projects, all local application components (UI and subscription modules) now have the prefix `SF`. This standardized naming convention brings several benefits: improved code readability and maintainability across the codebase, and clear differentiation between Storefront Boilerplate components and custom components developed by tenants. This clear separation is crucial for the CLI, which will be responsible for managing and updating default components in tenant projects, preventing accidental overwrites and conflicts. See the example below for how this affects component imports.
+
+  - Example:
+
+    ```ts
+    // Before
+    import Footer from '~/components/Footer.vue'
+
+    // After
+    import SFFooter from '~/components/SFFooter.vue'
+    ```
+
+- f8316b5: [Subscriptions] The quantity selected on the product page is now correctly applied when adding subscription items to the basket. Previously, the quantity might have been reset or ignored.
+- eb563cb: [SEO] To streamline SEO management and reduce code duplication, we've removed our custom SEO utility functions and integrated with the SEO utilities available through the `@scayle/storefront-nuxt` package. This simplifies maintenance and ensures we're using the most up-to-date SEO practices.
+- eb563cb: To streamline the shopping experience, a basket preview has been integrated into the top main navigation. This allows users to easily view and manage the items in their basket without leaving their current page, improving accessibility and convenience.
+- f46e192: [Subscriptions] Subscription items with different definitions are now added as separate items to the basket instead of updating existing items. This aligns the subscription add-to-basket flow more closely with that of regular products.
+- 2dddad6: [ShopSwitcher] Updated the `ShopSwitcher` component to use a Flyout menu instead of a Dropdown, improving accessibility and user experience.
+- d3e6695: [Types] Corrected the import paths for the `BasketItemUpdateData` and `PromotionReductionItem` types.
+- eb563cb: [Basket] To provide greater transparency about discounts applied to the basket, a new section has been added to the basket summary. This section clearly displays both campaign-related discounts and sale reductions, allowing customers to easily understand how their final price is calculated.
+- eb563cb: [basket] Introduced a new basket item card design and a confirmation modal for deleting items from the basket, improving user experience and preventing accidental deletions.
+- e54c910: [E2E] Added an end-to-end test to ensure seamless navigation from the main navigation menu to product listing pages. This test covers navigation to main categories and subcategories up to the second level (e.g., `Women > Clothing > Dresses`). This comprehensive test strengthens our automated testing coverage and helps ensure a smooth browsing experience for our users.
+- eb563cb: [Basket] To improve transparency and provide users with more information about their subscriptions, subscription details are now displayed on each subscription-relevant basket item.
+- eb563cb: [Basket] To improve the user experience towards the checkout, a dedicated final summary section has been added to the basket page. This section clearly displays the final purchase price and provides a direct link to the checkout page, streamlining the checkout process and making it easier for customers to complete their purchase.
+- 54f7d65: [PDP] To prevent potentially misleading price displays on product detail pages (`/pages/p/[...productName]-[id].vue`), subscription items in the basket are now ignored when determining the price to display for the corresponding regular product. Previously, the presence of subscription items with potential extra discounts could lead to inaccurate price displays for regular items. This change ensures that the displayed price accurately reflects the price of the regular product itself.
+- eb563cb: [Basket] The basket page layout has been redesigned for improved clarity and organization. The basket item list generation has also been optimized to enhance performance and loading speed. These changes result in a more user-friendly and efficient basket experience.
+- d9daaa5: [Navigation] Added support for the `filters` properties on `navigationItem`'s that link to category pages.
+- bf03f8c: [Architecture] To address the risks associated with using an unmaintained dependency and improve the long-term stability of our Google Tag Manager integration, we have replaced `@zadigetvoltaire/nuxt-gtm` with a locally maintained module, `@scayle/nuxt-gtm`. This new module incorporates the most recent version of `@gtm-support/vue-gtm`, benefiting from performance improvements, bug fixes, and ongoing maintenance. This migration also allows us to eliminate a custom patch previously required for compatibility, further simplifying our dependency management.
+- a423186: [UI] Removed the `new` prefix that was recently added to icon names, reverting to the previous naming convention. In addition, unused icon files have been removed from the project, reducing the overall bundle size and improving performance. This cleanup also simplifies icon management and reduces the risk of naming conflicts.
+- 97d7ef3: [Performance] The product image zoom gallery is now rendered entirely on the client-side, resulting in significantly improved performance and interactivity. Previously, server-side rendering limitations impacted the gallery's responsiveness. This change ensures a smoother and more engaging user experience when viewing product images.
+- eb563cb: [Basket] Implemented a loading state for the basket page to provide better feedback to users during data fetching. Also added the ability to track `feature` errors using `trackFeatureError()`.
+
+### Patch Changes
+
+- 73623d7: [Subscription] Enhanced accessibility of subscription selection dropdowns (`SFProductSubscriptionSelection`) by ensuring focusable elements are used.
+- 462ffc4: [Account] Corrected the headline translation on the account page.
+- - Added dependency `@gtm-support/vue-gtm@3.1.0`
+  - Added dependency `eslint-formatter-gitlab@5.1.0`
+  - Removed dependency `@zadigetvoltaire/nuxt-gtm@0.0.13`
+  - Updated dependency `@contentful/live-preview@4.6.3` to `@contentful/live-preview@4.6.5`
+  - Updated dependency `@scayle/nuxt-opentelemetry@0.5.3` to `@scayle/nuxt-opentelemetry@0.5.7`
+  - Updated dependency `@scayle/omnichannel-nuxt@4.0.3` to `@scayle/omnichannel-nuxt@4.0.4`
+  - Updated dependency `@scayle/storefront-country-detection@1.0.1` to `@scayle/storefront-country-detection@1.1.0`
+  - Updated dependency `@scayle/storefront-nuxt@8.2.0` to `@scayle/storefront-nuxt@8.6.0`
+  - Updated dependency `@scayle/storefront-product-detail@1.0.1` to `@scayle/storefront-product-detail@1.0.2`
+  - Updated dependency `@scayle/storefront-product-listing@1.1.2` to `@scayle/storefront-product-listing@1.1.3`
+  - Updated dependency `@storyblok/nuxt@6.2.0` to `@storyblok/nuxt@6.2.2`
+  - Updated dependency `@storyblok/vue@8.1.6` to `@storyblok/vue@8.1.10`
+  - Updated dependency `@tailwindcss/forms@0.5.9` to `@tailwindcss/forms@0.5.10`
+  - Updated dependency `@tailwindcss/typography@0.5.15` to `@tailwindcss/typography@0.5.16`
+  - Updated dependency `@vueuse/components@12.0.0` to `@vueuse/components@12.5.0`
+  - Updated dependency `@vueuse/core@12.0.0` to `@vueuse/core@12.5.0`
+  - Updated dependency `@vueuse/integrations@12.0.0` to `@vueuse/integrations@12.5.0`
+  - Updated dependency `@vueuse/nuxt@12.0.0` to `@vueuse/nuxt@12.5.0`
+  - Updated dependency `check-password-strength@2.0.10` to `check-password-strength@3.0.0`
+  - Updated dependency `consola@3.2.3` to `consola@3.4.0`
+  - Updated dependency `contentful@11.3.3` to `contentful@11.4.4`
+  - Updated dependency `contentful-export@7.21.7` to `contentful-export@7.21.20`
+  - Updated dependency `dompurify@3.2.3` to `dompurify@3.2.4`
+  - Updated dependency `focus-trap@7.6.2` to `focus-trap@7.6.4`
+  - Updated dependency `nuxi@3.17.0` to `nuxi@3.21.1`
+  - Updated dependency `storyblok-js-client@6.10.4` to `storyblok-js-client@6.10.7`
+  - Updated dependency `@changesets/cli@2.27.11` to `@changesets/cli@2.27.12`
+  - Updated dependency `@nuxt/eslint@0.7.3` to `@nuxt/eslint@1.0.0`
+  - Updated dependency `@nuxt/image@1.8.1` to `@nuxt/image@1.9.0`
+  - Updated dependency `@nuxt/test-utils@3.15.1` to `@nuxt/test-utils@3.15.4`
+  - Updated dependency `@nuxtjs/tailwindcss@6.12.2` to `@nuxtjs/tailwindcss@6.13.1`
+  - Updated dependency `@scayle/eslint-config-storefront@4.4.0` to `@scayle/eslint-config-storefront@4.4.1`
+  - Updated dependency `@types/node@22.10.2` to `@types/node@22.12.0`
+  - Updated dependency `@typescript-eslint/scope-manager@8.18.1` to `@typescript-eslint/scope-manager@8.22.0`
+  - Updated dependency `@typescript-eslint/utils@8.18.1` to `@typescript-eslint/utils@8.22.0`
+  - Updated dependency `@vue/typescript-plugin@2.1.10` to `@vue/typescript-plugin@2.2.0`
+  - Updated dependency `eslint@9.17.0` to `eslint@9.19.0`
+  - Updated dependency `eslint-plugin-tailwindcss@3.17.5` to `eslint-plugin-tailwindcss@3.18.0`
+  - Updated dependency `happy-dom@15.11.7` to `happy-dom@16.7.3`
+  - Updated dependency `lint-staged@15.2.11` to `lint-staged@15.4.3`
+  - Updated dependency `nuxt-svgo@4.0.9` to `nuxt-svgo@4.0.14`
+  - Updated dependency `pathe@1.1.2` to `pathe@2.0.2`
+  - Updated dependency `postcss@8.4.49` to `postcss@8.5.1`
+  - Updated dependency `postcss-html@1.7.0` to `postcss-html@1.8.0`
+  - Updated dependency `storyblok-generate-ts@2.1.0` to `storyblok-generate-ts@2.2.0`
+  - Updated dependency `typescript@5.6.3` to `typescript@5.7.3`
+  - Updated dependency `unimport@3.13.4` to `unimport@4.0.0`
+  - Updated dependency `vue-tsc@2.1.10` to `vue-tsc@2.2.0`
+- ec78e4f: [Style] Updated the `SFSlideIn` component to support full-screen display mode on mobile devices. This provides a more immersive experience and better utilizes screen real estate on smaller screens.
+- 0dcb1b3: [Accessibility] Removed the unintended shift on hover from the side navigation on product listing pages to improve accessibility.
+- edb3c3d: [E2E] Refactored the `ShopSelector` DOM element handling for determining the currently selected country. This simplifies the logic and improves performance.
+- 0d60e80: [Accessibility] Addressed an accessibility issue where pagination items were not focusable using the Tab key. Replaced `<span>` elements with `<SFButton>` components to ensure proper keyboard navigation.
+- 69f6357: [E2E] Enhanced the stability of the main navigation end-to-end tests by adding a check for DOM content loading.
+- fbae754: [Tracking] Updated search events to include page information attributes and added tracking for "show all results" clicks.
+- b341545: [Navigation] Ensured horizontal alignment between navigation list items and their corresponding header elements.
+- f6fe4bb: [E2E] Updated the end-to-end tests to cover the redesigned `ShopSelector` functionality.
+- 4aaaf82: [Tracking] Added tracking for customer logout events to capture the `customer_data` event. This ensures improved tracking of customer sessions and provides valuable insights into user behavior.
+- 094a5b8: [Navigation] Corrected a layout shift that occurred when hovering over navigation items.
+- 478f425: [E2E] As part of the ongoing improvements to our multi-shop platform and the introduction of global API routing for path-based shops, we've updated our E2E test suite. Tests relying on RPC calls have been refactored to reflect the new, simplified API access. This ensures our tests remain comprehensive and effective in validating multi-shop platform functionality, minimizing the risk of regressions and ensuring a seamless experience for our customers across all shops.
+- 529079e: [Accessibility] RRemoved the focus style from the `input` element within the `SearchInput` component to address an issue where an unintended focus state was displayed on click.
+- f876e21: [Styling] Increased the bottom margin of the "Scroll to Top" button on medium and larger screens (breakpoints `md` and above) to prevent overlap with footer links.
+- 6f315cd: [E2E] Modified the end-to-end test suite to reflect recent updates to the Basket and Wishlist pages, including their empty states and updated page titles.
+- eb563cb: [E2E] The `e2e-happy-path.spec.ts` end-to-end test, which covers the critical user journey on the Basket page, has been updated to reflect the recent design changes. This ensures that the core flow towards the checkout remains functional and provides a seamless experience for our customers.
+- 3f5045b: [Navigation] Refactored navigation lists to use semantically correct `ul` (unordered list) and `li` (list item) tags.
+- 8ed0b88: [Tracking] Corrected the `search_destination` attribute value that is tracked when a user clicks on a suggested page in the search results.
+- be8a61a: [Accessibility] Added the `role="presentation"` attribute to the icon within the `SFNavigationTreeItem` component to improve accessibility and conform with WCAG requirements.
+- 9a85211: [E2E] Enhanced the reliability and stability of end-to-end (E2E) tests, particularly those involving user accounts. Each browser now uses a dedicated user account during test execution, preventing data conflicts and ensuring more consistent test results. Additionally, test timeout thresholds have been increased to accommodate potential temporary slowdowns and reduce the occurrence of false positives.
+  To configure dedicated test user accounts for each browser, set the following environment variables (refer to `env.example` for reference):
+
+  - `TEST_USER_EMAIL`
+  - `TEST_USER_EMAIL2`
+  - `TEST_USER_EMAIL3`
+  - `TEST_USER_EMAIL4`
+  - `TEST_USER_EMAIL5`
+  - `TEST_USER_PASSWORD`
+  - `TEST_USER_WRONG_PASSWORD`
+  - `TEST_USER_NO_ORDERS_PASSWORD`
+
+  These variables can be set in a `.env` file or via CI/CD variables. The mapping between browsers and user accounts is defined in the getUserForBrowser function in `playwright/support/utils`.
+
+- 4ec0190: [Images] Improved the construction of image URLs by using URL.parse. This ensures more robust and consistent URL generation when using a CDN, improving image loading performance and reliability.
+- abd3ccc: [Tracking] The `method` key in the `customer_data` tracking object has been renamed to `login_method` for clarity and consistency.
+- 78beead: [Accessibility] To prevent redundant focusable elements and improve keyboard navigation within the `SFPriceRangeSlider` component, the button element's focusability has been disabled. The slider's dots (provided by `VueSlider`) already provide proper focus handling, making the button's focus redundant and potentially confusing for keyboard users.
+- d3fcf73: [PDP] Implemented title truncation for excessively long titles within the product page breadcrumbs.
+- eb563cb: [Tracking] Removed the explicit `cart` event trigger when removing basket items using `useBasketActions`. This event is already handled automatically by the `useUserItemsTrackingWatcher`.
+- 9e7a058: [E2E] Extended the basket price summary end-to-end tests to cover mobile browsers. This ensures accurate price calculations and display for sale and promotion products on mobile devices, maintaining consistency across different platforms.
+- 13fe5ec: [ShopSwitcher] Updated the `ShopSwitcher` component to display the language code instead of the full language name.
+- 47bef8f: [Tracking] Corrected an issue where a tracking event was not being triggered when clicking the "Show All" button in search results if other suggestions were present.
+- 37a546b: [Accessibility] Improved the heading structure within the `StoreVariantAvailability` component (used for displaying store variant availability) and account overview page (`account/index.vue`) to better reflect the informational hierarchy of the pages. This improves readability and accessibility for users, making it easier to understand the content. This involved adding new headings where necessary and adjusting existing headings to use the appropriate semantic level.
+- a2296bf: [Promotions] Improved the performance of promotion loading by reducing the number of calls made to the `getCategoryById` function. This optimization reduces API requests and improves the overall responsiveness of the promotions feature.
+- 57dd606: [E2E] Improved the robustness of the end-to-end test for filter deeplinks. The test now validates filter functionality irrespective of the order in which filters are returned by the backend. This addresses an issue where variations in filter order could lead to false negative test results, ensuring more consistent and reliable testing.
+- bbccaf6: [Navigation] Cleaned up and enhanced the `NavigationItem` test data. The `languages` field, which was no longer used, has been removed. Additionally, the `filters` property has been added to all category navigation items to facilitate more comprehensive testing of filtering functionality within the navigation. This change simplifies the test data and improves the accuracy of navigation-related tests.
+
 ## 1.6.0
 
 ### 🔥 Highlights

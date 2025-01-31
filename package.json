@@ -64,6 +64,7 @@
     "autoprefixer": "10.4.20",
     "env-cmd": "10.1.0",
     "eslint": "9.19.0",
+    "eslint-formatter-gitlab": "5.1.0",
     "eslint-plugin-nuxt": "4.0.0",
     "eslint-plugin-tailwindcss": "3.18.0",
     "eslint-plugin-unimport": "0.1.2",

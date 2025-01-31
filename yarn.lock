@@ -7593,6 +7593,14 @@ eslint-flat-config-utils@^2.0.0:
   dependencies:
     pathe "^2.0.2"
 
+eslint-formatter-gitlab@5.1.0:
+  version "5.1.0"
+  resolved "https://registry.yarnpkg.com/eslint-formatter-gitlab/-/eslint-formatter-gitlab-5.1.0.tgz#33162a17eefba5a44a257af568511d360212e866"
+  integrity sha512-IxhrjLYzDlbFgPWEnvZlWLwPjMeyymbyo0hDHWntZ3DSAP9AP9huj15KbU+BK3OqeO3OHhbFEh2TA6sR0KZhkA==
+  dependencies:
+    chalk "^4.0.0"
+    yaml "^2.0.0"
+
 eslint-import-resolver-node@^0.3.9:
   version "0.3.9"
   resolved "https://registry.yarnpkg.com/eslint-import-resolver-node/-/eslint-import-resolver-node-0.3.9.tgz#d4eaac52b8a2e7c3cd1903eb00f7e053356118ac"

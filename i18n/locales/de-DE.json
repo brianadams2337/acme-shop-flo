@@ -304,7 +304,12 @@
     "cleared_notification": "Alle Filter wurden entfernt!",
     "updated_notification_filter": "Deine Filter wurden erfolgreich angewendet!",
     "updated_notification_sort": "Deine Sortierung wurden erfolgreich angewendet!",
-    "updated_notification_all": "Deine Sortierung und Filter wurden erfolgreich angewendet!"
+    "updated_notification_all": "Deine Sortierung und Filter wurden erfolgreich angewendet!",
+    "close-a11y": "Filter schließen",
+    "update_price": "Preis aktualisieren",
+    "minimum_price": "Mindestpreis: {price}",
+    "maximum_price": "Höchstpreis: {price}",
+    "size": "Größe: {size}"
   },
   "osp": {
     "order_details": "Bestelldetails",
@@ -493,7 +498,10 @@
   "a11y": {
     "skip_to_main": "Zum Hauptinhalt springen",
     "skip_to_search": "Weiter zur Suche",
-    "search_button": "Suche"
+    "search_button": "Suche",
+    "side_navigation": "Seitennavigation öffnen",
+    "pagination_previous": "Gehe zur vorherigen Seite",
+    "pagination_next": "Gehe zur nächsten Seite"
   },
   "quantity": {
     "new_value": "Ändere die Menge auf {newQuantity}",

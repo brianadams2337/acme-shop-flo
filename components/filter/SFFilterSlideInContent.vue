@@ -89,6 +89,7 @@
             :model-value="appliedAttributeValues[filter.slug]"
             :item="item.id"
             :label="item.name"
+            :input-aria-label="$t('filter.size', { size: item.name })"
             @change="$emit('applyAttributeFilter', filter.slug, item.id)"
           >
             {{ item.name }}

@@ -8,10 +8,14 @@
       fab
       variant="raw"
       data-testid="close-filters"
+      :aria-label="$t('filter.close')"
       @click="toggleItem"
     >
       <template #icon>
-        <IconClose class="size-5 md:size-4 md:text-gray-400" />
+        <IconClose
+          aria-hidden="true"
+          class="size-5 md:size-4 md:text-gray-400"
+        />
       </template>
     </SFButton>
   </div>

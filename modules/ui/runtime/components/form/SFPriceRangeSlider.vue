@@ -21,6 +21,7 @@
         height="2px"
         tooltip="always"
         tooltip-placement="top"
+        :dot-attrs="{ 'aria-label': $t('filter.update_price') }"
         @update:model-value="updateRange"
         @change="emit('slider-change')"
         @drag-start="emit('drag-start', range)"
@@ -53,6 +54,11 @@
         :format-options="{
           minimumFractionDigits: 0,
         }"
+        :aria-label="
+          $t('filter.minimum_price', {
+            price: formatCurrency(roundDownPrice(range[0])),
+          })
+        "
         @update:model-value="changeRangeAtIndex(roundDownPrice($event), 0)"
       />
       <div class="mx-auto text-center text-xs font-semibold text-secondary">
@@ -67,6 +73,11 @@
         :format-options="{
           minimumFractionDigits: 0,
         }"
+        :aria-label="
+          $t('filter.maximum_price', {
+            price: formatCurrency(roundDownPrice(range[1])),
+          })
+        "
         @update:model-value="changeRangeAtIndex(roundUpPrice($event), 1)"
       />
     </div>

@@ -94,6 +94,7 @@ const {
   () => product,
   () => pricePromotionKey,
   () => variant,
+  () => quantity,
   'product-subscription.vue',
 )
 

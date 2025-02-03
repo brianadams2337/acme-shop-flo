@@ -15,6 +15,10 @@ export class Promotions {
   readonly buttonShowDeals: Locator
   readonly promotionList: Locator
   readonly promotionListMobile: Locator
+  readonly promotionTermsToggle: Locator
+  readonly promotionTermsToggleMobile: Locator
+  readonly promotionTermsContent: Locator
+  readonly promotionTermsContentMobile: Locator
 
   constructor(page: Page) {
     this.page = page
@@ -35,6 +39,14 @@ export class Promotions {
     this.buttonShowDeals = page.getByTestId('show-deals-button')
     this.promotionList = page.getByTestId('promotion-list')
     this.promotionListMobile = page.getByTestId('promotion-list-mobile')
+    this.promotionTermsToggle = page.getByTestId('promotion-terms-toggle')
+    this.promotionTermsToggleMobile = this.promotionListMobile.getByTestId(
+      'promotion-terms-toggle',
+    )
+    this.promotionTermsContent = page.getByTestId('promotion-terms-content')
+    this.promotionTermsContentMobile = this.promotionListMobile.getByTestId(
+      'promotion-terms-content',
+    )
   }
 
   async clickToggleButton() {
@@ -125,6 +137,26 @@ export class Promotions {
       await expect(this.promotionBannerMobile).toBeInViewport()
     } else {
       await expect(this.promotionBanner).not.toBeInViewport()
+    }
+  }
+
+  async clickPromotionTermsButton() {
+    if (isMobile(this.page)) {
+      await this.promotionTermsToggleMobile.first().click()
+    } else {
+      await this.promotionTermsToggle.first().click()
+    }
+  }
+
+  async assertTermsContentIsVisible(isVisible: boolean) {
+    if (isMobile(this.page)) {
+      await expect(this.promotionTermsContentMobile.first()).toBeVisible({
+        visible: isVisible,
+      })
+    } else {
+      await expect(this.promotionTermsContent.first()).toBeVisible({
+        visible: isVisible,
+      })
     }
   }
 }

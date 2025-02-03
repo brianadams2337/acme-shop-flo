@@ -3,6 +3,7 @@
     <SFButton
       variant="raw"
       class="flex !items-start justify-between whitespace-pre-line !px-1.5 text-start text-xs font-semibold !text-gray-500"
+      data-testid="promotion-terms-toggle"
       is-full-width
       size="sm"
       @click.stop.prevent="toggleTerms"
@@ -18,7 +19,13 @@
     </SFButton>
 
     <SFFadeInFromBottomTransition>
-      <p v-if="areTermsShown" class="px-1.5 text-2xs">{{ content }}</p>
+      <p
+        v-if="areTermsShown"
+        class="px-1.5 text-2xs"
+        data-testid="promotion-terms-content"
+      >
+        {{ content }}
+      </p>
     </SFFadeInFromBottomTransition>
   </div>
 </template>

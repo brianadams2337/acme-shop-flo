@@ -28,6 +28,16 @@ test('C2140759 C2140758 Verify Promotion bar expanded state features', async ({
     await promotions.expandPromotionBar()
     await promotions.assertPromotionBarExpanded()
   })
+  await test.step('Expand the terms and conditions area', async () => {
+    await promotions.clickPromotionTermsButton()
+    await page.waitForTimeout(500)
+    await promotions.assertTermsContentIsVisible(true)
+  })
+  await test.step('Close the terms and conditions area', async () => {
+    await promotions.clickPromotionTermsButton()
+    await page.waitForTimeout(500)
+    await promotions.assertTermsContentIsVisible(false)
+  })
   await test.step('Close promotion bar', async () => {
     await promotions.closePromotionBar()
   })

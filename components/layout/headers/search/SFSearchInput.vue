@@ -72,7 +72,12 @@
 
 <script setup lang="ts">
 import computed, { nextTick, watch, ref } from 'vue'
-import { onClickOutside, onKeyStroke, useEventListener } from '@vueuse/core'
+import {
+  onClickOutside,
+  onKeyStroke,
+  useDebounceFn,
+  useEventListener,
+} from '@vueuse/core'
 import { useFocusTrap } from '@vueuse/integrations/useFocusTrap'
 import type { SearchEntity } from '@scayle/storefront-nuxt'
 import { useTrackingEvents, useRouteHelpers } from '~/composables'
@@ -92,12 +97,15 @@ const { getSearchRoute, localizedNavigateTo, getSearchSuggestionPath } =
 const {
   searchQuery,
   getSearchSuggestions,
+  getSearchSuggestions,
   resetSearch,
   products,
   categories,
   navigationItems,
   totalCount,
   status,
+  hasSearchQuery,
+  hasSuggestions,
 } = useSearch()
 
 watch(
@@ -116,11 +124,11 @@ const debouncedSearch = useDebounceFn(async () => {
     return
   }
   await getSearchSuggestions()
-}, DEBOUNCED_SEARCH_DURATION)
+}, 500)
 
 const showSuggestionsLoader = computed(() => {
   return (
-    status.value === 'pending' && (!searchQuery.value || noSuggestions.value)
+    status.value === 'pending' && (!searchQuery.value || !hasSuggestions.value)
   )
 })
 

@@ -1,19 +1,7 @@
-import type {
-  CategorySearchSuggestion,
-  ProductSearchSuggestion,
-} from '@scayle/storefront-nuxt'
 import { describe, expect, it } from 'vitest'
 import {
-  attributeGroupFactory,
-  productFactory,
-  categoryFactory,
-} from '@scayle/storefront-nuxt/test/factories'
-import {
   getSearchFilterLabels,
-  getSuggestionName,
   buildFiltersQuery,
-  isCategorySuggestion,
-  isProductSuggestion,
   type CategoryFilter,
 } from './search'
 
@@ -163,79 +151,5 @@ describe('getSearchFilterLabels', () => {
 
     const labels = getSearchFilterLabels(filters)
     expect(labels).toEqual(['Blau', 'Rot', 'M', 'XL', 'Sale'])
-  })
-})
-
-describe('isProductSuggestion', () => {
-  it('should return "true" if its product suggestion', () => {
-    const productSuggestion: ProductSearchSuggestion = {
-      type: 'product',
-      productSuggestion: { product: productFactory.build() },
-    }
-    expect(isProductSuggestion(productSuggestion)).toEqual(true)
-  })
-
-  it('should return "false" if its not product suggestion', () => {
-    const categorySuggestion: CategorySearchSuggestion = {
-      type: 'category',
-      categorySuggestion: { category: categoryFactory.build(), filters: [] },
-    }
-    expect(isProductSuggestion(categorySuggestion)).toEqual(false)
-  })
-})
-
-describe('isCategorySuggestion', () => {
-  it('should return "true" if its category suggestion', () => {
-    const categorySuggestion: CategorySearchSuggestion = {
-      type: 'category',
-      categorySuggestion: { category: categoryFactory.build(), filters: [] },
-    }
-
-    expect(isCategorySuggestion(categorySuggestion)).toEqual(true)
-  })
-  it('should return "false" if its not category suggestion', () => {
-    const productSuggestion: ProductSearchSuggestion = {
-      type: 'product',
-      productSuggestion: { product: productFactory.build() },
-    }
-    expect(isCategorySuggestion(productSuggestion)).toEqual(false)
-  })
-})
-
-describe('getSuggestionName', () => {
-  it('should return "undefined" if no suggestion type', () => {
-    expect(getSuggestionName({ type: undefined })).toEqual(undefined)
-  })
-
-  it('should return category name for category suggestion', () => {
-    const categorySuggestion: CategorySearchSuggestion = {
-      type: 'category',
-      categorySuggestion: {
-        category: categoryFactory.build({ name: 'Men' }),
-        filters: [],
-      },
-    }
-    expect(getSuggestionName(categorySuggestion)).toEqual('Men')
-  })
-
-  it('should return product name for product suggestion', () => {
-    const productSuggestion: ProductSearchSuggestion = {
-      type: 'product',
-      productSuggestion: {
-        product: productFactory.build({
-          attributes: {
-            name: attributeGroupFactory.build({
-              key: 'name',
-              values: {
-                id: 20005,
-                label: 'Calvin Klein Shirt',
-                value: 'name',
-              },
-            }),
-          },
-        }),
-      },
-    }
-    expect(getSuggestionName(productSuggestion)).toEqual('Calvin Klein Shirt')
   })
 })

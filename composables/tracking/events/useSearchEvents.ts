@@ -8,7 +8,7 @@ import {
   isNavigationItemSuggestion,
   isProductSuggestion,
   getSuggestionName,
-} from '~/utils'
+} from '#storefront-search/utils'
 
 import type {
   TrackingEvent,

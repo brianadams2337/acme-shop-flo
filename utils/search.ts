@@ -1,10 +1,4 @@
-import type {
-  CategorySearchSuggestion,
-  NavigationItemSuggestion,
-  ProductSearchSuggestion,
-  SearchEntity,
-} from '@scayle/storefront-nuxt'
-import { getFirstAttributeValue } from '@scayle/storefront-nuxt'
+import type { CategorySearchSuggestion } from '@scayle/storefront-nuxt'
 import type { LocationQueryRaw } from '#vue-router'
 
 export type CategoryFilter =
@@ -50,38 +44,4 @@ export const getSearchFilterLabels = (
 
     return labels
   }, [])
-}
-
-export const isProductSuggestion = (
-  suggestion: SearchEntity,
-): suggestion is ProductSearchSuggestion => {
-  return suggestion.type === 'product'
-}
-
-export const isCategorySuggestion = (
-  suggestion: SearchEntity,
-): suggestion is CategorySearchSuggestion => {
-  return suggestion.type === 'category'
-}
-export const isNavigationItemSuggestion = (
-  suggestion: SearchEntity,
-): suggestion is NavigationItemSuggestion => {
-  return suggestion.type === 'navigationItem'
-}
-
-export const getSuggestionName = (
-  suggestion: SearchEntity,
-): string | undefined => {
-  if (!suggestion.type) {
-    return
-  }
-
-  if (isCategorySuggestion(suggestion)) {
-    return suggestion.categorySuggestion.category.name
-  }
-
-  if (isProductSuggestion(suggestion)) {
-    const { attributes } = suggestion.productSuggestion.product
-    return getFirstAttributeValue(attributes, 'name')?.label ?? ''
-  }
 }

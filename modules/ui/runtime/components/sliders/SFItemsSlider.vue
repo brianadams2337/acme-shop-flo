@@ -17,7 +17,7 @@
         },
         sliderClass,
       ]"
-      :tabindex="disableFocus ? -1 : 0"
+      :tabindex="sliderTabindex"
       @scroll.passive="onScroll"
     >
       <slot />
@@ -82,7 +82,7 @@ type Props = {
   withArrows?: boolean
   hideDisabledArrows?: boolean
   mode?: 'horizontal' | 'vertical'
-  disableFocus?: boolean
+  sliderTabindex?: number
 }
 
 const {
@@ -91,7 +91,6 @@ const {
   withArrows = false,
   sliderClass = '',
   hideDisabledArrows = false,
-  disableFocus = false,
   mode = 'horizontal',
 } = defineProps<Props>()
 

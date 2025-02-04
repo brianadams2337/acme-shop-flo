@@ -4,7 +4,7 @@
     class="size-full"
     :with-arrows="areArrowsShown"
     tabindex="-1"
-    disable-focus
+    :slider-tabindex="-1"
   >
     <template #prev-button="{ prev, isPrevEnabled }">
       <SFProductCardImageSliderButton

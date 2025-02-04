@@ -7,6 +7,7 @@
     data-testid="article"
     class="group/product-card relative flex h-full flex-col rounded-lg"
     :aria-label="name"
+    role="link"
     @mouseover="onMouseOver"
     @mouseleave="onMouseLeave"
   >

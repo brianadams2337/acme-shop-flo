@@ -15,6 +15,7 @@
         :data-testid="`product-thumbnail-${index}`"
         class="my-2 aspect-3/4 w-24 shrink-0 cursor-pointer overflow-hidden rounded-md bg-gray-50 first:mt-0 last:mb-0"
         :class="index === activeSlide ? 'bg-gray-900/10' : 'bg-gray-50'"
+        tabindex="-1"
         @mouseenter="scrollImageIntoView(index)"
         @click="isZoomModalOpen = true"
       >
@@ -58,6 +59,7 @@
         :with-arrows="images.length > 1"
         :slider-class="productImageSliderClass"
         data-testid="main-product-image"
+        :slider-tabindex="-1"
         @update:active-slide="updateActiveSlide"
       >
         <SFProductImage
@@ -76,6 +78,7 @@
           :data-testid="`product-image-${index}`"
           sizes="xs:100vw sm:100vw md:50vw lg:50vw xl:50vw"
           class="min-w-full cursor-pointer snap-start snap-always self-start overflow-hidden md:rounded-md"
+          tabindex="-1"
           @click="isZoomModalOpen = true"
         />
         <template #arrows="{ prev, isPrevEnabled, next, isNextEnabled }">

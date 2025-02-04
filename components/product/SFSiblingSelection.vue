@@ -3,7 +3,7 @@
     with-arrows
     mode="horizontal"
     data-testid="product-thumbnails"
-    disable-focus
+    :slider-tabindex="-1"
   >
     <template #header>
       <div class="mb-4 flex justify-between">

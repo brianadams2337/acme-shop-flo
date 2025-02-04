@@ -24,7 +24,7 @@
         variant="raw"
         tabindex="-1"
         class="flex items-center justify-center max-lg:size-11"
-        :aria-label="$t('a11y.search_button')"
+        aria-hidden="true"
       >
         <IconSearch class="size-5 shrink-0" />
       </SFButton>

@@ -498,7 +498,6 @@
   "a11y": {
     "skip_to_main": "Zum Hauptinhalt springen",
     "skip_to_search": "Weiter zur Suche",
-    "search_button": "Suche",
     "side_navigation": "Seitennavigation öffnen",
     "pagination_previous": "Gehe zur vorherigen Seite",
     "pagination_next": "Gehe zur nächsten Seite"

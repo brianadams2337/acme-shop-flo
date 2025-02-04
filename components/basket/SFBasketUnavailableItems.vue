@@ -1,6 +1,7 @@
 <template>
   <ul
     class="flex w-full -translate-y-6 flex-col items-end pt-px lg:min-w-125 lg:max-w-156"
+    data-testid="unavailable-product-list"
     :aria-label="$t('basket.unavailable_products')"
   >
     <SFBasketCard

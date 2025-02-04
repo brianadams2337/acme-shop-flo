@@ -245,3 +245,37 @@ test('C2167321 Verify Basket Price summary - promotion product', async ({
     }
   })
 })
+
+test('C2162474 Verify Basket Sold-out product card', async ({
+  homePage,
+  header,
+  basketPage,
+  countryDetector,
+  accountPage,
+  page,
+}) => {
+  await test.step('Log in with user that has sold-out product and open Basket page', async () => {
+    await expect(async () => {
+      await homePage.visitPage()
+      await countryDetector.closeModal()
+      await accountPage.userAuthentication(
+        BASKET_TEST_DATA.soldOutProductUser,
+        BASKET_TEST_DATA.soldOutProductPassword,
+      )
+      await header.visitBasketPage()
+      await page.waitForTimeout(500)
+    }).toPass()
+  })
+  await test.step('Check Basket sold-out product card', async () => {
+    await page.reload()
+    await page.waitForLoadState('domcontentloaded')
+    await basketPage.unavailableProductList.waitFor()
+
+    await expect(basketPage.unavailableProductList).toBeVisible()
+    await expect(basketPage.soldOutTitle).toBeVisible()
+    await expect(basketPage.headlineUnavailableProducts).toBeVisible()
+    await expect(basketPage.soldOutQuantitySelector.first()).not.toBeVisible()
+    await expect(basketPage.soldOutDeleteButton).toBeVisible()
+    await basketPage.assertSoldOutImageOpacity('0.6')
+  })
+})

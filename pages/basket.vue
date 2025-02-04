@@ -25,6 +25,7 @@
           <SFHeadline
             tag="h2"
             class="z-10 w-full rounded-lg border border-gray-200 bg-gray-50 px-5 py-2.5 text-md font-semi-bold-variable text-gray-500 lg:max-w-156"
+            data-testid="headline-unavailable-products"
           >
             {{ $t('basket.unavailable_products') }}:
           </SFHeadline>

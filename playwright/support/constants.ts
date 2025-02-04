@@ -73,6 +73,8 @@ export const BASKET_TEST_DATA = {
   regularPriceVariantId: 334103,
   salePriceVariantId: 335845,
   promotionPriceProductId: '205808',
+  soldOutProductUser: process.env.TEST_USER_EMAIL7 as string,
+  soldOutProductPassword: process.env.TEST_USER_PASSWORD as string,
 }
 
 export const HOMEPAGE_PATH_DE = '/de'

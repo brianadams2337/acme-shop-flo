@@ -26,6 +26,13 @@ export class BasketPage {
   readonly discountPromotion: Locator
   readonly promotionSummaryToggleButton: Locator
   readonly totalPromotionDiscount: Locator
+  readonly headlineUnavailableProducts: Locator
+  readonly soldOutTitle: Locator
+  readonly unavailableProductList: Locator
+  readonly quantitySelector: Locator
+  readonly soldOutQuantitySelector: Locator
+  readonly soldOutDeleteButton: Locator
+  readonly soldOutProductImage: Locator
 
   constructor(page: Page, rpc: RPC) {
     this.page = page
@@ -62,6 +69,19 @@ export class BasketPage {
     this.totalPromotionDiscount = page.getByTestId(
       'summary-total-promotion-reduction',
     )
+    this.headlineUnavailableProducts = page.getByTestId(
+      'headline-unavailable-products',
+    )
+    this.soldOutTitle = page.getByTestId('basket-card-sold-out-title')
+    this.unavailableProductList = page.getByTestId('unavailable-product-list')
+    this.quantitySelector = page.getByTestId('quantity-selector')
+    this.soldOutQuantitySelector =
+      this.unavailableProductList.getByTestId('quantity-selector')
+    this.soldOutDeleteButton = this.unavailableProductList.getByTestId(
+      'basket-remove-item-button',
+    )
+    this.soldOutProductImage =
+      this.unavailableProductList.getByTestId('product-image')
   }
 
   async gotoCheckoutPage(index: number) {
@@ -166,5 +186,13 @@ export class BasketPage {
     expect(priceSubtotalValue).toEqual(
       priceFinalValue + Math.abs(discountValue),
     )
+  }
+
+  async assertSoldOutImageOpacity(opacity: string) {
+    const productImageOpacity = await this.page.$eval(
+      '[data-testid="unavailable-product-list"] >> [data-testid="product-image"]',
+      (el) => String(window.getComputedStyle(el).opacity).trim(),
+    )
+    expect(productImageOpacity).toBe(opacity)
   }
 }

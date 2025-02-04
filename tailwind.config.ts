@@ -69,6 +69,13 @@ export default {
         '50%': { opacity: 0.5 },
       },
     },
+    outlineWidth: {
+      0: '0',
+      1: '1px',
+      2: '2px',
+      3: '3px',
+      4: '4px',
+    },
     outlineOffset: {
       0: '0',
       1: '1px',
@@ -216,6 +223,7 @@ export default {
         'inner-solid': 'inset 0 0 0 4px #193146',
         'inner-solid-sm': 'inset 0 0 0 2px #193146',
         'outer-solid': '0 0 0 3px #193146',
+        'input-label': 'inset 0 2px 8px -10px #ccc, inset 0 2px 8px -10px #ccc',
       },
       colors: {
         emerald: {

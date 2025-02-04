@@ -1,69 +1,82 @@
 <template>
-  <div class="relative flex-1 cursor-text">
+  <div class="relative flex-1">
     <input
       v-bind="$attrs"
-      :id="placeholder"
+      :id="id"
       ref="input"
       v-model="modelValue"
       v-maska
       :data-maska="dataMaska"
       :required="required"
-      :readonly="props.readonly"
+      :readonly="readonly"
       :type="type"
       :placeholder="placeholder"
-      :autocomplete="autocomplete"
-      class="w-full rounded border-2 p-3 text-sm font-medium placeholder:text-secondary"
-      :class="classes"
-      :maxlength="maxLength"
+      class="peer h-12 w-full rounded-10 border border-gray-100 bg-gray-100 p-4 text-base font-variable text-gray-900 transition duration-100 placeholder:text-transparent hover:border-gray-300 hover:bg-white focus:border-accent focus:bg-white focus:text-accent focus:shadow-none focus:outline focus:outline-3 focus:outline-offset-0 focus:outline-indigo-200/50"
+      :class="{
+        'border-gray-300 bg-white': modelValue,
+        'focus:border-gray-300 focus:text-gray-900 focus:!outline-none':
+          readonly,
+        'border-2 border-status-error bg-white !text-status-error shadow-none !outline-0 hover:border-status-error focus:border-status-error':
+          hasErrors,
+      }"
     />
+    <label
+      :for="id"
+      class="absolute left-2 top-4 px-2.5 text-sm text-gray-600 duration-100 ease-linear placeholder-shown:bg-gray-100 peer-placeholder-shown:translate-y-0 peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-600 peer-focus:ml-1 peer-focus:-translate-y-6 peer-focus:bg-white peer-focus:px-1.5 peer-focus:text-xs peer-focus:text-accent peer-focus:shadow-input-label after:peer-focus:text-accent"
+      :class="{
+        [`after:ml-0.5 after:text-gray-600 after:content-['*']`]: required,
+        '!text-gray-600 transition-none peer-focus:after:text-gray-600':
+          readonly,
+        'ml-1 -translate-y-6 bg-white !px-1.5 text-xs !shadow-input-label':
+          modelValue,
+        '!text-status-error after:text-status-error peer-focus:after:text-status-error':
+          hasErrors,
+      }"
+    >
+      {{ placeholder }}
+    </label>
     <p v-if="hint" class="mt-1 text-xs">{{ hint }}</p>
+    <div class="absolute right-2 top-1/2 h-full w-10 -translate-y-1/2 py-1.5">
+      <slot name="append-icon" />
+    </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { defineOptions, computed } from 'vue'
+import { defineOptions, computed, useId } from 'vue'
 import { vMaska } from 'maska/vue'
 
+defineOptions({ inheritAttrs: false })
+
 type Props = {
-  type?: string
   placeholder: string
-  autocomplete?: string
   mask?: string | string[]
   required?: boolean
+  type?: HTMLInputElement['type']
   readonly?: boolean
-  maxLength?: number
   hint?: string
   hasErrors?: boolean
 }
 
-const props = withDefaults(defineProps<Props>(), {
-  type: 'text',
-  autocomplete: '',
-  mask: '',
-  required: false,
-  readonly: false,
-  maxLength: undefined,
-  hint: '',
-  hasErrors: false,
-})
+const {
+  type = 'text',
+  mask = '',
+  hint = '',
+  required = false,
+  hasErrors = false,
+  placeholder,
+  // Disabling unimport/auto-insert here due misdetection of "readonly" keyword
+  // eslint-disable-next-line unimport/auto-insert
+  readonly = false,
+} = defineProps<Props>()
 
 const modelValue = defineModel<string>()
+
+const id = computed(() => `text-input-${useId()}`)
 
 const dataMaska = computed(() => {
   // Maska don't accept array for the dynamic mask approach.
   // String conversion is needed in order to make it work properly
-  return Array.isArray(props.mask) ? JSON.stringify(props.mask) : props.mask
-})
-
-const classes = computed(() => [
-  modelValue.value ? 'border-primary' : 'border-transparent bg-secondary-450',
-  {
-    'bg-secondary-450': props.readonly,
-    'border-red-500 text-red-500 placeholder:text-red-500 focus:border-red-500':
-      props.hasErrors,
-  },
-])
-defineOptions({
-  inheritAttrs: false,
+  return Array.isArray(mask) ? JSON.stringify(mask) : mask
 })
 </script>

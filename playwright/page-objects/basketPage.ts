@@ -2,6 +2,7 @@ import type { Locator, Page } from '@playwright/test'
 import { HOMEPAGE_PATH_DE } from '../support/constants'
 import { expect } from '../fixtures/fixtures'
 import type { RPC } from './components/rpc'
+import { isMobile } from '../support/utils'
 
 export class BasketPage {
   readonly page: Page
@@ -33,6 +34,9 @@ export class BasketPage {
   readonly soldOutQuantitySelector: Locator
   readonly soldOutDeleteButton: Locator
   readonly soldOutProductImage: Locator
+  readonly quantityValue: Locator
+  readonly buttonQuantityDecrease: Locator
+  readonly buttonQuantityIncrease: Locator
 
   constructor(page: Page, rpc: RPC) {
     this.page = page
@@ -82,6 +86,9 @@ export class BasketPage {
     )
     this.soldOutProductImage =
       this.unavailableProductList.getByTestId('product-image')
+    this.quantityValue = page.getByTestId('quantity-value')
+    this.buttonQuantityDecrease = page.getByTestId('quantity-minus')
+    this.buttonQuantityIncrease = page.getByTestId('quantity-plus')
   }
 
   async gotoCheckoutPage(index: number) {
@@ -194,5 +201,50 @@ export class BasketPage {
       (el) => String(window.getComputedStyle(el).opacity).trim(),
     )
     expect(productImageOpacity).toBe(opacity)
+  }
+
+  async assertQuantityValue(value: string) {
+    let index: number
+    if (isMobile(this.page)) {
+      index = 1
+    } else {
+      index = 0
+    }
+    await expect(this.quantityValue.nth(index)).toHaveValue(value)
+  }
+
+  async updateProductQuantity(action: string) {
+    let index: number
+    if (isMobile(this.page)) {
+      index = 1
+    } else {
+      index = 0
+    }
+    if (action === 'plus') {
+      await this.buttonQuantityIncrease.nth(index).click()
+    }
+    if (action === 'minus') {
+      await this.buttonQuantityDecrease.nth(index).click()
+    }
+    await this.page.waitForLoadState('networkidle')
+  }
+
+  async assertQuantityButtonState(buttonType: string, enabled: boolean) {
+    let index: number
+    if (isMobile(this.page)) {
+      index = 1
+    } else {
+      index = 0
+    }
+    if (buttonType === 'plus') {
+      await expect(this.buttonQuantityIncrease.nth(index)).toBeEnabled({
+        enabled,
+      })
+    }
+    if (buttonType === 'minus') {
+      await expect(this.buttonQuantityDecrease.nth(index)).toBeEnabled({
+        enabled,
+      })
+    }
   }
 }

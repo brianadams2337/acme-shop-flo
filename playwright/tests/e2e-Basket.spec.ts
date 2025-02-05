@@ -279,3 +279,82 @@ test('C2162474 Verify Basket Sold-out product card', async ({
     await basketPage.assertSoldOutImageOpacity('0.6')
   })
 })
+
+test('C2162487 Verify Basket Quantity Selector available quantity less than 10', async ({
+  homePage,
+  header,
+  basketPage,
+  countryDetector,
+  page,
+}) => {
+  await test.step('Add one item of product with available quantity 2 to basket', async () => {
+    await homePage.visitPage()
+    await countryDetector.closeModal()
+    await basketPage.addProductToBasket(
+      BASKET_TEST_DATA.productAvailableLessThanTen,
+      1,
+    )
+    await header.visitBasketPage()
+    await page.waitForTimeout(500)
+    await page.reload()
+    await page.waitForLoadState('domcontentloaded')
+    await basketPage.basketProductCard.first().waitFor()
+    await expect(header.basketNumItems).toHaveText('1')
+    await basketPage.assertQuantityValue('1')
+    await basketPage.assertQuantityButtonState('minus', false)
+  })
+  await test.step('Increase the quantity to reach the maximum', async () => {
+    await basketPage.updateProductQuantity('plus')
+    await basketPage.assertQuantityValue('2')
+    await basketPage.assertQuantityButtonState('plus', false)
+    await basketPage.assertQuantityButtonState('minus', true)
+    await expect(header.basketNumItems).toHaveText('2')
+  })
+  await test.step('Decrease the quantity to reach the minimum', async () => {
+    await basketPage.updateProductQuantity('minus')
+    await basketPage.assertQuantityValue('1')
+    await basketPage.assertQuantityButtonState('plus', true)
+    await basketPage.assertQuantityButtonState('minus', false)
+    await expect(header.basketNumItems).toHaveText('1')
+  })
+})
+
+test('C2170821 Verify Basket Quantity Selector available quantity more than 10', async ({
+  homePage,
+  header,
+  basketPage,
+  countryDetector,
+  page,
+}) => {
+  await test.step('Add 9 pieces of product with available quantity more than 10 to basket', async () => {
+    await homePage.visitPage()
+    await countryDetector.closeModal()
+    await basketPage.addProductToBasket(
+      BASKET_TEST_DATA.productAvailableMoreThanTen,
+      9,
+    )
+    await header.visitBasketPage()
+    await page.waitForTimeout(500)
+    await page.reload()
+    await page.waitForLoadState('domcontentloaded')
+    await basketPage.basketProductCard.first().waitFor()
+    await expect(header.basketNumItems).toHaveText('9')
+    await basketPage.assertQuantityValue('9')
+    await basketPage.assertQuantityButtonState('minus', true)
+    await basketPage.assertQuantityButtonState('plus', true)
+  })
+  await test.step('Increase the quantity to reach the maximum of 10', async () => {
+    await basketPage.updateProductQuantity('plus')
+    await basketPage.assertQuantityValue('10')
+    await basketPage.assertQuantityButtonState('plus', false)
+    await basketPage.assertQuantityButtonState('minus', true)
+    await expect(header.basketNumItems).toHaveText('10')
+  })
+  await test.step('Decrease the quantity to reach 9', async () => {
+    await basketPage.updateProductQuantity('minus')
+    await basketPage.assertQuantityValue('9')
+    await basketPage.assertQuantityButtonState('plus', true)
+    await basketPage.assertQuantityButtonState('minus', true)
+    await expect(header.basketNumItems).toHaveText('9')
+  })
+})

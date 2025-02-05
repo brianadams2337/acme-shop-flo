@@ -75,6 +75,8 @@ export const BASKET_TEST_DATA = {
   promotionPriceProductId: '205808',
   soldOutProductUser: process.env.TEST_USER_EMAIL7 as string,
   soldOutProductPassword: process.env.TEST_USER_PASSWORD as string,
+  productAvailableLessThanTen: 319859,
+  productAvailableMoreThanTen: 333230,
 }
 
 export const HOMEPAGE_PATH_DE = '/de'

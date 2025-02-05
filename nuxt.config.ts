@@ -473,7 +473,6 @@ export default defineNuxtConfig({
     '@scayle/storefront-country-detection',
     '@scayle/storefront-product-detail',
     '@scayle/storefront-product-listing',
-    '../../packages/_features/storefront-search',
   ],
 
   // Storefront CMS Module (local)

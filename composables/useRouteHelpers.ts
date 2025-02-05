@@ -11,16 +11,14 @@ import { type NavigateToOptions, navigateTo } from '#app/composables/router'
 import { useCurrentShop } from '#storefront/composables'
 import { useLocalePath } from '#i18n'
 import {
-  isNavigationItemSuggestion,
-  isCategorySuggestion,
-  isProductSuggestion,
-} from '#storefront-search/utils'
-import {
   buildFiltersQuery,
   hasLocalePrefix,
   isExternalLink,
+  isCategorySuggestion,
+  isProductSuggestion,
   normalizePathRoute,
   routeList,
+  isNavigationItemSuggestion,
 } from '~/utils'
 
 export function useRouteHelpers() {

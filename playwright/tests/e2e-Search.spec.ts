@@ -197,3 +197,26 @@ test('C2162007: Verify Search suggestions tags', async ({
     await expect(filters.filterToggleCounter.first()).toHaveText('1')
   }).toPass()
 })
+
+test('C2170825 Verify Search returns PDP on exact product ID pressing Enter', async ({
+  search,
+  page,
+  mobileNavigation,
+}) => {
+  await expect(async () => {
+    if (isMobile(page)) {
+      await mobileNavigation.startTypingMobileSearch(
+        SEARCH_SUGGESTIONS.searchExactProductID,
+        true,
+      )
+      await mobileNavigation.searchInputField.nth(0).press('Enter')
+      await mobileNavigation.sideNavigationButton.click()
+      await page.waitForLoadState('networkidle')
+    } else {
+      await search.startTypingSearch(SEARCH_SUGGESTIONS.searchExactProductID)
+      await search.searchInput.nth(1).press('Enter')
+      await page.waitForLoadState('networkidle')
+    }
+    await search.assertPdpIsLoaded()
+  }).toPass()
+})

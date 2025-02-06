@@ -493,7 +493,7 @@ export default defineNuxtConfig({
     // https://scayle.dev/en/storefront-guide/developer-guide/migrations/nuxt-3/storefront-core-changes#rpcmethods-rpcdir-and-rpcmethodnames
     rpcMethodNames: Object.keys(customRpcMethods), // NOT OVERRIDABLE AT RUNTIME
 
-    // RPC Methods from the Storefront Core which are overriden by the project.
+    // RPC Methods from the Storefront Core which are overridden by the project.
     rpcMethodOverrides: [],
   },
 

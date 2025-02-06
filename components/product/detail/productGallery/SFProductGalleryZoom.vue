@@ -150,7 +150,7 @@ onScopeDispose(() => {
   dragController?.clean()
 })
 
-defineEmits<{ (e: 'close'): void }>()
+defineEmits<{ close: [] }>()
 
 const slider = ref<InstanceType<typeof SFItemsSlider>>()
 

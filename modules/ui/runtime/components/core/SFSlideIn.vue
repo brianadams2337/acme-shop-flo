@@ -63,7 +63,10 @@ const {
   slideType?: SlideInType
 }>()
 
-const emit = defineEmits<{ open: []; close: [] }>()
+const emit = defineEmits<{
+  open: []
+  close: []
+}>()
 
 const { isOpen, toggle, close } = useSlideIn(name)
 

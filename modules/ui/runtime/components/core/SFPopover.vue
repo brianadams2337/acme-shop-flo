@@ -37,5 +37,8 @@ const {
   contentWrapperClass?: string | Record<string, boolean>
 }>()
 
-defineEmits<{ mouseenter: []; mouseleave: [] }>()
+defineEmits<{
+  mouseenter: []
+  mouseleave: []
+}>()
 </script>

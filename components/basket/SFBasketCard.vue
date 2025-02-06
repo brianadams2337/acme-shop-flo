@@ -185,7 +185,7 @@ const goToPDP = async () => {
 }
 
 defineEmits<{
-  (e: 'delete'): void
-  (e: 'update:quantity', newQuantity: number): void
+  delete: []
+  'update:quantity': [newQuantity: number]
 }>()
 </script>

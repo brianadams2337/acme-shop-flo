@@ -58,7 +58,7 @@ const { categorySuggestion: category } = defineProps<{
   categorySuggestion: CategorySearchSuggestion
 }>()
 
-defineEmits<{ 'click:result': [CategorySearchSuggestion] }>()
+defineEmits<{ 'click:result': [result: CategorySearchSuggestion] }>()
 
 const filters = computed(() => {
   return getSearchFilterLabels(category.categorySuggestion.filters)

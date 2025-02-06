@@ -119,9 +119,9 @@ const emit = defineEmits<{
   dragging: []
   error: []
   'slider-change': []
-  change: [RangeTuple]
-  'drag-end': [RangeTuple]
-  'drag-start': [RangeTuple]
+  change: [range: RangeTuple]
+  'drag-end': [range: RangeTuple]
+  'drag-start': [range: RangeTuple]
 }>()
 
 const changeRangeAtIndex = (newRangeValue: number, index: 0 | 1) => {

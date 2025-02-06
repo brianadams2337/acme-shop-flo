@@ -37,5 +37,5 @@ defineProps<{
   searchTerm: string
 }>()
 
-defineEmits<{ 'click:result': [NavigationItemSuggestionType] }>()
+defineEmits<{ 'click:result': [result: NavigationItemSuggestionType] }>()
 </script>

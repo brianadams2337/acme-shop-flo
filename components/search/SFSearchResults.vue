@@ -44,7 +44,7 @@ defineProps<{
 }>()
 
 defineEmits<{
-  'click:result': [SearchEntity | 'show_all']
+  'click:result': [result: SearchEntity | 'show_all']
   close: []
 }>()
 </script>

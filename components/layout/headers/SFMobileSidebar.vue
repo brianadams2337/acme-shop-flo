@@ -45,5 +45,5 @@ const { isOpen, navigationItems } = defineProps<{
   navigationItems?: NavigationItems
 }>()
 
-defineEmits(['close'])
+defineEmits<{ close: [] }>()
 </script>

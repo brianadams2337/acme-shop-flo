@@ -26,7 +26,7 @@ import { computed, ref } from 'vue'
 import { useSwipe } from '@vueuse/core'
 
 const container = ref<HTMLElement | null>(null)
-const emit = defineEmits(['delete'])
+const emit = defineEmits<{ delete: [] }>()
 
 const containerWidth = computed(() => container.value?.offsetWidth)
 const contentOffset = ref('0')

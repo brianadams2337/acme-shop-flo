@@ -144,7 +144,7 @@ const { isOpen, navigationItems } = defineProps<{
   navigationItems?: NavigationItems
 }>()
 
-const emit = defineEmits(['clickLink'])
+const emit = defineEmits<{ clickLink: [] }>()
 
 const { buildNavigationTreeItemRoute } = useRouteHelpers()
 

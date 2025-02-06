@@ -21,7 +21,7 @@ type CMSProductProps = {
 
 const { multipleImages = false } = defineProps<CMSProductProps>()
 
-const emit = defineEmits(['intersect:product'])
+const emit = defineEmits<{ 'intersect:product': [product: Product] }>()
 
 defineOptions({ name: 'CMSProduct' })
 </script>

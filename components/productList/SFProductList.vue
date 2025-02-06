@@ -87,7 +87,7 @@ const onProductIntersect = (index: number) => {
 }
 
 const emit = defineEmits<{
-  (e: 'click:product', product: Product, index: number): void
-  (e: 'intersect:row', collectedRow: CollectedRowIntersection): void
+  'click:product': [product: Product, index: number]
+  'intersect:row': [collectedRow: CollectedRowIntersection]
 }>()
 </script>

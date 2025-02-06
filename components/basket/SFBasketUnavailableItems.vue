@@ -22,5 +22,5 @@ const { unavailableItems = [] } = defineProps<{
   unavailableItems?: BasketItem[]
 }>()
 
-defineEmits<{ (e: 'delete', item: BasketItem): void }>()
+defineEmits<{ delete: [item: BasketItem] }>()
 </script>

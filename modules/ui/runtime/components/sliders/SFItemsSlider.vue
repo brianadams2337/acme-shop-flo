@@ -117,8 +117,9 @@ defineExpose({
   scrollImageIntoView,
 })
 
-const emit = defineEmits<{ 'update:activeSlide': [number] }>()
-
+const emit = defineEmits<{
+  'update:activeSlide': [newActiveSlide: number]
+}>()
 watch(activeSlide, (newActiveSlide) => {
   emit('update:activeSlide', newActiveSlide)
 })

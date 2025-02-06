@@ -86,7 +86,7 @@ import { SFButton } from '#storefront-ui/components'
 
 const emit = defineEmits<{
   close: []
-  'click:result': [SearchEntity | 'show_all']
+  'click:result': [result: SearchEntity | 'show_all']
 }>()
 
 const { getSearchRoute, localizedNavigateTo, getSearchSuggestionPath } =

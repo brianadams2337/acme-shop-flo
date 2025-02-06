@@ -38,7 +38,7 @@ import SFNavigationTreeItem from '~/components/SFNavigationTreeItem.vue'
 
 defineProps<{ item: NavigationTreeItemType }>()
 
-const emit = defineEmits(['close'])
+const emit = defineEmits<{ close: [] }>()
 
 const onItemClick = (item: NavigationTreeItemType) => {
   if (item?.customData?.disabledLink) {

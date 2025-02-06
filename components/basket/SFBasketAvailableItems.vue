@@ -46,7 +46,7 @@ const isLastItemWithPromotions = (basketItem: BasketItem) => {
 }
 
 defineEmits<{
-  (e: 'delete', item: BasketItem): void
-  (e: 'update:quantity', item: BasketItem, newQuantity: number): void
+  delete: [item: BasketItem]
+  'update:quantity': [item: BasketItem, newQuantity: number]
 }>()
 </script>

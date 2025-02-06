@@ -65,7 +65,7 @@ export interface ShopInfo {
 const modalOpen = ref<boolean>()
 
 const emit = defineEmits<{
-  (e: 'switchShop', targetShop: ShopInfo): void
+  switchShop: [targetShop: ShopInfo]
 }>()
 const switchToShop = function (shop: ShopInfo) {
   modalOpen.value = false

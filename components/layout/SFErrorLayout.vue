@@ -48,7 +48,7 @@ const { error } = defineProps<{
   error: AppError
 }>()
 
-defineEmits(['clear-error'])
+defineEmits<{ 'clear-error': [] }>()
 
 const { t } = useI18n()
 

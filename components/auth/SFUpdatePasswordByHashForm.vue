@@ -58,7 +58,9 @@ import {
   SFHeadline,
 } from '#storefront-ui/components'
 
-defineEmits(['close:modal'])
+defineEmits<{
+  'close:modal': []
+}>()
 
 const route = useRoute()
 const { resetPasswordByHash, isSubmitting } =

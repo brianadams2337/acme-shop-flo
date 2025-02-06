@@ -23,7 +23,7 @@ const { navigationItemSuggestion, searchTerm = '' } = defineProps<{
   searchTerm?: string
 }>()
 
-defineEmits<{ 'click:result': [NavigationItemSuggestion] }>()
+defineEmits<{ 'click:result': [result: NavigationItemSuggestion] }>()
 
 const navigationName = computed(
   () => navigationItemSuggestion.navigationItemSuggestion.navigationItem.name,

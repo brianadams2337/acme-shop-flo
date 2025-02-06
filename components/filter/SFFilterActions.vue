@@ -53,7 +53,9 @@ const { t } = useI18n()
 
 const { toggle } = useFilterSlideIn()
 
-defineEmits(['reset'])
+defineEmits<{
+  reset: []
+}>()
 
 const showResultsLabel = computed(() => {
   return filteredProductCount

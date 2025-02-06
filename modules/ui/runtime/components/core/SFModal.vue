@@ -34,7 +34,7 @@ const visible = defineModel<boolean>('visible', {
   type: Boolean,
   default: false,
 })
-const emit = defineEmits(['close'])
+const emit = defineEmits<{ close: [] }>()
 
 const close = () => {
   visible.value = false

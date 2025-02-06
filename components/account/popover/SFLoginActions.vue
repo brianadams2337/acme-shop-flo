@@ -25,7 +25,9 @@ import { routeList } from '~/utils/route'
 import { SFButton } from '#storefront-ui/components'
 import { useRouteHelpers } from '~/composables'
 
-defineEmits(['close'])
+defineEmits<{
+  close: []
+}>()
 
 const { getLocalizedRoute } = useRouteHelpers()
 </script>

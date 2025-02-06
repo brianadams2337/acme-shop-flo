@@ -35,7 +35,7 @@ const {
 }>()
 
 const emit = defineEmits<{
-  'update:model-value': [number]
+  'update:model-value': [price: number]
   focus: [FocusEvent]
   blur: [FocusEvent]
 }>()

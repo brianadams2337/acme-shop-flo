@@ -32,5 +32,5 @@ import SFCategorySuggestion from './SFCategorySuggestion.vue'
 
 defineProps<{ categorySuggestions: CategorySearchSuggestion[] }>()
 
-defineEmits<{ 'click:result': [CategorySearchSuggestion] }>()
+defineEmits<{ 'click:result': [result: CategorySearchSuggestion] }>()
 </script>

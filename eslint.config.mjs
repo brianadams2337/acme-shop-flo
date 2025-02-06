@@ -127,6 +127,7 @@ export default withNuxt(
           ],
         },
       ],
+      'vue/define-emits-declaration': ['error', 'type-literal'],
     },
   },
   {

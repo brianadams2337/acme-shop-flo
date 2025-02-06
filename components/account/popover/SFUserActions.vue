@@ -60,7 +60,9 @@ import { useAuthentication } from '~/composables'
 import { routeList } from '~/utils/route'
 import { SFButton } from '#storefront-ui/components'
 
-const emit = defineEmits(['close'])
+const emit = defineEmits<{
+  close: []
+}>()
 
 const { user } = useUser()
 const { logout, isSubmitting } = useAuthentication('logout')

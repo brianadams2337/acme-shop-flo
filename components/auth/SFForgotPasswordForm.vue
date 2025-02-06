@@ -60,7 +60,9 @@ import {
   SFFadeInTransition,
 } from '#storefront-ui/components'
 
-defineEmits(['close:modal'])
+defineEmits<{
+  'close:modal': []
+}>()
 
 const { forgotPassword, isSubmitting } = useAuthentication('forgot_password')
 const { lastLoggedInUser } = await useLastLoggedInUser()

@@ -16,7 +16,10 @@
 <script setup lang="ts" generic="Item extends { label: string; value: any }">
 import { SFRadioItem } from '#storefront-ui/components'
 
-defineProps<{ items?: Item[]; title?: string }>()
+defineProps<{
+  items?: Item[]
+  title?: string
+}>()
 
 const value = defineModel<string | number | undefined>()
 </script>

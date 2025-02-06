@@ -74,7 +74,7 @@ const {
   perPage?: number
 }>()
 
-const emit = defineEmits<{ 'change:page': [number] }>()
+const emit = defineEmits<{ 'change:page': [page: number] }>()
 
 const lastPage = computed(() => Math.ceil(recordCount / perPage))
 

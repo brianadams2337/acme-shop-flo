@@ -131,7 +131,7 @@ const shouldShowSingleImage = computed(() => {
 const id = computed(() => `product-${product.id}`)
 
 const emit = defineEmits<{
-  'intersect:product': [number]
+  'intersect:product': [productId: number]
   'product-image:mouseover': []
   'product-image:mouseleave': []
   'click:product': []

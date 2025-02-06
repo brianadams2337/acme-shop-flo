@@ -147,10 +147,10 @@ const { appliedFilter } = defineProps<{
 
 const emit = defineEmits<{
   resetPriceFilter: []
-  applyPriceFilter: [RangeTuple]
-  applyBooleanFilter: [string, boolean]
-  reset: [string]
-  applyAttributeFilter: [string, number]
+  applyPriceFilter: [range: RangeTuple]
+  applyBooleanFilter: [slug: string, value: boolean]
+  reset: [slug: string]
+  applyAttributeFilter: [slug: string, value: number]
 }>()
 
 const { t: $t } = useI18n()

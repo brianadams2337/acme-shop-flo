@@ -34,7 +34,7 @@ const { productSuggestion } = defineProps<{
   productSuggestion: ProductSearchSuggestion
 }>()
 
-defineEmits<{ 'click:result': [ProductSearchSuggestion] }>()
+defineEmits<{ 'click:result': [result: ProductSearchSuggestion] }>()
 
 const product = productSuggestion.productSuggestion.product
 

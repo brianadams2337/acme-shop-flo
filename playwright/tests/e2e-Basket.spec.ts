@@ -207,7 +207,7 @@ test('C2167321 Verify Basket Price summary - promotion product', async ({
           BASKET_TEST_DATA.promotionPriceProductId,
           true,
         )
-        await mobileNavigation.productListItem.click()
+        await mobileNavigation.searchSuggestionsItem.click()
         await mobileNavigation.sideNavigationButton.click()
         await page.waitForLoadState('networkidle')
       } else {

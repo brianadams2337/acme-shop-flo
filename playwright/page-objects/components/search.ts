@@ -6,27 +6,25 @@ export class Search {
   readonly page: Page
   readonly searchButton: Locator
   readonly searchInput: Locator
-  readonly searchCategoryListItem: Locator
   readonly searchResultsProductImage: Locator
   readonly searchResultsHeadline: Locator
   readonly searchResultsFlyout: Locator
   readonly searchDisplayAllResults: Locator
-  readonly searchExactProduct: Locator
   readonly searchSuggestionsTagGroup: Locator
+  readonly searchSuggestionsItem: Locator
 
   constructor(page: Page) {
     this.page = page
     this.searchButton = page.getByTestId('header-search-button')
     this.searchInput = page.getByTestId('header-search-input')
     this.searchResultsFlyout = page.getByTestId('search-results-flyout')
-    this.searchCategoryListItem = page.getByTestId('search-exact-product-item')
     this.searchResultsProductImage = page.getByTestId('product-image')
     this.searchResultsHeadline = page.getByTestId('headline')
     this.searchDisplayAllResults = page.getByTestId('display-all-results')
-    this.searchExactProduct = page.getByTestId('search-exact-product-item')
     this.searchSuggestionsTagGroup = page.getByTestId(
       'search-suggestion-tag-group',
     )
+    this.searchSuggestionsItem = page.getByTestId('search-suggestions-item')
   }
 
   searchSuggestionTag(suggestionTag: string): Locator {
@@ -43,7 +41,7 @@ export class Search {
     await this.searchInput.nth(1).click({ force: true })
     await this.searchInput.nth(1).fill(searchTerm)
     await expect(this.searchResultsFlyout).toBeVisible()
-    await expect(this.searchCategoryListItem.first()).toBeVisible()
+    await expect(this.searchSuggestionsItem.first()).toBeVisible()
   }
 
   async assertSearchCategorySuggestions(searchTerm: string) {
@@ -68,12 +66,12 @@ export class Search {
   }
 
   async clickExactProductItem() {
-    await expect(this.searchExactProduct).toBeVisible()
-    await this.searchExactProduct.click()
+    await expect(this.searchSuggestionsItem).toBeVisible()
+    await this.searchSuggestionsItem.click()
   }
 
-  async assertPdpIsLoaded() {
+  async assertUrlIsLoaded(path: string) {
     const pageUrl = this.page.url()
-    expect(pageUrl).toContain(SEARCH_SUGGESTIONS.pdpUrl)
+    expect(pageUrl).toContain(path)
   }
 }

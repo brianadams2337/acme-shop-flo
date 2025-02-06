@@ -58,6 +58,9 @@ export const SEARCH_SUGGESTIONS = {
   moreButtonLabelDE: 'Mehr',
   searchTermTags: 'sneaker size 40',
   searchTestTagValue: '40',
+  searchTermPage: 'faq',
+  faqPageUrl: '/s/faq',
+  searchReferenceKey: 'NJW11-BetterScarlet-CloudWhite-CoreBlack',
 }
 
 export const BASKET_TEST_DATA = {

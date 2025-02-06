@@ -3,7 +3,7 @@
     :to="getProductDetailRoute(product.id, name)"
     raw
     class="group flex items-center space-x-4 !p-1 !pr-6"
-    data-testid="search-exact-product-item"
+    data-testid="search-suggestions-item"
     @click="$emit('click:result', productSuggestion)"
   >
     <div

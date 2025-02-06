@@ -29,11 +29,11 @@ test('C2139186: E2E from Home to Checkout - happy path', async ({
           SEARCH_SUGGESTIONS.searchTermProduct,
           false,
         )
-        await mobileNavigation.exactProductItem.click()
+        await mobileNavigation.searchSuggestionsItem.click()
         await breadcrumb.productCounter.waitFor()
       } else {
         await search.startTypingSearch(SEARCH_SUGGESTIONS.searchTermProduct)
-        await search.searchCategoryListItem.first().click()
+        await search.searchSuggestionsItem.first().click()
         await productListingPage.menuRootCategory.waitFor()
       }
     }).toPass()

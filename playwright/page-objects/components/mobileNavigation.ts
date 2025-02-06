@@ -8,10 +8,9 @@ export class MobileNavigation {
   readonly mainCategoryMenuItem: Locator
   readonly subCategoryMenuItem: Locator
   readonly searchInputField: Locator
-  readonly exactProductItem: Locator
+  readonly searchSuggestionsItem: Locator
   readonly searchCategoryList: Locator
   readonly searchDisplayAllResults: Locator
-  readonly productListItem: Locator
 
   constructor(page: Page) {
     this.page = page
@@ -24,9 +23,8 @@ export class MobileNavigation {
     })
     this.searchInputField = page.getByTestId('header-search-input')
     this.searchCategoryList = page.getByTestId('search-category-list').nth(1)
-    this.exactProductItem = page.getByTestId('search-exact-product-item')
+    this.searchSuggestionsItem = page.getByTestId('search-suggestions-item')
     this.searchDisplayAllResults = page.getByTestId('display-all-results')
-    this.productListItem = page.getByTestId('search-exact-product-item')
   }
 
   async executeMobileSearch(searchTerm: string) {
@@ -39,7 +37,7 @@ export class MobileNavigation {
     await this.sideNavigationButton.click()
     await this.searchInputField.first().fill(searchTerm)
     if (exactProduct === true) {
-      await expect(this.exactProductItem).toBeVisible()
+      await expect(this.searchSuggestionsItem.first()).toBeVisible()
     }
   }
 

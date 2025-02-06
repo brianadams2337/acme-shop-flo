@@ -179,11 +179,11 @@ export default defineNuxtConfig({
       },
 
       /** Storefront Core - Configure shop switching based on selected routing option (`domain` or `path`-based)
-       * https://scayle.dev/en/dev/storefront-core/module-configuration#path-and-domain  */
+       * https://scayle.dev/en/storefront-guide/developer-guide/basic-setup/introduction#path-and-domain  */
       shopSelector: SHOP_SELECTOR_MODE, // Override: NUXT_STOREFRONT_SHOP_SELECTOR
 
       /** Storefront Core - Shop-specific configuration options
-       * https://scayle.dev/en/dev/storefront-core/module-configuration#shops */
+       * https://scayle.dev/en/storefront-guide/developer-guide/basic-setup/introduction#shops */
       shops: shops.reduce(
         (previousShopConfigs, shop) => ({
           /** Values within `storefront.shops` are Overrideable by using their locale as identifier.
@@ -200,7 +200,7 @@ export default defineNuxtConfig({
            * Example if `[shop.shopId]` is used -> Overrideable environment variable: NUXT_STOREFRONT_SHOPS_1001_CHECKOUT_USER. */
           [shop.shopId]: {
             /** Storefront Core - Identity Provider support for Token-based (OAuth) Authentication
-             * https://scayle.dev/en/dev/storefront-core/authentication#support-for-identity-provider */
+             * https://scayle.dev/en/storefront-guide/developer-guide/basic-setup/authentication#identity-providers */
             idp: {
               enabled: false,
               idpKeys: ['google'],
@@ -246,7 +246,7 @@ export default defineNuxtConfig({
             },
 
             /** Storefront Core - Configure format for AppKey generation for baskets and wishlists
-             * https://scayle.dev/en/storefront-guide/developer-guide/basic-setup/authentication#app-keys */
+             * https://scayle.dev/en/storefront-guide/developer-guide/basic-setup/authentication#app-keys-for-baskets-and-wishlists */
             appKeys: DEFAULT_APP_KEYS,
 
             /** Storefront Core - Additional Shop Data for Payment providers
@@ -368,7 +368,7 @@ export default defineNuxtConfig({
       googleMapsApiKey: '',
 
       /** Storefront Boilerplate - Tracking Event Order
-       * Used in: templates/nuxt/plugins/01.tracking.ts */
+       * Used in: `templates/nuxt/plugins/01.tracking.ts` */
       trackingEventOrder: [
         'shop_init',
         'customer_data',
@@ -490,7 +490,7 @@ export default defineNuxtConfig({
   // Storefront Buildtime Config
   storefront: {
     // Storefront Core - Custom RPC Methods
-    // https://scayle.dev/en/storefront-guide/developer-guide/migrations/nuxt-3/storefront-core-changes#rpcmethods-rpcdir-and-rpcmethodnames
+    // https://scayle.dev/en/storefront-guide/developer-guide/basic-setup/rpc-methods#overview
     rpcMethodNames: Object.keys(customRpcMethods), // NOT OVERRIDABLE AT RUNTIME
 
     // RPC Methods from the Storefront Core which are overridden by the project.

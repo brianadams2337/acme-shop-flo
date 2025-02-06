@@ -1,7 +1,7 @@
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
-  <a href="https://scayle.dev/en/dev/storefront-core/introduction">
+  <a href="https://scayle.dev/en/storefront">
     <img src="docs/images/scayle.svg" alt="Logo" height="80">
   </a>
 
@@ -10,7 +10,7 @@
   <p align="center">
     A <a href="https://nuxt.com/docs/getting-started/introduction" target="_blank" >Nuxt 3</a>-based Boilerplate to kick-start your SCAYLE Storefront application development.
     <br />
-    <a href="https://scayle.dev/en/dev/storefront-core/introduction"><strong>Explore the docs »</strong></a>
+    <a href="https://scayle.dev/en/storefront"><strong>Explore the docs »</strong></a>
     <br />
 </div>
 

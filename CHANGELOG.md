@@ -705,7 +705,7 @@ Additionally, enabling Brotli compression by default for the [Storefront Cache](
 
 #### 🛍️ New Product Detail Page
 
-This release includes a newly refreshed Product Detail Page with an improved design, better accessibilty and extendability and more test coverage.
+This release includes a newly refreshed Product Detail Page with an improved design, better accessibility and extendability and more test coverage.
 
 #### 🧪 PDP E2E tests
 
@@ -722,7 +722,7 @@ As part of our work to remove automatic imports, in this release Vue components 
 - Added PDP E2E tests, first phase.
 - Disable auto-imports for Vue components
 - Simplify the wishlist card by utilizing the plain product card and eliminating all basket-related actions.
-- The basket does not allow quantity > 50. Therefore, we limit the quanty on the PDP to 50.
+- The basket does not allow quantity > 50. Therefore, we limit the quantity on the PDP to 50.
 - Replace `InputToggle` with `Switch` component
 - Enhance product card component by removing slots, simplifying the HTML structure and removing unnecessary slots.
 
@@ -817,7 +817,7 @@ We’ve updated the CMS integration of Storefront, enhancing both Storyblok and 
 
 - **\[Sorting\]** Introduced "Smart Sorting Keys" as new default sorting.
 
-  To learn more about Smart Sorting Keys, visit the [SCAYLE Resource Center / Product Sorting](https://scayle.dev/en/developer-guide/products/product-sorting#smart-sorting-keys).
+  To learn more about Smart Sorting Keys, visit the [SCAYLE Resource Center / Product Sorting](https://scayle.dev/en/developer-guide/products/product-sorting#smart-sorting).
 
 - **\[E2E\]** Removed `Cypress` and finished migration to `Playwright` as End-to-End testing suite
 - **\[Country Detection\]** Added `getCurrentCountryFromTimezone` util function to determine user's country from the browser's timezone settings
@@ -1154,7 +1154,7 @@ accessible and improving its capabilities.
 - Disabled `imports.autoImports` in `nuxt.config.ts`. All required composables,
   utils and constants now need to be explicitly imported.
 - Added a hook within `nuxt.config.ts` to extend the `vite` client build configuration and allow for improved manual
-  chunking of `storyblok`, `contentful` and `axios` dependencies. This results in smaller client chunks below 500kb.
+  chunking of `storyblok`, `contentful` and `axios` Dependencies. This results in smaller client chunks below 500kb.
 
 ### 💅 Minor Changes
 
@@ -1187,7 +1187,7 @@ accessible and improving its capabilities.
 
 ### 🏡 Dependency Updates
 
-#### 🏘️ devDependencies
+#### 🏘️ DevDependencies
 
 - Added `@scayle/nuxt-opentelemetry@0.3.0`
 - Updated to `@contentful/live-preview@4.5.0`
@@ -1211,7 +1211,7 @@ accessible and improving its capabilities.
 - Removed `@opentelemetry/semantic-conventions`
 - Removed `@vercel/otel`
 
-#### 🏠 dependencies
+#### 🏠 Dependencies
 
 - Updated to `@changesets/cli@2.27.7`
 - Updated to `@nuxt/eslint@0.4.0`
@@ -1247,14 +1247,14 @@ We have integrated proper Live Preview support for Storyblok and Contentful.
 This allows to edit the CMS content elements within the respective CMS provider
 web interface and show the changes immediately in the context of the Storefront application.
 
-- \*\*\[Storyblok: Editor Guides - Visual Editor](https://www.storyblok.com/docs/editor-guides/visual-editor)
-- \*\*\[Contentful: Developer Docs - Live preview](https://www.contentful.com/developers/docs/tutorials/general/live-preview/)
+- [Storyblok: Editor Guides - Visual Editor](https://www.storyblok.com/docs/editor-guides/visual-editor)
+- [Contentful: Developer Docs - Live preview](https://www.contentful.com/developers/docs/tutorials/general/live-preview/)
 
 #### 🚚 Introduced usage of explicit imports for Vue components
 
 To align more with the JavaScript and TypeScript developer ecosystem,
 Storefront Boilerplate is slowly moving away on relying on the Nuxt "auto import" feature
-for dependencies and source code. With the next `v1.2` release we will deepen
+for Dependencies and source code. With the next `v1.2` release we will deepen
 the commitment and will disable the option `imports.autoImport` within the `nuxt.config.ts`.
 
 As a first step we added explicit imports to all Vue components.
@@ -1294,7 +1294,7 @@ they do not need to be imported explicitly and will trigger a compiler warning i
 
 ### 🏡 Dependency Updates
 
-#### 🏘️ devDependencies
+#### 🏘️ DevDependencies
 
 - Added `@typescript-eslint/scope-manager@7.13.1`
 - Added `@typescript-eslint/utils@7.13.1`
@@ -1313,7 +1313,7 @@ they do not need to be imported explicitly and will trigger a compiler warning i
 - Updated to `tailwindcss@3.4.4`
 - Updated to `vue-tsc@2.0.21`
 
-#### 🏠 dependencies
+#### 🏠 Dependencies
 
 - Added `@contentful/live-preview@4.2.2`
 - Added `radash@12.1.0`
@@ -1377,7 +1377,7 @@ The spans include the matched route name, HTTP method and other request metadata
 
 ### 🏡 Dependency Updates
 
-#### 🏘️ devDependencies
+#### 🏘️ DevDependencies
 
 - Added `@vue/test-utils@2.4.6`
 - Added `happy-dom@14.11.2`
@@ -1403,7 +1403,7 @@ The spans include the matched route name, HTTP method and other request metadata
 - Updated to `vitest@1.6.0`
 - Updated to `vue-tsc@2.0.19`
 
-#### 🏠 dependencies
+#### 🏠 Dependencies
 
 - Updated to `@opentelemetry/auto-instrumentations-node@0.46.1`
 - Updated to `@opentelemetry/exporter-trace-otlp-proto@0.51.1`
@@ -1487,7 +1487,7 @@ Additionally the default Storefront ESLint config `@scayle/eslint-config-storefr
 
 ### 🏡 Dependency Updates
 
-#### 🏘️ devDependencies
+#### 🏘️ DevDependencies
 
 - Added `"@eslint/eslintrc@3.0.2",`
 - Added `@nuxt/eslint@0.3.10`
@@ -1502,7 +1502,7 @@ Additionally the default Storefront ESLint config `@scayle/eslint-config-storefr
 - Updated to `vitest@1.5.2`
 - Updated to `vue-tsc@2.0.15`
 
-#### 🏠 dependencies
+#### 🏠 Dependencies
 
 - Added `@opentelemetry/api": "1.8.0`
 - Added `@opentelemetry/auto-instrumentations-node": "0.45.0`
@@ -1630,7 +1630,7 @@ This convenience allows customers to make regular purchases effortlessly.
 
 ### 🏡 Dependency Updates
 
-#### 🏘️ devDependencies
+#### 🏘️ DevDependencies
 
 - Added `@scayle/eslint-plugin-vue-composable@0.1.1`
 - Updated to `@crowdin/cli@3.19.2"`
@@ -1654,7 +1654,7 @@ This convenience allows customers to make regular purchases effortlessly.
 - Updated to `vitest@1.5.0`
 - Updated to `vue-tsc@2.0.13`
 
-#### 🏠 dependencies
+#### 🏠 Dependencies
 
 - Added `@contentful/rich-text-html-renderer@16.3.5`
 - Added `@storyblok/vue@8.0.7`
@@ -1808,7 +1808,7 @@ The included tracking implementation has been refactored and received various im
 
 ### 🏡 Dependency Updates
 
-#### 🏘️ devDependencies
+#### 🏘️ DevDependencies
 
 - Updated to `@types/node@30.11.25`
 - Updated to `@upstash/redis@1.28.4`
@@ -1826,7 +1826,7 @@ The included tracking implementation has been refactored and received various im
 - Updated to `vitest@1.3.1`
 - Updated to `vue-tsc@2.0.6`
 
-#### 🏠 dependencies
+#### 🏠 Dependencies
 
 - Added `@googlemaps/js-api-loader@1.16.6`
 - Added `@scayle/omnichannel-nuxt@2.1.3`
@@ -1854,11 +1854,11 @@ and the [Official Vue 3.4.19 Changelogs](https://github.com/vuejs/core/blob/main
 
 #### 🧪 Modularization: Extracting Cypress into dedicated sub-package
 
-The Cypress testing solution has been extracted into a dedicated child package located at `cypress/`. This decouples the dependencies from the main Storefront application. To install all relevant Cypress dependencies, execute `yarn install` within the `cypress/` directory.
+The Cypress testing solution has been extracted into a dedicated child package located at `cypress/`. This decouples the Dependencies from the main Storefront application. To install all relevant Cypress Dependencies, execute `yarn install` within the `cypress/` directory.
 By default the current Cypress integration does not rely anymore on the commercial Cypress Dashboard integration.
 Please check the dedicated Readme file located at `cypress/README.md` for more details.
 
-The following dependencies have moved from `package.json` to `cypress/package.json`:
+The following Dependencies have moved from `package.json` to `cypress/package.json`:
 
 - `cypress`
 - `cypress-real-events`
@@ -1921,7 +1921,7 @@ The included tracking implementation has been refactored and received various im
 
 ### 🏡 Dependency Updates
 
-#### 🏘️ devDependencies
+#### 🏘️ DevDependencies
 
 - Updated to `@crowdin/cli@3.18.0`
 - Updated to `@nuxt/test-utils@3.11.0`
@@ -1937,7 +1937,7 @@ The included tracking implementation has been refactored and received various im
 - Updated to `postcss@8.4.35`
 - Updated to `vitest@1.2.2`
 
-#### 🏠 dependencies
+#### 🏠 Dependencies
 
 - Updated to `@scayle/storefront-nuxt@7.57.1`
 - Updated to `citty@0.1.5`
@@ -2031,7 +2031,7 @@ This release focuses on stabilization and refactoring, to improve the technical 
 
 ### 🏡 Dependency Updates
 
-#### 🏘️ devDependencies
+#### 🏘️ DevDependencies
 
 - Updated to `@crowdin/cli@3.16.1`
 - Updated to `@nuxt/image@1.3.0`
@@ -2048,7 +2048,7 @@ This release focuses on stabilization and refactoring, to improve the technical 
 - Updated to `utility-types@3.11.0`
 - Updated to `vitest@1.2.1`
 
-#### 🏠 dependencies
+#### 🏠 Dependencies
 
 - Updated to `@scayle/storefront-nuxt@7.53.1`
 - Updated to `@storyblok/nuxt@6.0.4`
@@ -2071,14 +2071,14 @@ and the [Official Vue 3.4 Announcement Blog](https://blog.vuejs.org/posts/vue-3-
 The Promotion Engine presents the user with various promotions that have specific conditions for receiving the discount.
 The Storefront Boilerplate currently support the two types `Automatic discount` and `Buy X get Y` by default as promotions.
 
-- \*\*\[SCAYLE Resource Center - Storefront Boilerplate / Promotion Engine](https://scayle.dev/en/storefront-guide/developer-guide/features/promotions)
+- [SCAYLE Resource Center - Storefront Boilerplate / Promotion Engine](https://scayle.dev/en/storefront-guide/developer-guide/features/promotions)
 
 #### 👥 Identity Provider support for Token-based Authentication
 
 The Storefront Boilerplate now provides support for Single-Sign-On (SSO) via multiple Identity Provider (IDP) like Okta, KeyCloak or Google.
 The IDP login / SSO flow integrates with the existing Token-based Authentication and can be used in parallel to the existing SCAYLE IDP.
 
-- \*\*\[SCAYLE Resource Center - Storefront Core / Authentication](https://scayle.dev/en/storefront-guide/developer-guide/basic-setup/authentication)
+- [SCAYLE Resource Center - Storefront Core / Authentication](https://scayle.dev/en/storefront-guide/developer-guide/basic-setup/authentication)
 
 #### 🔋 Introducing Page Caching with unified cache handling
 
@@ -2086,13 +2086,13 @@ The distributed default configuration of the Storefront Boilerplate comes with p
 global `storefront-cache` storage mountpoint available via [Storefront Core - Caching](https://scayle.dev/en/storefront-guide/developer-guide/basic-setup/caching)
 and configured via [Storefront Core - Storage via Module Configuration](https://scayle.dev/en/storefront-guide/developer-guide/basic-setup/introduction#storage).
 
-- \*\*\[SCAYLE Resource Center - Storefront Boilerplate / Page Caching](https://scayle.dev/en/storefront-guide/developer-guide/basic-setup/caching#page-caching-in-storefront-boilerplate)
+- [SCAYLE Resource Center - Storefront Boilerplate / Page Caching](https://scayle.dev/en/storefront-guide/developer-guide/basic-setup/caching#page-caching-in-storefront-boilerplate)
 
 #### 🛫 Introducing support for Vercel Edge deployment
 
 Storefront Boilerplate does now support deployment to Vercel Edge, besides Docker-based deployments.
 
-- \*\*\[SCAYLE Resource Center - Storefront Boilerplate / Vercel Edge](https://scayle.dev/en/storefront-guide/developer-guide/deployments/vercel)
+- [SCAYLE Resource Center - Storefront Boilerplate / Vercel Edge](https://scayle.dev/en/storefront-guide/developer-guide/deployments/vercel)
 
 ### 🚀 Major Changes
 
@@ -2105,7 +2105,7 @@ Storefront Boilerplate does now support deployment to Vercel Edge, besides Docke
 
 ### 💅 Minor Changes
 
-- Removed `stylelint`, related dependencies and package script commands
+- Removed `stylelint`, related Dependencies and package script commands
 - Replaced `nuxt-vitest` with `@nuxt/test-utils@3.9.0` as the projects have been officially been merged together (_For detailed changes see [Changelog of @nuxt/test-utils](https://github.com/nuxt/test-utils/releases/tag/v3.9.0)_)
   - Introduced `vitest-environment-nuxt@1.0.0`
 - Remove unsupported `imageBaseUrl` option key from `storefrontRuntimeConfigPublic` in `config/storefront.ts`
@@ -2123,7 +2123,7 @@ Storefront Boilerplate does now support deployment to Vercel Edge, besides Docke
 - Extend `routeRules` in `nuxt.config.ts` to allow disabling SSR Page Caching via environment variables during build time with `DISABLE_SSR_CACHE`
 - Extend `cache-test.mjs`
 - Set `differentDomains` based on environment variable `DOMAIN_PER_LOCALE` during build time in `nuxt.config.ts`
-- Enable `debug: true` in `nuxt.config.ts` to being able to pinpoint potential hydration mismatches or enumerating key iusses
+- Enable `debug: true` in `nuxt.config.ts` to being able to pinpoint potential hydration mismatches or enumerating key issues
 - Various type tweaks and refinements
 
 ### 🩹 Patch Changes
@@ -2152,9 +2152,9 @@ Storefront Boilerplate does now support deployment to Vercel Edge, besides Docke
 
 ### 🏡 Dependency Updates
 
-#### 🏘️ devDependencies
+#### 🏘️ DevDependencies
 
-- Removed `@nuxt/devtools` from devDependencies, as its now included with `nuxt@3.8` or higher
+- Removed `@nuxt/devtools` from DevDependencies, as its now included with `nuxt@3.8` or higher
 - Updated to `vue@3.4.10` (*​For detailed changes see [Changelog for Vue](https://github.com/vuejs/core/blob/main/CHANGELOG.md)*​)
 - Updated to `nuxt@3.9.1` (*​For detailed changes see [Release Notes for Nuxt](https://github.com/nuxt/nuxt/releases)*​)
 - Updated to `@crowdin/cli@3.16.0`
@@ -2183,7 +2183,7 @@ Storefront Boilerplate does now support deployment to Vercel Edge, besides Docke
 - Updated to `vitest@1.1.3` and `@vitest/coverage-v8@1.2.0`
 - Updated to `vue-tsc@1.8.27` (_NOTE: This dependency update is required for proper `vue@3.4` type checking!_)
 
-#### 🏠 dependencies
+#### 🏠 Dependencies
 
 - Added `nuxi@3.10.0` as it is now a standalone project within the Nuxt ecosystem
 - Added `vue@3.4.10` as explicit dependency to avoid potential version mismatches
@@ -2211,7 +2211,7 @@ Storefront Boilerplate does now support deployment to Vercel Edge, besides Docke
 
 ### Patch Changes
 
-- Updated various dependencies to latest versions
+- Updated various Dependencies to latest versions
 
 ## 1.0.0-rc.03
 

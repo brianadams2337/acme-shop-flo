@@ -23,7 +23,7 @@ When configuring the preview URL's inside contentful you need to add a the query
 As part of the Storefront Boilerplate `package.json`, some additional scripts are included to interact with Storyblok.
 
 To interact with Storyblok, a `STORYBLOK_PERSONAL_TOKEN` and the `STORYBLOK_SPACE_ID` need to be set as part of a dedicated `.env.storyblok` file.
-Check [Storefront Developer Guide / Integrations / CMS](https://scayle.dev/en/storefront-guide/developer-guide/integrations/cms) for more details.
+Check [Storefront Developer Guide / Integrations / CMS / Storyblok](https://scayle.dev/en/storefront-guide/developer-guide/integrations/cms/storyblok) for more details.
 
 - `storyblok:download`
   - Downloads the latest components from the respective Storyblok space using Storyblok CLI

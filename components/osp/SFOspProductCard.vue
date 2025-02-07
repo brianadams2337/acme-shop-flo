@@ -83,7 +83,7 @@ const color = computed(() => {
   return getFirstAttributeValue(attrs, 'color')?.label
 })
 
-const size = computed(() => variant.attributes?.size.values.label)
+const size = computed(() => variant.attributes?.size?.values.label)
 
 const imageHash = computed(() => product.images[0].hash)
 

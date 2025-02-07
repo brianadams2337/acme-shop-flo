@@ -48,7 +48,7 @@ const {
   placeholder: string
 }>()
 
-defineEmits(['change', 'input'])
+defineEmits<{ change: []; input: [] }>()
 
 const passwordInputType = ref<'password' | 'text'>('password')
 

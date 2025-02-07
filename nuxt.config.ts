@@ -663,7 +663,7 @@ export default defineNuxtConfig({
           '/wishlist': NO_CACHE,
           '/basket': NO_CACHE,
           '/checkout': NO_CACHE,
-          '/signin': NO_CACHE,
+          '/signin/callback': NO_CACHE,
           '/account': NO_CACHE,
           '/account/**': NO_CACHE,
         }
@@ -679,7 +679,7 @@ export default defineNuxtConfig({
               [`/${locale.code}/wishlist`]: NO_CACHE,
               [`/${locale.code}/basket`]: NO_CACHE,
               [`/${locale.code}/checkout`]: NO_CACHE,
-              [`/${locale.code}/signin`]: NO_CACHE,
+              [`/${locale.code}/signin/callback`]: NO_CACHE,
               [`/${locale.code}/account`]: NO_CACHE,
               [`/${locale.code}/account/**`]: NO_CACHE,
             }
@@ -694,7 +694,7 @@ export default defineNuxtConfig({
             '/wishlist': NO_CACHE,
             '/basket': NO_CACHE,
             '/checkout': NO_CACHE,
-            '/signin': NO_CACHE,
+            '/signin/callback': NO_CACHE,
             '/account': NO_CACHE,
             '/account/**': NO_CACHE,
           },

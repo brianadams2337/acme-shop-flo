@@ -27,6 +27,11 @@ export class ProductDetailPage {
   readonly storeSelectorSlideIn: Locator
   readonly storeInput: Locator
   readonly buttonSearchStore: Locator
+  readonly locationStoreList: Locator
+  readonly locationStoreListItem: Locator
+  readonly buttonChooseStore: Locator
+  readonly storeName: Locator
+  readonly itemStatus: Locator
 
   constructor(page: Page) {
     this.page = page
@@ -67,6 +72,11 @@ export class ProductDetailPage {
     this.storeSelectorSlideIn = page.getByTestId('slide-in-overflow')
     this.storeInput = page.getByTestId('store-input')
     this.buttonSearchStore = page.getByTestId('search-store-button')
+    this.locationStoreList = page.getByTestId('location-store-list')
+    this.locationStoreListItem = page.getByTestId('location-store-list-item')
+    this.buttonChooseStore = page.getByTestId('choose-store-button')
+    this.storeName = page.getByTestId('store-name')
+    this.itemStatus = page.getByTestId('item-status')
   }
 
   getVariant(variantId?: string): Locator {

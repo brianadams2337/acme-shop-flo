@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="flex flex-row items-center justify-between">
-      <p class="flex-none basis-1/2 font-bold">
+      <p class="flex-none basis-1/2 font-bold" data-testid="store-name">
         {{ nameWithIndex }}
       </p>
       <div
@@ -17,6 +17,7 @@
           <div
             v-if="quantity !== undefined"
             class="w-fit rounded-full px-2 py-1"
+            data-testid="item-status"
             :class="{
               'bg-green-neon': quantity >= 5,
               'bg-red': quantity <= 0,

@@ -5,6 +5,7 @@
         {{ $t('subscription.interval') }}
       </div>
       <SFDropdown
+        id="subscription-interval-selection-dropdown"
         v-model="selectedInterval"
         class="w-full"
         :items="subscriptionIntervals"
@@ -31,6 +32,7 @@
         {{ $t('subscription.follow_up_delivery') }}
       </div>
       <SFDropdown
+        id="subscription-prefered-date-selection-dropdown"
         v-model="selectedPreferredDeliveryDate"
         class="w-full"
         :items="preferredDeliveryDate"

@@ -75,10 +75,14 @@
     "old_password": "Current password",
     "new_password": "New Password",
     "repeated_password": "Confirm password",
+    "password": "Password",
+    "gender": "Gender"
+  },
+  "gender": {
     "male": "Male",
     "female": "Female",
     "diverse": "Diverse",
-    "password": "Password"
+    "none": "Prefer not to say"
   },
   "error": {
     "continue_shopping": "Continue shopping",
@@ -337,44 +341,39 @@
     "title": "Your order"
   },
   "sign_in_page": {
+    "status": {
+      "error": {
+        "400_bad_request": "Your request could not be processed, please try again.",
+        "401_unauthorized": "Your request could not be processed, please try again.",
+        "403_user_deactivated": "This user is deactivated.",
+        "404_not_found": "Oops! E-Mail not found.",
+        "406_token_expired": "The token has already been used or has expired. Please request a new password reset email.",
+        "409_already_exists": "This account already exists.",
+        "422_unprocessable_entity": "Your request could not be processed, please try again.",
+        "500_server_error": "Your request resulted in an error"
+      }
+    },
     "forgot_password": {
       "description": "Please enter your email address. We will send you an email so you can reset your password.",
       "cancel": "Back",
       "status": {
-        "error": {
-          "400_bad_request": "Your request resulted in an error",
-          "401_unauthorized": "Authorization Required",
-          "403_user_deactivated": "This user is deactivated.",
-          "404_not_found": "Oops! E-Mail not found."
-        },
         "success": "An email was sent to reset your password"
       },
       "submit": "Submit",
       "title": "Forgotten your password?"
     },
     "guest_login": {
-      "cancel": "Create a free user account",
       "status": {
         "error": {
-          "400_bad_request": "Your request resulted in an error",
-          "401_unauthorized": "Authorization Required",
-          "409_non_guest_customer": "You are not using a guest account.",
-          "500_server_error": "Your request resulted in an error"
+          "409_already_exists": "This is a registered account. Please use correct password to login."
         },
-        "success": "Guest-Log-In was successful."
+        "success": "Your guest account has been created! You can now proceed with your order."
       },
-      "submit": "Continue without advantages",
-      "title": "Continue as guest"
+      "activation_hint": "You won’t create an account. To track your order, use the email address you provide.",
+      "label": "Continue as Guest"
     },
     "login": {
       "status": {
-        "error": {
-          "400_bad_request": "Your request could not be processed, please try again.",
-          "401_unauthorized": "Your request could not be processed, please try again.",
-          "403_user_deactivated": "This user is deactivated.",
-          "404_not_found": "Oops! E-Mail not found.",
-          "500_server_error": "Your request resulted in an error"
-        },
         "success": "Login successful! Welcome back!"
       },
       "title": "Login",
@@ -385,11 +384,6 @@
     "reset_password": {
       "cancel": "Back",
       "status": {
-        "error": {
-          "400_bad_request": "Your request resulted in an error",
-          "401_unauthorized": "Authorization Required",
-          "406_hash_has_expired": "Your token has been already used or has been expired. Please request a new password reset email."
-        },
         "success": "Your password has been successfully reset. Use your new password to log in."
       },
       "submit": "Submit",
@@ -397,15 +391,16 @@
     },
     "sign_up": {
       "status": {
-        "error": {
-          "400_bad_request": "Your request resulted in an error",
-          "401_unauthorized": "Authorization Required",
-          "409_already_exists": "This account already exists."
-        },
-        "success": "Yey! Registration was successful"
+        "success": "Your account has been successfully created!"
       },
-      "submit": "Register now",
-      "title": "Sign Up"
+      "mandatory_info": "* Mandatory field",
+      "submit": "Sign Up",
+      "title": "Sign Up",
+      "not_new_user": "Already have an account?",
+      "go_to_login": "Log in here",
+      "privacy_disclaimer": "By creating an account, you accept our {terms} and acknowledge our {policy}.",
+      "terms": "Terms of Service",
+      "policy": "Privacy Policy"
     },
     "welcome_back_title": "Welcome! New here or coming back?",
     "idp": {

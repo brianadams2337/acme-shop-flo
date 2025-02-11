@@ -199,13 +199,18 @@ export default {
         '3.5': '13px',
         '2.5': '10px',
       },
+      borderWidth: {
+        5: '5px',
+      },
       borderRadius: {
+        base: '4px',
         10: '10px',
       },
       height: {
         '4.5': '1.125rem',
         13: '3.25rem',
         15: '3.75rem',
+        26: '6.5rem',
       },
       width: {
         13: '3.25rem',

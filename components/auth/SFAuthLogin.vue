@@ -62,7 +62,7 @@
 </template>
 
 <script setup lang="ts">
-import { reactive } from 'vue'
+import { ref } from 'vue'
 import useVuelidate from '@vuelidate/core'
 import SFLocalizedLink from '../SFLocalizedLink.vue'
 import SFAuthErrorMessageContainer from './SFAuthErrorMessageContainer.vue'
@@ -76,10 +76,9 @@ import {
 } from '#storefront-ui/components'
 import SFAuthSeparator from '~/components/auth/SFAuthSeparator.vue'
 import { routeList } from '~/utils'
+import { PASSWORD_MIN_LENGTH } from '~/constants/password'
 
-const PASSWORD_MIN_LENGTH = 8
-
-const userPayload = reactive({
+const userPayload = ref<Record<'email' | 'password', string>>({
   email: '',
   password: '',
 })
@@ -99,7 +98,7 @@ const rules = {
   },
 }
 
-const v = useVuelidate(rules, userPayload)
+const v = useVuelidate(rules, userPayload.value)
 
 const onSubmit = async () => {
   const isValid = await v.value.$validate()
@@ -107,6 +106,6 @@ const onSubmit = async () => {
     return
   }
 
-  await login(userPayload)
+  await login(userPayload.value)
 }
 </script>

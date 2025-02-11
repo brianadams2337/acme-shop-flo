@@ -6,13 +6,23 @@
         size="sm"
         class="group inline-flex size-full justify-between gap-0 rounded-md border border-gray-300 bg-secondary-200 !px-3.5 !py-2 font-semi-bold-variable leading-5 hover:bg-white"
         :disabled="disabled"
-        :class="{
-          'py-3.5': isLarge,
-          'rounded-md': radius == 'md',
-          'rounded-10': radius == 'lg',
-          'rounded-xl': radius == 'xl',
-        }"
-        @click="isDropdownListVisible = !isDropdownListVisible"
+        :aria-label="ariaLabel"
+        :aria-expanded="isDropdownListVisible"
+        :aria-invalid="hasErrors"
+        :aria-controls="id"
+        aria-haspopup="true"
+        :class="[
+          buttonClass,
+          {
+            'py-3.5': isLarge,
+            'rounded-md': radius == 'md',
+            'rounded-10': radius == 'lg',
+            'rounded-xl': radius == 'xl',
+            'border-2 !border-status-error !bg-white !text-status-error shadow-none !outline-0 *:!text-status-error hover:border-status-error focus:border-status-error':
+              hasErrors,
+          },
+        ]"
+        @click.prevent="isDropdownListVisible = !isDropdownListVisible"
       >
         <slot name="default">
           <span class="max-w-[80%] text-ellipsis">{{ modelValue }}</span>
@@ -35,6 +45,7 @@
     >
       <div
         v-show="isDropdownListVisible"
+        :id="id"
         ref="options"
         v-popover="isDropdownListVisible"
         class="absolute m-0 w-full rounded-md bg-white p-2 shadow-secondary ring-1 ring-gray-300 focus:outline-none max-md:backdrop:bg-primary/50"
@@ -48,7 +59,7 @@
         ]"
         :style="itemsContainerStyle"
       >
-        <div
+        <ul
           class="max-h-[330px] overflow-y-auto bg-white p-2 scrollbar-hide md:p-px"
           :class="{
             'rounded-md': radius == 'md',
@@ -56,10 +67,9 @@
             'rounded-xl': radius == 'xl',
           }"
         >
-          <template v-for="item in items">
+          <li v-for="item in items" :key="`${item}`">
             <slot name="item" v-bind="{ item, selectItem }">
               <div
-                :key="`${item}`"
                 class="flex w-full cursor-pointer items-center justify-between space-x-2 p-2 transition-all hover:bg-gray-200"
                 :class="{
                   'rounded-md': radius == 'md',
@@ -72,8 +82,8 @@
                 {{ item }}
               </div>
             </slot>
-          </template>
-        </div>
+          </li>
+        </ul>
       </div>
     </Transition>
   </div>
@@ -90,11 +100,17 @@ import { useDropdownKeyboardBehavior } from '#storefront-ui'
 const {
   isLarge = false,
   disabled = false,
+  hasErrors = false,
   radius = 'md',
+  buttonClass = '',
 } = defineProps<{
   items: NonNullable<T>[]
+  buttonClass?: string | Record<string, boolean>
+  id: string
+  hasErrors?: boolean
   isLarge?: boolean
   disabled?: boolean
+  ariaLabel?: string
   radius?: 'md' | 'lg' | 'xl'
 }>()
 

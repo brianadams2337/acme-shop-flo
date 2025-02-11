@@ -5,7 +5,7 @@ import type {
   UpdatePasswordByHashRequest,
 } from '@scayle/storefront-nuxt'
 import { FetchError } from 'ofetch'
-import { computed, ref, readonly } from 'vue'
+import { computed, ref, readonly, onUnmounted } from 'vue'
 import { useState } from 'nuxt/app'
 import type { Ref } from 'vue'
 import { clearNuxtData } from '#app/composables/asyncData'
@@ -52,8 +52,9 @@ const httpErrorMessages: Record<number, string> = {
   401: '401_unauthorized',
   403: '403_user_deactivated',
   404: '404_not_found',
-  406: '406_hash_has_expired',
+  406: '406_token_expired',
   409: '409_already_exists',
+  422: '422_unprocessable_entity',
   500: '500_server_error',
 } as const
 
@@ -258,9 +259,11 @@ export function useAuthentication(
     if (error instanceof FetchError) {
       const status = error.response?.status
       if (status && Object.hasOwn(httpErrorMessages, status)) {
-        errorMessage.value = $i18n.t(
-          `sign_in_page.${event}.status.error.${httpErrorMessages[status]}`,
-        )
+        errorMessage.value = $i18n.te(`sign_in_page.${event}.status.error`)
+          ? $i18n.t(
+              `sign_in_page.${event}.status.error.${httpErrorMessages[status]}`,
+            )
+          : $i18n.t(`sign_in_page.status.error.${httpErrorMessages[status]}`)
       }
     }
     // remove user data (email, password) from the error object, before logging it
@@ -282,6 +285,8 @@ export function useAuthentication(
   const clearErrorMessage = (): void => {
     errorMessage.value = null
   }
+
+  onUnmounted(() => clearErrorMessage())
 
   return {
     login,

@@ -145,16 +145,20 @@ const setPayload = () => Object.assign(payload, initPayload())
 
 const genders = computed(() => [
   {
-    label: t('form_fields.male'),
+    label: t('gender.male'),
     value: 'm',
   },
   {
-    label: t('form_fields.female'),
+    label: t('gender.female'),
     value: 'f',
   },
   {
-    label: t('form_fields.diverse'),
+    label: t('gender.diverse'),
     value: 'd',
+  },
+  {
+    label: t('gender.none'),
+    value: 'n',
   },
 ])
 

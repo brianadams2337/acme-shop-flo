@@ -1,5 +1,6 @@
 <template>
   <SFDropdown
+    id="variant-picker-dropdown"
     v-model="activeVariant"
     v-model:visible="isVariantListVisible"
     :items="variants"
@@ -28,7 +29,7 @@
           <span
             class="size-4 rounded-full border border-gray-500 bg-white"
             :class="{
-              'border-[5px] !border-accent': item.id === activeVariant?.id,
+              'border-5 !border-accent': item.id === activeVariant?.id,
             }"
           />
           <span

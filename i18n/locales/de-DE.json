@@ -75,10 +75,14 @@
     "old_password": "Aktuelles Passwort",
     "new_password": "Neues Passwort",
     "repeated_password": "Bestätige das Passwort",
-    "male": "Mann",
-    "female": "Frau",
+    "password": "Passwort",
+    "gender": "Geschlecht"
+  },
+  "gender": {
+    "male": "Männlich",
+    "female": "Weiblich",
     "diverse": "Divers",
-    "password": "Passwort"
+    "none": "Keine Angabe"
   },
   "error": {
     "continue_shopping": "Weiter einkaufen",
@@ -337,44 +341,40 @@
     "title": "Dein Bestellung"
   },
   "sign_in_page": {
+    "status": {
+      "error": {
+        "400_bad_request": "Die Anfrage konnte nicht bearbeitet werden, bitte versuche es erneut.",
+        "401_unauthorized": "Die Anfrage konnte nicht bearbeitet werden, bitte versuche es erneut.",
+        "403_user_deactivated": "Dieser Benutzer ist deaktiviert.",
+        "404_not_found": "Ups! Email wurde nicht gefunden.",
+        "406_token_expired": "Der Token wurde bereits verwendet oder ist abgelaufen. Bitte fordere eine neue E-Mail zum Zurücksetzen des Passworts an.",
+        "409_already_exists": "Dieser Account existiert bereits.",
+        "422_unprocessable_entity": "Die Anfrage konnte nicht bearbeitet werden, bitte versuche es erneut.",
+        "500_server_error": "Die Anfrage führte zu einem Fehler"
+      }
+    },
     "forgot_password": {
-      "description": "Geben Sie bitte Ihre Email-Adresse ein. Wir senden Ihnen eine E-Mail zu, damit Sie Ihr Passwort zurücksetzen können.",
+      "description": "Gib bitte deine Email-Adresse ein. Wir senden dich eine E-Mail zu, damit du dein Passwort zurücksetzen kannst.",
       "cancel": "Zurück",
       "status": {
-        "error": {
-          "400_bad_request": "Ihre Anfrage führte zu einem Fehler",
-          "401_unauthorized": "Autorisierung erforderlich",
-          "403_user_deactivated": "Dieser Benutzer ist deaktiviert.",
-          "404_not_found": "Ups! Email wurde nicht gefunden."
-        },
         "success": "Es wurde eine E-Mail gesendet, um Ihr Passwort zurückzusetzen."
       },
       "submit": "Einreichen",
       "title": "Passwort vergessen?"
     },
     "guest_login": {
-      "cancel": "Erstellen Sie ein kostenloses Benutzerkonto",
       "status": {
         "error": {
-          "400_bad_request": "Ihre Anfrage führte zu einem Fehler",
-          "401_unauthorized": "Autorisierung erforderlich",
-          "409_non_guest_customer": "Sie verwenden kein Gastkonto.",
-          "500_server_error": "Ihre Anfrage führte zu einem Fehler"
+          "409_already_exists": "Dies ist ein registriertes Konto. Bitte verwende das richtige Passwort, um dich anzumelden."
         },
-        "success": "Der Gast-Login war erfolgreich."
+        "success": "Dein Gastkonto wurde erstellt! Du kannst jetzt mit deiner Bestellung fortfahren."
       },
       "submit": "Weiter ohne Vorteile",
-      "title": "Als Gast fortfahren"
+      "activation_hint": "Es wird kein Konto erstellt. Um deine Bestellung zu verfolgen, verwende die von dir angegebene E-Mail-Adresse.",
+      "label": "Als Gast fortfahren"
     },
     "login": {
       "status": {
-        "error": {
-          "400_bad_request": "Ihre Anfrage konnte nicht bearbeitet werden, bitte versuchen Sie es erneut.",
-          "401_unauthorized": "Ihre Anfrage konnte nicht bearbeitet werden, bitte versuchen Sie es erneut.",
-          "403_user_deactivated": "Dieser Benutzer ist deaktiviert.",
-          "404_not_found": "Ups! Email wurde nicht gefunden.",
-          "500_server_error": "Ihre Anfrage führte zu einem Fehler"
-        },
         "success": "Anmeldung erfolgreich! Willkommen zurück!"
       },
       "title": "Einloggen",
@@ -385,11 +385,6 @@
     "reset_password": {
       "cancel": "Zurück",
       "status": {
-        "error": {
-          "400_bad_request": "Ihre Anfrage führte zu einem Fehler.",
-          "401_unauthorized": "Autorisierung erforderlich",
-          "406_hash_has_expired": "Ihr Token wurde bereits verwendet oder ist abgelaufen. Bitte fordern Sie eine neue E-Mail zum Zurücksetzen des Passworts an."
-        },
         "success": "Ihr Passwort wurde erfolgreich zurückgesetzt. Verwenden Sie Ihr neues Passwort, um sich anzumelden."
       },
       "submit": "Einreichen",
@@ -397,15 +392,16 @@
     },
     "sign_up": {
       "status": {
-        "error": {
-          "400_bad_request": "Ihre Anfrage führte zu einem Fehler",
-          "401_unauthorized": "Autorisierung erforderlich",
-          "409_already_exists": "Dieser Account existiert bereits."
-        },
-        "success": "Ja! Die Registrierung war erfolgreich"
+        "success": "Dein Konto wurde erfolgreich erstellt!"
       },
-      "submit": "Jetzt registrieren",
-      "title": "Registrieren"
+      "mandatory_info": "* Pflichtangabe",
+      "submit": "Registrieren",
+      "title": "Registrieren",
+      "not_new_user": "Schon ein Konto?",
+      "go_to_login": " Melde dich hier an",
+      "privacy_disclaimer": "Mit der Erstellung eines Kontos akzeptierst du unsere {terms} und bestätigst unsere {policy}.",
+      "terms": "Nutzungsbedingungen",
+      "policy": "Datenschutzrichtlinie"
     },
     "welcome_back_title": "Willkommen! Neu hier oder bereits Kunde?",
     "idp": {

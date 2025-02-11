@@ -10,6 +10,7 @@
     </div>
     <SFAuthTabs class="mb-6 border-b border-b-gray-200 pb-4" />
     <SFAuthLogin v-if="!isRegisterRoute" />
+    <SFAuthRegister v-else />
   </div>
 </template>
 
@@ -20,6 +21,7 @@ import { definePageMeta, useRoute } from '#imports'
 import { useI18n } from '#i18n'
 import { SFHeadline } from '#storefront-ui/components'
 import SFAuthTabs from '~/components/auth/SFAuthTabs.vue'
+import SFAuthRegister from '~/components/auth/register/SFAuthRegister.vue'
 import SFAuthLogin from '~/components/auth/SFAuthLogin.vue'
 
 const { t } = useI18n()

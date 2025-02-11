@@ -1,5 +1,6 @@
 <template>
   <SFDropdown
+    id="sort-selection-dropdown"
     data-testid="sort-dropdown"
     class="h-9 w-full md:w-[12.5rem]"
     :items="sortLinks"

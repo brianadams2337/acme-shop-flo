@@ -1,0 +1,84 @@
+<template>
+  <SFDropdown
+    id="gender-selection-dropdown"
+    v-model="activeGenderValue"
+    v-model:visible="isGenderSelectionVisible"
+    :items="items"
+    :disabled="disabled"
+    :has-errors="!isValid"
+    :aria-label="$t('form_fields.gender')"
+    :button-class="
+      activeGenderValue ? 'bg-white' : '!bg-gray-100 !border-gray-100'
+    "
+    class="h-12 w-full bg-white"
+    radius="xl"
+    data-testid="gender-selection"
+  >
+    <span class="pl-0.5 text-sm font-variable text-gray-900">
+      {{ activeGenderLabel }}
+    </span>
+    <label
+      class="absolute left-2 top-4 px-2.5 text-sm font-variable text-gray-600 duration-100 ease-linear placeholder-shown:bg-gray-100 peer-placeholder-shown:translate-y-0 peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-600 peer-focus:ml-1 peer-focus:-translate-y-6 peer-focus:bg-white peer-focus:px-1.5 peer-focus:text-xs peer-focus:text-accent peer-focus:shadow-input-label after:peer-focus:text-accent"
+      :class="[
+        `after:ml-0.5 after:text-gray-600 after:content-['*']`,
+        {
+          'ml-1 -translate-y-6 bg-white !px-1.5 text-xs !shadow-input-label':
+            activeGenderValue,
+          'text-status-error after:text-status-error': !isValid,
+        },
+      ]"
+    >
+      {{ $t('form_fields.gender') }}
+    </label>
+    <template #item="{ item: gender, selectItem: selectGender }">
+      <SFButton
+        variant="raw"
+        :data-testid="`gender-option-${gender}`"
+        class="flex w-full cursor-pointer items-center justify-between space-x-2 border-b border-gray-200 p-2 transition-all first-of-type:rounded-t-lg last-of-type:rounded-b-lg last-of-type:border-none hover:bg-gray-200 focus-visible:shadow-inner-solid-sm"
+        @click.prevent="selectGender(gender)"
+      >
+        <div class="flex items-center gap-3">
+          <span
+            class="size-4 rounded-full border border-gray-500 bg-white"
+            :class="{
+              'border-5 !border-accent': gender === activeGenderValue,
+            }"
+          />
+          <span>
+            {{ genderMap[gender] }}
+          </span>
+        </div>
+      </SFButton>
+    </template>
+  </SFDropdown>
+</template>
+
+<script setup lang="ts">
+import type { Gender } from '@scayle/storefront-nuxt'
+import { computed } from 'vue'
+import { SFDropdown, SFButton } from '#storefront-ui/components'
+import { useI18n } from '#i18n'
+
+defineProps<{ disabled: boolean; isValid: boolean }>()
+
+const isGenderSelectionVisible = defineModel<boolean>('visible', {
+  default: false,
+})
+
+const activeGenderValue = defineModel<Gender | undefined>()
+
+const { t } = useI18n()
+
+const genderMap = computed<Record<Gender, string>>(() => ({
+  m: t('gender.male'),
+  f: t('gender.female'),
+  d: t('gender.diverse'),
+  n: t('gender.none'),
+}))
+
+const items = computed<Gender[]>(() => Object.keys(genderMap.value) as Gender[])
+
+const activeGenderLabel = computed(() => {
+  return activeGenderValue.value && genderMap.value[activeGenderValue.value]
+})
+</script>

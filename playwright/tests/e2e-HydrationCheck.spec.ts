@@ -27,9 +27,10 @@ for (const userState of userStates) {
           }
         })
 
-        await page.goto(`${baseURL}${path}`, { waitUntil: 'commit' })
-        await page.waitForLoadState('networkidle')
+        await page.goto(`${baseURL}${path}`, { waitUntil: 'domcontentloaded' })
+        await page.waitForLoadState('networkidle', { timeout: 7000 })
         await page.waitForTimeout(1500)
+        await page.waitForSelector('#main-content', { state: 'attached' })
         if (userState === 'loggedIn') {
           await accountPage.userAuthentication(
             HYDRATION_TEST_USER.userEmail,

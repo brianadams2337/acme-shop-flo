@@ -47,9 +47,10 @@
       />
     </SFValidatedInputGroup>
     <SFValidatedInputGroup
+      v-if="!isGuestFlowEnabled"
       v-slot="{ isValid }"
+      class="h-26 sm:h-20"
       :errors="v.password.$errors"
-      class="h-26"
     >
       <SFPasswordInput
         v-model="userPayload.password"
@@ -60,6 +61,7 @@
         @change="v.password.$touch()"
       />
     </SFValidatedInputGroup>
+    <SFAuthRegisterToggleGuest v-model="isGuestFlowEnabled" />
     <div class="flex items-center justify-between">
       <SFButton
         :disabled="isSubmitting"
@@ -98,6 +100,7 @@ import SFPasswordInput from '../SFPasswordInput.vue'
 import SFGenderSelection from '../SFGenderSelection.vue'
 import SFAuthErrorMessageContainer from '../SFAuthErrorMessageContainer.vue'
 import SFAuthRegisterPrivacyDisclaimer from './SFAuthRegisterPrivacyDisclaimer.vue'
+import SFAuthRegisterToggleGuest from './SFAuthRegisterToggleGuest.vue'
 import SFLocalizedLink from '~/components/SFLocalizedLink.vue'
 import { useValidationRules, useAuthentication } from '~/composables'
 import { routeList } from '~/utils'
@@ -109,7 +112,11 @@ import {
 import SFAuthSeparator from '~/components/auth/SFAuthSeparator.vue'
 import { PASSWORD_MIN_LENGTH } from '~/constants/password'
 
-const { register, isSubmitting, errorMessage } = useAuthentication('sign_up')
+const isGuestFlowEnabled = ref(false)
+
+const { register, isSubmitting, guestLogin, errorMessage } = useAuthentication(
+  isGuestFlowEnabled.value ? 'sign_up' : 'guest_login',
+)
 const validationRules = useValidationRules()
 
 type UserPayload = {
@@ -128,10 +135,27 @@ const userPayload = ref<UserPayload>({
   password: '',
 })
 
+const validateForm = async (): Promise<boolean> => {
+  await v.value.$validate()
+  // Exclude password validation for guest flow; otherwise, validate all fields
+  return isGuestFlowEnabled.value
+    ? v.value.$errors.every((item) => item.$property === 'password')
+    : !v.value.$errors.length
+}
+
 const onSubmit = async () => {
-  const isValid = await v.value.$validate()
-  if (isValid) {
-    await register(userPayload.value as Required<UserPayload>)
+  const isValid = await validateForm()
+
+  if (!isValid) {
+    return
+  }
+
+  const { password, ...payload } = userPayload.value
+
+  if (isGuestFlowEnabled.value) {
+    await guestLogin(payload as Required<Omit<UserPayload, 'password'>>)
+  } else {
+    await register({ ...payload, password } as Required<UserPayload>)
   }
 }
 

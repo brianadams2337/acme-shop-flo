@@ -1,7 +1,6 @@
 <template>
-  <div class="flex items-center">
+  <div class="flex items-center" v-bind="$attrs">
     <button
-      v-bind="$attrs"
       :id="id"
       class="relative inline-block h-6 w-11 rounded-full opacity-100 outline-2 outline-offset-2 focus-visible:shadow-none focus-visible:outline-blue-850"
       :class="isActive ? 'bg-accent' : 'bg-secondary-600'"
@@ -27,8 +26,9 @@
         v-if="label"
         class="ml-2 cursor-pointer text-md font-medium"
         :for="id"
-        >{{ label }}</label
       >
+        {{ label }}
+      </label>
     </slot>
   </div>
   <input

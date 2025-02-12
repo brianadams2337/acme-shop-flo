@@ -42,6 +42,8 @@ export class RPC {
       headers: {
         'x-shop-id': shopId.toString(),
       },
+      // Increased timeout to accommodate potential CI rendering delays.
+      timeout: 5000,
     })
 
     if (!res.ok()) {

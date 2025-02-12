@@ -45,7 +45,9 @@
       >
         {{ $t('sign_in_page.login.submit') }}
       </SFButton>
-      <SFAuthForgotPassword />
+      <SFAuthForgotPassword
+        :prefilled-email="prefilledEmailForForgotPassword"
+      />
     </div>
   </form>
   <SFAuthSeparator class="my-8 lg:my-10" />
@@ -62,7 +64,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 import useVuelidate from '@vuelidate/core'
 import SFLocalizedLink from '../SFLocalizedLink.vue'
 import SFAuthErrorMessageContainer from './SFAuthErrorMessageContainer.vue'
@@ -85,6 +87,10 @@ const userPayload = ref<Record<'email' | 'password', string>>({
 const { login, isSubmitting, errorMessage } = useAuthentication('login')
 
 const validationRules = useValidationRules()
+
+const prefilledEmailForForgotPassword = computed(() => {
+  return v.value.email.$invalid ? '' : userPayload.value.email
+})
 
 const rules = {
   email: {

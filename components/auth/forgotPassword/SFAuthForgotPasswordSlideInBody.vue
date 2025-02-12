@@ -39,7 +39,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, watch } from 'vue'
 import useVuelidate from '@vuelidate/core'
 import SFAuthErrorMessageContainer from '../SFAuthErrorMessageContainer.vue'
 import {
@@ -55,6 +55,8 @@ import {
 import { routeList } from '~/utils'
 
 const emit = defineEmits<{ close: [] }>()
+
+const { prefilledEmail } = defineProps<{ prefilledEmail: string }>()
 
 const { forgotPassword, isSubmitting, errorMessage } =
   useAuthentication('forgot_password')
@@ -88,4 +90,12 @@ const emailRules = {
 }
 
 const v = useVuelidate({ email: emailRules }, { email })
+
+watch(
+  () => prefilledEmail,
+  (value) => {
+    email.value = value
+  },
+  { immediate: true, once: true },
+)
 </script>

@@ -19,6 +19,7 @@
       <SFAuthForgotPasswordSlideInBody
         v-if="isOpen"
         class="px-6 py-4 max-lg:pb-11"
+        :prefilled-email="prefilledEmail"
         @close="closeAndClear"
       />
     </template>
@@ -33,6 +34,8 @@ import { useSlideIn } from '#storefront-ui/composables'
 import { useAuthentication } from '~/composables'
 
 const SLIDE_IN_KEY = 'ForgotPasswordSlideIn'
+
+defineProps<{ prefilledEmail: string }>()
 
 const { toggle, close, isOpen } = useSlideIn(SLIDE_IN_KEY)
 

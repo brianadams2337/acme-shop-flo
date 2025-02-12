@@ -5,7 +5,7 @@
         <slot name="label" :toggle="toggle" />
       </div>
       <div v-if="isOpen" class="absolute z-50" :class="{ 'w-full': fullWidth }">
-        <slot name="menuContent" :toggle="toggle" :close="close" />
+        <slot name="menu-content" :toggle="toggle" :close="close" />
       </div>
     </slot>
   </div>

@@ -129,6 +129,7 @@ export default withNuxt(
       ],
       'vue/define-emits-declaration': ['error', 'type-literal'],
       'vue/custom-event-name-casing': ['error', 'camelCase'],
+      'vue/slot-name-casing': ['error', 'kebab-case'],
     },
   },
   {

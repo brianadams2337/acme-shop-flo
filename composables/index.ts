@@ -19,8 +19,6 @@ export * from './usePromotionBanner'
 
 // Auth
 export * from './useAuthentication'
-// TODO: Remove `oldAuth` when composables gets fully migrated/adjusted
-export * from './oldAuth/useLastLoggedInUser'
 
 export * from './useBanner'
 export * from './useBreadcrumbs'

@@ -51,6 +51,10 @@
     </div>
   </form>
   <SFAuthSeparator class="my-8 lg:my-10" />
+  <SFAuthIDPRedirects
+    v-if="externalIDPRedirects"
+    :redirects="externalIDPRedirects"
+  />
   <p class="text-start text-base text-gray-600">
     {{ $t('sign_in_page.login.not_user_yet') }}
     <SFLocalizedLink
@@ -67,6 +71,7 @@
 import { ref, computed } from 'vue'
 import useVuelidate from '@vuelidate/core'
 import SFLocalizedLink from '../SFLocalizedLink.vue'
+import SFAuthIDPRedirects from './SFAuthIDPRedirects.vue'
 import SFAuthErrorMessageContainer from './SFAuthErrorMessageContainer.vue'
 import SFAuthForgotPassword from './forgotPassword/SFAuthForgotPassword.vue'
 import SFPasswordInput from './SFPasswordInput.vue'
@@ -79,6 +84,8 @@ import {
 import SFAuthSeparator from '~/components/auth/SFAuthSeparator.vue'
 import { routeList } from '~/utils'
 import { PASSWORD_MIN_LENGTH } from '~/constants/password'
+
+defineProps<{ externalIDPRedirects?: Record<string, string> }>()
 
 const userPayload = ref<Record<'email' | 'password', string>>({
   email: '',

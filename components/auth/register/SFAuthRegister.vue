@@ -79,6 +79,10 @@
   </form>
   <SFAuthRegisterPrivacyDisclaimer class="mt-5" />
   <SFAuthSeparator class="my-8 lg:my-10" />
+  <SFAuthIDPRedirects
+    v-if="externalIDPRedirects"
+    :redirects="externalIDPRedirects"
+  />
   <p class="text-start text-base text-gray-600">
     {{ $t('sign_in_page.sign_up.not_new_user') }}
     <SFLocalizedLink
@@ -99,6 +103,7 @@ import type { Required } from 'utility-types'
 import SFPasswordInput from '../SFPasswordInput.vue'
 import SFGenderSelection from '../SFGenderSelection.vue'
 import SFAuthErrorMessageContainer from '../SFAuthErrorMessageContainer.vue'
+import SFAuthIDPRedirects from '../SFAuthIDPRedirects.vue'
 import SFAuthRegisterPrivacyDisclaimer from './SFAuthRegisterPrivacyDisclaimer.vue'
 import SFAuthRegisterToggleGuest from './SFAuthRegisterToggleGuest.vue'
 import SFLocalizedLink from '~/components/SFLocalizedLink.vue'
@@ -111,6 +116,8 @@ import {
 } from '#storefront-ui/components'
 import SFAuthSeparator from '~/components/auth/SFAuthSeparator.vue'
 import { PASSWORD_MIN_LENGTH } from '~/constants/password'
+
+defineProps<{ externalIDPRedirects?: Record<string, string> }>()
 
 const isGuestFlowEnabled = ref(false)
 

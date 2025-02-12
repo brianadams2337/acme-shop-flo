@@ -409,10 +409,12 @@
     },
     "welcome_back_title": "Willkommen! Neu hier oder bereits Kunde?",
     "idp": {
-      "google": "Mit Google anmelden",
-      "facebook": "Mit Facebook anmelden",
-      "apple": "Mit Apple anmelden",
-      "okta": "Mit Okta anmelden"
+      "login": {
+        "google": "Einloggen mit Google"
+      },
+      "register": {
+        "google": "Registrieren mit Google"
+      }
     },
     "or": "Oder"
   },

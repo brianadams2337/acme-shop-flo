@@ -9,8 +9,11 @@
       <IconScreenClick class="size-9 max-lg:hidden" />
     </div>
     <SFAuthTabs class="mb-6 border-b border-b-gray-200 pb-4" />
-    <SFAuthLogin v-if="!isRegisterRoute" />
-    <SFAuthRegister v-else />
+    <SFAuthLogin
+      v-if="!isRegisterRoute"
+      :external-i-d-p-redirects="externalIDPRedirects"
+    />
+    <SFAuthRegister v-else :external-i-d-p-redirects="externalIDPRedirects" />
     <SFAuthResetPasswordSlideIn />
   </div>
 </template>
@@ -21,12 +24,13 @@ import { useSeoMeta, useHead } from '@unhead/vue'
 import { sanitizeCanonicalURL } from '@scayle/storefront-nuxt'
 import { definePageMeta, useRoute } from '#imports'
 import { useI18n } from '#i18n'
+import { useIDP } from '#storefront/composables'
+import { useNuxtApp } from '#app'
 import { SFHeadline } from '#storefront-ui/components'
 import SFAuthTabs from '~/components/auth/SFAuthTabs.vue'
 import SFAuthRegister from '~/components/auth/register/SFAuthRegister.vue'
-import SFAuthLogin from '~/components/auth/SFAuthLogin.vue'
 import SFAuthResetPasswordSlideIn from '~/components/auth/resetPassword/SFAuthResetPasswordSlideIn.vue'
-import { useNuxtApp } from '#app'
+import SFAuthLogin from '~/components/auth/SFAuthLogin.vue'
 
 const { t } = useI18n()
 
@@ -39,6 +43,21 @@ const {
 } = useNuxtApp()
 
 const isRegisterRoute = computed(() => route.query.register === 'true')
+
+const idpParams = computed(() => ({
+  queryParams:
+    typeof route.query.redirectUrl === 'string'
+      ? { redirectUrl: route.query.redirectUrl }
+      : undefined,
+}))
+
+const idp = useIDP(idpParams)
+
+const externalIDPRedirects = computed(() => {
+  return idp.data && Object.keys(idp.data).length > 0
+    ? (idp.data.value as Record<string, string>)
+    : undefined
+})
 
 useSeoMeta({
   robots: 'noindex,follow',

@@ -407,10 +407,12 @@
     },
     "welcome_back_title": "Welcome! New here or coming back?",
     "idp": {
-      "google": "Sign in with Google",
-      "facebook": "Sign in with Facebook",
-      "apple": "Sign in with Apple",
-      "okta": "Sign in with Okta"
+      "login": {
+        "google": "Log in with Google"
+      },
+      "register": {
+        "google": "Sign up with Google"
+      }
     },
     "or": "Or"
   },

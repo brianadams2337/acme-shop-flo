@@ -1,30 +1,28 @@
 <template>
-  <div class="flex flex-col pt-2" :class="isGuestEnabled ? 'pb-8' : 'pb-2'">
+  <div
+    class="flex flex-col pt-2"
+    :class="isGuestEnabled ? 'pb-[2.325rem]' : 'pb-2'"
+  >
     <SFSwitch
       id="guest-switch"
       v-model="isGuestEnabled"
       :label="$t('sign_in_page.guest_login.label')"
       class="mb-4"
     />
-    <SFFadeInTransition>
-      <div
-        v-if="isGuestEnabled"
-        class="flex items-center justify-between gap-2 rounded-lg bg-gray-100 px-3 py-2.5"
-      >
-        <span class="text-xs font-variable text-gray-600">
-          {{ $t('sign_in_page.guest_login.activation_hint') }}
-        </span>
-        <IconInfoOutlineSquare
-          class="size-4 text-gray-500"
-          aria-hidden="true"
-        />
-      </div>
-    </SFFadeInTransition>
+    <div
+      v-if="isGuestEnabled"
+      class="flex items-center justify-between gap-2 rounded-lg bg-gray-100 px-3 py-2.5"
+    >
+      <span class="text-xs font-variable text-gray-600">
+        {{ $t('sign_in_page.guest_login.activation_hint') }}
+      </span>
+      <IconInfoOutlineSquare class="size-4 text-gray-500" aria-hidden="true" />
+    </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { SFSwitch, SFFadeInTransition } from '#storefront-ui/components'
+import { SFSwitch } from '#storefront-ui/components'
 
 const isGuestEnabled = defineModel<boolean>()
 </script>

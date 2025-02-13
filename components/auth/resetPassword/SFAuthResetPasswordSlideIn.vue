@@ -25,11 +25,12 @@ import SFAuthResetPasswordSlideInBody from './SFAuthResetPasswordSlideInBody.vue
 import { SFSlideIn } from '#storefront-ui/components'
 import { useSlideIn } from '#storefront-ui/composables'
 import { useAuthentication } from '~/composables'
-import { useRoute } from '#app/composables/router'
+import { useRoute, useRouter } from '#app/composables/router'
 
 const SLIDE_IN_KEY = 'ResetPasswordSlideIn'
 
 const route = useRoute()
+const router = useRouter()
 
 const hasToken = computed(() => !!route.query.hash)
 
@@ -38,6 +39,7 @@ const { close, isOpen } = useSlideIn(SLIDE_IN_KEY, hasToken.value)
 const { clearErrorMessage } = useAuthentication('reset_password')
 
 const closeAndClear = () => {
+  router.replace({ query: {} })
   clearErrorMessage()
   close()
 }

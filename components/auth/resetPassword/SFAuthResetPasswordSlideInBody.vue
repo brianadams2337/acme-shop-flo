@@ -50,7 +50,7 @@ import { PASSWORD_MIN_LENGTH } from '~/constants/password'
 import { useRoute } from '#app/composables/router'
 import { useI18n } from '#i18n'
 
-defineEmits<{ close: [] }>()
+const emit = defineEmits<{ close: [] }>()
 
 const { t } = useI18n()
 
@@ -98,5 +98,6 @@ const onSubmit = async () => {
     password: payload.value.newPassword,
     hash: token.value,
   })
+  emit('close')
 }
 </script>

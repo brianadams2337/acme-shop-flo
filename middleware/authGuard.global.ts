@@ -4,7 +4,7 @@ import { useLocalePath } from '#i18n'
 import { useCurrentShop, useUser } from '#storefront/composables'
 import { getProtectedRouteList, routeList, type LinkList } from '~/utils/route'
 
-export default defineNuxtRouteMiddleware(async (to) => {
+export default defineNuxtRouteMiddleware(async (to, from) => {
   const currentShop = useCurrentShop()
 
   if (to.path.includes('/api') || !currentShop.value) {
@@ -46,6 +46,23 @@ export default defineNuxtRouteMiddleware(async (to) => {
   }
 
   const localizedSignInPath = localePath(routeList.signin.path)
+
+  // If the user is not logged in and attempts to access the signin page from any
+  // other page except signin page itself, attach previous route redirect URL
+  if (
+    !user &&
+    to.path === localizedSignInPath &&
+    to.fullPath !== from.fullPath &&
+    !to.query.redirectUrl
+  ) {
+    return navigateTo({
+      path: to.fullPath,
+      query: {
+        ...to.query,
+        redirectUrl: from.fullPath,
+      },
+    })
+  }
 
   // If the user is already logged in and tries to access the signin page, redirect them to the home page.
   // "to.path" is used to cover all signin path variants (e.g ignoring "register" query param)

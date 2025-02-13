@@ -237,8 +237,6 @@ export function useAuthentication(
 
     if (route.query.redirectUrl) {
       await redirectUser(route.query.redirectUrl as string)
-    } else {
-      router.back()
     }
 
     toast.show(successMessage.value, { action: 'CONFIRM', type: 'SUCCESS' })

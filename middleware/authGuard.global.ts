@@ -4,12 +4,7 @@ import { useLocalePath } from '#i18n'
 import { useCurrentShop, useUser } from '#storefront/composables'
 import { getProtectedRouteList, routeList, type LinkList } from '~/utils/route'
 
-export default defineNuxtRouteMiddleware(async (to, from) => {
-  // Skip auth guard if the routing is just a parameter change
-  if (to.name === from.name) {
-    return
-  }
-
+export default defineNuxtRouteMiddleware(async (to) => {
   const currentShop = useCurrentShop()
 
   if (to.path.includes('/api') || !currentShop.value) {

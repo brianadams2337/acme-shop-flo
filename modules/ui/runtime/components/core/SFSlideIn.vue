@@ -134,6 +134,7 @@ const { activate: activateSlideInTrap, deactivate: deactivateSlideInTrap } =
       code === 'ArrowRight' ||
       code === 'ArrowDown' ||
       (key === 'Tab' && !shiftKey),
+    immediate: isOpen.value,
   })
 
 watch(isOpen, async (value) => {

@@ -8,7 +8,6 @@
     <template #terms>
       <SFLocalizedLink
         :to="PRIVACY_POLICY_LINK"
-        target="_blank"
         raw
         class="rounded-base font-semibold hover:bg-gray-100 hover:outline hover:outline-2 hover:outline-gray-100"
       >
@@ -18,7 +17,6 @@
     <template #policy>
       <SFLocalizedLink
         :to="PRIVACY_POLICY_LINK"
-        target="_blank"
         raw
         class="mr-0.5 rounded-base font-semibold hover:bg-gray-100 hover:outline hover:outline-2 hover:outline-gray-100"
       >

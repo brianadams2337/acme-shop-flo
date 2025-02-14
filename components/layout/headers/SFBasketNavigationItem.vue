@@ -28,7 +28,7 @@
       <SFAsyncDataWrapper :status="status">
         <SFBasketHeadline v-if="count" :count="count" class="px-4 py-2" />
         <SFBasketPopoverItems class="scroll-shadow" />
-        <SFBasketPopoverActions v-if="!isEmpty" />
+        <SFBasketPopoverActions v-if="count" />
       </SFAsyncDataWrapper>
     </template>
   </SFPopover>
@@ -47,7 +47,7 @@ import SFBasketPopoverItems from '~/components/basket/popover/SFBasketPopoverIte
 import SFBasketPopoverActions from '~/components/basket/popover/SFBasketPopoverActions.vue'
 import SFBasketHeadline from '~/components/basket/SFBasketHeadline.vue'
 
-const { count, status, isEmpty } = useBasket()
+const { count, status } = useBasket()
 const mounted = useMounted()
 
 const isOpen = ref(false)

@@ -35,16 +35,26 @@ import { routeList } from '~/utils'
 import SFAsyncDataWrapper from '~/components/SFAsyncDataWrapper.vue'
 import SFUserActions from '~/components/account/popover/SFUserActions.vue'
 import SFLoginActions from '~/components/account/popover/SFLoginActions.vue'
+import { useRoute } from '#app/composables/router'
+import { useRouteHelpers } from '~/composables'
 
 defineProps<{ blockPopup?: boolean }>()
+
+const route = useRoute()
+const { getLocalizedRoute } = useRouteHelpers()
 
 const { user, status } = useUser()
 
 const mounted = useMounted()
 
-const link = computed(() =>
-  user.value && mounted.value ? routeList.account : routeList.signin,
-)
+const link = computed(() => {
+  if (user.value && mounted.value) {
+    return routeList.account
+  }
+  return route.path !== getLocalizedRoute(routeList.signin)
+    ? routeList.signin
+    : route.fullPath
+})
 
 const isOpen = ref(false)
 </script>

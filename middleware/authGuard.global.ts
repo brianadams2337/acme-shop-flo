@@ -56,7 +56,7 @@ export default defineNuxtRouteMiddleware(async (to, from) => {
     !to.query.redirectUrl
   ) {
     if (from.name === to.name) {
-      return navigateTo(from.fullPath)
+      return
     }
 
     return navigateTo({

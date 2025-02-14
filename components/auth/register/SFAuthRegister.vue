@@ -158,9 +158,10 @@ const onEnter = (event: KeyboardEvent) => {
     registerForm?.value?.elements ?? [],
   ) as HTMLElement[]
   const currentIndex = formElements.indexOf(event.target as HTMLElement)
-  const nextElement = formElements[currentIndex + 1]
 
   const currentElement = formElements[currentIndex]
+
+  const nextElement = formElements[currentIndex + 1]
 
   const isCurrentElementButton = currentElement.tagName === 'BUTTON'
 

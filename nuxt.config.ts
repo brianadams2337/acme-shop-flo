@@ -29,12 +29,7 @@ const DEFAULT_APP_KEYS = {
   hashAlgorithm: HashAlgorithm.SHA256, // Override: NUXT_STOREFRONT_SHOPS_{UNIQUE_IDENTIFIER}_APP_KEYS_HASH_ALGORITHM
 }
 
-/** Custom type declaration for local Storefront configuration */
-type RpcMethodsStorefrontType = typeof customRpcMethods
-
 declare module '@scayle/storefront-nuxt' {
-  export interface RpcMethodsStorefront extends RpcMethodsStorefrontType {}
-
   // Extend the shop config
   export interface AdditionalShopConfig {
     paymentProviders: string[]

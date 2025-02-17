@@ -43,7 +43,7 @@ export interface UseAuthenticationReturn {
   isSubmitting: Readonly<Ref<boolean, boolean>>
   /** A readonly reactive string for storing the error message */
   errorMessage: Readonly<Ref<string | null, string | null>>
-  /** An function that cleares the error message */
+  /** A function that cleares the error message */
   clearErrorMessage: () => void
 }
 

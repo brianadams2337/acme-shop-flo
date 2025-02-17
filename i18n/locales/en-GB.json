@@ -370,7 +370,7 @@
         "error": {
           "409_already_exists": "This is a registered account. Please use correct password to login."
         },
-        "success": "Your guest account has been created! You can now proceed with your order."
+        "success": "Your account has been created! You can now proceed with your order."
       },
       "activation_hint": "You won’t create an account. To track your order, use the email address you provide.",
       "label": "Continue as Guest"

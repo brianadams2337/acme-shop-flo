@@ -371,7 +371,7 @@
         "error": {
           "409_already_exists": "Dies ist ein registriertes Konto. Bitte verwende das richtige Passwort, um dich anzumelden."
         },
-        "success": "Dein Gastkonto wurde erstellt! Du kannst jetzt mit deiner Bestellung fortfahren."
+        "success": "Dein Konto wurde erstellt! Du kannst jetzt mit deiner Bestellung fortfahren."
       },
       "submit": "Weiter ohne Vorteile",
       "activation_hint": "Es wird kein Konto erstellt. Um deine Bestellung zu verfolgen, verwende die von dir angegebene E-Mail-Adresse.",

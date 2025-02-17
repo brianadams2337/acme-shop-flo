@@ -1,27 +1,11 @@
 import { toRef, defineComponent } from 'vue'
 import { describe, expect, it, vi } from 'vitest'
 import { mount } from '@vue/test-utils'
-import { Factory } from 'fishery'
-import type { ShopUser, Gender } from '@scayle/storefront-nuxt'
+import type { Gender } from '@scayle/storefront-nuxt'
 import { FetchError } from 'ofetch'
+import { userFactory } from '@scayle/storefront-nuxt/test/factories'
 import { useAuthentication } from './useAuthentication'
 import type { AuthTrackingEvent } from '~/types/tracking'
-
-const userFactory = Factory.define<ShopUser>(() => ({
-  id: 1,
-  app_id: 1,
-  completed_orders: 0,
-  createdAt: '2024-12-12T09:08:06+01:00',
-  updatedAt: '2025-02-14T07:29:05+01:00',
-  email: 'user@example.org',
-  firstName: 'John',
-  gender: 'm',
-  publicKey: 'test-public-key',
-  referenceKey: 'test-ref-key',
-  lastName: 'Neil',
-  isGuest: false,
-  isReturningCustomer: false,
-}))
 
 const {
   useSession,
@@ -300,7 +284,7 @@ describe('useAuthentication', () => {
       )
 
       expect(useToast().show).toBeCalledWith(
-        'Dein Gastkonto wurde erstellt! Du kannst jetzt mit deiner Bestellung fortfahren.',
+        'Dein Konto wurde erstellt! Du kannst jetzt mit deiner Bestellung fortfahren.',
         { action: 'CONFIRM', type: 'SUCCESS' },
       )
     })

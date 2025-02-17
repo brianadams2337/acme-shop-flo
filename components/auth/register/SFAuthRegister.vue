@@ -3,6 +3,7 @@
     v-if="v"
     ref="registerForm"
     class="flex flex-col"
+    data-testid="register-form"
     @submit.prevent="onSubmit"
     @keydown.enter.prevent="onEnter"
   >
@@ -26,6 +27,7 @@
         :has-errors="!isValid"
         required
         :readonly="isSubmitting"
+        data-testid="reg-input-first-name"
         @change="v.first_name.$touch()"
       />
     </SFValidatedInputGroup>
@@ -37,6 +39,7 @@
         :has-errors="!isValid"
         required
         :readonly="isSubmitting"
+        data-testid="reg-input-last-name"
         @change="v.last_name.$touch()"
       />
     </SFValidatedInputGroup>
@@ -49,6 +52,7 @@
         :has-errors="!isValid"
         required
         :readonly="isSubmitting"
+        data-testid="reg-input-email-address"
         @change="v.email.$touch()"
       />
     </SFValidatedInputGroup>
@@ -64,7 +68,7 @@
         :name="PASSWORD_FIELD_NAME"
         :placeholder="$t('form_fields.password')"
         autocomplete="new-password"
-        data-testid="new-password"
+        data-testid="reg-input-password"
         @change="v.password.$touch()"
       />
     </SFValidatedInputGroup>

@@ -192,3 +192,10 @@ export const HYDRATION_TEST_USER = {
   userEmail: process.env.TEST_USER_EMAIL6 as string,
   password: process.env.TEST_USER_PASSWORD as string,
 }
+
+export const REGISTERED_TEST_USER = {
+  firstName: 'Registered',
+  lastName: 'User',
+  emailAddress: process.env.TEST_USER_EMAIL as string,
+  password: process.env.TEST_USER_PASSWORD as string,
+}

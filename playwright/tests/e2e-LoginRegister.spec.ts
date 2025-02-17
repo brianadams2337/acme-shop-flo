@@ -3,6 +3,7 @@ import {
   HOMEPAGE_PATH_DE,
   LOGGED_IN_USER_DATA,
   LOGIN_WRONG_CREDENTIALS,
+  REGISTERED_TEST_USER,
 } from '../support/constants'
 
 test.beforeEach(async ({ homePage, page, countryDetector }) => {
@@ -11,7 +12,7 @@ test.beforeEach(async ({ homePage, page, countryDetector }) => {
   await countryDetector.closeModal()
 })
 
-test('C2130648: Verify User login and log out', async ({
+test('C2130648 Verify User login and log out', async ({
   signinPage,
   header,
   accountPage,
@@ -39,7 +40,7 @@ test('C2130648: Verify User login and log out', async ({
   }).toPass()
 })
 
-test('C2130649: Verify User login with wrong credentials', async ({
+test('C2130649 Verify User login with wrong credentials', async ({
   signinPage,
   header,
 }) => {
@@ -54,4 +55,33 @@ test('C2130649: Verify User login with wrong credentials', async ({
     await signinPage.loginErrorMessageContainer.waitFor()
     await expect(signinPage.loginErrorMessageContainer).toBeVisible()
   }).toPass()
+})
+
+test('C2171373 Verify User registration with already registered user account', async ({
+  signinPage,
+  header,
+}) => {
+  await test.step('Open Signin page and switch to Register tab', async () => {
+    await header.headerLoginButton.waitFor()
+    await header.headerLoginButton.click()
+    await signinPage.registerTab.waitFor()
+    await signinPage.registerTab.click()
+    await signinPage.registerForm.waitFor()
+  })
+  await test.step('Fill and sumbit register form', async () => {
+    await signinPage.selectGender('f')
+    await signinPage.fillRegistrationData(
+      REGISTERED_TEST_USER.firstName,
+      REGISTERED_TEST_USER.lastName,
+      REGISTERED_TEST_USER.emailAddress,
+      REGISTERED_TEST_USER.password,
+    )
+    await signinPage.registerButton.click()
+  })
+  await test.step('Assert error banner is visible and user is not logged in', async () => {
+    await signinPage.registerErrorMessageContainer.waitFor()
+    await expect(signinPage.registerErrorMessageContainer).toBeVisible()
+    await header.headerLoginButton.click()
+    await signinPage.assertLoginButtonIsVisible()
+  })
 })

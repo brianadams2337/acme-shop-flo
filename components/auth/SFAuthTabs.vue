@@ -4,6 +4,7 @@
       v-for="({ to, title }, index) in tabs"
       :key="`${title}-${index}`"
       class="inline-block w-fit rounded-md px-2 py-1.5 text-lg font-semi-bold-variable tracking-tighter text-gray-500 duration-300 ease-out hover:bg-gray-100 focus-visible:transition-none"
+      :data-testid="`login-form-tab-${index}`"
       :class="{ 'bg-gray-100 text-gray-900': isActive(to) }"
       raw
       :to="to"

@@ -11,8 +11,8 @@ import type { Ref } from 'vue'
 import { clearNuxtData } from '#app/composables/asyncData'
 import { useRouteHelpers, useToast, useTrackingEvents } from '~/composables'
 import type { AuthTrackingEvent, AuthenticationType } from '~/types/tracking'
-import { useNuxtApp } from '#app'
-import { useRoute, useRouter } from '#app/composables/router'
+import { useI18n } from '#i18n'
+import { useRoute } from '#app/composables/router'
 import {
   useBasket,
   useLog,
@@ -47,7 +47,7 @@ export interface UseAuthenticationReturn {
   clearErrorMessage: () => void
 }
 
-const httpErrorMessages: Record<number, string> = {
+const HttpErrorMessages: Record<number, string> = {
   400: '400_bad_request',
   401: '401_unauthorized',
   403: '403_user_deactivated',
@@ -71,9 +71,8 @@ export function useAuthentication(
   event: AuthTrackingEvent,
   method: AuthenticationType = 'email',
 ): UseAuthenticationReturn {
-  const { $i18n } = useNuxtApp()
+  const $i18n = useI18n()
   const route = useRoute()
-  const router = useRouter()
 
   const errorMessage = useState<string | null>(event, () => null)
 
@@ -213,6 +212,10 @@ export function useAuthentication(
     redirectUser(routeList.home.path)
   }
 
+  const clearErrorMessage = (): void => {
+    errorMessage.value = null
+  }
+
   /**
    * After a user was authenticated by login in, or registering.
    * Refresh user data, basket & wishlist.
@@ -235,9 +238,9 @@ export function useAuthentication(
       user.value.email,
     )
 
-    if (route.query.redirectUrl) {
-      await redirectUser(route.query.redirectUrl as string)
-    }
+    await redirectUser(
+      (route.query.redirectUrl as string) ?? routeList.home.path,
+    )
 
     toast.show(successMessage.value, { action: 'CONFIRM', type: 'SUCCESS' })
   }
@@ -256,12 +259,13 @@ export function useAuthentication(
   const handleError = (error: unknown): void => {
     if (error instanceof FetchError) {
       const status = error.response?.status
-      if (status && Object.hasOwn(httpErrorMessages, status)) {
-        errorMessage.value = $i18n.te(`sign_in_page.${event}.status.error`)
-          ? $i18n.t(
-              `sign_in_page.${event}.status.error.${httpErrorMessages[status]}`,
-            )
-          : $i18n.t(`sign_in_page.status.error.${httpErrorMessages[status]}`)
+      if (status && Object.hasOwn(HttpErrorMessages, status)) {
+        const authFlowSpecificPath = `sign_in_page.${event}.status.error.${HttpErrorMessages[status]}`
+        // Prioritize specific translations for certain flows (e.g., guest login error 409).
+        // If a specific translation is not available, fall back to the general sign-in error message translations.
+        errorMessage.value = $i18n.te(authFlowSpecificPath)
+          ? $i18n.t(authFlowSpecificPath)
+          : $i18n.t(`sign_in_page.status.error.${HttpErrorMessages[status]}`)
       }
     }
     // remove user data (email, password) from the error object, before logging it
@@ -275,13 +279,9 @@ export function useAuthentication(
   }
 
   const redirectUser = async (redirectTo: string) => {
-    return router.currentRoute.value.fullPath === redirectTo
+    return route.fullPath === redirectTo
       ? window.location.reload()
       : await localizedNavigateTo(redirectTo)
-  }
-
-  const clearErrorMessage = (): void => {
-    errorMessage.value = null
   }
 
   onUnmounted(() => clearErrorMessage())

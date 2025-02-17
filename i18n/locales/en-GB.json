@@ -362,7 +362,7 @@
       },
       "submit": "Get reset link",
       "back_to_login": "Back to Login",
-      "title": " Reset your password",
+      "title": "Reset your password",
       "description": "Enter the email address linked to your account, and we’ll send you a reset link."
     },
     "guest_login": {

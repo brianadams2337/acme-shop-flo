@@ -109,7 +109,7 @@ export class BasketPage {
   async assertContinueButton() {
     await expect(this.continueButton).toBeVisible()
     await this.continueButton.click()
-
+    await this.page.waitForTimeout(500)
     await this.page.waitForURL(HOMEPAGE_PATH_DE)
     const pageUrl = this.page.url()
     expect(pageUrl).toContain(HOMEPAGE_PATH_DE)

@@ -10,7 +10,7 @@ import {
 test.beforeEach(
   async ({ signinPage, page, baseURL, countryDetector, header }, testInfo) => {
     await expect(async () => {
-      const url = baseURL + SIGNIN_URL
+      const url = `${baseURL + SIGNIN_URL}?redirectUrl=${HOMEPAGE_PATH_DE}`
       const projectName = testInfo.project.name
       const { email, password } = getUserForBrowser(projectName)
 

@@ -48,6 +48,8 @@ export class SignInPage {
 
   async clickLoginButton() {
     await this.loginButton.click()
+    await this.page.waitForTimeout(500)
+    await this.page.waitForLoadState('domcontentloaded')
   }
 
   async assertLoginButtonIsVisible() {

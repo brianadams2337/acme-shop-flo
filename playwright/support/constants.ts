@@ -199,3 +199,8 @@ export const REGISTERED_TEST_USER = {
   emailAddress: process.env.TEST_USER_EMAIL as string,
   password: process.env.TEST_USER_PASSWORD as string,
 }
+
+export const ROUTES = {
+  wishlist: '/wishlist',
+  basket: '/basket',
+}

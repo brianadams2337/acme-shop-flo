@@ -4,6 +4,7 @@ import {
   BASKET_TEST_DATA,
   E2E_BASKET_URL,
   HOMEPAGE_PATH_DE,
+  ROUTES,
 } from '../support/constants'
 
 test('C2132186 C2132187 Verify Basket empty state as a guest and logged in user', async ({
@@ -34,23 +35,21 @@ test('C2132186 C2132187 Verify Basket empty state as a guest and logged in user'
   })
 
   await test.step('Verify logged-in user', async () => {
-    await expect(async () => {
-      await basketPage.assertContinueButton()
-      await header.headerBasketButton.waitFor()
-      await header.headerBasketButton.click()
-      await basketPage.assertLoginButton()
-    }).toPass()
+    await basketPage.assertContinueButton()
+    await header.headerBasketButton.waitFor()
+    await header.headerBasketButton.click()
+    await page.waitForTimeout(1000)
+    await basketPage.assertLoginButton()
 
-    await expect(async () => {
-      const projectName = testInfo.project.name
-      const { email, password } = getUserForBrowser(projectName)
-      await signinPage.fillLoginData(email, password)
-      await signinPage.clickLoginButton()
-      await page.waitForURL(HOMEPAGE_PATH_DE)
-      await header.headerBasketButton.click()
-      await basketPage.assertContinueButton()
-      await expect(basketPage.loginButton).not.toBeVisible()
-    }).toPass()
+    const projectName = testInfo.project.name
+    const { email, password } = getUserForBrowser(projectName)
+    await signinPage.fillLoginData(email, password)
+    await signinPage.clickLoginButton()
+    await page.waitForURL(HOMEPAGE_PATH_DE + ROUTES.basket)
+    await expect(basketPage.loginButton).not.toBeVisible()
+    await expect(basketPage.continueButton).toBeVisible()
+    await header.headerBasketButton.click()
+    await basketPage.assertContinueButton()
   })
 })
 

@@ -4,6 +4,7 @@ import {
   LOGGED_IN_USER_DATA,
   WISHLIST_PRODUCT_ID,
   WISHLIST_PRODUCT_ID_ONESIZE,
+  ROUTES,
 } from '../support/constants'
 import { isMobile } from '../support/utils'
 
@@ -36,8 +37,7 @@ test('C2132174 C2132177 Verify Wishlist empty state', async ({
         LOGGED_IN_USER_DATA.password,
       )
       await signinPage.clickLoginButton()
-      await page.waitForURL(HOMEPAGE_PATH_DE)
-      await header.wishlistLink.click()
+      await page.waitForURL(HOMEPAGE_PATH_DE + ROUTES.wishlist)
       await wishlistPage.emptyState.waitFor()
       await expect(wishlistPage.buttonContinueShopping).toBeVisible()
       await expect(wishlistPage.emptyStateIcon).toBeVisible()

@@ -97,19 +97,19 @@ test('C2171375 Verify User registration password toggle button', async ({
   await signinPage.registerTab.click()
   await signinPage.registerForm.waitFor()
 
-  await signinPage.passwordInput.focus()
-  await signinPage.passwordInput.fill(REGISTERED_TEST_USER.password)
+  await signinPage.regInputPassword.focus()
+  await signinPage.regInputPassword.fill(REGISTERED_TEST_USER.password)
   await expect(signinPage.passwordToggleShow).toBeVisible()
   await expect(signinPage.passwordToggleHide).not.toBeVisible()
-  await expect(signinPage.passwordInput).toHaveAttribute('type', 'password')
+  await expect(signinPage.regInputPassword).toHaveAttribute('type', 'password')
 
   await signinPage.passwordToggleShow.click()
   await expect(signinPage.passwordToggleShow).not.toBeVisible()
   await expect(signinPage.passwordToggleHide).toBeVisible()
-  await expect(signinPage.passwordInput).toHaveValue(
+  await expect(signinPage.regInputPassword).toHaveValue(
     REGISTERED_TEST_USER.password,
   )
-  await expect(signinPage.passwordInput).toHaveAttribute('type', 'text')
+  await expect(signinPage.regInputPassword).toHaveAttribute('type', 'text')
 })
 
 test('C2171379 Verify User login reset password flow', async ({

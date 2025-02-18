@@ -12,7 +12,7 @@
         :aria-controls="id"
         aria-haspopup="true"
         :class="[
-          buttonClass,
+          ...buttonClasses,
           {
             'py-3.5': isLarge,
             'rounded-md': radius == 'md',
@@ -90,7 +90,7 @@
 </template>
 
 <script setup lang="ts" generic="T">
-import { ref, useTemplateRef, watch } from 'vue'
+import { computed, ref, useTemplateRef, watch } from 'vue'
 import { useEventListener } from '@vueuse/core'
 import { vPopover } from '../../directives/popover'
 import { useDefaultBreakpoints } from '#storefront-ui/composables'
@@ -102,10 +102,10 @@ const {
   disabled = false,
   hasErrors = false,
   radius = 'md',
-  buttonClass = '',
+  buttonClass,
 } = defineProps<{
   items: NonNullable<T>[]
-  buttonClass?: string | Record<string, boolean>
+  buttonClass?: string[] | string
   id: string
   hasErrors?: boolean
   isLarge?: boolean
@@ -119,6 +119,10 @@ const isDropdownListVisible = defineModel<boolean>('visible', {
 })
 
 const modelValue = defineModel<T>('modelValue')
+
+const buttonClasses = computed(() => {
+  return Array.isArray(buttonClass) ? buttonClass : [buttonClass]
+})
 
 const selectItem = (item: T) => {
   modelValue.value = item

@@ -7,9 +7,10 @@
     :disabled="disabled"
     :has-errors="!isValid"
     :aria-label="$t('form_fields.gender')"
-    :button-class="
-      activeGenderValue ? 'bg-white' : '!bg-gray-100 !border-gray-100'
-    "
+    :button-class="[
+      'group transition duration-100 hover:bg-white focus:border-accent focus:!bg-white focus:shadow-none focus:!outline focus:outline-3 focus:outline-offset-0 focus:!border-accent focus:border focus:outline-indigo-200/50 focus:!text-accent',
+      activeGenderValue ? 'bg-white' : '!bg-gray-100 !border-gray-100',
+    ]"
     class="h-12 w-full bg-white"
     radius="xl"
     data-testid="gender-selection"
@@ -18,7 +19,7 @@
       {{ activeGenderLabel }}
     </span>
     <label
-      class="absolute left-2 top-4 px-2.5 text-sm font-variable text-gray-600 duration-100 ease-linear placeholder-shown:bg-gray-100 peer-placeholder-shown:translate-y-0 peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-600 peer-focus:ml-1 peer-focus:-translate-y-6 peer-focus:bg-white peer-focus:px-1.5 peer-focus:text-xs peer-focus:text-accent peer-focus:shadow-input-label after:peer-focus:text-accent"
+      class="absolute left-2 top-4 px-2.5 text-sm font-variable text-gray-600 duration-100 ease-linear placeholder-shown:bg-gray-100 group-focus:bg-white group-focus:!text-accent group-focus:shadow-input-label after:group-focus:!text-accent peer-placeholder-shown:translate-y-0 peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-600"
       :class="[
         `after:ml-0.5 after:text-gray-600 after:content-['*']`,
         {

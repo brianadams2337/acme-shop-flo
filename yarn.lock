@@ -4153,10 +4153,10 @@
   dependencies:
     utility-types "3.11.0"
 
-"@scayle/storefront-core@8.7.0":
-  version "8.7.0"
-  resolved "https://registry.yarnpkg.com/@scayle/storefront-core/-/storefront-core-8.7.0.tgz#a51f655f228ee180aa2eaa350eddbefc736898b0"
-  integrity sha512-8bWKSZTrxgVm8ks7O6rIqDGtooclj5PpGChVfnNo3532m3OLOh+DmFtIRA/IBt0eT1mzB2VPy+Ihdi4oy0a99w==
+"@scayle/storefront-core@8.7.1":
+  version "8.7.1"
+  resolved "https://registry.yarnpkg.com/@scayle/storefront-core/-/storefront-core-8.7.1.tgz#a186f410e7cd9c8343c296d121ff664e6beea238"
+  integrity sha512-iZGrLSv8kuBfYfKSW3Ns9lvEhnD8aQ8elUMl8lJps4z7DaeBfuEeDdgT0xP3XRAhRe1k8nEKlnv7uaXh7jFAbQ==
   dependencies:
     "@scayle/storefront-api" "18.0.0"
     crypto-js "^4.2.0"
@@ -4177,14 +4177,14 @@
   resolved "https://registry.yarnpkg.com/@scayle/storefront-navigation/-/storefront-navigation-0.1.0.tgz#c622f02e05de26fcbd4121356e1ab2ef67066b9c"
   integrity sha512-6XIoK2fgAUFoaqC37zXRuudnK83OeQhT056Ow9OhJIZPj/KGyPQjYfZm0Gxg8JSa6Emct4KvQteROg/FI0yesQ==
 
-"@scayle/storefront-nuxt@8.10.1":
-  version "8.10.1"
-  resolved "https://registry.yarnpkg.com/@scayle/storefront-nuxt/-/storefront-nuxt-8.10.1.tgz#25b37257ada06d64e603aa12e6822bac5dc7b07f"
-  integrity sha512-h5WCD/+KXQqzWBC0JCSjvuzQPyczeqVk4StVTNFobb1iuV14XgIYDyvMnqobsS93pDSdVNAvDjogvk7XJ7TVUA==
+"@scayle/storefront-nuxt@8.10.2":
+  version "8.10.2"
+  resolved "https://registry.yarnpkg.com/@scayle/storefront-nuxt/-/storefront-nuxt-8.10.2.tgz#9c3c7b4eede398b97bcd85f709732ac72730f198"
+  integrity sha512-TJJAgoTHY7oDtRN/tBlXiitD3buwy+ENl5Wjkt+KVqsI7IB6AdRPLQDBb+VK+vn51++4QI5igGPxg0vzvefJfg==
   dependencies:
     "@opentelemetry/api" "^1.9.0"
     "@scayle/h3-session" "0.6.0"
-    "@scayle/storefront-core" "8.7.0"
+    "@scayle/storefront-core" "8.7.1"
     "@scayle/unstorage-compression-driver" "^0.2.3"
     "@vercel/nft" "0.29.1"
     "@vueuse/core" "12.7.0"

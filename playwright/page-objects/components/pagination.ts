@@ -28,27 +28,26 @@ export class Pagination {
   }
 
   async assertNextPageClick(pageNumber: string) {
+    await this.paginationButtonNextPage.waitFor()
     await this.paginationButtonNextPage.click()
-    await this.page.waitForTimeout(500)
-    const pageUrl = this.page.url()
-    expect(pageUrl).toContain(`?page=${pageNumber}`)
+    await this.page.waitForTimeout(1000)
+    expect(this.page.url()).toContain(`?page=${pageNumber}`)
   }
 
   async assertPreviousPageClick(pageNumber: string, firstPage: boolean) {
+    await this.paginationButtonPrevPage.waitFor()
     await this.paginationButtonPrevPage.click()
-    await this.page.waitForTimeout(500)
-    const pageUrl = this.page.url()
+    await this.page.waitForTimeout(1000)
     if (firstPage) {
-      expect(pageUrl).not.toContain(`?page=${pageNumber}`)
+      expect(this.page.url()).not.toContain(`?page=${pageNumber}`)
     } else {
-      expect(pageUrl).toContain(`?page=${pageNumber}`)
+      expect(this.page.url()).toContain(`?page=${pageNumber}`)
     }
   }
 
   async assertExactPageClick(pageNumber: string) {
     await this.paginationPageNumber(pageNumber).click()
-    await this.page.waitForTimeout(500)
-    const pageUrl = this.page.url()
-    expect(pageUrl).toContain(`?page=${pageNumber}`)
+    await this.page.waitForTimeout(1000)
+    expect(this.page.url()).toContain(`?page=${pageNumber}`)
   }
 }

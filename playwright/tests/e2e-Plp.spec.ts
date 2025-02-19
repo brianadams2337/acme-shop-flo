@@ -102,49 +102,53 @@ test('C2130727: Verify PLP Filters and Product Count', async ({
   }
 
   await test.step('Verify initial state', async () => {
-    await expect(async () => {
-      await expect(breadcrumb.productCounter).toBeVisible()
-      await filters.openFilters()
-      await expect(filters.filterSectionHeadline.first()).toBeVisible()
-      await expect(filters.closeFiltersButton).toBeVisible()
-    }).toPass()
+    await expect(breadcrumb.productCounter).toBeVisible()
+    await filters.openFilters()
+    await expect(filters.filterSectionHeadline.first()).toBeVisible()
+    await expect(filters.closeFiltersButton).toBeVisible()
   })
 
   await test.step('Apply price filters', async () => {
-    await expect(async () => {
-      await filters.filterPriceInput.first().clear()
-      await filters.filterPriceInput.first().fill('80')
-      await filters.filterPriceInput.first().press('Enter')
-      await filters.filterPriceInput.nth(1).clear()
-      await filters.filterPriceInput.nth(1).fill('100')
-      await filters.filterPriceInput.nth(1).press('Enter')
-    }).toPass()
+    await filters.filterPriceInput.first().clear()
+    await filters.filterPriceInput.first().focus()
+    await filters.filterPriceInput.first().fill('80')
+    await filters.filterPriceInput.first().press('Enter')
+    await page.waitForTimeout(500)
+    await filters.filterPriceInput.nth(1).clear()
+    await filters.filterPriceInput.nth(1).focus()
+    await filters.filterPriceInput.nth(1).fill('100')
+    await filters.filterPriceInput.nth(1).press('Enter')
     await page.waitForTimeout(500)
     const currentProductCount = await breadcrumb.productCounter.textContent()
     expect(currentProductCount).not.toEqual(initialProductCount)
+    expect(page.url()).toContain(
+      'filters[minPrice]=8000&filters[maxPrice]=10000',
+    )
   })
 
-  await test.step('Apply color and size filters', async () => {
-    await expect(async () => {
-      await filters.filterColorChip.first().scrollIntoViewIfNeeded()
-      await page.waitForLoadState('domcontentloaded')
-      await filters.filterColorChip.first().setChecked(true)
-    }).toPass()
-
-    await expect(async () => {
-      await filters.filterSizeCheckbox.first().scrollIntoViewIfNeeded()
-      await page.waitForLoadState('domcontentloaded')
-      await filters.filterSizeCheckbox.first().setChecked(true)
-      await expect(filters.filterGroupCounter.nth(2)).toBeVisible()
-    }).toPass()
-
-    const sizeFilterValue = await filters.filterSizeCheckbox
-      .first()
-      .getAttribute('value')
+  await test.step('Apply color filter', async () => {
     const colorFilterValue = await filters.filterColorChip
       .first()
       .getAttribute('data-color-id')
+    await filters.filterColorChip.first().scrollIntoViewIfNeeded()
+    await page.waitForLoadState('domcontentloaded')
+    await filters.filterColorChip.first().setChecked(true)
+    await page.waitForTimeout(500)
+    expect(page.url()).toContain(`filters[color]=${colorFilterValue}`)
+  })
 
+  await test.step('Apply size filter', async () => {
+    const sizeFilterValue = await filters.filterSizeCheckbox
+      .first()
+      .getAttribute('value')
+    await filters.filterSizeCheckbox.first().scrollIntoViewIfNeeded()
+    await page.waitForLoadState('domcontentloaded')
+    await filters.filterSizeCheckbox.first().setChecked(true)
+    await page.waitForTimeout(500)
+    expect(page.url()).toContain(`filters[size]=${sizeFilterValue}`)
+  })
+
+  await test.step('Check product counter', async () => {
     let currentProductCount: number | null = null
     const currentProductCountText =
       await breadcrumb.productCounter.textContent()
@@ -161,28 +165,32 @@ test('C2130727: Verify PLP Filters and Product Count', async ({
       expect(currentProductCount).toEqual(counterFilterButton)
     }
     expect(currentProductCount).not.toEqual(initialProductCount)
+  })
 
-    await expect(async () => {
-      await filters.filterApplyButton.click()
-      await toastMessage.assertToastInfoIsVisible()
-      await expect(filters.closeFiltersButton).not.toBeVisible()
-      await expect(filters.filterButton.first()).toContainText('3')
-    }).toPass()
-
-    await page.waitForLoadState('domcontentloaded')
-    const pageUrl = page.url()
-
-    expect(pageUrl).toContain('filters[minPrice]=8000&filters[maxPrice]=10000')
-    expect(pageUrl).toContain(`filters[color]=${colorFilterValue}`)
-    expect(pageUrl).toContain(`filters[size]=${sizeFilterValue}`)
+  await test.step('Apply filters and close the flyout', async () => {
+    await filters.filterApplyButton.click()
+    await page.waitForTimeout(500)
+    await toastMessage.assertToastInfoIsVisible()
+    await expect(filters.closeFiltersButton).not.toBeVisible()
+    if (isMobile(page)) {
+      await expect(filters.filterToggleCounter.nth(1)).toBeVisible()
+    } else {
+      await expect(filters.filterToggleCounter.nth(0)).toBeVisible()
+    }
+    await expect(filters.filterButton.first()).toContainText('3')
   })
 
   await test.step('Reset filters', async () => {
     await filters.openFilters()
-
     await filters.filterResetButton.click()
     await filters.closeFiltersButton.click()
+    await page.waitForTimeout(500)
     await expect(filters.filterButton.first()).not.toContainText('3')
+    if (isMobile(page)) {
+      await expect(filters.filterToggleCounter.nth(1)).not.toBeVisible()
+    } else {
+      await expect(filters.filterToggleCounter.nth(0)).not.toBeVisible()
+    }
   })
 })
 
@@ -325,15 +333,16 @@ test('C2162468: Verify PLP Pagination setting filters', async ({
     await page.waitForTimeout(300)
 
     await filters.filterPriceInput.nth(1).clear()
+    await filters.filterPriceInput.nth(1).focus()
     await filters.filterPriceInput.nth(1).fill('100')
     await filters.filterPriceInput.nth(1).press('Enter')
     await page.waitForLoadState('domcontentloaded')
 
     await filters.filterApplyButton.click()
     await page.waitForLoadState('domcontentloaded')
+    await page.waitForTimeout(500)
 
-    const pageUrl = page.url()
-    expect(pageUrl).not.toContain('?page=')
+    expect(page.url()).not.toContain('?page=')
   })
 })
 
@@ -358,7 +367,7 @@ test('C2162411: Verify PLP Sorting', async ({
   } else {
     await sorting.applySorting(SORTING.priceAsc, 0)
   }
-  await page.waitForTimeout(500)
+  await page.waitForTimeout(1000)
   const pageUrlPriceAsc = page.url()
   expect(pageUrlPriceAsc).toContain(SORTING.priceAsc)
   const productIdPriceAsc = await productListingPage.productCard
@@ -372,7 +381,7 @@ test('C2162411: Verify PLP Sorting', async ({
   } else {
     await sorting.applySorting(SORTING.priceDesc, 0)
   }
-  await page.waitForTimeout(500)
+  await page.waitForTimeout(1000)
   const pageUrl = page.url()
   expect(pageUrl).toContain(SORTING.priceDesc)
   const productIdPriceDesc = await productListingPage.productCard

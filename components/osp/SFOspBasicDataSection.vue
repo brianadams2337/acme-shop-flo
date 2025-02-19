@@ -3,17 +3,8 @@
     <SFHeadline class="mt-4" size="xl" tag="h1">
       {{ $t('osp.title') }}
     </SFHeadline>
-    <div class="mt-16 space-y-2">
-      <SFHeadline size="lg" is-uppercase class="flex items-center">
-        <IconCheckmark class="relative top-[-2px] mr-2 size-5" />
-        {{ $t('osp.intro') }}
-        {{ orderData.customer?.firstName }}
-      </SFHeadline>
-    </div>
+    <SFOspGreetingBox :order-data="orderData" class="mt-4" />
     <div class="max-w-xl text-sm sm:grid">
-      <div class="text-sm">
-        {{ $t('osp.email_send') }}
-      </div>
       <div class="mt-10 grid w-full grid-cols-2 gap-y-8 lg:grid-cols-3">
         <SFOspBasicOrderData v-bind="orderData" />
         <SFOspAddressInformation
@@ -56,6 +47,7 @@ import { useRouteHelpers } from '~/composables/useRouteHelpers'
 import { routeList } from '~/utils/route'
 import { SFHeadline, SFButton } from '#storefront-ui/components'
 import SFPaymentIcon from '~/components/order/SFPaymentIcon.vue'
+import SFOspGreetingBox from '~/components/osp/SFOspGreetingBox.vue'
 import type { Order, DeliveryDate } from '~/types/order'
 
 defineProps<{

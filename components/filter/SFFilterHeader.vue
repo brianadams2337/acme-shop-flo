@@ -4,7 +4,7 @@
       {{ $t('filter.title') }}
     </SFHeadline>
     <SFButton
-      class="my-3 -mr-2 bg-gray-100 md:bg-transparent"
+      class="group my-3 -mr-2 bg-gray-100 md:bg-transparent hover:md:bg-gray-100"
       fab
       variant="raw"
       data-testid="close-filters"
@@ -14,7 +14,7 @@
       <template #icon>
         <IconClose
           aria-hidden="true"
-          class="size-5 md:size-4 md:text-gray-400"
+          class="size-5 md:size-4 md:text-gray-400 group-hover:md:text-gray-900"
         />
       </template>
     </SFButton>

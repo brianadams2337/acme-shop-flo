@@ -17,7 +17,7 @@
     >
       <template #icon>
         <IconClose
-          class="size-3 text-gray-400 group-hover:text-gray-900"
+          class="size-4 text-gray-400 group-hover:text-gray-900"
           aria-hidden="true"
         />
       </template>

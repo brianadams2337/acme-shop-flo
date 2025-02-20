@@ -7,19 +7,17 @@
         {{ $t('osp.title') }}
       </SFHeadline>
       <SFOspGreetingBox :order-data="orderData" class="mt-4" />
-      <div class="max-w-xl text-sm sm:grid">
-        <div class="mt-10 grid w-full grid-cols-2 gap-y-8 lg:grid-cols-3">
-          <SFOspBasicOrderData v-bind="orderData" />
+      <div class="text-sm sm:grid">
+        <div class="mt-4 grid w-full grid-cols-1 gap-4 md:grid-cols-2">
+          <SFOspBasicOrderData :order-data="orderData" />
+          <SFOspPaymentData
+            v-if="orderData.payment"
+            :payment-data="orderData.payment"
+          />
           <SFOspAddressInformation
             v-if="orderData.address"
-            :address="orderData.address.shipping"
+            :address="orderData.address"
           />
-          <div v-if="orderData.payment?.[0].key">
-            <SFHeadline size="sm" tag="h2" is-uppercase class="mb-3">
-              {{ $t('osp.payment') }}
-            </SFHeadline>
-            <SFPaymentIcon :paid-with="orderData.payment[0].key" />
-          </div>
         </div>
         <SFOspDeliveryDate
           v-if="deliveryDate"
@@ -40,8 +38,8 @@ import SFOspBasicOrderData from './SFOspBasicOrderData.vue'
 import SFOspAddressInformation from './SFOspAddressInformation.vue'
 import SFOspDeliveryDate from './SFOspDeliveryDate.vue'
 import SFOspCtaButtons from './SFOspCtaButtons.vue'
+import SFOspPaymentData from './SFOspPaymentData.vue'
 import { SFHeadline } from '#storefront-ui/components'
-import SFPaymentIcon from '~/components/order/SFPaymentIcon.vue'
 import SFOspGreetingBox from '~/components/osp/SFOspGreetingBox.vue'
 import type { Order, DeliveryDate } from '~/types/order'
 

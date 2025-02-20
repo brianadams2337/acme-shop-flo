@@ -322,25 +322,31 @@
   },
   "osp": {
     "order_details": "Bestelldetails",
-    "customer_id": "Kunden-Nr.",
+    "customer_id": "Kundennummer",
     "shipping_costs": "Versandkosten",
-    "deliver_address": "Lieferadresse",
+    "delivery_address": "Lieferadresse",
+    "billing_address": "Rechnungsadresse",
+    "delivery_and_billing_address": "Liefer- & Rechnungsadresse",
     "email_send": "Die Bestellbestätigung wurde an die von dir angegebene E-Mail-Adresse gesendet.",
     "estimated_deliver_date": "Voraussichtliche Lieferung",
     "intro": "Vielen Dank für deine Bestellung!",
     "subtotal": "Zwischensumme",
-    "order_data": "Bestelldaten",
-    "order_date": "Datum",
-    "order_nr": "Order-Nr.",
+    "order_date": "Bestelldatum",
+    "order_nr": "Bestellnummer",
     "order_overview": "Bestellübersicht",
     "order_number": "Bestellung Nr. {orderNumber}",
-    "payment": "Zahlungsmethode",
+    "payment_details": "Zahlungsdaten",
+    "payment_method": "Zahlungsart",
     "size": "Größe",
     "tax": "19% MwSt.",
     "total": "Gesamt",
     "quantity_label": "Anzahl",
     "no_order_found": "Die Bestelldaten wurden nicht gefunden.",
-    "title": "Deine Bestellübersicht"
+    "title": "Deine Bestellübersicht",
+    "payment_key": {
+      "default": "Kreditkarte",
+      "accounting": "Buchhaltungszahlung"
+    }
   },
   "sign_in_page": {
     "meta": {

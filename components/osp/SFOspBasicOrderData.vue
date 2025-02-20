@@ -1,41 +1,39 @@
 <template>
-  <div>
-    <SFHeadline size="sm" tag="h2" is-uppercase class="mb-3">
-      {{ $t('osp.order_data') }}
-    </SFHeadline>
-    <p v-if="orderConfirmedAt">
-      <b>{{ $t('osp.order_date') }}:</b>
-      {{ orderConfirmedAt }}
-    </p>
-    <p v-if="id">
-      <b>{{ $t('osp.order_nr') }}:</b> {{ id }}
-    </p>
-    <p v-if="customer">
-      <b>{{ $t('osp.customer_id') }}:</b>
-      {{ customer.id }}
-    </p>
-  </div>
+  <SFOspDetailBox :title="$t('osp.order_details')">
+    <ul class="text-gray-600">
+      <li v-if="orderConfirmedAt">
+        <span class="font-medium">{{ $t('osp.order_date') }}:</span>
+        {{ orderConfirmedAt }}
+      </li>
+      <li v-if="orderData.id">
+        <span class="font-medium">{{ $t('osp.order_nr') }}:</span>
+        {{ orderData.id }}
+      </li>
+      <li v-if="orderData.customer">
+        <span class="font-medium">{{ $t('osp.customer_id') }}:</span>
+        {{ orderData.customer.id }}
+      </li>
+    </ul>
+  </SFOspDetailBox>
 </template>
 
 <script setup lang="ts">
 import { computed } from 'vue'
+import SFOspDetailBox from './SFOspDetailBox.vue'
 import { useCurrentShop } from '#storefront/composables'
-import { SFHeadline } from '#storefront-ui/components'
 import type { Order } from '~/types/order'
 
-const { confirmedAt } = defineProps<{
-  id: Order['id']
-  customer?: Order['customer']
-  confirmedAt?: Order['confirmedAt']
+const { orderData } = defineProps<{
+  orderData: Order
 }>()
 
 const currentShop = useCurrentShop()
 
 const orderConfirmedAt = computed(() => {
-  if (!confirmedAt) {
+  if (!orderData.confirmedAt) {
     return
   }
-  return new Date(confirmedAt).toLocaleDateString(
+  return new Date(orderData.confirmedAt).toLocaleDateString(
     currentShop.value?.locale?.replace('_', '-'),
   )
 })

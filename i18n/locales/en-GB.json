@@ -322,7 +322,7 @@
   "osp": {
     "order_details": "Order details",
     "customer_id": "Customer Number",
-    "shipping_costs": "Shipping costs",
+    "shipping_costs": "Shipping",
     "delivery_address": "Delivery Address",
     "billing_address": "Billing Address",
     "delivery_and_billing_address": "Delivery & Billing Address",

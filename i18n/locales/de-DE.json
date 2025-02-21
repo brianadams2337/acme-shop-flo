@@ -323,7 +323,7 @@
   "osp": {
     "order_details": "Bestelldetails",
     "customer_id": "Kundennummer",
-    "shipping_costs": "Versandkosten",
+    "shipping_costs": "Versand",
     "delivery_address": "Lieferadresse",
     "billing_address": "Rechnungsadresse",
     "delivery_and_billing_address": "Liefer- & Rechnungsadresse",

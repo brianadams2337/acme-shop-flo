@@ -4159,16 +4159,16 @@
   resolved "https://registry.yarnpkg.com/@scayle/storefront-navigation/-/storefront-navigation-0.1.0.tgz#c622f02e05de26fcbd4121356e1ab2ef67066b9c"
   integrity sha512-6XIoK2fgAUFoaqC37zXRuudnK83OeQhT056Ow9OhJIZPj/KGyPQjYfZm0Gxg8JSa6Emct4KvQteROg/FI0yesQ==
 
-"@scayle/storefront-nuxt@8.10.3":
-  version "8.10.3"
-  resolved "https://registry.yarnpkg.com/@scayle/storefront-nuxt/-/storefront-nuxt-8.10.3.tgz#a805052be2b77d15627483f2fa73809a1223eaff"
-  integrity sha512-SSSMAT3OHRwJM+HxOE/60sPv8wk1Yu1N035hBmuGN98EBsjWcF0a2DO+lViPnH2Lsa7VFEjpekHd0VTElFdGRw==
+"@scayle/storefront-nuxt@8.10.4":
+  version "8.10.4"
+  resolved "https://registry.yarnpkg.com/@scayle/storefront-nuxt/-/storefront-nuxt-8.10.4.tgz#4c348eb6a3136c2da837c7e273d6bde9dbc31d1a"
+  integrity sha512-Kk9EpmuT3REC4htS4L2ml3MrWudvD9PhKHFC3HCTy9iie2Mkcp1uOI+nGyzmK9/Pn9lyRb1QOM/pJraHfNBzEg==
   dependencies:
     "@opentelemetry/api" "^1.9.0"
     "@scayle/h3-session" "0.6.0"
     "@scayle/storefront-core" "8.8.0"
     "@scayle/unstorage-compression-driver" "^0.2.3"
-    "@vercel/nft" "0.29.1"
+    "@vercel/nft" "0.29.2"
     "@vueuse/core" "12.7.0"
     consola "^3.2.3"
     core-js "^3.37.1"
@@ -4823,10 +4823,10 @@
   dependencies:
     "@upstash/redis" "^1.34.0"
 
-"@vercel/nft@0.29.1":
-  version "0.29.1"
-  resolved "https://registry.yarnpkg.com/@vercel/nft/-/nft-0.29.1.tgz#8adff05950df335b07141f9c16546063076b7e27"
-  integrity sha512-6239JJM1V9b3OjvZIjbe+47/hGxMr44FEzlbTErrqzebCaoKAHK+yvahn3gdNacybDUbTxVF8Zuh0vqaeM8aKQ==
+"@vercel/nft@0.29.2":
+  version "0.29.2"
+  resolved "https://registry.yarnpkg.com/@vercel/nft/-/nft-0.29.2.tgz#0a852a67f5f24ee7c55139f065d46175688fcbbb"
+  integrity sha512-A/Si4mrTkQqJ6EXJKv5EYCDQ3NL6nJXxG8VGXePsaiQigsomHYQC9xSpX8qGk7AEZk4b1ssbYIqJ0ISQQ7bfcA==
   dependencies:
     "@mapbox/node-pre-gyp" "^2.0.0"
     "@rollup/pluginutils" "^5.1.3"
@@ -4835,7 +4835,7 @@
     async-sema "^3.1.1"
     bindings "^1.4.0"
     estree-walker "2.0.2"
-    glob "^7.1.3"
+    glob "^10.4.5"
     graceful-fs "^4.2.9"
     node-gyp-build "^4.2.2"
     picomatch "^4.0.2"
@@ -8973,7 +8973,7 @@ glob-promise@^4.2.2:
   dependencies:
     "@types/glob" "^7.1.3"
 
-glob@^10.0.0, glob@^10.3.10, glob@^10.3.7, glob@^10.4.1, glob@^10.4.2:
+glob@^10.0.0, glob@^10.3.10, glob@^10.3.7, glob@^10.4.1, glob@^10.4.2, glob@^10.4.5:
   version "10.4.5"
   resolved "https://registry.yarnpkg.com/glob/-/glob-10.4.5.tgz#f4d9f0b90ffdbab09c9d77f5f29b4262517b0956"
   integrity sha512-7Bv8RF0k6xjo7d4A/PxYLbUCfb6c+Vpd2/mB2yRDlew7Jb5hEXiCD9ibfO7wpk8i4sevK6DFny9h7EYbM3/sHg==

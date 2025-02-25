@@ -223,7 +223,11 @@ const activeVariant = computed<Variant | undefined>(() => {
 })
 
 const router = useRouter()
-const updateActiveVariant = async (newVariant: Variant) => {
+const updateActiveVariant = async (newVariant?: Variant) => {
+  if (!newVariant) {
+    return
+  }
+
   await router.replace({
     query: {
       ...route.query,

@@ -6,6 +6,7 @@ import type {
   Order as BaseOrder,
   ListOfPackages,
   LowestPriorPrice,
+  OrderAddress as BaseOrderAddress,
 } from '@scayle/storefront-nuxt'
 
 interface OrderCategory {
@@ -82,7 +83,7 @@ export type Order = BaseOrder & { items?: OrderItem[] }
 
 export type OrderItems = OrderItem[]
 
-export type OrderAddress = Exclude<Order['address'], undefined>['billing']
+export type OrderAddress = BaseOrderAddress
 
 export type Package = ListOfPackages[0]
 

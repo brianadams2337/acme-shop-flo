@@ -41,15 +41,19 @@ const { shippingAddress, billingAddress } = defineProps<{
 
 const { t } = useI18n()
 
-const pickElements = (
-  objectValue: Record<string, unknown>,
-  keysList: string[],
-) =>
-  Object.fromEntries(
+const pickElements = <T extends OrderAddress | OrderAddress['recipient']>(
+  objectValue: T,
+  keysList: (string & keyof NonNullable<T>)[],
+): Partial<NonNullable<T>> => {
+  if (!objectValue) {
+    return {}
+  }
+  return Object.fromEntries(
     keysList
       .filter((key) => key in objectValue)
       .map((key) => [key, objectValue[key]]),
-  )
+  ) as Partial<NonNullable<T>>
+}
 
 const isShippingSameAsBillingAddress = computed(() => {
   if (!shippingAddress || !billingAddress) {

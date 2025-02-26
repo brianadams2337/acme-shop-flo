@@ -29,11 +29,11 @@ export function getComponentName(name?: string, prefix: string = 'CMS') {
     return null
   }
 
-  const sanitizedName = name.toLowerCase().startsWith('cms')
-    ? name.replace('cms', '')
-    : name
+  if (name.toLowerCase().startsWith('cms')) {
+    return name.replace(/cms/gi, (match) => match.toUpperCase())
+  }
 
-  const pascalCaseName = sanitizedName
+  const pascalCaseName = name
     .split(/[\s_.-]+|(?=[A-Z][a-z])/)
     .map((word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
     .join('')

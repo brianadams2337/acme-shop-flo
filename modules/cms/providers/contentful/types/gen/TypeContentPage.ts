@@ -16,7 +16,6 @@ import type { TypeParagraphSkeleton } from './TypeParagraph'
 import type { TypeProductSliderSkeleton } from './TypeProductSlider'
 import type { TypeSeoSkeleton } from './TypeSeo'
 import type { TypeSlideShowSkeleton } from './TypeSlideShow'
-import type { TypeSocialMediaLinkSkeleton } from './TypeSocialMediaLink'
 import type { TypeVideoSkeleton } from './TypeVideo'
 
 export interface TypeContentPageFields {
@@ -38,7 +37,6 @@ export interface TypeContentPageFields {
       | TypeParagraphSkeleton
       | TypeProductSliderSkeleton
       | TypeSlideShowSkeleton
-      | TypeSocialMediaLinkSkeleton
       | TypeVideoSkeleton
     >
   >

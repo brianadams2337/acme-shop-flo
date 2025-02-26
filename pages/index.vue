@@ -1,13 +1,9 @@
 <template>
-  <div>
-    <div data-testid="home-page-content">
-      <CMSIndexData slug="home">
-        <template #default="{ data }">
-          <CMSStory v-if="data" :story="data" />
-        </template>
-      </CMSIndexData>
-    </div>
-  </div>
+  <CMSContentPage slug="homepage" data-testid="home-page-content">
+    <template #loading>
+      <SFContentPageSkeletonLoader />
+    </template>
+  </CMSContentPage>
 </template>
 
 <script setup lang="ts">
@@ -18,10 +14,10 @@ import type { OnlineStore, WithContext } from 'schema-dts'
 import { definePageMeta } from '#imports'
 import { useNuxtApp, useRuntimeConfig } from '#app'
 import { useRoute } from '#app/composables/router'
-import CMSIndexData from '#storefront-cms/components/fetching/CMSIndexData.vue'
-import CMSStory from '#storefront-cms/components/Story.vue'
+import CMSContentPage from '#storefront-cms/components/ContentPage.vue'
 import { useI18n } from '#i18n'
 import { useJsonld } from '~/composables/useJsonld'
+import SFContentPageSkeletonLoader from '~/components/SFContentPageSkeletonLoader.vue'
 
 const config = useRuntimeConfig()
 const route = useRoute()

@@ -1,25 +1,34 @@
 <template>
-  <div>
-    <CMSStoryblokComponent :blok="story.content" />
+  <div v-if="blok" v-editable="blok">
+    <div v-if="blok.headline || blok.subline" class="my-8">
+      <SFHeadline v-if="blok.headline" size="xl" tag="h1" is-uppercase>
+        {{ blok.headline }}
+      </SFHeadline>
+      <p v-if="blok.subline" class="my-8">{{ blok.subline }}</p>
+    </div>
+    <div v-for="content in blok.content" :key="content._uid">
+      <component
+        :is="getComponentName(content.component)"
+        :blok="content"
+        :important="content.component === 'Paragraph'"
+      />
+    </div>
   </div>
 </template>
 
-<script setup lang="ts" generic="T extends StoryblokComponentType<string>">
+<script setup lang="ts" generic="T extends SbContentPage">
 import { computed, defineOptions } from 'vue'
 import { useSeoMeta } from '@unhead/vue'
-import type { ISbStoryData, StoryblokComponentType } from '@storyblok/vue'
-import type { SbSeo, SbContentPage, SbPage } from '../types'
-import CMSStoryblokComponent from './CMSStoryblokComponent.vue'
-
-export type ContentType = NonNullable<
-  SbContentPage['content'] | SbPage['content']
->
+import type { ISbStoryData } from '@storyblok/vue'
+import type { SbContentPage } from '../types'
+import { getComponentName } from '../../../utils/helpers'
+import { SFHeadline } from '#storefront-ui/components'
 
 const { story } = defineProps<{ story: ISbStoryData<T> }>()
 
-const seo = computed<SbSeo>(() => {
-  return (story.content as unknown as { seo: SbSeo }).seo
-})
+const blok = computed(() => story.content)
+
+const seo = computed(() => blok.value.SEO)
 
 useSeoMeta({
   description: seo.value?.description,

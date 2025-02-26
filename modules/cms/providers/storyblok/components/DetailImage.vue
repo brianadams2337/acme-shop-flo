@@ -5,7 +5,7 @@
         class="picture picture-contain w-full sm:block"
         provider="storyblok"
         :src="blok.image.filename"
-        :alt="blok.image.alt"
+        :alt="blok.image.alt ?? undefined"
         :sizes="sizes"
       />
     </CMSStoryblokLink>

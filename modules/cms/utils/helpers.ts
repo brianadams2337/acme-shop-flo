@@ -24,19 +24,16 @@ export function isStringURL(string: string) {
   return url.protocol === 'http:' || url.protocol === 'https:'
 }
 
-export function getComponentName(
-  name: string | undefined,
-  prefix: string = 'CMS',
-) {
+export function getComponentName(name?: string, prefix: string = 'CMS') {
   if (!name) {
     return null
   }
 
-  if (name.startsWith('Cms')) {
-    name = name.replace('Cms', '')
-  }
+  const sanitizedName = name.toLowerCase().startsWith('cms')
+    ? name.replace('cms', '')
+    : name
 
-  const pascalCaseName = name
+  const pascalCaseName = sanitizedName
     .split(/[\s_.-]+|(?=[A-Z][a-z])/)
     .map((word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
     .join('')

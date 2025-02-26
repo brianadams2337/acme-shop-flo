@@ -2,7 +2,7 @@
   <div class="col-span-6 w-full md:col-span-4 lg:col-span-3 lg:max-w-[23rem]">
     <SFSkeletonLoader
       type="custom"
-      class="mb-5 min-h-96 rounded-lg bg-gray-200 md:min-h-56 lg:min-h-80"
+      class="mb-5 min-h-60 rounded-lg bg-gray-200 md:min-h-56 lg:min-h-80"
     />
     <SFSkeletonLoader
       type="custom"

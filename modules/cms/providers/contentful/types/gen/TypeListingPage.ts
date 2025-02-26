@@ -12,12 +12,6 @@ export interface TypeListingPageFields {
   slug: EntryFieldTypes.Symbol
   teaserImage?: EntryFieldTypes.AssetLink
   teaserImageMobile?: EntryFieldTypes.AssetLink
-  preListingContent?: EntryFieldTypes.Array<
-    EntryFieldTypes.EntryLink<EntrySkeletonType>
-  >
-  postListingContent?: EntryFieldTypes.Array<
-    EntryFieldTypes.EntryLink<EntrySkeletonType>
-  >
   seo?: EntryFieldTypes.EntryLink<TypeSeoSkeleton>
 }
 

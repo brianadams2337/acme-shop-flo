@@ -97,17 +97,6 @@ export type {
   TypeDoubleColumnWithoutLinkResolutionResponse,
   TypeDoubleColumnWithoutUnresolvableLinksResponse,
 } from './TypeDoubleColumn'
-export { isTypeFooter } from './TypeFooter'
-export type {
-  TypeFooter,
-  TypeFooterFields,
-  TypeFooterSkeleton,
-  TypeFooterWithAllLocalesAndWithoutLinkResolutionResponse,
-  TypeFooterWithAllLocalesAndWithoutUnresolvableLinksResponse,
-  TypeFooterWithAllLocalesResponse,
-  TypeFooterWithoutLinkResolutionResponse,
-  TypeFooterWithoutUnresolvableLinksResponse,
-} from './TypeFooter'
 export { isTypeGrid } from './TypeGrid'
 export type {
   TypeGrid,
@@ -317,17 +306,6 @@ export type {
   TypeSlideShowWithoutLinkResolutionResponse,
   TypeSlideShowWithoutUnresolvableLinksResponse,
 } from './TypeSlideShow'
-export { isTypeSocialMediaLink } from './TypeSocialMediaLink'
-export type {
-  TypeSocialMediaLink,
-  TypeSocialMediaLinkFields,
-  TypeSocialMediaLinkSkeleton,
-  TypeSocialMediaLinkWithAllLocalesAndWithoutLinkResolutionResponse,
-  TypeSocialMediaLinkWithAllLocalesAndWithoutUnresolvableLinksResponse,
-  TypeSocialMediaLinkWithAllLocalesResponse,
-  TypeSocialMediaLinkWithoutLinkResolutionResponse,
-  TypeSocialMediaLinkWithoutUnresolvableLinksResponse,
-} from './TypeSocialMediaLink'
 export { isTypeStory } from './TypeStory'
 export type {
   TypeStory,

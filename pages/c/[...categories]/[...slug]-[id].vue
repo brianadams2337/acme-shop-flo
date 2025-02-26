@@ -1,72 +1,66 @@
 <template>
-  <CMSCategoryData :selected-category="currentCategoryId" class="flex flex-col">
-    <template #default="{ content, hasTeaserImage }">
-      <CMSImage
-        v-if="hasTeaserImage"
-        :blok="content"
-        is-teaser
-        is-cover
-        class="-mb-8 !h-52 w-full sm:mb-0"
+  <div class="flex flex-col">
+    <CMSProductListingPageTeaser
+      :category-id="currentCategoryId"
+      class="-mb-8 !h-52 w-full sm:mb-0"
+    />
+    <div
+      class="relative mx-0 flex rounded-t-2xl bg-white pt-4 xl:container md:mx-8 md:rounded-none md:pt-8 xl:m-auto"
+    >
+      <SFCategorySideNavigation
+        v-if="rootCategories?.length"
+        class="sticky top-8 h-full max-md:hidden sm:min-w-40 md:min-w-[14.75rem] lg:min-w-[17rem]"
+        :root-categories="rootCategories"
+        :current-category="currentCategory"
+        :fetching-categories="fetchingCategories"
       />
 
-      <div
-        class="relative mx-0 flex rounded-t-2xl bg-white pt-4 xl:container md:mx-8 md:rounded-none md:pt-8 xl:m-auto"
-      >
-        <SFCategorySideNavigation
-          v-if="rootCategories?.length"
-          class="sticky top-8 h-full max-md:hidden sm:min-w-40 md:min-w-[14.75rem] lg:min-w-[17rem]"
-          :root-categories="rootCategories"
-          :current-category="currentCategory"
-          :fetching-categories="fetchingCategories"
-        />
-
-        <div class="w-full grow">
-          <div class="flex flex-wrap items-center justify-between gap-5">
-            <div class="flex items-center px-4 md:px-0">
-              <SFCategoryNavigationBackButton
-                :current-category="currentCategory"
-                class="mr-2 md:hidden"
-              />
-              <SFCategoryBreadcrumbs
-                v-if="currentCategory"
-                :products-fetching="productsStatus === 'pending'"
-                :category="currentCategory"
-                :products-count="totalProductsCount"
-              />
-            </div>
-            <div class="hidden gap-4 md:flex">
-              <SFSortSelection class="max-sm:hidden" />
-              <SFFilterToggleButton :label="$t('filter.show_filter')" />
-            </div>
+      <div class="w-full grow">
+        <div class="flex flex-wrap items-center justify-between gap-5">
+          <div class="flex items-center px-4 md:px-0">
+            <SFCategoryNavigationBackButton
+              :current-category="currentCategory"
+              class="mr-2 md:hidden"
+            />
+            <SFCategoryBreadcrumbs
+              v-if="currentCategory"
+              :products-fetching="productsStatus === 'pending'"
+              :category="currentCategory"
+              :products-count="totalProductsCount"
+            />
           </div>
-          <SFCategoryNavigationSlider
-            v-if="allCategories.length"
-            :all-categories="allCategories"
-            :current-category="currentCategory"
-            class="mb-3.5 mt-2.5 md:hidden"
-          />
-          <div class="px-4 md:hidden">
-            <SFFilterToggleButton :label="$t('filter.filters_sorting')" />
+          <div class="hidden gap-4 md:flex">
+            <SFSortSelection class="max-sm:hidden" />
+            <SFFilterToggleButton :label="$t('filter.show_filter')" />
           </div>
-          <SFProductList
-            :products="products"
-            :pagination="pagination"
-            :current-category="currentCategory"
-            :loading="productsStatus === 'pending'"
-            class="mt-8"
-            @click-product="trackProductClick"
-            @intersect:row="trackViewListing"
-          />
         </div>
+        <SFCategoryNavigationSlider
+          v-if="allCategories.length"
+          :all-categories="allCategories"
+          :current-category="currentCategory"
+          class="mb-3.5 mt-2.5 md:hidden"
+        />
+        <div class="px-4 md:hidden">
+          <SFFilterToggleButton :label="$t('filter.filters_sorting')" />
+        </div>
+        <SFProductList
+          :products="products"
+          :pagination="pagination"
+          :current-category="currentCategory"
+          :loading="productsStatus === 'pending'"
+          class="mt-8"
+          @click-product="trackProductClick"
+          @intersect:row="trackViewListing"
+        />
       </div>
-      <SFFilterSlideIn :current-category-id="currentCategoryId" />
-      <Teleport to="#teleports">
-        <SFFloatingContainer class="right-4 md:bottom-16">
-          <SFScrollToTopButton />
-        </SFFloatingContainer>
-      </Teleport>
-    </template>
-  </CMSCategoryData>
+    </div>
+    <SFFilterSlideIn :current-category-id="currentCategoryId" />
+    <Teleport to="#teleports">
+      <SFFloatingContainer class="right-4 md:bottom-16">
+        <SFScrollToTopButton />
+      </SFFloatingContainer>
+    </Teleport>
+  </div>
 </template>
 
 <script setup lang="ts">
@@ -99,8 +93,7 @@ import {
   PRODUCT_TILE_WITH_PARAMS,
   PRODUCTS_PER_PAGE,
 } from '~/constants'
-import CMSCategoryData from '#storefront-cms/components/fetching/CMSCategoryData.vue'
-import CMSImage from '#storefront-cms/components/Image.vue'
+import CMSProductListingPageTeaser from '#storefront-cms/components/ProductListingPageTeaser.vue'
 import SFCategorySideNavigation from '~/components/category/SFCategorySideNavigation.vue'
 import SFCategoryNavigationBackButton from '~/components/category/SFCategoryNavigationBackButton.vue'
 import SFCategoryBreadcrumbs from '~/components/category/SFCategoryBreadcrumbs.vue'

@@ -66,7 +66,7 @@ test('C2143605 Verify footer logo', async ({
   })
   await test.step('Verify logo click from non-Homepage', async () => {
     await expect(async () => {
-      await page.goto('/s/agb', { waitUntil: 'commit' })
+      await page.goto(FOOTER.linkGroup3.imprint, { waitUntil: 'commit' })
       await expect(footer.footerLogo).toBeVisible()
       await footer.footerLogo.click()
       await page.waitForLoadState('domcontentloaded')

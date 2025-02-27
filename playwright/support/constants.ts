@@ -59,8 +59,8 @@ export const SEARCH_SUGGESTIONS = {
   moreButtonLabelDE: 'Mehr',
   searchTermTags: 'sneaker size 40',
   searchTestTagValue: '40',
-  searchTermPage: 'faq',
-  faqPageUrl: '/s/faq',
+  searchTermPage: 'terms',
+  faqPageUrl: '/content/terms-and-conditions',
   searchReferenceKey: 'NJW11-BetterScarlet-CloudWhite-CoreBlack',
 }
 
@@ -100,23 +100,22 @@ export const USER_ACCOUNT = {
 
 export const FOOTER = {
   linkGroup1: {
-    scayleStorefront: '/de/s/about',
+    scayleStorefront: 'https://www.scayle.com/platform/digital-storefront/',
     scayle: 'https://www.scayle.com/',
     storefrontGuide:
       'https://scayle.dev/en/storefront-guide/developer-guide/getting-started/what-is-storefront',
     cmsComponents: '/de/content/cms-component-showcase',
   },
   linkGroup2: {
-    faq: '/de/s/faq',
     helpdesk:
       'https://github.com/scayle/storefront-boilerplate-support/discussions',
-    shipping: '/de/s/shipping',
-    returns: '/de/s/returns',
+    shipping: '/de/content/shipping',
+    returns: '/de/content/returns',
   },
   linkGroup3: {
-    termsConditions: '/de/s/agb',
-    privacyPolicy: '/de/s/data-privacy',
-    imprint: '/de/s/imprint',
+    termsConditions: '/de/content/terms-and-conditions',
+    privacyPolicy: '/de/content/data-privacy',
+    imprint: '/de/content/imprint',
   },
   linkGroup4: {
     instagram: 'https://www.instagram.com/',

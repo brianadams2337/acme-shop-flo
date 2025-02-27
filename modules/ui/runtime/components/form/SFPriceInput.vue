@@ -87,7 +87,7 @@ const inputChange = (event: Event) => {
   adjustedValue = Math.round(val) * 10 ** decimalPlaces.value
   adjustedValue = Math.min(Math.max(min, adjustedValue), max)
 
-  if (!isNaN(adjustedValue)) {
+  if (!isNaN(adjustedValue) && modelValue !== adjustedValue) {
     emit('update:model-value', adjustedValue)
   }
 }

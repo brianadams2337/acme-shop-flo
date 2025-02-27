@@ -9,7 +9,7 @@
       Source: https://github.com/NightCatSama/vue-slider-component/issues/343#issuecomment-482508771-->
     <ClientOnly>
       <VueSlider
-        :model-value="[roundDownPrice(range[0]), roundUpPrice(range[1])]"
+        :model-value="range"
         :enable-cross="false"
         :min="roundDownPrice(min)"
         :max="roundUpPrice(max)"
@@ -45,9 +45,9 @@
     </ClientOnly>
     <div class="mt-4 flex items-center">
       <SFPriceInput
-        :model-value="roundDownPrice(range[0])"
-        :min="min"
-        :max="modelValue[1]"
+        :model-value="range[0]"
+        :min="roundDownPrice(min)"
+        :max="range[1]"
         :currency-code="currencyCode"
         :locale="locale"
         :format-options="{
@@ -55,7 +55,7 @@
         }"
         :aria-label="
           $t('filter.minimum_price', {
-            price: formatCurrency(roundDownPrice(range[0])),
+            price: formatCurrency(range[0]),
           })
         "
         @update:model-value="changeRangeAtIndex(roundDownPrice($event), 0)"
@@ -64,9 +64,9 @@
         {{ $t('filter.to') }}
       </div>
       <SFPriceInput
-        :model-value="roundUpPrice(range[1])"
-        :min="modelValue[0]"
-        :max="max"
+        :model-value="range[1]"
+        :min="range[0]"
+        :max="roundUpPrice(max)"
         :currency-code="currencyCode"
         :locale="locale"
         :format-options="{
@@ -74,7 +74,7 @@
         }"
         :aria-label="
           $t('filter.maximum_price', {
-            price: formatCurrency(roundDownPrice(range[1])),
+            price: formatCurrency(range[1]),
           })
         "
         @update:model-value="changeRangeAtIndex(roundUpPrice($event), 1)"
@@ -108,7 +108,15 @@ const { min = 0, max = 100000 } = defineProps<{
   max?: number
 }>()
 
-const range = defineModel<RangeTuple>({ required: true })
+const range = defineModel<RangeTuple>({
+  required: true,
+  set([min, max]) {
+    return [roundDownPrice(min), roundUpPrice(max)]
+  },
+  get([min, max]) {
+    return [roundDownPrice(min), roundUpPrice(max)]
+  },
+})
 
 const currentShop = useCurrentShop()
 const locale = currentShop.value!.locale

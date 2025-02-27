@@ -5,7 +5,7 @@
     :aria-label="$t('basket.available_products')"
   >
     <SFBasketPopoverCard
-      v-for="item in availableItems"
+      v-for="item in items"
       :key="item.key"
       :basket-item="item"
       class="w-80 sm:w-96"
@@ -17,13 +17,8 @@
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue'
 import SFBasketPopoverCard from './SFBasketPopoverCard.vue'
 import { useBasket } from '#storefront/composables'
 
 const { items } = useBasket()
-
-const availableItems = computed(() =>
-  (items.value ?? []).filter((item) => item.status === 'available'),
-)
 </script>

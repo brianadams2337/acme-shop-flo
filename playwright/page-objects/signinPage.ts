@@ -82,9 +82,9 @@ export class SignInPage {
   }
 
   async fillLoginData(email: string, password: string) {
-    await this.emailInput.click()
+    await this.emailInput.focus()
     await this.emailInput.fill(email)
-    await this.passwordInput.click()
+    await this.passwordInput.focus()
     await this.passwordInput.fill(password)
   }
 

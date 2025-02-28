@@ -68,10 +68,8 @@ const { activate, deactivate } = useFocusTrap(flyout, {
   immediate: false,
   escapeDeactivates: true,
   allowOutsideClick: true,
-  isKeyBackward: (keyEvent) =>
-    keyEvent.code === 'ArrowLeft' || keyEvent.code === 'ArrowUp',
-  isKeyForward: (keyEvent) =>
-    keyEvent.code === 'ArrowRight' || keyEvent.code === 'ArrowDown',
+  isKeyBackward: (keyEvent) => keyEvent.code === 'ArrowUp',
+  isKeyForward: (keyEvent) => keyEvent.code === 'ArrowDown',
   onPostDeactivate() {
     isOpen.value = false
   },

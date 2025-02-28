@@ -128,12 +128,6 @@ const { activate: activateSlideInTrap, deactivate: deactivateSlideInTrap } =
   useFocusTrap(slideIn, {
     initialFocus: () => initialFocus.value,
     escapeDeactivates: false,
-    isKeyBackward: ({ code, key, shiftKey }) =>
-      code === 'ArrowLeft' || code === 'ArrowUp' || (key === 'Tab' && shiftKey),
-    isKeyForward: ({ code, key, shiftKey }) =>
-      code === 'ArrowRight' ||
-      code === 'ArrowDown' ||
-      (key === 'Tab' && !shiftKey),
     immediate: isOpen.value,
   })
 

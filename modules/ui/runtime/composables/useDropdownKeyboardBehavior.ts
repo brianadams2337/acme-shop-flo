@@ -28,10 +28,8 @@ export function useDropdownKeyboardBehavior(
 
   const { activate, deactivate } = useFocusTrap(optionsRef, {
     immediate: isOpen.value,
-    isKeyBackward: (keyEvent) =>
-      keyEvent.code === 'ArrowLeft' || keyEvent.code === 'ArrowUp',
-    isKeyForward: (keyEvent) =>
-      keyEvent.code === 'ArrowRight' || keyEvent.code === 'ArrowDown',
+    isKeyBackward: (keyEvent) => keyEvent.code === 'ArrowUp',
+    isKeyForward: (keyEvent) => keyEvent.code === 'ArrowDown',
     allowOutsideClick: true,
   })
 

@@ -138,7 +138,6 @@ export function usePromotionGiftSelection(gift: Product) {
     if (!hasOneVariantOnly.value) {
       activeVariant.value = undefined
     }
-    toggleGiftSelection()
   }
 
   return extendPromise(

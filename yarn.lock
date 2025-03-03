@@ -3619,10 +3619,10 @@
     vue-router "^4.4.0"
     zod "^3.23.8"
 
-"@scayle/storefront-product-detail@1.1.1":
-  version "1.1.1"
-  resolved "https://registry.yarnpkg.com/@scayle/storefront-product-detail/-/storefront-product-detail-1.1.1.tgz#7931c6466a6d55a969e5a124b75142e7da503abc"
-  integrity sha512-HTQZqKfXHjJc3Q6N46VqBI+Ao4LP5jkFS1VmDbSFJS+3kDo5icbQdDk6IHLuASfMbUyGiXkjg7bliQLo2tz5nA==
+"@scayle/storefront-product-detail@1.1.2":
+  version "1.1.2"
+  resolved "https://registry.yarnpkg.com/@scayle/storefront-product-detail/-/storefront-product-detail-1.1.2.tgz#1211a455ef989fab5091372c5355c5e6c9ed73cf"
+  integrity sha512-GzeobCQ3yG57gm+K/lJQ2rOIABqG4Qe8rZOsm7R6vokX9xsWwS/ZqhwiibdRDsZ5UMyZwoiFKkZ5RpKc13hK5g==
 
 "@scayle/storefront-product-listing@1.2.0":
   version "1.2.0"

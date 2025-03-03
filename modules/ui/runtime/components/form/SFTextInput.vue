@@ -50,7 +50,7 @@
 </template>
 
 <script setup lang="ts">
-import { defineOptions, computed, useTemplateRef } from 'vue'
+import { defineOptions, computed, useTemplateRef, useId } from 'vue'
 import { vMaska } from 'maska/vue'
 import { useElementSize } from '@vueuse/core'
 
@@ -83,14 +83,7 @@ const modelValue = defineModel<string>()
 const input = useTemplateRef('input')
 const { width: inputWidth } = useElementSize(input)
 
-// TODO: Replace the placeholder and optional name with `useId` when upgrading to Nuxt 3.15.
-// This will ensure that the generated ID is consistently persisted between the server and client.
-// https://github.com/nuxt/nuxt/pull/30343
-const id = computed(() => {
-  return name
-    ? `text-input-${placeholder}-${name}`
-    : `text-input-${placeholder}`
-})
+const id = computed(() => `text-input-${useId()}`)
 
 const dataMaska = computed(() => {
   // Maska don't accept array for the dynamic mask approach.

@@ -1934,7 +1934,7 @@
     rc9 "^2.1.2"
     std-env "^3.8.0"
 
-"@nuxt/test-utils@3.17.1":
+"@nuxt/test-utils@3.17.1", "@nuxt/test-utils@>=3.13.1":
   version "3.17.1"
   resolved "https://registry.yarnpkg.com/@nuxt/test-utils/-/test-utils-3.17.1.tgz#784760aef44fc417c24adfcc39f49265397b9794"
   integrity sha512-BRHf3TKONqbtAncet9dFw4+J8QT3clEWNsrE1FR9oIRJIRbH2xW9EjXfkF/i1VDzpu89m0IPIzLNuLZ3T+X8oA==
@@ -1963,38 +1963,6 @@
     unenv "^1.10.0"
     unplugin "^2.2.0"
     vite "^6.2.0"
-    vitest-environment-nuxt "^1.0.1"
-    vue "^3.5.13"
-
-"@nuxt/test-utils@>=3.13.1":
-  version "3.17.0"
-  resolved "https://registry.yarnpkg.com/@nuxt/test-utils/-/test-utils-3.17.0.tgz#dad586a73e4b90e602b4cae0bcf2fd53ab876daf"
-  integrity sha512-NfKES2wGXxV8bNec30W0+rjegy7azFxXT7TJZ3SIcg6CxWQiO8Q+Xh743UnoqPw2WF03GNEndovf6AqwIRjNJQ==
-  dependencies:
-    "@nuxt/kit" "^3.15.4"
-    "@nuxt/schema" "^3.15.4"
-    c12 "^2.0.2"
-    consola "^3.4.0"
-    defu "^6.1.4"
-    destr "^2.0.3"
-    estree-walker "^3.0.3"
-    fake-indexeddb "^6.0.0"
-    get-port-please "^3.1.2"
-    h3 "^1.15.0"
-    local-pkg "^1.0.0"
-    magic-string "^0.30.17"
-    node-fetch-native "^1.6.5"
-    ofetch "^1.4.1"
-    pathe "^2.0.3"
-    perfect-debounce "^1.0.0"
-    radix3 "^1.1.2"
-    scule "^1.3.0"
-    std-env "^3.8.0"
-    tinyexec "^0.3.2"
-    ufo "^1.5.4"
-    unenv "^1.10.0"
-    unplugin "^2.2.0"
-    vite "^6.1.1"
     vitest-environment-nuxt "^1.0.1"
     vue "^3.5.13"
 
@@ -3305,9 +3273,9 @@
   integrity sha512-JBtrrjBIURTnzb7KUIWOF46vSgpfC3rO6Mm8LjtRjtTNCLTyB+mOuU7HrTkVcvUCEBuSuzkivlTHMWT4JETz9A==
 
 "@redocly/openapi-core@^1.28.0":
-  version "1.31.3"
-  resolved "https://registry.yarnpkg.com/@redocly/openapi-core/-/openapi-core-1.31.3.tgz#2be38b0598d56631ec44d146b6df6f5dba00afee"
-  integrity sha512-SyE/1TwM33tgldc3k367sg2i1kqnILOJZo6J96Y/Tt1PHhJp+na637CzCuTgdyY86GTPvNw42834Ks0Lkfk3Hg==
+  version "1.32.0"
+  resolved "https://registry.yarnpkg.com/@redocly/openapi-core/-/openapi-core-1.32.0.tgz#e2fd40f2f55a0b7e7c39ef696bf7c9320e8b16cf"
+  integrity sha512-CONct5sM4ubP/6vMOsVxesdeFQQ6dN8WeJHlmtA1ZAfhLho7p/MDp9JPmuRjF57T9Cc/5i/NVZbbJSlleGe5mw==
   dependencies:
     "@redocly/ajv" "^8.11.2"
     "@redocly/config" "^0.21.0"
@@ -3718,9 +3686,9 @@
     picomatch "^4.0.2"
 
 "@stylistic/eslint-plugin@^4.0.0":
-  version "4.1.0"
-  resolved "https://registry.yarnpkg.com/@stylistic/eslint-plugin/-/eslint-plugin-4.1.0.tgz#8882a6fe307cc94022e4495720373e8a5652d60c"
-  integrity sha512-bytbL7qiici7yPyEiId0fGPK9kjQbzcPMj2aftPfzTCyJ/CRSKdtI+iVjM0LSGzGxfunflI+MDDU9vyIIeIpoQ==
+  version "4.2.0"
+  resolved "https://registry.yarnpkg.com/@stylistic/eslint-plugin/-/eslint-plugin-4.2.0.tgz#7860ea84aa7ee3b21757907b863eb62f4f8b0455"
+  integrity sha512-8hXezgz7jexGHdo5WN6JBEIPHCSFyyU4vgbxevu4YLVS5vl+sxqAAGyXSzfNDyR6xMNSH5H1x67nsXcYMOHtZA==
   dependencies:
     "@typescript-eslint/utils" "^8.23.0"
     eslint-visitor-keys "^4.2.0"
@@ -5259,7 +5227,7 @@ c12@2.0.1:
     pkg-types "^1.2.0"
     rc9 "^2.1.2"
 
-c12@^2.0.1, c12@^2.0.2:
+c12@^2.0.1:
   version "2.0.4"
   resolved "https://registry.yarnpkg.com/c12/-/c12-2.0.4.tgz#d991001713a6d6304ac928eb644d2b4bbeb60922"
   integrity sha512-3DbbhnFt0fKJHxU4tEUPmD1ahWE4PWPMomqfYsTJdrhpmEnRKJi3qSC4rO5U6E6zN1+pjBY7+z8fUmNRMaVKLw==
@@ -5890,6 +5858,11 @@ confbox@^0.1.7, confbox@^0.1.8:
   resolved "https://registry.yarnpkg.com/confbox/-/confbox-0.1.8.tgz#820d73d3b3c82d9bd910652c5d4d599ef8ff8b06"
   integrity sha512-RMtmw0iFkeR4YV+fUOSucriAQNb9g8zFR52MWCtl+cCZOFRNL6zeB395vPzFhEjjn4fMxXudmELnl/KF/WrK6w==
 
+confbox@^0.2.1:
+  version "0.2.1"
+  resolved "https://registry.yarnpkg.com/confbox/-/confbox-0.2.1.tgz#ae39f2c99699afa451d00206479f15f9a1208a8b"
+  integrity sha512-hkT3yDPFbs95mNCy1+7qNKC6Pro+/ibzYxtM2iqEigpf0sVw+bg4Zh9/snjsBcf990vfIsg5+1U7VyiyBb3etg==
+
 config-chain@^1.1.13:
   version "1.1.13"
   resolved "https://registry.yarnpkg.com/config-chain/-/config-chain-1.1.13.tgz#fad0795aa6a6cdaff9ed1b68e9dff94372c232f4"
@@ -6002,7 +5975,7 @@ contentful-sdk-core@^9.0.1:
   optionalDependencies:
     "@rollup/rollup-linux-x64-gnu" "^4.18.0"
 
-contentful@11.5.3:
+contentful@11.5.3, contentful@^11.1.4:
   version "11.5.3"
   resolved "https://registry.yarnpkg.com/contentful/-/contentful-11.5.3.tgz#c6ae4d66a2bd4916d0a3076a15902cc6dc823e53"
   integrity sha512-cprMvwvV/Nav8ZGkaqlsZv07IXKUeoR4/xnqSnIZeMzHTnrgx3obwqbMhCtVPqnelDIWnKmPJYqEVxLuk1aYBQ==
@@ -6025,19 +5998,6 @@ contentful@^10.14.1:
     axios "^1.7.4"
     contentful-resolve-response "^1.9.0"
     contentful-sdk-core "^8.3.1"
-    json-stringify-safe "^5.0.1"
-    type-fest "^4.0.0"
-
-contentful@^11.1.4:
-  version "11.5.2"
-  resolved "https://registry.yarnpkg.com/contentful/-/contentful-11.5.2.tgz#3ca7d13ef3be27747ee0bfc3c0a03b558b08b0ef"
-  integrity sha512-xI6Y7cdfJzzZMbZKrHlrRoIFqs/7d0lxjQHup92mjMLLUzzaxW5KyUDJXIeba4exoX8AxnwfjtiFnhbURWV2mQ==
-  dependencies:
-    "@contentful/content-source-maps" "^0.11.8"
-    "@contentful/rich-text-types" "^16.6.1"
-    axios "^1.7.9"
-    contentful-resolve-response "^1.9.0"
-    contentful-sdk-core "^9.0.1"
     json-stringify-safe "^5.0.1"
     type-fest "^4.0.0"
 
@@ -6102,9 +6062,9 @@ croner@^9.0.0:
   integrity sha512-onMB0OkDjkXunhdW9htFjEhqrD54+M94i6ackoUkjHKbRnXdyEyKRelp4nJ1kAz32+s27jP1FsebpJCVl0BsvA==
 
 cronstrue@^2.52.0:
-  version "2.55.0"
-  resolved "https://registry.yarnpkg.com/cronstrue/-/cronstrue-2.55.0.tgz#c7dd69628556c53df925179a9500f0986379c961"
-  integrity sha512-ZsBZNtQWb0Rk6CNGJlzpPBYqNE7t93Aez5ZCExLihGwmIpE5qThSTDQzDV8Z1Nw6ksmLkwI98nPKyciZ5sH7dw==
+  version "2.56.0"
+  resolved "https://registry.yarnpkg.com/cronstrue/-/cronstrue-2.56.0.tgz#70b406106e6059bf9c494c788255d671d8ecc361"
+  integrity sha512-/YC3b4D/E/S8ToQ7f676A2fqoC3vVpXKjJ4SMsP0jYsvRYJdZ6h9+Fq/Y7FoFDEUFCqLTca+G2qTV227lyyFZg==
 
 cross-fetch@^3.0.4:
   version "3.2.0"
@@ -9947,13 +9907,13 @@ local-pkg@^0.5.1:
     pkg-types "^1.2.1"
 
 local-pkg@^1.0.0, local-pkg@^1.1.0:
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/local-pkg/-/local-pkg-1.1.0.tgz#b24ea31ae10529b83f015180e3d2e6a16246188b"
-  integrity sha512-xbZBuX6gYIWrlLmZG43aAVer4ocntYO09vPy9lxd6Ns8DnR4U7N+IIeDkubinqFOHHzoMlPxTxwo0jhE7oYjAw==
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/local-pkg/-/local-pkg-1.1.1.tgz#f5fe74a97a3bd3c165788ee08ca9fbe998dc58dd"
+  integrity sha512-WunYko2W1NcdfAFpuLUoucsgULmgDBRkdxHxWQ7mK0cQqwPiy8E1enjuRBrhLtZkB5iScJ1XIPdhVEFK8aOLSg==
   dependencies:
     mlly "^1.7.4"
-    pkg-types "^1.3.1"
-    quansync "^0.2.1"
+    pkg-types "^2.0.1"
+    quansync "^0.2.8"
 
 locate-path@^5.0.0:
   version "5.0.0"
@@ -11188,15 +11148,10 @@ number-is-nan@^1.0.0:
   resolved "https://registry.yarnpkg.com/number-is-nan/-/number-is-nan-1.0.1.tgz#097b602b53422a522c1afb8790318336941a011d"
   integrity sha512-4jbtZXNAsfZbAHiiqjLPBiCl16dES1zI4Hpzzxw61Tk+loF+sBDBKx1ICKKKwIqQ7M0mFn1TmkN7euSncWgHiQ==
 
-nuxi@3.22.4:
+nuxi@3.22.4, nuxi@^3.15.0:
   version "3.22.4"
   resolved "https://registry.yarnpkg.com/nuxi/-/nuxi-3.22.4.tgz#b2bd0763b294dea1248ce62dc730a9e33eeeb146"
   integrity sha512-rpVECiC1bNhbU/OI/Oj/HrI0wSq98SUnBPkoCS2qXUCtz70hCz9fD+KVSveJi9uKgBYhYTkbrKzACycsHQF4zw==
-
-nuxi@^3.15.0:
-  version "3.22.2"
-  resolved "https://registry.yarnpkg.com/nuxi/-/nuxi-3.22.2.tgz#2499e6357c467800fa7abb53eb060babc31529e9"
-  integrity sha512-QaxSecieGbh6aTrKC6czb73Lgb/OyV4Y+nXmrS1oAD/e2o2vWQ20uv9fSCBuHjwnAMADLdbKuhAK9EmJpLi0Ag==
 
 nuxt-svgo@4.0.14:
   version "4.0.14"
@@ -11941,12 +11896,12 @@ pkg-types@^1.0.3, pkg-types@^1.2.0, pkg-types@^1.2.1, pkg-types@^1.3.0, pkg-type
     mlly "^1.7.4"
     pathe "^2.0.1"
 
-pkg-types@^2.0.0:
-  version "2.0.1"
-  resolved "https://registry.yarnpkg.com/pkg-types/-/pkg-types-2.0.1.tgz#d71dc33f103e564440fd375da11549b0af275d86"
-  integrity sha512-LdDk/hlFeVBoEZqlkJ2bsxwq5fjKQg7i422zu78IC16CSR2XBe7kYxxBx0mkU8kLX6nh50Zp80lZHveKnsHTpQ==
+pkg-types@^2.0.0, pkg-types@^2.0.1:
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/pkg-types/-/pkg-types-2.1.0.tgz#70c9e1b9c74b63fdde749876ee0aa007ea9edead"
+  integrity sha512-wmJwA+8ihJixSoHKxZJRBQG1oY8Yr9pGLzRmSsNms0iNWyHHAlZCa7mmKiFR10YPZuz/2k169JiS/inOjBCZ2A==
   dependencies:
-    confbox "^0.1.8"
+    confbox "^0.2.1"
     exsolve "^1.0.1"
     pathe "^2.0.3"
 
@@ -12490,10 +12445,10 @@ qs@^6.11.2, qs@^6.12.2, qs@^6.12.3:
   dependencies:
     side-channel "^1.1.0"
 
-quansync@^0.2.1, quansync@^0.2.7:
-  version "0.2.7"
-  resolved "https://registry.yarnpkg.com/quansync/-/quansync-0.2.7.tgz#d6f6249ab52e4a61e78ebf0e195e5836aaf9e7dd"
-  integrity sha512-KZDFlN9/Si3CgKHZsIfLBsrjWKFjqu9KA0zDGJEQoQzPm5HWNDEFc2mkLeYUBBOwEJtxNBSMaNLE/GlvArIEfQ==
+quansync@^0.2.7, quansync@^0.2.8:
+  version "0.2.8"
+  resolved "https://registry.yarnpkg.com/quansync/-/quansync-0.2.8.tgz#2e893d17bb754ba0988ea399ff0bc5f2a8467793"
+  integrity sha512-4+saucphJMazjt7iOM27mbFCk+D9dd/zmgMDCzRZ8MEoBfYp7lAvoN38et/phRQF6wOPMy/OROBGgoWeSKyluA==
 
 queue-microtask@^1.2.2:
   version "1.2.3"
@@ -13448,9 +13403,9 @@ statuses@2.0.1:
   integrity sha512-OpZ3zP+jT1PI7I8nemJX4AKmAX070ZkYPVWV/AaKTJl+tXCTGyVdC1a4SL8RUQYEwk/f34ZX8UTykN68FwrqAA==
 
 std-env@^3.7.0, std-env@^3.8.0:
-  version "3.8.0"
-  resolved "https://registry.yarnpkg.com/std-env/-/std-env-3.8.0.tgz#b56ffc1baf1a29dcc80a3bdf11d7fca7c315e7d5"
-  integrity sha512-Bc3YwwCB+OzldMxOXJIIvC6cPRWr/LxOp48CdQTOkPyk/t4JWWJbrilwBd7RJzKV8QW7tJkcgAmeuLLJugl5/w==
+  version "3.8.1"
+  resolved "https://registry.yarnpkg.com/std-env/-/std-env-3.8.1.tgz#2b81c631c62e3d0b964b87f099b8dcab6c9a5346"
+  integrity sha512-vj5lIj3Mwf9D79hBkltk5qmkFI+biIKWS2IBxEyEU3AX1tUf7AoL8nSazCOiiqQsGKIq01SClsKEzweu34uwvA==
 
 stop-iteration-iterator@^1.0.0:
   version "1.1.0"
@@ -14820,7 +14775,7 @@ vite@^5.0.0, vite@^5.4.11:
   optionalDependencies:
     fsevents "~2.3.3"
 
-vite@^6.1.1, vite@^6.2.0:
+vite@^6.2.0:
   version "6.2.0"
   resolved "https://registry.yarnpkg.com/vite/-/vite-6.2.0.tgz#9dcb543380dab18d8384eb840a76bf30d78633f0"
   integrity sha512-7dPxoo+WsT/64rDcwoOjk76XHj+TqNTIvHKcuMQ1k4/SeHDaQt5GFAeLYzrimZrMpn/O6DtdI03WUjdxuPM0oQ==

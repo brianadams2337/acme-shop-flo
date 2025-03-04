@@ -11,15 +11,17 @@ import { type NavigateToOptions, navigateTo } from '#app/composables/router'
 import { useCurrentShop } from '#storefront/composables'
 import { useLocalePath } from '#i18n'
 import {
-  buildFiltersQuery,
   hasLocalePrefix,
   isExternalLink,
-  isCategorySuggestion,
-  isProductSuggestion,
   normalizePathRoute,
   routeList,
-  isNavigationItemSuggestion,
 } from '~/utils'
+import {
+  isProductSuggestion,
+  isCategorySuggestion,
+  isNavigationItemSuggestion,
+} from '#storefront-search/utils'
+import { buildQueryFromCategoryFilters } from '#storefront-product-listing'
 
 export function useRouteHelpers() {
   const localePath = useLocalePath()
@@ -55,7 +57,7 @@ export function useRouteHelpers() {
     const { category, filters } = categorySuggestion
     return {
       path: buildCategoryPath(category),
-      query: buildFiltersQuery(filters),
+      query: buildQueryFromCategoryFilters(filters),
     } satisfies RouteLocationRaw
   }
 
@@ -145,7 +147,7 @@ export function useRouteHelpers() {
           return {
             route: {
               path: buildCategoryPath(navigationItem.category),
-              query: buildFiltersQuery(navigationItem.filters),
+              query: buildQueryFromCategoryFilters(navigationItem.filters),
             },
             openInNew: false,
           }
@@ -167,7 +169,7 @@ export function useRouteHelpers() {
         }
       }
       default:
-        return undefined
+        return
     }
   }
 

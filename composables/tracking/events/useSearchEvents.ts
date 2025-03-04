@@ -2,13 +2,12 @@ import type { SearchEntity } from '@scayle/storefront-nuxt'
 import { getFirstAttributeValue } from '@scayle/storefront-nuxt'
 import { useRouteHelpers } from '~/composables/useRouteHelpers'
 import { useRouter } from '#app/composables/router'
-
 import {
+  isProductSuggestion,
   isCategorySuggestion,
   isNavigationItemSuggestion,
-  isProductSuggestion,
   getSuggestionName,
-} from '~/utils'
+} from '#storefront-search/utils'
 
 import type {
   TrackingEvent,

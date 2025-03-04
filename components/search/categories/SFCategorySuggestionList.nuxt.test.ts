@@ -1,10 +1,9 @@
 import { renderSuspended } from '@nuxt/test-utils/runtime'
-import type { Category } from '@scayle/storefront-nuxt'
+import type { Category, CategoryFilter } from '@scayle/storefront-nuxt'
 import { expect, it } from 'vitest'
 import { fireEvent } from '@testing-library/vue'
 import { categoryFactory } from '@scayle/storefront-nuxt/test/factories'
 import SFCategorySuggestionList from './SFCategorySuggestionList.vue'
-import type { CategoryFilter } from '~/utils'
 
 const getCategorySuggestionsComponent = (
   category: Category,

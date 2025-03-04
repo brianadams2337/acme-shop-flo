@@ -3554,10 +3554,10 @@
   dependencies:
     utility-types "3.11.0"
 
-"@scayle/storefront-core@8.11.3":
-  version "8.11.3"
-  resolved "https://registry.yarnpkg.com/@scayle/storefront-core/-/storefront-core-8.11.3.tgz#7b01f814db9bc13dc8443928b8d52053a10fc8fb"
-  integrity sha512-ybuhR2ntAmQBYY/J9sWFYZexOn1kU2dbfn6luUXl+VV9Ro64Tke+ZI3eO6sJRIcaPh9Bgc+GHWvzOqitRE25qA==
+"@scayle/storefront-core@8.12.0":
+  version "8.12.0"
+  resolved "https://registry.yarnpkg.com/@scayle/storefront-core/-/storefront-core-8.12.0.tgz#a8698931f12d8a7b6ad3a92a149dbde921b5dd2b"
+  integrity sha512-Ebf7w5Biok0EZS9zn/riQtkEctdFFSWEahGKLiYG3pJalBYakMUUjJf+bgnlJ42/v3zX+p8UQ+2CP71S8D68HQ==
   dependencies:
     "@scayle/storefront-api" "18.1.0"
     "@scayle/unstorage-scayle-kv-driver" "0.1.0"
@@ -3579,14 +3579,14 @@
   resolved "https://registry.yarnpkg.com/@scayle/storefront-navigation/-/storefront-navigation-0.1.0.tgz#c622f02e05de26fcbd4121356e1ab2ef67066b9c"
   integrity sha512-6XIoK2fgAUFoaqC37zXRuudnK83OeQhT056Ow9OhJIZPj/KGyPQjYfZm0Gxg8JSa6Emct4KvQteROg/FI0yesQ==
 
-"@scayle/storefront-nuxt@8.11.5":
-  version "8.11.5"
-  resolved "https://registry.yarnpkg.com/@scayle/storefront-nuxt/-/storefront-nuxt-8.11.5.tgz#87e69b904fa959d28397da385b8c2b31faeecec8"
-  integrity sha512-JUALn+DTRXfd7bXWI3sCbyJm5ckeoNqsdRChk2d235h0tPlbsk3gE8aj2eUVUlFHPF54jdqx90G/2V3SDhrFOQ==
+"@scayle/storefront-nuxt@8.11.6":
+  version "8.11.6"
+  resolved "https://registry.yarnpkg.com/@scayle/storefront-nuxt/-/storefront-nuxt-8.11.6.tgz#54422df8d0f9648750b220d7344657bc13c1167c"
+  integrity sha512-m+5MFwL+3zvaHqq2bmTjS4VMg5L4rT48LW6u3XBTtnJ81DSl6wYY8bTEpZROWpAcFDODXz+8TqwIbflsG2rfEA==
   dependencies:
     "@opentelemetry/api" "^1.9.0"
     "@scayle/h3-session" "0.6.0"
-    "@scayle/storefront-core" "8.11.3"
+    "@scayle/storefront-core" "8.12.0"
     "@scayle/unstorage-compression-driver" "^0.2.4"
     "@vercel/nft" "0.29.2"
     "@vueuse/core" "12.7.0"
@@ -3609,15 +3609,15 @@
   resolved "https://registry.yarnpkg.com/@scayle/storefront-product-detail/-/storefront-product-detail-1.1.2.tgz#1211a455ef989fab5091372c5355c5e6c9ed73cf"
   integrity sha512-GzeobCQ3yG57gm+K/lJQ2rOIABqG4Qe8rZOsm7R6vokX9xsWwS/ZqhwiibdRDsZ5UMyZwoiFKkZ5RpKc13hK5g==
 
-"@scayle/storefront-product-listing@1.2.0":
-  version "1.2.0"
-  resolved "https://registry.yarnpkg.com/@scayle/storefront-product-listing/-/storefront-product-listing-1.2.0.tgz#c8f8cea14fd844fe942861342fdfd174ffca9de8"
-  integrity sha512-iTP/3m+J40dQfww7dWOA5AKp0m/BvkLpBmKVPRpcTKIS6pYKSNs+FqaNvNM2XfR8R8NrJYnPylMeGP3tm8VPGA==
+"@scayle/storefront-product-listing@1.3.0":
+  version "1.3.0"
+  resolved "https://registry.yarnpkg.com/@scayle/storefront-product-listing/-/storefront-product-listing-1.3.0.tgz#3d20d2fe9f93aaf61706d68e4ffc1932c77f8fa8"
+  integrity sha512-BqGu/oPtIS7PwXSv0VYwQ7GPulmO7ZRJe1evzUuRqnVvHLTWwfrlfBvMuTFLPV/mT+vPC7CS5alNwRAOZm9umA==
 
-"@scayle/storefront-search@0.1.1":
-  version "0.1.1"
-  resolved "https://registry.yarnpkg.com/@scayle/storefront-search/-/storefront-search-0.1.1.tgz#51fff85676019579256043108b6edbbd449034fd"
-  integrity sha512-lOtiR5KN/2bpclUotmM3vLpGfp3cYSLHqzq0WkIrwanVinB4HhuMUJt6i2U0yvTaRGLH0NfokhkQ6gsl3bdv5A==
+"@scayle/storefront-search@0.2.0":
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/@scayle/storefront-search/-/storefront-search-0.2.0.tgz#b201da53b9ad01d4d7aa9c2a992da5b077d37882"
+  integrity sha512-dFo60UFLhloy5yAnHgKcB/ES8DT5A129tfVbNRKSDujmnNdD7Q5F+h59rBfIhLSLLhLRBsCL5jZb3GBGn0G5XQ==
 
 "@scayle/unstorage-compression-driver@^0.2.4":
   version "0.2.4"

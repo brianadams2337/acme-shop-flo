@@ -52,7 +52,7 @@ import { computed, onMounted, ref, useTemplateRef } from 'vue'
 import { useResizeObserver } from '@vueuse/core'
 import SFSearchResultItem from '../SFSearchResultItem.vue'
 import { useBreadcrumbs, useRouteHelpers } from '~/composables'
-import { getSearchFilterLabels } from '~/utils'
+import { getSearchFilterLabels } from '#storefront-search/utils'
 
 const { categorySuggestion: category } = defineProps<{
   categorySuggestion: CategorySearchSuggestion

@@ -4662,15 +4662,15 @@
   resolved "https://registry.yarnpkg.com/@vueuse/metadata/-/metadata-12.8.1.tgz#fe2be46d0858adb02442003bce9766ca041d24da"
   integrity sha512-a0sOZ815F2n2CnLXVjIYABVbN04FYYobOl3UwMfbCC6grUoPZjpJ/C5JvUjvQU/++XVunEdtnJec8saswCAQow==
 
-"@vueuse/nuxt@12.7.0":
-  version "12.7.0"
-  resolved "https://registry.yarnpkg.com/@vueuse/nuxt/-/nuxt-12.7.0.tgz#9d5f900923cff91a958955b60b2a0e7cb653a339"
-  integrity sha512-JG1yjJifcIZkFr+X1VmfNsdNZyHia/wXcpUHqVI2gwax5+bgmUlybqh9nStNGbX9NLUuPvPNNq043es5DlSJKg==
+"@vueuse/nuxt@12.8.1":
+  version "12.8.1"
+  resolved "https://registry.yarnpkg.com/@vueuse/nuxt/-/nuxt-12.8.1.tgz#fdcbdce2facf478aacd21cfb8e5603335a15bbdb"
+  integrity sha512-dRfQyGIHtLJOm2zJV3uQdlON4ueHg4m6qNuY6Td8yXR8dxq40r0O2v6iyfZUltHUaVrXrhX9Mq3QSuzT6BpqzA==
   dependencies:
     "@nuxt/kit" "^3.15.4"
-    "@vueuse/core" "12.7.0"
-    "@vueuse/metadata" "12.7.0"
-    local-pkg "^1.0.0"
+    "@vueuse/core" "12.8.1"
+    "@vueuse/metadata" "12.8.1"
+    local-pkg "^1.1.1"
     vue "^3.5.13"
 
 "@vueuse/shared@12.7.0":
@@ -10032,7 +10032,7 @@ local-pkg@^0.5.1:
     mlly "^1.7.3"
     pkg-types "^1.2.1"
 
-local-pkg@^1.0.0, local-pkg@^1.1.0:
+local-pkg@^1.0.0, local-pkg@^1.1.0, local-pkg@^1.1.1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/local-pkg/-/local-pkg-1.1.1.tgz#f5fe74a97a3bd3c165788ee08ca9fbe998dc58dd"
   integrity sha512-WunYko2W1NcdfAFpuLUoucsgULmgDBRkdxHxWQ7mK0cQqwPiy8E1enjuRBrhLtZkB5iScJ1XIPdhVEFK8aOLSg==

@@ -602,6 +602,16 @@ export default defineNuxtConfig({
           },
   },
 
+  // https://nuxt.com/docs/api/nuxt-config#ignore
+  ignore: [
+    '.DS_Store',
+    '**/.changeset',
+    '**/playwright',
+    '**/docs',
+    '**/test',
+    '**/modules/cms/providers/contentful/types/gen',
+  ],
+
   // Page Caching
   // https://nuxt.com/docs/api/nuxt-config#routerules-1
   // https://nuxt.com/docs/guide/concepts/rendering#hybrid-rendering

@@ -5,11 +5,17 @@ import {
   PromotionEffectType,
 } from '@scayle/storefront-nuxt'
 import Color from 'color'
-import { hexToRGBAColor } from '~/utils/color'
-import { AlphaColorMap } from '~/constants'
 import type { Promotion } from '~/types/promotion'
 
+const getRGBAValue = (color: string, alpha: AlphaValue) =>
+  Color(color)
+    .alpha(alpha / 100)
+    .rgb()
+    .string()
+
 export const FALLBACK_COLOR = '#007aff'
+
+type AlphaValue = 0 | 5 | 10 | 20 | 30 | 40 | 50 | 60 | 70 | 80 | 90 | 100
 
 type PromotionStyle =
   | { textColor: string; backgroundColor: string; color?: string }
@@ -25,24 +31,13 @@ type PromotionStyle =
  */
 export const getBackgroundColorStyle = (
   color?: string | unknown,
-  alpha?: number,
+  alpha?: AlphaValue,
 ): { backgroundColor: string } => {
-  if (typeof color !== 'string') {
-    return {
-      backgroundColor:
-        alpha !== undefined
-          ? hexToRGBAColor(FALLBACK_COLOR, alpha)
-          : FALLBACK_COLOR,
-    }
-  }
-
-  const backgroundColor = Color(color ?? FALLBACK_COLOR).hex()
+  const colorHex = Color(color ?? FALLBACK_COLOR).hex()
 
   return {
     backgroundColor:
-      alpha !== undefined
-        ? hexToRGBAColor(backgroundColor, alpha)
-        : backgroundColor,
+      alpha !== undefined ? getRGBAValue(colorHex, alpha) : colorHex,
   }
 }
 /**
@@ -53,19 +48,13 @@ export const getBackgroundColorStyle = (
  *
  * @returns An object containing the text color style as hex color.
  */
-export const getTextColorStyle = (color?: unknown, alpha?: number) => {
-  if (typeof color !== 'string') {
-    return {
-      color:
-        alpha !== undefined
-          ? hexToRGBAColor(FALLBACK_COLOR, alpha)
-          : FALLBACK_COLOR,
-    }
-  }
-
-  const textColor = Color(color ?? FALLBACK_COLOR).hex()
+export const getTextColorStyle = (
+  color?: string | unknown,
+  alpha?: AlphaValue,
+) => {
+  const colorHex = Color(color ?? FALLBACK_COLOR).hex()
   return {
-    color: alpha !== undefined ? hexToRGBAColor(textColor, alpha) : textColor,
+    color: alpha !== undefined ? getRGBAValue(colorHex, alpha) : colorHex,
   }
 }
 
@@ -84,14 +73,8 @@ export const getPromotionStyle = (
   }
 
   return {
-    ...getBackgroundColorStyle(
-      promotion.customData?.colorHex,
-      AlphaColorMap.ALPHA_10,
-    ),
-    ...getTextColorStyle(
-      promotion.customData?.colorHex,
-      AlphaColorMap.ALPHA_100,
-    ),
+    ...getBackgroundColorStyle(promotion.customData?.colorHex, 10),
+    ...getTextColorStyle(promotion.customData?.colorHex, 100),
   }
 }
 /**

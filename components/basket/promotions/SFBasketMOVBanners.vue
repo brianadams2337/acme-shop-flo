@@ -27,16 +27,13 @@
 import SFBasketMOVBannerContent from './SFBasketMOVBannerContent.vue'
 import { useBasketPromotions } from '~/composables'
 import SFPromotionCard from '~/components/promotion/SFPromotionCard.vue'
-import { AlphaColorMap } from '~/constants'
 import { getBackgroundColorStyle, getTextColorStyle } from '~/utils'
 import type { Promotion } from '~/types/promotion'
 
 const { movPromotions } = useBasketPromotions()
 
 const getBackgroundColor = (promotion: Promotion) => {
-  return getBackgroundColorStyle(
-    promotion.customData.colorHex,
-    AlphaColorMap.ALPHA_20,
-  ).backgroundColor
+  return getBackgroundColorStyle(promotion.customData.colorHex, 20)
+    .backgroundColor
 }
 </script>

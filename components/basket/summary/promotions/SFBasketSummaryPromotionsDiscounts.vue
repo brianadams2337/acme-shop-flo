@@ -6,14 +6,8 @@
       class="flex h-7 items-center justify-between gap-1.5 rounded-md px-2"
       data-testid="basket-summary-promotion-item"
       :style="{
-        ...getBackgroundColorStyle(
-          promotion?.customData.colorHex,
-          AlphaColorMap.ALPHA_10,
-        ),
-        ...getTextColorStyle(
-          promotion?.customData.colorHex,
-          AlphaColorMap.ALPHA_100,
-        ),
+        ...getBackgroundColorStyle(promotion?.customData.colorHex, 10),
+        ...getTextColorStyle(promotion?.customData.colorHex, 100),
       }"
     >
       <span v-if="promotion?.customData">
@@ -33,7 +27,6 @@
 import type { Promotion } from '~/types/promotion'
 import { useFormatHelpers } from '#storefront/composables'
 import { getTextColorStyle, getBackgroundColorStyle } from '~/utils'
-import { AlphaColorMap } from '~/constants'
 import type { PromotionReductionItem } from '~/composables'
 
 const { basketPromotionSummaries } = defineProps<{

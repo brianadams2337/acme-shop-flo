@@ -181,7 +181,7 @@ describe('ProductPrice.vue', () => {
       expect(badge).toBeVisible()
       expect(badge).toHaveStyle({
         'background-color': 'rgba(255, 255, 255, 0.1)',
-        color: 'rgba(255, 255, 255, 1)',
+        color: 'rgb(255, 255, 255)',
       })
       const strikeThroughPrice = getByTestId('initialProductPrice')
       expect(strikeThroughPrice).toHaveTextContent('1.1€')

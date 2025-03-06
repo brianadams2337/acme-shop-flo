@@ -24,17 +24,19 @@ describe('getBackgroundColorStyle', () => {
 
   it('should return fallback background color without alpha if color and alpha value is not provided', () => {
     const backgroundColor = getBackgroundColorStyle()
-    expect(backgroundColor).toEqual({ backgroundColor: '#007aff' })
+    expect(backgroundColor).toEqual({ backgroundColor: '#007AFF' })
   })
   it('should return fallback background color with alpha if color is not provided', () => {
     const backgroundColor = getBackgroundColorStyle(undefined, 50)
-    expect(backgroundColor).toEqual({ backgroundColor: 'rgba(0,122,255,0.5)' })
+    expect(backgroundColor).toEqual({
+      backgroundColor: 'rgba(0, 122, 255, 0.5)',
+    })
   })
 
   it('should return background color style object with alpha value', () => {
     const backgroundColor = getBackgroundColorStyle('#ffffff', 5)
     expect(backgroundColor).toEqual({
-      backgroundColor: 'rgba(255,255,255,0.05)',
+      backgroundColor: 'rgba(255, 255, 255, 0.05)',
     })
   })
 })
@@ -47,17 +49,19 @@ describe('getTextColorStyle', () => {
 
   it('should return fallback text color if color is not provided', () => {
     const color = getTextColorStyle()
-    expect(color).toEqual({ color: '#007aff' })
+    expect(color).toEqual({ color: '#007AFF' })
   })
   it('should return fallback text color with alpha if color is not provided', () => {
     const backgroundColor = getBackgroundColorStyle(undefined, 50)
-    expect(backgroundColor).toEqual({ backgroundColor: 'rgba(0,122,255,0.5)' })
+    expect(backgroundColor).toEqual({
+      backgroundColor: 'rgba(0, 122, 255, 0.5)',
+    })
   })
 
   it('should return text color style object with alpha value', () => {
     const color = getTextColorStyle('#ffffff', 5)
     expect(color).toEqual({
-      color: 'rgba(255,255,255,0.05)',
+      color: 'rgba(255, 255, 255, 0.05)',
     })
   })
 })
@@ -76,8 +80,8 @@ describe('getPromotionStyle', () => {
     const style = getPromotionStyle(promotion)
 
     expect(style).toEqual({
-      backgroundColor: 'rgba(255,255,255,0.1)',
-      color: 'rgba(255,255,255,1)',
+      backgroundColor: 'rgba(255, 255, 255, 0.1)',
+      color: 'rgb(255, 255, 255)',
     })
   })
 

@@ -1,8 +1,6 @@
 <template>
   <SFPromotionCard
-    :background-color="
-      getBackgroundColorStyle(color, AlphaColorMap.ALPHA_20).backgroundColor
-    "
+    :background-color="getBackgroundColorStyle(color, 20).backgroundColor"
     :style="getTextColorStyle(color)"
     :promotion="promotion"
     class="relative flex flex-col items-start rounded-xl bg-blue px-4 py-3 text-white"
@@ -70,7 +68,6 @@ import SFPromotionCountdown from '~/components/promotion/SFPromotionCountdown.vu
 import SFPromotionCard from '~/components/promotion/SFPromotionCard.vue'
 import SFPromotionHeadline from '~/components/promotion/headlines/SFPromotionHeadline.vue'
 import type { Promotion } from '~/types/promotion'
-import { AlphaColorMap } from '~/constants'
 
 const {
   promotion,

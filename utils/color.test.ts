@@ -1,13 +1,6 @@
 import type { Value } from '@scayle/storefront-nuxt'
 import { it, describe } from 'vitest'
-import { hexToRGBAColor, formatColors } from './color'
-
-describe('hexToRGBAColor', () => {
-  it('returns RGBA color with alpha value', ({ expect }) => {
-    const color = hexToRGBAColor('#ffffff', 0.5)
-    expect(color).toEqual('rgba(255,255,255,0.005)')
-  })
-})
+import { formatColors } from './color'
 
 describe('formatColors', () => {
   it('returns formatted colors', ({ expect }) => {

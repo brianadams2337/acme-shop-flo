@@ -4,6 +4,7 @@ import type { BasketItem, Price } from '@scayle/storefront-nuxt'
 import { toRef } from '@vueuse/core'
 import type { AppliedReduction } from '@scayle/storefront-core'
 import { useFormatHelpers } from '#storefront/composables'
+import type { OrderPrice } from '~/types/order'
 
 type RelativeReductions = {
   value: number
@@ -30,7 +31,7 @@ export interface UseProductPriceReturn {
  * @returns An {@link UseProductPriceReturn} object containing product price reactive data.
  */
 export function useProductPrice(
-  _price: MaybeRefOrGetter<Price | BasketItemPrice>,
+  _price: MaybeRefOrGetter<Price | BasketItemPrice | OrderPrice>,
 ): UseProductPriceReturn {
   const { formatCurrency } = useFormatHelpers()
 

@@ -339,6 +339,7 @@
     "payment_details": "Zahlungsdaten",
     "payment_method": "Zahlungsart",
     "size": "Größe",
+    "color": "Farbe",
     "tax": "19% MwSt.",
     "total": "Gesamt",
     "quantity_label": "Anzahl",

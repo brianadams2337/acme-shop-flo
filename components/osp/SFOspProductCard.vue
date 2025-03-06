@@ -1,53 +1,53 @@
 <template>
-  <div class="w-full divide-y divide-gray-500">
-    <div class="my-6 flex h-32 justify-between">
-      <div class="w-1/5">
-        <NuxtImg
-          :src="imageHash"
-          provider="scayle"
-          class="max-h-full max-w-full"
-        />
-      </div>
-      <div class="my-2 ml-3 flex w-3/5 flex-col justify-between">
-        <p class="text-sm">
-          {{ name }}
-          <span v-if="color" class="sm:hidden"> - {{ color }}</span>
-        </p>
+  <SFLocalizedLink
+    v-if="link"
+    :aria-label="`${brand}, ${name}, ${color}, ${size}`"
+    class="flex flex-col gap-1"
+    raw
+    :to="link"
+  >
+    <div class="flex gap-4">
+      <SFProductImage
+        v-if="product.images[0]"
+        :image="product.images[0]"
+        :alt="alt"
+        :sizes="'80px'"
+        class="size-20 max-h-20 overflow-hidden rounded-lg border"
+      />
+      <div class="flex flex-col gap-4">
+        <div class="flex flex-col text-gray-900">
+          <div class="text-base font-semi-bold-variable">{{ brand }}</div>
+          <div class="text-sm">{{ name }}</div>
+        </div>
+        <ul class="flex flex-col gap-2 text-sm text-gray-600">
+          <li v-if="color" class="flex gap-1">
+            <span class="font-medium">{{ $t('osp.color') }}:</span
+            ><span>{{ color }}</span>
+          </li>
 
-        <p v-if="size" class="text-sm">
-          {{ $t('osp.size') }}: <b>{{ size }}</b>
-        </p>
+          <li v-if="size" class="flex gap-1">
+            <span class="font-medium">{{ $t('osp.size') }}:</span
+            ><span>{{ size }}</span>
+          </li>
 
-        <p class="text-sm">
-          {{ $t('osp.quantity_label') }}: <b>{{ quantity }}</b>
-        </p>
-      </div>
-      <div class="flex flex-col justify-end">
-        <p
-          v-if="originalPrice"
-          class="text-right"
-          :class="{ 'line-through': reducedPrice }"
-        >
-          {{ formatCurrency(originalPrice) }}
-        </p>
-        <p v-if="reducedPrice" class="text-right text-red-500">
-          {{ formatCurrency(quantity * price.withTax) }}
-        </p>
-        <p
-          v-if="
-            reducedPrice &&
-            lowestPriorPrice?.withTax &&
-            lowestPriorPrice?.relativeDifferenceToPrice
-          "
-          class="mt-0.5 text-right text-sm text-gray-700"
-        >
-          {{ $t('price.best_price_30d') }}**:
-          {{ formatCurrency(lowestPriorPrice.withTax) }}
-          ({{ lowestPriorPrice.relativeDifferenceToPrice * 100 }} %)
-        </p>
+          <li class="flex gap-1">
+            <span class="font-medium">{{ $t('osp.quantity_label') }}:</span
+            ><span>{{ quantity }}</span>
+          </li>
+        </ul>
       </div>
     </div>
-  </div>
+    <div class="flex flex-col justify-end">
+      <SFProductPrice
+        :price="price"
+        class="ml-auto"
+        data-testid="basket-card-prices"
+        :inline="false"
+        :show-badges="true"
+        :lowest-prior-price="lowestPriorPrice"
+      />
+    </div>
+  </SFLocalizedLink>
 </template>
 
 <script setup lang="ts">
@@ -56,11 +56,15 @@ import {
   type AttributeGroup,
   type Attributes,
   getFirstAttributeValue,
-  getTotalAppliedReductions,
+  getAttributeValueTuples,
 } from '@scayle/storefront-nuxt'
-import { useFormatHelpers } from '#storefront/composables'
-import { NuxtImg } from '#components'
+import { useI18n } from '#imports'
+import SFProductPrice from '~/components/product/SFProductPrice.vue'
+import SFProductImage from '~/components/product/SFProductImage.vue'
+import SFLocalizedLink from '~/components/SFLocalizedLink.vue'
 import type { OrderProduct, OrderVariant, OrderPrice } from '~/types/order'
+import { useRouteHelpers } from '~/composables'
+import { formatColors } from '~/utils'
 
 const {
   product,
@@ -74,7 +78,9 @@ const {
   price: OrderPrice
 }>()
 
-const { formatCurrency } = useFormatHelpers()
+const { getProductDetailRoute } = useRouteHelpers()
+
+const { t } = useI18n()
 
 const name = computed(() => product.name)
 
@@ -83,28 +89,23 @@ const color = computed(() => {
   return getFirstAttributeValue(attrs, 'color')?.label
 })
 
-const size = computed(() => variant.attributes?.size?.values.label)
-
-const imageHash = computed(() => product.images[0].hash)
-
-const reducedPrice = computed(() => {
-  if (!price.appliedReductions) {
-    return
-  }
-
-  return getTotalAppliedReductions({
-    appliedReductions: price.appliedReductions,
-  }).absoluteWithTax
+const brand = computed(() => {
+  const attrs = mapAttributes(product.attributes)
+  return getFirstAttributeValue(attrs, 'brand')?.label
 })
 
-const originalPrice = computed(() => {
-  if (!reducedPrice.value) {
-    return
-  }
-  return (
-    quantity *
-    (reducedPrice.value ? price.withTax + reducedPrice.value : price.withTax)
-  )
+const size = computed(() => variant.attributes?.size?.values.label)
+
+const link = computed(() => {
+  return product ? getProductDetailRoute(product.id, name.value) : undefined
+})
+
+const alt = computed(() => {
+  return t('product_image.alt', {
+    productName: name.value,
+    colors: formatColors(getAttributeValueTuples(product.attributes, 'color')),
+    brand: brand.value,
+  })
 })
 
 const lowestPriorPrice = computed(() => variant.lowestPriorPrice)

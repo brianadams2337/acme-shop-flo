@@ -339,6 +339,7 @@
     "payment_method": "Payment method",
     "quantity_label": "Quantity",
     "size": "Size",
+    "color": "Color",
     "tax": "19% VAT",
     "total": "Total",
     "no_order_found": "The order information could not be found.",

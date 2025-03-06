@@ -66,6 +66,7 @@ import {
 import { getPromotionStyle } from '~/utils'
 import type { Promotion } from '~/types/promotion'
 import { useFormatHelpers } from '#storefront/composables'
+import type { OrderPrice } from '~/types/order'
 
 const {
   showTaxInfo = false,
@@ -77,7 +78,7 @@ const {
   price,
   inline = true,
 } = defineProps<{
-  price: Price | BasketItemPrice
+  price: Price | BasketItemPrice | OrderPrice
   lowestPriorPrice?: LowestPriorPrice
   promotion?: Promotion | null
   showTaxInfo?: boolean

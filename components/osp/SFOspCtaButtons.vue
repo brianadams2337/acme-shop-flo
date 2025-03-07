@@ -1,7 +1,7 @@
 <template>
   <div class="flex gap-4">
     <SFButton
-      variant="tertiary"
+      variant="primary"
       :to="getLocalizedRoute(routeList.home)"
       class="flex-1"
     >
@@ -9,7 +9,7 @@
     </SFButton>
     <SFButton
       v-if="orderData.id"
-      variant="primary"
+      variant="tertiary"
       class="flex-1"
       :to="getOrderDetailsRoute(orderData.id)"
     >

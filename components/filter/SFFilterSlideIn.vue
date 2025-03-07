@@ -5,6 +5,7 @@
     </template>
     <template #slide-in-body>
       <SFFilterSlideInContent
+        :hide-sorting="hideSorting"
         :applied-attribute-values="appliedAttributeValues"
         :applied-boolean-values="appliedBooleanValues"
         :applied-filter="appliedFilter"
@@ -35,7 +36,10 @@ import { SFSlideIn } from '#storefront-ui/components'
 import { useAppliedFilters } from '#storefront-product-listing'
 import { useRoute } from '#app/composables/router'
 
-const { currentCategoryId } = defineProps<{ currentCategoryId?: number }>()
+const { currentCategoryId, hideSorting = false } = defineProps<{
+  currentCategoryId?: number
+  hideSorting?: boolean
+}>()
 
 const { appliedBooleanValues, appliedFilter, appliedAttributeValues } =
   useAppliedFilters(useRoute())

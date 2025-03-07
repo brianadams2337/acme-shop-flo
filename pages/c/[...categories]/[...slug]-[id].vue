@@ -4,9 +4,8 @@
       :category-id="currentCategoryId"
       class="-mb-8 !h-52 w-full sm:mb-0"
     />
-    <div
-      class="relative mx-0 flex rounded-t-2xl bg-white pt-4 xl:container md:mx-8 md:rounded-none md:pt-8 xl:m-auto"
-    >
+
+    <div class="container flex overflow-hidden pt-4 max-sm:max-w-none md:pt-8">
       <SFCategorySideNavigation
         v-if="rootCategories?.length"
         class="sticky top-8 h-full max-md:hidden sm:min-w-40 md:min-w-[14.75rem] lg:min-w-[17rem]"
@@ -17,7 +16,7 @@
 
       <div class="w-full grow">
         <div class="flex flex-wrap items-center justify-between gap-5">
-          <div class="flex items-center px-4 md:px-0">
+          <div class="flex items-center">
             <SFCategoryNavigationBackButton
               :current-category="currentCategory"
               class="mr-2 md:hidden"
@@ -40,15 +39,16 @@
           :current-category="currentCategory"
           class="mb-3.5 mt-2.5 md:hidden"
         />
-        <div class="px-4 md:hidden">
-          <SFFilterToggleButton :label="$t('filter.filters_sorting')" />
-        </div>
+        <SFFilterToggleButton
+          class="md:hidden"
+          :label="$t('filter.filters_sorting')"
+        />
         <SFProductList
           :products="products"
           :pagination="pagination"
           :current-category="currentCategory"
           :loading="productsStatus === 'pending'"
-          class="mt-8"
+          class="mt-6"
           @click-product="trackProductClick"
           @intersect:row="trackViewListing"
         />
@@ -229,22 +229,21 @@ const { title, robots, canonicalLink, categoryBreadcrumbSchema } =
 
 useJsonld(() => categoryBreadcrumbSchema.value)
 
-useSeoMeta({ robots })
+useSeoMeta({
+  robots,
+  title: () => title.value,
+  description: () => {
+    if (!currentCategory.value) {
+      return null
+    }
+    return i18n.t('plp.seo_description', {
+      category: currentCategory.value.name,
+    })
+  },
+})
 
 useHead(() => {
-  if (!currentCategory.value) {
-    return {}
-  }
   return {
-    title: title.value,
-    meta: [
-      {
-        name: 'description',
-        content: i18n.t('plp.seo_description', {
-          category: currentCategory.value.name,
-        }),
-      },
-    ],
     link: canonicalLink.value,
   }
 })

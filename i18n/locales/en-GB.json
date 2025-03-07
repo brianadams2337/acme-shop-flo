@@ -110,14 +110,17 @@
     }
   },
   "search": {
+    "page": {
+      "heading": "Products for \"{term}\"",
+      "meta": {
+        "title": "Products for \"{term}\""
+      }
+    },
     "placeholder": "Search for product, category or brand",
     "search_results": "See all {searchTerm} results",
-    "result": "Your search for \"{term}\" returned {resultsCount} hits.",
-    "result_loading": "Loading search results for \"{term}\"...",
     "product": "Products",
     "categories": "Categories",
     "navigation_items": "Pages",
-    "page_title": "Search results for  \"{term}\"",
     "a11y": "Search"
   },
   "promises": {

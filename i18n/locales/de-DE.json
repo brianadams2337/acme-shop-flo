@@ -111,13 +111,16 @@
     }
   },
   "search": {
+    "page": {
+      "heading": "Produkte für \"{term}\"",
+      "meta": {
+        "title": "Produkte für \"{term}\""
+      }
+    },
     "placeholder": "Suche Produkte, Kategorien oder Marken",
     "search_results": "Alle Ergebnisse für {searchTerm} anzeigen",
-    "result": "Deine Suche nach \"{term}\" ergab {resultsCount} Treffer.",
-    "result_loading": "Lade Suchergebnisse für \"{term}\"...",
     "product": "Produkte",
     "categories": "Kategorien",
-    "page_title": "Suchergebnisse für \"{term}\"",
     "navigation_items": "Seiten",
     "a11y": "Suche"
   },

@@ -1,40 +1,36 @@
 <template>
-  <div class="flex w-full flex-col items-center">
-    <div class="grid w-full grid-cols-12 gap-4">
-      <template v-if="loading">
-        <SFProductCardSkeleton
-          v-for="index in PRODUCT_CARD_SKELETON_LOADERS_SIZE"
-          :key="`product-loading-${index}`"
-          type="custom"
-        />
-      </template>
-      <SFProductListNoResults
-        v-else-if="!products.length"
-        :category="currentCategory?.parent"
-        class="col-span-12 max-md:w-fit"
+  <div class="grid w-full grid-cols-12 gap-4">
+    <template v-if="loading">
+      <SFProductCardSkeleton
+        v-for="index in PRODUCT_CARD_SKELETON_LOADERS_SIZE"
+        :key="`product-loading-${index}`"
+        type="custom"
       />
-      <template v-else>
-        <SFProductCard
-          v-for="(product, index) in products"
-          :key="`product-${product.id}`"
-          class="col-span-6 mb-5 w-full lg:col-span-4 lg:max-w-[23rem] xl:col-span-3"
-          data-testid="product-item"
-          :index="index"
-          :product="product"
-          multiple-images
-          edge-borderless
-          :is-right-side-borderless="isProductPositionEven(index + 1)"
-          :listing-meta-data="categoryListingMetaData"
-          @intersect-product="onProductIntersect(index)"
-          @click-product="emit('clickProduct', product, index)"
-        />
-        <SFPagination
-          v-if="isPaginationShown"
-          :total-page-count="pagination?.last ?? 0"
-          class="col-span-12 mt-6"
-        />
-      </template>
-    </div>
+    </template>
+    <SFProductListNoResults
+      v-else-if="!products.length"
+      :category="currentCategory?.parent"
+      class="col-span-12 max-md:w-fit"
+    />
+    <template v-else>
+      <SFProductCard
+        v-for="(product, index) in products"
+        :key="`product-${product.id}`"
+        class="col-span-6 mb-5 w-full lg:col-span-4 xl:col-span-3"
+        data-testid="product-item"
+        :index="index"
+        :product="product"
+        multiple-images
+        :listing-meta-data="categoryListingMetaData"
+        @intersect:product="onProductIntersect(index)"
+        @click-product="emit('clickProduct', product, index)"
+      />
+      <SFPagination
+        v-if="isPaginationShown"
+        :total-page-count="pagination?.last ?? 0"
+        class="col-span-12 mt-6"
+      />
+    </template>
   </div>
 </template>
 
@@ -69,8 +65,6 @@ const {
   isPaginationVisible?: boolean
   currentCategory?: Category | null
 }>()
-
-const isProductPositionEven = (index: number) => index % 2 === 0
 
 const isPaginationShown = computed(() => {
   return pagination && isPaginationVisible && pagination.last > 1

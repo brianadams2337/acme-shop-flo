@@ -1,5 +1,5 @@
 <template>
-  <div class="relative min-h-36 max-md:pl-2 md:min-h-24">
+  <div class="relative min-h-36 md:min-h-24">
     <div class="relative w-full overflow-hidden md:h-[4.5rem]">
       <div
         class="mt-2 block transition-all delay-0 duration-200 ease-in transition-discrete group-hover/product-card:block group-hover/product-card:translate-y-0 group-hover/product-card:opacity-100 group-hover/product-card:delay-100 group-hover/product-card:starting:translate-y-4 group-hover/product-card:starting:opacity-0 md:mt-3 md:hidden md:translate-y-4 md:opacity-0"

@@ -1,5 +1,9 @@
 <template>
-  <SFFilterGroup class="md:hidden" :label="$t('filter.sorting')">
+  <SFFilterGroup
+    v-if="!hideSorting"
+    class="md:hidden"
+    :label="$t('filter.sorting')"
+  >
     <SFSortSelection />
   </SFFilterGroup>
   <template v-for="(filter, index) in availableFilters" :key="filter.slug">
@@ -143,6 +147,7 @@ const { appliedFilter } = defineProps<{
   appliedAttributeValues: Record<string, (string | number)[]>
   appliedBooleanValues: Record<string, boolean>
   appliedFilter: ProductSearchQuery
+  hideSorting: boolean
 }>()
 
 const emit = defineEmits<{

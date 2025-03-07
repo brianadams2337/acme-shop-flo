@@ -1,7 +1,7 @@
 <template>
   <SFItemsSlider
     class="w-full snap-x snap-mandatory scrollbar-hide"
-    slider-class="px-4 py-1"
+    slider-class="py-1"
   >
     <SFCategoryNavigationSliderItem
       v-for="category in categories"

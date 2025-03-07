@@ -1,6 +1,6 @@
 <template>
   <SFButton
-    class="group relative w-full !justify-start rounded-md border border-black px-3.5 text-base font-semi-bold-variable max-md:h-11 md:w-min md:border-gray-300 md:bg-secondary-200 md:hover:bg-white"
+    class="group relative w-full !justify-start rounded-md border border-black !px-3.5 !py-2 text-base font-semi-bold-variable max-md:h-11 md:w-min md:border-gray-300 md:bg-secondary-200 md:hover:bg-white"
     data-testid="filter-toggle-button"
     size="sm"
     variant="raw"

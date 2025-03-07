@@ -13,12 +13,6 @@
   >
     <div
       class="group relative flex aspect-3/4 max-h-md items-center justify-center overflow-hidden rounded-lg bg-white-smoke"
-      :class="
-        edgeBorderless &&
-        (isRightSideBorderless
-          ? 'max-md:rounded-r-none'
-          : 'max-md:rounded-l-none')
-      "
     >
       <div
         class="absolute left-auto right-1 top-2 z-10 flex h-8 w-auto cursor-pointer p-1 transition md:right-0 md:top-0 md:h-12 md:p-3"
@@ -88,14 +82,10 @@ const {
   listingMetaData,
   index = -1,
   multipleImages = false,
-  isRightSideBorderless = false,
-  edgeBorderless = false,
   hideBadges = false,
 } = defineProps<{
   product: Product
   index?: number
-  isRightSideBorderless?: boolean
-  edgeBorderless?: boolean
   multipleImages?: boolean
   listingMetaData?: ListItem
   hideBadges?: boolean

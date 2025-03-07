@@ -30,11 +30,10 @@
         This allowed the icon to be modified in regards to its visual appearance (color),
         but caused issues due to browsers`content-security-policy` settings, which resulted
         in delayed loading of the SVG icons and layout shifts per navigation tree item with a SVG icon.
-        To mitigate this, `<NuxtImg>` with the `preload` attribute is used,
+        To mitigate this, `<ScayleImg>` with the `preload` attribute is used,
         but SVG icon coloring is not possible anymore. -->
-      <NuxtImg
+      <ScayleImg
         :src="iconPath"
-        provider="scayle"
         :aria-labelledby="`${navigationItem.id}`"
         aria-hidden="true"
         class="pointer-events-none size-4"
@@ -59,11 +58,11 @@
 import { computed } from 'vue'
 import type { NavigationTreeItem } from '@scayle/storefront-nuxt'
 import Color from 'color'
+import { ScayleImg } from '#components'
 import type { LinkVariant } from '#storefront-ui'
 import { useRouteHelpers } from '~/composables'
 import { SFLink } from '#storefront-ui/components'
 import { theme } from '#tailwind-config'
-import { NuxtImg } from '#components'
 
 const {
   navigationItem,

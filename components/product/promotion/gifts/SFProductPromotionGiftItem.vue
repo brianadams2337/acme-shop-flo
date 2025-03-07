@@ -7,7 +7,7 @@
         :alt="alt"
         :image-loading="eagerImageLoading ? 'eager' : 'lazy'"
         sizes="92px"
-        aspect-ratio="1/1"
+        :aspect-ratio="[1, 1]"
         class="size-24"
         :class="{ 'opacity-20': disabled }"
       />

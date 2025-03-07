@@ -474,6 +474,7 @@ export default defineNuxtConfig({
     '@scayle/storefront-product-listing',
     '@scayle/storefront-search',
     '@scayle/storefront-navigation',
+    '@scayle/nuxt-image-provider',
   ],
 
   // Storefront CMS Module (local)
@@ -529,7 +530,7 @@ export default defineNuxtConfig({
     providers: {
       scayle: {
         name: 'scayle',
-        provider: '~/providers/scayle',
+        provider: '@scayle/nuxt-image-provider',
       },
     },
     screens: {

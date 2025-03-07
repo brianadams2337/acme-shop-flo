@@ -9,7 +9,7 @@
     <div
       class="flex h-16 w-14 shrink-0 items-center overflow-hidden rounded-md bg-gray-100"
     >
-      <NuxtImg v-if="image" provider="scayle" :src="image?.hash" width="60px" />
+      <ScayleImg v-if="image" :src="image?.hash" width="60px" />
     </div>
     <div class="grow overflow-hidden text-gray-600">
       <div class="truncate text-base font-semi-bold-variable">
@@ -26,8 +26,8 @@
 <script setup lang="ts">
 import type { ProductSearchSuggestion } from '@scayle/storefront-nuxt'
 import SFSearchResultItem from '../SFSearchResultItem.vue'
+import { ScayleImg } from '#components'
 import { useProductBaseInfo, useRouteHelpers } from '~/composables'
-import { NuxtImg } from '#components'
 import SFProductPrice from '~/components/product/SFProductPrice.vue'
 
 const { productSuggestion } = defineProps<{

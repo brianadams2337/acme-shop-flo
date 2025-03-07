@@ -60,7 +60,7 @@
                 :image="image"
                 :alt="alt"
                 sizes="500px"
-                aspect-ratio="1/1"
+                :aspect-ratio="[1, 1]"
               />
               <SFWishlistToggle
                 class="absolute right-5 top-5"

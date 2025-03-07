@@ -1,26 +1,22 @@
 <template>
-  <NuxtPicture
+  <ScaylePicture
     :alt="alt"
     :quality="quality"
     :sizes="sizes"
-    :modifiers="modifiers"
     :height="height"
     :width="width"
+    :should-trim="shouldTrim"
     densities="x1"
     :src="image.hash"
     :loading="imageLoading"
     :preload="preload"
+    :aspect-ratio="aspectRatio"
     :class="{
       'picture-contain': fit === 'contain',
       'picture-cover': fit === 'cover',
       'm-auto h-[90%]': isCentered,
-      'aspect-square': aspectRatio === '1/1',
-      'aspect-4/3': aspectRatio === '4/3',
-      'aspect-3/4': aspectRatio === '3/4',
-      'aspect-video': aspectRatio === '16/9',
       'mix-blend-darken': withMixBlendDarken,
     }"
-    provider="scayle"
     data-testid="product-image"
     class="picture block"
     @load="load"
@@ -28,9 +24,8 @@
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue'
 import type { ProductImage } from '@scayle/storefront-nuxt'
-import { NuxtPicture } from '#components'
+import { ScaylePicture } from '#components'
 
 const {
   sizes = '',
@@ -41,7 +36,7 @@ const {
   imageLoading = 'eager',
   preload = false,
   quality = 75,
-  aspectRatio = '3/4',
+  aspectRatio = [3, 4],
   load = () => {},
 } = defineProps<{
   image: ProductImage
@@ -57,10 +52,8 @@ const {
   withMixBlendDarken?: boolean
   height?: number | string
   width?: number | string
-  aspectRatio?: '16/9' | '4/3' | '3/4' | '1/1'
+  aspectRatio?: [number, number]
 }>()
-
-const modifiers = computed(() => ({ ...(shouldTrim && { trim: 1 }) }))
 </script>
 
 <style>

@@ -3,13 +3,11 @@
     <div class="w-full divide-y divide-gray-500">
       <div class="flex h-28 justify-between space-x-4 md:space-x-0">
         <div class="mr-2 w-1/5 flex-none">
-          <NuxtImg
-            :src="imageHash"
+          <SFProductImage
+            :image="product.images[0]"
             :alt="name"
             :title="name"
-            :modifiers="{ bg: 'F8F8F8' }"
-            provider="scayle"
-            class="h-full object-contain"
+            class="h-full"
             sizes="xs:80px sm:112px lg:192px"
           />
         </div>
@@ -62,10 +60,10 @@ import {
   getFirstAttributeValue,
   getTotalAppliedReductions,
 } from '@scayle/storefront-nuxt'
+import SFProductImage from '~/components/product/SFProductImage.vue'
 import { useFormatHelpers } from '#storefront/composables'
 import { useRouteHelpers } from '~/composables/useRouteHelpers'
 import { SFLink } from '#storefront-ui/components'
-import { NuxtImg } from '#components'
 import type { OrderProduct, OrderVariant, OrderPrice } from '~/types/order'
 
 const {
@@ -92,8 +90,6 @@ const color = computed(
 const size = computed(
   () => getFirstAttributeValue(variant?.attributes, 'size')?.label,
 )
-
-const imageHash = computed(() => product.images[0].hash)
 
 const reducedPrice = computed(() => {
   if (!price.appliedReductions) {

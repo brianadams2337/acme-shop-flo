@@ -70,6 +70,6 @@ it('should render only category name"', async () => {
   ).toHaveAttribute('href', '/de/p/test-product-1')
   expect(getByRole('img')).toHaveAttribute(
     'src',
-    'https://cdn-test.url/hash?width=60&height=80',
+    'https://cdn-test.url/hash?width=60&quality=75',
   )
 })

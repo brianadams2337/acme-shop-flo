@@ -47,7 +47,7 @@
             'opacity-20': sibling.isSoldOut && sibling.id !== product.id,
           }"
           :image="sibling.image"
-          aspect-ratio="1/1"
+          :aspect-ratio="[1, 1]"
         />
       </SFLink>
     </div>

@@ -87,11 +87,11 @@ import {
 } from '@scayle/storefront-nuxt'
 import { useI18n } from '#imports'
 import SFProductPrice from '~/components/product/SFProductPrice.vue'
-import SFProductImage from '~/components/product/SFProductImage.vue'
 import SFLocalizedLink from '~/components/SFLocalizedLink.vue'
 import type { OrderProduct, OrderVariant, OrderPrice } from '~/types/order'
 import { useRouteHelpers } from '~/composables'
 import { formatColors } from '~/utils'
+import SFProductImage from '~/components/product/SFProductImage.vue'
 
 const {
   product,

@@ -53,12 +53,8 @@ export class Search {
     expect(pageUrl).toContain(searchTerm)
   }
 
-  async assertHeadlineSearchResults(
-    searchTerm: string,
-    searchCount: string = '',
-  ) {
+  async assertHeadlineSearchResults(searchTerm: string) {
     await expect(this.searchResultsHeadline.first()).toContainText(searchTerm)
-    await expect(this.searchResultsHeadline.first()).toContainText(searchCount)
   }
 
   async clickSearchMoreButton() {

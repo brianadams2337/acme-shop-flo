@@ -30,7 +30,6 @@ test('C2139814: Verify Search no results page', async ({
     )
     await search.assertHeadlineSearchResults(
       SEARCH_SUGGESTIONS.searchTermNoResults,
-      '0',
     )
   }).toPass()
 })

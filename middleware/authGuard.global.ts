@@ -13,15 +13,10 @@ export default defineNuxtRouteMiddleware(async (to, from) => {
 
   const nuxt = useNuxtApp()
   const getLocalePath = useLocalePath()
-  const userComposable = await useUser({ key: 'authGuard-user' })
-
-  if (!nuxt.ssrContext && !userComposable.user.value) {
-    await userComposable.refresh()
-  }
-
-  const user = nuxt?.ssrContext
-    ? nuxt?.ssrContext?.event?.context?.$rpcContext?.user
-    : userComposable.user.value
+  const userComposable = await useUser({
+    key: 'authGuard-user',
+    immediate: false,
+  })
 
   const localePath = (routePath: LinkList[keyof LinkList]['path']) => {
     return getLocalePath(routePath) || routePath
@@ -34,6 +29,14 @@ export default defineNuxtRouteMiddleware(async (to, from) => {
       (protectedRoute) => localePath(protectedRoute) === to.path,
     )
   }
+
+  if (!nuxt.ssrContext && !userComposable.user.value && isProtectedRoute()) {
+    await userComposable.refresh()
+  }
+
+  const user = nuxt?.ssrContext
+    ? nuxt?.ssrContext?.event?.context?.$rpcContext?.user
+    : userComposable.user.value
 
   // If the user is not logged in and attempts to access protected routes, redirect them to the signin page
   if (!user && isProtectedRoute()) {

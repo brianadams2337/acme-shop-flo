@@ -35,6 +35,7 @@ describe('authGuard', async () => {
   it('should call "navigateTo" with signin path if user is not logged in and accessing a protected route', async () => {
     useUserMock.mockReturnValue({
       user: toRef(null),
+      status: 'success',
       refresh: vi.fn(),
     })
 
@@ -58,7 +59,11 @@ describe('authGuard', async () => {
   })
 
   it('should not redirect if accessing a non-protected route', async () => {
-    useUserMock.mockReturnValue({ user: { value: null }, refresh: vi.fn() })
+    useUserMock.mockReturnValue({
+      user: { value: null },
+      refresh: vi.fn(),
+      status: 'success',
+    })
 
     const to = routeFactory.build({ name: 'home', path: '/', fullPath: '/de' })
     const from = routeFactory.build({
@@ -75,6 +80,7 @@ describe('authGuard', async () => {
   it('should redirect to home if user is logged in and accessing signin path', async () => {
     useUserMock.mockReturnValue({
       user: { value: { id: 1 } },
+      status: 'success',
       refresh: vi.fn(),
     })
 
@@ -95,7 +101,11 @@ describe('authGuard', async () => {
   })
 
   it('should add "redirectUrl" to query if user is not logged in and navigating to signin from another page', async () => {
-    useUserMock.mockReturnValue({ user: { value: null }, refresh: vi.fn() })
+    useUserMock.mockReturnValue({
+      user: { value: null },
+      status: 'success',
+      refresh: vi.fn(),
+    })
 
     const to = routeFactory.build({
       name: 'signin',
@@ -117,7 +127,11 @@ describe('authGuard', async () => {
   })
 
   it('should not add "redirectUrl" to query if user is not logged in and navigating to signin from signin page', async () => {
-    useUserMock.mockReturnValue({ user: { value: null }, refresh: vi.fn() })
+    useUserMock.mockReturnValue({
+      user: { value: null },
+      status: 'success',
+      refresh: vi.fn(),
+    })
 
     const to = routeFactory.build({
       name: 'signin',
@@ -138,6 +152,7 @@ describe('authGuard', async () => {
   it('should redirect guest user to home if accessing protected route (excluding checkout)', async () => {
     useUserMock.mockReturnValue({
       user: { value: { id: 1, status: { isGuestCustomer: true } } },
+      status: 'success',
       refresh: vi.fn(),
     })
 
@@ -161,6 +176,7 @@ describe('authGuard', async () => {
     useUserMock.mockReturnValue({
       user: { value: { id: 1, status: { isGuestCustomer: true } } },
       refresh: vi.fn(),
+      status: 'success',
     })
 
     const to = routeFactory.build({
@@ -181,7 +197,11 @@ describe('authGuard', async () => {
 
   it('should not redirect if shop does not exist', async () => {
     useCurrentShopMock.mockReturnValue({})
-    useUserMock.mockReturnValue({ user: { value: null }, refresh: vi.fn() })
+    useUserMock.mockReturnValue({
+      user: { value: null },
+      status: 'success',
+      refresh: vi.fn(),
+    })
 
     await authGuardMiddleware(routeFactory.build(), routeFactory.build())
 
@@ -189,7 +209,11 @@ describe('authGuard', async () => {
   })
 
   it('should not redirect for API path', async () => {
-    useUserMock.mockReturnValue({ user: { value: null }, refresh: vi.fn() })
+    useUserMock.mockReturnValue({
+      user: { value: null },
+      status: 'success',
+      refresh: vi.fn(),
+    })
 
     await authGuardMiddleware(
       routeFactory.build({ path: '/api/test' }),
@@ -197,5 +221,27 @@ describe('authGuard', async () => {
     )
 
     expect(navigateTo).not.toHaveBeenCalled()
+  })
+  it('should not fetch the user, when the the target page is not protected', async () => {
+    const refreshMock = vi.fn()
+    useUserMock.mockReturnValue({
+      user: toRef(null),
+      status: 'success',
+      refresh: refreshMock,
+    })
+
+    const to = routeFactory.build({
+      name: 'home',
+      path: '/',
+      fullPath: '/de',
+    })
+    const from = routeFactory.build({
+      name: 'p-name-id',
+      path: '/p',
+      fullPath: '/de/p',
+    })
+
+    await authGuardMiddleware(to, from)
+    expect(refreshMock).not.toBeCalled()
   })
 })

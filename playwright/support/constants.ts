@@ -229,6 +229,6 @@ export const PDP_TEST_VARIANT_ID = {
 }
 
 export const OSP_TEST_DATA = {
-  regularProductVariantId: 335088,
+  regularProductVariantId: 335089,
   ordersUrl: '/orders',
 }

@@ -1,5 +1,9 @@
 <template>
-  <SFOspDetailBox v-if="paymentKey" :title="$t('osp.payment_details')">
+  <SFOspDetailBox
+    v-if="paymentKey"
+    :title="$t('osp.payment_details')"
+    data-testid="osp-payment-data"
+  >
     <ul class="flex flex-col gap-1 text-gray-600">
       <li>
         <span class="font-medium">{{ $t('osp.payment_method') }}:</span>

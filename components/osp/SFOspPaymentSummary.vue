@@ -2,19 +2,21 @@
   <div class="flex flex-col gap-3 border-t pt-4">
     <dl class="grid grid-cols-2 justify-between gap-2 text-base text-gray-900">
       <dt class="font-semi-bold-variable">{{ $t('osp.subtotal') }}</dt>
-      <dd class="text-right font-semi-bold-variable">
+      <dd class="text-right font-semi-bold-variable" data-testid="osp-subtotal">
         {{ formatCurrency(subtotal) }}
       </dd>
 
       <dt>{{ $t('osp.shipping_costs') }}</dt>
-      <dd class="text-right">{{ formatCurrency(shippingCost) }}</dd>
+      <dd class="text-right" data-testid="osp-shipping-cost">
+        {{ formatCurrency(shippingCost) }}
+      </dd>
     </dl>
 
     <dl
       class="grid grid-cols-2 justify-between gap-0 text-lg font-semi-bold-variable"
     >
       <dt class="text-lg">{{ $t('osp.total') }}</dt>
-      <dd class="text-right text-xl">
+      <dd class="text-right text-xl" data-testid="osp-total">
         {{ formatCurrency(cost.withTax) }}
       </dd>
       <dt class="text-xs text-gray-500">

@@ -3,6 +3,7 @@
     v-if="link"
     :aria-label="`${brand}, ${name}, ${color}, ${size}`"
     class="flex flex-col gap-1"
+    data-testid="osp-product-card"
     raw
     :to="link"
   >
@@ -13,25 +14,37 @@
         :alt="alt"
         :sizes="'80px'"
         class="size-20 max-h-20 overflow-hidden rounded-lg border"
+        data-testid="osp-product-image"
       />
       <div class="flex flex-col gap-4">
         <div class="flex flex-col text-gray-900">
-          <div class="text-base font-semi-bold-variable">{{ brand }}</div>
-          <div class="text-sm">{{ name }}</div>
+          <div
+            class="text-base font-semi-bold-variable"
+            data-testid="osp-product-brand"
+          >
+            {{ brand }}
+          </div>
+          <div class="text-sm" data-testid="osp-product-name">{{ name }}</div>
         </div>
         <ul class="flex flex-col gap-1 text-sm text-gray-600">
           <li v-if="color" class="flex gap-1">
-            <span class="font-medium">{{ $t('osp.color') }}:</span>
+            <span class="font-medium" data-testid="osp-product-color"
+              >{{ $t('osp.color') }}:</span
+            >
             <span>{{ color }}</span>
           </li>
 
           <li v-if="size" class="flex gap-1">
-            <span class="font-medium">{{ $t('osp.size') }}:</span>
+            <span class="font-medium" data-testid="osp-product-size"
+              >{{ $t('osp.size') }}:</span
+            >
             <span>{{ size }}</span>
           </li>
 
           <li class="flex gap-1">
-            <span class="font-medium">{{ $t('osp.quantity_label') }}:</span>
+            <span class="font-medium" data-testid="osp-product-quantity"
+              >{{ $t('osp.quantity_label') }}:</span
+            >
             <span>{{ quantity }}</span>
           </li>
         </ul>

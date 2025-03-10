@@ -7,6 +7,7 @@
           : $t('osp.delivery_address')
       "
       :class="{ 'col-span-full': isSingleAddress }"
+      data-testid="osp-delivery-address"
     >
       <div class="flex flex-col gap-1">
         <p
@@ -23,6 +24,7 @@
     <SFOspDetailBox
       v-if="address.billing && !isSingleAddress"
       :title="$t('osp.billing_address')"
+      data-testid="osp-billing-address"
     >
       <div class="flex flex-col gap-1">
         <p

@@ -1,13 +1,16 @@
 <template>
   <div class="rounded-lg border bg-gray-200 font-semi-bold-variable">
-    <div class="rounded-lg border-0 bg-white p-2">
+    <div
+      class="rounded-lg border-0 bg-white p-2"
+      data-testid="osp-delivery-date"
+    >
       <div class="text-base text-gray-500">
         {{ $t('osp.estimated_delivery_date') }}:
         {{ formatDate(new Date(Date.parse(deliveryDate.minimum))) }} -
         {{ formatDate(new Date(Date.parse(deliveryDate.maximum))) }}
       </div>
     </div>
-    <div class="p-2 text-xs text-gray-600">
+    <div class="p-2 text-xs text-gray-600" data-testid="osp-carrier">
       {{ $t('osp.delivered_by') }}
       {{ $t('osp.carrier_key.' + sender) }}
     </div>

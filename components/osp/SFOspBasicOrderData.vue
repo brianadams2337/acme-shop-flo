@@ -1,5 +1,5 @@
 <template>
-  <SFOspDetailBox :title="$t('osp.order_details')">
+  <SFOspDetailBox :title="$t('osp.order_details')" data-testid="osp-order-data">
     <ul class="flex flex-col gap-1 text-gray-600">
       <li v-if="orderConfirmedAt">
         <span class="font-medium">{{ $t('osp.order_date') }}:</span>

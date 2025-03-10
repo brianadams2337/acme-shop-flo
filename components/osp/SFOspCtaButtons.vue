@@ -4,6 +4,7 @@
       variant="primary"
       :to="getLocalizedRoute(routeList.home)"
       class="flex-1"
+      data-testid="osp-continue-shopping-button"
     >
       {{ $t('global.continue_shopping_label') }}
     </SFButton>
@@ -11,6 +12,7 @@
       v-if="orderData.id"
       variant="tertiary"
       class="flex-1"
+      data-testid="osp-order-details-button"
       :to="getOrderDetailsRoute(orderData.id)"
     >
       {{ $t('osp.order_details') }}

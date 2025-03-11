@@ -229,8 +229,12 @@ export const PDP_TEST_VARIANT_ID = {
 }
 
 export const OSP_TEST_DATA = {
-  regularProductVariantId: 335089,
+  regularProductVariantId: 335162,
   ordersUrl: '/orders',
   incorrectCbdUrl:
     '/success?cbd=eyJzdGF0dXNTg1NTI3Y2I3NjY0NWQ3NA==&login=1&pmm=b2b',
+  seoTitle: 'Bestellung bestätigt | Vielen Dank für deinen Einkauf | SCAYLE',
+  seoDescription:
+    'Vielen Dank für deine Bestellung! Dein Kauf wurde bestätigt. Überprüfe deine E-Mails für die Bestelldetails.',
+  seoRobots: 'noindex,nofollow',
 }

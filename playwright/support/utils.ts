@@ -2,6 +2,13 @@ import type { Page } from 'playwright-core'
 import { expect } from '../fixtures/fixtures'
 import { TEST_USERS } from './constants'
 
+interface SeoOptions {
+  title?: string
+  description?: string
+  robots?: string
+  canonical?: string
+}
+
 export const isMobile = (page: Page) => {
   const viewportSize = page.viewportSize()
   return viewportSize && viewportSize.width < 768
@@ -40,5 +47,29 @@ export const getUserForBrowser = (
   return {
     email: TEST_USERS[userEmailKey as keyof typeof TEST_USERS],
     password: TEST_USERS.testUserPassword,
+  }
+}
+
+export async function verifySeoMetaTags(page: Page, options: SeoOptions) {
+  if (options.title) {
+    await expect(page).toHaveTitle(options.title)
+  }
+  if (options.description) {
+    await expect(page.locator('meta[name="description"]')).toHaveAttribute(
+      'content',
+      options.description,
+    )
+  }
+  if (options.robots) {
+    await expect(page.locator('meta[name="robots"]')).toHaveAttribute(
+      'content',
+      options.robots,
+    )
+  }
+  if (options.canonical) {
+    await expect(page.locator('link[rel="canonical"]')).toHaveAttribute(
+      'href',
+      options.canonical,
+    )
   }
 }

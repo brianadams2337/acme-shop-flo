@@ -1,5 +1,9 @@
 import { expect, test } from '../fixtures/fixtures'
-import { getUserForBrowser, isMobile } from '../support/utils'
+import {
+  getUserForBrowser,
+  isMobile,
+  verifySeoMetaTags,
+} from '../support/utils'
 import { CHECKOUT_URL, OSP_TEST_DATA } from '../support/constants'
 
 test.beforeEach(async ({ accountPage, homePage, page }, testInfo) => {
@@ -10,7 +14,7 @@ test.beforeEach(async ({ accountPage, homePage, page }, testInfo) => {
   await accountPage.userAuthentication(email, password)
 })
 
-test('C2173505 C2173506 C2173507 C2173508 C2181795 C2182370 Verify OSP', async ({
+test('C2173505 C2173506 C2173507 C2173508 C2181795 C2182370 C2181791 Verify OSP', async ({
   checkoutPage,
   basketPage,
   page,
@@ -57,6 +61,13 @@ test('C2173505 C2173506 C2173507 C2173508 C2181795 C2182370 Verify OSP', async (
       orderSuccessPage.ospShippingCost,
       orderSuccessPage.ospTotal,
     )
+  })
+  await test.step('Verify OSP SEO', async () => {
+    await verifySeoMetaTags(page, {
+      title: OSP_TEST_DATA.seoTitle,
+      robots: OSP_TEST_DATA.seoRobots,
+      description: OSP_TEST_DATA.seoDescription,
+    })
   })
   await test.step('Verify OSP CTA buttons', async () => {
     if (isMobile(page)) {

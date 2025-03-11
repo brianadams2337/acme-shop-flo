@@ -597,6 +597,15 @@ export default defineNuxtConfig({
     enabled: stringToBoolean(process.env.OTEL_ENABLED),
     pathBlocklist: '^(/.*)?/api/up',
     pathReplace: [`^/(${locales.map((l) => l.code).join('|')})/`, '/:locale/'],
+    requestHeaders: [
+      'x-shop-id',
+      'content-type',
+      'content-length',
+      'accept',
+      'referer',
+      'host',
+    ],
+    responseHeaders: ['content-type', 'content-length'],
   },
 
   // https://nuxt.com/docs/api/nuxt-config#imports

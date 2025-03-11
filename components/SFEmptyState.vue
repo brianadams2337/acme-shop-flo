@@ -7,7 +7,13 @@
       <component :is="iconComponent" class="size-full" aria-hidden="true" />
     </div>
     <div class="px-14 text-center md:w-128 md:px-0">
-      <SFHeadline v-if="title" tag="h1" class="!block" size="3xl">
+      <SFHeadline
+        v-if="title"
+        tag="h1"
+        class="!block"
+        size="3xl"
+        data-testid="empty-state-headline"
+      >
         {{ title }}
       </SFHeadline>
       <p

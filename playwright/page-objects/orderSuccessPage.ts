@@ -24,6 +24,11 @@ export class OrderSuccessPage {
   readonly ospShippingCost: Locator
   readonly ospTotal: Locator
   readonly ospProductPrice: Locator
+  readonly ospEmptyStateContainer: Locator
+  readonly ospEmptyStateIcon: Locator
+  readonly ospEmptyStateHeadline: Locator
+  readonly ospEmptyStateSubheadline: Locator
+  readonly ospEmptyStateContinueShoppingButton: Locator
 
   constructor(page: Page) {
     this.page = page
@@ -50,6 +55,13 @@ export class OrderSuccessPage {
     this.ospShippingCost = page.getByTestId('osp-shipping-cost')
     this.ospTotal = page.getByTestId('osp-total')
     this.ospProductPrice = page.getByTestId('price')
+    this.ospEmptyStateContainer = page.getByTestId('empty-state')
+    this.ospEmptyStateIcon = page.getByTestId('empty-state-icon')
+    this.ospEmptyStateHeadline = page.getByTestId('empty-state-headline')
+    this.ospEmptyStateSubheadline = page.getByTestId('empty-state-subheadline')
+    this.ospEmptyStateContinueShoppingButton = page.locator(
+      '[data-testid="empty-state"] >> a',
+    )
   }
 
   async assertOspPriceSummary(

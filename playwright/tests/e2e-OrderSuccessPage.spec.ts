@@ -79,3 +79,23 @@ test('C2173505 C2173506 C2173507 C2173508 C2181795 C2182370 Verify OSP', async (
     expect(page.url()).toContain(OSP_TEST_DATA.ordersUrl)
   })
 })
+
+test('C2182954 Verify OSP Error page', async ({
+  page,
+  orderSuccessPage,
+  homePage,
+}) => {
+  await test.step('Visit OSP with incorect token and assert page elements', async () => {
+    await page.goto(OSP_TEST_DATA.incorrectCbdUrl, { waitUntil: 'commit' })
+    await orderSuccessPage.ospEmptyStateContainer.waitFor()
+    await expect(orderSuccessPage.ospEmptyStateHeadline).toBeVisible()
+    await expect(orderSuccessPage.ospEmptyStateSubheadline).toBeVisible()
+    await expect(orderSuccessPage.ospEmptyStateIcon).toBeVisible()
+  })
+  await test.step('Click Continue Shopping button and assert Homepage is loaded', async () => {
+    await orderSuccessPage.ospEmptyStateContinueShoppingButton.waitFor()
+    await orderSuccessPage.ospEmptyStateContinueShoppingButton.click()
+    await homePage.homepageContent.waitFor()
+    await expect(homePage.homepageContent).toBeAttached()
+  })
+})

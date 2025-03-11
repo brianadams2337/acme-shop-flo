@@ -3555,10 +3555,10 @@
   resolved "https://registry.yarnpkg.com/@scayle/nuxt-image-provider/-/nuxt-image-provider-0.2.2.tgz#b5aad5bf2f2164f9a1fb00140e80f30deb1e23bc"
   integrity sha512-tCRCMlKyhZPuxsrCgDIcd5Cs6ZMOqTtr6Jn7e2gD9d1dAE+L68KvfNGROiDcHgXMxdZPzpbiuzmLXKjFh1qc8g==
 
-"@scayle/nuxt-opentelemetry@0.6.3":
-  version "0.6.3"
-  resolved "https://registry.yarnpkg.com/@scayle/nuxt-opentelemetry/-/nuxt-opentelemetry-0.6.3.tgz#37055129731d4ded69ee1cf6cc7c2a6979126a5e"
-  integrity sha512-k1efrnJVnY8P8q7YQ3GhBOsh3tsBfX9tI6zCDeTOoAqcKmE8hJgfLvwLkgmdqUukIR/UTk8S1SFvR1E25L50mg==
+"@scayle/nuxt-opentelemetry@0.6.4":
+  version "0.6.4"
+  resolved "https://registry.yarnpkg.com/@scayle/nuxt-opentelemetry/-/nuxt-opentelemetry-0.6.4.tgz#0e0123c365cc30da63cd146d4ca1a233720a650d"
+  integrity sha512-vU8/h/eqSprWY+3DW4JbNnNfu4si0NlsBP/rdYNa4wyJdcjIj2z/3OkOnMuJ6KcyClBBozWIyFpKJARgIK+32w==
   dependencies:
     "@nuxt/kit" "^3.12.3"
     "@opentelemetry/api" "1.9.0"
@@ -3568,7 +3568,7 @@
     "@opentelemetry/resources" "1.30.1"
     "@opentelemetry/sdk-node" "0.52.1"
     "@opentelemetry/semantic-conventions" "1.30.0"
-    "@vercel/otel" "1.10.2"
+    "@vercel/otel" "1.10.3"
     defu "^6.1.4"
     knitwork "^1.1.0"
 
@@ -4374,10 +4374,10 @@
     picomatch "^4.0.2"
     resolve-from "^5.0.0"
 
-"@vercel/otel@1.10.2":
-  version "1.10.2"
-  resolved "https://registry.yarnpkg.com/@vercel/otel/-/otel-1.10.2.tgz#0200dedd48d680f619bfb5997afe0a9734be7638"
-  integrity sha512-kazuGm07eMbXgHHI38Pgqax6YWk92eSqyKCK8LdQDObvPQzUgLXsXKGJnNGUBDpk8g05h9/GVhS+IrZ3cysYAQ==
+"@vercel/otel@1.10.3":
+  version "1.10.3"
+  resolved "https://registry.yarnpkg.com/@vercel/otel/-/otel-1.10.3.tgz#c869ebe968b3f4363ccd7c574a48c0e4c3f77b5b"
+  integrity sha512-HjLXybk2eYvvYhWIKHLXt1ZTcOMCd/vbBsxSd4wgw9nACSEqt522R1TmcY3dIJQse0eJDaSrXx/V/waJ+qftzQ==
 
 "@vercel/stega@^0.1.2":
   version "0.1.2"

@@ -245,3 +245,11 @@ export const LOGIN_REGISTRATION = {
     'Greife auf dein Konto zu oder erstelle ein neues bei SCAYLE. Erlebe ein nahtloses Einkaufserlebnis mit sicherem Login und personalisierten Optionen.',
   seoRobots: 'noindex,follow',
 }
+
+export const PLP_TEST_DATA = {
+  seoTitle: 'Frauen | SCAYLE',
+  seoDescription:
+    'Kaufen Sie Frauen bei SCAYLE. Entdecken Sie eine große Auswahl an Frauen.',
+  seoRobotsDefault: 'index,follow',
+  seoRobotsFiltersSorting: 'noindex,follow',
+}

@@ -5,8 +5,9 @@ import {
   PLP_PATH_SUBCATEGORY_LVL_2,
   PLP_PATH_MAIN_CATEGORY,
   SORTING,
+  PLP_TEST_DATA,
 } from '../support/constants'
-import { isMobile } from '../support/utils'
+import { isMobile, verifySeoMetaTags } from '../support/utils'
 
 test.beforeEach(async ({ productListingPage, baseURL, countryDetector }) => {
   await productListingPage.visitPlpNoFilters(
@@ -389,4 +390,57 @@ test('C2162411: Verify PLP Sorting', async ({
     .getAttribute('id')
 
   expect(productIdPriceAsc).not.toEqual(productIdPriceDesc)
+})
+
+test('C2139182: Verify PLP SEO data', async ({
+  productListingPage,
+  baseURL,
+  countryDetector,
+  sorting,
+  filters,
+  page,
+}) => {
+  await test.step('Navigate to PLP and check default SEO data', async () => {
+    await productListingPage.visitPlpNoFilters(
+      PLP_PATH_MAIN_CATEGORY,
+      baseURL as string,
+    )
+    await countryDetector.closeModal()
+    await productListingPage.h1.waitFor()
+    const pageTitle =
+      (await productListingPage.pageTitle.textContent()) as string
+    await expect(productListingPage.h1).toContainText(pageTitle)
+    await verifySeoMetaTags(page, {
+      title: PLP_TEST_DATA.seoTitle,
+      robots: PLP_TEST_DATA.seoRobotsDefault,
+      description: PLP_TEST_DATA.seoDescription,
+      canonical: baseURL + PLP_PATH_MAIN_CATEGORY,
+    })
+  })
+  await test.step('Apply Sorting and check SEO data', async () => {
+    if (isMobile(page)) {
+      await filters.filterButton.nth(1).click()
+      await sorting.applySorting(SORTING.priceDesc, 1)
+      await filters.closeFiltersButton.first().click()
+    } else {
+      await sorting.applySorting(SORTING.priceAsc, 0)
+    }
+    await page.waitForTimeout(500)
+    await page.waitForLoadState('domcontentloaded')
+    await verifySeoMetaTags(page, {
+      robots: PLP_TEST_DATA.seoRobotsFiltersSorting,
+    })
+  })
+  await test.step('Navigate to PLP with applied filters and check SEO data', async () => {
+    await productListingPage.visitPlpWithFiltersUrl(
+      PLP_PATH_SUBCATEGORY_LVL_1,
+      PLP_FILTER_DEEPLINK,
+      baseURL as string,
+    )
+    await countryDetector.closeModal()
+    await productListingPage.h1.waitFor()
+    await verifySeoMetaTags(page, {
+      robots: PLP_TEST_DATA.seoRobotsFiltersSorting,
+    })
+  })
 })

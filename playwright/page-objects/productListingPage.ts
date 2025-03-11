@@ -12,6 +12,8 @@ export class ProductListingPage {
   readonly productSibling: Locator
   readonly productImage: Locator
   readonly productCard: Locator
+  readonly h1: Locator
+  readonly pageTitle: Locator
 
   constructor(page: Page) {
     this.page = page
@@ -32,6 +34,8 @@ export class ProductListingPage {
     this.productSibling = page.getByTestId('product-sibling')
     this.productImage = page.getByTestId('product-image')
     this.productCard = page.locator('article[id^="product-"]')
+    this.h1 = page.locator('h1')
+    this.pageTitle = page.getByTestId('active-category-breadcrumb')
   }
 
   async addProductToWishlist() {

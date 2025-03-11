@@ -34,7 +34,9 @@ export class WishlistPage {
     this.buttonContinueShopping = page.getByTestId('button-continue-shopping')
     this.buttonSignIn = page.getByTestId('button-signin')
     this.emptyStateIcon = this.emptyState.getByTestId('empty-state-icon')
-    this.emptyStateHeadline = this.emptyState.getByTestId('headline').nth(0)
+    this.emptyStateHeadline = this.emptyState.getByTestId(
+      'empty-state-headline',
+    )
     this.emptyStateSubheadline = this.emptyState.getByTestId(
       'empty-state-subheadline',
     )

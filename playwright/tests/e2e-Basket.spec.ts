@@ -24,8 +24,9 @@ test('C2132186 C2132187 Verify Basket empty state as a guest and logged in user'
 
     const pageUrl = page.url()
     const basketUrl = E2E_BASKET_URL.source.replace(/\\/g, '')
-    const basketTitleText = await basketPage.basketTitle.textContent()
-    const basketSubTitleText = await basketPage.basketSubTitle.textContent()
+    const basketTitleText = await basketPage.basketEmptyStateTitle.textContent()
+    const basketSubTitleText =
+      await basketPage.basketEmptyStateSubTitle.textContent()
 
     await expect(async () => {
       expect(pageUrl).toContain(basketUrl)

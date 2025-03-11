@@ -8,7 +8,8 @@
     "sourceMap": true,
     "outDir": "./dist",
     "types": ["node", "expect-playwright"],
-    "resolveJsonModule": true
+    "resolveJsonModule": true,
+    "erasableSyntaxOnly": true
   },
   "include": [
     "./tests/**/*.ts",

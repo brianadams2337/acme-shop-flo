@@ -3,6 +3,7 @@
   "exclude": ["./playwright/**/*"],
   "compilerOptions": {
     "noImplicitAny": true,
+    "erasableSyntaxOnly": true,
     "plugins": [
       {
         "name": "@vue/typescript-plugin"

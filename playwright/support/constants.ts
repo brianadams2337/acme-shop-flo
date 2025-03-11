@@ -238,3 +238,10 @@ export const OSP_TEST_DATA = {
     'Vielen Dank für deine Bestellung! Dein Kauf wurde bestätigt. Überprüfe deine E-Mails für die Bestelldetails.',
   seoRobots: 'noindex,nofollow',
 }
+
+export const LOGIN_REGISTRATION = {
+  seoTitle: 'Einloggen oder registrieren | SCAYLE',
+  seoDescription:
+    'Greife auf dein Konto zu oder erstelle ein neues bei SCAYLE. Erlebe ein nahtloses Einkaufserlebnis mit sicherem Login und personalisierten Optionen.',
+  seoRobots: 'noindex,follow',
+}

@@ -1,11 +1,13 @@
 import { expect, test } from '../fixtures/fixtures'
-import { isMobile } from '../support/utils'
+import { isMobile, verifySeoMetaTags } from '../support/utils'
 import {
   HOMEPAGE_PATH_DE,
   LOGGED_IN_USER_DATA,
   LOGIN_WRONG_CREDENTIALS,
   REGISTERED_TEST_USER,
   GUEST_TEST_USER,
+  LOGIN_REGISTRATION,
+  SIGNIN_URL,
 } from '../support/constants'
 
 test.beforeEach(async ({ homePage, page, countryDetector }) => {
@@ -264,4 +266,25 @@ test('C2171374 Verify User registration guest flow', async ({
       await expect(signinPage.userPopoverLogoutButton).toBeVisible()
     }
   })
+})
+
+test('C2171377 Verify User login and registration SEO data', async ({
+  signinPage,
+  header,
+  page,
+  baseURL,
+}) => {
+  await header.headerLoginButton.waitFor()
+  await header.headerLoginButton.click()
+  await signinPage.loginTab.waitFor()
+  const pageTitle = (await signinPage.pageTitle.nth(0).textContent()) as string
+
+  await verifySeoMetaTags(page, {
+    title: LOGIN_REGISTRATION.seoTitle,
+    robots: LOGIN_REGISTRATION.seoRobots,
+    description: LOGIN_REGISTRATION.seoDescription,
+    canonical: baseURL + HOMEPAGE_PATH_DE + SIGNIN_URL,
+  })
+  await expect(signinPage.h1).toBeAttached()
+  await expect(signinPage.h1).toHaveText(pageTitle)
 })

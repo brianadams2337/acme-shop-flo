@@ -36,6 +36,8 @@ export class SignInPage {
   readonly greetingUserFirstName: Locator
   readonly userPopoverEmail: Locator
   readonly userPopoverLogoutButton: Locator
+  readonly h1: Locator
+  readonly pageTitle: Locator
 
   constructor(page: Page) {
     this.page = page
@@ -91,6 +93,8 @@ export class SignInPage {
     this.userPopoverLogoutButton = page.getByTestId(
       'user-popover-logout-button',
     )
+    this.h1 = page.locator('h1')
+    this.pageTitle = page.getByTestId('headline')
   }
 
   async fillLoginData(email: string, password: string) {

@@ -1,6 +1,11 @@
 import { expect, test } from '../fixtures/fixtures'
-import { PDP_E2E, LOCATION, PDP_TEST_VARIANT_ID } from '../support/constants'
-import { isMobile } from '../support/utils'
+import {
+  PDP_E2E,
+  LOCATION,
+  PDP_TEST_VARIANT_ID,
+  HOMEPAGE_PATH_DE,
+} from '../support/constants'
+import { isMobile, verifySeoMetaTags } from '../support/utils'
 
 test('C2141594: Verify PDP name, brand and price for regular product', async ({
   productDetailPage,
@@ -321,4 +326,25 @@ test('C2181799: Verify PDP URL Variant ID parameter for multi-size sold-out vari
   await expect(productDetailPage.variantPicker).toContainText(
     PDP_TEST_VARIANT_ID.soldOutVariantSize,
   )
+})
+
+test('C2141150 Verify PDP SEO data', async ({
+  productDetailPage,
+  countryDetector,
+  page,
+  baseURL,
+}) => {
+  await productDetailPage.visitPDP(PDP_E2E.regularProductUrl, baseURL as string)
+  await countryDetector.closeModal()
+  await productDetailPage.h1.waitFor()
+  const pageTitle = (await productDetailPage.pageTitle.textContent()) as string
+
+  await verifySeoMetaTags(page, {
+    title: PDP_E2E.seoTitle,
+    robots: PDP_E2E.seoRobots,
+    description: PDP_E2E.seoDescription,
+    canonical: baseURL + HOMEPAGE_PATH_DE + PDP_E2E.regularProductUrl,
+  })
+  await expect(productDetailPage.h1).toBeAttached()
+  await expect(productDetailPage.h1).toContainText(pageTitle)
 })

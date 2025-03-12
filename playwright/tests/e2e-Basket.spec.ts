@@ -1,5 +1,9 @@
 import { expect, test } from '../fixtures/fixtures'
-import { getUserForBrowser, isMobile } from '../support/utils'
+import {
+  getUserForBrowser,
+  isMobile,
+  verifySeoMetaTags,
+} from '../support/utils'
 import {
   BASKET_TEST_DATA,
   E2E_BASKET_URL,
@@ -408,4 +412,31 @@ test('C2167368 Verify Basket increasing free product quantity', async ({
     await basketPage.assertInitialPriceVisibility(true)
     await expect(header.basketNumItems).toHaveText('2')
   })
+})
+
+test('C2162476 Verify Basket SEO', async ({
+  homePage,
+  header,
+  basketPage,
+  countryDetector,
+  page,
+  baseURL,
+}) => {
+  await homePage.visitPage()
+  await countryDetector.closeModal()
+  await basketPage.addProductToBasket(BASKET_TEST_DATA.regularPriceVariantId, 1)
+  await header.visitBasketPage()
+  await page.reload()
+  await page.waitForLoadState('domcontentloaded')
+  await basketPage.h1.waitFor()
+  const pageTitle = (await basketPage.pageTitle.nth(0).textContent()) as string
+
+  await verifySeoMetaTags(page, {
+    title: BASKET_TEST_DATA.seoTitle,
+    robots: BASKET_TEST_DATA.seoRobots,
+    description: BASKET_TEST_DATA.seoDescription,
+    canonical: baseURL + HOMEPAGE_PATH_DE + ROUTES.basket,
+  })
+  await expect(basketPage.h1).toBeAttached()
+  await expect(basketPage.h1).toContainText(pageTitle)
 })

@@ -25,6 +25,8 @@ export class WishlistPage {
   readonly productSize: Locator
   readonly buttonRemoveFromWishlist: Locator
   readonly slideInOverflow: Locator
+  readonly h1: Locator
+  readonly pageTitle: Locator
 
   constructor(page: Page, rpc: RPC) {
     this.page = page
@@ -56,6 +58,8 @@ export class WishlistPage {
       'remove-item-from-wishlist-button',
     )
     this.slideInOverflow = page.getByTestId('slide-in-overflow')
+    this.h1 = page.locator('h1')
+    this.pageTitle = page.getByTestId('headline')
   }
 
   radioButtonSize(size: string): Locator {

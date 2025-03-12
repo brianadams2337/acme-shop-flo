@@ -32,6 +32,8 @@ export class ProductDetailPage {
   readonly buttonChooseStore: Locator
   readonly storeName: Locator
   readonly itemStatus: Locator
+  readonly h1: Locator
+  readonly pageTitle: Locator
 
   constructor(page: Page) {
     this.page = page
@@ -77,6 +79,8 @@ export class ProductDetailPage {
     this.buttonChooseStore = page.getByTestId('choose-store-button')
     this.storeName = page.getByTestId('store-name')
     this.itemStatus = page.getByTestId('item-status')
+    this.h1 = page.locator('h1')
+    this.pageTitle = page.getByTestId('pdp-product-brand')
   }
 
   getVariant(variantId?: string): Locator {

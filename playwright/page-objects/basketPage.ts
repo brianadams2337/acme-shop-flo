@@ -39,6 +39,8 @@ export class BasketPage {
   readonly buttonQuantityIncrease: Locator
   readonly initialProductPrice: Locator
   readonly productPrice: Locator
+  readonly h1: Locator
+  readonly pageTitle: Locator
 
   constructor(page: Page, rpc: RPC) {
     this.page = page
@@ -97,6 +99,8 @@ export class BasketPage {
     this.buttonQuantityIncrease = page.getByTestId('quantity-plus')
     this.initialProductPrice = page.getByTestId('initialProductPrice')
     this.productPrice = page.getByTestId('price')
+    this.h1 = page.locator('h1')
+    this.pageTitle = page.getByTestId('headline')
   }
 
   async gotoCheckoutPage(index: number) {

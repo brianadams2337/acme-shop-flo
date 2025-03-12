@@ -5,8 +5,9 @@ import {
   WISHLIST_PRODUCT_ID,
   WISHLIST_PRODUCT_ID_ONESIZE,
   ROUTES,
+  WISHLIST_TEST_DATA,
 } from '../support/constants'
-import { isMobile } from '../support/utils'
+import { isMobile, verifySeoMetaTags } from '../support/utils'
 
 test.beforeEach(async ({ wishlistPage, baseURL, countryDetector }) => {
   await wishlistPage.visitWishlistPage('/wishlist', baseURL as string)
@@ -105,4 +106,20 @@ test.skip('C2141224 Verify wishlist one-size product add to basket', async ({
     await wishlistPage.addProductToBasket()
     await expect(header.basketNumItems).toHaveText('1')
   }).toPass()
+})
+
+test('C2183076 Verify Wishlist SEO data', async ({ wishlistPage, page }) => {
+  await wishlistPage.addProductToWishlist(WISHLIST_PRODUCT_ID_ONESIZE)
+  await page.reload()
+  await wishlistPage.h1.waitFor()
+  const pageTitle = (await wishlistPage.pageTitle
+    .nth(0)
+    .textContent()) as string
+
+  await verifySeoMetaTags(page, {
+    title: WISHLIST_TEST_DATA.seoTitle,
+    robots: WISHLIST_TEST_DATA.seoRobots,
+  })
+  await expect(wishlistPage.h1).toBeAttached()
+  await expect(wishlistPage.h1).toContainText(pageTitle)
 })

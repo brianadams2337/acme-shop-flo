@@ -84,6 +84,10 @@ export const BASKET_TEST_DATA = {
   promoPaidProduct: 333618,
   promoFreeProduct: 336349,
   freeProductPriceLabel: ' 0,00 € ',
+  seoTitle: 'Warenkorb | SCAYLE',
+  seoDescription:
+    'Überprüfe die Artikel in deinem Warenkorb und gehe problemlos zur Kasse. Sicheres und unkompliziertes Einkaufen bei SCAYLE.',
+  seoRobots: 'noindex,follow',
 }
 
 export const HOMEPAGE_PATH_DE = '/de'
@@ -148,6 +152,10 @@ export const PDP_E2E = {
   subscribeNotEligibleVariantId: '333740',
   happyPathProductUrl: '/de/p/jacke-205696',
   happyPathProductVariantId: '337629',
+  seoTitle: 'Sweatshirt | SCAYLE',
+  seoDescription: `Kaufen Sie Sweatshirt online bei SCAYLE. 
+Entdecken Sie die große Auswahl weiterer Markenprodukte.`,
+  seoRobots: 'index, follow',
 }
 
 export const LIGHTHOUSE_AUDIT_PATHS = {
@@ -252,4 +260,9 @@ export const PLP_TEST_DATA = {
     'Kaufen Sie Frauen bei SCAYLE. Entdecken Sie eine große Auswahl an Frauen.',
   seoRobotsDefault: 'index,follow',
   seoRobotsFiltersSorting: 'noindex,follow',
+}
+
+export const WISHLIST_TEST_DATA = {
+  seoTitle: 'Wunschliste | SCAYLE',
+  seoRobots: 'noindex,follow',
 }

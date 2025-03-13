@@ -1,6 +1,7 @@
 import { beforeEach, describe, it, vi, expect, type Mock } from 'vitest'
 import { routeFactory } from '@scayle/storefront-nuxt/test/factories'
 import { toRef } from 'vue'
+import type { RouteLocation } from 'vue-router'
 import authGuardMiddleware from './authGuard.global'
 import { useCurrentShop, useUser } from '#storefront/composables'
 import { navigateTo } from '#app/composables/router'
@@ -16,6 +17,9 @@ vi.mock('#app/composables/router', () => ({
 
 vi.mock('#i18n', () => ({
   useLocalePath: vi.fn(() => vi.fn((path) => path)),
+  useRouteBaseName: vi
+    .fn()
+    .mockReturnValue((route: RouteLocation) => route.name),
 }))
 
 vi.mock('#storefront/composables', () => ({
@@ -49,7 +53,6 @@ describe('authGuard', async () => {
       path: '/',
       fullPath: '/de',
     })
-
     await authGuardMiddleware(to, from)
 
     expect(navigateTo).toHaveBeenCalledWith({

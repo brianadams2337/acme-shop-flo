@@ -1,6 +1,6 @@
 import { useNuxtApp } from '#app'
 import { defineNuxtRouteMiddleware, navigateTo } from '#app/composables/router'
-import { useLocalePath } from '#i18n'
+import { useLocalePath, useRouteBaseName } from '#i18n'
 import { useCurrentShop, useUser } from '#storefront/composables'
 import { getProtectedRouteList, routeList, type LinkList } from '~/utils/route'
 
@@ -22,11 +22,12 @@ export default defineNuxtRouteMiddleware(async (to, from) => {
     return getLocalePath(routePath) || routePath
   }
 
+  const getRouteBaseName = useRouteBaseName()
   const isProtectedRoute = (exclude?: string): boolean => {
     const routes = getProtectedRouteList(exclude)
-
+    const targetBaseName = getRouteBaseName(to)
     return routes.some(
-      (protectedRoute) => localePath(protectedRoute) === to.path,
+      (protectedRoute) => protectedRoute.name === targetBaseName,
     )
   }
 

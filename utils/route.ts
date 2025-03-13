@@ -24,6 +24,7 @@ type Link =
   | 'wishlist'
   | 'basket'
   | 'signin'
+  | 'signinCallback'
   | 'signup'
   | 'user'
   | 'orders'
@@ -35,6 +36,7 @@ type Link =
   | 'osp'
   | 'location'
   | 'subscriptionOverview'
+  | 'subscriptionCancellations'
 
 export type LinkList = Record<
   Link,
@@ -52,11 +54,12 @@ export const routeList: LinkList = {
   search: { name: 'search', path: '/search' },
   wishlist: { name: 'wishlist', path: '/wishlist' },
   category: { name: 'c-category-slug-id', path: '/c' },
-  pdp: { name: 'p-name-id', path: '/p' },
+  pdp: { name: 'p-productName-id', path: '/p' },
   osp: { name: 'success', path: '/success' },
   location: { name: 'location', path: '/location' },
   basket: { name: 'basket', path: '/basket' },
   signin: { name: 'signin', path: '/signin' },
+  signinCallback: { name: 'signin-callback', path: '/signin/callback' },
   signup: { name: 'signin', path: '/signin', query: { register: 'true' } },
   checkout: { name: 'checkout', path: '/checkout', isProtected: true },
   user: { name: 'account-user', path: '/account/user', isProtected: true },
@@ -76,10 +79,17 @@ export const routeList: LinkList = {
     path: '/account/subscription',
     isProtected: true,
   },
+  subscriptionCancellations: {
+    name: 'subscription-cancellations',
+    path: '/account/subscription-cancellations',
+    isProtected: true,
+  },
 } as const
 
-export const getProtectedRouteList = (exclude?: string): string[] => {
+export const getProtectedRouteList = (
+  exclude?: string,
+): LinkList[keyof LinkList][] => {
   return Object.entries(routeList)
     .filter(([key, value]) => value.isProtected && exclude !== key)
-    .map(([, value]) => value.path)
+    .map(([_, route]) => route)
 }

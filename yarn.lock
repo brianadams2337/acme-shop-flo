@@ -5938,7 +5938,29 @@ contentful-batch-libs@^9.4.1:
     lodash.clonedeep "^4.5.0"
     uuid "^9.0.1"
 
-contentful-export@7.21.31, contentful-export@^7.19.147:
+contentful-export@7.21.32:
+  version "7.21.32"
+  resolved "https://registry.yarnpkg.com/contentful-export/-/contentful-export-7.21.32.tgz#683bda9eef926d4864e6c2cd598baa0999c2940d"
+  integrity sha512-1ZisWTejRGZwLY9DzNKr3T1ZUeEGIanawnGDTVHp/UqrfqgMQfKApRPv3dNuMlPd3OBQPv3xQbkw3GhuF3bjSA==
+  dependencies:
+    axios "^1.7.8"
+    bfj "^8.0.0"
+    bluebird "^3.3.3"
+    cli-table3 "^0.6.0"
+    contentful "^11.1.4"
+    contentful-batch-libs "^9.4.1"
+    contentful-management "^11.36.0"
+    date-fns "^4.1.0"
+    figures "^3.2.0"
+    jsonwebtoken "^9.0.0"
+    listr "^0.14.1"
+    listr-update-renderer "^0.5.0"
+    listr-verbose-renderer "^0.6.0"
+    lodash.startcase "^4.4.0"
+    mkdirp "^2.0.0"
+    yargs "^17.1.1"
+
+contentful-export@^7.19.147:
   version "7.21.31"
   resolved "https://registry.yarnpkg.com/contentful-export/-/contentful-export-7.21.31.tgz#5513b5a9883ad713b427451471d946086541c256"
   integrity sha512-8aVZZRWqyoGZdH8BVirbK4oMAI+q/sYbVpGFBcE9Jz18RQUDzA6DwOGLERFsi95crBuVYkil8WTN03nAty2Qcg==
@@ -6002,10 +6024,10 @@ contentful-sdk-core@^9.0.1:
   optionalDependencies:
     "@rollup/rollup-linux-x64-gnu" "^4.18.0"
 
-contentful@11.5.6, contentful@^11.1.4:
-  version "11.5.6"
-  resolved "https://registry.yarnpkg.com/contentful/-/contentful-11.5.6.tgz#df96e1d8ca6fe430ee526468c841fd87a9b7e9a5"
-  integrity sha512-OJop4QGDsEpdRHhZnyrxn0VUMi067CYCoLworKJzi1XGWvDZlHyssRB1y3/54tXypUQnJUDDT4cmt+5MHLLVRg==
+contentful@11.5.7:
+  version "11.5.7"
+  resolved "https://registry.yarnpkg.com/contentful/-/contentful-11.5.7.tgz#259cfcc66c137eb4b100ff883a2a4326619518a3"
+  integrity sha512-rUW75MSGqZU7r7wuTwufaS/pXp3+30SIepwVuYLl1dTu+pkQJGHWvJM4lDFrmu5ftzBhPZNY6kBn1BSYR2xnoQ==
   dependencies:
     "@contentful/content-source-maps" "^0.11.8"
     "@contentful/rich-text-types" "^16.6.1"
@@ -6025,6 +6047,19 @@ contentful@^10.14.1:
     axios "^1.7.4"
     contentful-resolve-response "^1.9.0"
     contentful-sdk-core "^8.3.1"
+    json-stringify-safe "^5.0.1"
+    type-fest "^4.0.0"
+
+contentful@^11.1.4:
+  version "11.5.6"
+  resolved "https://registry.yarnpkg.com/contentful/-/contentful-11.5.6.tgz#df96e1d8ca6fe430ee526468c841fd87a9b7e9a5"
+  integrity sha512-OJop4QGDsEpdRHhZnyrxn0VUMi067CYCoLworKJzi1XGWvDZlHyssRB1y3/54tXypUQnJUDDT4cmt+5MHLLVRg==
+  dependencies:
+    "@contentful/content-source-maps" "^0.11.8"
+    "@contentful/rich-text-types" "^16.6.1"
+    axios "^1.7.9"
+    contentful-resolve-response "^1.9.0"
+    contentful-sdk-core "^9.0.1"
     json-stringify-safe "^5.0.1"
     type-fest "^4.0.0"
 

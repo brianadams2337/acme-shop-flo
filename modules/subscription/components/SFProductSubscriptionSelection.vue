@@ -58,7 +58,13 @@
             {{
               $t('subscription.day_of_month_selection_caption', {
                 dayOfMonth:
-                  item?.day + $t(`global.ordinal_suffixes.${ordinalSuffixKey}`),
+                  item?.day +
+                  $t(
+                    `global.ordinal_suffixes.${getOrdinalSuffix(
+                      locale,
+                      item?.day,
+                    )}`,
+                  ),
               })
             }}
           </SFButton>
@@ -83,8 +89,10 @@ import { computed, watch } from 'vue'
 import type { Product, Variant } from '@scayle/storefront-nuxt'
 import { useSubscription } from '../composables/useSubscription'
 import type { PreferredDeliveryDate } from '../helpers/subscription'
+import { getOrdinalSuffix } from '../helpers/subscription'
 import type { AddToBasketItem } from '~/composables'
 import { SFButton, SFDropdown } from '#storefront-ui/components'
+import { useCurrentShop } from '#storefront/composables'
 
 const { product, variant, preferredDeliveryDate, pricePromotionKey, quantity } =
   defineProps<{
@@ -96,6 +104,12 @@ const { product, variant, preferredDeliveryDate, pricePromotionKey, quantity } =
   }>()
 
 defineEmits<{ addItemToBasket: [item?: AddToBasketItem] }>()
+
+const currentShop = useCurrentShop()
+
+const locale = computed(() => {
+  return currentShop.value.locale
+})
 
 const {
   subscriptionIntervals,

@@ -503,7 +503,7 @@
     "subscribe_with_reduction": "Subscribe & Save up to {percentage}%",
     "interval": "Interval",
     "follow_up_delivery": "Follow-up delivery",
-    "day_of_month_selection_caption": "Ever {dayOfMonth} of the month",
+    "day_of_month_selection_caption": "Every {dayOfMonth} of the month",
     "or": "Or save even more:",
     "select_size_message": "Select size to see options",
     "not_eligible_message": "The selected size is not eligible for a subscription",

@@ -4,7 +4,10 @@ export const getCategoryId = (route: RouteParams): number => {
   const id = Array.isArray(route.id) ? route.id[0] : route.id
   return parseInt(id, 10)
 }
-
+export const getProductId = (route: RouteParams): number => {
+  const id = Array.isArray(route.id) ? route.id[0] : route.id
+  return parseInt(id, 10)
+}
 export const normalizePathRoute = (path: string) => {
   return path.startsWith('/') ? path : `/${path}`
 }
@@ -91,5 +94,5 @@ export const getProtectedRouteList = (
 ): LinkList[keyof LinkList][] => {
   return Object.entries(routeList)
     .filter(([key, value]) => value.isProtected && exclude !== key)
-    .map(([_, route]) => route)
+    .map(([, route]) => route)
 }

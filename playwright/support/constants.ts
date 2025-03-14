@@ -263,6 +263,8 @@ export const PLP_TEST_DATA = {
 }
 
 export const WISHLIST_TEST_DATA = {
-  seoTitle: 'Wunschliste | SCAYLE',
-  seoRobots: 'noindex,follow',
+  seoTitle: 'Deine Wunschliste | SCAYLE',
+  seoRobots: 'noindex, nofollow',
+  seoDescription:
+    'Speichere deine Lieblingsprodukte und behalte den Überblick über deine Favoriten.',
 }

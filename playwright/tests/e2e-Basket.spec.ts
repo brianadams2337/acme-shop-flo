@@ -428,6 +428,7 @@ test('C2162476 Verify Basket SEO', async ({
   await header.visitBasketPage()
   await page.reload()
   await page.waitForLoadState('domcontentloaded')
+  await page.waitForTimeout(500)
   await basketPage.h1.waitFor()
   const pageTitle = (await basketPage.pageTitle.nth(0).textContent()) as string
 

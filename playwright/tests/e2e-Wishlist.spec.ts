@@ -108,7 +108,11 @@ test.skip('C2141224 Verify wishlist one-size product add to basket', async ({
   }).toPass()
 })
 
-test('C2183076 Verify Wishlist SEO data', async ({ wishlistPage, page }) => {
+test('C2183076 Verify Wishlist SEO data', async ({
+  wishlistPage,
+  page,
+  baseURL,
+}) => {
   await wishlistPage.addProductToWishlist(WISHLIST_PRODUCT_ID_ONESIZE)
   await page.reload()
   await wishlistPage.h1.waitFor()
@@ -119,6 +123,8 @@ test('C2183076 Verify Wishlist SEO data', async ({ wishlistPage, page }) => {
   await verifySeoMetaTags(page, {
     title: WISHLIST_TEST_DATA.seoTitle,
     robots: WISHLIST_TEST_DATA.seoRobots,
+    description: WISHLIST_TEST_DATA.seoDescription,
+    canonical: baseURL + HOMEPAGE_PATH_DE + ROUTES.wishlist,
   })
   await expect(wishlistPage.h1).toBeAttached()
   await expect(wishlistPage.h1).toContainText(pageTitle)

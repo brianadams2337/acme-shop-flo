@@ -2,4 +2,4 @@
 '@scayle/storefront-boilerplate-nuxt': patch
 ---
 
-[OSP] Simplify the cost summary on the Order Success Page.
+**\[OSP\]** The cost summary on the Order Success Page has been simplified to improve clarity and user experience.

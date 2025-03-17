@@ -2,4 +2,4 @@
 '@scayle/storefront-boilerplate-nuxt': patch
 ---
 
-[OSP] Update the design of the order information on the Order Success Page.
+**\[OSP\]** The order information section has been redesigned for a clearer and more user-friendly experience.

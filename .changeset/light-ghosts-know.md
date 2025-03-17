@@ -2,10 +2,7 @@
 '@scayle/storefront-boilerplate-nuxt': minor
 ---
 
-Added the nuxt module `@scayle/nuxt-image-provider`.
-This is a provider for `@nuxt/image` that supports SCAYLE CDN-specific modifiers.
-
-Key Features include:
-
-- **ScayleImg & ScaylePicture:** Wrapper components for NuxtImg and NuxtPicture, optimized for SCAYLE.
-- **Dedicated Provider:** Handles SCAYLE-specific image modifiers seamlessly.
+**\[Architecture\]** Integrated the `@scayle/nuxt-image-provider` Nuxt module to optimize image delivery and leverage the full capabilities of the SCAYLE CDN.
+This module introduces a dedicated provider for ´@nuxt/image`, enabling support for SCAYLE-specific image modifiers that provide greater control over image transformations and optimizations. 
+The module also includes the `ScayleImg`and`ScaylePicture` components, which offer a simplified way to integrate images optimized for SCAYLE CDN within your application.
+This enhancement improves image performance, reduces bandwidth consumption, and simplifies image management.

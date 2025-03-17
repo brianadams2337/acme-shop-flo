@@ -2,7 +2,5 @@
 '@scayle/storefront-boilerplate-nuxt': minor
 ---
 
-**\[CMS\]** Eliminate the `CMSServicePageData` component from all CMS providers
-and service pages (`./pages/s/[slug].vue`). This component was previously tasked
-with fetching content data for service pages. Consequently, all links throughout
-the application that directed to these service pages must be updated.
+**\[CMS\]** The `CMSServicePageData`component, responsible for fetching content data for service pages (`/pages/s/[slug].vue`), has been removed from all CMS providers.
+Going forwards the Storefront Boilerplate CMS integration for Storyblok and Contentful are only supporting content pages (`/pages/content/[slug].vue`).

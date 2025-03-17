@@ -2,4 +2,4 @@
 '@scayle/storefront-boilerplate-nuxt': minor
 ---
 
-**\[E2E\]** Added end-to-end test covering the functionality of free promotion products in the basket, specifically focusing on increasing and decreasing its quantity to validate expected behavior.
+**\[E2E\]** Implemented end-to-end tests to cover the functionality of increasing and decreasing the quantity of free promotional items within the basket.

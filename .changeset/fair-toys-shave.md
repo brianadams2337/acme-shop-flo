@@ -2,4 +2,10 @@
 '@scayle/storefront-boilerplate-nuxt': patch
 ---
 
-**\[UI\]** Ensure `clickProduct` event of `CmsProduct` component (`/modules/cms/providers/storyblok/components/Product.vue` and `/modules/cms/providers/contentful/components/Product.vue`) is emitted with product data.
+**\[CMS\]** Fixed missing product data in `CmsProduct` click event.
+The `clickProduct` event in the `CmsProduct` component was not correctly emitting product data.
+This issue has been resolved, and the event now includes the necessary product information when triggered.
+
+- Related Components:
+  - Storyblok: `/modules/cms/providers/storyblok/components/Product.vue`
+  - Contentful: `/modules/cms/providers/contentful/components/Product.vue`

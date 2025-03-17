@@ -2,4 +2,5 @@
 '@scayle/storefront-boilerplate-nuxt': minor
 ---
 
-**\[Security\]** Use route name within `/middleware/authGuard.global.ts` to check if the target route is a protected route. Additionally, the `linkList` in `/utils/route.ts` got updated to contain all available routes.
+**\[Authentication\]** Strengthened application security by centralizing route access control using route names within the global authentication guard (`/middleware/authGuard.global.ts`).
+The list of available routes (`/utils/route.ts`) has been updated to contain all available routes to support this enhancement.

@@ -2,4 +2,4 @@
 '@scayle/storefront-boilerplate-nuxt': patch
 ---
 
-**\[E2E\]** Enhanced the reliability of end-to-end tests covering PLP Filters and Pagination, ensuring consistent execution across all browsers when running in parallel.
+**\[E2E\]** Enhanced the stability of end-to-end tests for PLP Filters and Pagination across all browsers during parallel test runs.

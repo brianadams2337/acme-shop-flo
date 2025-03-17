@@ -2,4 +2,5 @@
 '@scayle/storefront-boilerplate-nuxt': patch
 ---
 
-Skip fetching user data in `/middleware/authGuard.global.ts` when targeting an unprotected route to avoid unnecessary network requests.
+**\[Authentication\]** Refactored `/middleware/authGuard.global.ts` to conditionally fetch user data, skipping the process when an unprotected route is accessed.
+This optimization reduces the number of network requests and improves page load times.

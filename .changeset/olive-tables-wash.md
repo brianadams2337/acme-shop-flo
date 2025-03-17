@@ -2,4 +2,4 @@
 '@scayle/storefront-boilerplate-nuxt': minor
 ---
 
-[Accessibility] Improved accessibility of `SFQuantityInput` by adding an `aria-label` to the input field.
+**\[Accessibility\]** Enhanced the accessibility of the `SFQuantityInput` component by adding an `aria-label` attribute to the input field.

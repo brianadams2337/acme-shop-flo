@@ -2,4 +2,4 @@
 '@scayle/storefront-boilerplate-nuxt': minor
 ---
 
-[E2E] Implemented an end-to-end test covering the PDP flow of verifying product variant availability in the chosen store. This test confirms the correct display of availability information.
+**\[E2E\]** Implemented an end-to-end test to verify the display of product variant availability information on the Product Details Page (PDP).

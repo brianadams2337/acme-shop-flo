@@ -2,8 +2,7 @@
 '@scayle/storefront-boilerplate-nuxt': minor
 ---
 
-**\[CMS\]** Remove the `CMSAppFooterData` component from each CMS provider as it is no longer in use.
-This component was responsible for fetching and rendering the application footer content,
-which primarily consisted of links. This functionality is now obsolete since the footer
-content and links are fetched directly from footer navigation composables provided by `storefront-nuxt`.
-These links are configured via [SCAYLE Navigation](https://scayle.dev/en/user-guide/shops/storefront/navigation) in the the Panel.
+**\[CMS\]** The `CMSAppFooterData` component has been removed from all CMS providers.
+This component was previously used to fetch and render footer links, but this approach has been replaced by a more efficient and centralized method.
+Footer content is now managed through dedicated composables from the `@scayle/storefront-nuxt` package and configured using [SCAYLE Navigation](https://scayle.dev/en/user-guide/shops/storefront/navigation) in the Panel.
+This change reduces code duplication and simplifies maintenance while providing a more consistent and flexible approach to managing footer links.

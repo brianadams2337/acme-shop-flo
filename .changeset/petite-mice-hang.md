@@ -2,4 +2,5 @@
 '@scayle/storefront-boilerplate-nuxt': patch
 ---
 
-Improve watcher performance by ignoring files irrelevant to the build.
+**\[Build\]** The file watcher has been configured to ignore files that are not relevant to the build process.
+This optimization reduces the workload on the watcher and improves overall build times during local development.

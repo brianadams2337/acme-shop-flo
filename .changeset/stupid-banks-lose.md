@@ -2,4 +2,4 @@
 '@scayle/storefront-boilerplate-nuxt': minor
 ---
 
-**\[E2E\]** Implemented an end-to-end test to verify the operability of the Country Detection modal, even in scenarios where another flyout, such as the Password Reset flyout, is already displayed.
+**\[E2E\]** Implemented an end-to-end test to ensure the Country Detection modal operates correctly, even when another flyout is already open.

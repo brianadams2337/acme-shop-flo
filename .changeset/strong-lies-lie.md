@@ -2,4 +2,4 @@
 '@scayle/storefront-boilerplate-nuxt': patch
 ---
 
-[E2E] Improved the stability of the Country Detector E2E test in the CI pipeline by adding a wait to accommodate Safari's performance characteristics.
+**\[E2E\]** Enhanced the reliability of the Country Detector end-to-end test in CI environments by addressing Safari-specific performance characteristics.

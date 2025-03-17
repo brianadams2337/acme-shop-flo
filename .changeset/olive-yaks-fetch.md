@@ -2,4 +2,4 @@
 '@scayle/storefront-boilerplate-nuxt': patch
 ---
 
-[E2E] Implemented additional test steps in end-to-end test `Verify PDP Multi-size product Store selector` to confirm the Store selector flyout is closed after choosing the store from the store list.
+**\[E2E\]** Enhanced the "Verify PDP Multi-size product Store selector" end-to-end test to ensure the store selector flyout closes after store selection.

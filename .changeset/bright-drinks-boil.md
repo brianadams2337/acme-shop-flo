@@ -2,4 +2,4 @@
 '@scayle/storefront-boilerplate-nuxt': patch
 ---
 
-**\[UI\]** Prevent `/modules/ui/runtime/components/form/SFPriceInput.vue` from firing the `update:model-value` when the value did not change.
+**\[UI\]** The `SFPriceInput` component now only emits the `update:model-value` event when the input value actually changes, preventing unnecessary updates.

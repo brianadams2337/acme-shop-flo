@@ -2,8 +2,9 @@
 '@scayle/storefront-boilerplate-nuxt': minor
 ---
 
-[Registration] Introduce a new, user-friendly registration flow. This update includes:
-Standard registration form with fields for gender, first name, last name, email, and password.
-There's also an option to register as a `guest`, which omits the password field.
-Support for IDP registration with a consistent, clean style the same as on the login page.
-Privacy policy and terms links are displayed for user awareness.
+**\[Login & Registration\]** The user registration process has been completely redesigned for a more intuitive and streamlined experience.
+The new flow features a redesigned registration form with fields for gender, first name, last name, email, and password.
+A guest registration option simplifies the process for users who prefer not to create an account, omitting the password field.
+Support for IDP registration has been integrated, offering a secure and convenient way to sign up using existing identity providers.
+This implementation maintains a consistent and clean style, mirroring the design of the login page.
+Furthermore, prominent links to the privacy policy and terms of service are now displayed during registration, ensuring user awareness and compliance.

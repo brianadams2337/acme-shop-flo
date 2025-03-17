@@ -2,8 +2,6 @@
 '@scayle/storefront-boilerplate-nuxt': minor
 ---
 
-[Accessibility] Centralize keyboard behavior logic within the `SFSlideIn` component of `storefront-ui` module.
-This approach eliminates redundant logic in each slide-in instance and ensures consistent coverage
-of accessibility features (e.g., `SFFilterSlideIn.vue`).
-The update includes activating a focus trap, defining the correct focus/tab order,
-and adding the `Esc` key functionality to close the slide-in.
+**\[Accessibility\]** Refactored the keyboard interaction logic for the `SFSlideIn` component within the local `storefront-ui` module.
+The core keyboard behavior, including focus trapping, tab order management, and 'Esc' key functionality, is now centralized within the `SFSlideIn` component.
+This change eliminates redundant code in individual slide-in instances (e.g., `SFFilterSlideIn.vue`) and ensures consistent accessibility features across all slide-in components.

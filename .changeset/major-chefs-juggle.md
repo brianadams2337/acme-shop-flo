@@ -2,8 +2,6 @@
 '@scayle/storefront-boilerplate-nuxt': minor
 ---
 
-**\[CMS\]** Introducing `Scayle` - our new default static CMS provider.
-Scayle delivers CMS pages as static content, streamlining the initial setup
-process and eliminating unnecessary setup overhead (access tokens, space IDs, etc.)
-when using the SFB for the first time. Scayle provider is meant only for development purposes
-and will not be used for production deployments.
+**\[CMS\]** Introducing a new static CMS placeholder provider `scayle`, that simplifies the initial setup process for Storefront applications.
+The `scayle` static CMS placeholder delivers a single CMS page as static content, eliminating the need for access tokens, tenant space IDs, and other configuration typically required when setting up a Storefront applications and CMS.
+This new provider is intended for development purposes only and should not be used in production environments.

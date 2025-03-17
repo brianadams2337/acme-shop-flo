@@ -2,4 +2,5 @@
 '@scayle/storefront-boilerplate-nuxt': minor
 ---
 
-[Accessibility] Removed `aria-label` from search button in `SFSearchInput` and added `aria-hidden=true`.
+**\[Accessibility\]** Improved accessibility for screen readers on the search button (`SFSearchInput` component).
+Using `aria-hidden=true` now correctly conveys the button's function to assistive technologies.

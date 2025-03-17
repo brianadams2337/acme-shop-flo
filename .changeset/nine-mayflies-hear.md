@@ -2,4 +2,4 @@
 '@scayle/storefront-boilerplate-nuxt': minor
 ---
 
-Replace `useSearchData` with `useSearch` of the `@scayle/storefront-search` package.
+**\[Search\]** Migrated from useSearchData to useSearch from @scayle/storefront-search, providing improved updatability and feature updates.

@@ -2,4 +2,4 @@
 '@scayle/storefront-boilerplate-nuxt': patch
 ---
 
-**\[Search\]** Hide result counter on search page while loading results
+**\[Search\]** The search result counter is now hidden while loading results.

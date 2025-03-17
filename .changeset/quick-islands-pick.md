@@ -2,4 +2,4 @@
 '@scayle/storefront-boilerplate-nuxt': minor
 ---
 
-**\[E2E\]** Implemented end-to-end test to verify Order Success Page layout and functionality in case the page is accessed with incorrect CBD token.
+**\[E2E\]** Implemented an end-to-end test to verify the Order Success Page behavior when accessed with an incorrect CBD token.

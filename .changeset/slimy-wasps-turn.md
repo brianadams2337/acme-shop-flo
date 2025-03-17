@@ -2,4 +2,4 @@
 '@scayle/storefront-boilerplate-nuxt': minor
 ---
 
-**\[E2E\]** Implemented end-to-end test to ensure the password reset process functions correctly in both positive (successful reset) and negative (e.g., invalid email) scenarios.
+**\[E2E\]** Implemented end-to-end tests to verify the complete password reset process, including both successful resets and error handling.

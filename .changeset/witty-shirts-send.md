@@ -2,4 +2,4 @@
 '@scayle/storefront-boilerplate-nuxt': patch
 ---
 
-**\[UI\]** Fix alignment of filter button in `/pages/c/[...categories]/[...slug]-[id].vue`.
+**\[UI\]** Resolved a layout issue with the filter button within the `/pages/c/[...categories]/[...slug]-[id].vue` component.

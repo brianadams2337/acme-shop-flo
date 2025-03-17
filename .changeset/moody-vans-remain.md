@@ -2,4 +2,4 @@
 '@scayle/storefront-boilerplate-nuxt': patch
 ---
 
-**\[E2E\]** Enhanced the reliability in mobile browsers execution of end-to-end tests covering Basket summary price verification for promotion product.
+**\[E2E\]** Enhanced the stability of end-to-end tests for basket summary price verification with promotion products, specifically for mobile browser execution.

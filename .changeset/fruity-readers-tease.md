@@ -2,4 +2,4 @@
 '@scayle/storefront-boilerplate-nuxt': patch
 ---
 
-**\[E2E\]** Added an additional step to close the Toast message in end-to-end test for Guest user registration, due to the potential overlaps of Toast message and User popover menu.
+**\[E2E\]** Improved stability of guest user registration E2E test by handling Toast message and User popover overlap.

@@ -2,4 +2,4 @@
 '@scayle/storefront-boilerplate-nuxt': minor
 ---
 
-[Color] Use `Color` for RGBA manipulation and remove redundant `hexToRGBAColor` utility.
+**\[UI\]** Use [color](https://github.com/Qix-/color) for RGBA manipulation and replacing the redundant `hexToRGBAColor` utility.

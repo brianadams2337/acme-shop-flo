@@ -6,7 +6,7 @@
     />
 
     <div
-      class="container flex overflow-hidden rounded-t-2xl bg-white pt-4 max-sm:max-w-none md:rounded-none md:pt-8"
+      class="container relative flex rounded-t-2xl bg-white pt-4 max-sm:max-w-none md:rounded-none md:pt-8"
     >
       <SFCategorySideNavigation
         v-if="rootCategories?.length"

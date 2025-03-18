@@ -3716,10 +3716,18 @@
     "@storyblok/richtext" "3.0.2"
     storyblok-js-client "6.10.8"
 
-"@storyblok/nuxt@6.2.3":
-  version "6.2.3"
-  resolved "https://registry.yarnpkg.com/@storyblok/nuxt/-/nuxt-6.2.3.tgz#62afbb2258b2482897d4c012c24daede56f268c7"
-  integrity sha512-aJxF2WN3B0gUewtoqym9I8JqfUbvSnRQcK3POK/jPE/qF5Uos9RIA3x6bDv4iV/GPgL9VxrAIheiZxZWxz3IDg==
+"@storyblok/js@3.3.0":
+  version "3.3.0"
+  resolved "https://registry.yarnpkg.com/@storyblok/js/-/js-3.3.0.tgz#5c59098955b21cc7c01b78aa659181620429fc6d"
+  integrity sha512-+i0I6nvbCXnfO6L5b5SYvoqLHUb1j3iIznuN/tcGO9c8MYNopY7XGOjrOOTlJVAoiFECJyzYiwC7mDRwrotvfw==
+  dependencies:
+    "@storyblok/richtext" "3.1.0"
+    storyblok-js-client "6.10.10"
+
+"@storyblok/nuxt@6.2.4":
+  version "6.2.4"
+  resolved "https://registry.yarnpkg.com/@storyblok/nuxt/-/nuxt-6.2.4.tgz#ac6245a568666f506e3f3506577696d970b3a4ed"
+  integrity sha512-w7qpdQOHrw8QTx8lvMWRAvQDi5N6PQ9KSjUTbWEAdAYobFjMV7HOqQZRIelhPY6GKf56e0pdlzXUBsnEpqi0+g==
   dependencies:
     "@storyblok/vue" "^8.1.11"
 
@@ -3733,7 +3741,19 @@
   resolved "https://registry.yarnpkg.com/@storyblok/richtext/-/richtext-3.0.2.tgz#98b85029aa62a79ea0191708f7d924e25d37f176"
   integrity sha512-KBLx9ycNVMyVnNyPiwBH5g9uWmiJpMzp9YvpnnADXlPLoksusrwI56BusSM8HaIgJgcnB5RR0LvhySkPFdC8Zg==
 
-"@storyblok/vue@8.1.11", "@storyblok/vue@^8.1.11":
+"@storyblok/richtext@3.1.0":
+  version "3.1.0"
+  resolved "https://registry.yarnpkg.com/@storyblok/richtext/-/richtext-3.1.0.tgz#b2f26545030b289954884226a25fc29569b6209e"
+  integrity sha512-QtH5G+F7w3YuGGnHAFldo71vPpBT5prndZWFPDihlIsWaW0rEWyE9iX+6fp2f4XDgbhi0vyF1HqajFplGOtFVg==
+
+"@storyblok/vue@8.2.0":
+  version "8.2.0"
+  resolved "https://registry.yarnpkg.com/@storyblok/vue/-/vue-8.2.0.tgz#814114339a6c0f6b4fdfd3edc32a1351bb104176"
+  integrity sha512-Yi3BFYJkTMm787hTEKMouVYHlNzxUyDChSFgIuhp4XZ4XtMNci4GzvKnZfgzOifxst9h+LRbr9cvuSybqjWbEA==
+  dependencies:
+    "@storyblok/js" "3.3.0"
+
+"@storyblok/vue@^8.1.11":
   version "8.1.11"
   resolved "https://registry.yarnpkg.com/@storyblok/vue/-/vue-8.1.11.tgz#3b4323ae130d9af8e04a7e416f252d1bc24dab6f"
   integrity sha512-Ewce5hVOjzqEZKF8Q05ZM7HwMAxjzoFQ3Zp+DOqXJkLr1hp5kVO+ZPXVkgnvyb7bq5K/HNWRYLuN1CHosCFv3g==

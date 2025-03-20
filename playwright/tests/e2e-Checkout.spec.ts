@@ -5,16 +5,16 @@ import { BASKET_TEST_DATA, CHECKOUT_URL } from '../support/constants'
 test.beforeEach(async ({ accountPage, homePage, page }, testInfo) => {
   const projectName = testInfo.project.name
   const { email, password } = getUserForBrowser(projectName)
-
   await homePage.visitPage()
   await page.waitForLoadState('networkidle')
   await accountPage.userAuthentication(email, password)
 })
 
-test('C2132536 Verify Checkout order overview', async ({
+test('C2132536 C2144177 Verify Checkout order overview', async ({
   checkoutPage,
   basketPage,
   page,
+  footer,
 }) => {
   await test.step('Adding product to Basket', async () => {
     await basketPage.addProductToBasket(
@@ -23,7 +23,6 @@ test('C2132536 Verify Checkout order overview', async ({
     )
     await page.goto(CHECKOUT_URL, { waitUntil: 'commit' })
   })
-
   await test.step('Visit Checkout page and check Items', async () => {
     const pageUrl = page.url()
     expect(pageUrl).toContain(CHECKOUT_URL)
@@ -34,7 +33,29 @@ test('C2132536 Verify Checkout order overview', async ({
       await expect(checkoutPage.deliveryEstimate).toBeVisible()
     }).toPass()
   })
-
+  await test.step('Verify simplified Footer in Checkout', async () => {
+    await expect(footer.footerCopyright).toBeVisible()
+    const count = await footer.simpleFooterLink.count()
+    for (let i = 0; i < count; i++) {
+      const link = footer.simpleFooterLink.nth(i)
+      const href = await link.getAttribute('href')
+      if (href) {
+        try {
+          const response = await page.request.head(href)
+          expect(response.status()).toBeLessThan(400)
+        } catch (error) {
+          console.error(`Error checking link ${href}:`, error)
+        }
+      } else {
+        console.warn(`Link element ${i} does not have an href attribute.`)
+      }
+      await expect(footer.simpleFooterLink.nth(i)).toHaveAttribute(
+        'target',
+        '_blank',
+        { timeout: 5000 },
+      )
+    }
+  })
   await test.step('Remove item and check empty state', async () => {
     await expect(async () => {
       await checkoutPage.buttonItemRemove.click()

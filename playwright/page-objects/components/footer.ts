@@ -11,6 +11,8 @@ export class Footer {
   readonly footerLinkSection: Locator
   readonly footerLinkSectionTitle: Locator
   readonly footerLogo: Locator
+  readonly footerCopyright: Locator
+  readonly simpleFooterLink: Locator
 
   constructor(page: Page) {
     this.page = page
@@ -28,6 +30,8 @@ export class Footer {
     this.footerLinkSection = page.getByTestId('footer-link-section')
     this.footerLinkSectionTitle = page.getByTestId('footer-link-section-title')
     this.footerLogo = page.getByTestId('footer-logo')
+    this.footerCopyright = page.getByTestId('footer-copyright')
+    this.simpleFooterLink = page.getByTestId('simple-footer-link')
   }
 
   async verifyFooterLinks(linksGroup: { [key: string]: string }) {

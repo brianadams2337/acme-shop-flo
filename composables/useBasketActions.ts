@@ -1,6 +1,9 @@
 import { extendPromise, ExistingItemHandling } from '@scayle/storefront-nuxt'
-import type { AddOrUpdateItemType, BasketItem } from '@scayle/storefront-nuxt'
-import type { rpcMethods } from '@scayle/storefront-core'
+import type {
+  AddOrUpdateItemType,
+  BasketItem,
+  BasketItemUpdateData,
+} from '@scayle/storefront-nuxt'
 import { useI18n } from 'vue-i18n'
 import { useToast } from '~/composables/useToast'
 import { useTrackingEvents } from '~/composables/useTrackingEvents'
@@ -8,11 +11,6 @@ import { useRouteHelpers } from '~/composables'
 import { routeList, getBasketToastErrorMessageKey } from '~/utils'
 import { useBasket, useLog } from '#storefront/composables'
 import { hasSubscriptionCustomData } from '~/modules/subscription/helpers/subscription'
-
-// TODO: Export this properly from `storefront-core`
-type BasketItemUpdateData = Parameters<
-  typeof rpcMethods.updateBasketItem
->[0]['update']
 
 export type AddToBasketItem = AddOrUpdateItemType & {
   productName: string

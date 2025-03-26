@@ -1,8 +1,11 @@
 import type { ComputedRef, MaybeRefOrGetter } from 'vue'
 import { computed } from 'vue'
-import type { BasketItem, Price } from '@scayle/storefront-nuxt'
+import type {
+  BasketItem,
+  Price,
+  AppliedReduction,
+} from '@scayle/storefront-nuxt'
 import { toRef } from '@vueuse/core'
-import type { AppliedReduction } from '@scayle/storefront-core'
 import { useFormatHelpers } from '#storefront/composables'
 import type { OrderPrice } from '~/types/order'
 

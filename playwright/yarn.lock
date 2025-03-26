@@ -6687,10 +6687,10 @@ lighthouse-stack-packs@1.12.2:
   resolved "https://registry.yarnpkg.com/lighthouse-stack-packs/-/lighthouse-stack-packs-1.12.2.tgz#dbe0ccdbc381784ef176f4f8c2367ac5b077d6ca"
   integrity sha512-Ug8feS/A+92TMTCK6yHYLwaFMuelK/hAKRMdldYkMNwv+d9PtWxjXEg6rwKtsUXTADajhdrhXyuNCJ5/sfmPFw==
 
-lighthouse@12.5.0:
-  version "12.5.0"
-  resolved "https://registry.yarnpkg.com/lighthouse/-/lighthouse-12.5.0.tgz#095ad28c46e57cd08ca7025258d9c8a1f65e22a6"
-  integrity sha512-3jzhTZyHaD3HKOx7a+hFy8qc2akVyDkb0+okWbx2n30M1KfhCDlyZBPUyjHOMOsfhtTbSUMVk2KSw3qCE9lkTQ==
+lighthouse@12.5.1:
+  version "12.5.1"
+  resolved "https://registry.yarnpkg.com/lighthouse/-/lighthouse-12.5.1.tgz#92895d83355ef7e34cdeb9eac471b74e43b4d734"
+  integrity sha512-ooOIqtBxOEnuX3yKtc8WiMPI/fPqHtXHaXU4ey87icRcY5I2B9+imk8i6U7duIO+yrU0WwbIwhmCs8s/FFNRgA==
   dependencies:
     "@paulirish/trace_engine" "0.0.50"
     "@sentry/node" "^7.0.0"

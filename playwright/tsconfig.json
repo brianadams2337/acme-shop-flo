@@ -16,7 +16,9 @@
     "./fixtures/**/*.ts",
     "./page-objects/**/*.ts",
     "./playwright.config.ts",
-    "./support/**/*.ts"
+    "./support/**/*.ts",
+    "../../../tools/artillery/fromHomeToBasket.spec.ts",
+    "../../../tools/artillery/testScripts.ts"
   ],
   "exclude": ["node_modules", "playwright-report"]
 }

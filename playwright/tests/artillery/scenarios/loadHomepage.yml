@@ -1,3 +1,0 @@
-scenarios:
-  - engine: playwright
-    testFunction: 'openHomepage'

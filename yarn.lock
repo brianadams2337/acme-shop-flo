@@ -14474,24 +14474,24 @@ unifont@^0.1.7:
     css-tree "^3.0.0"
     ohash "^1.1.4"
 
-unimport@4.1.2, unimport@^4.0.0, unimport@^4.1.2:
-  version "4.1.2"
-  resolved "https://registry.yarnpkg.com/unimport/-/unimport-4.1.2.tgz#10ba452519ec23113c1e68b8e9ab26c307a6eebd"
-  integrity sha512-oVUL7PSlyVV3QRhsdcyYEMaDX8HJyS/CnUonEJTYA3//bWO+o/4gG8F7auGWWWkrrxBQBYOO8DKe+C53ktpRXw==
+unimport@4.1.3:
+  version "4.1.3"
+  resolved "https://registry.yarnpkg.com/unimport/-/unimport-4.1.3.tgz#938f37f90faa6f29dd156ded98f1990bd5acee50"
+  integrity sha512-H+IVJ7rAkE3b+oC8rSJ2FsPaVsweeMC8eKZc+C6Mz7+hxDF45AnrY/tVCNRBvzMwWNcJEV67WdAVcal27iMjOw==
   dependencies:
-    acorn "^8.14.0"
+    acorn "^8.14.1"
     escape-string-regexp "^5.0.0"
     estree-walker "^3.0.3"
-    local-pkg "^1.0.0"
+    local-pkg "^1.1.1"
     magic-string "^0.30.17"
     mlly "^1.7.4"
     pathe "^2.0.3"
     picomatch "^4.0.2"
-    pkg-types "^1.3.1"
+    pkg-types "^2.1.0"
     scule "^1.3.0"
     strip-literal "^3.0.0"
-    tinyglobby "^0.2.11"
-    unplugin "^2.2.0"
+    tinyglobby "^0.2.12"
+    unplugin "^2.2.2"
     unplugin-utils "^0.2.4"
 
 unimport@^3.13.2, unimport@^3.14.5:
@@ -14513,6 +14513,26 @@ unimport@^3.13.2, unimport@^3.14.5:
     scule "^1.3.0"
     strip-literal "^2.1.1"
     unplugin "^1.16.1"
+
+unimport@^4.0.0, unimport@^4.1.2:
+  version "4.1.2"
+  resolved "https://registry.yarnpkg.com/unimport/-/unimport-4.1.2.tgz#10ba452519ec23113c1e68b8e9ab26c307a6eebd"
+  integrity sha512-oVUL7PSlyVV3QRhsdcyYEMaDX8HJyS/CnUonEJTYA3//bWO+o/4gG8F7auGWWWkrrxBQBYOO8DKe+C53ktpRXw==
+  dependencies:
+    acorn "^8.14.0"
+    escape-string-regexp "^5.0.0"
+    estree-walker "^3.0.3"
+    local-pkg "^1.0.0"
+    magic-string "^0.30.17"
+    mlly "^1.7.4"
+    pathe "^2.0.3"
+    picomatch "^4.0.2"
+    pkg-types "^1.3.1"
+    scule "^1.3.0"
+    strip-literal "^3.0.0"
+    tinyglobby "^0.2.11"
+    unplugin "^2.2.0"
+    unplugin-utils "^0.2.4"
 
 unique-string@^2.0.0:
   version "2.0.0"
@@ -14634,7 +14654,7 @@ unplugin@^1.1.0, unplugin@^1.10.0, unplugin@^1.10.1, unplugin@^1.16.1, unplugin@
     acorn "^8.14.0"
     webpack-virtual-modules "^0.6.2"
 
-unplugin@^2.1.0, unplugin@^2.1.2, unplugin@^2.2.0:
+unplugin@^2.1.0, unplugin@^2.1.2, unplugin@^2.2.0, unplugin@^2.2.2:
   version "2.2.2"
   resolved "https://registry.yarnpkg.com/unplugin/-/unplugin-2.2.2.tgz#82f8c638ba944f6135e99ae5a8dc9eba9601b4a8"
   integrity sha512-Qp+iiD+qCRnUek+nDoYvtWX7tfnYyXsrOnJ452FRTgOyKmTM7TUJ3l+PLPJOOWPTUyKISKp4isC5JJPSXUjGgw==

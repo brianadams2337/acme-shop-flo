@@ -3,6 +3,7 @@
     :is-open="isOpen && !blockPopup"
     @mouseenter="isOpen = !blockPopup"
     @mouseleave="isOpen = false"
+    @keydown.esc="isOpen = false"
   >
     <template #action>
       <SFLocalizedLink
@@ -12,6 +13,7 @@
         data-testid="header-user-button"
         :class="{ 'bg-gray-100': isOpen }"
         :aria-label="$t('my_account.navigation')"
+        @keydown.space.prevent="isOpen = true"
       >
         <IconUser class="size-6" aria-hidden="true" />
       </SFLocalizedLink>

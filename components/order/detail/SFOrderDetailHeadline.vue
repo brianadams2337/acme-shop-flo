@@ -7,7 +7,7 @@
       class="size-10 border border-gray-200"
       data-testid="back-to-order-list"
       :aria-label="$t('my_account.orders.detail.back')"
-      :to="getLocalizedRoute(routeList.orders)"
+      :to="link"
     >
       <IconChevronLeft aria-hidden="true" class="size-4 text-gray-500" />
     </SFButton>
@@ -18,11 +18,22 @@
 </template>
 
 <script setup lang="ts">
+import { computed } from 'vue'
 import { SFHeadline, SFButton } from '#storefront-ui/components'
 import { routeList } from '~/utils'
 import { useRouteHelpers } from '~/composables'
+import { useRouter } from '#app/composables/router'
 
 const { id } = defineProps<{ id: number }>()
+
+const { options } = useRouter()
+
+const link = computed(() => {
+  const previousRoute = (options?.history?.state?.back as string) ?? ''
+  return previousRoute.includes(routeList.orders.path)
+    ? previousRoute
+    : getLocalizedRoute(routeList.orders)
+})
 
 const { getLocalizedRoute } = useRouteHelpers()
 </script>

@@ -36,7 +36,7 @@ export interface UseOrderProductDetailsReturn {
  *
  * @param orderProduct - The order product object or a ref to it
  * @param orderVariant - The order variant object or a ref to it
- * @returns An object containing computed properties for various product details such as name, image, color, brand size, link, alt and lowest prior price.
+ * @returns An object containing computed properties for various product details, such as name, image, color, brand, size, link, alt and lowest prior price.
  */
 export function useOrderProductDetails(
   orderProduct: MaybeRefOrGetter<OrderProduct>,

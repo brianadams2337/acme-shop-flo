@@ -227,7 +227,7 @@
         },
         "back": "Back",
         "order_details": "Order Details",
-        "go_to_order": "Open to order detail",
+        "go_to_order": "View order {orderNumber}",
         "order_date": "Order Date",
         "payment_details": "Payment Details",
         "payment_method": "Payment Method",

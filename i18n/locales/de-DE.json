@@ -226,7 +226,7 @@
           "description": "Sieh dir die Details und den Status deiner Bestellung #{id} an."
         },
         "back": "Zurück",
-        "go_to_order": "Offen für Bestelldetails",
+        "go_to_order": "Bestellung {orderNumber} anzeigen",
         "order_details": "Bestelldetails",
         "order_date": "Bestelldatum",
         "payment_details": "Zahlungsdetails",

@@ -22,7 +22,9 @@
     <SFButton
       :to="getOrderDetailsRoute(id)"
       :data-testid="`go-to-order-detail-${id}`"
-      :aria-label="$t('my_account.orders.detail.go_to_order')"
+      :aria-label="
+        $t('my_account.orders.detail.go_to_order', { orderNumber: id })
+      "
       variant="tertiary"
       class="mr-0.5 !size-10 !p-0"
     >

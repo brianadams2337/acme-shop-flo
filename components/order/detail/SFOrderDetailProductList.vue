@@ -5,7 +5,7 @@
       :key="packageId"
       class="grid grid-cols-1"
     >
-      <ul v-if="items.length" class="mb-3 flex flex-col gap-3 *:pt-3">
+      <ul v-if="items.length" class="mb-3 flex flex-col gap-3 divide-y *:pt-3">
         <li
           v-for="{ variant, product, price, id, customData } in items"
           :key="id"

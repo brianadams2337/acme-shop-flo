@@ -14,6 +14,7 @@ export class MobileNavigation {
   readonly searchMobile: Locator
   readonly searchForm: Locator
   readonly mobileSidebar: Locator
+  readonly logoutButton: Locator
 
   constructor(page: Page) {
     this.page = page
@@ -31,6 +32,7 @@ export class MobileNavigation {
     this.searchMobile = page.getByTestId('search-mobile')
     this.searchForm = page.getByTestId('search-form')
     this.mobileSidebar = page.getByTestId('mobile-sidebar')
+    this.logoutButton = page.getByTestId('logout-button')
   }
 
   async executeMobileSearch(searchTerm: string) {

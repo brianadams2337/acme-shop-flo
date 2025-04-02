@@ -8,6 +8,7 @@ import {
   GUEST_TEST_USER,
   LOGIN_REGISTRATION,
   SIGNIN_URL,
+  USER_ACCOUNT,
 } from '../support/constants'
 
 test.beforeEach(async ({ homePage, page, countryDetector }) => {
@@ -19,29 +20,37 @@ test.beforeEach(async ({ homePage, page, countryDetector }) => {
 test('C2130648 Verify User login and log out', async ({
   signinPage,
   header,
-  accountPage,
   toastMessage,
   page,
+  ordersPage,
+  mobileNavigation,
 }) => {
-  await expect(async () => {
+  await test.step('Log in', async () => {
     await header.headerLoginButton.click()
     await signinPage.fillLoginData(
       LOGGED_IN_USER_DATA.email,
       LOGGED_IN_USER_DATA.password,
     )
     await signinPage.clickLoginButton()
-    await page.waitForURL(HOMEPAGE_PATH_DE)
-
     await toastMessage.assertToastInfoIsVisible()
     await toastMessage.clickToastMessageButton()
+    await page.waitForLoadState('domcontentloaded')
     await header.headerLoginButton.click()
-    await toastMessage.assertToastInfoNotVisible()
-    await accountPage.assertLogoutButtonIsVisible()
-    await accountPage.clickLogoutButton()
-
-    await header.headerLoginButton.click()
-    await signinPage.assertLoginButtonIsVisible()
-  }).toPass()
+    await ordersPage.ordersHeadline.waitFor()
+    expect(page.url()).toContain(USER_ACCOUNT.routeOrders)
+  })
+  await test.step('Log out', async () => {
+    if (isMobile(page)) {
+      await mobileNavigation.sideNavigationButton.click()
+      await mobileNavigation.logoutButton.waitFor()
+      await mobileNavigation.logoutButton.click()
+    } else {
+      await header.headerLoginButton.focus()
+      await header.headerLoginButton.press('Space')
+      await signinPage.userPopoverLogoutButton.click()
+    }
+    await page.waitForLoadState('domcontentloaded')
+  })
 })
 
 test('C2130649 Verify User login with wrong credentials', async ({

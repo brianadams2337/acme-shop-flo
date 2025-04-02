@@ -78,13 +78,6 @@ export class AccountPage {
     this.genderSelection = page.getByTestId('gender-selection')
   }
 
-  async clickLogoutButton() {
-    await this.logoutButton.click()
-  }
-  async assertLogoutButtonIsVisible() {
-    await this.logoutButton.isVisible()
-  }
-
   async updateUserData(
     firstName: string,
     lastName: string,

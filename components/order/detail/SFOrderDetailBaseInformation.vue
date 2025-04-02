@@ -3,11 +3,11 @@
     class="grid grid-cols-1 gap-4 text-base font-normal text-gray-600 lg:grid-cols-2"
   >
     <SFOrderDetailBox :title="$t('my_account.orders.detail.order_details')">
-      <div class="flex items-center gap-1">
+      <div v-if="orderDetails.confirmedAt" class="flex items-center gap-1">
         <span class="font-medium">
           {{ $t('my_account.orders.detail.order_date') }}:
         </span>
-        {{ formatLocaleDate(orderDetails.confirmedAt) }}
+        {{ formatLocaleDate(new Date(orderDetails.confirmedAt)) }}
       </div>
     </SFOrderDetailBox>
     <SFOrderDetailBox :title="$t('my_account.orders.detail.payment_details')">

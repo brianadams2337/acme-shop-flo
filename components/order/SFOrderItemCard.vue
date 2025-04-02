@@ -13,7 +13,7 @@
       </SFHeadline>
       <span v-if="confirmedAt" class="mb-1">
         {{ $t('my_account.orders.order_date') }}:
-        {{ formatLocaleDate(confirmedAt) }}
+        {{ formatLocaleDate(new Date(confirmedAt)) }}
       </span>
       <span v-if="itemCount">
         {{ $t('my_account.orders.items_count') }}: {{ itemCount }}

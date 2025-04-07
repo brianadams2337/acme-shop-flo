@@ -5,7 +5,6 @@
       'h-12 rounded-md': isButton,
       'h-8': isHeadline,
       'w-32 md:w-64': !fullWidth && (isHeadline || isButton),
-      'md:w-64': !fullWidth && isHeadline,
       'w-full': fullWidth,
     }"
   />

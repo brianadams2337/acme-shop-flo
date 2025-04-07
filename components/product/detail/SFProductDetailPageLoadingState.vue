@@ -39,18 +39,27 @@
         />
         <div class="mb-2">
           <!-- Brand -->
-          <SFSkeletonLoader type="headline" class="mb-1 !h-6 max-md:mx-5" />
+          <SFSkeletonLoader
+            type="custom"
+            class="mb-1 !h-6 w-32 max-md:mx-5 md:w-52"
+          />
           <!-- Name -->
-          <SFSkeletonLoader type="headline" class="!h-5 max-md:mx-5" />
+          <SFSkeletonLoader
+            type="custom"
+            class="!h-5 w-32 max-md:mx-5 md:w-52"
+          />
         </div>
         <!-- Price -->
-        <SFSkeletonLoader type="headline" class="mt-2 !h-5 max-md:mx-5" />
+        <SFSkeletonLoader
+          type="custom"
+          class="mt-2 !h-5 w-32 max-md:mx-5 md:w-52"
+        />
 
         <!-- Siblings-->
         <SFSkeletonLoader type="custom" class="h-4 w-32 max-md:mx-5" />
         <div class="mb-3 flex space-x-4 overflow-hidden max-md:mx-5">
           <SFSkeletonLoader
-            v-for="i in 5"
+            v-for="i in 4"
             :key="i"
             type="custom"
             class="relative size-20 shrink-0 rounded-xl border-2 md:size-16"
@@ -63,8 +72,11 @@
           <div
             class="my-3 mt-4 flex h-12 max-w-full items-center space-x-4 max-md:mx-5"
           >
-            <SFSkeletonLoader class="grow" />
-            <SFSkeletonLoader class="!w-32" />
+            <SFSkeletonLoader
+              type="custom"
+              class="h-12 grow rounded-md md:w-52"
+            />
+            <SFSkeletonLoader type="custom" class="h-12 w-32 rounded-md" />
           </div>
         </div>
 

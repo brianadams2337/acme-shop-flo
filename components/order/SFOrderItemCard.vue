@@ -1,5 +1,11 @@
 <template>
-  <div
+  <SFLocalizedLink
+    :to="getOrderDetailsRoute(id)"
+    :data-testid="`order-detail-card-${id}`"
+    :aria-label="
+      $t('my_account.orders.detail.go_to_order', { orderNumber: id })
+    "
+    raw
     class="flex items-center justify-between rounded-xl border border-gray-300 bg-white p-5"
   >
     <div class="flex flex-col text-base text-gray-600">
@@ -30,10 +36,11 @@
     >
       <IconChevronRight aria-hidden="true" class="size-4" />
     </SFButton>
-  </div>
+  </SFLocalizedLink>
 </template>
 
 <script setup lang="ts">
+import SFLocalizedLink from '../SFLocalizedLink.vue'
 import { SFHeadline, SFButton } from '#storefront-ui/components'
 import { useFormatDate, useRouteHelpers } from '~/composables'
 

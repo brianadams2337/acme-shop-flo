@@ -97,16 +97,22 @@ describe('useBreadcumbs', () => {
           categoryId: 1,
           categoryUrl: '/women',
           categoryName: 'women',
+          categorySlug: 'women',
+          categoryHidden: false,
         },
         {
           categoryId: 2048,
           categoryUrl: '/women/clothing',
           categoryName: 'clothing',
+          categorySlug: 'clothing',
+          categoryHidden: false,
         },
         {
           categoryId: 2045,
           categoryUrl: '/women/clothing/shirts',
           categoryName: 'shirts',
+          categorySlug: 'shirts',
+          categoryHidden: false,
         },
       ]
       const { getBreadcrumbsFromProductCategories } = useBreadcrumbs()

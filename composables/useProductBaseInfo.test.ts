@@ -570,16 +570,22 @@ describe('useProductBaseInfo', () => {
       categoryId: 1,
       categoryName: '1',
       categoryUrl: '/1',
+      categorySlug: '1',
+      categoryHidden: false,
     }
     const category2 = {
       categoryId: 2,
       categoryName: '2',
       categoryUrl: '/2',
+      categorySlug: '2',
+      categoryHidden: false,
     }
     const category3 = {
       categoryId: 2,
       categoryName: '3',
       categoryUrl: '/3',
+      categorySlug: '3',
+      categoryHidden: false,
     }
     const product = productFactory.build({
       categories: [

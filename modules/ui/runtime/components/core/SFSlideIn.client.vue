@@ -1,56 +1,63 @@
 <template>
-  <Transition
-    :enter-from-class="
-      [slideTypes[slideType].enterClasses, 'backdrop:opacity-0'].join(' ')
-    "
-    :enter-to-class="
-      [slideTypes[slideType].enterToClasses, 'backdrop:opacity-100'].join(' ')
-    "
-    enter-active-class="transform transition-all duration-200 backdrop:transition backdrop:ease-linear backdrop:duration-200"
-    leave-active-class="transform transition-all duration-200 backdrop:transition backdrop:ease-linear backdrop:duration-200"
-    :leave-from-class="
-      [slideTypes[slideType].leaveClasses, 'backdrop:opacity-100'].join(' ')
-    "
-    :leave-to-class="
-      [slideTypes[slideType].leaveToClasses, 'backdrop:opacity-0'].join(' ')
-    "
-  >
-    <!-- eslint-disable-next-line vue/require-toggle-inside-transition  -->
-    <dialog
-      ref="slideIn"
-      v-dialog.modal="isOpen"
-      :name="name"
-      class="h-full overflow-hidden transition-all backdrop:bg-black/50 max-sm:m-0 max-sm:h-dvh max-sm:max-h-screen max-sm:w-screen max-sm:max-w-screen md:mr-0 md:rounded-xl"
-      :class="$attrs.class"
-      @click="onClick"
-      @cancel="onCancel"
+  <!-- This component is intended to run only on the client.
+It has a .client suffix, which Nuxt uses to prevent the component from being loaded during server-side rendering — but this only applies when the component is auto-imported or imported from #components.
+https://nuxt.com/docs/guide/directory-structure/components#client-components
+
+Therefore, to ensure it's also not rendered on the server, it must be wrapped in a ClientOnly block in the template.  -->
+  <ClientOnly>
+    <Transition
+      :enter-from-class="
+        [slideTypes[slideType].enterClasses, 'backdrop:opacity-0'].join(' ')
+      "
+      :enter-to-class="
+        [slideTypes[slideType].enterToClasses, 'backdrop:opacity-100'].join(' ')
+      "
+      enter-active-class="transform transition-all duration-200 backdrop:transition backdrop:ease-linear backdrop:duration-200"
+      leave-active-class="transform transition-all duration-200 backdrop:transition backdrop:ease-linear backdrop:duration-200"
+      :leave-from-class="
+        [slideTypes[slideType].leaveClasses, 'backdrop:opacity-100'].join(' ')
+      "
+      :leave-to-class="
+        [slideTypes[slideType].leaveToClasses, 'backdrop:opacity-0'].join(' ')
+      "
     >
-      <div
-        class="size-full overflow-y-auto bg-white md:inset-y-2 md:right-2 md:max-w-[25rem]"
-        data-testid="slide-in-overflow"
-        :class="slideClass"
+      <!-- eslint-disable-next-line vue/require-toggle-inside-transition  -->
+      <dialog
+        ref="slideIn"
+        v-dialog.modal="isOpen"
+        :name="name"
+        class="h-full overflow-hidden transition-all backdrop:bg-black/50 max-sm:m-0 max-sm:h-dvh max-sm:max-h-screen max-sm:w-screen max-sm:max-w-screen md:mr-0 md:rounded-xl"
+        :class="$attrs.class"
+        @click="onClick"
+        @cancel="onCancel"
       >
-        <div class="relative flex max-h-full flex-col">
-          <slot v-bind="toggle" name="slide-in-content">
-            <div
-              class="sticky top-0 z-10 bg-white/90 px-6 py-4"
-              :class="{ 'border-b border-b-gray-200': !borderless }"
-            >
-              <slot name="slide-in-header" :toggle="toggle" />
-            </div>
-            <slot name="slide-in-body" />
-            <div
-              v-if="$slots['slide-in-actions']"
-              class="sticky bottom-0 z-10 mt-auto bg-white p-6"
-              :class="{ 'border-t border-t-gray-200': !borderless }"
-            >
-              <slot name="slide-in-actions" />
-            </div>
-          </slot>
+        <div
+          class="size-full overflow-y-auto bg-white md:inset-y-2 md:right-2 md:max-w-[25rem]"
+          data-testid="slide-in-overflow"
+          :class="slideClass"
+        >
+          <div class="relative flex max-h-full flex-col">
+            <slot v-bind="toggle" name="slide-in-content">
+              <div
+                class="sticky top-0 z-10 bg-white/90 px-6 py-4"
+                :class="{ 'border-b border-b-gray-200': !borderless }"
+              >
+                <slot name="slide-in-header" :toggle="toggle" />
+              </div>
+              <slot name="slide-in-body" />
+              <div
+                v-if="$slots['slide-in-actions']"
+                class="sticky bottom-0 z-10 mt-auto bg-white p-6"
+                :class="{ 'border-t border-t-gray-200': !borderless }"
+              >
+                <slot name="slide-in-actions" />
+              </div>
+            </slot>
+          </div>
         </div>
-      </div>
-    </dialog>
-  </Transition>
+      </dialog>
+    </Transition>
+  </ClientOnly>
 </template>
 
 <script setup lang="ts">
@@ -61,6 +68,7 @@ import { tabbable } from 'tabbable'
 import { vDialog } from '../../directives/dialog'
 import { useSlideIn, SlideInType } from '#storefront-ui'
 import { onBeforeRouteLeave } from '#app/composables/router'
+import { ClientOnly } from '#components'
 
 const {
   slideClass = '',

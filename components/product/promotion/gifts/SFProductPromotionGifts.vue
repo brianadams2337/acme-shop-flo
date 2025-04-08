@@ -45,7 +45,7 @@
 <script setup lang="ts">
 import { ref, computed, nextTick } from 'vue'
 import type { Product, Promotion } from '@scayle/storefront-nuxt'
-import SFProductPromotionSelectionModal from '../SFProductPromotionSelectionModal.vue'
+import SFProductPromotionSelectionModal from '../SFProductPromotionSelectionModal.client.vue'
 import SFProductPromotionGiftItem from './SFProductPromotionGiftItems.vue'
 import { useI18n } from '#imports'
 import { SFHeadline } from '#storefront-ui/components'

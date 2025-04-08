@@ -142,7 +142,6 @@ import {
   useTrackingEvents,
 } from '~/composables'
 import { useRoute } from '#app/composables/router'
-import { ClientOnly } from '#components'
 import {
   SFButton,
   SFHeadline,
@@ -150,6 +149,7 @@ import {
   SFModal,
 } from '#storefront-ui/components'
 import type { PromotionStyle } from '~/utils'
+import { ClientOnly } from '#components'
 
 const { product, promotion } = defineProps<{
   product?: Product

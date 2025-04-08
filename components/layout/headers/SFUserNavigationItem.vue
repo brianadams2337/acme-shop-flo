@@ -1,5 +1,6 @@
 <template>
   <SFPopover
+    ref="userPopoverRef"
     :is-open="isOpen && !blockPopup"
     @mouseenter="isOpen = !blockPopup"
     @mouseleave="isOpen = false"
@@ -28,8 +29,8 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed } from 'vue'
-import { useMounted } from '@vueuse/core'
+import { watch, ref, computed } from 'vue'
+import { useMounted, useFocusWithin } from '@vueuse/core'
 import SFUserActions from './account/SFUserActions.vue'
 import SFLoginActions from './account/SFLoginActions.vue'
 import { useUser } from '#storefront/composables'
@@ -45,6 +46,11 @@ defineProps<{ blockPopup?: boolean }>()
 const route = useRoute()
 const { getLocalizedRoute } = useRouteHelpers()
 
+const isOpen = ref(false)
+const userPopoverRef = ref()
+
+const { focused } = useFocusWithin(userPopoverRef)
+
 const { user, status } = useUser()
 
 const mounted = useMounted()
@@ -58,5 +64,9 @@ const link = computed(() => {
     : route.fullPath
 })
 
-const isOpen = ref(false)
+watch(focused, (isFocused) => {
+  if (!isFocused) {
+    isOpen.value = false
+  }
+})
 </script>

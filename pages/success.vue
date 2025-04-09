@@ -41,6 +41,7 @@
 <script setup lang="ts">
 import { computed, defineOptions, onMounted, watch } from 'vue'
 import { useSeoMeta } from '@unhead/vue'
+import { whenever } from '@vueuse/core'
 import { definePageMeta } from '#imports'
 import { useTrackingEvents } from '~/composables/useTrackingEvents'
 import { useOrderConfirmation, useUser } from '#storefront/composables'
@@ -56,16 +57,18 @@ import { useI18n } from '#i18n'
 import { useRouteHelpers } from '~/composables/useRouteHelpers'
 import { SFButton } from '#storefront-ui/components'
 import { routeList } from '~/utils/route'
+import { createError } from '#app/composables/error'
 
 const { getLocalizedRoute } = useRouteHelpers()
 
 const route = useRoute()
 const cbdToken = String(route.query.cbd)
 
-const { data: orderData, status } = await useOrderConfirmation<
-  OrderProduct,
-  OrderVariant
->({
+const {
+  data: orderData,
+  status,
+  error,
+} = await useOrderConfirmation<OrderProduct, OrderVariant>({
   params: { cbdToken },
   options: { lazy: true },
 })
@@ -108,6 +111,14 @@ useSeoMeta({
       ? t('osp.no_order_found.description')
       : t('osp.meta.description'),
 })
+
+whenever(
+  error,
+  (err) => {
+    throw createError({ ...err, fatal: true })
+  },
+  { immediate: true },
+)
 
 defineOptions({ name: 'OrderSuccessPage' })
 definePageMeta({ pageType: 'osp' })

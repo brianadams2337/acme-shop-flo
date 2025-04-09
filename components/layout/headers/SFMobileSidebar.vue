@@ -53,6 +53,7 @@ import { routeList } from '~/utils'
 import SFLocalizedLink from '~/components/SFLocalizedLink.vue'
 import { useAuthentication } from '~/composables'
 import { useUser } from '#storefront/composables'
+import { onBeforeRouteLeave } from '#app/composables/router'
 
 const { isOpen, navigationItems } = defineProps<{
   isOpen: boolean
@@ -68,4 +69,10 @@ const handleLogout = async () => {
   await logout()
   emit('close')
 }
+console.log('Asdas')
+// Whenever the route changes, we want to make sure that the mobile sidebar is closed.
+onBeforeRouteLeave((_to, _from, next) => {
+  emit('close')
+  next()
+})
 </script>

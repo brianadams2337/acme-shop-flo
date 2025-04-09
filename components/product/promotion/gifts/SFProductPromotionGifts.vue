@@ -69,6 +69,9 @@ const onSelectionModalVisibilityChange = (isVisible: boolean) => {
   isModalOpen.value = isVisible
 }
 
-const { products } = usePromotionGifts(promotion, 'product-promotion-gifts')
+const { products } = usePromotionGifts(
+  promotion,
+  `product-promotion-gifts-${promotion.id}`,
+)
 const { colorStyle } = usePromotionCustomData(promotion)
 </script>

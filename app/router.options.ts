@@ -25,7 +25,7 @@ export default {
       }
       return { top: 0 }
     }
-    
+
     const el = document.querySelector(to.hash)
     return new Promise((resolve) => {
       if (to.path === from.path) {

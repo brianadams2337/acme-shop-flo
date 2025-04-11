@@ -27,11 +27,13 @@ export default {
         return
       }
 
-      return new Promise((resolve) => {
-        nuxtApp.hooks.hookOnce('page:finish', async () => {
-          resolve({ top: 0, behavior: 'smooth' })
-        })
-      })
+      return to.path === from.path
+        ? { top: 0, behavior: 'smooth' }
+        : new Promise((resolve) => {
+            nuxtApp.hooks.hookOnce('page:finish', async () => {
+              resolve({ top: 0, behavior: 'smooth' })
+            })
+          })
     }
 
     const el = document.querySelector(to.hash)

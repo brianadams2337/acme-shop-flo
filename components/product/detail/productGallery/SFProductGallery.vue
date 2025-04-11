@@ -148,6 +148,7 @@ import SFWishlistToggle from '../../SFWishlistToggle.vue'
 import SFProductBadges from '../../card/SFProductBadges.vue'
 import SFProductImage from '../../SFProductImage.vue'
 import SFProductGalleryZoom from './SFProductGalleryZoom.vue'
+
 import {
   SFButton,
   SFItemsSlider,

@@ -38,7 +38,6 @@
         :applied-reductions="subscriptionPrice?.appliedReductions"
         show-tax-info
       />
-
       <SFFadeInTransition :duration="150">
         <SFProductSubscriptionSelection
           v-if="variant && subscriptionVariantEligible"
@@ -86,7 +85,7 @@ const {
   selectedPreferredDeliveryDate,
   subscriptionPrice,
   subscriptionVariantEligible,
-} = useSubscription(
+} = await useSubscription(
   () => product,
   () => pricePromotionKey,
   () => variant,

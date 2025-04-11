@@ -118,7 +118,7 @@ const {
   selectedPreferredDeliveryDate,
   subscriptionVariantEligible,
   ordinalSuffixKey,
-} = useSubscription(
+} = await useSubscription(
   () => product,
   () => pricePromotionKey,
   () => variant,

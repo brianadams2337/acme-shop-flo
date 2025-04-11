@@ -55,6 +55,9 @@ export function useSubscription(
         },
         pricePromotionKey: toValue(pricePromotionKey),
       },
+      options: {
+        lazy: true,
+      },
     },
     `product-subscription-${key}`,
   )

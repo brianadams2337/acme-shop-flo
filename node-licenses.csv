@@ -289,7 +289,7 @@
 "@scayle/omnichannel-nuxt@4.2.0","MIT",""
 "@scayle/prettier-config-storefront@2.0.2","MIT",""
 "@scayle/storefront-api@18.3.0","MIT",""
-"@scayle/storefront-application-nuxt@1.9.0","UNLICENSED",""
+"@scayle/storefront-application-nuxt@1.9.1","UNLICENSED",""
 "@scayle/storefront-core@8.21.0","MIT","https://github.com/scayle/storefront-core"
 "@scayle/storefront-country-detection@1.1.1","MIT",""
 "@scayle/storefront-navigation@0.1.0","MIT",""

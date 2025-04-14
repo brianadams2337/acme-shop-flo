@@ -2,14 +2,17 @@
 
 ## 1.9.1
 
-### Patch Changes
+### 🩹 Patch Changes
 
-- - Added dependency `nuxt-swiper@1.2.2`
-  - Updated dependency `@typescript-eslint/scope-manager@8.29.1` to `@typescript-eslint/scope-manager@8.30.0`
-  - Updated dependency `@typescript-eslint/utils@8.29.1` to `@typescript-eslint/utils@8.30.0`
-  - Updated dependency `lint-staged@15.5.0` to `lint-staged@15.5.1`
-- e7e7eec: **\[CMS\]** Resolved styling defects and functional issues with the CMS Slider component.
+- **\[CMS\]** Resolved styling defects and functional issues with the CMS Slider component.
   The problems stemmed from a missing `nuxt-swiper` dependency, which has now been correctly added and configured.
+
+### 🏡 Dependency Updates
+
+- Added dependency `nuxt-swiper@1.2.2`
+- Updated dependency `@typescript-eslint/scope-manager@8.29.1` to `@typescript-eslint/scope-manager@8.30.0`
+- Updated dependency `@typescript-eslint/utils@8.29.1` to `@typescript-eslint/utils@8.30.0`
+- Updated dependency `lint-staged@15.5.0` to `lint-staged@15.5.1`
 
 ## 1.9.0
 

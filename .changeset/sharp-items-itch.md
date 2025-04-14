@@ -1,5 +1,5 @@
 ---
-'@scayle/storefront-boilerplate-nuxt': minor
+'@scayle/storefront-application-nuxt': minor
 ---
 
 **\[Promotions\]** Revised the data structure for custom data associated with promotions.

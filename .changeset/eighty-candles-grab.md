@@ -1,5 +1,5 @@
 ---
-'@scayle/storefront-boilerplate-nuxt': minor
+'@scayle/storefront-application-nuxt': minor
 ---
 
 **\[Promotions\]** Added the `@scayle/storefront-promotions` module.

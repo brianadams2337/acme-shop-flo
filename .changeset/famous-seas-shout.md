@@ -2,8 +2,6 @@
 '@scayle/storefront-application-nuxt': minor
 ---
 
-**\[Account Area\]** Introduce a newly redesigned profile page that organizes account
-details into three distinct sections: account information, personal details, and password management.
-The profile page now offers a comprehensive view of user information, allowing
-users to update their basic details (e.g., first name, last name, gender, and birth date) effortlessly.
-Additionally, it includes an intuitive feature for changing passwords.
+**\[Account Area\]** Introduced a redesigned profile page enabling users to easily manage their information.
+Key features include viewing consolidated account details, updating personal information (first/last name, gender, birth date),
+and changing their password, all within clearly defined sections.

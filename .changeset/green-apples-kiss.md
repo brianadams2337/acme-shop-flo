@@ -2,6 +2,5 @@
 '@scayle/storefront-application-nuxt': minor
 ---
 
-**\[Account Area\]** Redesign the subscriptions page, aligning its title presentation
-to match the style of other account pages. The core functionality of the subscriptions
-page remains unchanged, seamlessly integrating the subscription web component.
+**\[Account Area\]** Updated the visual styling of the Subscriptions page title to align consistently with the presentation of other pages within the Account Area.
+The page's core functionality and integrated subscription component remain unchanged.

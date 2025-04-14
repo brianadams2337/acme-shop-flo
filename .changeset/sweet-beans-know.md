@@ -2,4 +2,5 @@
 '@scayle/storefront-application-nuxt': minor
 ---
 
-**\[SEO\]** Redirect to SEO friendly PDP and PLP URL on client side navigation.
+**\[SEO\]** Enhanced URL handling for Product Detail and List Pages during client-side navigation.
+The application now automatically ensures the user lands on the SEO-optimized URL, redirecting from any non-canonical versions if necessary.

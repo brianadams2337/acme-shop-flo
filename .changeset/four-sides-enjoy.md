@@ -2,4 +2,5 @@
 '@scayle/storefront-application-nuxt': minor
 ---
 
-Apply `min` and `max` constraints to the `HTMLInputElement` in `/modules/ui/runtime/components/form/SFPriceInput.vue`. This ensures users cannot input values outside the specified range.
+**\[UI\]** Applied `min` and `max` attributes to the underlying HTML input element within the price input component (`SFPriceInput.vue`).
+This introduces browser-level validation to restrict input to the specified range.

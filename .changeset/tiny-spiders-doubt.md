@@ -2,4 +2,5 @@
 '@scayle/storefront-application-nuxt': patch
 ---
 
-**\[E2E\]** Modified the Shop Selector end-to-end test to validate country selection by a mechanism other than the displayed label value. This change does not check the country label, which vary depending on the selected language.
+**\[E2E\]** Modified the end-to-end test to validate country selection in a language-agnostic way.
+The test no longer checks the visible country label (which varies with language settings) and instead confirms the selection using a stable, non-display mechanism.

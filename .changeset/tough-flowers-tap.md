@@ -2,4 +2,5 @@
 '@scayle/storefront-application-nuxt': patch
 ---
 
-**\[E2E\]** Updated end-to-end tests to match the implemented changes in Promotions, covering Promotion Ribbon and Promotions Flyout.
+**\[E2E\]** Aligned end-to-end test scenarios with the latest Promotion feature updates.
+Tests covering the Promotion Ribbon and Promotions Flyout components have been modified to match the new expected behaviors and appearances.

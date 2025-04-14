@@ -2,4 +2,4 @@
 '@scayle/storefront-application-nuxt': patch
 ---
 
-**\[Order Success Page\]** Added error handling for not found order. The correct empty page will shown now.
+**\[Order Success Page\]** Improved error handling for cases where an order cannot be found. The correct empty state page is now displayed as intended.

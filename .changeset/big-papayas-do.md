@@ -2,4 +2,5 @@
 '@scayle/storefront-application-nuxt': minor
 ---
 
-Disables automatic closing of `/components/filter/SFFilterSlideIn.vue` on route changes. Since filters are stored in the URL and alter the route when applied, we want to prevent the filter slide-in from automatically closing when the route changes.
+**\[UI\]** Prevented the filter panel (`SFFilterSlideIn.vue`) from automatically closing when the page route changes.
+This allows the panel to stay open when filters are applied, as filter application modifies the route via URL parameters.

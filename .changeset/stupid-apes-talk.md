@@ -2,4 +2,5 @@
 '@scayle/storefront-application-nuxt': patch
 ---
 
-**\[E2E\]** Adjusted end-to-end tests for user login/logout to accommodate recent updates to the User Profile section and logout button on mobile devices.
+**\[E2E\]** Aligned the login and logout end-to-end test flows with recent application updates.
+Specifically, tests were modified to accommodate changes within the User Profile section and the new logout interaction path on mobile.

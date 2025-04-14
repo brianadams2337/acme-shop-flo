@@ -2,4 +2,4 @@
 '@scayle/storefront-application-nuxt': minor
 ---
 
-**\[Account Area\]** Implement a comprehensive account page featuring seamlessly integrated sub-pages for profile management, subscription details, and order history.
+**\[Account Area\]** Introduced a unified main Account page that seamlessly integrates sub-sections for Profile Management, Subscription Details, and Order History into a single, cohesive interface.

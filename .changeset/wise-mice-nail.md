@@ -2,4 +2,6 @@
 '@scayle/storefront-application-nuxt': minor
 ---
 
-[UI] Update `/components/product/promotion/gifts/SFProductPromotionGifts.vue` to store the visibility state of `<SFProductPromotionSelectionModal />` locally instead of using `useState`. This will prevent the modal from staying open during page navigation. Additionally, a single instance of `<SFProductPromotionSelectionModal />` will now be reused for all gift options, eliminating the need to create separate modals for each `<SFProductPromotionGiftItems />`.
+**\[UI\]** Refactored the handling of the gift selection modal (`SFProductPromotionSelectionModal`).
+Firstly, its visibility state is now managed locally within this component instead of using global `useState`, resolving an issue where the modal incorrectly remained open after page navigation.
+Secondly, the implementation now utilizes a single, reusable modal instance for all gift options, optimizing component usage.

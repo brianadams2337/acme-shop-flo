@@ -2,4 +2,5 @@
 '@scayle/storefront-application-nuxt': minor
 ---
 
-**\[Architecture\]** Optimized `SFModal` and `SFSlideIn` to be client-only components, since they are used purely for client-side interactions and don't need to be server-rendered.
+**\[Performance\]** Optimized the `SFModal` and `SFSlideIn` components by designating them as client-only.
+Since their functionality is entirely based on client-side user interaction, this prevents unnecessary server-side rendering and can improve initial page load performance.

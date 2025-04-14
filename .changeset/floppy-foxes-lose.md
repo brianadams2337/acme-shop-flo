@@ -2,4 +2,4 @@
 '@scayle/storefront-application-nuxt': minor
 ---
 
-**\[Subscriptions\]** Rename the `/subscription` route to `/subscriptions`
+**\[Subscriptions\]** Renamed the URL route for the subscriptions section from `/subscription` to `/subscriptions`.

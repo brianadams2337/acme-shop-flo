@@ -2,9 +2,12 @@
 '@scayle/storefront-boilerplate-nuxt': minor
 ---
 
-**\[Promotions\]** Custom Data for promotions now has a new structure:
+**\[Promotions\]** Revised the data structure for custom data associated with promotions.
+Refer to the `PromotionCustomData` TypeScript interface for the new schema details (including fields like `headline`, `product`, `color`, `link`, etc.).
+The `SFBasketSummaryPromotions.vue` component has been updated to work with this new structure.
 
-```ts
+- New `PromotionCustomData` Interface:
+  `ts
 interface PromotionCustomData {
   product?: {
     attributeId: number
@@ -21,6 +24,4 @@ interface PromotionCustomData {
   hideCountdown?: boolean
   link?: string
 }
-```
-
-With this change the new promotion custom data structure is used within `/components/basket/summary/promotions/SFBasketSummaryPromotions.vue`.
+`

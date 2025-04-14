@@ -2,4 +2,5 @@
 '@scayle/storefront-application-nuxt': patch
 ---
 
-**\[Order Success Page\]** Added error handling for failed order fetch attempts. If fetching fails, the user is redirected to the Nuxt error page.
+**\[Order Success Page\]** Implemented error handling for failed attempts to fetch order data.
+In case of failure (e.g., network or server error during fetch), the user is now directed to the standard Nuxt error page.

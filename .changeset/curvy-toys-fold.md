@@ -2,4 +2,4 @@
 '@scayle/storefront-application-nuxt': minor
 ---
 
-**\[Navigation\]** Ensure `/components/layout/headers/SFMobileSidebar.vue` gets closed before navigating to a different page.
+**\[Navigation\]** Improved the navigation experience by ensuring the sidebar (`SFMobileSidebar.vue`) consistently closes itself before transitioning the user to the selected page.

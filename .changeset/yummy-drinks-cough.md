@@ -2,5 +2,6 @@
 '@scayle/storefront-application-nuxt': minor
 ---
 
-**\[Architecture\]** Improve locale date formatter to use short numeric format and re-use it in multiple places for a consistent formatting.
-`formatLocaleDate` now accepts `Date` instead of `string` with parsing handled outside the function.
+**\[Architecture\]** Standardized date presentation by updating the `formatLocaleDate` utility.
+It now consistently outputs dates in a short numeric format and is being reused across various parts of the application.
+The function's signature has changed: it now requires a `Date` object as input, with date string parsing delegated to the calling code.

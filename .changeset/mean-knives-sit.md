@@ -2,4 +2,4 @@
 '@scayle/storefront-application-nuxt': minor
 ---
 
-**\[OSP\]** Improve data fetching status handling by using `SFASyncDataWrapper`.
+**\[OSP\]** Adopted the `SFASyncDataWrapper` component to manage and display UI states related to asynchronous data fetching, improving consistency and reliability.

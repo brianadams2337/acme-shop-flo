@@ -2,6 +2,5 @@
 '@scayle/storefront-application-nuxt': minor
 ---
 
-**\[Account Area\]** Introduce a newly redesigned orders page. This page showcases
-a comprehensive list of orders, each displaying essential order details along
-with a convenient redirect link to the corresponding `order detail` page.
+**\[Account Area\]** Introduced a fully redesigned "My Orders" page.
+The new layout presents a comprehensive list of the user's past orders, displaying key details for each entry and including a direct link to the specific Order Detail page for more information.

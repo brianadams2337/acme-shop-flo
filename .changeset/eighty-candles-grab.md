@@ -2,17 +2,19 @@
 '@scayle/storefront-boilerplate-nuxt': minor
 ---
 
-Introduce `@scayle/storefront-promotions` module and `useApplyPromotions` composable. `useApplyPromotions` can be used to add applicable promotions to basket items whenever the basket is modified.
+**\[Promotions\]** Added the `@scayle/storefront-promotions` module.
+Developers can now leverage the `useApplyPromotions` composable to integrate logic that automatically updates promotions on basket items during any basket change event (add, remove, update quantity).
 
-```typescript
-import { useApplyPromotions } from '#storefront-promotions/composables/useApplyPromotions'
+- Example Usage
 
-const { data: basket, addItem  } = await useBasket()
-const { applyPromotions } = useApplyPromotions()
+      ```ts
+      import { useApplyPromotions } from '#storefront-promotions/composables/useApplyPromotions'
 
-await applyPromotions(basket)
+      const { data: basket, addItem  } = await useBasket()
+      const { applyPromotions } = useApplyPromotions()
 
-await addItem({...})
-await applyPromotions(basket)
+      await applyPromotions(basket)
 
-```
+      await addItem({...})
+      await applyPromotions(basket)
+      ```

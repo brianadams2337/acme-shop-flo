@@ -2,4 +2,4 @@
 '@scayle/storefront-application-nuxt': minor
 ---
 
-**\[Logout\]** Implemented `logout` button within mobile sidebar so that the user can logout properly on mobile devices.
+**\[UI\]** Implemented a dedicated logout button within the mobile sidebar, enabling users to properly log out of their accounts directly from mobile devices.

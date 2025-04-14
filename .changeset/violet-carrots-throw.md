@@ -2,4 +2,5 @@
 '@scayle/storefront-application-nuxt': patch
 ---
 
-Remove `@update:model-value` event from `<SFPriceRangeSlider />` in `/components/filter/SFFilterSlideInContent.vue` to eliminate redundant API calls.
+**\[Performance\]** Optimized the price range filter by removing the `@update:model-value` event listener from the `SFPriceRangeSlider` component.
+This eliminates redundant API calls that were previously triggered during the slider adjustment process.

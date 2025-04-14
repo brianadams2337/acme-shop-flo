@@ -2,4 +2,4 @@
 '@scayle/storefront-application-nuxt': patch
 ---
 
-**\[Product Detail Page\]** Fixed a styling issue on the Product Detail Page where the skeleton loader appeared misaligned or visually inconsistent at certain breakpoints.
+**\[Product Detail Page\]** Corrected visual inconsistencies in the skeleton loader's appearance across different screen widths. The loader now maintains proper alignment and styling at all relevant breakpoints.

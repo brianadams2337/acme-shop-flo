@@ -2,4 +2,4 @@
 '@scayle/storefront-application-nuxt': minor
 ---
 
-[Promotions] Only show `<SFProductPromotionGifts />` on the PDP when the gift conditions are met.
+**\[Promotions\]** The `SFProductPromotionGifts` component is now shown conditionally on the Product Detail Page, appearing only when its gift promotion criteria are met.

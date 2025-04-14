@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { buyXgetYPromotionFactory } from '@scayle/storefront-nuxt/test/factories'
+import { buyXGetYPromotionFactory } from '@scayle/storefront-nuxt/test/factories'
 import {
   getBackgroundColorStyle,
   getTextColorStyle,
@@ -58,7 +58,7 @@ describe('getTextColorStyle', () => {
 
 describe('getPromotionStyle', () => {
   it('should return promotion style object', () => {
-    const promotion = buyXgetYPromotionFactory.build({
+    const promotion = buyXGetYPromotionFactory.build({
       effect: {
         additionalData: {
           variantIds: [12389244, 23985437],

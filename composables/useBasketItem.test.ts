@@ -3,7 +3,7 @@ import { toRef } from 'vue'
 import type { CentAmount } from '@scayle/storefront-nuxt'
 import {
   basketItemPriceFactory,
-  buyXgetYPromotionFactory,
+  buyXGetYPromotionFactory,
   variantFactory,
   basketItemFactory,
 } from '@scayle/storefront-nuxt/test/factories'
@@ -26,7 +26,7 @@ describe('useBasketItem', () => {
 
   describe('isFreeGift', () => {
     it('should return "true" if basket item is free gift ', () => {
-      const promotion = buyXgetYPromotionFactory.build({
+      const promotion = buyXGetYPromotionFactory.build({
         effect: {
           additionalData: {
             variantIds: [1, 2],
@@ -45,7 +45,7 @@ describe('useBasketItem', () => {
     })
 
     it('should return "false" if basket item is not a free gift ', () => {
-      const promotion = buyXgetYPromotionFactory.build({
+      const promotion = buyXGetYPromotionFactory.build({
         effect: {
           additionalData: {
             variantIds: [1, 2],
@@ -65,7 +65,7 @@ describe('useBasketItem', () => {
 
   describe('price', () => {
     it('should return basket total price item is not free gift', () => {
-      const promotion = buyXgetYPromotionFactory.build({
+      const promotion = buyXGetYPromotionFactory.build({
         effect: {
           additionalData: {
             variantIds: [1, 2],
@@ -102,7 +102,7 @@ describe('useBasketItem', () => {
     })
 
     it('should return custom price if item is free gift', () => {
-      const promotion = buyXgetYPromotionFactory.build({
+      const promotion = buyXGetYPromotionFactory.build({
         effect: {
           additionalData: {
             variantIds: [1, 2],

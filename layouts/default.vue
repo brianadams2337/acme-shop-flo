@@ -34,8 +34,8 @@
 
 <script setup lang="ts">
 import { computed, defineOptions, onMounted, ref } from 'vue'
-import { useHead } from '@unhead/vue'
 import { whenever } from '@vueuse/core'
+import { useHead } from '#imports'
 import { useRoute } from '#app/composables/router'
 import { useNuxtApp } from '#app/nuxt'
 import {

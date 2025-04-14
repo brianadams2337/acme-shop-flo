@@ -19,9 +19,9 @@
 </template>
 
 <script setup lang="ts">
-import { useI18n } from 'vue-i18n'
 import { computed } from 'vue'
 import { useMounted } from '@vueuse/core'
+import { useI18n } from '#i18n'
 import { useWishlist } from '#storefront/composables'
 import SFLocalizedLink from '~/components/SFLocalizedLink.vue'
 import { routeList } from '~/utils'

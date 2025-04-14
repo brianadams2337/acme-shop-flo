@@ -13,10 +13,9 @@
 
 <script setup lang="ts">
 import { defineOptions, onBeforeMount, ref } from 'vue'
-import { useSeoMeta } from '@unhead/vue'
 import { useEventListener } from '@vueuse/core'
 import type { CheckoutEvent } from '@scayle/storefront-nuxt'
-import { definePageMeta } from '#imports'
+import { useSeoMeta, definePageMeta } from '#imports'
 import {
   useCheckoutWebComponent,
   useCheckoutStepTrackingInterceptor,

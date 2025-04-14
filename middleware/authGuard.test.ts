@@ -1,8 +1,8 @@
 import { beforeEach, describe, it, vi, expect, type Mock } from 'vitest'
 import { routeFactory } from '@scayle/storefront-nuxt/test/factories'
 import { toRef } from 'vue'
-import type { RouteLocation } from 'vue-router'
 import authGuardMiddleware from './authGuard.global'
+import type { RouteLocation } from '#vue-router'
 import { useCurrentShop, useUser } from '#storefront/composables'
 import { navigateTo } from '#app/composables/router'
 

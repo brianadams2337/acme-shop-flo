@@ -52,7 +52,7 @@
 
 <script setup lang="ts">
 import { defineOptions } from 'vue'
-import { useHead } from '@unhead/vue'
+import { useHead } from '#imports'
 import SFLocalizedLink from '~/components/SFLocalizedLink.vue'
 import { useNuxtApp } from '#app/nuxt'
 import { useCurrentShop } from '#storefront/composables'

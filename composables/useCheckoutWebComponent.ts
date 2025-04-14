@@ -1,5 +1,5 @@
-import { useHead } from '@unhead/vue'
 import { computed } from 'vue'
+import { useHead } from '#imports'
 import { useCurrentShop, useRpc } from '#storefront/composables'
 
 export type Customer = {

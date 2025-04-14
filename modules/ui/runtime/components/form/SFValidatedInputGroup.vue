@@ -21,7 +21,7 @@ import { SFFadeInFromBottomTransition } from '#storefront-ui/components'
 
 type Errors = ErrorObject[] | string[]
 
-const { errors = [] } = defineProps<{ errors: Errors }>()
+const { errors = [] } = defineProps<{ errors?: Errors }>()
 
 const isValid = computed(() => !errors.length)
 

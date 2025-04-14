@@ -491,8 +491,6 @@ export default defineNuxtConfig({
     '@nuxtjs/i18n',
     // https://github.com/vueuse/vueuse/tree/main/packages/nuxt
     '@vueuse/nuxt',
-    // https://github.com/cpreston321/nuxt-swiper
-    'nuxt-swiper',
     // https://nuxt.com/docs/getting-started/testing
     '@nuxt/test-utils/module',
     // https://eslint.nuxt.com/packages/module
@@ -586,12 +584,6 @@ export default defineNuxtConfig({
     defaultLocale: i18nDefaultLocale,
     lazy: true,
     strategy: getI18nStrategy(),
-  },
-
-  // https://github.com/cpreston321/nuxt-swiper#usage
-  swiper: {
-    prefix: 'Swiper',
-    modules: ['navigation', 'autoplay', 'pagination'],
   },
 
   opentelemetry: {

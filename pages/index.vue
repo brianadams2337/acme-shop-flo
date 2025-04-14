@@ -8,10 +8,9 @@
 
 <script setup lang="ts">
 import { defineOptions } from 'vue'
-import { useHead, useSeoMeta } from '@unhead/vue'
 import { sanitizeCanonicalURL } from '@scayle/storefront-nuxt'
 import type { OnlineStore, WithContext } from 'schema-dts'
-import { definePageMeta } from '#imports'
+import { useHead, useSeoMeta, definePageMeta } from '#imports'
 import { useNuxtApp, useRuntimeConfig } from '#app'
 import { useRoute } from '#app/composables/router'
 import CMSContentPage from '#storefront-cms/components/ContentPage.vue'

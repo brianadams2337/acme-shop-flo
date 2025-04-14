@@ -32,7 +32,7 @@
 </template>
 
 <script setup lang="ts">
-import { I18nT } from 'vue-i18n'
+import { I18nT } from '#i18n'
 import { SFLink } from '#storefront-ui/components'
 
 const PRIVACY_POLICY_LINK = 'https://www.scayle.com/privacy-policy/'

@@ -66,9 +66,8 @@
 
 <script setup lang="ts">
 import { computed, defineOptions, ref } from 'vue'
-import { useSeoMeta } from '@unhead/vue'
+import { useSeoMeta, definePageMeta } from '#imports'
 import { useToast } from '~/composables/useToast'
-import { definePageMeta } from '#imports'
 import { useStoreLocator } from '#omnichannel/composables'
 import { useRuntimeConfig } from '#app'
 import { useI18n } from '#i18n'

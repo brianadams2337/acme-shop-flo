@@ -17,12 +17,11 @@
 </template>
 
 <script setup lang="ts">
-import { useSeoMeta } from '@unhead/vue'
-import { useI18n } from 'vue-i18n'
 import { defineOptions, onMounted } from 'vue'
 import useSubscriptionWebComponent from '../composables/useSubscriptionWebComponent'
+import { useI18n } from '#i18n'
+import { useSeoMeta, definePageMeta } from '#imports'
 import { useCurrentShop } from '#storefront/composables'
-import { definePageMeta } from '#imports'
 import { SFHeadline } from '#storefront-ui/components'
 
 const currentShop = useCurrentShop()

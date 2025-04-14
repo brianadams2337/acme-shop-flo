@@ -89,7 +89,7 @@ import { useFormatDistance } from '~/composables/useFormatDistance'
 interface Props {
   id: number
   name: string
-  index: number
+  index?: number
   distance?: number
   quantity?: number
   address: StoreAddress

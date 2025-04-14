@@ -1,5 +1,5 @@
-import { useHead } from '@unhead/vue'
 import { ref } from 'vue'
+import { useHead } from '#imports'
 import { useRuntimeConfig } from '#app'
 import { useLog, useRpc } from '#storefront/composables'
 

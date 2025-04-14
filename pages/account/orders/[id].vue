@@ -17,9 +17,8 @@
 
 <script setup lang="ts">
 import { computed, defineOptions, onMounted, onServerPrefetch } from 'vue'
-import { useSeoMeta } from '@unhead/vue'
 import { HttpStatusCode } from '@scayle/storefront-nuxt'
-import { definePageMeta } from '#imports'
+import { useSeoMeta, definePageMeta } from '#imports'
 import { useRoute } from '#app/composables/router'
 import SFAsyncDataWrapper from '~/components/SFAsyncDataWrapper.vue'
 import SFOrderDetailSkeletonLoader from '~/components/order/detail/SFOrderDetailSkeletonLoader.vue'

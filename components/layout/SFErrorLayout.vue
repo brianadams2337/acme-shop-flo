@@ -22,9 +22,9 @@
 </template>
 
 <script setup lang="ts">
-import { useHead } from '@unhead/vue'
 import { computed } from 'vue'
 import { HttpStatusCode } from '@scayle/storefront-nuxt'
+import { useHead } from '#imports'
 import type { NuxtError } from '#app'
 import { SFButton, SFHeadline } from '#storefront-ui/components'
 import { vSanitizedHtml } from '~/directives/sanitized-html'

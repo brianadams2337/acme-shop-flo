@@ -35,7 +35,7 @@ import SFLocalizedLink from './SFLocalizedLink.vue'
 import { routeList } from '~/utils/route'
 
 const { width = 94, height = 24 } = defineProps<{
-  width: number
-  height: number
+  width?: number
+  height?: number
 }>()
 </script>

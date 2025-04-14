@@ -107,7 +107,6 @@
 
 <script setup lang="ts">
 import { whenever } from '@vueuse/core'
-import { useSeoMeta, useHead } from '@unhead/vue'
 import {
   computed,
   defineOptions,
@@ -120,10 +119,10 @@ import {
   type Price,
   type Variant,
 } from '@scayle/storefront-nuxt'
+import { useSeoMeta, useHead, definePageMeta, useImage } from '#imports'
 import { useNuxtApp } from '#app/nuxt'
 import { createError } from '#app/composables/error'
 import { useRoute, useRouter } from '#app/composables/router'
-import { definePageMeta, useImage } from '#imports'
 import { useJsonld } from '~/composables/useJsonld'
 import { usePageState } from '~/composables/usePageState'
 import { useTrackingEvents } from '~/composables/useTrackingEvents'

@@ -56,13 +56,18 @@
 </template>
 
 <script setup lang="ts">
-import { useHead, useSeoMeta } from '@unhead/vue'
 import { defineOptions } from 'vue'
 import { whenever } from '@vueuse/core'
 import { sanitizeCanonicalURL } from '@scayle/storefront-nuxt'
+import {
+  useHead,
+  useSeoMeta,
+  definePageMeta,
+  useNuxtApp,
+  useRoute,
+} from '#imports'
 import SFProductCardSkeleton from '~/components/product/card/SFProductCardSkeleton.vue'
 import SFAsyncDataWrapper from '~/components/SFAsyncDataWrapper.vue'
-import { definePageMeta, useNuxtApp, useRoute } from '#imports'
 import { useWishlistTracking } from '~/composables'
 import { useWishlist } from '#storefront/composables'
 import SFEmptyState from '~/components/SFEmptyState.vue'

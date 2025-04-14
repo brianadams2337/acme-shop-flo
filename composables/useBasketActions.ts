@@ -4,7 +4,7 @@ import type {
   BasketItem,
   BasketItemUpdateData,
 } from '@scayle/storefront-nuxt'
-import { useI18n } from 'vue-i18n'
+import { useI18n } from '#i18n'
 import { useToast } from '~/composables/useToast'
 import { useTrackingEvents } from '~/composables/useTrackingEvents'
 import { useRouteHelpers } from '~/composables'

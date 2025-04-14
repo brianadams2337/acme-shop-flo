@@ -1,6 +1,6 @@
 import { toValue, type MaybeRefOrGetter } from 'vue'
-import { useHead } from '@unhead/vue'
 import type { WithContext, Thing, Graph } from 'schema-dts'
+import { useHead } from '#imports'
 
 export function useJsonld(
   json: MaybeRefOrGetter<

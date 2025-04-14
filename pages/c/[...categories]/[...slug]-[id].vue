@@ -73,16 +73,15 @@ import {
   defineOptions,
   computed,
 } from 'vue'
-import { useSeoMeta, useHead } from '@unhead/vue'
 import {
   HttpStatusCode,
   type Product,
   type Category,
 } from '@scayle/storefront-nuxt'
-import { useI18n } from 'vue-i18n'
+import { useSeoMeta, useHead, definePageMeta } from '#imports'
+import { useI18n } from '#i18n'
 import { useRoute } from '#app/composables/router'
 import { useNuxtApp } from '#app/nuxt'
-import { definePageMeta } from '#imports'
 import {
   useTrackingEvents,
   usePageState,

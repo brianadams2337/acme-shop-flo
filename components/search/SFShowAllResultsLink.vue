@@ -14,8 +14,8 @@
 </template>
 <script setup lang="ts">
 import { computed } from 'vue'
-import { useI18n } from 'vue-i18n'
 import DOMpurify from 'dompurify'
+import { useI18n } from '#i18n'
 import { useRouteHelpers } from '~/composables'
 import SFLocalizedLink from '~/components/SFLocalizedLink.vue'
 

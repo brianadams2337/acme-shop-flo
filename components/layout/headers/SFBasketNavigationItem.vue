@@ -36,8 +36,8 @@
 
 <script setup lang="ts">
 import { computed, ref } from 'vue'
-import { useI18n } from 'vue-i18n'
 import { useMounted } from '@vueuse/core'
+import { useI18n } from '#i18n'
 import { useBasket } from '#storefront/composables'
 import SFLocalizedLink from '~/components/SFLocalizedLink.vue'
 import { SFPopover } from '~/modules/ui/runtime/components'

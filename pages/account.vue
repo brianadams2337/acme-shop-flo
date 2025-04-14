@@ -17,9 +17,8 @@
 </template>
 
 <script setup lang="ts">
-import { useSeoMeta } from '@unhead/vue'
 import { defineOptions } from 'vue'
-import { definePageMeta } from '#imports'
+import { useSeoMeta, definePageMeta } from '#imports'
 import { useI18n } from '#i18n'
 import { NuxtPage } from '#components'
 import SFAccountTabs from '~/components/account/SFAccountTabs.vue'

@@ -1,6 +1,5 @@
 import { it, describe, expect } from 'vitest'
 import type { BasketResponseData, CentAmount } from '@scayle/storefront-nuxt'
-import type { BasketKey } from '@scayle/storefront-api'
 import {
   costFactory,
   basketItemsFactory,
@@ -14,7 +13,7 @@ import {
 describe('getBasketTotalWithoutPromotions', () => {
   it('should return total without promotions', () => {
     const basket: BasketResponseData = {
-      key: 'basket-key' as BasketKey,
+      key: 'basket-key' as BasketResponseData['key'],
       cost: costFactory.build({
         withTax: 1000 as CentAmount,
         withoutTax: 1200 as CentAmount,

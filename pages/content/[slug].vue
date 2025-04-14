@@ -9,9 +9,8 @@
 </template>
 
 <script setup lang="ts">
-import { useSeoMeta } from '@unhead/vue'
 import { computed, defineOptions } from 'vue'
-import { definePageMeta } from '#imports'
+import { useSeoMeta, definePageMeta } from '#imports'
 import { useRoute } from '#app/composables/router'
 import CMSContentPage from '#storefront-cms/components/ContentPage.vue'
 import SFContentPageSkeletonLoader from '~/components/SFContentPageSkeletonLoader.vue'

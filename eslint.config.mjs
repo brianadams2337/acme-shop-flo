@@ -144,6 +144,7 @@ export default withNuxt(
     rules: {
       'import/newline-after-import': ['error', { count: 1 }],
       'import/order': 'error',
+      'import/no-extraneous-dependencies': 'error',
     },
   },
   {

@@ -48,7 +48,7 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import Color from 'color'
-import type { AttributesFilterValue } from '@scayle/storefront-api'
+import type { AttributesFilterValue } from '@scayle/storefront-nuxt'
 import { ProductColor } from '~/constants/product'
 
 const { isChecked = false, color } = defineProps<{

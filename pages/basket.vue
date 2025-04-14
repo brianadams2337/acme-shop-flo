@@ -67,10 +67,9 @@
 
 <script setup lang="ts">
 import { computed, defineOptions, onMounted } from 'vue'
-import { useHead, useSeoMeta } from '@unhead/vue'
 import { useConfirmDialog, whenever } from '@vueuse/core'
 import { sanitizeCanonicalURL, type BasketItem } from '@scayle/storefront-nuxt'
-import { definePageMeta } from '#imports'
+import { useHead, useSeoMeta, definePageMeta } from '#imports'
 import { createError, useNuxtApp } from '#app'
 import { useRoute } from '#app/composables/router'
 import { WishlistListingMetadata } from '~/constants/listingMetadata'

@@ -20,9 +20,8 @@
 
 <script setup lang="ts">
 import { computed, defineOptions } from 'vue'
-import { useSeoMeta, useHead } from '@unhead/vue'
 import { sanitizeCanonicalURL } from '@scayle/storefront-nuxt'
-import { definePageMeta, useRoute } from '#imports'
+import { useSeoMeta, useHead, definePageMeta, useRoute } from '#imports'
 import { useI18n } from '#i18n'
 import { useIDP } from '#storefront/composables'
 import { useNuxtApp } from '#app'

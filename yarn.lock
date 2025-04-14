@@ -624,17 +624,17 @@
     "@contentful/rich-text-types" "^17.0.0"
     escape-html "^1.0.3"
 
-"@contentful/rich-text-types@^16.6.1":
-  version "16.8.5"
-  resolved "https://registry.yarnpkg.com/@contentful/rich-text-types/-/rich-text-types-16.8.5.tgz#832c8b428612f5181908bc1033c6ef9f48f1ce83"
-  integrity sha512-q18RJuJCOuYveGiCIjE5xLCQc5lZ3L2Qgxrlg/H2YEobDFqdtmklazRi1XwEWaK3tMg6yVXBzKKkQfLB4qW14A==
-
-"@contentful/rich-text-types@^17.0.0":
+"@contentful/rich-text-types@17.0.0", "@contentful/rich-text-types@^17.0.0":
   version "17.0.0"
   resolved "https://registry.yarnpkg.com/@contentful/rich-text-types/-/rich-text-types-17.0.0.tgz#f58badfe01fa10860e065c02fd584f428a70ecc6"
   integrity sha512-x50t6sILzFHBdFpAo0foJRnH8fHWyidheWhAv3uwt9aOnNqTh893gxyoc3Q0RVEZxXfHpTi+O9gmakHcdlRdTA==
   dependencies:
     is-plain-obj "^3.0.0"
+
+"@contentful/rich-text-types@^16.6.1":
+  version "16.8.5"
+  resolved "https://registry.yarnpkg.com/@contentful/rich-text-types/-/rich-text-types-16.8.5.tgz#832c8b428612f5181908bc1033c6ef9f48f1ce83"
+  integrity sha512-q18RJuJCOuYveGiCIjE5xLCQc5lZ3L2Qgxrlg/H2YEobDFqdtmklazRi1XwEWaK3tMg6yVXBzKKkQfLB4qW14A==
 
 "@csstools/cascade-layer-name-parser@^2.0.4":
   version "2.0.4"
@@ -1923,7 +1923,7 @@
   optionalDependencies:
     ipx "^2.1.0"
 
-"@nuxt/kit@3.15.4", "@nuxt/kit@^3.12.2", "@nuxt/kit@^3.12.3", "@nuxt/kit@^3.14.0", "@nuxt/kit@^3.15.0", "@nuxt/kit@^3.15.1", "@nuxt/kit@^3.15.4", "@nuxt/kit@^3.16.0", "@nuxt/kit@^3.16.1", "@nuxt/kit@^3.16.2", "@nuxt/kit@^3.4.0", "@nuxt/kit@^3.7.0":
+"@nuxt/kit@3.15.4", "@nuxt/kit@^3.12.2", "@nuxt/kit@^3.12.3", "@nuxt/kit@^3.14.0", "@nuxt/kit@^3.15.0", "@nuxt/kit@^3.15.1", "@nuxt/kit@^3.15.4", "@nuxt/kit@^3.16.0", "@nuxt/kit@^3.16.1", "@nuxt/kit@^3.16.2", "@nuxt/kit@^3.4.0":
   version "3.15.4"
   resolved "https://registry.yarnpkg.com/@nuxt/kit/-/kit-3.15.4.tgz#122f511e518573320a035b5e24adf0118d51485d"
   integrity sha512-dr7I7eZOoRLl4uxdxeL2dQsH0OrbEiVPIyBHnBpA4co24CBnoJoF+JINuP9l3PAM3IhUzc5JIVq3/YY3lEc3Hw==
@@ -3394,10 +3394,10 @@
   dependencies:
     utility-types "3.11.0"
 
-"@scayle/storefront-core@8.20.1":
-  version "8.20.1"
-  resolved "https://registry.yarnpkg.com/@scayle/storefront-core/-/storefront-core-8.20.1.tgz#b5a077e5392ee8e30d118513dfc3cef2aed47b1a"
-  integrity sha512-jtoXDPZn5V11bKn+9a6XZDRnrSAntjaeeZ15t8Sv4/l99ZsUUM98QtovV+kLtxRzxcT5YS8v8iC4Tshq7Y4HBw==
+"@scayle/storefront-core@8.21.0":
+  version "8.21.0"
+  resolved "https://registry.yarnpkg.com/@scayle/storefront-core/-/storefront-core-8.21.0.tgz#c18db4167b33662df51bdae8bb26d60e36727417"
+  integrity sha512-DfrESZj72RhFzqjajNbpLGWgsKyJVErFUZgadED1a+ru3vlopa9lMD4h1MhCq2aJQxU1wyWMOcs+EuUL57TYbA==
   dependencies:
     "@scayle/storefront-api" "18.3.0"
     "@scayle/unstorage-scayle-kv-driver" "0.1.1"
@@ -3419,14 +3419,14 @@
   resolved "https://registry.yarnpkg.com/@scayle/storefront-navigation/-/storefront-navigation-0.1.0.tgz#c622f02e05de26fcbd4121356e1ab2ef67066b9c"
   integrity sha512-6XIoK2fgAUFoaqC37zXRuudnK83OeQhT056Ow9OhJIZPj/KGyPQjYfZm0Gxg8JSa6Emct4KvQteROg/FI0yesQ==
 
-"@scayle/storefront-nuxt@8.20.1":
-  version "8.20.1"
-  resolved "https://registry.yarnpkg.com/@scayle/storefront-nuxt/-/storefront-nuxt-8.20.1.tgz#db6332bbcaafbf20c4eb7fc8230d2c02534140b3"
-  integrity sha512-rlqPCCJcGhiNLAPmCL9PIIJfb6r5aOidyarmO0zi3YEZdtfLeA+gGIEWtmRh1rCkORwazvRvAIq68P80iPHrEA==
+"@scayle/storefront-nuxt@8.21.0":
+  version "8.21.0"
+  resolved "https://registry.yarnpkg.com/@scayle/storefront-nuxt/-/storefront-nuxt-8.21.0.tgz#c72738e8ad7b0003dab56d685afb11f8c0f8dd6d"
+  integrity sha512-oGIc86uPL22mLcWR1URr7QPYi4L9dwVkTRPcguqd9+xOEsC2Vr4aE8pYVfdw1Msd14h1iHz/TCOeRGZaDS9aHg==
   dependencies:
     "@opentelemetry/api" "^1.9.0"
     "@scayle/h3-session" "0.6.0"
-    "@scayle/storefront-core" "8.20.1"
+    "@scayle/storefront-core" "8.21.0"
     "@scayle/unstorage-compression-driver" "^0.2.6"
     "@vercel/nft" "0.29.2"
     "@vueuse/core" "13.1.0"
@@ -6234,7 +6234,7 @@ debug@2.6.9:
   dependencies:
     ms "2.0.0"
 
-debug@4, debug@^4.0.0, debug@^4.1.0, debug@^4.1.1, debug@^4.3.1, debug@^4.3.2, debug@^4.3.3, debug@^4.3.4, debug@^4.3.5, debug@^4.3.6, debug@^4.3.7, debug@^4.4.0:
+debug@4, debug@4.4.0, debug@^4.0.0, debug@^4.1.0, debug@^4.1.1, debug@^4.3.1, debug@^4.3.2, debug@^4.3.3, debug@^4.3.4, debug@^4.3.5, debug@^4.3.6, debug@^4.3.7, debug@^4.4.0:
   version "4.4.0"
   resolved "https://registry.yarnpkg.com/debug/-/debug-4.4.0.tgz#2b3f2aea2ffeb776477460267377dc8710faba8a"
   integrity sha512-6WTZ/IxCY/T6BALoZHaE4ctp9xm+Z5kY/pzYaCHRFeyVhojxlrm+46y68HA6hr0TcwEssoxNiDEUJQjfPZ/RYA==
@@ -6369,7 +6369,7 @@ define-properties@^1.2.1:
     has-property-descriptors "^1.0.0"
     object-keys "^1.1.1"
 
-defu@^6.1.2, defu@^6.1.4:
+defu@6.1.4, defu@^6.1.2, defu@^6.1.4:
   version "6.1.4"
   resolved "https://registry.yarnpkg.com/defu/-/defu-6.1.4.tgz#4e0c9cf9ff68fe5f3d7f2765cc1a012dfdcb0479"
   integrity sha512-mEQCMmwJu317oSz8CwdIOdwf3xMif1ttiM8LTufzc3g6kR+9Pe236twL8j3IYT1F7GfRgGcW6MWxzZjLIkuHIg==
@@ -11066,14 +11066,6 @@ nuxt-svgo@4.0.17:
     mini-svg-data-uri "^1.4.4"
     svgo "3.0.2"
 
-nuxt-swiper@1.2.2:
-  version "1.2.2"
-  resolved "https://registry.yarnpkg.com/nuxt-swiper/-/nuxt-swiper-1.2.2.tgz#7b855c4948edb2e8ba4f98eea457a821b84ff53b"
-  integrity sha512-y4s/srISP4OuhXbYg9/W1/6EWnbcoHRGEKBKAvGP0I2h0b3enhqZNEk7854M3F89ys8waacBXektPzamgl5xwQ==
-  dependencies:
-    "@nuxt/kit" "^3.7.0"
-    swiper "^10.2.0"
-
 nuxt@3.15.4:
   version "3.15.4"
   resolved "https://registry.yarnpkg.com/nuxt/-/nuxt-3.15.4.tgz#631f679ca6d63406bf7e25f15a37432c7ecbcc16"
@@ -13666,10 +13658,10 @@ svgo@^3.2.0, svgo@^3.3.2:
     csso "^5.0.5"
     picocolors "^1.0.0"
 
-swiper@^10.2.0:
-  version "10.3.1"
-  resolved "https://registry.yarnpkg.com/swiper/-/swiper-10.3.1.tgz#4d19d7e9d0bd184c30accf2c1b180cfe41b9f4af"
-  integrity sha512-24Wk3YUdZHxjc9faID97GTu6xnLNia+adMt6qMTZG/HgdSUt4fS0REsGUXJOgpTED0Amh/j+gRGQxsLayJUlBQ==
+swiper@11.2.6:
+  version "11.2.6"
+  resolved "https://registry.yarnpkg.com/swiper/-/swiper-11.2.6.tgz#826943bf87158518ca0b1f57d387272b12a07c52"
+  integrity sha512-8aXpYKtjy3DjcbzZfz+/OX/GhcU5h+looA6PbAzHMZT6ESSycSp9nAjPCenczgJyslV+rUGse64LMGpWE3PX9Q==
 
 symbol-observable@^1.1.0:
   version "1.2.0"

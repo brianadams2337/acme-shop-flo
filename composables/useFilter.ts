@@ -1,7 +1,7 @@
 import { extendPromise } from '@scayle/storefront-nuxt'
 import { computed, type MaybeRefOrGetter, readonly, ref, toValue } from 'vue'
-import type { LocationQuery } from 'vue-router'
 import type { RangeTuple } from '@scayle/storefront-product-listing'
+import type { LocationQuery } from '#vue-router'
 import { useTrackingEvents, useToast } from '~/composables'
 import { useRoute, useRouter } from '#app/composables/router'
 import { useI18n } from '#i18n'

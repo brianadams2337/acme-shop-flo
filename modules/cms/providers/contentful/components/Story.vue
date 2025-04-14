@@ -19,10 +19,10 @@
 
 <script setup lang="ts">
 import { computed, defineOptions } from 'vue'
-import { useSeoMeta } from '@unhead/vue'
 import type { Entry } from 'contentful'
 import type { TypeContentPageWithoutUnresolvableLinksResponse } from '../types'
 import { getComponentName } from '../../../utils/helpers'
+import { useSeoMeta } from '#imports'
 import { SFHeadline } from '#storefront-ui/components'
 
 const { story } = defineProps<{ story: Entry }>()

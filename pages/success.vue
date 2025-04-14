@@ -56,10 +56,9 @@
 
 <script setup lang="ts">
 import { computed, defineOptions, onMounted, watch } from 'vue'
-import { useSeoMeta } from '@unhead/vue'
 import { whenever } from '@vueuse/core'
 import { HttpStatusCode } from '@scayle/storefront-nuxt'
-import { definePageMeta } from '#imports'
+import { useSeoMeta, definePageMeta } from '#imports'
 import { useTrackingEvents } from '~/composables/useTrackingEvents'
 import { useOrderConfirmation, useUser } from '#storefront/composables'
 import { useRoute } from '#app/composables/router'

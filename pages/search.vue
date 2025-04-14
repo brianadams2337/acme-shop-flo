@@ -42,8 +42,7 @@
 
 <script setup lang="ts">
 import { computed, defineOptions } from 'vue'
-import { useSeoMeta } from '@unhead/vue'
-import { definePageMeta } from '#imports'
+import { useSeoMeta, definePageMeta } from '#imports'
 import { useRoute } from '#app/composables/router'
 import { PRODUCT_TILE_WITH_PARAMS, PRODUCTS_PER_PAGE } from '~/constants'
 import { SFHeadline, SFFadeInTransition } from '#storefront-ui/components'

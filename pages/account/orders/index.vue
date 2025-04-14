@@ -30,8 +30,7 @@
 
 <script setup lang="ts">
 import { computed, defineOptions } from 'vue'
-import { useSeoMeta } from '@unhead/vue'
-import { definePageMeta } from '#imports'
+import { useSeoMeta, definePageMeta } from '#imports'
 import SFEmptyState from '~/components/SFEmptyState.vue'
 import { useI18n } from '#i18n'
 import { NuxtPage } from '#components'

@@ -1,4 +1,4 @@
-import { getAttributeValues } from '@scayle/storefront-api'
+import { getAttributeValueTuples } from '@scayle/storefront-nuxt'
 import { computed } from 'vue'
 import type { BasketItem } from '@scayle/storefront-nuxt'
 import {
@@ -31,7 +31,7 @@ export default (basketItem: BasketItem) => {
     attributeName: string,
     attributeValue: string,
   ) =>
-    getAttributeValues(basketItem.variant.attributes, attributeName).find(
+    getAttributeValueTuples(basketItem.variant.attributes, attributeName).find(
       (value) => value.value === attributeValue,
     )?.label
 

@@ -30,8 +30,7 @@
 
 <script setup lang="ts">
 import { defineOptions } from 'vue'
-import { useSeoMeta } from '@unhead/vue'
-import { definePageMeta } from '#imports'
+import { useSeoMeta, definePageMeta } from '#imports'
 import { useUser } from '#storefront/composables'
 import { useI18n } from '#i18n'
 import { SFHeadline } from '#storefront-ui/components'

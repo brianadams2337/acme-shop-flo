@@ -1,9 +1,5 @@
 import { type MaybeRefOrGetter, computed, ref } from 'vue'
-import {
-  type Product,
-  getRowByIndex,
-  isFirstIndexOfRow,
-} from '@scayle/storefront-nuxt'
+import type { Product } from '@scayle/storefront-nuxt'
 import { toRef } from '@vueuse/core'
 import { useRoute } from '#app/composables/router'
 import { useDefaultBreakpoints } from '#storefront-ui/composables'
@@ -54,19 +50,16 @@ export function useRowIntersection(
 
   const _getRowByIndex = (index: number) => {
     const currentPage = parseInt(route.query.page as string) || 1
+    const adjustedIndex = index + (currentPage - 1) * PRODUCTS_PER_PAGE
 
-    return getRowByIndex(index, {
-      columns: columns.value,
-      page: currentPage,
-      perPage: PRODUCTS_PER_PAGE,
-    })
+    return Math.floor(adjustedIndex / columns.value)
   }
 
   const collectRowIntersection = (
     index: number,
   ): CollectedRowIntersection | undefined => {
     const row = _getRowByIndex(index)
-    const isFirstItemInRow = isFirstIndexOfRow(index, columns.value)
+    const isFirstItemInRow = index % columns.value === 0
 
     const hasRowBeenTracked = trackingCollector.value.some(
       (item) => item.row === row,

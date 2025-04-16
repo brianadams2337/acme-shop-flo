@@ -34,11 +34,7 @@
 
 <script setup lang="ts">
 import { computed, defineOptions, ref } from 'vue'
-import {
-  type Product,
-  getLatestCategory,
-  isFirstIndexOfRow,
-} from '@scayle/storefront-nuxt'
+import { type Product, getLatestCategory } from '@scayle/storefront-nuxt'
 import { useStorefrontTracking } from '../../../composables/storefront/useStorefrontTracking'
 import { useStorefrontBreakpoints } from '../../../composables/storefront/useStorefrontBreakpoints'
 import type { CMSProductSliderProps } from '../types'
@@ -138,7 +134,7 @@ const trackIntersection = (payload: { product: Product; index: number }) => {
   const { product, index } = payload
   const isTracked =
     trackingCollector.value.findIndex((p) => p.id === product.id) !== -1
-  const isFirstItemInRow = isFirstIndexOfRow(index, columns.value)
+  const isFirstItemInRow = index % columns.value === 0
   // Treat slider as a special case of product list, track all intersected items at once
   // But instead of checking is row tracked, check per product
   if (!isFirstItemInRow || isTracked) {

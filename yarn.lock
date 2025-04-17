@@ -3415,10 +3415,10 @@
     uncrypto "^0.1.3"
     utility-types "^3.11.0"
 
-"@scayle/storefront-country-detection@1.1.1":
-  version "1.1.1"
-  resolved "https://registry.yarnpkg.com/@scayle/storefront-country-detection/-/storefront-country-detection-1.1.1.tgz#3684d0bee3d88065dfc8d5eafcfa705c13fab645"
-  integrity sha512-2l5FMDNPCvfIUA9Xp0bYGLiSvmATkgCXnIAckEAAjHzFqoaPK1mKJhZwNKatREPlV93KHKGZKCMG+vk/RU7eKg==
+"@scayle/storefront-country-detection@1.2.0":
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/@scayle/storefront-country-detection/-/storefront-country-detection-1.2.0.tgz#20f1418585ff6d24be73e09e025f805b8e209695"
+  integrity sha512-yUJ0PdG9WpvWfIn+Mx1tgLVwjIu8upqYut+dbUL6Uk578T/l3yn3XKBaOLjJeE0e3Z43yVUF52qUu7I3H7Mu6g==
 
 "@scayle/storefront-navigation@0.1.0":
   version "0.1.0"

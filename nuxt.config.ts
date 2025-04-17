@@ -378,7 +378,7 @@ export default defineNuxtConfig({
         /** Storefront Core - Internal logger configuration
          * https://scayle.dev/en/storefront-guide/developer-guide/basic-setup/introduction#log */
         log: {
-          name: 'storefront-boilerplate-nuxt', // Override: NUXT_PUBLIC_STOREFRONT_LOG_NAME
+          name: 'scayle-storefront-application-nuxt', // Override: NUXT_PUBLIC_STOREFRONT_LOG_NAME
           level: 'debug', // Override: NUXT_PUBLIC_STOREFRONT_LOG_LEVEL
         },
       },

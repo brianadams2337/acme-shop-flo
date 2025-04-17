@@ -102,7 +102,7 @@
     "@contentful/rich-text-html-renderer": "17.0.0",
     "@googlemaps/js-api-loader": "1.16.8",
     "@nuxt/fonts": "0.11.1",
-    "@scayle/nuxt-image-provider": "0.2.5",
+    "@scayle/nuxt-image-provider": "0.3.0",
     "@scayle/nuxt-opentelemetry": "0.9.4",
     "@scayle/omnichannel-nuxt": "4.2.0",
     "@scayle/storefront-country-detection": "1.1.1",

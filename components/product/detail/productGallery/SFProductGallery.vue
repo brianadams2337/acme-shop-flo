@@ -83,26 +83,22 @@
         />
         <template #arrows="{ prev, isPrevEnabled, next, isNextEnabled }">
           <div class="absolute bottom-4 right-4 flex space-x-px max-md:hidden">
-            <SFButton
-              class="rounded-l-full"
-              variant="slider"
+            <SFSliderArrowButton
+              class="aspect-square h-9 bg-white focus-visible:shadow-inner-solid-sm disabled:bg-secondary-200 disabled:text-gray-400"
               :aria-label="$t('image_slider.previous_label')"
-              size="sm"
               :disabled="!isPrevEnabled"
+              direction="left"
+              inverted-radius
               @click="prev()"
-            >
-              <IconChevronLeft class="size-4" />
-            </SFButton>
-            <SFButton
-              class="rounded-r-full"
-              variant="slider"
+            />
+            <SFSliderArrowButton
+              class="aspect-square h-9 bg-white focus-visible:shadow-inner-solid-sm disabled:bg-secondary-200 disabled:text-gray-400"
               :aria-label="$t('image_slider.next_label')"
-              size="sm"
               :disabled="!isNextEnabled"
+              direction="right"
+              inverted-radius
               @click="next()"
-            >
-              <IconChevronRight class="size-4" />
-            </SFButton>
+            />
           </div>
         </template>
         <template #thumbnails>
@@ -148,12 +144,9 @@ import SFWishlistToggle from '../../SFWishlistToggle.vue'
 import SFProductBadges from '../../card/SFProductBadges.vue'
 import SFProductImage from '../../SFProductImage.vue'
 import SFProductGalleryZoom from './SFProductGalleryZoom.vue'
+import SFSliderArrowButton from '~/modules/ui/runtime/components/core/SFSliderArrowButton.vue'
 
-import {
-  SFButton,
-  SFItemsSlider,
-  SFGoBackLink,
-} from '#storefront-ui/components'
+import { SFItemsSlider, SFGoBackLink } from '#storefront-ui/components'
 
 import { useProductBaseInfo, useRouteHelpers } from '~/composables'
 

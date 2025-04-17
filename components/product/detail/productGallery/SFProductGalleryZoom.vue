@@ -43,18 +43,22 @@
           />
         </div>
         <template #prev-button="{ prev, isPrevEnabled }">
-          <SFProductCardImageSliderButton
-            class="top-1/2 -translate-y-1/2 bg-gray-200 max-md:hidden"
+          <SFSliderArrowButton
+            class="absolute top-1/2 -translate-y-1/2 bg-gray-200 max-md:hidden"
+            :aria-label="$t('image_slider.previous_label')"
             :disabled="!isPrevEnabled"
             direction="left"
+            translate-on-hover
             @click="prev()"
           />
         </template>
         <template #next-button="{ next, isNextEnabled }">
-          <SFProductCardImageSliderButton
-            class="top-1/2 -translate-y-1/2 bg-gray-200 max-md:hidden"
+          <SFSliderArrowButton
+            class="absolute top-1/2 -translate-y-1/2 bg-gray-200 max-md:hidden"
+            :aria-label="$t('image_slider.next_label')"
             :disabled="!isNextEnabled"
             direction="right"
+            translate-on-hover
             @click="next()"
           />
         </template>
@@ -88,8 +92,8 @@ import { usePinch, useDrag } from '@vueuse/gesture'
 import { useEventListener } from '@vueuse/core'
 import type { ProductImage as ProductImageType } from '@scayle/storefront-nuxt'
 import SFProductImage from '../../SFProductImage.vue'
-import SFProductCardImageSliderButton from '../../card/imageSlider/SFProductCardImageSliderButton.vue'
 import { SFItemsSlider, SFModal } from '#storefront-ui/components'
+import SFSliderArrowButton from '~/modules/ui/runtime/components/core/SFSliderArrowButton.vue'
 
 const { startIndex = 0 } = defineProps<{
   alt: string

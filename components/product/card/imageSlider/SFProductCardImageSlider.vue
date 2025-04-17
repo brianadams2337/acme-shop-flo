@@ -7,18 +7,22 @@
     :slider-tabindex="-1"
   >
     <template #prev-button="{ prev, isPrevEnabled }">
-      <SFProductCardImageSliderButton
-        class="top-[40%] bg-white hover:bg-white"
+      <SFSliderArrowButton
+        class="absolute top-[40%] bg-white hover:bg-white"
+        :aria-label="$t('image_slider.previous_label')"
         :disabled="!isPrevEnabled"
         direction="left"
+        translate-on-hover
         @click="prev()"
       />
     </template>
     <template #next-button="{ next, isNextEnabled }">
-      <SFProductCardImageSliderButton
-        class="top-[40%] bg-white hover:bg-white"
+      <SFSliderArrowButton
+        class="absolute top-[40%] bg-white hover:bg-white"
+        :aria-label="$t('image_slider.next_label')"
         :disabled="!isNextEnabled"
         direction="right"
+        translate-on-hover
         @click="next()"
       />
     </template>
@@ -53,9 +57,9 @@
 import type { ProductImage as ProductImageType } from '@scayle/storefront-nuxt'
 import { computed, useTemplateRef } from 'vue'
 import SFProductImage from '../../SFProductImage.vue'
-import SFProductCardImageSliderButton from './SFProductCardImageSliderButton.vue'
 import { PRODUCT_CARD_IMAGE_EAGER_LOAD_SIZE } from '~/constants'
 import { SFItemsSlider, SFLink } from '#storefront-ui/components'
+import SFSliderArrowButton from '~/modules/ui/runtime/components/core/SFSliderArrowButton.vue'
 
 const { isProductHovered, images, productIndex } = defineProps<{
   link: string

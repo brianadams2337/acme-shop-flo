@@ -5657,14 +5657,14 @@ ccount@^2.0.0:
   resolved "https://registry.yarnpkg.com/ccount/-/ccount-2.0.1.tgz#17a3bf82302e0870d6da43a01311a8bc02a3ecf5"
   integrity sha512-eyrF0jiFpY+3drT6383f1qhkbGsLSifNAjA61IUjZjmLCWjItY6LB9ft9YhoDgwfmclB2zhu51Lc7+95b8NRAg==
 
-cf-content-types-generator@2.15.5:
-  version "2.15.5"
-  resolved "https://registry.yarnpkg.com/cf-content-types-generator/-/cf-content-types-generator-2.15.5.tgz#f04b6a41b1c1dc242834a64c564fb3b678ecba64"
-  integrity sha512-kMfL23rgmkZXdrknHKRpfmNJlFYVlZYM0Bl9KohYOv8zIitZVBRcUNMU+kLxM4Nx5MEKLZmfwBNNtIU/GLQVnA==
+cf-content-types-generator@2.16.0:
+  version "2.16.0"
+  resolved "https://registry.yarnpkg.com/cf-content-types-generator/-/cf-content-types-generator-2.16.0.tgz#a8b78e5cea3e3e59935b5bdf822473d5dd22f112"
+  integrity sha512-NU4IQ7MIkTqLgeWPxt9BBpqDWJU0ITG2OnjDo4W2kDaocF9WAB+sV9cc9gm33DuK64iFKXnIfYH0RHD2oyAfPw==
   dependencies:
     "@oclif/core" "^3.27.0"
     "@oclif/plugin-help" "^6.2.8"
-    contentful "^10.14.1"
+    contentful "^10.15.1"
     contentful-export "^7.19.147"
     contentful-management "^11.31.6"
     fs-extra "^11.2.0"
@@ -6301,7 +6301,7 @@ contentful@11.5.15, contentful@^11.5.10:
     json-stringify-safe "^5.0.1"
     type-fest "^4.0.0"
 
-contentful@^10.14.1:
+contentful@^10.15.1:
   version "10.15.2"
   resolved "https://registry.yarnpkg.com/contentful/-/contentful-10.15.2.tgz#f36368e3b5c9e47088a7d7ec7b426c2005fe67c0"
   integrity sha512-JJ+qFzxDtbQ4FfPdRF01OVFagy2ZGDHKakgsLTIj2sdnCRa6sAgTMW+jmbMkDX0B8nDRbUng6A7inRLRdLxHcw==

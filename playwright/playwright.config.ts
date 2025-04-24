@@ -21,6 +21,8 @@ if (process.env.TESTRAIL_HOST) {
   reporters.push(['playwright-testrail-reporter'])
 }
 
+const isTargetingVercel = process.env.TARGET_ENV === 'vercel'
+
 /**
  * @see https://playwright.dev/docs/test-configuration
  */
@@ -41,11 +43,13 @@ export default defineConfig({
     /* Base URL to use in actions like `await page.goto('/')`. */
     baseURL: BASE_URL,
 
-    extraHTTPHeaders: {
-      'x-vercel-protection-bypass':
-        process.env.VERCEL_AUTOMATION_BYPASS_SECRET ?? '',
-      'x-vercel-set-bypass-cookie': 'true',
-    },
+    extraHTTPHeaders: isTargetingVercel
+      ? {
+          'x-vercel-protection-bypass':
+            process.env.VERCEL_AUTOMATION_BYPASS_SECRET ?? '',
+          'x-vercel-set-bypass-cookie': 'true',
+        }
+      : {},
 
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: 'on-first-retry',

@@ -29,8 +29,10 @@
       >
         <IconSearch class="size-5 shrink-0" />
       </SFButton>
-      <label class="flex h-full min-w-0 grow items-center gap-2">
+      <div class="flex h-full min-w-0 grow items-center gap-2">
+        <label :for="id" class="hidden">{{ $t('global.search') }}</label>
         <input
+          :id="id"
           ref="input"
           v-model.trim="searchQuery"
           :tabindex="hasFocus ? 0 : -1"
@@ -44,7 +46,7 @@
           }"
           :aria-placeholder="$t('global.search')"
         />
-      </label>
+      </div>
       <SFButton
         ref="resetButton"
         type="reset"
@@ -73,7 +75,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed, nextTick, watch, ref } from 'vue'
+import { computed, nextTick, watch, ref, useId } from 'vue'
 import {
   onClickOutside,
   onKeyStroke,
@@ -109,6 +111,8 @@ const {
   hasSuggestions,
   status,
 } = useSearch()
+
+const id = computed(() => `search-input-${useId()}`)
 
 const debouncedSearch = useDebounceFn(async () => {
   await getSearchSuggestions()

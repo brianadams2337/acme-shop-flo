@@ -597,6 +597,9 @@ export default defineNuxtConfig({
     defaultLocale: i18nDefaultLocale,
     lazy: true,
     strategy: getI18nStrategy(),
+    bundle: {
+      optimizeTranslationDirective: false,
+    },
   },
 
   opentelemetry: {

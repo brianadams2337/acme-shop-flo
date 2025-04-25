@@ -24,7 +24,16 @@
         class="mb-8"
       />
       <!-- https://www.chromium.org/developers/design-documents/create-amazing-password-forms/#use-hidden-fields-for-implicit-information -->
-      <input hidden type="text" autocomplete="username" :value="user?.id" />
+      <label :for="emailFieldId" class="hidden">{{
+        $t('form_fields.email')
+      }}</label>
+      <input
+        :id="emailFieldId"
+        hidden
+        type="text"
+        autocomplete="email"
+        :value="user?.email"
+      />
       <SFValidatedInputGroup
         v-slot="{ isValid }"
         :errors="v.oldPassword.$errors"
@@ -66,7 +75,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed, reactive, ref } from 'vue'
+import { computed, reactive, ref, useId } from 'vue'
 import useVuelidate from '@vuelidate/core'
 import { FetchError } from 'ofetch'
 import SFErrorMessageContainer from '../SFErrorMessageContainer.vue'
@@ -103,6 +112,8 @@ const errorMessage = ref<string | undefined>(undefined)
 const isIDPUser = computed(
   () => user.value?.authentication?.type !== 'password',
 )
+
+const emailFieldId = computed(() => `email-input-${useId()}`)
 
 const description = computed(() => {
   return isIDPUser.value

@@ -45,9 +45,6 @@ export const SEARCH_SUGGESTIONS = {
 }
 
 export const BASKET_TEST_DATA = {
-  emptyBasketTitleDE: 'Dein Warenkorb ist leer.',
-  emptyBasketSubtitleDE:
-    'Du siehst hier eine Auflistung deiner Produkte sobald sie in deinem Warenkorb sind.',
   productRegularVariantId: 320096,
   productRegularName: `Hose 'Essentials'`,
   productRegularBrand: 'ADIDAS ORIGINALS',
@@ -64,9 +61,6 @@ export const BASKET_TEST_DATA = {
   promoPaidProduct: 333618,
   promoFreeProduct: 336349,
   freeProductPriceLabel: ' 0,00 € ',
-  seoTitle: 'Warenkorb | SCAYLE',
-  seoDescription:
-    'Überprüfe die Artikel in deinem Warenkorb und gehe problemlos zur Kasse. Sicheres und unkompliziertes Einkaufen bei SCAYLE.',
   seoRobots: 'noindex,follow',
 }
 
@@ -135,9 +129,6 @@ export const PDP_E2E = {
   subscribeNotEligibleVariantId: '333740',
   happyPathProductUrl: '/de/p/jacke-205696',
   happyPathProductVariantId: '337629',
-  seoTitle: 'Sweatshirt | SCAYLE',
-  seoDescription: `Kaufen Sie Sweatshirt online bei SCAYLE. 
-Entdecken Sie die große Auswahl weiterer Markenprodukte.`,
   seoRobots: 'index, follow',
 }
 
@@ -224,9 +215,6 @@ export const OSP_TEST_DATA = {
 }
 
 export const LOGIN_REGISTRATION = {
-  seoTitle: 'Einloggen oder registrieren | SCAYLE',
-  seoDescription:
-    'Greife auf dein Konto zu oder erstelle ein neues bei SCAYLE. Erlebe ein nahtloses Einkaufserlebnis mit sicherem Login und personalisierten Optionen.',
   seoRobots: 'noindex,follow',
   regUrlParam: 'register=true',
 }

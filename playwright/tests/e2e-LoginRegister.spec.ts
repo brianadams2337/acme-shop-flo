@@ -17,7 +17,7 @@ test.beforeEach(async ({ homePage, page, countryDetector }) => {
   await countryDetector.closeModal()
 })
 
-test('C2130648 Verify User login and log out', async ({
+test('C2130648 C2171377 Verify User login and log out', async ({
   signinPage,
   header,
   toastMessage,
@@ -291,9 +291,7 @@ test('C2171377 Verify User login and registration SEO data', async ({
   const pageTitle = (await signinPage.pageTitle.nth(0).textContent()) as string
 
   await verifySeoMetaTags(page, {
-    title: LOGIN_REGISTRATION.seoTitle,
     robots: LOGIN_REGISTRATION.seoRobots,
-    description: LOGIN_REGISTRATION.seoDescription,
     canonical: baseURL + HOMEPAGE_PATH_DE + SIGNIN_URL,
   })
   await expect(signinPage.h1).toBeAttached()

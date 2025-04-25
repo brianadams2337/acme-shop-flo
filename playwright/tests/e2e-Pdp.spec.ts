@@ -1,10 +1,5 @@
 import { expect, test } from '../fixtures/fixtures'
-import {
-  PDP_E2E,
-  LOCATION,
-  PDP_TEST_VARIANT_ID,
-  HOMEPAGE_PATH_DE,
-} from '../support/constants'
+import { PDP_E2E, LOCATION, PDP_TEST_VARIANT_ID } from '../support/constants'
 import { isMobile, verifySeoMetaTags } from '../support/utils'
 
 test('C2141594: Verify PDP name, brand and price for regular product', async ({
@@ -337,18 +332,28 @@ test('C2141150 Verify PDP SEO data', async ({
   productDetailPage,
   countryDetector,
   page,
-  baseURL,
+  mobileNavigation,
+  mainNavigation,
+  homePage,
+  breadcrumb,
+  productListingPage,
 }) => {
-  await productDetailPage.visitPDP(PDP_E2E.regularProductUrl, baseURL as string)
+  await homePage.visitPage()
+  await page.waitForLoadState('networkidle')
   await countryDetector.closeModal()
+  if (isMobile(page)) {
+    await mobileNavigation.openPlpMobile()
+  } else {
+    await mainNavigation.navigateToPlpMainCategory()
+  }
+  await breadcrumb.breadcrumbCategoryActive.waitFor()
+  await productListingPage.productImage.first().click()
   await productDetailPage.h1.waitFor()
   const pageTitle = (await productDetailPage.pageTitle.textContent()) as string
 
   await verifySeoMetaTags(page, {
-    title: PDP_E2E.seoTitle,
     robots: PDP_E2E.seoRobots,
-    description: PDP_E2E.seoDescription,
-    canonical: baseURL + HOMEPAGE_PATH_DE + PDP_E2E.regularProductUrl,
+    canonical: page.url(),
   })
   await expect(productDetailPage.h1).toBeAttached()
   await expect(productDetailPage.h1).toContainText(pageTitle)

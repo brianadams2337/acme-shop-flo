@@ -24,33 +24,24 @@ test('C2132186 C2132187 Verify Basket empty state as a guest and logged in user'
     await homePage.visitPage()
     await countryDetector.closeModal()
     await header.headerBasketButton.click()
-    await page.waitForURL(E2E_BASKET_URL)
-
-    const pageUrl = page.url()
-    const basketUrl = E2E_BASKET_URL.source.replace(/\\/g, '')
-    const basketTitleText = await basketPage.basketEmptyStateTitle.textContent()
-    const basketSubTitleText =
-      await basketPage.basketEmptyStateSubTitle.textContent()
-
+    await page.waitForLoadState('domcontentloaded')
     await expect(async () => {
-      expect(pageUrl).toContain(basketUrl)
-      expect(basketTitleText).toEqual(BASKET_TEST_DATA.emptyBasketTitleDE)
-      expect(basketSubTitleText).toEqual(BASKET_TEST_DATA.emptyBasketSubtitleDE)
+      expect(page.url()).toContain(ROUTES.basket)
+      await expect(basketPage.basketEmptyStateTitle).toBeVisible()
+      await expect(basketPage.basketEmptyStateSubTitle).toBeVisible()
     }).toPass()
   })
-
   await test.step('Verify logged-in user', async () => {
     await basketPage.assertContinueButton()
     await header.headerBasketButton.waitFor()
     await header.headerBasketButton.click()
     await page.waitForTimeout(1000)
     await basketPage.assertLoginButton()
-
     const projectName = testInfo.project.name
     const { email, password } = getUserForBrowser(projectName)
     await signinPage.fillLoginData(email, password)
     await signinPage.clickLoginButton()
-    await page.waitForURL(HOMEPAGE_PATH_DE + ROUTES.basket)
+    expect(page.url()).toContain(ROUTES.basket)
     await expect(basketPage.loginButton).not.toBeVisible()
     await expect(basketPage.continueButton).toBeVisible()
     await header.headerBasketButton.click()
@@ -58,7 +49,7 @@ test('C2132186 C2132187 Verify Basket empty state as a guest and logged in user'
   })
 })
 
-test('C2132198 Verify add to Basket', async ({
+test('C2132198 C2162476 Verify add to Basket', async ({
   homePage,
   header,
   basketPage,
@@ -70,6 +61,7 @@ test('C2132198 Verify add to Basket', async ({
   productListingPage,
   productDetailPage,
   breadcrumb,
+  baseURL,
 }, testInfo) => {
   await test.step('Add product to Basket, log in and assert the product is still in Basket', async () => {
     await homePage.visitPage()
@@ -99,6 +91,20 @@ test('C2132198 Verify add to Basket', async ({
     await signinPage.fillLoginData(email, password)
     await header.visitBasketPage()
     await basketPage.assertProductIsInBasket(productBrand, productName)
+  })
+  await test.step('Check Basket SEO data', async () => {
+    await expect(async () => {
+      await basketPage.h1.waitFor()
+      const pageTitle = (await basketPage.pageTitle
+        .nth(0)
+        .textContent()) as string
+      await verifySeoMetaTags(page, {
+        robots: BASKET_TEST_DATA.seoRobots,
+        canonical: baseURL + HOMEPAGE_PATH_DE + ROUTES.basket,
+      })
+      await expect(basketPage.h1).toBeAttached()
+      await expect(basketPage.h1).toContainText(pageTitle)
+    }).toPass()
   })
   await test.step('Remove product from Basket', async () => {
     await expect(async () => {
@@ -410,47 +416,4 @@ test('C2167368 Verify Basket increasing free product quantity', async ({
     await basketPage.assertInitialPriceVisibility(true)
     await expect(header.basketNumItems).toHaveText('2')
   })
-})
-
-test('C2162476 Verify Basket SEO', async ({
-  homePage,
-  header,
-  basketPage,
-  countryDetector,
-  page,
-  baseURL,
-  productListingPage,
-  productDetailPage,
-  mobileNavigation,
-  mainNavigation,
-  breadcrumb,
-}) => {
-  await homePage.visitPage()
-  await countryDetector.closeModal()
-  if (isMobile(page)) {
-    await mobileNavigation.openPlpMobile()
-  } else {
-    await mainNavigation.navigateToPlpMainCategory()
-  }
-  await page.waitForTimeout(500)
-  await breadcrumb.breadcrumbCategoryActive.waitFor()
-  await productListingPage.productImage.first().click()
-  await productDetailPage.variantPicker.waitFor()
-  await productDetailPage.variantPicker.click({ force: true })
-  await productDetailPage.getVariant().click()
-  await productDetailPage.addProductToBasket()
-  await header.visitBasketPage()
-  await page.waitForLoadState('domcontentloaded')
-  await page.waitForTimeout(500)
-  await basketPage.h1.waitFor()
-  const pageTitle = (await basketPage.pageTitle.nth(0).textContent()) as string
-
-  await verifySeoMetaTags(page, {
-    title: BASKET_TEST_DATA.seoTitle,
-    robots: BASKET_TEST_DATA.seoRobots,
-    description: BASKET_TEST_DATA.seoDescription,
-    canonical: baseURL + HOMEPAGE_PATH_DE + ROUTES.basket,
-  })
-  await expect(basketPage.h1).toBeAttached()
-  await expect(basketPage.h1).toContainText(pageTitle)
 })

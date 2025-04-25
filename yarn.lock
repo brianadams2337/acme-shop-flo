@@ -325,12 +325,12 @@
   resolved "https://registry.yarnpkg.com/@bcoe/v8-coverage/-/v8-coverage-1.0.2.tgz#bbe12dca5b4ef983a0d0af4b07b9bc90ea0ababa"
   integrity sha512-6zABk/ECA/QYSCQ1NGiVwwbQerUCZ+TQbp64Q3AgmfNvurHH0j8TtXa1qbShXA6qqkpAj4V5W8pP6mLe1mcMqA==
 
-"@capsizecss/metrics@^2.1.1":
-  version "2.2.0"
-  resolved "https://registry.yarnpkg.com/@capsizecss/metrics/-/metrics-2.2.0.tgz#f8cad1e2911e2e1bb16c2cb69da41be8f5c9b31b"
-  integrity sha512-DkFIser1KbGxWyG2hhQQeCit72TnOQDx5pr9bkA7+XlIy7qv+4lYtslH3bidVxm2qkY2guAgypSIPYuQQuk70A==
+"@capsizecss/metrics@^3.5.0":
+  version "3.5.0"
+  resolved "https://registry.yarnpkg.com/@capsizecss/metrics/-/metrics-3.5.0.tgz#80b4b36d00651288e568c46e7b7c2f4e7d187b6f"
+  integrity sha512-Ju2I/Qn3c1OaU8FgeW4Tc22D4C9NwyVfKzNmzst59bvxBjPoLYNZMqFYn+HvCtn4MpXwiaDtCE8fNuQLpdi9yA==
 
-"@capsizecss/unpack@^2.0.1":
+"@capsizecss/unpack@^2.4.0":
   version "2.4.0"
   resolved "https://registry.yarnpkg.com/@capsizecss/unpack/-/unpack-2.4.0.tgz#db93ee886b8016c155ba7934c7adbe42a9734f13"
   integrity sha512-GrSU71meACqcmIUxPYOJvGKF0yryjN/L1aCuE9DViCTJI7bfkjgYDPD1zbNDcINJwSSP6UaBZY9GAbYDO7re0Q==
@@ -1724,7 +1724,7 @@
   resolved "https://registry.yarnpkg.com/@nuxt/devalue/-/devalue-2.0.2.tgz#5749f04df13bda4c863338d8dabaf370f45ef7c7"
   integrity sha512-GBzP8zOc7CGWyFQS6dv1lQz8VVpz5C2yRszbXufwG/9zhStTIH50EtD87NmWbTMwXDvZLNg8GIpb1UFdH93JCA==
 
-"@nuxt/devtools-kit@2.4.0", "@nuxt/devtools-kit@^2.3.2":
+"@nuxt/devtools-kit@2.4.0", "@nuxt/devtools-kit@^2.3.2", "@nuxt/devtools-kit@^2.4.0":
   version "2.4.0"
   resolved "https://registry.yarnpkg.com/@nuxt/devtools-kit/-/devtools-kit-2.4.0.tgz#a64070ea8f48cccdb5d6f815a197533fcea513bf"
   integrity sha512-GdxdxEDN1f6uxJOPooYQTLC6X1QUe5kRs83A0PVH/uD0sqoXCjpKHOw+H0vdhkHOwOIsVIsbL+TdaF4k++p9TA==
@@ -1838,30 +1838,30 @@
     pathe "^2.0.3"
     unimport "^4.1.3"
 
-"@nuxt/fonts@0.11.1":
-  version "0.11.1"
-  resolved "https://registry.yarnpkg.com/@nuxt/fonts/-/fonts-0.11.1.tgz#6e941f5d23315fdb526d10f3c76d094155f2966b"
-  integrity sha512-WRrJp0n+Hk9wF2W7aPGfYLxvQYn4Yxnf1+LtG0lORMrwM7smo9OSdc1+2WyDGZzP3ySnqjvN98OBZrGAQrmnIg==
+"@nuxt/fonts@0.11.2":
+  version "0.11.2"
+  resolved "https://registry.yarnpkg.com/@nuxt/fonts/-/fonts-0.11.2.tgz#0949fd31c72169d60bbda0fb1b2eca952c08e103"
+  integrity sha512-QOei4Pz1mqrTef4zTpnc9126SzZt/nLHGuUeA7xZL7PkQ550PWLh+dIDOGnWjQhxNZOKpAArQtuqMKIH6Zebww==
   dependencies:
-    "@nuxt/devtools-kit" "^2.3.2"
+    "@nuxt/devtools-kit" "^2.4.0"
     "@nuxt/kit" "^3.16.2"
     consola "^3.4.2"
     css-tree "^3.1.0"
     defu "^6.1.4"
     esbuild "^0.25.2"
-    fontaine "^0.5.0"
+    fontaine "^0.6.0"
     h3 "^1.15.1"
     jiti "^2.4.2"
-    magic-regexp "^0.8.0"
+    magic-regexp "^0.10.0"
     magic-string "^0.30.17"
     node-fetch-native "^1.6.6"
     ohash "^2.0.11"
     pathe "^2.0.3"
     sirv "^3.0.1"
-    tinyglobby "^0.2.12"
-    ufo "^1.5.4"
-    unifont "^0.1.7"
-    unplugin "^2.2.2"
+    tinyglobby "^0.2.13"
+    ufo "^1.6.1"
+    unifont "^0.2.0"
+    unplugin "^2.3.2"
     unstorage "^1.15.0"
 
 "@nuxt/image@1.10.0":
@@ -8131,18 +8131,19 @@ follow-redirects@^1.15.4, follow-redirects@^1.15.6:
   resolved "https://registry.yarnpkg.com/follow-redirects/-/follow-redirects-1.15.9.tgz#a604fa10e443bf98ca94228d9eebcc2e8a2c8ee1"
   integrity sha512-gew4GsXizNgdoRyqmyfMHyAmXsZDk6mHkSxZFCzW9gwlbtOW44CDtYavM+y+72qD/Vq2l550kMF52DT8fOLJqQ==
 
-fontaine@^0.5.0:
-  version "0.5.0"
-  resolved "https://registry.yarnpkg.com/fontaine/-/fontaine-0.5.0.tgz#0b01e6ef841da0eb6077430813812c2a22fc1987"
-  integrity sha512-vPDSWKhVAfTx4hRKT777+N6Szh2pAosAuzLpbppZ6O3UdD/1m6OlHjNcC3vIbgkRTIcLjzySLHXzPeLO2rE8cA==
+fontaine@^0.6.0:
+  version "0.6.0"
+  resolved "https://registry.yarnpkg.com/fontaine/-/fontaine-0.6.0.tgz#ce90d22119935f841390b5d8d9795d9dd0e749bf"
+  integrity sha512-cfKqzB62GmztJhwJ0YXtzNsmpqKAcFzTqsakJ//5COTzbou90LU7So18U+4D8z+lDXr4uztaAUZBonSoPDcj1w==
   dependencies:
-    "@capsizecss/metrics" "^2.1.1"
-    "@capsizecss/unpack" "^2.0.1"
-    magic-regexp "^0.8.0"
-    magic-string "^0.30.8"
-    pathe "^1.1.2"
-    ufo "^1.4.0"
-    unplugin "^1.8.3"
+    "@capsizecss/metrics" "^3.5.0"
+    "@capsizecss/unpack" "^2.4.0"
+    css-tree "^3.1.0"
+    magic-regexp "^0.10.0"
+    magic-string "^0.30.17"
+    pathe "^2.0.3"
+    ufo "^1.6.1"
+    unplugin "^2.3.2"
 
 fontkit@^2.0.2:
   version "2.0.4"
@@ -10419,18 +10420,18 @@ lz-string@^1.5.0:
   resolved "https://registry.yarnpkg.com/lz-string/-/lz-string-1.5.0.tgz#c1ab50f77887b712621201ba9fd4e3a6ed099941"
   integrity sha512-h5bgJWpxJNswbU7qCrV0tIKQCaS3blPDrqKWx+QxzuzL1zGUzij9XCWLrSLsJPu5t+eWA/ycetzYAO5IOMcWAQ==
 
-magic-regexp@^0.8.0:
-  version "0.8.0"
-  resolved "https://registry.yarnpkg.com/magic-regexp/-/magic-regexp-0.8.0.tgz#c67de16456522a83672c22aa408b774facfd882e"
-  integrity sha512-lOSLWdE156csDYwCTIGiAymOLN7Epu/TU5e/oAnISZfU6qP+pgjkE+xbVjVn3yLPKN8n1G2yIAYTAM5KRk6/ow==
+magic-regexp@^0.10.0:
+  version "0.10.0"
+  resolved "https://registry.yarnpkg.com/magic-regexp/-/magic-regexp-0.10.0.tgz#78b4421a50d2b7a67129bf2c424a333927c3a0e5"
+  integrity sha512-Uly1Bu4lO1hwHUW0CQeSWuRtzCMNO00CmXtS8N6fyvB3B979GOEEeAkiTUDsmbYLAbvpUS/Kt5c4ibosAzVyVg==
   dependencies:
     estree-walker "^3.0.3"
-    magic-string "^0.30.8"
-    mlly "^1.6.1"
+    magic-string "^0.30.12"
+    mlly "^1.7.2"
     regexp-tree "^0.1.27"
     type-level-regexp "~0.1.17"
-    ufo "^1.4.0"
-    unplugin "^1.8.3"
+    ufo "^1.5.4"
+    unplugin "^2.0.0"
 
 magic-string-ast@^0.7.0:
   version "0.7.1"
@@ -10439,7 +10440,7 @@ magic-string-ast@^0.7.0:
   dependencies:
     magic-string "^0.30.17"
 
-magic-string@^0.30.11, magic-string@^0.30.17, magic-string@^0.30.3, magic-string@^0.30.8:
+magic-string@^0.30.11, magic-string@^0.30.12, magic-string@^0.30.17, magic-string@^0.30.3, magic-string@^0.30.8:
   version "0.30.17"
   resolved "https://registry.yarnpkg.com/magic-string/-/magic-string-0.30.17.tgz#450a449673d2460e5bbcfba9a61916a1714c7453"
   integrity sha512-sNPKHvyjVf7gyjwS4xGTaW/mCnF8wnjtifKBEhxfZ7E/S8tQ0rssrwGNn6q8JH/ohItJfSQp9mBtQYuTlH5QnA==
@@ -11156,7 +11157,7 @@ mkdirp@^3.0.1:
   resolved "https://registry.yarnpkg.com/mkdirp/-/mkdirp-3.0.1.tgz#e44e4c5607fb279c168241713cc6e0fea9adcb50"
   integrity sha512-+NsyUUAZDmo6YVHzL/stxSu3t9YS1iljliy3BSDrXJ/dkn1KYdmtZODGGjLcc9XLgVVpH4KshHB8XmZgMhaBXg==
 
-mlly@^1.2.0, mlly@^1.3.0, mlly@^1.6.1, mlly@^1.7.1, mlly@^1.7.4:
+mlly@^1.2.0, mlly@^1.3.0, mlly@^1.6.1, mlly@^1.7.1, mlly@^1.7.2, mlly@^1.7.4:
   version "1.7.4"
   resolved "https://registry.yarnpkg.com/mlly/-/mlly-1.7.4.tgz#3d7295ea2358ec7a271eaa5d000a0f84febe100f"
   integrity sha512-qmdSIPC4bDJXgZTCR7XosJiNKySV7O215tsPtDN9iEO/7q/76b/ijtgRu/+epFXSJhijtTCCGp3DWS549P3xKw==
@@ -11732,12 +11733,7 @@ ofetch@1.4.1, ofetch@^1.3.3, ofetch@^1.3.4, ofetch@^1.4.1:
     node-fetch-native "^1.6.4"
     ufo "^1.5.4"
 
-ohash@^1.1.4:
-  version "1.1.6"
-  resolved "https://registry.yarnpkg.com/ohash/-/ohash-1.1.6.tgz#9ff7b0271d7076290794537d68ec2b40a60d133e"
-  integrity sha512-TBu7PtV8YkAZn0tSxobKY2n2aAQva936lhRrj6957aDaCf9IEtqsKbgMzXE/F/sjqYOwmrukeORHNLe5glk7Cg==
-
-ohash@^2.0.11:
+ohash@^2.0.0, ohash@^2.0.11:
   version "2.0.11"
   resolved "https://registry.yarnpkg.com/ohash/-/ohash-2.0.11.tgz#60b11e8cff62ca9dee88d13747a5baa145f5900b"
   integrity sha512-RdR9FQrFwNBNXAr4GixM8YaRZRJ5PUWbKYbE5eOsrwAjJW0q2REGcf79oYPsLyskQCZG1PLN+S/K1V00joZAoQ==
@@ -14857,7 +14853,7 @@ typical@^5.2.0:
   resolved "https://registry.yarnpkg.com/typical/-/typical-5.2.0.tgz#4daaac4f2b5315460804f0acf6cb69c52bb93066"
   integrity sha512-dvdQgNDNJo+8B2uBQoqdb11eUCE1JQXhvjC/CZtgvZseVd5TYMXnq0+vuUemXbd/Se29cTaUuPX3YIc2xgbvIg==
 
-ufo@1.6.1, ufo@^1.1.2, ufo@^1.3.2, ufo@^1.4.0, ufo@^1.5.3, ufo@^1.5.4, ufo@^1.6.1:
+ufo@1.6.1, ufo@^1.1.2, ufo@^1.3.2, ufo@^1.5.3, ufo@^1.5.4, ufo@^1.6.1:
   version "1.6.1"
   resolved "https://registry.yarnpkg.com/ufo/-/ufo-1.6.1.tgz#ac2db1d54614d1b22c1d603e3aef44a85d8f146b"
   integrity sha512-9a4/uxlTWJ4+a5i0ooc1rU7C7YOw3wT+UGqdeNNHWnOF9qcMBgLRS+4IYUqbczewFx4mLEig6gawh7X6mFlEkA==
@@ -14946,13 +14942,13 @@ unicorn-magic@^0.3.0:
   resolved "https://registry.yarnpkg.com/unicorn-magic/-/unicorn-magic-0.3.0.tgz#4efd45c85a69e0dd576d25532fbfa22aa5c8a104"
   integrity sha512-+QBBXBCvifc56fsbuxZQ6Sic3wqqc3WWaqxs58gvJrcOuN83HGTCwz3oS5phzU9LthRNE9VrJCFCLUgHeeFnfA==
 
-unifont@^0.1.7:
-  version "0.1.7"
-  resolved "https://registry.yarnpkg.com/unifont/-/unifont-0.1.7.tgz#17b09cc6c98c10660a13b7d8fa582097ba2c20c7"
-  integrity sha512-UyN6r/TUyl69iW/jhXaCtuwA6bP9ZSLhVViwgP8LH9EHRGk5FyIMDxvClqD5z2BV6MI9GMATzd0dyLqFxKkUmQ==
+unifont@^0.2.0:
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/unifont/-/unifont-0.2.0.tgz#6a20188eec5e5bfe54ba511f0c03210365feccfd"
+  integrity sha512-RoF14/tOhLvDa7R5K6A3PjsfJVFKvadvRpWjfV1ttabUe9704P1ie9z1ABLWEts/8SxrBVePav/XhgeFNltpsw==
   dependencies:
     css-tree "^3.0.0"
-    ohash "^1.1.4"
+    ohash "^2.0.0"
 
 unimport@5.0.0, unimport@^5.0.0:
   version "5.0.0"
@@ -15098,7 +15094,7 @@ unplugin-vue-router@^0.12.0:
     unplugin-utils "^0.2.3"
     yaml "^2.7.0"
 
-unplugin@^1.1.0, unplugin@^1.10.0, unplugin@^1.16.1, unplugin@^1.8.3:
+unplugin@^1.1.0, unplugin@^1.10.0, unplugin@^1.16.1:
   version "1.16.1"
   resolved "https://registry.yarnpkg.com/unplugin/-/unplugin-1.16.1.tgz#a844d2e3c3b14a4ac2945c42be80409321b61199"
   integrity sha512-4/u/j4FrCKdi17jaxuJA0jClGxB1AvU2hw/IuayPc4ay1XGaJs/rbb4v5WKwAjNifjmXK9PIFyuPiaK8azyR9w==
@@ -15106,7 +15102,7 @@ unplugin@^1.1.0, unplugin@^1.10.0, unplugin@^1.16.1, unplugin@^1.8.3:
     acorn "^8.14.0"
     webpack-virtual-modules "^0.6.2"
 
-unplugin@^2.1.0, unplugin@^2.2.0, unplugin@^2.2.2:
+unplugin@^2.0.0, unplugin@^2.1.0, unplugin@^2.2.0, unplugin@^2.2.2, unplugin@^2.3.2:
   version "2.3.2"
   resolved "https://registry.yarnpkg.com/unplugin/-/unplugin-2.3.2.tgz#36c93a1662b70c97a2e2fc45c0e78fa09f7a4984"
   integrity sha512-3n7YA46rROb3zSj8fFxtxC/PqoyvYQ0llwz9wtUPUutr9ig09C8gGo5CWCwHrUzlqC1LLR43kxp5vEIyH1ac1w==

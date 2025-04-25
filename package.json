@@ -101,7 +101,7 @@
     "@contentful/live-preview": "4.6.14",
     "@contentful/rich-text-html-renderer": "17.0.0",
     "@googlemaps/js-api-loader": "1.16.8",
-    "@nuxt/fonts": "0.11.1",
+    "@nuxt/fonts": "0.11.2",
     "@scayle/nuxt-image-provider": "0.3.0",
     "@scayle/nuxt-opentelemetry": "0.10.1",
     "@scayle/omnichannel-nuxt": "4.3.1",

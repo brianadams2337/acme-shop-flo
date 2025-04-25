@@ -58,7 +58,7 @@ export default {
         300: '#d9d9d9',
         350: '#e5e5e9',
         400: '#a8a8a8',
-        500: '#808080',
+        500: '#757575',
         600: '#666666',
         700: '#888888',
         750: '#737277',
@@ -92,7 +92,7 @@ export default {
         },
         error: {
           light: '#fadbd8',
-          DEFAULT: '#e74b3a',
+          DEFAULT: '#D1000A',
         },
         info: '#ccbff6',
         alert: '#f59e0b',

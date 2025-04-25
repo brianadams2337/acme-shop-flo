@@ -12,7 +12,7 @@
       @click="close"
     >
       <template #icon>
-        <IconClose class="size-5 md:size-4 md:text-gray-400" />
+        <IconClose class="size-5 md:size-4 md:text-gray-500" />
       </template>
     </SFButton>
   </div>

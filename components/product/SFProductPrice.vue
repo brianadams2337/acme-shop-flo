@@ -30,7 +30,7 @@
 
     <sup
       v-if="showTaxInfo"
-      class="ml-1 text-right text-xs text-gray-700 md:text-left"
+      class="ml-1 text-right text-xs text-gray-500 md:text-left"
       data-testid="tax-info"
     >
       {{ $t('global.including_vat') }}

@@ -20,7 +20,7 @@
     <slot name="label">
       <span
         v-if="label"
-        class="leading-none text-gray-400 group-checked:text-black"
+        class="leading-none text-gray-500 group-checked:text-black"
       >
         {{ label }}
       </span>

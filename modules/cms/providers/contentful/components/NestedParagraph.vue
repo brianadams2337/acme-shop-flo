@@ -70,7 +70,7 @@
         />
       </div>
     </div>
-    <div class="max-w-lg text-sm text-gray-700">
+    <div class="max-w-lg text-sm text-gray-500">
       {{ blok?.fields.subTitle }}
     </div>
   </div>

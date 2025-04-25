@@ -25,7 +25,7 @@
       'text-sm': (isSize('xs') || isSize('sm')) && !isRaw,
       'text-md': (isSize('md') || isSize('lg') || isSize('xl')) && !isRaw,
     }"
-    class="group inline-flex items-center justify-center gap-2 truncate whitespace-nowrap transition duration-100 ease-linear disabled:border disabled:border-secondary-600 disabled:bg-secondary-200 disabled:text-gray-400"
+    class="group inline-flex items-center justify-center gap-2 truncate whitespace-nowrap transition duration-100 ease-linear disabled:border disabled:border-secondary-600 disabled:bg-secondary-200 disabled:text-gray-500"
   >
     <slot
       name="icon"

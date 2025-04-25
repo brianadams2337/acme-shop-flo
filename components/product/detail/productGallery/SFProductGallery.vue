@@ -33,7 +33,7 @@
       </div>
       <template #prev-button="{ prev, isPrevEnabled }">
         <button
-          class="absolute left-1/2 top-2 size-8 -translate-x-1/2 rounded-md bg-white/85 p-1 text-gray-400 hover:text-gray-900 disabled:hidden"
+          class="absolute left-1/2 top-2 size-8 -translate-x-1/2 rounded-md bg-white/85 p-1 text-gray-500 hover:text-gray-900 disabled:hidden"
           :aria-label="$t('image_slider.a11ly.go_to_previous_image')"
           :disabled="!isPrevEnabled"
           @click="prev()"
@@ -43,7 +43,7 @@
       </template>
       <template #next-button="{ next, isNextEnabled }">
         <button
-          class="absolute bottom-2 left-1/2 size-8 -translate-x-1/2 rounded-md bg-white/85 p-1 text-gray-400 hover:text-gray-900 disabled:hidden"
+          class="absolute bottom-2 left-1/2 size-8 -translate-x-1/2 rounded-md bg-white/85 p-1 text-gray-500 hover:text-gray-900 disabled:hidden"
           :aria-label="$t('image_slider.a11ly.go_to_next_image')"
           :disabled="!isNextEnabled"
           @click="next()"
@@ -84,7 +84,7 @@
         <template #arrows="{ prev, isPrevEnabled, next, isNextEnabled }">
           <div class="absolute bottom-4 right-4 flex space-x-px max-md:hidden">
             <SFSliderArrowButton
-              class="aspect-square h-9 bg-white focus-visible:shadow-inner-solid-sm disabled:bg-secondary-200 disabled:text-gray-400"
+              class="aspect-square h-9 bg-white focus-visible:shadow-inner-solid-sm disabled:bg-secondary-200 disabled:text-gray-500"
               :aria-label="$t('image_slider.a11ly.go_to_previous_image')"
               :disabled="!isPrevEnabled"
               direction="left"
@@ -92,7 +92,7 @@
               @click="prev()"
             />
             <SFSliderArrowButton
-              class="aspect-square h-9 bg-white focus-visible:shadow-inner-solid-sm disabled:bg-secondary-200 disabled:text-gray-400"
+              class="aspect-square h-9 bg-white focus-visible:shadow-inner-solid-sm disabled:bg-secondary-200 disabled:text-gray-500"
               :aria-label="$t('image_slider.a11ly.go_to_next_image')"
               :disabled="!isNextEnabled"
               direction="right"

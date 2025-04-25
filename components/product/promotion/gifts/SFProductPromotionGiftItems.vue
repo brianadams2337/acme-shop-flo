@@ -21,7 +21,7 @@
         <div>
           <div
             class="text-sm font-semi-bold-variable"
-            :class="disabled ? 'text-gray-400' : 'text-gray-900'"
+            :class="disabled ? 'text-gray-500' : 'text-gray-900'"
           >
             {{ brand }}
           </div>
@@ -30,7 +30,7 @@
             data-testid="pdp-product-name"
             tag="h3"
             class="text-sm !font-normal"
-            :class="disabled ? 'text-gray-400' : 'text-gray-900'"
+            :class="disabled ? 'text-gray-500' : 'text-gray-900'"
           >
             {{ name }}
           </SFHeadline>

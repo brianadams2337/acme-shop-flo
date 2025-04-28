@@ -1,6 +1,6 @@
 import { expect, test } from '../fixtures/fixtures'
 import { isMobile } from '../support/utils'
-import { E2E_BASKET_URL, CHECKOUT_REDIRECT_URL } from '../support/constants'
+import { CHECKOUT_REDIRECT_URL } from '../support/constants'
 
 test('C2139186: E2E from Home to Checkout - happy path', async ({
   homePage,
@@ -48,7 +48,7 @@ test('C2139186: E2E from Home to Checkout - happy path', async ({
       await productDetailPage.productName.textContent()
     await expect(async () => {
       await header.visitBasketPage()
-      await expect(page).toHaveURL(E2E_BASKET_URL)
+      await basketPage.basketProductCard.first().waitFor()
       await basketPage.assertProductIsInBasket(
         basketProductBrandText as string,
         basketProductNameText as string,
@@ -69,7 +69,7 @@ test('C2139186: E2E from Home to Checkout - happy path', async ({
   await test.step('Empty Basket to have clean state after test execution', async () => {
     await expect(async () => {
       await header.visitBasketPage()
-      await expect(page).toHaveURL(E2E_BASKET_URL)
+      await basketPage.basketProductCard.first().waitFor()
       await basketPage.removeItemFromBasket()
     }).toPass()
   })

@@ -45,12 +45,6 @@ export const SEARCH_SUGGESTIONS = {
 }
 
 export const BASKET_TEST_DATA = {
-  productRegularVariantId: 320096,
-  productRegularName: `Hose 'Essentials'`,
-  productRegularBrand: 'ADIDAS ORIGINALS',
-  productNameHappyPath: 'Jacke',
-  itemKeyHappyPath: '15e3df16a020df6b0716b0cb351132ac',
-  itemKeyBasketE2E: '7dac25e441f1472a2201cd7f493d139c',
   regularPriceVariantId: 334103,
   salePriceVariantId: 336068,
   promotionPriceProductId: '205808',
@@ -67,11 +61,8 @@ export const BASKET_TEST_DATA = {
 export const HOMEPAGE_PATH_DE = '/de'
 export const HOMEPAGE_PATH_EN = '/en'
 export const SIGNIN_URL = '/signin'
-export const WISHLIST_PRODUCT_ID = 205651
-export const WISHLIST_PRODUCT_ID_ONESIZE = 206042
 
 export const USER_ACCOUNT = {
-  accountProfilePath: '/account/profile',
   userFirstName: 'Aqa',
   userLastName: 'Test',
   userBirthDateCorrect: '30.05.1981',
@@ -82,53 +73,13 @@ export const USER_ACCOUNT = {
   routeProfile: '/account/profile',
 }
 
-export const FOOTER = {
-  linkGroup1: {
-    scayleStorefront: 'https://www.scayle.com/platform/digital-storefront/',
-    scayle: 'https://www.scayle.com/',
-    storefrontGuide:
-      'https://scayle.dev/en/storefront-guide/developer-guide/getting-started/what-is-storefront',
-    cmsComponents: '/de/content/cms-component-showcase',
-  },
-  linkGroup2: {
-    helpdesk:
-      'https://github.com/scayle/storefront-boilerplate-support/discussions',
-    shipping: '/de/content/shipping',
-    returns: '/de/content/returns',
-  },
-  linkGroup3: {
-    termsConditions: '/de/content/terms-and-conditions',
-    privacyPolicy: '/de/content/data-privacy',
-    imprint: '/de/content/imprint',
-  },
-  linkGroup4: {
-    instagram: 'https://www.instagram.com/',
-    facebook: 'https://www.facebook.com/',
-    pinterest: 'https://pinterest.com/',
-    tiktok: 'https://www.tiktok.com/',
-    youtube: 'https://www.youtube.com/',
-  },
-}
-
-export const USER_WITHOUT_ORDERS = {
-  firstName: 'Test',
-  lastName: 'User No Orders',
-  email: 'sfb.aqa.no-orders@scayle.com',
-  password: process.env.TEST_USER_NO_ORDERS_PASSWORD as string,
-}
-
 export const CHECKOUT_URL = '/checkout'
 
 export const PDP_E2E = {
   regularProductUrl: '/p/sweatshirt-205801',
-  regularProductVariantId: '334840',
-  oneSizeProductId: '206025',
   oneSizeProductUrl: '/p/umhangetasche-adicolor-classic-206025',
   subscribeProductUrl: '/p/sneaker-forum-bold-206136',
-  subscribeProductVariantId: '333734',
   subscribeNotEligibleVariantId: '333740',
-  happyPathProductUrl: '/de/p/jacke-205696',
-  happyPathProductVariantId: '337629',
   seoRobots: 'index, follow',
 }
 
@@ -143,6 +94,8 @@ export const TEST_USERS = {
   testUserEmail3: process.env.TEST_USER_EMAIL3 as string,
   testUserEmail4: process.env.TEST_USER_EMAIL4 as string,
   testUserEmail5: process.env.TEST_USER_EMAIL5 as string,
+  testUserNoOrders: process.env.TEST_USER_NO_ORDERS as string,
+  testUserNoOrdersPass: process.env.TEST_USER_NO_ORDERS_PASSWORD as string,
   testUserPassword: process.env.TEST_USER_PASSWORD as string,
 }
 
@@ -208,9 +161,6 @@ export const OSP_TEST_DATA = {
   ordersUrl: '/orders',
   incorrectCbdUrl:
     '/success?cbd=eyJzdGF0dXNTg1NTI3Y2I3NjY0NWQ3NA==&login=1&pmm=b2b',
-  seoTitle: 'Bestellung bestätigt | Vielen Dank für deinen Einkauf | SCAYLE',
-  seoDescription:
-    'Vielen Dank für deine Bestellung! Dein Kauf wurde bestätigt. Überprüfe deine E-Mails für die Bestelldetails.',
   seoRobots: 'noindex,nofollow',
 }
 
@@ -227,6 +177,4 @@ export const PLP_TEST_DATA = {
 export const WISHLIST_TEST_DATA = {
   seoTitle: 'Deine Wunschliste | SCAYLE',
   seoRobots: 'noindex, nofollow',
-  seoDescription:
-    'Speichere deine Lieblingsprodukte und behalte den Überblick über deine Favoriten.',
 }

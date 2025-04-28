@@ -1,28 +1,22 @@
 import { expect, test } from '../fixtures/fixtures'
 import { getUserForBrowser } from '../support/utils'
-import {
-  HOMEPAGE_PATH_DE,
-  SIGNIN_URL,
-  USER_ACCOUNT,
-  TEST_USERS,
-} from '../support/constants'
+import { USER_ACCOUNT, TEST_USERS } from '../support/constants'
 
 test.beforeEach(
   async (
-    { signinPage, page, baseURL, countryDetector, header, toastMessage },
+    { signinPage, page, countryDetector, header, toastMessage, homePage },
     testInfo,
   ) => {
-    const url = `${baseURL + SIGNIN_URL}?redirectUrl=${HOMEPAGE_PATH_DE}`
     const projectName = testInfo.project.name
     const { email, password } = getUserForBrowser(projectName)
-
-    await page.goto(url, { waitUntil: 'load' })
+    await homePage.visitPage()
     await countryDetector.closeModal()
+    await header.headerLoginButton.click()
+    await signinPage.h1.waitFor()
     await signinPage.fillLoginData(email, password)
     await signinPage.clickLoginButton()
     await toastMessage.toastInfo.waitFor()
     await toastMessage.clickToastMessageButton()
-    await page.waitForURL(HOMEPAGE_PATH_DE)
     await header.mainHeader.waitFor()
     await header.headerLoginButton.click()
     await page.waitForLoadState('domcontentloaded')

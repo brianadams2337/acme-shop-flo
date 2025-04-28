@@ -19,7 +19,10 @@ test('C2141227 Verify Homepage sections', async ({
   }).toPass()
 })
 
-test('C2141228 Verify Homepage links', async ({ page, context }) => {
+test('C2141228 C2138940 C2138941 C2138942 C2143604 Verify Homepage links', async ({
+  page,
+  context,
+}) => {
   test.setTimeout(60000)
   const linkUrls = await getAllLinksFromPage(page)
 

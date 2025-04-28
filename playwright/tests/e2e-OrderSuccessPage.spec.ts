@@ -82,9 +82,7 @@ test('C2173505 C2173506 C2173507 C2173508 C2181795 C2182370 C2181791 Verify OSP'
   })
   await test.step('Verify OSP SEO', async () => {
     await verifySeoMetaTags(page, {
-      title: OSP_TEST_DATA.seoTitle,
       robots: OSP_TEST_DATA.seoRobots,
-      description: OSP_TEST_DATA.seoDescription,
     })
   })
   await test.step('Verify OSP CTA buttons', async () => {

@@ -1,9 +1,5 @@
 import { expect, test } from '../fixtures/fixtures'
-import {
-  LOGGED_IN_USER_DATA,
-  ROUTES,
-  USER_WITHOUT_ORDERS,
-} from '../support/constants'
+import { LOGGED_IN_USER_DATA, ROUTES, TEST_USERS } from '../support/constants'
 
 test('C2132533 Verify Orders for user that has orders', async ({
   ordersPage,
@@ -54,8 +50,8 @@ test('C2132126 Verify Orders page - user without orders', async ({
   await homePage.visitPage()
   await page.waitForLoadState('networkidle')
   await accountPage.userAuthentication(
-    USER_WITHOUT_ORDERS.email,
-    USER_WITHOUT_ORDERS.password,
+    TEST_USERS.testUserNoOrders,
+    TEST_USERS.testUserNoOrdersPass,
   )
   await ordersPage.visitOrdersPage('/account/orders', baseURL as string)
   await expect(ordersPage.emptyState).toBeVisible()

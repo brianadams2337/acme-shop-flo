@@ -1,13 +1,6 @@
 import { expect, test } from '../fixtures/fixtures'
-import {
-  HOMEPAGE_PATH_DE,
-  LOGGED_IN_USER_DATA,
-  WISHLIST_PRODUCT_ID,
-  WISHLIST_PRODUCT_ID_ONESIZE,
-  ROUTES,
-  WISHLIST_TEST_DATA,
-} from '../support/constants'
-import { verifySeoMetaTags } from '../support/utils'
+import { LOGGED_IN_USER_DATA, WISHLIST_TEST_DATA } from '../support/constants'
+import { verifySeoMetaTags, isMobile } from '../support/utils'
 
 test.beforeEach(async ({ wishlistPage, baseURL, countryDetector }) => {
   await wishlistPage.visitWishlistPage('/wishlist', baseURL as string)
@@ -18,7 +11,6 @@ test('C2132174 C2132177 Verify Wishlist empty state', async ({
   wishlistPage,
   header,
   signinPage,
-  page,
 }) => {
   await test.step('Verify guest user', async () => {
     await expect(async () => {
@@ -38,7 +30,6 @@ test('C2132174 C2132177 Verify Wishlist empty state', async ({
         LOGGED_IN_USER_DATA.password,
       )
       await signinPage.clickLoginButton()
-      await page.waitForURL(HOMEPAGE_PATH_DE + ROUTES.wishlist)
       await wishlistPage.emptyState.waitFor()
       await expect(wishlistPage.buttonContinueShopping).toBeVisible()
       await expect(wishlistPage.emptyStateIcon).toBeVisible()
@@ -48,23 +39,48 @@ test('C2132174 C2132177 Verify Wishlist empty state', async ({
   })
 })
 
-test('C2141222 Verify wishlist items', async ({
+test('C2141222 C2183076 Verify wishlist items and SEO', async ({
   wishlistPage,
   header,
   page,
   countryDetector,
+  homePage,
+  mobileNavigation,
+  mainNavigation,
+  breadcrumb,
+  productListingPage,
 }) => {
   await test.step('Add item to wishlist and verify product card', async () => {
     await expect(async () => {
-      await wishlistPage.addProductToWishlist(WISHLIST_PRODUCT_ID)
-      await page.reload()
+      await homePage.visitPage()
+      await page.waitForLoadState('networkidle')
       await countryDetector.closeModal()
+      if (isMobile(page)) {
+        await mobileNavigation.openPlpMobile()
+      } else {
+        await mainNavigation.navigateToPlpMainCategory()
+      }
+      await breadcrumb.breadcrumbCategoryActive.waitFor()
+      await productListingPage.addProductToWishlist()
       await header.wishlistLink.waitFor()
       await expect(header.wishlistNumItems).toHaveText('1')
+      await header.wishlistLink.click()
       await wishlistPage.wishlistItemsWrapper.waitFor()
+      await countryDetector.closeModal()
       await expect(wishlistPage.wishlistCard).toBeVisible()
       await expect(wishlistPage.productBrand).toBeVisible()
     }).toPass()
+  })
+  await test.step('Verify Wishlist SEO data', async () => {
+    const pageTitle = (await wishlistPage.pageTitle
+      .nth(0)
+      .textContent()) as string
+    await verifySeoMetaTags(page, {
+      robots: WISHLIST_TEST_DATA.seoRobots,
+      canonical: page.url(),
+    })
+    await expect(wishlistPage.h1).toBeAttached()
+    await expect(wishlistPage.h1).toContainText(pageTitle)
   })
   await test.step('Remove item from wishlist', async () => {
     await expect(async () => {
@@ -73,20 +89,4 @@ test('C2141222 Verify wishlist items', async ({
       await expect(wishlistPage.buttonContinueShopping).toBeVisible()
     }).toPass()
   })
-})
-
-test('C2183076 Verify Wishlist SEO data', async ({ wishlistPage, page }) => {
-  await wishlistPage.addProductToWishlist(WISHLIST_PRODUCT_ID_ONESIZE)
-  await page.reload()
-  await wishlistPage.h1.waitFor()
-  const pageTitle = (await wishlistPage.pageTitle
-    .nth(0)
-    .textContent()) as string
-
-  await verifySeoMetaTags(page, {
-    robots: WISHLIST_TEST_DATA.seoRobots,
-    canonical: page.url(),
-  })
-  await expect(wishlistPage.h1).toBeAttached()
-  await expect(wishlistPage.h1).toContainText(pageTitle)
 })

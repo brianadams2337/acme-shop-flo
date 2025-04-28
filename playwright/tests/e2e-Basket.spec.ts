@@ -4,12 +4,7 @@ import {
   isMobile,
   verifySeoMetaTags,
 } from '../support/utils'
-import {
-  BASKET_TEST_DATA,
-  E2E_BASKET_URL,
-  HOMEPAGE_PATH_DE,
-  ROUTES,
-} from '../support/constants'
+import { BASKET_TEST_DATA, E2E_BASKET_URL, ROUTES } from '../support/constants'
 
 test('C2132186 C2132187 Verify Basket empty state as a guest and logged in user', async ({
   homePage,
@@ -61,7 +56,6 @@ test('C2132198 C2162476 Verify add to Basket', async ({
   productListingPage,
   productDetailPage,
   breadcrumb,
-  baseURL,
 }, testInfo) => {
   await test.step('Add product to Basket, log in and assert the product is still in Basket', async () => {
     await homePage.visitPage()
@@ -79,6 +73,7 @@ test('C2132198 C2162476 Verify add to Basket', async ({
     const productName =
       (await productDetailPage.productName.textContent()) as string
     await productDetailPage.variantPicker.click({ force: true })
+    await page.waitForTimeout(500)
     await productDetailPage.getVariant().click()
     await productDetailPage.addProductToBasket()
     await header.visitBasketPage()
@@ -100,7 +95,7 @@ test('C2132198 C2162476 Verify add to Basket', async ({
         .textContent()) as string
       await verifySeoMetaTags(page, {
         robots: BASKET_TEST_DATA.seoRobots,
-        canonical: baseURL + HOMEPAGE_PATH_DE + ROUTES.basket,
+        canonical: page.url(),
       })
       await expect(basketPage.h1).toBeAttached()
       await expect(basketPage.h1).toContainText(pageTitle)

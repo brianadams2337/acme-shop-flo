@@ -2,13 +2,29 @@ import { expect, test } from '../fixtures/fixtures'
 import { PDP_E2E, LOCATION, PDP_TEST_VARIANT_ID } from '../support/constants'
 import { isMobile, verifySeoMetaTags } from '../support/utils'
 
-test('C2141594: Verify PDP name, brand and price for regular product', async ({
+test('C2141594: Verify PDP name, brand and price', async ({
   productDetailPage,
-  baseURL,
   countryDetector,
+  homePage,
+  page,
+  mobileNavigation,
+  mainNavigation,
+  breadcrumb,
+  productListingPage,
 }) => {
-  await productDetailPage.visitPDP(PDP_E2E.regularProductUrl, baseURL as string)
+  await homePage.visitPage()
+  await page.waitForLoadState('networkidle')
+  await countryDetector.closeModal()
+  if (isMobile(page)) {
+    await mobileNavigation.openPlpMobile()
+  } else {
+    await mainNavigation.navigateToPlpMainCategory()
+  }
+  await breadcrumb.breadcrumbCategoryActive.waitFor()
   await expect(async () => {
+    await productListingPage.productCard.first().click()
+    await page.waitForLoadState('domcontentloaded')
+    await productDetailPage.h1.waitFor()
     await countryDetector.closeModal()
     await expect(productDetailPage.productBrand).toBeVisible()
     await expect(productDetailPage.productName).toBeVisible()
@@ -83,14 +99,27 @@ test('C2141597: Verify PDP quantity selector', async ({
 
 test('C2141598: Verify PDP add and remove to/from Wishlist', async ({
   productDetailPage,
-  baseURL,
   header,
   page,
   countryDetector,
+  homePage,
+  mobileNavigation,
+  mainNavigation,
+  breadcrumb,
+  productListingPage,
 }) => {
-  await productDetailPage.visitPDP(PDP_E2E.regularProductUrl, baseURL as string)
-  await page.waitForLoadState('domcontentloaded')
+  await homePage.visitPage()
+  await page.waitForLoadState('networkidle')
   await countryDetector.closeModal()
+  if (isMobile(page)) {
+    await mobileNavigation.openPlpMobile()
+  } else {
+    await mainNavigation.navigateToPlpMainCategory()
+  }
+  await breadcrumb.breadcrumbCategoryActive.waitFor()
+  await productListingPage.productCard.first().click()
+  await page.waitForLoadState('domcontentloaded')
+  await productDetailPage.h1.waitFor()
   await test.step('Adding product to Wishlist', async () => {
     await productDetailPage.assertAddToWishlistIconVisibility()
     await page.waitForLoadState('networkidle')
@@ -146,9 +175,24 @@ test('C2141599: Verify PDP Subscription service', async ({
 test('C2141757: Verify PDP page title', async ({
   productDetailPage,
   page,
-  baseURL,
+  homePage,
+  countryDetector,
+  mobileNavigation,
+  mainNavigation,
+  breadcrumb,
+  productListingPage,
 }) => {
-  await productDetailPage.visitPDP(PDP_E2E.regularProductUrl, baseURL as string)
+  await homePage.visitPage()
+  await page.waitForLoadState('networkidle')
+  await countryDetector.closeModal()
+  if (isMobile(page)) {
+    await mobileNavigation.openPlpMobile()
+  } else {
+    await mainNavigation.navigateToPlpMainCategory()
+  }
+  await breadcrumb.breadcrumbCategoryActive.waitFor()
+  await productListingPage.productCard.first().click()
+  await page.waitForLoadState('domcontentloaded')
   await productDetailPage.productName.waitFor()
   const productName = await productDetailPage.productName.textContent()
   const pageTitle = await page.title()

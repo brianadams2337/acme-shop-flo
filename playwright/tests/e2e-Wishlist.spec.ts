@@ -39,7 +39,7 @@ test('C2132174 C2132177 Verify Wishlist empty state', async ({
   })
 })
 
-test('C2141222 C2183076 Verify wishlist items and SEO', async ({
+test('C2141222 C2183076 Verify Wishlist non-empty state', async ({
   wishlistPage,
   header,
   page,

@@ -4,8 +4,7 @@ import {
   HOMEPAGE_PATH_DE,
   LOGGED_IN_USER_DATA,
   LOGIN_WRONG_CREDENTIALS,
-  REGISTERED_TEST_USER,
-  GUEST_TEST_USER,
+  TEST_USERS,
   LOGIN_REGISTRATION,
   SIGNIN_URL,
   USER_ACCOUNT,
@@ -84,10 +83,10 @@ test('C2171373 Verify User registration with already registered user account', a
   await test.step('Fill and sumbit register form', async () => {
     await signinPage.selectGender('f')
     await signinPage.fillRegistrationData(
-      REGISTERED_TEST_USER.firstName,
-      REGISTERED_TEST_USER.lastName,
-      REGISTERED_TEST_USER.emailAddress,
-      REGISTERED_TEST_USER.password,
+      TEST_USERS.firstNameRegUser,
+      TEST_USERS.lastNameRegUser,
+      TEST_USERS.testUserEmail1,
+      TEST_USERS.testUserPassword,
     )
     await signinPage.registerButton.click()
   })
@@ -110,7 +109,7 @@ test('C2171375 Verify User registration password toggle button', async ({
   await signinPage.registerForm.waitFor()
 
   await signinPage.regInputPassword.focus()
-  await signinPage.regInputPassword.fill(REGISTERED_TEST_USER.password)
+  await signinPage.regInputPassword.fill(TEST_USERS.testUserPassword)
   await expect(signinPage.passwordToggleShow).toBeVisible()
   await expect(signinPage.passwordToggleHide).not.toBeVisible()
   await expect(signinPage.regInputPassword).toHaveAttribute('type', 'password')
@@ -119,7 +118,7 @@ test('C2171375 Verify User registration password toggle button', async ({
   await expect(signinPage.passwordToggleShow).not.toBeVisible()
   await expect(signinPage.passwordToggleHide).toBeVisible()
   await expect(signinPage.regInputPassword).toHaveValue(
-    REGISTERED_TEST_USER.password,
+    TEST_USERS.testUserPassword,
   )
   await expect(signinPage.regInputPassword).toHaveAttribute('type', 'text')
 })
@@ -250,10 +249,10 @@ test('C2171374 Verify User registration guest flow', async ({
   await test.step('Enter correctly formatted user data', async () => {
     await signinPage.selectGender('m')
     await signinPage.fillRegistrationData(
-      GUEST_TEST_USER.firstName,
-      GUEST_TEST_USER.lastName,
-      GUEST_TEST_USER.emailAddress,
-      GUEST_TEST_USER.password,
+      TEST_USERS.firstNameRegUser,
+      TEST_USERS.lastNameRegUser,
+      TEST_USERS.testUserGuest,
+      TEST_USERS.testUserPassword,
     )
     await expect(signinPage.registerGuestInfo).not.toBeVisible()
   })

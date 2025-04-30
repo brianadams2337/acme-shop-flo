@@ -8,6 +8,12 @@ test.beforeEach(
     testInfo,
   ) => {
     const projectName = testInfo.project.name
+    /**
+     * User authentication is done before executing each test.
+     * This is the prerequisite to run all the tests from Account end-to-end test suite.
+     * To avoid possible conflicts in parallel tests execution, each browser has its dedicated test user.
+     * Check `/playwright/support/utils.ts` to get the details on how the test users are defined.
+     */
     const { email, password } = getUserForBrowser(projectName)
     await homePage.visitPage()
     await countryDetector.closeModal()

@@ -3,7 +3,7 @@ export const E2E_BASKET_URL = /\/basket/
 export const LOGGED_IN_USER_DATA = {
   firstName: 'test',
   lastName: 'AQA',
-  email: process.env.TEST_USER_EMAIL as string,
+  email: process.env.TEST_USER_EMAIL1 as string,
   password: process.env.TEST_USER_PASSWORD as string,
 }
 
@@ -68,6 +68,12 @@ export const HOMEPAGE_PATH_DE = '/de'
 export const HOMEPAGE_PATH_EN = '/en'
 export const SIGNIN_URL = '/signin'
 
+/**
+ * `USER_ACCOUNT` constant object contains keys needed to verify user data update, password update with non-matching password,
+ * and birth date update with correct and incorrect dates.
+ * In order to successfully use this constant object in end-to-end tests, test users should be defined via environment variables,
+ * as explained in `TEST_USERS` object.
+ */
 export const USER_ACCOUNT = {
   userFirstName: 'Aqa',
   userLastName: 'Test',
@@ -94,15 +100,31 @@ export const LIGHTHOUSE_AUDIT_PATHS = {
   pdp: '/de/p/jacke-205696',
 }
 
+/**
+ * A constant object defining various test users needed for different browsers and scenarios in end-to-end tests.
+ */
 export const TEST_USERS = {
-  testUserEmail1: process.env.TEST_USER_EMAIL as string,
+  /**
+   Dedicated test user for Chromium in tests that are prone to conflicts (e.g. adding product to Basket in parallel for all browsers). 
+  This user is also used as a default test user accross the Storefront Boilerplate end-to-end tests suite.
+   */
+  testUserEmail1: process.env.TEST_USER_EMAIL1 as string,
+  /** Dedicated test user for desktop Firefox. */
   testUserEmail2: process.env.TEST_USER_EMAIL2 as string,
+  /** Dedicated test user for desktop Webkit (Safari) */
   testUserEmail3: process.env.TEST_USER_EMAIL3 as string,
+  /** Dedicated test user for mobile Chrome */
   testUserEmail4: process.env.TEST_USER_EMAIL4 as string,
+  /** Dedicated test user for mobile Webkit (Safari) */
   testUserEmail5: process.env.TEST_USER_EMAIL5 as string,
+  /** Test user with no orders placed. Used to verify Orders page empty state. */
   testUserNoOrders: process.env.TEST_USER_NO_ORDERS as string,
-  testUserNoOrdersPass: process.env.TEST_USER_NO_ORDERS_PASSWORD as string,
+  /** Password (the same for all test users listed above). */
   testUserPassword: process.env.TEST_USER_PASSWORD as string,
+  /** Test user used to verify Registration process for guest user. */
+  testUserGuest: process.env.TEST_USER_GUEST as string,
+  firstNameRegUser: 'Registered',
+  lastNameRegUser: 'User',
 }
 
 export const LIGHTHOUSE_VIEWPORT_SIZE = Number.parseInt(
@@ -130,24 +152,10 @@ export const HYDRATION_TEST_USER = {
   password: process.env.TEST_USER_PASSWORD as string,
 }
 
-export const REGISTERED_TEST_USER = {
-  firstName: 'Registered',
-  lastName: 'User',
-  emailAddress: process.env.TEST_USER_EMAIL as string,
-  password: process.env.TEST_USER_PASSWORD as string,
-}
-
 export const ROUTES = {
   wishlist: '/wishlist',
   basket: '/basket',
   orders: '/orders',
-}
-
-export const GUEST_TEST_USER = {
-  firstName: 'Guest',
-  lastName: 'User',
-  emailAddress: process.env.TEST_USER_GUEST as string,
-  password: process.env.TEST_USER_PASSWORD as string,
 }
 
 export const PDP_TEST_VARIANT_ID = {

@@ -51,7 +51,7 @@ test('C2132126 Verify Orders page - user without orders', async ({
   await page.waitForLoadState('networkidle')
   await accountPage.userAuthentication(
     TEST_USERS.testUserNoOrders,
-    TEST_USERS.testUserNoOrdersPass,
+    TEST_USERS.testUserPassword,
   )
   await ordersPage.visitOrdersPage('/account/orders', baseURL as string)
   await expect(ordersPage.emptyState).toBeVisible()

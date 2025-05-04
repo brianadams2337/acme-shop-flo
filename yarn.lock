@@ -15257,10 +15257,10 @@ unifont@^0.2.0:
     css-tree "^3.0.0"
     ohash "^2.0.0"
 
-unimport@5.0.0, unimport@^5.0.0:
-  version "5.0.0"
-  resolved "https://registry.yarnpkg.com/unimport/-/unimport-5.0.0.tgz#c2e5a364c03fc90de192d8881384a379cf8b4d99"
-  integrity sha512-8jL3T+FKDg+qLFX55X9j92uFRqH5vWrNlf/eJb5IQlQB5q5wjooXQDXP1ulhJJQHbosBmlKhBo/ZVS5jHlcJGA==
+unimport@5.0.1:
+  version "5.0.1"
+  resolved "https://registry.yarnpkg.com/unimport/-/unimport-5.0.1.tgz#c823ace5819fc810c25435450b22ebc4ab8b11f9"
+  integrity sha512-1YWzPj6wYhtwHE+9LxRlyqP4DiRrhGfJxdtH475im8ktyZXO3jHj/3PZ97zDdvkYoovFdi0K4SKl3a7l92v3sQ==
   dependencies:
     acorn "^8.14.1"
     escape-string-regexp "^5.0.0"
@@ -15273,8 +15273,8 @@ unimport@5.0.0, unimport@^5.0.0:
     pkg-types "^2.1.0"
     scule "^1.3.0"
     strip-literal "^3.0.0"
-    tinyglobby "^0.2.12"
-    unplugin "^2.2.2"
+    tinyglobby "^0.2.13"
+    unplugin "^2.3.2"
     unplugin-utils "^0.2.4"
 
 unimport@^3.13.2:
@@ -15301,6 +15301,26 @@ unimport@^4.1.3:
   version "4.2.0"
   resolved "https://registry.yarnpkg.com/unimport/-/unimport-4.2.0.tgz#c25211d206d3430e9160cc7d458e9fa9ba828ac0"
   integrity sha512-mYVtA0nmzrysnYnyb3ALMbByJ+Maosee2+WyE0puXl+Xm2bUwPorPaaeZt0ETfuroPOtG8jj1g/qeFZ6buFnag==
+  dependencies:
+    acorn "^8.14.1"
+    escape-string-regexp "^5.0.0"
+    estree-walker "^3.0.3"
+    local-pkg "^1.1.1"
+    magic-string "^0.30.17"
+    mlly "^1.7.4"
+    pathe "^2.0.3"
+    picomatch "^4.0.2"
+    pkg-types "^2.1.0"
+    scule "^1.3.0"
+    strip-literal "^3.0.0"
+    tinyglobby "^0.2.12"
+    unplugin "^2.2.2"
+    unplugin-utils "^0.2.4"
+
+unimport@^5.0.0:
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/unimport/-/unimport-5.0.0.tgz#c2e5a364c03fc90de192d8881384a379cf8b4d99"
+  integrity sha512-8jL3T+FKDg+qLFX55X9j92uFRqH5vWrNlf/eJb5IQlQB5q5wjooXQDXP1ulhJJQHbosBmlKhBo/ZVS5jHlcJGA==
   dependencies:
     acorn "^8.14.1"
     escape-string-regexp "^5.0.0"

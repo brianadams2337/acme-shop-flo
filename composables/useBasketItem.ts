@@ -1,7 +1,6 @@
-import type { BasketItem, CentAmount } from '@scayle/storefront-nuxt'
+import type { BasketItem } from '@scayle/storefront-nuxt'
 import { type MaybeRefOrGetter, computed } from 'vue'
 import { toRef } from '@vueuse/core'
-import { createCustomPrice } from '~/utils'
 import { isFreeGiftBasketItem } from '#storefront-promotions/utils'
 
 /**
@@ -18,27 +17,7 @@ export function useBasketItem(item: MaybeRefOrGetter<BasketItem>) {
   const isFreeGift = computed(() => !!isFreeGiftBasketItem(basketItem.value))
 
   const price = computed(() => {
-    if (!isFreeGift.value) {
-      return basketItem.value.price.total
-    }
-    const originalPrice = basketItem.value.price.total.appliedReductions.reduce(
-      (acc, { amount }) => acc + amount.absoluteWithTax,
-      0,
-    )
-
-    return createCustomPrice(basketItem.value.price.total, {
-      withTax: 0 as CentAmount,
-      appliedReductions: [
-        {
-          amount: {
-            absoluteWithTax: originalPrice as CentAmount,
-            relative: 1,
-          },
-          type: 'relative',
-          category: 'promotion',
-        },
-      ],
-    })
+    return basketItem.value.price.total
   })
 
   return { isFreeGift, price, isSoldOut }

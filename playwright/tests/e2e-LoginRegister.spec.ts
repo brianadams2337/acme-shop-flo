@@ -1,14 +1,22 @@
 import { expect, test } from '../fixtures/fixtures'
 import { isMobile, verifySeoMetaTags } from '../support/utils'
 import {
-  HOMEPAGE_PATH_DE,
-  LOGGED_IN_USER_DATA,
-  LOGIN_WRONG_CREDENTIALS,
   TEST_USERS,
   LOGIN_REGISTRATION,
   SIGNIN_URL,
   USER_ACCOUNT,
+  ROUTES,
 } from '../support/constants'
+
+/**
+ * @file Contains end-to-end tests related to user login and registration functionality.
+ */
+
+/**
+ * Performs setup before each test case within this file.
+ * It navigates to the homepage, waits for the network to be idle,
+ * and closes the country detector modal if present.
+ */
 
 test.beforeEach(async ({ homePage, page, countryDetector }) => {
   await homePage.visitPage()
@@ -16,6 +24,17 @@ test.beforeEach(async ({ homePage, page, countryDetector }) => {
   await countryDetector.closeModal()
 })
 
+/**
+ * Verifies the user login and logout flow.
+ *
+ * Prerequisites for this test:
+ * - A registered user account with valid credentials.
+ * - The email address for this user must be defined via `TEST_USER_EMAIL1` environment variable
+ * (e.g., "sfb.aqa1@testsystem.com").
+ * - The password for this user must be defined via `TEST_USER_PASSWORD` environment variable.
+ * The password should have a minimum length of 8 characters and include at least one
+ * special character, one uppercase letter, one lowercase letter, and one number.
+ */
 test('C2130648 C2171377 Verify User login and log out', async ({
   signinPage,
   header,
@@ -27,8 +46,8 @@ test('C2130648 C2171377 Verify User login and log out', async ({
   await test.step('Log in', async () => {
     await header.headerLoginButton.click()
     await signinPage.fillLoginData(
-      LOGGED_IN_USER_DATA.email,
-      LOGGED_IN_USER_DATA.password,
+      TEST_USERS.testUserEmail1,
+      TEST_USERS.testUserPassword,
     )
     await signinPage.clickLoginButton()
     await toastMessage.assertToastInfoIsVisible()
@@ -52,6 +71,15 @@ test('C2130648 C2171377 Verify User login and log out', async ({
   })
 })
 
+/**
+ * Verifies the user login with invalid credentials.
+ *
+ * Prerequisites for this test:
+ * - The email address is defined in constant key `TEST_USERS.nonExistingEmail` as a correctly formatted dummy e-mail address.
+ * - The password for this user must be defined via `TEST_USER_PASSWORD` environment variable.
+ * The password should have a minimum length of 8 characters and include at least one
+ * special character, one uppercase letter, one lowercase letter, and one number.
+ */
 test('C2130649 Verify User login with wrong credentials', async ({
   signinPage,
   header,
@@ -59,8 +87,8 @@ test('C2130649 Verify User login with wrong credentials', async ({
   await expect(async () => {
     await header.headerLoginButton.click()
     await signinPage.fillLoginData(
-      LOGIN_WRONG_CREDENTIALS.email,
-      LOGIN_WRONG_CREDENTIALS.password,
+      TEST_USERS.nonExistingEmail,
+      TEST_USERS.wrongPassword,
     )
 
     await signinPage.clickLoginButton()
@@ -69,6 +97,19 @@ test('C2130649 Verify User login with wrong credentials', async ({
   }).toPass()
 })
 
+/**
+ * Verifies that attempting to register a user with an email
+ * address that is already associated with an existing account displays
+ * an error message and does not register the user.
+ *
+ * Prerequisites for this test:
+ * - A registered user account with valid credentials.
+ * - The email address for this user must be defined via `TEST_USER_EMAIL1` environment variable
+ * (e.g., "sfb.aqa1@testsystem.com").
+ * - The password for this user must be defined via `TEST_USER_PASSWORD` environment variable.
+ * The password should have a minimum length of 8 characters and include at least one
+ * special character, one uppercase letter, one lowercase letter, and one number.
+ */
 test('C2171373 Verify User registration with already registered user account', async ({
   signinPage,
   header,
@@ -98,6 +139,15 @@ test('C2171373 Verify User registration with already registered user account', a
   })
 })
 
+/**
+ * Verifies that the password toggle button on the registration
+ * form correctly shows and hides the entered password, changing the input type.
+ *
+ * Prerequisites for this test:
+ * - The password for this user must be defined via `TEST_USER_PASSWORD` environment variable.
+ * The password should have a minimum length of 8 characters and include at least one
+ * special character, one uppercase letter, one lowercase letter, and one number.
+ */
 test('C2171375 Verify User registration password toggle button', async ({
   signinPage,
   header,
@@ -123,6 +173,18 @@ test('C2171375 Verify User registration password toggle button', async ({
   await expect(signinPage.regInputPassword).toHaveAttribute('type', 'text')
 })
 
+/**
+ * Verifies the functionality of the "Forgot Password" flow,
+ * including opening the reset password flyout, handling empty and
+ * incorrectly formatted email inputs, attempting to reset with a
+ * non-existent email, and successfully requesting a reset link for
+ * an existing user.
+ *
+ * Prerequisites for this test:
+ * - A registered user account with valid credentials.
+ * - The email address for this user must be defined via `TEST_USER_EMAIL1` environment variable
+ * (e.g., "sfb.aqa1@testsystem.com").
+ */
 test('C2171379 Verify User login reset password flow', async ({
   signinPage,
   header,
@@ -151,7 +213,7 @@ test('C2171379 Verify User login reset password flow', async ({
   await test.step('Enter incorrect format e-mail, open the Flyout and assert e-mail input is empty', async () => {
     await signinPage.emailInput.waitFor()
     await signinPage.emailInput.focus()
-    await signinPage.emailInput.fill(LOGIN_WRONG_CREDENTIALS.emailInvalidFormat)
+    await signinPage.emailInput.fill(TEST_USERS.emailInvalidFormat)
     await signinPage.resetPasswordButton.click()
     await signinPage.resetPasswordHeadline.waitFor()
     await expect(signinPage.resetPasswordEmailInput).toHaveValue('')
@@ -159,7 +221,7 @@ test('C2171379 Verify User login reset password flow', async ({
   await test.step('Enter correct format non-existing e-mail and click Get Reset Link', async () => {
     await signinPage.resetPasswordEmailInput.clear()
     await signinPage.resetPasswordEmailInput.focus()
-    await signinPage.resetPasswordEmailInput.fill(LOGIN_WRONG_CREDENTIALS.email)
+    await signinPage.resetPasswordEmailInput.fill(TEST_USERS.nonExistingEmail)
     await signinPage.resetPasswordGetResetLinkButton.click()
     await page.waitForTimeout(500)
     await expect(signinPage.forgotPasswordErrorMessageContainer).toBeVisible()
@@ -174,7 +236,7 @@ test('C2171379 Verify User login reset password flow', async ({
       await signinPage.resetPasswordEmailInput.clear()
       await page.waitForTimeout(300)
       await signinPage.resetPasswordEmailInput.focus()
-      await signinPage.resetPasswordEmailInput.fill(LOGGED_IN_USER_DATA.email)
+      await signinPage.resetPasswordEmailInput.fill(TEST_USERS.testUserEmail1)
       await signinPage.resetPasswordGetResetLinkButton.click()
       await signinPage.emailInput.waitFor()
       await page.waitForLoadState('networkidle')
@@ -198,13 +260,24 @@ test('C2171379 Verify User login reset password flow', async ({
   })
 })
 
+/**
+ * Verifies the process of setting a new password, including
+ * handling incorrectly formatted passwords and successfully submitting
+ * a correctly formatted password (even though the test hash might lead to an error).
+ * Any hash can be used for the testing purposes to verify that the new password flyout loads correctly,
+ * so '/signin?hash=testhash' is used.
+ *
+ * Prerequisites for this test:
+ * - The password for this user must be defined via `TEST_USER_PASSWORD` environment variable.
+ * The password should have a minimum length of 8 characters and include at least one
+ * special character, one uppercase letter, one lowercase letter, and one number.
+ */
 test('C2171786 Verify setting the new password', async ({
   signinPage,
   page,
   countryDetector,
 }) => {
   await test.step('Open new password flyout and enter incorrectly formatted password', async () => {
-    // Any hash can be used for the testing purposes to verify that the new password flyout loads correctly.
     await page.goto('/signin?hash=testhash')
     await page.waitForTimeout(500)
     await countryDetector.closeModal()
@@ -217,7 +290,7 @@ test('C2171786 Verify setting the new password', async ({
     // Error message is expected because the test hash is used.
     await signinPage.newPasswordInput.clear()
     await signinPage.newPasswordInput.focus()
-    await signinPage.newPasswordInput.fill(LOGGED_IN_USER_DATA.password)
+    await signinPage.newPasswordInput.fill(TEST_USERS.testUserPassword)
     await signinPage.submitNewPasswordButton.click()
     await page.waitForTimeout(500)
     await expect(signinPage.validationErrorText).not.toBeVisible()
@@ -225,6 +298,18 @@ test('C2171786 Verify setting the new password', async ({
   })
 })
 
+/**
+ * Verifies the guest user registration flow, including
+ * toggling the guest registration option, asserting the visibility of
+ * relevant elements, and ensuring the guest user is successfully logged in.
+ *
+ * Prerequisites for this test:
+ * - The email address for this user must be defined via `TEST_USER_GUEST` environment variable
+ * (e.g., "guest.user@testsystem.com").
+ * - The password for this user must be defined via `TEST_USER_PASSWORD` environment variable.
+ * The password should have a minimum length of 8 characters and include at least one
+ * special character, one uppercase letter, one lowercase letter, and one number.
+ */
 test('C2171374 Verify User registration guest flow', async ({
   signinPage,
   page,
@@ -278,6 +363,10 @@ test('C2171374 Verify User registration guest flow', async ({
   })
 })
 
+/**
+ * Verifies the presence and correctness of specific SEO meta tags
+ * (robots and canonical) on the user login and registration pages.
+ */
 test('C2171377 Verify User login and registration SEO data', async ({
   signinPage,
   header,
@@ -291,12 +380,18 @@ test('C2171377 Verify User login and registration SEO data', async ({
 
   await verifySeoMetaTags(page, {
     robots: LOGIN_REGISTRATION.seoRobots,
-    canonical: baseURL + HOMEPAGE_PATH_DE + SIGNIN_URL,
+    canonical: baseURL + ROUTES.homepageDefault + SIGNIN_URL,
   })
   await expect(signinPage.h1).toBeAttached()
   await expect(signinPage.h1).toHaveText(pageTitle)
 })
 
+/**
+ * Verifies the functionality of the "Create an account" link on
+ * the login page, ensuring it navigates to the registration form.
+ * Verifies the functionality of the links on the registration
+ * page (Terms of Service and Privacy Policy) and the "Log in" link back to the login form.
+ */
 test('C2171381 C2171376 Verify User Login and Register page links', async ({
   signinPage,
   header,

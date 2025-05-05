@@ -1,5 +1,5 @@
 import type { Locator, Page } from '@playwright/test'
-import { HOMEPAGE_PATH_DE } from '../support/constants'
+import { ROUTES } from '../support/constants'
 import { expect } from '../fixtures/fixtures'
 import type { RPC } from './components/rpc'
 import { isMobile } from '../support/utils'
@@ -122,9 +122,9 @@ export class BasketPage {
     await expect(this.continueButton).toBeVisible()
     await this.continueButton.click()
     await this.page.waitForTimeout(500)
-    await this.page.waitForURL(HOMEPAGE_PATH_DE)
+    await this.page.waitForURL(ROUTES.homepageDefault)
     const pageUrl = this.page.url()
-    expect(pageUrl).toContain(HOMEPAGE_PATH_DE)
+    expect(pageUrl).toContain(ROUTES.homepageDefault)
   }
 
   async assertLoginButton() {

@@ -1,7 +1,14 @@
 import { expect, test } from '../fixtures/fixtures'
 import { isMobile } from '../support/utils'
-import { CHECKOUT_REDIRECT_URL } from '../support/constants'
+import { ROUTES } from '../support/constants'
 
+/**
+ * Simulates a happy path user journey starting from the homepage,
+ * navigating to a Product Listing Page (PLP), adding a product to the wishlist,
+ * opening the Product Detail Page (PDP), adding the product to the basket,
+ * and finally navigating to the checkout page, without "buying" the product.
+ * The basket is emptied at the end to ensure a clean state for subsequent tests.
+ */
 test('C2139186: E2E from Home to Checkout - happy path', async ({
   homePage,
   productListingPage,
@@ -63,7 +70,7 @@ test('C2139186: E2E from Home to Checkout - happy path', async ({
         await basketPage.gotoCheckoutPage(0)
       }
       await signinPage.loginButton.waitFor({ state: 'visible' })
-      expect(page.url()).toContain(CHECKOUT_REDIRECT_URL)
+      expect(page.url()).toContain(ROUTES.homepageDefault + ROUTES.checkout)
     }).toPass()
   })
   await test.step('Empty Basket to have clean state after test execution', async () => {

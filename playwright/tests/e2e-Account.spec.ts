@@ -2,6 +2,8 @@ import { expect, test } from '../fixtures/fixtures'
 import { getUserForBrowser } from '../support/utils'
 import { USER_ACCOUNT, TEST_USERS } from '../support/constants'
 
+/** @file Contains end-to-end tests for the user account page. */
+
 test.beforeEach(
   async (
     { signinPage, page, countryDetector, header, toastMessage, homePage },

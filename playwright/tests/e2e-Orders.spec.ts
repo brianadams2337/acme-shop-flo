@@ -1,5 +1,5 @@
 import { expect, test } from '../fixtures/fixtures'
-import { LOGGED_IN_USER_DATA, ROUTES, TEST_USERS } from '../support/constants'
+import { ROUTES, TEST_USERS } from '../support/constants'
 
 test('C2132533 Verify Orders for user that has orders', async ({
   ordersPage,
@@ -12,8 +12,8 @@ test('C2132533 Verify Orders for user that has orders', async ({
     await homePage.visitPage()
     await page.waitForLoadState('networkidle')
     await accountPage.userAuthentication(
-      LOGGED_IN_USER_DATA.email,
-      LOGGED_IN_USER_DATA.password,
+      TEST_USERS.testUserEmail1,
+      TEST_USERS.testUserPassword,
     )
     await ordersPage.visitOrdersPage('/account/orders', baseURL as string)
     await ordersPage.ordersHeadline.waitFor()

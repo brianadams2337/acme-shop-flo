@@ -4,7 +4,7 @@ import {
   isMobile,
   verifySeoMetaTags,
 } from '../support/utils'
-import { CHECKOUT_URL, OSP_TEST_DATA } from '../support/constants'
+import { ROUTES, OSP_TEST_DATA } from '../support/constants'
 
 test.beforeEach(
   async ({ accountPage, homePage, page, countryDetector }, testInfo) => {
@@ -44,10 +44,10 @@ test('C2173505 C2173506 C2173507 C2173508 C2181795 C2182370 C2181791 Verify OSP'
     await productDetailPage.addProductToBasket()
   })
   await test.step('Visit Checkout page and continue with order', async () => {
-    await page.goto(CHECKOUT_URL, { waitUntil: 'commit' })
+    await page.goto(ROUTES.checkout, { waitUntil: 'commit' })
     await checkoutPage.basketContainer.waitFor()
     const pageUrl = page.url()
-    expect(pageUrl).toContain(CHECKOUT_URL)
+    expect(pageUrl).toContain(ROUTES.checkout)
     await checkoutPage.basketContainer.waitFor()
     await checkoutPage.checkboxAcceptTerms.click()
     await checkoutPage.ctaPayButton.click()
@@ -103,7 +103,7 @@ test('C2173505 C2173506 C2173507 C2173508 C2181795 C2182370 C2181791 Verify OSP'
       await orderSuccessPage.ospOrderDetailsButton.nth(0).click()
     }
     await page.waitForTimeout(500)
-    expect(page.url()).toContain(OSP_TEST_DATA.ordersUrl)
+    expect(page.url()).toContain(ROUTES.orders)
   })
 })
 

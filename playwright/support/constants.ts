@@ -1,20 +1,3 @@
-export const E2E_BASKET_URL = /\/basket/
-
-export const LOGGED_IN_USER_DATA = {
-  firstName: 'test',
-  lastName: 'AQA',
-  email: process.env.TEST_USER_EMAIL1 as string,
-  password: process.env.TEST_USER_PASSWORD as string,
-}
-
-export const LOGIN_WRONG_CREDENTIALS = {
-  firstName: 'test',
-  lastName: 'test',
-  email: 'Aqa.testxx@test.com',
-  password: process.env.TEST_USER_WRONG_PASSWORD as string,
-  emailInvalidFormat: 'test@test',
-}
-
 export const LIGHTHOUSE_THRESHOLDS = {
   performance: 50, // 80
   accessibility: 70, // 80
@@ -22,6 +5,16 @@ export const LIGHTHOUSE_THRESHOLDS = {
   bestPractices: 90, // 80
 }
 
+/**
+ * Predefined filter parameters for testing PLP deeplinks.
+ * Currently configured with "sale": true and "maxPrice": 4000 for testing purposes.
+ * This object is used in tests like "C2139744: Verify PLP Filters deeplink"
+ * within `/playwright/tests/e2e-Plp.spec.ts`. Extend this object to include
+ * other filter keys (e.g., color, size) to broaden deeplink filter testing.
+ *
+ * Note: if this object is extended with additional filters, the test "C2139744: Verify PLP Filters deeplink"
+ * should be adjusted accordingly.
+ */
 export const PLP_FILTER_DEEPLINK = {
   sale: true,
   maxPrice: 4000,
@@ -64,8 +57,6 @@ export const BASKET_TEST_DATA = {
   seoRobots: 'noindex,follow',
 }
 
-export const HOMEPAGE_PATH_DE = '/de'
-export const HOMEPAGE_PATH_EN = '/en'
 export const SIGNIN_URL = '/signin'
 
 /**
@@ -84,8 +75,6 @@ export const USER_ACCOUNT = {
   routeSubscriptions: '/account/subscription',
   routeProfile: '/account/profile',
 }
-
-export const CHECKOUT_URL = '/checkout'
 
 export const PDP_E2E = {
   regularProductUrl: '/p/sweatshirt-205801',
@@ -123,8 +112,15 @@ export const TEST_USERS = {
   testUserPassword: process.env.TEST_USER_PASSWORD as string,
   /** Test user used to verify Registration process for guest user. */
   testUserGuest: process.env.TEST_USER_GUEST as string,
+  /** Password used for test that verifies user authentication with wrong credentials. */
+  wrongPassword: process.env.TEST_USER_WRONG_PASSWORD as string,
+  /** Test user first and last name, used in registration form tests. */
   firstNameRegUser: 'Registered',
   lastNameRegUser: 'User',
+  /** Non registered e-mail address. Used in non-happy paths for some tests, e.g. password reset for non-registered user. */
+  nonExistingEmail: 'Aqa.testxx@test.com',
+  /** Wrong formatted e-mail address. Used in non-happy paths for some tests, e.g. password reset for invalid e-mail format. */
+  emailInvalidFormat: 'test@test',
 }
 
 export const LIGHTHOUSE_VIEWPORT_SIZE = Number.parseInt(
@@ -145,8 +141,6 @@ export const SORTING = {
   reductionDesc: 'reduction_desc',
 }
 
-export const CHECKOUT_REDIRECT_URL = 'signin?redirectUrl=/de/checkout'
-
 export const HYDRATION_TEST_USER = {
   userEmail: process.env.TEST_USER_EMAIL6 as string,
   password: process.env.TEST_USER_PASSWORD as string,
@@ -156,6 +150,9 @@ export const ROUTES = {
   wishlist: '/wishlist',
   basket: '/basket',
   orders: '/orders',
+  homepageDefault: '/de',
+  homepage1: '/en',
+  checkout: '/checkout',
 }
 
 export const PDP_TEST_VARIANT_ID = {
@@ -172,7 +169,6 @@ export const PDP_TEST_VARIANT_ID = {
 }
 
 export const OSP_TEST_DATA = {
-  ordersUrl: '/orders',
   incorrectCbdUrl:
     '/success?cbd=eyJzdGF0dXNTg1NTI3Y2I3NjY0NWQ3NA==&login=1&pmm=b2b',
   seoRobots: 'noindex,nofollow',

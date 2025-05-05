@@ -1,12 +1,21 @@
 import { expect, test } from '../fixtures/fixtures'
 import { getAllLinksFromPage, isMobile } from '../support/utils'
 
+/**
+ * @file Contains end-to-end tests for the homepage, verifying its basic structure,
+ * links integrity, and accessibility skip links.
+ */
+
 test.beforeEach(async ({ homePage, countryDetector, page }) => {
   await homePage.visitPage()
   await page.waitForLoadState('domcontentloaded')
   await countryDetector.closeModal()
 })
 
+/**
+ * Verifies that the main content area of the homepage,
+ * the main header, and the footer are visible upon page load.
+ */
 test('C2141227 Verify Homepage sections', async ({
   homePage,
   header,
@@ -19,6 +28,15 @@ test('C2141227 Verify Homepage sections', async ({
   }).toPass()
 })
 
+/**
+ * - Verifies that all links on the homepage return a successful
+ * HTTP status code (less than 400). It first attempts a HEAD request for
+ * efficiency and falls back to a full page navigation if the HEAD request fails.
+ * - Verifies the status code of homepage links.
+ * - Handles potential errors during link checks.
+ * - Attempts full navigation as a fallback for HEAD failures.
+ * - Ensures links are valid and do not lead to broken pages.
+ */
 test('C2141228 C2138940 C2138941 C2138942 C2143604 Verify Homepage links', async ({
   page,
   context,
@@ -51,12 +69,18 @@ test('C2141228 C2138940 C2138941 C2138942 C2143604 Verify Homepage links', async
   }
 })
 
+/**
+ * Verifies the functionality of the "Skip to Main Content" and
+ * "Skip to Search" accessibility links, ensuring they correctly focus
+ * the intended elements on the page for keyboard navigation.
+ */
 test('C2167297 Verify Homepage Skip Links', async ({
   homePage,
   skipLinks,
   page,
   search,
   mobileNavigation,
+  countryDetector,
 }) => {
   await test.step('Verify Skip to Main Content', async () => {
     await homePage.homepageContent.press('Tab')
@@ -69,6 +93,7 @@ test('C2167297 Verify Homepage Skip Links', async ({
   await test.step('Verify Skip to Search', async () => {
     await page.reload()
     await page.waitForLoadState('domcontentloaded')
+    await countryDetector.closeModal()
     await homePage.homepageContent.press('Tab')
     await skipLinks.buttonSkipToSearch.waitFor()
     await skipLinks.buttonSkipToSearch.focus()

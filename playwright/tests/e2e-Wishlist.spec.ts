@@ -1,5 +1,5 @@
 import { expect, test } from '../fixtures/fixtures'
-import { LOGGED_IN_USER_DATA, WISHLIST_TEST_DATA } from '../support/constants'
+import { TEST_USERS, WISHLIST_TEST_DATA } from '../support/constants'
 import { verifySeoMetaTags, isMobile } from '../support/utils'
 
 test.beforeEach(async ({ wishlistPage, baseURL, countryDetector }) => {
@@ -26,8 +26,8 @@ test('C2132174 C2132177 Verify Wishlist empty state', async ({
     await expect(async () => {
       await header.headerLoginButton.click()
       await signinPage.fillLoginData(
-        LOGGED_IN_USER_DATA.email,
-        LOGGED_IN_USER_DATA.password,
+        TEST_USERS.testUserEmail1,
+        TEST_USERS.testUserPassword,
       )
       await signinPage.clickLoginButton()
       await wishlistPage.emptyState.waitFor()

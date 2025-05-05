@@ -1,5 +1,5 @@
 import { expect, test } from '../fixtures/fixtures'
-import { HOMEPAGE_PATH_DE } from '../support/constants'
+import { ROUTES } from '../support/constants'
 
 test.beforeEach(async ({ homePage, footer, countryDetector }) => {
   await homePage.visitPage()
@@ -34,7 +34,7 @@ test('C2143605 Verify footer logo', async ({
       await footer.footerLogo.click()
       await page.waitForLoadState('domcontentloaded')
       await expect(header.mainHeader).toBeInViewport()
-      expect(page.url()).toEqual(baseURL + HOMEPAGE_PATH_DE)
+      expect(page.url()).toEqual(baseURL + ROUTES.homepageDefault)
     }).toPass()
   })
 })

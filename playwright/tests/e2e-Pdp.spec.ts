@@ -2,6 +2,16 @@ import { expect, test } from '../fixtures/fixtures'
 import { PDP_E2E, LOCATION, PDP_TEST_VARIANT_ID } from '../support/constants'
 import { isMobile, verifySeoMetaTags } from '../support/utils'
 
+/**
+ * @file Contains end-to-end tests for the Product Detail Page (PDP),
+ * verifying elements like name, brand, price, wishlist functionality,
+ * page title, and SEO meta tags.
+ */
+
+/**
+ * Verifies that the product brand, name, regular price, and
+ * tax information are visible on the Product Detail Page.
+ */
 test('C2141594: Verify PDP name, brand and price', async ({
   productDetailPage,
   countryDetector,
@@ -22,7 +32,7 @@ test('C2141594: Verify PDP name, brand and price', async ({
   }
   await breadcrumb.breadcrumbCategoryActive.waitFor()
   await expect(async () => {
-    await productListingPage.productCard.first().click()
+    await productListingPage.productImage.first().click()
     await page.waitForLoadState('domcontentloaded')
     await productDetailPage.h1.waitFor()
     await countryDetector.closeModal()
@@ -97,6 +107,12 @@ test('C2141597: Verify PDP quantity selector', async ({
   await expect(header.basketNumItems).toHaveText('2')
 })
 
+/**
+ * C2141598: Verifies that a user can add a product to their Wishlist from the
+ * Product Detail Page and that the Wishlist item counter in the header is updated.
+ * It also verifies the removal of the product from the Wishlist, checking if the
+ * counter is updated accordingly.
+ */
 test('C2141598: Verify PDP add and remove to/from Wishlist', async ({
   productDetailPage,
   header,
@@ -117,7 +133,7 @@ test('C2141598: Verify PDP add and remove to/from Wishlist', async ({
     await mainNavigation.navigateToPlpMainCategory()
   }
   await breadcrumb.breadcrumbCategoryActive.waitFor()
-  await productListingPage.productCard.first().click()
+  await productListingPage.productImage.first().click()
   await page.waitForLoadState('domcontentloaded')
   await productDetailPage.h1.waitFor()
   await test.step('Adding product to Wishlist', async () => {
@@ -127,7 +143,6 @@ test('C2141598: Verify PDP add and remove to/from Wishlist', async ({
     await productDetailPage.assertRemoveFromWishlistIconVisibility()
     await expect(header.wishlistNumItems).toHaveText('1')
   })
-
   await test.step('Removing product from Wishlist', async () => {
     await productDetailPage.removeProductFromWishlist()
     await expect(header.wishlistNumItems).not.toBeVisible()
@@ -170,33 +185,6 @@ test('C2141599: Verify PDP Subscription service', async ({
       .click()
     await expect(productDetailPage.addToBasketButtonSubscribe).not.toBeVisible()
   })
-})
-
-test('C2141757: Verify PDP page title', async ({
-  productDetailPage,
-  page,
-  homePage,
-  countryDetector,
-  mobileNavigation,
-  mainNavigation,
-  breadcrumb,
-  productListingPage,
-}) => {
-  await homePage.visitPage()
-  await page.waitForLoadState('networkidle')
-  await countryDetector.closeModal()
-  if (isMobile(page)) {
-    await mobileNavigation.openPlpMobile()
-  } else {
-    await mainNavigation.navigateToPlpMainCategory()
-  }
-  await breadcrumb.breadcrumbCategoryActive.waitFor()
-  await productListingPage.productCard.first().click()
-  await page.waitForLoadState('domcontentloaded')
-  await productDetailPage.productName.waitFor()
-  const productName = await productDetailPage.productName.textContent()
-  const pageTitle = await page.title()
-  expect(pageTitle).toContain(productName)
 })
 
 test('C2171081: Verify PDP Multi-size product Store selector', async ({
@@ -372,7 +360,13 @@ test('C2181799: Verify PDP URL Variant ID parameter for multi-size sold-out vari
   )
 })
 
-test('C2141150 Verify PDP SEO data', async ({
+/**
+ * Verifies the presence and correctness of specific SEO meta tags
+ * (robots and canonical) on the Product Detail Page, checks if the
+ * main headline (H1) contains the page title and that the product name
+ * is contained in the SEO page title.
+ */
+test('C2141150 C2141757 Verify PDP SEO data', async ({
   productDetailPage,
   countryDetector,
   page,
@@ -394,6 +388,8 @@ test('C2141150 Verify PDP SEO data', async ({
   await productListingPage.productImage.first().click()
   await productDetailPage.h1.waitFor()
   const pageTitle = (await productDetailPage.pageTitle.textContent()) as string
+  const pageTitleSEO = await page.title()
+  const productName = await productDetailPage.productName.textContent()
 
   await verifySeoMetaTags(page, {
     robots: PDP_E2E.seoRobots,
@@ -401,4 +397,5 @@ test('C2141150 Verify PDP SEO data', async ({
   })
   await expect(productDetailPage.h1).toBeAttached()
   await expect(productDetailPage.h1).toContainText(pageTitle)
+  expect(pageTitleSEO).toContain(productName)
 })

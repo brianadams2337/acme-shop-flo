@@ -4,8 +4,28 @@ import {
   isMobile,
   verifySeoMetaTags,
 } from '../support/utils'
-import { BASKET_TEST_DATA, E2E_BASKET_URL, ROUTES } from '../support/constants'
+import { BASKET_TEST_DATA, ROUTES } from '../support/constants'
 
+/** @file Contains end-to-end tests for the basket page. */
+
+/**
+ * Verifies that when a guest user navigates to the basket page,
+ * the empty basket state with appropriate title and subtitle is displayed.
+ * Verifies that when a logged-in user with an empty basket navigates
+ * to the basket page, the empty basket state is displayed, and the user has
+ * the option to continue shopping.
+ *
+ * Prerequisites for this test:
+ * To avoid conflicts between browsers in empty and non-empty states, every browser should use its own dedicated test user.
+ * Five test users should be registered in the system and their e-mail addresses and password should match the values of
+ * environment variables, as follows:
+ * - `TEST_USER_EMAIL1` - test user for desktop Chromium.
+ * - `TEST_USER_EMAIL2` - test user for desktop Firefox.
+ * - `TEST_USER_EMAIL3` - test user for desktop Webkit (Safari).
+ * - `TEST_USER_EMAIL4` - test user for mobile Chrome.
+ * - `TEST_USER_EMAIL5` - test user for mobile Webkit (Safari).
+ * - The password for all test users is the same, and must be defined via `TEST_USER_PASSWORD` environment variable.
+ */
 test('C2132186 C2132187 Verify Basket empty state as a guest and logged in user', async ({
   homePage,
   header,
@@ -44,6 +64,14 @@ test('C2132186 C2132187 Verify Basket empty state as a guest and logged in user'
   })
 })
 
+/**
+ * Verifies that a guest user can add a product to the basket,
+ * then logs in, and the added product persists in their basket after login, and the ability
+ * to remove a product from the basket.
+ *
+ * Prerequisites for this test are the same as for the test "C2132186 C2132187 Verify Basket empty state as a guest and logged in user".
+ * This test is using the same dedicated test users per browser, defined via environment variables.
+ */
 test('C2132198 C2162476 Verify add to Basket', async ({
   homePage,
   header,
@@ -374,7 +402,7 @@ test('C2167368 Verify Basket increasing free product quantity', async ({
     await countryDetector.closeModal()
     await basketPage.addProductToBasket(BASKET_TEST_DATA.promoPaidProduct, 1)
     await header.visitBasketPage()
-    await page.waitForURL(E2E_BASKET_URL)
+    await basketPage.h1.waitFor()
     await page.reload()
     await countryDetector.closeModal()
     await basketPage.basketProductCard.waitFor()

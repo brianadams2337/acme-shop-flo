@@ -1,7 +1,25 @@
 import { expect, test } from '../fixtures/fixtures'
 import { getUserForBrowser, isMobile } from '../support/utils'
-import { CHECKOUT_URL } from '../support/constants'
+import { ROUTES } from '../support/constants'
 
+/**
+ * @file Contains end-to-end tests for verifying the order overview page during the checkout process.
+ */
+
+/**
+ * Performs setup before each test case within this file.
+ *
+ * Prerequisite for this test:
+ * To avoid conflicts between browsers in empty and non-empty states, every browser should use its own dedicated test user.
+ * Five test users should be registered in the system and their e-mail addresses and password should match the values of
+ * environment variables, as follows:
+ * - `TEST_USER_EMAIL1` - test user for desktop Chromium.
+ * - `TEST_USER_EMAIL2` - test user for desktop Firefox.
+ * - `TEST_USER_EMAIL3` - test user for desktop Webkit (Safari).
+ * - `TEST_USER_EMAIL4` - test user for mobile Chrome.
+ * - `TEST_USER_EMAIL5` - test user for mobile Webkit (Safari).
+ * - The password for all test users is the same, and must be defined via `TEST_USER_PASSWORD` environment variable.
+ */
 test.beforeEach(
   async ({ accountPage, homePage, page, countryDetector }, testInfo) => {
     const projectName = testInfo.project.name
@@ -13,6 +31,15 @@ test.beforeEach(
   },
 )
 
+/**
+ * Verifies the elements present on the checkout order overview page,
+ * including items in the basket and delivery estimates.
+ * Verifies the presence of a simplified footer on the checkout page
+ * and the functionality to remove an item, leading to an empty basket state.
+ *
+ * Note: this test doesn't "buy" the product. The last verification point is on the
+ * Checkout order overview page.
+ */
 test('C2132536 C2144177 Verify Checkout order overview', async ({
   checkoutPage,
   page,
@@ -35,11 +62,11 @@ test('C2132536 C2144177 Verify Checkout order overview', async ({
     await productDetailPage.variantPicker.click({ force: true })
     await productDetailPage.getVariant().click()
     await productDetailPage.addProductToBasket()
-    await page.goto(CHECKOUT_URL, { waitUntil: 'commit' })
+    await page.goto(ROUTES.checkout, { waitUntil: 'commit' })
   })
   await test.step('Visit Checkout page and check Items', async () => {
     const pageUrl = page.url()
-    expect(pageUrl).toContain(CHECKOUT_URL)
+    expect(pageUrl).toContain(ROUTES.checkout)
     await expect(async () => {
       await checkoutPage.basketContainer.waitFor()
       await expect(checkoutPage.basketContainer).toBeAttached()

@@ -6,6 +6,13 @@ import {
 } from '../support/constants'
 import { isMobile, verifySeoMetaTags } from '../support/utils'
 
+/**
+ * @file Contains end-to-end tests for the Product Listing Page (PLP),
+ * verifying its standard components, breadcrumb navigation, filtering,
+ * adding to wishlist, product siblings, page title, pagination, sorting,
+ * and SEO meta data.
+ */
+
 test.beforeEach(
   async ({
     countryDetector,
@@ -26,6 +33,11 @@ test.beforeEach(
 )
 test.setTimeout(45000)
 
+/**
+ * Verifies the visibility of standard components on the Product
+ * Listing Page, including the sort dropdown (desktop), filter button, breadcrumb
+ * elements (category levels and active category), product items, and the product counter.
+ */
 test('C2130723: Verify PLP standard components', async ({
   productListingPage,
   breadcrumb,
@@ -45,6 +57,11 @@ test('C2130723: Verify PLP standard components', async ({
   await expect(breadcrumb.productCounter).toBeVisible()
 })
 
+/**
+ * Verifies the visibility and content of the breadcrumb on the
+ * sub-category PLP and checks if clicking the main category in the breadcrumb
+ * navigates to the correct main category PLP with the correct URL structure.
+ */
 test('C2130725: Verify PLP breadcrumb', async ({ breadcrumb, page }) => {
   await test.step('Verify sub-category breadcrumb', async () => {
     await breadcrumb.productCounter.waitFor()
@@ -70,6 +87,11 @@ test('C2130725: Verify PLP breadcrumb', async ({ breadcrumb, page }) => {
   })
 })
 
+/**
+ * Verifies the initial state of the filters flyout, applies price,
+ * color, and size filters, checks if the product count is updated correctly,
+ * verifies the filter counter badge, and then resets the filters.
+ */
 test('C2130727: Verify PLP Filters and Product Count', async ({
   breadcrumb,
   filters,
@@ -167,6 +189,11 @@ test('C2130727: Verify PLP Filters and Product Count', async ({
   })
 })
 
+/**
+ * Verifies that directly navigating to a PLP with predefined filters
+ * in the URL (deeplink) correctly applies those filters, as indicated
+ * by the filter counter and the checked state of the filter options.
+ */
 test('C2139744: Verify PLP Filters deeplink', async ({
   productListingPage,
   filters,
@@ -191,6 +218,13 @@ test('C2139744: Verify PLP Filters deeplink', async ({
   await expect(filters.filterSaleSwitch).toBeChecked()
 })
 
+/**
+ * Verifies that a user can add a product to their Wishlist by
+ * clicking the wishlist button on the PLP product card, and that the
+ * Wishlist item counter in the header is updated. It also verifies the
+ * removal of the product from the Wishlist from the PLP, checking if
+ * the counter and the button state are updated accordingly.
+ */
 test('C2130731: Verify PLP Add to Wishlist', async ({
   productListingPage,
   header,
@@ -217,6 +251,11 @@ test('C2130731: Verify PLP Add to Wishlist', async ({
   })
 })
 
+/**
+ * Verifies that hovering over a product tile on the PLP reveals
+ * a product sibling, and clicking on that sibling navigates the user to
+ * the correct URL for the sibling product.
+ */
 test('C2132074: Verify PLP Product siblings', async ({
   productListingPage,
   page,
@@ -234,6 +273,10 @@ test('C2132074: Verify PLP Product siblings', async ({
   expect(pageUrl).toContain(productSiblingPath)
 })
 
+/**
+ * Verifies that the page title of the Product Listing Page
+ * correctly reflects the main category and the active sub-category.
+ */
 test('C2141756: Verify PLP page title', async ({ breadcrumb, page }) => {
   await breadcrumb.breadcrumbCategoryLvl0.waitFor()
   const category = await breadcrumb.breadcrumbCategoryLvl0.textContent()
@@ -249,10 +292,21 @@ test('C2141756: Verify PLP page title', async ({ breadcrumb, page }) => {
       : ''
 
   const pageTitle = await page.title()
-
   expect(pageTitle).toContain(`${category} - ${activeCategory}`)
 })
 
+/**
+ * Verifies the initial state of the Previous and Next page
+ * buttons in the pagination component, and then tests the navigation
+ * functionality using these buttons to move between pages. It also
+ * verifies navigation using direct page number buttons.
+ *
+ * Note: this test requires at least 3 pages of products in the PLP product stream.
+ * If the default loaded PLP doesn't have it, you can modify the test and directly
+ * open the PLP with minimum 3 pages.
+ * If the test is not relevant, you can skip it by using `test.skip`. The rest of the tests
+ * within this file will not be affected.
+ */
 test('C2130729: Verify PLP Pagination', async ({ pagination }) => {
   await test.step('Verify Previous/Next page buttons initial state', async () => {
     await pagination.assertPaginationInitialState()
@@ -266,12 +320,24 @@ test('C2130729: Verify PLP Pagination', async ({ pagination }) => {
   })
 })
 
+/**
+ * Verifies that when filters are applied on a specific page
+ * of the PLP (navigated to using pagination), the page URL does not
+ * retain the pagination parameter, ensuring filters are applied to all
+ * relevant products across all pages.
+ *
+ * Note: this test requires at least 2 pages of products in the PLP product stream.
+ * If the default loaded PLP doesn't have it, you can modify the test and directly
+ * open the PLP with minimum 2 pages.
+ * If the test is not relevant, you can skip it by using `test.skip`. The rest of the tests
+ * within this file will not be affected.
+ */
 test('C2162468: Verify PLP Pagination setting filters', async ({
   pagination,
   filters,
   page,
 }) => {
-  await pagination.assertExactPageClick('3')
+  await pagination.assertExactPageClick('2')
   await filters.openFilters()
   await page.waitForTimeout(300)
   await filters.filterPriceInput.nth(1).clear()
@@ -285,6 +351,12 @@ test('C2162468: Verify PLP Pagination setting filters', async ({
   expect(page.url()).not.toContain('?page=')
 })
 
+/**
+ * Verifies the sorting of products on the PLP by price, both
+ * in ascending and descending order. It checks if the URL reflects the
+ * applied sorting option and if the order of the first product card changes
+ * after applying different sorting methods.
+ */
 test('C2162411: Verify PLP Sorting', async ({
   productListingPage,
   filters,
@@ -322,6 +394,12 @@ test('C2162411: Verify PLP Sorting', async ({
   expect(productIdPriceAsc).not.toEqual(productIdPriceDesc)
 })
 
+/**
+ * Verifies the SEO meta tags (robots and canonical) on the PLP
+ * in its default state, after applying sorting, and after navigating to
+ * the PLP with applied filters via a deeplink. It also checks if the main
+ * headline (H1) contains the page title in the default state.
+ */
 test('C2139182: Verify PLP SEO data', async ({
   productListingPage,
   countryDetector,

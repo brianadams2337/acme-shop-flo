@@ -1,12 +1,27 @@
 import { expect, test } from '../fixtures/fixtures'
 import { isMobile } from '../support/utils'
 
+/**
+ * @file Contains end-to-end tests for the main navigation, verifying its flyout
+ * on desktop and mobile navigation, and the ability to navigate to Product
+ * Listing Pages (PLPs) from the main navigation.
+ */
+
 test.beforeEach(async ({ homePage, countryDetector, page }) => {
   await homePage.visitPage()
   await page.waitForLoadState('domcontentloaded')
   await countryDetector.closeModal()
 })
 
+/**
+ * - Verifies the main navigation flyout on desktop browsers.
+ * - Verifies navigating to a main category PLP from the main navigation
+ * and asserts the page title.
+ * - Verifies navigating to a sub-category PLP from the main navigation
+ * and asserts the page title on desktop.
+ * - Verifies navigating to a 2nd level category PLP
+ * and asserts the page title.
+ */
 test('C2130722 C2143633 C2143634 Verify Main Navigation Flyout and navigating to Main category PLP', async ({
   mainNavigation,
   mobileNavigation,

@@ -1,12 +1,22 @@
 import { expect, test } from '../fixtures/fixtures'
 import { isMobile } from '../support/utils'
 
+/**
+ * @file Contains end-to-end tests for the Shop Selector functionality,
+ * verifying the ability to switch between different shops.
+ */
+
 test.beforeEach(async ({ homePage, countryDetector, page }) => {
   await homePage.visitPage()
   await page.waitForLoadState('domcontentloaded')
   await countryDetector.closeModal()
 })
 
+/**
+ * Verifies that the Shop Selector is initially visible in a closed
+ * state, can be opened by clicking its toggle button, and allows switching
+ * to a different shop, presumably navigating the user away from the current shop.
+ */
 test('C2162469: Verify Shop Selector switch to different shop', async ({
   shopSelector,
   page,
@@ -38,6 +48,11 @@ test('C2162469: Verify Shop Selector switch to different shop', async ({
   })
 })
 
+/**
+ * Verifies that when the Shop Selector is opened, and the user attempts
+ * to select the currently active shop, the page likely remains on the current shop
+ * without a full navigation or significant change.
+ */
 test('C2162470: Verify Shop Selector switch to the current shop', async ({
   shopSelector,
   page,
@@ -56,6 +71,12 @@ test('C2162470: Verify Shop Selector switch to the current shop', async ({
   }).toPass()
 })
 
+/**
+ * Verifies that when a user navigates away from the homepage
+ * (in this case, to the Wishlist page) and then uses the Shop Selector
+ * to switch to a different shop, the user is navigated away from the
+ * current page (Wishlist) and to the selected shop.
+ */
 test('C2162471: Verify Shop Selector switch from non-Homepage', async ({
   shopSelector,
   page,

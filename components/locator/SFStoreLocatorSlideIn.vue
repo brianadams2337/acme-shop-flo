@@ -6,17 +6,17 @@
     <template #slide-in-header="{ toggle: toggleItem }">
       <div class="bg-white p-5 shadow-[0_3px_24px_0_rgba(0,0,0,0.12)]">
         <div class="flex items-center justify-between">
-          <SFHeadline :is-uppercase="false" size="lg" tag="p"
-            >{{ $t('store_locator_slide_in.headline') }}
+          <SFHeadline :is-uppercase="false" size="lg" tag="p">
+            {{ $t('store_locator_slide_in.headline') }}
           </SFHeadline>
           <SFButton
             variant="raw"
-            size="xs"
-            data-testid="closeCross"
+            fab
+            data-testid="close-store-locator-slide-in"
             @click="toggleItem"
           >
-            <template #icon="{ _class }">
-              <IconClose :class="_class" />
+            <template #icon>
+              <IconClose class="size-4" />
             </template>
           </SFButton>
         </div>

@@ -114,6 +114,7 @@ import SFBasketCardDetails from './SFBasketCardDetails.vue'
 import SFBasketCardImage from './SFBasketCardImage.vue'
 import SFBasketCardSoldOutTitle from './SFBasketCardSoldOutTitle.vue'
 import { SFBasketCardSubscriptionData } from '#storefront-subscription/components'
+import { isFreeGiftBasketItem } from '#storefront-promotions/utils'
 import SFQuantityInput from '~/components/product/SFQuantityInput.vue'
 import SFProductPrice from '~/components/product/SFProductPrice.vue'
 import SFLocalizedLink from '~/components/SFLocalizedLink.vue'
@@ -121,7 +122,6 @@ import {
   useProductBaseInfo,
   useRouteHelpers,
   useTrackingEvents,
-  useBasketItem,
 } from '~/composables'
 import SFButton from '~/modules/ui/runtime/components/core/SFButton.vue'
 import { getMaxQuantity } from '~/utils'
@@ -137,7 +137,9 @@ const route = useRoute()
 
 const { alt, brand, name, link } = useProductBaseInfo(basketItem.product)
 
-const { isSoldOut, isFreeGift, price } = useBasketItem(() => basketItem)
+const isSoldOut = computed(() => basketItem.status !== 'available')
+const isFreeGift = computed(() => !!isFreeGiftBasketItem(basketItem))
+const price = computed(() => basketItem.price.total)
 
 const { trackSelectItem } = useTrackingEvents()
 

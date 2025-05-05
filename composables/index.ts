@@ -5,7 +5,6 @@ export * from './cms/useProviderContext'
 
 // Basket
 export * from './useBasketActions'
-export * from './useBasketItem'
 
 // Promotions
 export * from './usePromotionGiftSelection'

@@ -43,22 +43,21 @@
 </template>
 
 <script setup lang="ts">
+import { computed } from 'vue'
 import type { BasketItem } from '@scayle/storefront-nuxt'
 import SFBasketCardImage from '../SFBasketCardImage.vue'
 import SFBasketCardDetails from '../SFBasketCardDetails.vue'
 import SFProductPrice from '~/components/product/SFProductPrice.vue'
 import SFLocalizedLink from '~/components/SFLocalizedLink.vue'
-import {
-  useProductBaseInfo,
-  useRouteHelpers,
-  useBasketItem,
-} from '~/composables'
+import { isFreeGiftBasketItem } from '#storefront-promotions/utils'
+import { useProductBaseInfo, useRouteHelpers } from '~/composables'
 
 const { basketItem } = defineProps<{ basketItem: BasketItem }>()
 
 const { getProductDetailRoute } = useRouteHelpers()
 
 const { name, brand } = useProductBaseInfo(basketItem.product)
-
-const { isSoldOut, isFreeGift, price } = useBasketItem(() => basketItem)
+const isSoldOut = computed(() => basketItem.status !== 'available')
+const isFreeGift = computed(() => !!isFreeGiftBasketItem(basketItem))
+const price = computed(() => basketItem.price.total)
 </script>

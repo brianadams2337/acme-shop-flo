@@ -56,7 +56,11 @@ const focusSearch = async () => {
     await nextTick()
   }
 
-  form.focus({ preventScroll: true })
+  if (!(form.firstElementChild instanceof HTMLDivElement)) {
+    return
+  }
+
+  form.firstElementChild.focus({ preventScroll: true })
 }
 
 /**

@@ -168,4 +168,20 @@ export class ProductDetailPage {
     await this.storeInput.fill(store)
     await this.page.waitForTimeout(100)
   }
+
+  /**
+   * Determines product variant selection behavior based on the state of the variant picker.
+   * If the variant picker DOM element is in a disabled state, it indicates that a single
+   * variant (e.g., one-size) is pre-selected and no further interaction is required.
+   * Conversely, if the variant picker is enabled, it signifies the presence of multiple
+   * variants. In this case, the method will trigger a click on the picker to expose
+   * the variant options dropdown and subsequently select the first available variant.
+   */
+  async chooseProductVariant() {
+    const isVariantPickerDisabled = await this.variantPicker.isDisabled()
+    if (!isVariantPickerDisabled) {
+      await this.variantPicker.click({ force: true })
+      await this.getVariant().click()
+    }
+  }
 }

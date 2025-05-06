@@ -169,8 +169,7 @@ test('C2141599: Verify PDP Subscription service', async ({
 
   await test.step('Check subscription after choosing the size', async () => {
     await productDetailPage.variantPicker.waitFor()
-    await productDetailPage.variantPicker.click({ force: true })
-    await productDetailPage.getVariant().click()
+    await productDetailPage.chooseProductVariant()
     await expect(productDetailPage.addToBasketButtonSubscribe).toBeVisible()
     await productDetailPage.addToBasketButtonSubscribe.click()
     await header.basketNumItems.waitFor()

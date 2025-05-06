@@ -45,8 +45,7 @@ test('C2139186: E2E from Home to Checkout - happy path', async ({
     await expect(async () => {
       await productListingPage.productImage.first().click()
       await productDetailPage.variantPicker.waitFor()
-      await productDetailPage.variantPicker.click({ force: true })
-      await productDetailPage.getVariant().click()
+      await productDetailPage.chooseProductVariant()
       await productDetailPage.addProductToBasket()
     }).toPass()
     const basketProductBrandText =

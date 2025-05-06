@@ -100,9 +100,7 @@ test('C2132198 C2162476 Verify add to Basket', async ({
       (await productDetailPage.productBrand.textContent()) as string
     const productName =
       (await productDetailPage.productName.textContent()) as string
-    await productDetailPage.variantPicker.click({ force: true })
-    await page.waitForTimeout(500)
-    await productDetailPage.getVariant().click()
+    await productDetailPage.chooseProductVariant()
     await productDetailPage.addProductToBasket()
     await header.visitBasketPage()
     await page.waitForLoadState('domcontentloaded')
@@ -243,8 +241,7 @@ test('C2167321 Verify Basket Price summary - promotion product', async ({
     }
 
     await productDetailPage.variantPicker.waitFor()
-    await productDetailPage.variantPicker.click({ force: true })
-    await productDetailPage.getVariant().click()
+    await productDetailPage.chooseProductVariant()
     await productDetailPage.addProductToBasket()
     await header.visitBasketPage()
     await page.waitForLoadState('domcontentloaded')

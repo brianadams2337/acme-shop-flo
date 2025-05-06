@@ -74,13 +74,14 @@ import {
 } from '@scayle/storefront-nuxt'
 import { useSeoMeta, useHead, definePageMeta } from '#imports'
 import { useI18n } from '#i18n'
-import { useRoute } from '#app/composables/router'
+import { navigateTo, useRoute } from '#app/composables/router'
 import { useNuxtApp } from '#app/nuxt'
 import {
   useTrackingEvents,
   usePageState,
   useJsonld,
   useBreadcrumbs,
+  useRouteHelpers,
 } from '~/composables'
 import { createError } from '#app/composables/error'
 import { getCategoryId } from '~/utils'
@@ -106,12 +107,11 @@ import {
   useProductListSort,
 } from '#storefront-product-listing'
 import { useCategoryById } from '#storefront/composables'
-import { globalGetCachedData } from '~/utils/useRpc'
-import type { NuxtApp } from '#app'
 
 const route = useRoute()
 const { $config } = useNuxtApp()
 const i18n = useI18n()
+const { buildCategoryPath } = useRouteHelpers()
 
 const { pageState, setPageState } = usePageState()
 
@@ -153,38 +153,39 @@ const categoryParams = computed(() => ({
   properties: { withName: ['sale'] },
 }))
 
-// We use the same option as in the `category` middleware together with `globalGetCachedData` in order to share data between this page and the middleware.
-// This helps reducing network requests on client navigation.
-const currentCategoryPromise = useCategoryById(
-  {
-    params: categoryParams,
-    options: {
-      dedupe: 'defer',
-      getCachedData: (key, nuxtApp) =>
-        globalGetCachedData<Category>(key, nuxtApp as NuxtApp),
-    },
-  },
-  `current-category-${currentCategoryId.value}`,
-)
-
 const {
   data: currentCategory,
   status: categoryStatus,
   error: categoryError,
-} = currentCategoryPromise
+} = useCategoryById(
+  {
+    params: categoryParams,
+    options: {
+      dedupe: 'defer',
+    },
+  },
+  'plp-current-category',
+)
 
-const validateCategoryExists = async () => {
-  await currentCategoryPromise
+const validateCategoryExistsAndRedirect = async () => {
+  if (categoryStatus.value == 'pending') {
+    return
+  }
 
-  if (
-    categoryError.value ||
-    (categoryStatus.value !== 'pending' && !currentCategory.value)
-  ) {
+  if (categoryError.value || !currentCategory.value) {
     throw createError({ statusCode: HttpStatusCode.NOT_FOUND, fatal: true })
+  }
+
+  const expectedPath = buildCategoryPath(currentCategory.value)
+  if (expectedPath !== route.path) {
+    return navigateTo(
+      { path: expectedPath, query: route.query, hash: route.hash },
+      { redirectCode: 301 },
+    )
   }
 }
 
-onServerPrefetch(validateCategoryExists)
+onServerPrefetch(validateCategoryExistsAndRedirect)
 
 const trackProductClick = (product: Product) => {
   trackSelectItem({
@@ -213,10 +214,10 @@ const trackViewListing = ({
 }
 
 watch(
-  currentCategoryId,
-  async (id) => {
-    await validateCategoryExists()
-    setPageState('typeId', String(id))
+  currentCategory,
+  async (category) => {
+    await validateCategoryExistsAndRedirect()
+    setPageState('typeId', String(category?.id))
   },
   { immediate: true },
 )
@@ -263,7 +264,6 @@ defineOptions({ name: 'CategoryPage' })
 // leading to focus loss and unnecessary performance overhead.
 definePageMeta({
   pageType: 'category_page',
-  middleware: ['category'],
   key: 'PLP',
 })
 </script>

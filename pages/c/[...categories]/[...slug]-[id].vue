@@ -167,6 +167,8 @@ const {
   'plp-current-category',
 )
 
+// Validates that the category exists and redirects to the correct path if the URL is incorrect but the category ID is valid
+// If an error occurs or the category is not found, a 404 error is thrown also redirecting to the correct path if the category ID is valid but the path is incorrectq
 const validateCategoryExistsAndRedirect = async () => {
   if (categoryStatus.value == 'pending') {
     return
@@ -213,6 +215,9 @@ const trackViewListing = ({
   })
 }
 
+// Watch for changes to the current category and re-validate the path.
+// This is necessary because the category ID could be incorrect in the URL.
+// As the page is a fixed page, the category ID is watched to ensure the correct page is loaded.
 watch(
   currentCategory,
   async (category) => {

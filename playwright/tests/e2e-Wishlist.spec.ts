@@ -2,11 +2,30 @@ import { expect, test } from '../fixtures/fixtures'
 import { TEST_USERS, WISHLIST_TEST_DATA } from '../support/constants'
 import { verifySeoMetaTags, isMobile } from '../support/utils'
 
+/**
+ * @file Contains end-to-end tests for the user's Wishlist page, verifying
+ * both the empty and non-empty states, as well as SEO data and item removal.
+ */
+
 test.beforeEach(async ({ wishlistPage, baseURL, countryDetector }) => {
   await wishlistPage.visitWishlistPage('/wishlist', baseURL as string)
   await countryDetector.closeModal()
 })
 
+/**
+ * Verifies that when a guest user navigates to the Wishlist page,
+ * the empty wishlist state with appropriate elements (continue shopping button,
+ * sign-in button, icon, headline, subheadline) is displayed.
+ * Verifies that when a logged-in user with an empty wishlist navigates
+ * to the Wishlist page, the empty wishlist state with appropriate elements
+ * (continue shopping button, icon, headline, subheadline) is displayed.
+ *
+ * Prerequisites for this test:
+ * - A registered user account with no items previously added to Wishlist.
+ * - The email address for this user must be defined via `TEST_USER_EMAIL1` environment variable
+ * (e.g., "sfb.aqa1@testsystem.com").
+ * - The password for this user must be defined via `TEST_USER_PASSWORD` environment variable.
+ */
 test('C2132174 C2132177 Verify Wishlist empty state', async ({
   wishlistPage,
   header,
@@ -39,6 +58,12 @@ test('C2132174 C2132177 Verify Wishlist empty state', async ({
   })
 })
 
+/**
+ * Verifies that when a product is added to the Wishlist, it is
+ * displayed on the Wishlist page with the product card and brand visible.
+ * Verifies the SEO meta tags on the Wishlist page and the
+ * functionality to remove an item from the Wishlist, leading back to the empty state.
+ */
 test('C2141222 C2183076 Verify Wishlist non-empty state', async ({
   wishlistPage,
   header,

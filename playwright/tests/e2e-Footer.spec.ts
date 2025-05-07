@@ -1,12 +1,23 @@
 import { expect, test } from '../fixtures/fixtures'
 import { ROUTES } from '../support/constants'
 
+/**
+ * @file Contains end-to-end tests for the website footer, specifically
+ * verifying the functionality of the footer logo.
+ */
+
 test.beforeEach(async ({ homePage, footer, countryDetector }) => {
   await homePage.visitPage()
   await countryDetector.closeModal()
   await footer.footerWrapper.scrollIntoViewIfNeeded()
 })
 
+/**
+ * Verifies that clicking the footer logo from the homepage
+ * keeps the user on the homepage and scrolls them back to the top of the page.
+ * It also verifies that clicking the footer logo from a non-homepage
+ * (e.g., the basket page) navigates the user back to the default homepage.
+ */
 test('C2143605 Verify footer logo', async ({
   footer,
   page,

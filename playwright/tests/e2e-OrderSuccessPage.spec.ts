@@ -6,6 +6,24 @@ import {
 } from '../support/utils'
 import { ROUTES, OSP_TEST_DATA } from '../support/constants'
 
+/**
+ * @file Contains end-to-end tests for the Order Success Page (OSP), verifying
+ * order details, product information, price summary, SEO data, CTA buttons,
+ * and the error page displayed for incorrect tokens.
+ */
+
+/**
+ * Prerequisites for all tests:
+ * To avoid conflicts between browsers in the process of buying the product, every browser should use its own dedicated test user.
+ * Five test users should be registered in the system and their e-mail addresses and password should match the values of
+ * environment variables, as follows:
+ * - `TEST_USER_EMAIL1` - test user for desktop Chromium.
+ * - `TEST_USER_EMAIL2` - test user for desktop Firefox.
+ * - `TEST_USER_EMAIL3` - test user for desktop Webkit (Safari).
+ * - `TEST_USER_EMAIL4` - test user for mobile Chrome.
+ * - `TEST_USER_EMAIL5` - test user for mobile Webkit (Safari).
+ * - The password for all test users is the same, and must be defined via `TEST_USER_PASSWORD` environment variable.
+ */
 test.beforeEach(
   async ({ accountPage, homePage, page, countryDetector }, testInfo) => {
     const projectName = testInfo.project.name
@@ -17,6 +35,18 @@ test.beforeEach(
   },
 )
 
+/**
+ * Verifies the visibility of the greeting box and order data on the OSP.
+ * Verifies the visibility of payment and delivery address details on the OSP.
+ * Verifies the details of the ordered product(s) on the OSP.
+ * Verifies the price summary displayed on the OSP.
+ * Verifies the SEO meta tags on the OSP.
+ * Verifies the functionality of the "Continue Shopping" and "Order Details" CTA buttons on the OSP.
+ * Verifies the overall structure and content of the OSP.
+ *
+ * Test prerequisite: Since this test "buys" the product, there should be some test product
+ * in the system with available quantity in stock.
+ */
 test('C2173505 C2173506 C2173507 C2173508 C2181795 C2182370 C2181791 Verify OSP', async ({
   checkoutPage,
   page,
@@ -106,6 +136,13 @@ test('C2173505 C2173506 C2173507 C2173508 C2181795 C2182370 C2181791 Verify OSP'
   })
 })
 
+/**
+ * Verifies that when the OSP is visited with an expired
+ * confirmation token in the URL, an appropriate error page with a
+ * specific headline, subheadline, and icon is displayed. It also checks
+ * that the "Continue Shopping" button on the error page navigates
+ * the user back to the homepage.
+ */
 test('C2182954 Verify OSP Error page', async ({
   page,
   orderSuccessPage,

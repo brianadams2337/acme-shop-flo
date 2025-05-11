@@ -211,6 +211,7 @@ const {
   hasOneVariantOnly,
   variants,
   colors,
+  image,
 } = useProductBaseInfo(product)
 
 const { items } = useBasket()
@@ -307,15 +308,6 @@ const breadcrumbs = computed(() =>
 )
 
 const { getImage } = useImage()
-const images = computed(() => {
-  const options = {
-    sizes: '100vw',
-    provider: 'scayle',
-  }
-  const images = product.value?.images ?? []
-  return images.map(({ hash }) => getImage(hash, options).url)
-})
-
 const { $config } = useNuxtApp()
 
 const productInfo = computed(() => ({
@@ -329,9 +321,14 @@ const productInfo = computed(() => ({
       variant,
       url: `${$config.public.baseUrl}${route.fullPath}`,
       size,
+      image: image.value
+        ? getImage(image.value?.hash, {
+            sizes: '100vw',
+            provider: 'scayle',
+          }).url
+        : '',
     })
   }),
-  images: images.value,
   productId: product.value?.id || 0,
   color: formatColors(colors.value),
   variesBy: variants.value.length > 1 ? ['https://schema.org/size'] : undefined,

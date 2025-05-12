@@ -28,7 +28,7 @@
 </template>
 
 <script setup lang="ts">
-import { useFilterSlideIn } from '~/composables'
+import { useSlideIn } from '#storefront-ui'
 import { SFButton } from '#storefront-ui/components'
 import { useAppliedFilters } from '#storefront-product-listing'
 import { useRoute } from '#app/composables/router'
@@ -37,5 +37,5 @@ defineProps<{ label: string }>()
 
 const { appliedFiltersCount } = useAppliedFilters(useRoute())
 
-const { toggle: toggleFilter } = useFilterSlideIn()
+const { toggle: toggleFilter } = useSlideIn('FilterSlideIn')
 </script>

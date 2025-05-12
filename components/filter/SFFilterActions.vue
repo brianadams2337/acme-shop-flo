@@ -40,9 +40,9 @@
 
 <script setup lang="ts">
 import { computed } from 'vue'
-import { useFilterSlideIn } from '~/composables'
 import { SFButton } from '#storefront-ui/components'
 import { useI18n } from '#i18n'
+import { useSlideIn } from '#storefront-ui'
 
 const { filteredProductCount, areFiltersCleared } = defineProps<{
   filteredProductCount: number
@@ -51,11 +51,9 @@ const { filteredProductCount, areFiltersCleared } = defineProps<{
 
 const { t } = useI18n()
 
-const { toggle } = useFilterSlideIn()
+const { toggle } = useSlideIn('FilterSlideIn')
 
-defineEmits<{
-  reset: []
-}>()
+defineEmits<{ reset: [] }>()
 
 const showResultsLabel = computed(() => {
   return filteredProductCount

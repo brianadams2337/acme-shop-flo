@@ -9629,10 +9629,10 @@ import-fresh@^3.2.1:
     parent-module "^1.0.0"
     resolve-from "^4.0.0"
 
-import-in-the-middle@1.13.1, import-in-the-middle@^1.8.1:
-  version "1.13.1"
-  resolved "https://registry.yarnpkg.com/import-in-the-middle/-/import-in-the-middle-1.13.1.tgz#789651f9e93dd902a5a306f499ab51eb72b03a12"
-  integrity sha512-k2V9wNm9B+ysuelDTHjI9d5KPc4l8zAZTGqj+pcynvWkypZd857ryzN8jNC7Pg2YZXNMJcHRPpaDyCBbNyVRpA==
+import-in-the-middle@1.13.1, import-in-the-middle@1.13.2, import-in-the-middle@^1.8.1:
+  version "1.13.2"
+  resolved "https://registry.yarnpkg.com/import-in-the-middle/-/import-in-the-middle-1.13.2.tgz#b8d873708ab121996da6842fa7740ac5cd437f9e"
+  integrity sha512-Yjp9X7s2eHSXvZYQ0aye6UvwYPrVB5C2k47fuXjFKnYinAByaDZjh4t9MT2wEga9775n6WaIqyHnQhBxYtX2mg==
   dependencies:
     acorn "^8.14.0"
     acorn-import-attributes "^1.9.5"

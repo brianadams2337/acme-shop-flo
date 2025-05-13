@@ -37,20 +37,21 @@
         data-testid="order-product-card-prices"
         :inline="false"
         :show-badges="true"
-        :lowest-prior-price="lowestPriorPrice"
       />
     </div>
   </SFLocalizedLink>
 </template>
 
 <script setup lang="ts">
+import { getFirstAttributeValue, type Product } from '@scayle/storefront-nuxt'
+import { computed } from 'vue'
 import SFOrderDetailProductDetails from './SFOrderDetailProductDetails.vue'
 import { SFOrderDetailProductSubscription } from '#storefront-subscription/components'
 import SFProductPrice from '~/components/product/SFProductPrice.vue'
 import SFLocalizedLink from '~/components/SFLocalizedLink.vue'
 import type { OrderProduct, OrderVariant, OrderPrice } from '~/types/order'
-import { useOrderProductDetails } from '~/composables'
 import SFProductImage from '~/components/product/SFProductImage.vue'
+import { useProductBaseInfo } from '~/composables'
 
 const {
   product,
@@ -65,9 +66,15 @@ const {
   subscription?: Record<string, string>
 }>()
 
-const { name, brand, size, lowestPriorPrice, color, link, image, alt } =
-  useOrderProductDetails(
-    () => product,
-    () => variant,
-  )
+const { name, brand, link, image, alt } = useProductBaseInfo(
+  product as unknown as Product,
+)
+
+const size = computed(
+  () => getFirstAttributeValue(variant.attributes, 'size')?.label ?? '',
+)
+
+const color = computed(
+  () => getFirstAttributeValue(product.attributes, 'color')?.label ?? '',
+)
 </script>

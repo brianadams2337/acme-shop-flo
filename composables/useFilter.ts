@@ -1,5 +1,12 @@
 import { extendPromise } from '@scayle/storefront-nuxt'
-import { computed, type MaybeRefOrGetter, readonly, ref, toValue } from 'vue'
+import {
+  computed,
+  type MaybeRefOrGetter,
+  readonly,
+  type Ref,
+  ref,
+  toValue,
+} from 'vue'
 import type { RangeTuple } from '@scayle/storefront-product-listing'
 import type { LocationQuery } from '#vue-router'
 import { useTrackingEvents, useToast } from '~/composables'
@@ -12,12 +19,81 @@ import {
   createNewAttributeQuery,
   createNewPriceQuery,
   useAppliedFilters,
+  type UseFiltersForListingReturn,
 } from '#storefront-product-listing'
 
+interface FilterOptions {
+  immediate?: boolean
+  keyPrefix?: string
+}
+
+type UseFilterReturn = Awaited<UseFiltersForListingReturn> & {
+  /**
+   * Callback function that should be called by SFFilterSlideIn.vue when the filter slide-in is opened.
+   * It tracks the filter flyout open event.
+   */
+  onSlideInOpen: () => void
+  /**
+   * Callback function that should be called by SFFilterSlideIn.vue when the filter slide-in is closed.
+   * It tracks the filter flyout close event.
+   */
+  onSlideInClose: () => void
+  /**
+   * Applies a price filter to the current category.
+   * @param prices - The prices to apply.
+   */
+  applyPriceFilter: (prices: RangeTuple) => Promise<void>
+  /**
+   * Applies a boolean filter to the current category.
+   * @param slug - The name of the filter.
+   * @param value - The value of the filter.
+   */
+  applyBooleanFilter: (slug: string, value: boolean) => Promise<void>
+  /**
+   * Applies an attribute filter to the current category.
+   * @param slug - The name of the filter.
+   * @param id - The id of the attribute.
+   */
+  applyAttributeFilter: (slug: string, id: number) => Promise<void>
+  /**
+   * Tracks the filter flyout event.
+   * @param event - The event to track.
+   * @param value - The value of the event.
+   */
+  trackFilterFlyout: (event: string, value: string) => void
+  /**
+   * Resets all filters.
+   */
+  resetFilters: () => Promise<void>
+  /**
+   * Resets the price filter.
+   */
+  resetPriceFilter: () => Promise<void>
+  /**
+   * Resets a specific filter.
+   * @param key - The name of the filter that should be reset.
+   */
+  resetFilter: (key: string) => Promise<void>
+  /**
+   * Indicates if all filters are cleared.
+   * This flag will be automatically reset after 3 seconds.
+   */
+  areFiltersCleared: Readonly<Ref<boolean>>
+}
+
+/**
+ * The `useFilter` composable centralizes the business logic for applying filters to the current category and tracking filter usage.
+ *
+ * @param currentCategoryId - The current category id.
+ * @param options - The options for the filter.
+ * @param options.immediate - Whether to fetch filters immediately.
+ * @param options.keyPrefix - The prefix of the filter key.
+ * @returns A {@link UseFilterReturn} object containing functions to apply filters and track filter usage.
+ */
 export function useFilter(
   currentCategoryId?: MaybeRefOrGetter<number | undefined>,
-  options: { immediate?: boolean; keyPrefix?: string } = {},
-) {
+  options: FilterOptions = {},
+): UseFilterReturn & Promise<UseFilterReturn> {
   const route = useRoute()
   const router = useRouter()
   const areFiltersCleared = ref(false)

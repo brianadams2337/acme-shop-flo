@@ -66,15 +66,11 @@ const {
   subscription?: Record<string, string>
 }>()
 
-const { name, brand, link, image, alt } = useProductBaseInfo(
+const { name, brand, link, image, alt, color } = useProductBaseInfo(
   product as unknown as Product,
 )
 
 const size = computed(
   () => getFirstAttributeValue(variant.attributes, 'size')?.label ?? '',
-)
-
-const color = computed(
-  () => getFirstAttributeValue(product.attributes, 'color')?.label ?? '',
 )
 </script>

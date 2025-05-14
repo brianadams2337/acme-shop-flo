@@ -1,7 +1,7 @@
 import { computed } from 'vue'
 import { type Category, extendPromise } from '@scayle/storefront-nuxt'
 import { useCategories } from '#storefront/composables'
-import { flattenCategoryTree } from '~/utils/category'
+import { flattenCategoryTree } from '#storefront-product-listing'
 
 export function useRootCategories(
   options: {

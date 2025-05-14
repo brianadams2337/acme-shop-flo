@@ -1,7 +1,7 @@
 import type { Category, ProductCategory } from '@scayle/storefront-nuxt'
 import { useRouteHelpers } from '.'
 import type { BreadcrumbItem } from '~/types/breadcrumbs'
-import { getCategoryAncestors } from '~/utils/category'
+import { getCategoryAncestors } from '#storefront-product-listing'
 
 export function useBreadcrumbs() {
   const { buildCategoryPath } = useRouteHelpers()

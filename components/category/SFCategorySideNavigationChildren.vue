@@ -33,7 +33,7 @@ import type { Category } from '@scayle/storefront-nuxt'
 // eslint-disable-next-line import/no-self-import
 import SFCategorySideNavigationChildren from './SFCategorySideNavigationChildren.vue'
 import SFCategorySideNavigationItem from './SFCategorySideNavigationItem.vue'
-import { isSaleCategory } from '~/utils'
+import { isSaleCategory } from '#storefront-product-listing'
 
 const { currentCategory, parentDataTestId } = defineProps<{
   subCategories: Category[]

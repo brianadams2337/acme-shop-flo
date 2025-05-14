@@ -3703,10 +3703,10 @@
   resolved "https://registry.yarnpkg.com/@scayle/nuxt-image-provider/-/nuxt-image-provider-0.3.1.tgz#fe55b0f1b0ee918a80d51eeecf55f8a4bda59c1f"
   integrity sha512-x/TC3yy8eaqXCePpXkYlPUcZ2pD6K70FRkbSzjUgTrfcpPEKETLRiYICgov2GC17vOeUIlCA4L9waJEoDwnDmA==
 
-"@scayle/nuxt-opentelemetry@0.13.0":
-  version "0.13.0"
-  resolved "https://registry.yarnpkg.com/@scayle/nuxt-opentelemetry/-/nuxt-opentelemetry-0.13.0.tgz#6d8be69a4d6380ad84b31ae85c066665c71984dd"
-  integrity sha512-u5iKJWT8T/nwauXVkpa+sd1J3+4VGYIERHjI1hJ7zOgUkekA6WeFkhA5IZPT3j4g5OjXPBy7ktdHmqNtANHXww==
+"@scayle/nuxt-opentelemetry@0.13.1":
+  version "0.13.1"
+  resolved "https://registry.yarnpkg.com/@scayle/nuxt-opentelemetry/-/nuxt-opentelemetry-0.13.1.tgz#081637fe6742ad0adf3a428ae88abf1d8417f7db"
+  integrity sha512-ZShOwsYHu5/yfWDXTGVaqPKxqqPXUPamXJwqrhHbbHN14xdJZJAOczHv+2BW7uHih+D19LW69KPbinNBeTJEvQ==
   dependencies:
     "@nuxt/kit" "^3.12.3"
     "@opentelemetry/api" "1.9.0"
@@ -3722,7 +3722,7 @@
     "@opentelemetry/semantic-conventions" "1.33.0"
     "@vercel/otel" "1.12.0"
     defu "^6.1.4"
-    import-in-the-middle "1.13.1"
+    import-in-the-middle "1.13.2"
     knitwork "^1.1.0"
 
 "@scayle/omnichannel-nuxt@4.3.1":
@@ -9738,7 +9738,7 @@ import-fresh@^3.2.1:
     parent-module "^1.0.0"
     resolve-from "^4.0.0"
 
-import-in-the-middle@1.13.1, import-in-the-middle@1.13.2, import-in-the-middle@^1.8.1:
+import-in-the-middle@1.13.2, import-in-the-middle@^1.8.1:
   version "1.13.2"
   resolved "https://registry.yarnpkg.com/import-in-the-middle/-/import-in-the-middle-1.13.2.tgz#b8d873708ab121996da6842fa7740ac5cd437f9e"
   integrity sha512-Yjp9X7s2eHSXvZYQ0aye6UvwYPrVB5C2k47fuXjFKnYinAByaDZjh4t9MT2wEga9775n6WaIqyHnQhBxYtX2mg==

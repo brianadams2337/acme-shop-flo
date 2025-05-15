@@ -4,6 +4,7 @@ import pluginVueA11y from 'eslint-plugin-vuejs-accessibility'
 // Workaround for flat config not being supported yet by eslint-plugin-tailwindcss
 // https://github.com/francoismassart/eslint-plugin-tailwindcss/issues/280
 import { FlatCompat } from '@eslint/eslintrc'
+import vueI18n from '@intlify/eslint-plugin-vue-i18n'
 import withNuxt from './.nuxt/eslint.config.mjs'
 
 const compat = new FlatCompat()
@@ -71,6 +72,23 @@ export default withNuxt(
         'vuejs-accessibility/role-has-required-aria-props': 'off',
         'vuejs-accessibility/tabindex-no-positive': 'off',
         'test/prefer-lowercase-title': 'off',
+      },
+    },
+  ],
+  [
+    ...vueI18n.configs['flat/base'],
+    {
+      rules: {
+        '@intlify/vue-i18n/no-missing-keys': 'error',
+        '@intlify/vue-i18n/no-missing-keys-in-other-locales': 'error',
+        '@intlify/vue-i18n/no-duplicate-keys-in-locale': 'error',
+        '@intlify/vue-i18n/no-dynamic-keys': 'warn',
+      },
+      settings: {
+        'vue-i18n': {
+          localeDir: './i18n/locales/*.json',
+          messageSyntaxVersion: '^10.0.7',
+        },
       },
     },
   ],

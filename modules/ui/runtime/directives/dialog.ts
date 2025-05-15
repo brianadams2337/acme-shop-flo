@@ -8,7 +8,7 @@ import type { ObjectDirective } from 'vue'
 function toggleDialog(
   el: HTMLDialogElement,
   value: unknown,
-  modal: boolean,
+  modal?: boolean,
 ): void {
   if (!value) {
     el.close()

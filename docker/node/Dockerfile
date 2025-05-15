@@ -37,4 +37,4 @@ RUN apk add --no-cache jq bash
 COPY ./docker/node/entrypoint.sh /
 
 ENTRYPOINT ["/entrypoint.sh"]
-CMD ["node", "--enable-source-maps", "./.output/server/index.mjs"]
+CMD ["node", "./.output/server/index.mjs"]

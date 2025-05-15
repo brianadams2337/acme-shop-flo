@@ -80,7 +80,9 @@ export default withNuxt(
     {
       rules: {
         '@intlify/vue-i18n/no-missing-keys': 'error',
-        '@intlify/vue-i18n/no-missing-keys-in-other-locales': 'error',
+        '@intlify/vue-i18n/no-missing-keys-in-other-locales': process.env.CI
+          ? 'error'
+          : 'warn',
         '@intlify/vue-i18n/no-duplicate-keys-in-locale': 'error',
         '@intlify/vue-i18n/no-dynamic-keys': 'warn',
       },

@@ -3832,6 +3832,14 @@
     "@storyblok/richtext" "3.2.0"
     storyblok-js-client "6.10.11"
 
+"@storyblok/js@3.4.1":
+  version "3.4.1"
+  resolved "https://registry.yarnpkg.com/@storyblok/js/-/js-3.4.1.tgz#b292d5a0feec872adb9645f524da85438c9edd37"
+  integrity sha512-EDQhSRjh+1v0GQwbEGQ60eoX3pm3JtqbCIcbro0jAJGUL3azl59y7UekdgHwzFvhj4WD2BCwdfLher3qQCbt9A==
+  dependencies:
+    "@storyblok/richtext" "3.2.0"
+    storyblok-js-client "6.10.12"
+
 "@storyblok/nuxt@6.2.4":
   version "6.2.4"
   resolved "https://registry.yarnpkg.com/@storyblok/nuxt/-/nuxt-6.2.4.tgz#ac6245a568666f506e3f3506577696d970b3a4ed"
@@ -3849,7 +3857,14 @@
   resolved "https://registry.yarnpkg.com/@storyblok/richtext/-/richtext-3.2.0.tgz#6eee61aba593943113b067eb29f3d210f0ce77b8"
   integrity sha512-koVGDv1HtiI5vymE5fzRB1VO1PNguj+RSfHI4zCy2+90pRoqZbsUCR8V2TaNl7Pg8R1oOkFZnbAxdt9Z4xoxDg==
 
-"@storyblok/vue@8.2.2", "@storyblok/vue@^8.1.11":
+"@storyblok/vue@8.2.3":
+  version "8.2.3"
+  resolved "https://registry.yarnpkg.com/@storyblok/vue/-/vue-8.2.3.tgz#5bd0515525257d98bfbdb05444a114b60ef70eda"
+  integrity sha512-tI7yga8fa/jpZfOR49DtjR84NveW0U/79Fc+b00ugBUWO3bO7qN1GRo0dK7da+geWL8bKEYRBrmxBmvndoxftQ==
+  dependencies:
+    "@storyblok/js" "3.4.1"
+
+"@storyblok/vue@^8.1.11":
   version "8.2.2"
   resolved "https://registry.yarnpkg.com/@storyblok/vue/-/vue-8.2.2.tgz#fb447b7485c4cba461a5b567cec72f5ac05054d4"
   integrity sha512-gTNXKcdbnfDtALY8hCvmF7Kw+F2RW8VZGZT/7FQ0rRtPclWbEfBe4CJiYfdrIx27iCM9OcVb2SO7wGkjJwEOog==
@@ -14383,6 +14398,11 @@ storyblok-js-client@6.10.3:
   version "6.10.3"
   resolved "https://registry.yarnpkg.com/storyblok-js-client/-/storyblok-js-client-6.10.3.tgz#db5dd9fe46e35e8d034eaf611168a41461914558"
   integrity sha512-q6YK/f+F8PAJLsKR7jzlTRO9yIUXWLON2Fy02QjywYaSYwyS9ETzIuOtmCSstLrDAP5I+Vnw9PzEU30roxS15g==
+
+storyblok-js-client@6.11.0:
+  version "6.11.0"
+  resolved "https://registry.yarnpkg.com/storyblok-js-client/-/storyblok-js-client-6.11.0.tgz#6a39c66dd697991e67efa660056c6e44d5971d83"
+  integrity sha512-2uhd/VA51AB88XoqQ+rw9JqkWNoPl2ydg+J49w+2KBqqFvV2EtUhrS2umnabU8sD7HftFsMg0n69EWhkeDyM/A==
 
 storyblok@3.36.1:
   version "3.36.1"

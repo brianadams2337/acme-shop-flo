@@ -188,8 +188,7 @@
     "subtotal": "Totale parziale",
     "you_pay": "Paghi tu",
     "discount": "Sconti",
-    "delivery": "Consegna",
-    "voucher_disclaimer": "I buoni sconto possono essere applicati nell'ultima fase dell'ordine."
+    "delivery": "Consegna"
   },
   "basket_summary_reduction": {
     "sale": "Offerte",

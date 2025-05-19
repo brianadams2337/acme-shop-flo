@@ -188,8 +188,7 @@
     "subtotal": "Delsumma",
     "you_pay": "Du betalar",
     "discount": "Rabatter",
-    "delivery": "Frakt",
-    "voucher_disclaimer": "Värdekoder kan lösas in i det sista steget av beställningen."
+    "delivery": "leverans"
   },
   "basket_summary_reduction": {
     "sale": "Rea",

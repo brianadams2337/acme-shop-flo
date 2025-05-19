@@ -188,8 +188,7 @@
     "subtotal": "Υποσύνολο",
     "you_pay": "Πληρώνεις",
     "discount": "Προσφορές",
-    "delivery": "Παράδοση",
-    "voucher_disclaimer": "Τα κουπόνια μπορούν να εφαρμοστούν στο τελευταίο βήμα της παραγγελίας."
+    "delivery": "Παράδοση"
   },
   "basket_summary_reduction": {
     "sale": "Προσφορά",

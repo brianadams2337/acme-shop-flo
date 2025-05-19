@@ -153,6 +153,7 @@ export function useBasketActions(): UseBasketActionsReturn &
       displayData: basketItem?.displayData,
       itemGroup: basketItem?.itemGroup,
       promotionId: basketItem?.promotionId,
+      promotionCode: basketItem?.promotion?.code,
     })
     await applyPromotions(basket.data)
 

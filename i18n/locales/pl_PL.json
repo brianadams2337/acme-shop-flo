@@ -188,8 +188,7 @@
     "subtotal": "Suma częściowa",
     "you_pay": "Płacisz",
     "discount": "Rabaty",
-    "delivery": "Dostawa",
-    "voucher_disclaimer": "Kody rabatowe można aktywować w ostatnim kroku zamówienia."
+    "delivery": "Dostawa"
   },
   "basket_summary_reduction": {
     "sale": "Wyprzedaż",

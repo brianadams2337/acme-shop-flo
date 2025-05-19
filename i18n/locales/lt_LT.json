@@ -188,8 +188,7 @@
     "subtotal": "Tarpinė suma",
     "you_pay": "Mokėti",
     "discount": "Nuolaidos",
-    "delivery": "Pristatymas",
-    "voucher_disclaimer": "Kuponus galima taikyti paskutiniame užsakymo etape."
+    "delivery": "Pristatymas"
   },
   "basket_summary_reduction": {
     "sale": "Išpardavimas",

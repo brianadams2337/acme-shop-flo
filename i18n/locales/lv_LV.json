@@ -188,8 +188,7 @@
     "subtotal": "Starpsumma",
     "you_pay": "Tu maksā",
     "discount": "Atlaides",
-    "delivery": "Piegāde",
-    "voucher_disclaimer": "Atlaides kodus var piemērot pēdējā pasūtījuma posmā."
+    "delivery": "Piegāde"
   },
   "basket_summary_reduction": {
     "sale": "Izpārdošana",

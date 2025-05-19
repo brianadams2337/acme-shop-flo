@@ -188,8 +188,7 @@
     "subtotal": "Medzisúčet",
     "you_pay": "Zaplatíš",
     "discount": "Zľavy",
-    "delivery": "Doručenie",
-    "voucher_disclaimer": "Zľavové kupóny je možné uplatniť v poslednom kroku objednávky."
+    "delivery": "Doručenie"
   },
   "basket_summary_reduction": {
     "sale": "Výpredaj",

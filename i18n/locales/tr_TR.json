@@ -188,8 +188,7 @@
     "subtotal": "Ara Toplam",
     "you_pay": "Sen ödersin",
     "discount": "İndirimler",
-    "delivery": "Teslimat",
-    "voucher_disclaimer": "Kuponlar siparişin son adımında uygulanabilir."
+    "delivery": "Teslimat"
   },
   "basket_summary_reduction": {
     "sale": "Satış",

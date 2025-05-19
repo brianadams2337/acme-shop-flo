@@ -188,8 +188,7 @@
     "subtotal": "Междинна сума",
     "you_pay": "Ти плащаш",
     "discount": "Отстъпки",
-    "delivery": "Доставка",
-    "voucher_disclaimer": "Ваучерите могат да се прилагат в последната стъпка на поръчката."
+    "delivery": "Доставка"
   },
   "basket_summary_reduction": {
     "sale": "Продажба",

@@ -188,8 +188,7 @@
     "subtotal": "Subtotal",
     "you_pay": "Tú pagas",
     "discount": "Descuentos",
-    "delivery": "Entrega",
-    "voucher_disclaimer": "Los vales se pueden usar en el último paso del pedido."
+    "delivery": "Entrega"
   },
   "basket_summary_reduction": {
     "sale": "Rebajas",

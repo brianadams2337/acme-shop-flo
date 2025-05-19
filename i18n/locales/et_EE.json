@@ -188,8 +188,7 @@
     "subtotal": "Vahesumma",
     "you_pay": "Sina maksad",
     "discount": "Allahindlused",
-    "delivery": "Tarne",
-    "voucher_disclaimer": "Kupongi saab rakendada tellimuse viimases etapis."
+    "delivery": "Tarne"
   },
   "basket_summary_reduction": {
     "sale": "Sooduspakkumised",

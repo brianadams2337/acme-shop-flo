@@ -188,8 +188,7 @@
     "subtotal": "Subtotal",
     "you_pay": "Pagas",
     "discount": "Descontos",
-    "delivery": "Entrega",
-    "voucher_disclaimer": "Os vouchers podem ser aplicados no último passo da encomenda."
+    "delivery": "Entrega"
   },
   "basket_summary_reduction": {
     "sale": "Promoção",

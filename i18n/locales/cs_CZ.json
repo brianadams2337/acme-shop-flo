@@ -188,8 +188,7 @@
     "subtotal": "Mezisoučet",
     "you_pay": "Zaplatit",
     "discount": "Slevy",
-    "delivery": "Doručení",
-    "voucher_disclaimer": "Slevové kupóny lze uplatnit v posledním kroku objednávky."
+    "delivery": "Doručení"
   },
   "basket_summary_reduction": {
     "sale": "Výprodej",

@@ -188,8 +188,7 @@
     "subtotal": "Delsum",
     "you_pay": "Du betaler",
     "discount": "Rabatter",
-    "delivery": "Levering",
-    "voucher_disclaimer": "Kuponger kan brukes i det siste trinnet av bestillingen."
+    "delivery": "Levering"
   },
   "basket_summary_reduction": {
     "sale": "Salg",

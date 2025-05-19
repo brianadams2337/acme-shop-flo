@@ -188,8 +188,7 @@
     "subtotal": "Delna vsota",
     "you_pay": "Plačaš",
     "discount": "Popusti",
-    "delivery": "Dostava",
-    "voucher_disclaimer": "Kode kupona je mogoče uporabiti v zadnjem koraku naročila."
+    "delivery": "Dostava"
   },
   "basket_summary_reduction": {
     "sale": "Razprodaja",

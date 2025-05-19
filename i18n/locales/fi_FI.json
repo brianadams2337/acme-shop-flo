@@ -188,8 +188,7 @@
     "subtotal": "Välisumma",
     "you_pay": "Sinä maksat",
     "discount": "Alennukset",
-    "delivery": "Toimitus",
-    "voucher_disclaimer": "Alennuskoodit voidaan lisätä tilauksen viimeisessä vaiheessa."
+    "delivery": "Toimitus"
   },
   "basket_summary_reduction": {
     "sale": "Ale",

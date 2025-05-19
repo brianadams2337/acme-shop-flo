@@ -36,7 +36,7 @@
     />
   </div>
   <div class="bg-gray-100 px-5 pb-5 lg:hidden">
-    <SFBasketSummaryVoucherDisclaimer />
+    <SFBasketPromotionCodes />
   </div>
   <p class="bg-gray-100 px-5 pb-8 text-xs text-secondary lg:hidden">
     {{ deliveryCostsDisclaimer }}
@@ -45,9 +45,9 @@
 
 <script lang="ts" setup>
 import type { BasketResponseData } from '@scayle/storefront-nuxt'
+import SFBasketPromotionCodes from '../SFBasketPromotionCodes.vue'
 import SFBasketSummaryFinalSection from './SFBasketSummaryFinalSection.vue'
 import SFBasketSummaryReductions from './SFBasketSummaryReductions.vue'
-import SFBasketSummaryVoucherDisclaimer from './SFBasketSummaryVoucherDisclaimer.vue'
 import { SFHeadline } from '#storefront-ui/components'
 import { useFormatHelpers } from '#storefront/composables'
 import { useShopConfigCustomData } from '~/composables'

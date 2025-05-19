@@ -188,8 +188,7 @@
     "subtotal": "Subtotal",
     "you_pay": "You pay",
     "discount": "Discounts",
-    "delivery": "Delivery",
-    "voucher_disclaimer": "Vouchers can be applied in the last step of the order."
+    "delivery": "Delivery"
   },
   "basket_summary_reduction": {
     "sale": "Sale",

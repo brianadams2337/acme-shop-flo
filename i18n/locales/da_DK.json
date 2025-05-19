@@ -188,8 +188,7 @@
     "subtotal": "Subtotal",
     "you_pay": "Du betaler",
     "discount": "Rabatter",
-    "delivery": "Levering",
-    "voucher_disclaimer": "Rabtkoder kan anvendes i det sidste trin af ordren."
+    "delivery": "Levering"
   },
   "basket_summary_reduction": {
     "sale": "Salg",

@@ -31,7 +31,7 @@
         :cost="basket.cost"
         :basket-items="basket.items"
       />
-      <SFBasketSummaryVoucherDisclaimer />
+      <SFBasketPromotionCodes />
       <p class="text-xs text-secondary">
         {{ deliveryCostsDisclaimer }}
       </p>
@@ -43,9 +43,9 @@
 <script lang="ts" setup>
 import { computed } from 'vue'
 import type { BasketResponseData } from '@scayle/storefront-nuxt'
+import SFBasketPromotionCodes from '../SFBasketPromotionCodes.vue'
 import SFBasketSummaryReductions from './SFBasketSummaryReductions.vue'
 import SFBasketSummaryFinalSection from './SFBasketSummaryFinalSection.vue'
-import SFBasketSummaryVoucherDisclaimer from './SFBasketSummaryVoucherDisclaimer.vue'
 import SFBasketSummaryMobile from './SFBasketSummaryMobile.vue'
 import {
   SFHeadline,
@@ -56,7 +56,6 @@ import { getTotalPriceWithoutReductions } from '#storefront-basket/utils/basket'
 import { useShopConfigCustomData } from '~/composables'
 
 const { basket } = defineProps<{ basket: BasketResponseData }>()
-
 const subtotal = computed(() => getTotalPriceWithoutReductions(basket.cost))
 
 const { formatCurrency } = useFormatHelpers()

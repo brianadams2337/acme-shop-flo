@@ -188,8 +188,7 @@
     "subtotal": "Zwischensumme",
     "you_pay": "Du bezahlst",
     "discount": "Rabatte",
-    "delivery": "Lieferung",
-    "voucher_disclaimer": "Gutscheine können im letzten Schritt der Bestellung eingelöst werden."
+    "delivery": "Lieferung"
   },
   "basket_summary_reduction": {
     "sale": "Sale",

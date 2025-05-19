@@ -188,8 +188,7 @@
     "subtotal": "Subtotal",
     "you_pay": "Plătești",
     "discount": "Reduceri",
-    "delivery": "Livrare",
-    "voucher_disclaimer": "Voucherele pot fi aplicate în ultima pas al comenzii."
+    "delivery": "Livrare"
   },
   "basket_summary_reduction": {
     "sale": "Sale",

@@ -188,8 +188,7 @@
     "subtotal": "Subtotaal",
     "you_pay": "Je betaalt",
     "discount": "Kortingen",
-    "delivery": "Levering",
-    "voucher_disclaimer": "Waardebonnen kunnen worden toegepast in de laatste stap van de bestelling."
+    "delivery": "Levering"
   },
   "basket_summary_reduction": {
     "sale": "Sale",

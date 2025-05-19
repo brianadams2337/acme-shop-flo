@@ -188,8 +188,7 @@
     "subtotal": "Sous-total",
     "you_pay": "Vous payez",
     "discount": "Réductions",
-    "delivery": "Livraison",
-    "voucher_disclaimer": "Les bons d'achat peuvent être utilisés à la dernière étape de la commande."
+    "delivery": "Livraison"
   },
   "basket_summary_reduction": {
     "sale": "Soldes",

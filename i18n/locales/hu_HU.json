@@ -188,8 +188,7 @@
     "subtotal": "Részösszeg",
     "you_pay": "Ennyit fizetsz",
     "discount": "Kedvezmények",
-    "delivery": "Szállítás",
-    "voucher_disclaimer": "A kuponkódok a rendelés utolsó lépésében alkalmazhatóak."
+    "delivery": "Szállítás"
   },
   "basket_summary_reduction": {
     "sale": "Akció",

@@ -8,7 +8,6 @@ export class OrderSuccessPage {
   readonly ospOrderData: Locator
   readonly ospPaymentData: Locator
   readonly ospDeliveryAddress: Locator
-  readonly ospBillingAddress: Locator
   readonly ospContinueShoppingButton: Locator
   readonly ospOrderDetailsButton: Locator
   readonly ospDeliveryDate: Locator
@@ -37,7 +36,6 @@ export class OrderSuccessPage {
     this.ospOrderData = page.getByTestId('osp-order-data')
     this.ospPaymentData = page.getByTestId('osp-payment-data')
     this.ospDeliveryAddress = page.getByTestId('osp-delivery-address')
-    this.ospBillingAddress = page.getByTestId('osp-billing-address')
     this.ospContinueShoppingButton = page.getByTestId(
       'osp-continue-shopping-button',
     )

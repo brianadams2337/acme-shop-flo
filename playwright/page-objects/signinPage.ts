@@ -20,13 +20,11 @@ export class SignInPage {
   readonly passwordToggleHide: Locator
   readonly resetPasswordButton: Locator
   readonly closePasswordResetFlyoutButton: Locator
-  readonly resetPasswordFlyout: Locator
   readonly resetPasswordEmailInput: Locator
   readonly resetPasswordBackToLoginButton: Locator
   readonly resetPasswordGetResetLinkButton: Locator
   readonly resetPasswordHeadline: Locator
   readonly forgotPasswordErrorMessageContainer: Locator
-  readonly closeSetNewPasswordButton: Locator
   readonly newPasswordInput: Locator
   readonly validationErrorText: Locator
   readonly resetPasswordErrorMessageContainer: Locator
@@ -43,7 +41,6 @@ export class SignInPage {
   readonly privacyDisclaimerInfo: Locator
   readonly termsOfServiceLink: Locator
   readonly privacyPolicyLink: Locator
-  readonly existingAccountLabel: Locator
   readonly loginPageLink: Locator
   readonly loginForm: Locator
 
@@ -73,7 +70,6 @@ export class SignInPage {
     this.closePasswordResetFlyoutButton = page.getByTestId(
       'close-forgot-password-slide-in',
     )
-    this.resetPasswordFlyout = page.getByTestId('reset-password-flyout')
     this.resetPasswordEmailInput = page.getByTestId('forgot-password-email')
     this.resetPasswordBackToLoginButton = page.getByTestId(
       'back-to-login-button',
@@ -84,9 +80,6 @@ export class SignInPage {
     this.resetPasswordHeadline = page.getByTestId('reset-password-headline')
     this.forgotPasswordErrorMessageContainer = page.getByTestId(
       'forgot-password-error-message-container',
-    )
-    this.closeSetNewPasswordButton = page.getByTestId(
-      'close-reset-password-slide-in',
     )
     this.newPasswordInput = page.getByTestId('new-password')
     this.validationErrorText = page.getByTestId('validation-error-text')
@@ -108,7 +101,6 @@ export class SignInPage {
     this.privacyDisclaimerInfo = page.getByTestId('privacy-disclaimer-info')
     this.termsOfServiceLink = page.getByTestId('terms-of-service-link')
     this.privacyPolicyLink = page.getByTestId('privacy-policy-link')
-    this.existingAccountLabel = page.getByTestId('existing-account-label')
     this.loginPageLink = page.getByTestId('login-page-link')
     this.loginForm = page.getByTestId('login-form')
   }

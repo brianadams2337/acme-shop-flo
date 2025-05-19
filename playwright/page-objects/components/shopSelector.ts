@@ -5,7 +5,6 @@ export class ShopSelector {
   readonly page: Page
   readonly shopSelectorListbox: Locator
   readonly globeIcon: Locator
-  readonly iconChevron: Locator
   readonly currentShop: Locator
   readonly shopLanguageItem: Locator
   readonly shopLanguageItemCurrent: Locator
@@ -18,7 +17,6 @@ export class ShopSelector {
     this.page = page
     this.shopSelectorListbox = page.getByTestId('language-listbox')
     this.globeIcon = page.getByTestId('shop-switcher-globe-icon')
-    this.iconChevron = page.getByTestId('shop-icon-chevron')
     this.currentShop = page.getByTestId('shop-switcher-current-shop')
     this.shopLanguageItem = page.getByTestId('shop-language-item')
     this.shopLanguageItemCurrent = page.getByTestId(

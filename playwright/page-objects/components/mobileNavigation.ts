@@ -4,12 +4,9 @@ import { expect } from '../../fixtures/fixtures'
 export class MobileNavigation {
   readonly page: Page
   readonly sideNavigationButton: Locator
-  readonly mainCategoryMenuItem: Locator
   readonly searchInputField: Locator
   readonly searchSuggestionsItem: Locator
-  readonly searchCategoryList: Locator
   readonly searchDisplayAllResults: Locator
-  readonly searchMobile: Locator
   readonly searchForm: Locator
   readonly mobileSidebar: Locator
   readonly logoutButton: Locator
@@ -20,14 +17,9 @@ export class MobileNavigation {
   constructor(page: Page) {
     this.page = page
     this.sideNavigationButton = page.getByTestId('side-navigation-button')
-    this.mainCategoryMenuItem = page.getByTestId(
-      'side-navigation-list-item-50337',
-    )
     this.searchInputField = page.getByTestId('header-search-input')
-    this.searchCategoryList = page.getByTestId('search-category-list').nth(1)
     this.searchSuggestionsItem = page.getByTestId('search-suggestions-item')
     this.searchDisplayAllResults = page.getByTestId('display-all-results')
-    this.searchMobile = page.getByTestId('search-mobile')
     this.searchForm = page.getByTestId('search-form')
     this.mobileSidebar = page.getByTestId('mobile-sidebar')
     this.logoutButton = page.getByTestId('logout-button')

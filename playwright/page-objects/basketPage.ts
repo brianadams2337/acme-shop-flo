@@ -8,7 +8,6 @@ export class BasketPage {
   readonly page: Page
   readonly rpc: RPC
   readonly checkoutButton: Locator
-  readonly productInBasket: Locator
   readonly productImage: Locator
   readonly basketProductCard: Locator
   readonly emptyState: Locator
@@ -33,7 +32,6 @@ export class BasketPage {
   readonly quantitySelector: Locator
   readonly soldOutQuantitySelector: Locator
   readonly soldOutDeleteButton: Locator
-  readonly soldOutProductImage: Locator
   readonly quantityValue: Locator
   readonly buttonQuantityDecrease: Locator
   readonly buttonQuantityIncrease: Locator
@@ -46,7 +44,6 @@ export class BasketPage {
     this.page = page
     this.rpc = rpc
     this.checkoutButton = page.getByTestId('checkout-link')
-    this.productInBasket = page.getByTestId('basket-card')
     this.productImage = page
       .getByTestId('basket-card')
       .getByTestId('product-image')
@@ -92,8 +89,6 @@ export class BasketPage {
     this.soldOutDeleteButton = this.unavailableProductList.getByTestId(
       'basket-remove-item-button',
     )
-    this.soldOutProductImage =
-      this.unavailableProductList.getByTestId('product-image')
     this.quantityValue = page.getByTestId('quantity-value')
     this.buttonQuantityDecrease = page.getByTestId('quantity-minus')
     this.buttonQuantityIncrease = page.getByTestId('quantity-plus')

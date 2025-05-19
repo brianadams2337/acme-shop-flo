@@ -5,8 +5,6 @@ export class ProductListingPage {
   readonly wishlistButton: Locator
   readonly productTile: Locator
   readonly menuRootCategory: Locator
-  readonly menuSubCategoryLvl1: Locator
-  readonly menuSubCategoryLvl2: Locator
   readonly productItem: Locator
   readonly removeFromWishlistButton: Locator
   readonly productSibling: Locator
@@ -22,11 +20,6 @@ export class ProductListingPage {
     )
     this.productTile = page.locator('[id^="product-"]')
     this.menuRootCategory = page.getByTestId('root-category-0')
-    this.menuSubCategoryLvl1 = page.getByTestId('sub-category-0')
-    this.menuSubCategoryLvl2 = page
-      .getByTestId('sub-category-0')
-      .nth(1)
-      .getByRole('link')
     this.productItem = page.getByTestId('product-item')
     this.removeFromWishlistButton = page.getByTestId(
       'remove-item-from-wishlist-button',

@@ -4,7 +4,6 @@ import { expect } from '../fixtures/fixtures'
 
 export class ProductDetailPage {
   readonly page: Page
-  readonly productSizePickerToggle: Locator
   readonly addToBasketButton: Locator
   readonly productImage: Locator
   readonly productBrand: Locator
@@ -37,9 +36,6 @@ export class ProductDetailPage {
 
   constructor(page: Page) {
     this.page = page
-    this.productSizePickerToggle = page.getByTestId(
-      'product-size-picker-toggle',
-    )
     this.addToBasketButton = page.getByTestId('add-item-to-basket-button')
     this.productImage = page.getByTestId('product-image')
     this.productBrand = page.getByTestId('pdp-product-brand')

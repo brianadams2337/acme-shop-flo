@@ -1,5 +1,4 @@
 import type { Locator, Page } from '@playwright/test'
-import { isMobile } from '../support/utils'
 import type { RPC } from './components/rpc'
 
 export class WishlistPage {
@@ -7,7 +6,6 @@ export class WishlistPage {
   readonly rpc: RPC
 
   readonly emptyState: Locator
-  readonly wishlistCount: Locator
   readonly buttonContinueShopping: Locator
   readonly buttonSignIn: Locator
   readonly emptyStateIcon: Locator
@@ -17,14 +15,8 @@ export class WishlistPage {
   readonly wishlistCard: Locator
   readonly article: Locator
   readonly productBrand: Locator
-  readonly productName: Locator
   readonly buttonSize: Locator
-  readonly buttonAddtoCart: Locator
-  readonly buttonAddtoCartMobile: Locator
-  readonly variantPicker: Locator
-  readonly productSize: Locator
   readonly buttonRemoveFromWishlist: Locator
-  readonly slideInOverflow: Locator
   readonly h1: Locator
   readonly pageTitle: Locator
 
@@ -32,7 +24,6 @@ export class WishlistPage {
     this.page = page
     this.rpc = rpc
     this.emptyState = page.getByTestId('empty-state')
-    this.wishlistCount = page.getByTestId('wishlist-count')
     this.buttonContinueShopping = page.getByTestId('button-continue-shopping')
     this.buttonSignIn = page.getByTestId('button-signin')
     this.emptyStateIcon = this.emptyState.getByTestId('empty-state-icon')
@@ -46,18 +37,10 @@ export class WishlistPage {
     this.wishlistCard = this.wishlistItemsWrapper.getByTestId('wishlist-card')
     this.article = this.wishlistCard.getByTestId('article')
     this.productBrand = page.getByTestId('product-card-product-brand')
-    this.productName = this.article.getByTestId('product-name')
     this.buttonSize = this.article.getByTestId('wishlist-card-product-size')
-    this.buttonAddtoCart = page.getByTestId('wishlist-card-add-to-cart')
-    this.buttonAddtoCartMobile = page.getByTestId('add-to-cart-image-mobile')
-    this.variantPicker = page.getByTestId('product-size-picker-toggle')
-    this.productSize = page.locator(
-      '[data-testid="product-size"] >> button:not([disabled=""])',
-    )
     this.buttonRemoveFromWishlist = page.getByTestId(
       'remove-item-from-wishlist-button',
     )
-    this.slideInOverflow = page.getByTestId('slide-in-overflow')
     this.h1 = page.locator('h1')
     this.pageTitle = page.getByTestId('headline')
   }
@@ -80,29 +63,6 @@ export class WishlistPage {
       console.error('Error adding item to wishlist:', error)
       throw error
     }
-  }
-
-  async chooseProductSize() {
-    if (isMobile(this.page)) {
-      await this.slideInOverflow.waitFor()
-      await this.radioButtonSize('s').click({ force: true })
-    } else {
-      await this.buttonSize.click()
-      await this.variantPicker.click()
-      await this.productSize.first().click()
-    }
-  }
-
-  async addProductToBasket() {
-    if (isMobile(this.page)) {
-      await this.buttonAddtoCartMobile.waitFor()
-      await this.buttonAddtoCartMobile.click()
-      await this.page.waitForLoadState('networkidle')
-    } else {
-      await this.buttonAddtoCart.waitFor()
-      await this.buttonAddtoCart.click()
-    }
-    await this.page.waitForLoadState('domcontentloaded')
   }
 
   async removeItemFromWishlist() {

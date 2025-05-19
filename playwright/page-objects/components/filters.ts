@@ -11,8 +11,6 @@ export class Filters {
   readonly filterResetButton: Locator
   readonly filterPriceInput: Locator
   readonly filterSizeCheckbox: Locator
-  readonly filterFormCheckbox: Locator
-  readonly filterGroupCounter: Locator
   readonly filterSaleSwitch: Locator
   readonly filterButton: Locator
   readonly filterToggleCounter: Locator
@@ -26,8 +24,6 @@ export class Filters {
     this.filterResetButton = page.getByTestId('reset-filter-button')
     this.filterPriceInput = page.getByTestId('price-input')
     this.filterSizeCheckbox = page.getByTestId('checkbox-chip')
-    this.filterFormCheckbox = page.getByTestId('form-checkbox')
-    this.filterGroupCounter = page.getByTestId('filter-group-counter')
     this.filterSaleSwitch = page.getByRole('switch')
     this.filterButton = page.getByTestId('filter-toggle-button')
     this.filterToggleCounter = page.getByTestId('filter-toggle-counter')

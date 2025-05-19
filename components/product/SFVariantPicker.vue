@@ -21,7 +21,7 @@
     <template #item="{ item, selectItem }">
       <button
         :disabled="item.stock.quantity === 0"
-        class="group flex w-full cursor-pointer items-center justify-between space-x-2 border-b border-gray-200 p-2 transition-all first-of-type:rounded-t-lg last-of-type:rounded-b-lg last-of-type:border-none hover:bg-gray-200 focus-visible:shadow-inner-solid-sm"
+        class="group flex w-full items-center justify-between space-x-2 border-b border-gray-200 p-2 transition-all first-of-type:rounded-t-lg last-of-type:rounded-b-lg last-of-type:border-none hover:bg-gray-200 focus-visible:shadow-inner-solid-sm"
         :data-testid="`variant-option-${item.id}`"
         :aria-label="
           $t('variant_picker.option.select_option', {
@@ -47,14 +47,16 @@
           </span>
         </span>
         <SFProductPrice
-          v-if="item.stock.quantity !== 0"
+          v-if="item.stock.quantity !== 0 && !hidePrice"
           size="lg"
           :promotion="promotion"
           :price="item.price"
           type="normal"
           :show-badges="false"
         />
-        <span v-else>{{ $t('global.sold_out') }}</span>
+        <span v-if="item.stock.quantity === 0">{{
+          $t('global.sold_out')
+        }}</span>
       </button>
     </template>
   </SFDropdown>
@@ -69,10 +71,15 @@ import {
 import SFProductPrice from './SFProductPrice.vue'
 import { SFDropdown } from '#storefront-ui/components'
 
-const { hasOneVariantOnly = false } = defineProps<{
+const {
+  hasOneVariantOnly = false,
+  hidePrice = false,
+  promotion = undefined,
+} = defineProps<{
   variants: Variant[]
   promotion?: Promotion
   hasOneVariantOnly?: boolean
+  hidePrice?: boolean
 }>()
 
 const isVariantListVisible = defineModel<boolean>('visible', { default: false })

@@ -3,7 +3,6 @@ import {
   ExistingItemHandling,
   type Product,
   type Variant,
-  type CentAmount,
   extendPromise,
 } from '@scayle/storefront-nuxt'
 import { useBasketActions } from '~/composables/useBasketActions'
@@ -12,7 +11,6 @@ import { useToast } from '~/composables/useToast'
 import { useTrackingEvents } from '~/composables/useTrackingEvents'
 import { useNuxtApp } from '#app'
 import { useBasket } from '#storefront/composables'
-import { createCustomPrice } from '~/utils'
 
 export function usePromotionGiftSelection(
   giftProduct: MaybeRefOrGetter<Product | undefined>,
@@ -23,12 +21,7 @@ export function usePromotionGiftSelection(
 
   const { trackAddToBasket } = useTrackingEvents()
 
-  const {
-    name,
-    price: productPrice,
-    lowestPriorPrice: productLowestPriorPrice,
-    hasOneVariantOnly,
-  } = useProductBaseInfo(gift)
+  const { name, hasOneVariantOnly } = useProductBaseInfo(gift)
   const activeVariant = ref<Variant | undefined>()
 
   const basket = useBasket()
@@ -37,57 +30,8 @@ export function usePromotionGiftSelection(
   const { status } = basket
   const { addItem } = basketActions
 
-  const lowestPriorPrice = computed(() =>
-    activeVariant.value ? activeVariant.value : productLowestPriorPrice.value,
-  )
-
-  const price = computed(() => {
-    if (activeVariant.value) {
-      return activeVariant.value.price
-    }
-
-    const nonGiftPrice = productPrice.value
-    if (!nonGiftPrice) {
-      return undefined
-    }
-
-    return createCustomPrice(nonGiftPrice, {
-      withTax: 0 as CentAmount,
-      appliedReductions: [
-        {
-          amount: {
-            absoluteWithTax: nonGiftPrice.withTax as CentAmount,
-            relative: 1,
-          },
-          type: 'relative',
-          category: 'promotion',
-        },
-      ],
-    })
-  })
-
   const giftVariants = computed<Variant[]>(() => {
-    return (
-      gift.value?.variants?.map((variant) => {
-        const price = createCustomPrice(variant.price, {
-          withTax: 0 as CentAmount,
-          appliedReductions: [
-            {
-              amount: {
-                absoluteWithTax: variant.price.withTax as CentAmount,
-                relative: 1,
-              },
-              type: 'relative',
-              category: 'promotion',
-            },
-          ],
-        })
-        return {
-          ...variant,
-          price,
-        }
-      }) ?? []
-    )
+    return gift.value?.variants ?? []
   })
 
   // We want to preselect the active variant when the product only has one active variant
@@ -96,7 +40,7 @@ export function usePromotionGiftSelection(
     (giftProduct) => {
       activeVariant.value =
         giftProduct?.variants?.length === 1
-          ? giftVariants.value?.[0]
+          ? gift.value?.variants?.[0]
           : undefined
     },
     { immediate: true },
@@ -138,8 +82,6 @@ export function usePromotionGiftSelection(
     {
       status,
       addItemToBasket,
-      lowestPriorPrice,
-      price,
       activeVariant,
       giftVariants,
     },

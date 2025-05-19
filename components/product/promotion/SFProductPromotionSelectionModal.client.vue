@@ -36,14 +36,6 @@
           >
             {{ name }}
           </SFHeadline>
-          <SFProductPrice
-            v-if="price"
-            :promotion="promotion"
-            :price="price"
-            size="xl"
-            type="normal"
-            :show-badges="false"
-          />
         </div>
         <div
           class="relative mb-8 overflow-hidden rounded-xl bg-gray-200 md:hidden"
@@ -74,6 +66,7 @@
             :has-one-variant-only="hasOneVariantOnly"
             :variants="giftVariants"
             :promotion="promotion"
+            hide-price
             class="md:mb-4"
           />
 
@@ -121,7 +114,6 @@
 import { ref } from 'vue'
 import type { Product, Promotion } from '@scayle/storefront-nuxt'
 import { useElementVisibility } from '@vueuse/core'
-import SFProductPrice from '../SFProductPrice.vue'
 import SFWishlistToggle from '../SFWishlistToggle.vue'
 import ProductImage from '../SFProductImage.vue'
 import SFVariantPicker from '../SFVariantPicker.vue'
@@ -158,7 +150,7 @@ const { trackSelectItem } = useTrackingEvents()
 const route = useRoute()
 const { pageState } = usePageState()
 
-const { status, activeVariant, giftVariants, price, addItemToBasket } =
+const { status, activeVariant, giftVariants, addItemToBasket } =
   usePromotionGiftSelection(() => product)
 
 const { name, brand, image, hasOneVariantOnly, alt } = useProductBaseInfo(

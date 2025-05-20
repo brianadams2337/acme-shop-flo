@@ -42,7 +42,7 @@ test('C2132533 Verify Orders for user that has orders', async ({
     const orderHeadlineText = (await ordersPage.orderItemHeadline
       .nth(0)
       .textContent()) as string
-    const orderNumber = orderHeadlineText.split(': ')[1]
+    const orderNumber = orderHeadlineText.split('#')[1]
     await ordersPage.selectOrder(orderNumber)
     await ordersPage.orderDetailsHeadline.waitFor()
     await expect(ordersPage.orderDetailsHeadline).toContainText(orderNumber)

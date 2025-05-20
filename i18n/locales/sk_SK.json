@@ -78,8 +78,8 @@
     "max_length": "Pole {field} musí obsahovať max. {max} znakov.",
     "min_length": "Pole {field} musí obsahovať min. {min} znakov.",
     "date": "Pole {field} musí obsahovať platný dátum.",
-    "future_date": "Pole {field} nemôže obsahovať dátum, ktorý je v budúcnosti.",
-    "name": "Pole {field} nie je správne naformátované."
+    "name": "Pole {field} nie je správne naformátované.",
+    "past_date": "Pole {field} nemôže obsahovať dátum, ktorý je v budúcnosti."
   },
   "form_fields": {
     "first_name": "Krstné meno",

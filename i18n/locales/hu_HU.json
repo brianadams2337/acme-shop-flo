@@ -78,8 +78,8 @@
     "max_length": "A(z) {field} legfeljebb {max} lehet.",
     "min_length": "A(z) {field} legalább {min} karakter hosszú kell legyen.",
     "date": "A(z) {field} érvényes dátum kell legyen.",
-    "future_date": "A(z) {field} nem tartalmazhat jövőbeli dátumot.",
-    "name": "A(z) {field} mező nincs megfelelően formázva."
+    "name": "A(z) {field} mező nincs megfelelően formázva.",
+    "past_date": "A(z) {field} nem tartalmazhat jövőbeli dátumot."
   },
   "form_fields": {
     "first_name": "Keresztnév",

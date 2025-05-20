@@ -78,8 +78,8 @@
     "max_length": "{field} jābūt {max} vai mazāk.",
     "min_length": "{field} jābūt vismaz {min} rakstzīmju garam",
     "date": "{field} jābūt derīgam datumam.",
-    "future_date": "{field} nevar būt datums, kas ir nākotnē.",
-    "name": "{field} nav pareizi formatēts."
+    "name": "{field} nav pareizi formatēts.",
+    "past_date": "{field} nevar būt datums, kas ir nākotnē."
   },
   "form_fields": {
     "first_name": "Vārds",

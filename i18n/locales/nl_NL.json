@@ -78,8 +78,8 @@
     "max_length": "{field} moet tenminste {max} tekens lang of minder zijn.",
     "min_length": "{field} moet ten minste {min} tekens lang zijn.",
     "date": "{field} moet een geldige datum zijn.",
-    "future_date": "{field} kan geen datum hebben die in de toekomst ligt.",
-    "name": "{field} is niet correct geformatteerd."
+    "name": "{field} is niet correct geformatteerd.",
+    "past_date": "{field} kan geen datum hebben die in de toekomst ligt."
   },
   "form_fields": {
     "first_name": "Voornaam",

@@ -78,8 +78,8 @@
     "max_length": "{field} mora biti {max} ali manj.",
     "min_length": "{field} mora biti dolg vsaj {min} znakov.",
     "date": "{field} mora biti veljaven datum.",
-    "future_date": "{field} ne more imeti datuma, ki je v prihodnosti.",
-    "name": "{field} ni pravilno oblikovan."
+    "name": "{field} ni pravilno oblikovan.",
+    "past_date": "{field} ne more imeti datuma, ki je v prihodnosti."
   },
   "form_fields": {
     "first_name": "Ime",

@@ -78,8 +78,8 @@
     "max_length": "{field} {max} veya daha az olmalıdır.",
     "min_length": "{field} en az {min} karakter uzunluğunda olmalıdır.",
     "date": "{field} geçerli bir tarih olmalıdır.",
-    "future_date": "{field} gelecekte bir tarihe sahip olamaz.",
-    "name": "{field} doğru biçimlendirilmemiştir."
+    "name": "{field} doğru biçimlendirilmemiştir.",
+    "past_date": "{field} gelecekte bir tarihe sahip olamaz."
   },
   "form_fields": {
     "first_name": "Ad",

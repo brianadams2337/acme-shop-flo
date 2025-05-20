@@ -78,8 +78,8 @@
     "max_length": "Câmpul {field} trebuie să conțină {max} caractere.",
     "min_length": "Câmpul {field} trebuie să aibă cel puțin {min} caractere.",
     "date": "Câmpul {field} trebuie să conțină o dată validă.",
-    "future_date": "Câmpul {field} nu poate conține o dată din viitor.",
-    "name": "Câmpul {field} nu are un format corect."
+    "name": "Câmpul {field} nu are un format corect.",
+    "past_date": "Câmpul {field} nu poate conține o dată din viitor."
   },
   "form_fields": {
     "first_name": "Prenume",

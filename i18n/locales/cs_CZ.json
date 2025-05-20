@@ -78,8 +78,8 @@
     "max_length": "{field} musí být {max} nebo menší.",
     "min_length": "{field} musí mít délku alespoň {min} znaků.",
     "date": "{field} musí být platné datum.",
-    "future_date": "{field} nemůže mít datum, které je v budoucnosti.",
-    "name": "Údaj {field} není správně naformátován."
+    "name": "Údaj {field} není správně naformátován.",
+    "past_date": "{field} nemůže mít datum, které je v budoucnosti."
   },
   "form_fields": {
     "first_name": "Křestní jméno",

@@ -6,33 +6,49 @@ import {
   minLength,
   sameAs,
 } from '@vuelidate/validators'
-import { dateValidator, getPayloadDate } from '@scayle/storefront-nuxt'
 import { useNuxtApp } from '#app'
 
-const isValidDate = (date: Date) => new Date(date).toString() !== 'Invalid Date'
-
-// This needs to be aligned with CO frontend configuration in Panel
-// Validates that a password has at least 8 characters, a special, an uppercase
+/**
+ * Validates that a password has at least 8 characters, a special, an uppercase.
+ * This rules needs to be aligned with CO frontend configuration in Panel.
+ * @param value - The password to validate.
+ * @returns `true` if the password is valid, `false` otherwise.
+ */
 const validatePassword = (value: string): boolean => {
   const pattern = /^(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z]).{8,70}$/.test(value)
   return pattern && !value.includes(' ')
 }
 
-const validateDate = (value: string): boolean => dateValidator(value)
+/**
+ * Validates that a date is in the past.
+ * @param value - The date to validate.
+ * @returns `true` if the date is in the past, `false` otherwise.
+ */
 
-const validateFutureDate = (value: string): boolean => {
-  const formattedDate = getPayloadDate(value)
-  if (!formattedDate) {
-    return true
-  }
-  const date = new Date(formattedDate)
-  if (!isValidDate(date)) {
+const validatePastDate = (value: string): boolean => {
+  if (!value) {
     return true
   }
   const now = new Date()
-  return date.getTime() < now.getTime()
+  return new Date(value).getTime() < now.getTime()
+}
+/**
+ * Validates that a date is a valid date and not older than 1.1.1900.
+ * @param value - The date to validate.
+ * @returns `true` if the date is valid, `false` otherwise.
+ */
+const validateDate = (value: string): boolean => {
+  if (!value) {
+    return true
+  }
+  return new Date(value).getTime() > new Date(1900, 0, 1).getTime()
 }
 
+/**
+ * Validates that a value only contains valid unicode letters, spaces, and punctuation.
+ * @param value - The name to validate.
+ * @returns `true` if the name is valid, `false` otherwise.
+ */
 const validateName = (value: string | undefined): boolean => {
   if (!value) {
     return true
@@ -44,6 +60,11 @@ const validateName = (value: string | undefined): boolean => {
   return hasValidUnicodeLetters && hasValidBoundaries && !hasPunctuationStreak
 }
 
+/**
+ * Converts a string to snake case.
+ * @param stringValue - The string to convert.
+ * @returns The string in snake case.
+ */
 const toSnakeCase = (stringValue: string) =>
   stringValue
     // eslint-disable-next-line sonarjs/concise-regex,sonarjs/slow-regex,sonarjs/regex-complexity
@@ -51,6 +72,13 @@ const toSnakeCase = (stringValue: string) =>
     ?.map((x) => x.toLowerCase())
     .join('_')
 
+/**
+ * Returns a set of vuelidate validation rules that can be used to validate form fields.
+ * These rules will resolve the validation messages from the i18n file.
+ * `validation.${toSnakeCase($validator)}` will be used for the  validation message key.
+ * `form_fields.${toSnakeCase(field || property)}` will be used for the field/property label.
+ * @returns A set of validation rules.
+ */
 export function useValidationRules() {
   const { $i18n } = useNuxtApp()
 
@@ -71,7 +99,7 @@ export function useValidationRules() {
     email: withI18nMessage(email),
     date: withI18nMessage(validateDate),
     password: withI18nMessage(validatePassword),
-    futureDate: withI18nMessage(validateFutureDate),
+    pastDate: withI18nMessage(validatePastDate),
     name: withI18nMessage(validateName),
     sameAs: withI18nMessage(sameAs, { withArguments: true }),
     maxLength: withI18nMessage(maxLength, { withArguments: true }),

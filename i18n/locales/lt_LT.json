@@ -78,8 +78,8 @@
     "max_length": "{field} turi būti {max} arba mažiau.",
     "min_length": "{field} turi būti ne trumpesnis kaip {min} simbolių.",
     "date": "{field} turi būti galiojanti data.",
-    "future_date": "{field} negali būti datos, kuri yra ateityje.",
-    "name": "{field} yra neteisingai suformatuotas."
+    "name": "{field} yra neteisingai suformatuotas.",
+    "past_date": "{field} negali būti datos, kuri yra ateityje."
   },
   "form_fields": {
     "first_name": "Vardas",

@@ -78,8 +78,8 @@
     "max_length": "{field} peab olema {max} või väiksem.",
     "min_length": "{field} peab olema vähemalt {min} tähemärki.",
     "date": "{field} peab olema kehtiv kuupäev.",
-    "future_date": "{field} ei saa olla kuupäev, mis on tulevikus.",
-    "name": "{field} ei ole õigesti vormistatud."
+    "name": "{field} ei ole õigesti vormistatud.",
+    "past_date": "{field} ei saa olla kuupäev, mis on tulevikus."
   },
   "form_fields": {
     "first_name": "Eesnimi",

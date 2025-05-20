@@ -78,8 +78,8 @@
     "max_length": "{field} må være {max} eller mindre.",
     "min_length": "{field} må være minst {min} tegn lang.",
     "date": "{field} må være en gyldig dato.",
-    "future_date": "{field} kan ikke ha en dato som ligger i fremtiden.",
-    "name": "{field} er ikke riktig formatert."
+    "name": "{field} er ikke riktig formatert.",
+    "past_date": "{field} kan ikke ha en dato som ligger i fremtiden."
   },
   "form_fields": {
     "first_name": "Fornavn",

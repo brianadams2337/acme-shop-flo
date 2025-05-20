@@ -64,9 +64,10 @@
       >
         <SFTextInput
           v-model="payload.birthDate"
-          :placeholder="dateOfBirthFormat.placeholder"
-          :mask="dateOfBirthFormat.mask"
           :has-errors="!isValid"
+          :placeholder="$t('form_fields.birth_date')"
+          type="date"
+          :max="new Date().toISOString().split('T')[0]"
           data-testid="user-birthdate"
           @change="v.birthDate.$touch()"
         />
@@ -89,47 +90,29 @@ import { useTemplateRef, computed, reactive, ref, watch } from 'vue'
 import useVuelidate from '@vuelidate/core'
 import SFErrorMessageContainer from '../SFErrorMessageContainer.vue'
 import SFGenderSelection from '../form/SFGenderSelection.vue'
-import { useUser, useCurrentShop } from '#storefront/composables'
+import { useUser } from '#storefront/composables'
 import {
   SFHeadline,
   SFButton,
   SFValidatedInputGroup,
   SFTextInput,
 } from '#storefront-ui/components'
-import { dateOfBirthFormats } from '~/constants/mask'
 import { useToast, useValidationRules } from '~/composables'
 import { useI18n } from '#i18n'
 
 const { updateUser, user } = useUser()
 
 const { t } = useI18n()
-const currentShop = useCurrentShop()
 const validationRules = useValidationRules()
 
 const toast = useToast()
-
-const dateOfBirthFormat = computed(() => {
-  const locale = currentShop.value?.locale.replace('-', '_')
-  return (locale && dateOfBirthFormats[locale]) || dateOfBirthFormats.de_DE
-})
-
-const formatBirthDate = (date?: string): string => {
-  const parts = date?.split('T')[0]?.split('-')
-
-  if (!parts || parts.length !== 3) {
-    return ''
-  }
-
-  const [yyyy, mm, dd] = parts
-  return `${dd}.${mm}.${yyyy}`
-}
 
 // Initializes and keeps the payload in sync with the user data
 const initPayload = () => ({
   firstName: user.value?.firstName ?? '',
   lastName: user.value?.lastName ?? '',
   email: user.value?.email ?? '',
-  birthDate: formatBirthDate(user.value?.birthDate),
+  birthDate: user.value?.birthDate,
   gender: user.value?.gender,
 })
 
@@ -157,7 +140,7 @@ const rules = computed(() => ({
   },
   birthDate: {
     date: validationRules.date,
-    futureDate: validationRules.futureDate,
+    pastDate: validationRules.pastDate,
   },
 }))
 
@@ -206,13 +189,9 @@ const onSubmit = async () => {
       return
     }
 
-    const [firstPart, secondPart, thirdPart] = payload.birthDate.split('.')
-
     await updateUser({
       ...payload,
-      birthDate: payload.birthDate
-        ? `${thirdPart}-${secondPart}-${firstPart}`
-        : undefined,
+      birthDate: payload.birthDate ? payload.birthDate : undefined,
     })
     toast.show(t('profile_personal_information.success_message'), {
       type: 'SUCCESS',

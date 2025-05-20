@@ -78,8 +78,8 @@
     "max_length": "{field} saa olla enintään {max}.",
     "min_length": "{field} on oltava vähintään {min} merkkiä pitkä.",
     "date": "{field} on oltava kelvollinen päivämäärä.",
-    "future_date": "{field} ei voi sisältää tulevaa päivämäärää.",
-    "name": "{field} ei ole oikein muotoiltu."
+    "name": "{field} ei ole oikein muotoiltu.",
+    "past_date": "{field} ei voi sisältää tulevaa päivämäärää."
   },
   "form_fields": {
     "first_name": "Etunimi",

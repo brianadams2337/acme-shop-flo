@@ -78,8 +78,8 @@
     "max_length": "{field} deve ser {max} ou menos.",
     "min_length": "{field} deve ter pelo menos {min} caracteres.",
     "date": "{field} deve ser uma data válida.",
-    "future_date": "{field} não podes ter uma data que seja no futuro.",
-    "name": "{field} não está corretamente formatado."
+    "name": "{field} não está corretamente formatado.",
+    "past_date": "{field} não podes ter uma data que seja no futuro."
   },
   "form_fields": {
     "first_name": "Primeiro nome",

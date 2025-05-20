@@ -4174,10 +4174,10 @@ unbox-primitive@^1.1.0:
     has-symbols "^1.1.0"
     which-boxed-primitive "^1.1.1"
 
-undici-types@7.9.0:
-  version "7.9.0"
-  resolved "https://registry.yarnpkg.com/undici-types/-/undici-types-7.9.0.tgz#186fcfaa6e9b5cb590ac6e4071aac43f1912f0a1"
-  integrity sha512-TotbsoWjj1gHRlCBRKtFCKTg3HeHE87dLe3DkuWzQKlyQ0LQXP4pLTb3fBUhdcODdOoT8BkB4zdOShW57NH1rw==
+undici-types@7.10.0:
+  version "7.10.0"
+  resolved "https://registry.yarnpkg.com/undici-types/-/undici-types-7.10.0.tgz#4ac2e058ce56b462b056e629cc6a02393d3ff350"
+  integrity sha512-t5Fy/nfn+14LuOc2KNYg75vZqClpAiqscVvMygNnlsHBFpSXdJaYtXMcdNLpl/Qvc3P2cB3s6lOV51nqsFq4ag==
 
 undici-types@~6.21.0:
   version "6.21.0"

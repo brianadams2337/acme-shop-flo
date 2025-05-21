@@ -100,7 +100,8 @@
     "unknown_error_title": "Voi ei - jokin meni pieleen",
     "page_not_found_title": "Sivua ei löydy",
     "page_not_found_message": "Valitettavasti etsimääsi sivua ei ole tai se on siirretty.",
-    "error_code_label": "Virhekoodi:"
+    "error_code_label": "Virhekoodi:",
+    "unknown_error_message": "Pyyntöäsi ei voitu käsitellä, yritä myöhemmin uudelleen."
   },
   "badge_labels": {
     "new": "Uutta",
@@ -401,7 +402,7 @@
     "reset_all_filter": "Nollaa kaikki"
   },
   "price_range_slider": {
-    "to": "to",
+    "to": "",
     "minimum_price": "Vähimmäishinta: {price}",
     "maximum_price": "Enimmäishinta: {price}"
   },

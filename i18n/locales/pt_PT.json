@@ -100,7 +100,8 @@
     "unknown_error_title": "Oh - algo correu mal",
     "page_not_found_title": "Página não encontrada",
     "page_not_found_message": "Desculpa, a página que procuras não existe ou foi movida.",
-    "error_code_label": "Código de erro:"
+    "error_code_label": "Código de erro:",
+    "unknown_error_message": "A tua solicitação não pôde ser processada, tenta de novo mais tarde."
   },
   "badge_labels": {
     "new": "Novo em",

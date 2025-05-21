@@ -100,7 +100,8 @@
     "unknown_error_title": "Oops! Kažkas nutiko ne taip",
     "page_not_found_title": "Puslapis nerastas",
     "page_not_found_message": "Atsiprašome, puslapis, kurį ieškote, neegzistuoja arba buvo perkeltas.",
-    "error_code_label": "Klaidos kodas:"
+    "error_code_label": "Klaidos kodas:",
+    "unknown_error_message": "Jūsų užklausa negalėjo būti apdorota, prašome bandyti vėliau."
   },
   "badge_labels": {
     "new": "Naujiena",

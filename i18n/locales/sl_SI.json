@@ -100,7 +100,8 @@
     "unknown_error_title": "Oh - nekaj je šlo narobe",
     "page_not_found_title": "Stran ni bila najdena",
     "page_not_found_message": "Žal, stran, ki jo iščete, ne obstaja ali je bila premaknjena.",
-    "error_code_label": "Koda napake:"
+    "error_code_label": "Koda napake:",
+    "unknown_error_message": "Vaša zahteva ni mogla biti obdelana, poskusite pozneje."
   },
   "badge_labels": {
     "new": "Novo v",

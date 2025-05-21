@@ -100,7 +100,8 @@
     "unknown_error_title": "Oh - bir şeyler ters gitti",
     "page_not_found_title": "Sayfa bulunamadı",
     "page_not_found_message": "Üzgünüz, aradığınız sayfa mevcut değil veya taşınmıştır.",
-    "error_code_label": "Hata Kodu:"
+    "error_code_label": "Hata Kodu:",
+    "unknown_error_message": "İsteğiniz işlenemedi, lütfen daha sonra tekrar deneyin."
   },
   "badge_labels": {
     "new": "Yeni gelen",

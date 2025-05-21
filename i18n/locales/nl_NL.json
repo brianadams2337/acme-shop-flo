@@ -100,7 +100,8 @@
     "unknown_error_title": "Oh - er ging iets mis",
     "page_not_found_title": "Pagina niet gevonden",
     "page_not_found_message": "Sorry, de pagina die je zoekt bestaat niet of is verplaatst.",
-    "error_code_label": "Foutcode:"
+    "error_code_label": "Foutcode:",
+    "unknown_error_message": "Je verzoek kan niet worden verwerkt, probeer het later nog eens."
   },
   "badge_labels": {
     "new": "Nieuw binnen",

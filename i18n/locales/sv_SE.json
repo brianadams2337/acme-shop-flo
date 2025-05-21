@@ -100,7 +100,8 @@
     "unknown_error_title": "Hoppsan – något gick fel",
     "page_not_found_title": "Sidan finns inte",
     "page_not_found_message": "Tyvärr, den sida du söker finns inte eller har flyttats.",
-    "error_code_label": "Felkod:"
+    "error_code_label": "Felkod:",
+    "unknown_error_message": "Din begäran kunde inte behandlas, försök igen senare."
   },
   "badge_labels": {
     "new": "Nyheter",

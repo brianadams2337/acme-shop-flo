@@ -100,7 +100,8 @@
     "unknown_error_title": "Coś poszło nie tak",
     "page_not_found_title": "Strona nie została znaleziona",
     "page_not_found_message": "Przepraszamy, strona, której szukasz, nie istnieje lub została przeniesiona.",
-    "error_code_label": "Kod błędu:"
+    "error_code_label": "Kod błędu:",
+    "unknown_error_message": "Twoje żądanie nie mogło zostać przetworzone. Spróbuj ponownie później."
   },
   "badge_labels": {
     "new": "Nowość",

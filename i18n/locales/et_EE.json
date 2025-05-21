@@ -100,7 +100,8 @@
     "unknown_error_title": "Oh - midagi läks valesti",
     "page_not_found_title": "Lehekülge ei leitud",
     "page_not_found_message": "Vabandame, otsitud lehekülge ei ole või see on teisaldatud.",
-    "error_code_label": "Veakood:"
+    "error_code_label": "Veakood:",
+    "unknown_error_message": "Teie taotlust ei saanud töödelda, palun proovige hiljem uuesti."
   },
   "badge_labels": {
     "new": "Uus",

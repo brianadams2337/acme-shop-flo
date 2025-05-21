@@ -100,7 +100,8 @@
     "unknown_error_title": "Oh - ceva nu a mers bine",
     "page_not_found_title": "Pagina nu a fost găsită",
     "page_not_found_message": "Ne pare rău, pagina pe care o căutați nu există sau a fost mutată.",
-    "error_code_label": "Cod eroare:"
+    "error_code_label": "Cod eroare:",
+    "unknown_error_message": "Solicitarea dvs. nu a putut fi procesată, vă rugăm să încercați din nou mai târziu."
   },
   "badge_labels": {
     "new": "Noutăți",

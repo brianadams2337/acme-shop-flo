@@ -100,7 +100,8 @@
     "unknown_error_title": "Oh, un problème est survenu.",
     "page_not_found_title": "Page introuvable",
     "page_not_found_message": "Désolé, la page que tu cherches n'existe pas ou a été déplacée.",
-    "error_code_label": "Code d'erreur :"
+    "error_code_label": "Code d'erreur :",
+    "unknown_error_message": "On n'a pas pu traiter ta demande, essaie plus tard."
   },
   "badge_labels": {
     "new": "Nouveau dans",
@@ -401,7 +402,7 @@
     "reset_all_filter": "Tout réinitialiser"
   },
   "price_range_slider": {
-    "to": "to",
+    "to": "",
     "minimum_price": "Prix minimum : {price}",
     "maximum_price": "Prix maximum : {price}"
   },

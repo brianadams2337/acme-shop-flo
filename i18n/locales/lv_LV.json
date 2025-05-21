@@ -100,7 +100,8 @@
     "unknown_error_title": "Ak - kaut kas nogāja greizi",
     "page_not_found_title": "Lapas nav atrasts",
     "page_not_found_message": "Atvainojiet, meklētā lapa nepastāv vai ir pārvietota.",
-    "error_code_label": "Kļūdas kods:"
+    "error_code_label": "Kļūdas kods:",
+    "unknown_error_message": "Jūsu pieprasījums nevarēja tikt apstrādāts, lūdzu, mēģiniet vēlāk."
   },
   "badge_labels": {
     "new": "Jaunumi",

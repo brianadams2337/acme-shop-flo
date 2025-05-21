@@ -100,7 +100,8 @@
     "unknown_error_title": "Åh - noe gikk galt",
     "page_not_found_title": "Side ikke funnet",
     "page_not_found_message": "Beklager, siden du leter etter finnes ikke eller har blitt flyttet.",
-    "error_code_label": "Feilkode:"
+    "error_code_label": "Feilkode:",
+    "unknown_error_message": "Forespørselen din kunne ikke behandles. Prøv igjen senere."
   },
   "badge_labels": {
     "new": "Ny i",

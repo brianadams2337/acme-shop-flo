@@ -85,10 +85,9 @@ export function useBasketActions(): UseBasketActionsReturn &
 
   const { getLocalizedRoute } = useRouteHelpers()
 
-  const { applyPromotions } = useApplyPromotions()
-
   const basket = useBasket()
   const { removeItemByKey, addItem: addItemToBasket, updateItem } = basket
+  const { applyPromotions } = useApplyPromotions({ basket: basket.data })
 
   const removeItem = async ({
     key,
@@ -97,7 +96,7 @@ export function useBasketActions(): UseBasketActionsReturn &
     variant,
   }: BasketItem) => {
     await removeItemByKey(key)
-    await applyPromotions(basket.data)
+    await applyPromotions()
     trackRemoveFromBasket({ product, quantity, variant })
   }
 

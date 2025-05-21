@@ -7,7 +7,7 @@ import { useBasketActions } from './useBasketActions'
 
 const { useBasket, useTrackingEvents } = vi.hoisted(() => {
   return {
-    useBasket: vi.fn(),
+    useBasket: vi.fn().mockReturnValue({ data: { value: null } }),
     useUser: vi.fn(),
     useTrackingEvents: vi.fn().mockReturnValue({
       trackRemoveFromBasket: vi.fn(),
@@ -137,6 +137,7 @@ describe('useBasketActions', () => {
         then: vi.fn(),
         updateItem: updateItemMock,
         items: toRef([]),
+        data: toRef(null),
       })
       const basketItem = basketItemFactory.build({
         key: 'test',
@@ -178,6 +179,7 @@ describe('useBasketActions', () => {
         addItem: addItemMock,
         removeItemByKey: removeItemMock,
         items: toRef([basketItem]),
+        data: toRef(null),
       })
       const { removeItem } = await getTestComponentWrapper()
       await removeItem(basketItem)

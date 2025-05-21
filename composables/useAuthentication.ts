@@ -83,13 +83,13 @@ export function useAuthentication(
   const { refresh: refreshWishlist } = useWishlist()
   const { refresh: refreshBasket, data: basketData } = useBasket()
   const { user, refresh: refreshUser, customerType } = useUser()
-  const { applyPromotions } = useApplyPromotions()
+  const { applyPromotions } = useApplyPromotions({ basket: basketData })
 
   const refresh = async (): Promise<void> => {
     await Promise.all([refreshUser(), refreshWishlist(), refreshBasket()])
     // After the a user logs in the "logged out" basket gets merged with the users basket.
     // The users basket could contain items where a promotion can be applied.
-    await applyPromotions(basketData)
+    await applyPromotions()
   }
 
   const login = async (data: Omit<LoginRequest, 'shop_id'>): Promise<void> => {

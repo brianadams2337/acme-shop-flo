@@ -97,14 +97,14 @@ const shouldShowPromotionRibbon = computed(() => {
 })
 
 const { data: basketData } = useBasket()
-const { applyPromotions } = useApplyPromotions()
+const { applyPromotions } = useApplyPromotions({ basket: basketData })
 
 // Update promotions in case a user with items in the basket returned to the shop.
 // While the user was gone, new promotions might have been added that could be added to the basket items.
 whenever(
   basketData,
   () => {
-    applyPromotions(basketData)
+    applyPromotions()
   },
   { once: true },
 )

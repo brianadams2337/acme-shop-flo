@@ -27,7 +27,7 @@ import { useApplyPromotions } from '#storefront-promotions/composables/useApplyP
 const { accessToken, checkoutJwt, fetchCheckoutToken } =
   useCheckoutWebComponent()
 const { refresh: refreshBasket, status, data: basket } = useBasket()
-const { applyPromotions } = useApplyPromotions()
+const { applyPromotions } = useApplyPromotions({ basket })
 
 const { user, refresh: refreshUser } = useUser()
 
@@ -53,7 +53,7 @@ const onCheckoutUpdate = async (
     if (actionType === 'add_to_cart' || actionType === 'remove_from_cart') {
       await fetchCallback()
       // Update promotions in case some got applicable after the cart was updated
-      await applyPromotions(basket)
+      await applyPromotions()
     }
   }
 }

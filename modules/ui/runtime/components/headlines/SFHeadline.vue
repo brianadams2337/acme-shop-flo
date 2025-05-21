@@ -42,6 +42,8 @@ const {
 }>()
 
 const HeadlineClass = {
+  [HeadlineSize['6XL']]: 'text-6xl',
+  [HeadlineSize['5XL']]: 'text-5xl',
   [HeadlineSize['4XL']]: 'text-4xl',
   [HeadlineSize['3XL']]: 'text-3xl',
   [HeadlineSize['2XL']]: 'text-2xl',

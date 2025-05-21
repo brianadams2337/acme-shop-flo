@@ -97,8 +97,6 @@
     }
   },
   "error": {
-    "page_not_found_title": "Ak - 404",
-    "page_not_found_message": "Diemžēl šī lapa vairs nepastāv.",
     "unknown_error_title": "Ak - kaut kas nogāja greizi",
     "unknown_error_message": "Tavu pieprasījumu nevar apstrādāt, lūdzu, mēģini vēlreiz."
   },

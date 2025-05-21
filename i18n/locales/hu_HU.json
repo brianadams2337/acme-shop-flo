@@ -97,8 +97,6 @@
     }
   },
   "error": {
-    "page_not_found_title": "Oh - 404",
-    "page_not_found_message": "Sajnos ez az oldal már nem létezik.",
     "unknown_error_title": "Oh - valami rosszul sült el",
     "unknown_error_message": "A kérésedet nem sikerült feldolgozni, kérjük, próbáld meg újra."
   },

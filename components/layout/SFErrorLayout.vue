@@ -1,14 +1,35 @@
 <template>
   <div
-    class="container mt-10 flex flex-col items-center justify-center text-primary"
+    class="container mt-8 flex flex-col items-center justify-center text-primary"
   >
-    <section class="flex flex-col items-center">
-      <SFHeadline is-uppercase>{{ title }}</SFHeadline>
-      <SFHeadline class="mt-2" size="sm" tag="h2" is-uppercase>
+    <section class="flex flex-col items-center space-y-2">
+      <div class="grid grid-cols-1 grid-rows-1 justify-items-center">
+        <IconLogo class="col-start-1 row-start-1 size-24" />
+        <div
+          class="col-start-1 row-start-1 mt-13 h-24 w-screen bg-white/40 backdrop-blur-lg"
+        ></div>
+      </div>
+
+      <div
+        class="rounded-full bg-accent/10 px-3 py-0.5 text-sm font-variable slashed-zero leading-5 text-accent"
+      >
+        {{ $t('error.error_code_label') }} {{ statusCode }}
+      </div>
+
+      <SFHeadline size="6xl" is-bold class="leading-loose">{{
+        title
+      }}</SFHeadline>
+
+      <SFHeadline
+        class="mt-4 !font-normal leading-snug text-gray-600"
+        size="2xl"
+        tag="h2"
+        is-uppercase
+      >
         {{ userMessage }}
       </SFHeadline>
     </section>
-    <section class="mt-6">
+    <section class="mt-12">
       <SFButton @click="$emit('clearError')">
         {{ $t('global.continue_shopping') }}
       </SFButton>
@@ -59,6 +80,7 @@ const isNotFoundError = computed(() => {
     error?.statusCode === HttpStatusCode.NOT_FOUND
   )
 })
+
 const title = computed(() => {
   return isNotFoundError.value
     ? t('error.page_not_found_title')

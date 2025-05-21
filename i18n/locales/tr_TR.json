@@ -97,8 +97,6 @@
     }
   },
   "error": {
-    "page_not_found_title": "Oh - 404",
-    "page_not_found_message": "Ne yazık ki bu sayfa artık mevcut değil.",
     "unknown_error_title": "Oh - bir şeyler ters gitti",
     "unknown_error_message": "Talebiniz işleme alınamadı, lütfen tekrar deneyin."
   },

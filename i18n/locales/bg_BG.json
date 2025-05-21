@@ -97,8 +97,6 @@
     }
   },
   "error": {
-    "page_not_found_title": "Ах - 404",
-    "page_not_found_message": "За съжаление тази страница вече не съществува.",
     "unknown_error_title": "О - нещо се обърка",
     "unknown_error_message": "Твоята заявка не може да бъде обработена, моля, опитай отново."
   },

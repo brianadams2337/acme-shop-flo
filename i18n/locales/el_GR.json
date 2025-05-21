@@ -97,8 +97,6 @@
     }
   },
   "error": {
-    "page_not_found_title": "Oh - 404",
-    "page_not_found_message": "Δυστυχώς αυτή η σελίδα δεν υπάρχει πλέον.",
     "unknown_error_title": "Ωχ - κάτι πήγε στραβά",
     "unknown_error_message": "Το αίτημά σου δεν μπόρεσε να διεκπεραιωθεί, παρακαλώ προσπάθησε ξανά."
   },

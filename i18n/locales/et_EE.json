@@ -97,8 +97,6 @@
     }
   },
   "error": {
-    "page_not_found_title": "Oh - 404",
-    "page_not_found_message": "Kahjuks ei ole seda lehekülge enam olemas.",
     "unknown_error_title": "Oh - midagi läks valesti",
     "unknown_error_message": "Teie taotlust ei õnnestunud töödelda, palun proovige uuesti."
   },

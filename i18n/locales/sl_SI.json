@@ -97,8 +97,6 @@
     }
   },
   "error": {
-    "page_not_found_title": "Oh - 404",
-    "page_not_found_message": "Žal ta stran ne obstaja več.",
     "unknown_error_title": "Oh - nekaj je šlo narobe",
     "unknown_error_message": "Tvoje zahteve ni bilo mogoče obdelati, poskusi znova."
   },

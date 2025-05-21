@@ -97,8 +97,6 @@
     }
   },
   "error": {
-    "page_not_found_title": "Oh oh - 404",
-    "page_not_found_message": "Helaas bestaat deze pagina niet meer.",
     "unknown_error_title": "Oh - er ging iets mis",
     "unknown_error_message": "Je verzoek kon niet worden verwerkt, probeer het opnieuw."
   },

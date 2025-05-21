@@ -97,8 +97,6 @@
     }
   },
   "error": {
-    "page_not_found_title": "Voi ei - 404",
-    "page_not_found_message": "Valitettavasti tätä sivua ei enää ole olemassa.",
     "unknown_error_title": "Voi ei - jokin meni pieleen",
     "unknown_error_message": "Pyyntöäsi ei voitu käsitellä, yritä uudelleen."
   },

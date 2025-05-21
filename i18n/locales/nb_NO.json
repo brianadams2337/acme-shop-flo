@@ -97,8 +97,6 @@
     }
   },
   "error": {
-    "page_not_found_title": "Åh - 404",
-    "page_not_found_message": "Denne siden eksisterer dessverre ikke lenger.",
     "unknown_error_title": "Åh - noe gikk galt",
     "unknown_error_message": "Forespørselen din kunne ikke behandles, vennligst prøv igjen."
   },

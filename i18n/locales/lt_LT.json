@@ -97,8 +97,6 @@
     }
   },
   "error": {
-    "page_not_found_title": "Oops! 404",
-    "page_not_found_message": "Deja, šis puslapis nebeegzistuoja.",
     "unknown_error_title": "Oops! Kažkas nutiko ne taip",
     "unknown_error_message": "Tavo užklausos nepavyko apdoroti, bandyk dar kartą."
   },

@@ -97,8 +97,8 @@
     }
   },
   "error": {
-    "page_not_found_title": "Oh - 404",
-    "page_not_found_message": "Unfortunately this page no longer exists.",
+    "page_not_found_title": "Page not found",
+    "page_not_found_message": "Sorry, the page you are looking for doesn’t exist or has been moved.",
     "unknown_error_title": "Oh - something went wrong",
     "unknown_error_message": "Your request could not be processed, please try again."
   },

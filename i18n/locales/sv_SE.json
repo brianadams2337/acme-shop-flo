@@ -97,8 +97,6 @@
     }
   },
   "error": {
-    "page_not_found_title": "Hoppsan – 404",
-    "page_not_found_message": "Tyvärr finns inte den här sidan längre.",
     "unknown_error_title": "Hoppsan – något gick fel",
     "unknown_error_message": "Din begäran kunde inte behandlas, vänligen försök igen."
   },

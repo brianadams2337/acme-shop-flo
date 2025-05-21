@@ -97,8 +97,6 @@
     }
   },
   "error": {
-    "page_not_found_title": "Oh - 404",
-    "page_not_found_message": "Désolé, cette page n'existe plus.",
     "unknown_error_title": "Oh, un problème est survenu.",
     "unknown_error_message": "On n'a pas pu traiter votre demande, veuillez réessayer."
   },

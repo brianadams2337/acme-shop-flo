@@ -97,8 +97,6 @@
     }
   },
   "error": {
-    "page_not_found_title": "Oh - 404",
-    "page_not_found_message": "Din păcate, această pagină nu mai există.",
     "unknown_error_title": "Oh - ceva nu a mers bine",
     "unknown_error_message": "Cererea ta nu a putut fi procesată, te rugăm să încerci din nou."
   },

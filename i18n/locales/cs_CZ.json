@@ -97,8 +97,6 @@
     }
   },
   "error": {
-    "page_not_found_title": "Chyba - 404",
-    "page_not_found_message": "Tato stránka již bohužel neexistuje.",
     "unknown_error_title": "Ups - něco se pokazilo",
     "unknown_error_message": "Tvůj požadavek nemohl být zpracován, zkus to prosím znovu."
   },

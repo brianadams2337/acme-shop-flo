@@ -98,7 +98,9 @@
   },
   "error": {
     "unknown_error_title": "Ak - kaut kas nogāja greizi",
-    "unknown_error_message": "Tavu pieprasījumu nevar apstrādāt, lūdzu, mēģini vēlreiz."
+    "page_not_found_title": "Lapas nav atrasts",
+    "page_not_found_message": "Atvainojiet, meklētā lapa nepastāv vai ir pārvietota.",
+    "error_code_label": "Kļūdas kods:"
   },
   "badge_labels": {
     "new": "Jaunumi",

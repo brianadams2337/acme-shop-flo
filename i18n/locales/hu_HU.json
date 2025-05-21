@@ -98,7 +98,9 @@
   },
   "error": {
     "unknown_error_title": "Oh - valami rosszul sült el",
-    "unknown_error_message": "A kérésedet nem sikerült feldolgozni, kérjük, próbáld meg újra."
+    "page_not_found_title": "Oldal nem található",
+    "page_not_found_message": "Sajnáljuk, az Ön által keresett oldal nem létezik vagy áthelyezték.",
+    "error_code_label": "Hibakód:"
   },
   "badge_labels": {
     "new": "Újdonság",
@@ -367,7 +369,7 @@
     }
   },
   "price": {
-    "starting_from": "",
+    "starting_from": "from",
     "30_day_best_price": "Legjobb ár az elmúlt 30 napban:"
   },
   "product_list_page": {
@@ -399,7 +401,7 @@
     "reset_all_filter": "Az összes szűrő visszaállítása"
   },
   "price_range_slider": {
-    "to": "",
+    "to": "to",
     "minimum_price": "Minimális ár: {price}",
     "maximum_price": "Maximális ár: {price}"
   },

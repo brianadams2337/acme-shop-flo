@@ -98,7 +98,9 @@
   },
   "error": {
     "unknown_error_title": "Oh - er ging iets mis",
-    "unknown_error_message": "Je verzoek kon niet worden verwerkt, probeer het opnieuw."
+    "page_not_found_title": "Pagina niet gevonden",
+    "page_not_found_message": "Sorry, de pagina die je zoekt bestaat niet of is verplaatst.",
+    "error_code_label": "Foutcode:"
   },
   "badge_labels": {
     "new": "Nieuw binnen",

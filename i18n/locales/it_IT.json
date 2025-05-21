@@ -98,7 +98,9 @@
   },
   "error": {
     "unknown_error_title": "Oh, qualcosa è andato storto",
-    "unknown_error_message": "Non è stato possibile elaborare la tua richiesta, riprova più tardi."
+    "page_not_found_title": "Pagina non trovata",
+    "page_not_found_message": "Ci dispiace, la pagina che stai cercando non esiste o è stata spostata.",
+    "error_code_label": "Codice errore:"
   },
   "badge_labels": {
     "new": "Novità",

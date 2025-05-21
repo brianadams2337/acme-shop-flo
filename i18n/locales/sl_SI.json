@@ -98,7 +98,9 @@
   },
   "error": {
     "unknown_error_title": "Oh - nekaj je šlo narobe",
-    "unknown_error_message": "Tvoje zahteve ni bilo mogoče obdelati, poskusi znova."
+    "page_not_found_title": "Stran ni bila najdena",
+    "page_not_found_message": "Žal, stran, ki jo iščete, ne obstaja ali je bila premaknjena.",
+    "error_code_label": "Koda napake:"
   },
   "badge_labels": {
     "new": "Novo v",

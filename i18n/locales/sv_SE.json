@@ -98,7 +98,9 @@
   },
   "error": {
     "unknown_error_title": "Hoppsan – något gick fel",
-    "unknown_error_message": "Din begäran kunde inte behandlas, vänligen försök igen."
+    "page_not_found_title": "Sidan finns inte",
+    "page_not_found_message": "Tyvärr, den sida du söker finns inte eller har flyttats.",
+    "error_code_label": "Felkod:"
   },
   "badge_labels": {
     "new": "Nyheter",

@@ -98,7 +98,9 @@
   },
   "error": {
     "unknown_error_title": "Oh - ceva nu a mers bine",
-    "unknown_error_message": "Cererea ta nu a putut fi procesată, te rugăm să încerci din nou."
+    "page_not_found_title": "Pagina nu a fost găsită",
+    "page_not_found_message": "Ne pare rău, pagina pe care o căutați nu există sau a fost mutată.",
+    "error_code_label": "Cod eroare:"
   },
   "badge_labels": {
     "new": "Noutăți",

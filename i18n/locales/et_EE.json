@@ -98,7 +98,9 @@
   },
   "error": {
     "unknown_error_title": "Oh - midagi läks valesti",
-    "unknown_error_message": "Teie taotlust ei õnnestunud töödelda, palun proovige uuesti."
+    "page_not_found_title": "Lehekülge ei leitud",
+    "page_not_found_message": "Vabandame, otsitud lehekülge ei ole või see on teisaldatud.",
+    "error_code_label": "Veakood:"
   },
   "badge_labels": {
     "new": "Uus",

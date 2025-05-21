@@ -98,7 +98,9 @@
   },
   "error": {
     "unknown_error_title": "Ups – niečo sa pokazilo.",
-    "unknown_error_message": "Tvoja požiadavka nemohla byť spracovaná, skús to, prosím, znova."
+    "page_not_found_title": "Stránka nebola nájdená",
+    "page_not_found_message": "Ospravedlňujeme sa, stránka, ktorú hľadáte, neexistuje alebo bola presunutá.",
+    "error_code_label": "Chybový kód:"
   },
   "badge_labels": {
     "new": "Novinky",

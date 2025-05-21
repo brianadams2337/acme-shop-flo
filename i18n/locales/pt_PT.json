@@ -98,7 +98,9 @@
   },
   "error": {
     "unknown_error_title": "Oh - algo correu mal",
-    "unknown_error_message": "O teu pedido não pôde ser processado, por favor tenta novamente."
+    "page_not_found_title": "Página não encontrada",
+    "page_not_found_message": "Desculpa, a página que procuras não existe ou foi movida.",
+    "error_code_label": "Código de erro:"
   },
   "badge_labels": {
     "new": "Novo em",

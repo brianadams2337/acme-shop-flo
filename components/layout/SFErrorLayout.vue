@@ -1,40 +1,33 @@
 <template>
   <div
-    class="container mt-8 flex flex-col items-center justify-center text-primary"
+    class="container mt-24 flex flex-col items-center justify-center text-primary"
   >
     <section class="flex flex-col items-center space-y-2">
-      <div class="grid grid-cols-1 grid-rows-1 justify-items-center">
-        <IconLogo class="col-start-1 row-start-1 size-24" />
-        <div
-          class="col-start-1 row-start-1 mt-13 h-24 w-screen bg-white/40 backdrop-blur-lg"
-        ></div>
-      </div>
+      <IconLogo class="mb-6 size-24" />
 
       <div
-        class="rounded-full bg-accent/10 px-3 py-0.5 text-sm font-variable slashed-zero leading-5 text-accent"
+        v-if="statusCode"
+        class="!mb-6 rounded-full bg-accent/10 px-3 py-0.5 text-sm font-variable slashed-zero leading-5 text-accent"
       >
         {{ $t('error.error_code_label') }} {{ statusCode }}
       </div>
 
-      <SFHeadline size="6xl" is-bold class="leading-loose">{{
-        title
-      }}</SFHeadline>
+      <SFHeadline size="3xl" class="text-center">{{ title }}</SFHeadline>
 
       <SFHeadline
-        class="mt-4 !font-normal leading-snug text-gray-600"
-        size="2xl"
+        class="mt-4 text-center !font-normal leading-5 text-gray-600"
+        size="lg"
         tag="h2"
-        is-uppercase
       >
         {{ userMessage }}
       </SFHeadline>
     </section>
     <section class="mt-12">
-      <SFButton @click="$emit('clearError')">
+      <SFButton variant="tertiary" @click="$emit('clearError')">
         {{ $t('global.continue_shopping') }}
       </SFButton>
     </section>
-    <div v-if="isInDevMode" class="max-w-full overflow-auto">
+    <div v-if="isInDevMode" class="mt-12 max-w-full overflow-auto">
       <div>{{ statusCode }} {{ statusMessage }}</div>
       <pre class="font-bold">{{ errorMessage }}</pre>
       <code v-if="stack" v-sanitized-html="stack" />

@@ -98,7 +98,9 @@
   },
   "error": {
     "unknown_error_title": "Åh - noe gikk galt",
-    "unknown_error_message": "Forespørselen din kunne ikke behandles, vennligst prøv igjen."
+    "page_not_found_title": "Side ikke funnet",
+    "page_not_found_message": "Beklager, siden du leter etter finnes ikke eller har blitt flyttet.",
+    "error_code_label": "Feilkode:"
   },
   "badge_labels": {
     "new": "Ny i",

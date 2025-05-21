@@ -98,7 +98,9 @@
   },
   "error": {
     "unknown_error_title": "Oops! Kažkas nutiko ne taip",
-    "unknown_error_message": "Tavo užklausos nepavyko apdoroti, bandyk dar kartą."
+    "page_not_found_title": "Puslapis nerastas",
+    "page_not_found_message": "Atsiprašome, puslapis, kurį ieškote, neegzistuoja arba buvo perkeltas.",
+    "error_code_label": "Klaidos kodas:"
   },
   "badge_labels": {
     "new": "Naujiena",

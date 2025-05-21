@@ -98,7 +98,9 @@
   },
   "error": {
     "unknown_error_title": "Oh – da ist was schiefgelaufen",
-    "unknown_error_message": "Deine Anfrage konnte nicht bearbeitet werden, versuch's nochmal."
+    "page_not_found_title": "Seite nicht gefunden",
+    "page_not_found_message": "Sorry, die Seite, die du suchst, gibt's nicht oder wurde verschoben.",
+    "error_code_label": "Fehlercode:"
   },
   "badge_labels": {
     "new": "Neu",

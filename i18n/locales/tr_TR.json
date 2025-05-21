@@ -98,7 +98,9 @@
   },
   "error": {
     "unknown_error_title": "Oh - bir şeyler ters gitti",
-    "unknown_error_message": "Talebiniz işleme alınamadı, lütfen tekrar deneyin."
+    "page_not_found_title": "Sayfa bulunamadı",
+    "page_not_found_message": "Üzgünüz, aradığınız sayfa mevcut değil veya taşınmıştır.",
+    "error_code_label": "Hata Kodu:"
   },
   "badge_labels": {
     "new": "Yeni gelen",

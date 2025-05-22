@@ -6,10 +6,11 @@ import {
   getFirstAttributeValue,
   slugify,
 } from '@scayle/storefront-nuxt'
+import { joinURL } from 'ufo'
 import type { RouteLocationRaw } from '#vue-router'
 import { type NavigateToOptions, navigateTo } from '#app/composables/router'
 import { useCurrentShop } from '#storefront/composables'
-import { useLocalePath } from '#i18n'
+import { useLocalePath, useSwitchLocalePath, type Locale } from '#i18n'
 import {
   hasLocalePrefix,
   isExternalLink,
@@ -22,10 +23,13 @@ import {
   isNavigationItemSuggestion,
 } from '#storefront-search/utils'
 import { buildQueryFromCategoryFilters } from '#storefront-product-listing'
+import { useNuxtApp } from '#app/nuxt'
 
 export function useRouteHelpers() {
   const localePath = useLocalePath()
   const currentShop = useCurrentShop()
+  const switchLocalePath = useSwitchLocalePath()
+  const { $config, $i18n } = useNuxtApp()
 
   const localizedNavigateTo = (
     route: RouteLocationRaw,
@@ -34,14 +38,21 @@ export function useRouteHelpers() {
     return navigateTo(getLocalizedRoute(route), options)
   }
 
-  const getProductDetailRoute = (id: number, name?: string): string => {
-    return localePath({
-      name: 'p-productName-id',
-      params: {
-        productName: slugify(name),
-        id: `${id}`,
+  const getProductDetailRoute = (
+    id: number,
+    name?: string,
+    locale?: Locale,
+  ): string => {
+    return localePath(
+      {
+        name: 'p-productName-id',
+        params: {
+          productName: slugify(name),
+          id: `${id}`,
+        },
       },
-    })
+      locale,
+    )
   }
 
   const getSearchRoute = (term: string): string => {
@@ -131,11 +142,11 @@ export function useRouteHelpers() {
       : localePath(normalizedPath)
   }
 
-  const buildCategoryPath = ({
-    id,
-    path,
-  }: Category | { id: number; path: string }): string => {
-    return localePath(`${routeList.category.path}${path}-${id}`)
+  const buildCategoryPath = (
+    { id, path }: Category | { id: number; path: string },
+    locale?: Locale,
+  ): string => {
+    return localePath(`${routeList.category.path}${path}-${id}`, locale)
   }
 
   const buildNavigationTreeItemRoute = (
@@ -173,6 +184,21 @@ export function useRouteHelpers() {
     }
   }
 
+  const getLocalizedHref = (locale: Locale, pathname: string) => {
+    const isAbsolute = pathname.startsWith('http')
+    const baseUrlPrefix = $config.app.baseURL
+    const fullPath = isAbsolute
+      ? baseUrlPrefix
+      : joinURL(baseUrlPrefix, pathname)
+
+    const origin = new URL(
+      $i18n.differentDomains
+        ? switchLocalePath(locale)
+        : $config.public.baseUrl,
+    ).origin
+    return new URL(fullPath, origin).href
+  }
+
   return {
     localizedNavigateTo,
     getProductDetailRoute,
@@ -183,5 +209,6 @@ export function useRouteHelpers() {
     buildCategorySuggestionRoute,
     buildCategoryPath,
     buildNavigationTreeItemRoute,
+    getLocalizedHref,
   }
 }

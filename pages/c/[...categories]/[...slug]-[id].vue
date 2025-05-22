@@ -73,7 +73,7 @@ import {
   type Category,
 } from '@scayle/storefront-nuxt'
 import { useSeoMeta, useHead, definePageMeta } from '#imports'
-import { useI18n } from '#i18n'
+import { useI18n, type Locale } from '#i18n'
 import { navigateTo, useRoute } from '#app/composables/router'
 import { useNuxtApp } from '#app/nuxt'
 import {
@@ -105,13 +105,15 @@ import {
   useProductsForListing,
   useAppliedFilters,
   useProductListSort,
+  useAllShopCategoriesForId,
+  generateProductListingHreflangLinks,
 } from '#storefront-product-listing'
 import { useCategoryById } from '#storefront/composables'
 
 const route = useRoute()
 const { $config } = useNuxtApp()
 const i18n = useI18n()
-const { buildCategoryPath } = useRouteHelpers()
+const { buildCategoryPath, getLocalizedHref } = useRouteHelpers()
 
 const { pageState, setPageState } = usePageState()
 
@@ -168,7 +170,7 @@ const {
 )
 
 // Validates that the category exists and redirects to the correct path if the URL is incorrect but the category ID is valid
-// If an error occurs or the category is not found, a 404 error is thrown also redirecting to the correct path if the category ID is valid but the path is incorrectq
+// If an error occurs or the category is not found, a 404 error is thrown also redirecting to the correct path if the category ID is valid but the path is incorrect
 const validateCategoryExistsAndRedirect = async () => {
   if (categoryStatus.value == 'pending') {
     return
@@ -215,9 +217,14 @@ const trackViewListing = ({
   })
 }
 
-// Watch for changes to the current category and re-validate the path.
-// This is necessary because the category ID could be incorrect in the URL.
-// As the page is a fixed page, the category ID is watched to ensure the correct page is loaded.
+const shopCategoryparams = computed(() => ({
+  id: currentCategoryId.value,
+}))
+
+const { data: categoriesForAllShops } = useAllShopCategoriesForId({
+  params: shopCategoryparams,
+})
+
 watch(
   currentCategory,
   async (category) => {
@@ -256,11 +263,23 @@ useSeoMeta({
   },
 })
 
-useHead(() => {
-  return {
-    link: canonicalLink.value,
-  }
-})
+const hreflangLinks = computed(() =>
+  generateProductListingHreflangLinks(
+    (categoriesForAllShops.value ?? []).map(({ category, path, locale }) => {
+      const localizedCategoryPath = buildCategoryPath(category, path as Locale)
+      const href = getLocalizedHref(path as Locale, localizedCategoryPath)
+      return {
+        categoryHref: href,
+        path,
+        locale,
+      }
+    }),
+    i18n.locale.value,
+  ),
+)
+useHead(() => ({
+  link: [...canonicalLink.value, ...hreflangLinks.value],
+}))
 
 defineOptions({ name: 'CategoryPage' })
 

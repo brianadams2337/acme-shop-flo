@@ -132,7 +132,7 @@ import { useTrackingEvents } from '~/composables/useTrackingEvents'
 import { getPromotionForProduct } from '~/utils'
 import { useProductBaseInfo } from '~/composables/useProductBaseInfo'
 import { useFavoriteStore } from '~/composables/useFavoriteStore'
-import { useI18n } from '#i18n'
+import { useI18n, type Locale } from '#i18n'
 import { PRODUCT_DETAIL_WITH_PARAMS } from '~/constants'
 import SFAsyncDataWrapper from '~/components/SFAsyncDataWrapper.vue'
 import SFProductGallery from '~/components/product/detail/productGallery/SFProductGallery.vue'
@@ -147,7 +147,9 @@ import { SFHeadline, SFFadeInTransition } from '#storefront-ui/components'
 import SFProductDetailPageLoadingState from '~/components/product/detail/SFProductDetailPageLoadingState.vue'
 import {
   getCombineWithProductIds,
+  generateProductHreflangLinks,
   useProductSeoData,
+  useAllShopProductsForId,
 } from '#storefront-product-detail'
 import { useBreadcrumbs, useRouteHelpers } from '~/composables'
 import { hasSubscriptionCustomData } from '#storefront-subscription/helpers/subscription'
@@ -360,13 +362,44 @@ useSeoMeta({
   }),
   robots,
 })
-useHead({
-  link: canonicalLink,
+
+const params = computed(() => ({
+  id: productId.value,
+  with: { attributes: { withKey: ['name'] } },
+}))
+
+const { data: productsForAllShops } = useAllShopProductsForId({
+  params,
 })
+
+const { getProductDetailRoute, getLocalizedHref } = useRouteHelpers()
+
+const hreflangLinks = computed(() =>
+  generateProductHreflangLinks(
+    (productsForAllShops.value ?? []).map(({ product, path, locale }) => {
+      const productPath = getProductDetailRoute(
+        product.id,
+        getFirstAttributeValue(product.attributes, 'name')?.label,
+        path as Locale,
+      )
+
+      const productHref = getLocalizedHref(path as Locale, productPath)
+      return {
+        productHref,
+        path,
+        locale,
+      }
+    }),
+    i18n.locale.value,
+  ),
+)
+
+useHead(() => ({
+  link: [...canonicalLink.value, ...hreflangLinks.value],
+}))
+
 useJsonld(() => [productBreadcrumbJsonLd.value, productJsonLd.value])
 definePageMeta({ pageType: 'product_detail_page', key: 'PDP' })
-
-const { getProductDetailRoute } = useRouteHelpers()
 
 function redirectProductIfNecessary(product: Product) {
   const expectedPath = getProductDetailRoute(

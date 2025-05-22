@@ -1,19 +1,51 @@
 <template>
-  <progress
-    class="h-1.5 w-full rounded-full border"
-    max="100"
-    :value="progress"
-    :style="progressBarStyle"
-  />
+  <div class="relative has-[div]:pb-10">
+    <progress
+      class="h-1.5 w-full rounded-full border"
+      max="100"
+      :value="progress"
+      :style="progressBarStyle"
+    />
+    <div
+      v-for="({ percent, title, subtitle }, index) in milestones"
+      :key="percent"
+      class="absolute top-[2.5px] flex w-14 flex-col items-center overflow-hidden text-primary last:items-end"
+      :style="{
+        left: `calc(${percent * 100}% - ${
+          index + 1 === milestones?.length ? '56px' : '28px'
+        })`,
+      }"
+    >
+      <div
+        class="mb-2 h-4 w-1 border bg-primary"
+        :style="{ background: backgroundColor(percent), 'border-color': color }"
+      >
+        <div
+          class="mt-[5px] size-1 bg-white"
+          :class="percent === 1 ? '-ml-0.5' : '-ml-px'"
+          :style="{ background: backgroundColor(percent) }"
+        ></div>
+      </div>
+      <div class="overflow-hidden truncate text-xs font-bold">{{ title }}</div>
+      <div class="overflow-hidden truncate text-xs">{{ subtitle }}</div>
+    </div>
+  </div>
 </template>
 
 <script setup lang="ts">
 import { computed } from 'vue'
 import { FALLBACK_COLOR } from '~/utils'
 
-const { color = FALLBACK_COLOR } = defineProps<{
+interface ProgressMilestone {
+  percent: number
+  title: string
+  subtitle: string
+}
+
+const { color = FALLBACK_COLOR, progress } = defineProps<{
   progress: number
   color?: string
+  milestones?: ProgressMilestone[]
 }>()
 
 const progressBarStyle = computed(() => {
@@ -22,6 +54,10 @@ const progressBarStyle = computed(() => {
     borderColor: color,
   }
 })
+
+const backgroundColor = (percent: number) => {
+  return progress >= percent * 100 ? color : 'white'
+}
 </script>
 
 <style scoped lang="css">

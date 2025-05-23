@@ -164,7 +164,7 @@ watch(isOpen, (newValue) => (newValue ? emit('open') : emit('close')))
 
 onKeyStroke('Esc', () => close(), { target: slideIn })
 
-// Whenever the route chances, we want to make sure that the slide-in is closed when `closeOnRouteChange` is `true`.
+// Whenever the route changes, we want to make sure that the slide-in is closed when `closeOnRouteChange` is `true`.
 onBeforeRouteUpdate((to, from, next) => {
   if (closeOnRouteChange && isOpen.value) {
     close()

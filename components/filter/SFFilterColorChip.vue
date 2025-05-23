@@ -41,7 +41,9 @@
       </div>
     </div>
 
-    <div class="text-center text-sm font-medium text-gray-500">
+    <div
+      class="max-w-full truncate text-center text-sm font-medium text-gray-500"
+    >
       <slot />
     </div>
   </div>

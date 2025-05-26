@@ -391,7 +391,7 @@ const hreflangLinks = computed(() =>
         locale,
       }
     }),
-    i18n.locale.value,
+    i18n.defaultLocale,
   ),
 )
 

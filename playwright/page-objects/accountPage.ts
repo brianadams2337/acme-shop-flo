@@ -67,7 +67,6 @@ export class AccountPage {
     const userFields = [
       { field: this.userFirstName, value: firstName },
       { field: this.userLastName, value: lastName },
-      { field: this.userBirthDate, value: birthDate },
     ]
 
     for (const { field, value } of userFields) {
@@ -75,6 +74,11 @@ export class AccountPage {
       await field.clear()
       await field.fill(value)
     }
+
+    await this.userBirthDate.waitFor()
+    await this.userBirthDate.clear()
+    await this.userBirthDate.pressSequentially(birthDate, { delay: 50 })
+    await this.userBirthDate.press('Tab')
     await this.page.waitForLoadState('domcontentloaded')
 
     if (clickSaveButton === true) {

@@ -13,6 +13,7 @@ const { data: rootCategories, status } = useCategoryTree(
   {
     params: {
       children: 5,
+      properties: { withName: ['sale'] },
     },
   },
   'category-navigation-tree',

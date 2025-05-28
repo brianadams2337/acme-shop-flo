@@ -1,7 +1,7 @@
 <template>
   <div
     v-if="isTieredDiscount && (progress || text)"
-    class="flex flex-col px-8 pt-4 text-md text-gray-600"
+    class="flex flex-col px-6 pt-4 text-md text-gray-600"
   >
     <SFProgressBar
       v-if="progress !== undefined"

@@ -89,7 +89,7 @@ const formatEffect = (effect: PromotionEffect): string => {
   if (effect.type === 'automatic_discount') {
     if (effect.additionalData.type === 'relative') {
       return formatPercentage(
-        Math.round((effect.additionalData.value * -1) / 100),
+        Math.round(effect.additionalData.value * -1) / 100,
       )
     } else {
       return formatCurrency(Math.round(effect.additionalData.value), {

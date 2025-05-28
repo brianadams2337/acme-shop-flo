@@ -88,9 +88,11 @@ const { formatCurrency, formatPercentage } = useFormatHelpers()
 const formatEffect = (effect: PromotionEffect): string => {
   if (effect.type === 'automatic_discount') {
     if (effect.additionalData.type === 'relative') {
-      return formatPercentage((effect.additionalData.value * -1) / 100)
+      return formatPercentage(
+        Math.round((effect.additionalData.value * -1) / 100),
+      )
     } else {
-      return formatCurrency(effect.additionalData.value, {
+      return formatCurrency(Math.round(effect.additionalData.value), {
         currencyFractionDigits: 0,
       })
     }

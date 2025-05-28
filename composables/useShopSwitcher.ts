@@ -1,10 +1,10 @@
 import { computed, type ComputedRef } from 'vue'
+import { useCountryDetection } from '@scayle/storefront-country-detection/composables'
 import { useSwitchLocalePath, useI18n, type Locale } from '#i18n'
 import { useCurrentShop, useAvailableShops } from '#storefront/composables'
 import { useTrackingEvents } from '~/composables/useTrackingEvents'
 import { useCurrentShopLocale } from '~/composables/useCurrentShopLocale'
 import { useCurrentShopTranslators } from '~/composables/useCurrentShopTranslators'
-import { useNuxtApp } from '#app'
 
 type ShopConfig = ReturnType<typeof useAvailableShops>['value'][0]
 
@@ -66,7 +66,7 @@ export function useShopSwitcher(
   const { languageTranslator, regionTranslator } = useCurrentShopTranslators()
   const i18n = useI18n()
 
-  const nuxtApp = useNuxtApp()
+  const { markShopAsSwitched } = useCountryDetection()
 
   const availableLanguages = computed(() => {
     return availableShops.value
@@ -107,8 +107,7 @@ export function useShopSwitcher(
       return
     }
 
-    const shop = availableShops.value.find((shop) => shop.locale === locale)!
-    await nuxtApp.hooks.callHook('shop:change', { locale, shopId: shop.shopId })
+    markShopAsSwitched()
 
     trackShopChange()
     if (switchToHomePage) {

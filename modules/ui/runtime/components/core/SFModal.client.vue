@@ -39,8 +39,8 @@ import { watch, nextTick, useTemplateRef, type Component } from 'vue'
 import { tabbable } from 'tabbable'
 import { useFocusTrap } from '@vueuse/integrations/useFocusTrap'
 import { vDialog } from '../../directives/dialog'
+import SFFadeInTransition from '#storefront-ui/components/transitions/SFFadeInTransition.vue'
 import { ClientOnly } from '#components'
-import { SFFadeInTransition } from '#storefront-ui/components'
 
 const {
   hideCloseButton = false,

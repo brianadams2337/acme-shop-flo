@@ -3812,13 +3812,13 @@
     import-in-the-middle "1.14.0"
     knitwork "^1.1.0"
 
-"@scayle/omnichannel-nuxt@4.3.1":
-  version "4.3.1"
-  resolved "https://registry.yarnpkg.com/@scayle/omnichannel-nuxt/-/omnichannel-nuxt-4.3.1.tgz#f265d8e5e55158ef6a330877bc0b28a4c2f657db"
-  integrity sha512-jrY5Ut9twNitC4eoopXK9rVZpGqCr0xMq0C/OEzd+gp2SGSIY/XwagaaS2mdq+WDyh8yUY9bLtaUEwOU65DjjQ==
+"@scayle/omnichannel-nuxt@4.3.2":
+  version "4.3.2"
+  resolved "https://registry.yarnpkg.com/@scayle/omnichannel-nuxt/-/omnichannel-nuxt-4.3.2.tgz#b2bc194766c438412e037aa3600bfecc42a38e92"
+  integrity sha512-P4LYZMaQVLBoXcK8xIhNsOy1cGsSdE+/0c0+rhliEEMb9qo3Wi3CEK3VIStecXjcKSbMngvHXKcuLzEGUJplZA==
   dependencies:
     "@nuxt/kit" "^3.12.2"
-    qs "^6.12.2"
+    qs "^6.14.0"
     utility-types "^3.11.0"
 
 "@scayle/prettier-config-storefront@2.0.2":
@@ -13171,7 +13171,7 @@ pupa@^2.1.1:
   dependencies:
     escape-goat "^2.0.0"
 
-qs@^6.11.2, qs@^6.12.2, qs@^6.12.3, qs@^6.9.6:
+qs@^6.11.2, qs@^6.12.3, qs@^6.14.0, qs@^6.9.6:
   version "6.14.0"
   resolved "https://registry.yarnpkg.com/qs/-/qs-6.14.0.tgz#c63fa40680d2c5c941412a0e899c89af60c0a930"
   integrity sha512-YWWTjgABSKcvs/nWBi9PycY/JiPJqOD4JA6o9Sej2AtvSGarXxKC3OQSk4pAarbdQlKAh5D4FCQkJNkW+GAn3w==

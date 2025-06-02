@@ -8,6 +8,8 @@ import type {
   EntrySkeletonType,
   LocaleCode,
 } from 'contentful'
+import type { MaybeRefOrGetter } from 'vue'
+import { toValue } from 'vue'
 import { useDefaultCMSOptions } from './useDefaultCMSOptions'
 import { useContentful } from './useContentful'
 import { useAsyncData, type AsyncDataOptions } from '#app/composables/asyncData'
@@ -18,7 +20,7 @@ export function useCMSBySlug<
   Locale extends LocaleCode = LocaleCode,
 >(
   key: string,
-  query?: EntriesQueries<T, Modifiers>,
+  query?: MaybeRefOrGetter<EntriesQueries<T, Modifiers>>,
   asyncDataOption?: AsyncDataOptions<
     Entry<T, 'WITHOUT_UNRESOLVABLE_LINKS', Locale> | undefined
   >,
@@ -35,13 +37,14 @@ export function useCMSBySlug<
           include: 10,
           limit: 1,
           ...defaultCMSOptions,
-          ...query,
+          ...toValue(query),
         })
         .then((data) => {
           return data.items.at(0)
         }),
     {
       ...asyncDataOption,
+      watch: [() => toValue(query)],
     },
   )
 }

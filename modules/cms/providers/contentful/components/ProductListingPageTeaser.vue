@@ -8,15 +8,12 @@ import type { TypeListingPageSkeleton } from '../types'
 import { useCMSBySlug } from '../composables/useCMS'
 import { useContentfulEditor } from '../composables/useContentfulEditor'
 import CMSImage from './Image.vue'
-import { useRoute } from '#app/composables/router'
 
 const { categoryId } = defineProps<{ categoryId: number }>()
 
-const route = useRoute()
-
 const { data } = await useCMSBySlug<TypeListingPageSkeleton>(
-  `listing-page-${route.path}`,
-  {
+  `listing-page-teaser`,
+  computed(() => ({
     content_type: 'listingPage',
     // NOTE: We need to pass both the `c/` path, as well as the prefix `c-` plus
     // the selected categoryID to the useCMSBySlug composables.
@@ -24,7 +21,7 @@ const { data } = await useCMSBySlug<TypeListingPageSkeleton>(
     // within the related story.
     // This allows the Contentful Preview functionality to properly work.
     'fields.slug[match]': `c/c-${categoryId}`,
-  },
+  })),
 )
 
 useContentfulEditor<TypeListingPageSkeleton>(data)

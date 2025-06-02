@@ -3992,10 +3992,10 @@
     "@storyblok/richtext" "3.2.0"
     storyblok-js-client "7.0.0"
 
-"@storyblok/nuxt@7.0.0":
-  version "7.0.0"
-  resolved "https://registry.yarnpkg.com/@storyblok/nuxt/-/nuxt-7.0.0.tgz#a9e53a67e573a97421de0acdad9ce80e97ee9730"
-  integrity sha512-VlYF4mYLNIYrTH0olYNJY48gyWtNQ/DGqR+0JdYaTgGh2DQXN81O1eyj5tqHD1nL+CDUzs0NGPeAxzMMyw7AvQ==
+"@storyblok/nuxt@7.0.1":
+  version "7.0.1"
+  resolved "https://registry.yarnpkg.com/@storyblok/nuxt/-/nuxt-7.0.1.tgz#4a1e0a06a02903d5646cdce1b912a380777df59a"
+  integrity sha512-MlBw2l49xI4c8W1Zm3FjbZWTXeqjheOgAZIe3Q+lsABfjfyTYZTnFyums2piVJyePwF30pcxOumhfn4cbl2DAQ==
   dependencies:
     "@storyblok/vue" "^9.0.0"
 

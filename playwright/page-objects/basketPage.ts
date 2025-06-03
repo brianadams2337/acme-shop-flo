@@ -160,7 +160,8 @@ export class BasketPage {
   }
 
   async removeItemFromBasket() {
-    await this.removeItemButton.click()
+    await this.removeItemButton.first().scrollIntoViewIfNeeded()
+    await this.removeItemButton.first().click()
     await this.confirmRemoveItemButton.click()
   }
 

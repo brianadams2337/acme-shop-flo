@@ -57,6 +57,18 @@ test('C2132186 C2132187 Verify Basket empty state as a guest and logged in user'
     await signinPage.fillLoginData(email, password)
     await signinPage.clickLoginButton()
     expect(page.url()).toContain(ROUTES.basket)
+    await basketPage.h1.waitFor()
+    await page.waitForLoadState('domcontentloaded')
+    try {
+      await basketPage.removeItemButton
+        .first()
+        .waitFor({ state: 'visible', timeout: 5000 })
+      await basketPage.removeItemFromBasket()
+    } catch (error) {
+      console.error(
+        `Basket is already empty. Continuing test execution. ${error}`,
+      )
+    }
     await expect(basketPage.loginButton).not.toBeVisible()
     await expect(basketPage.continueButton).toBeVisible()
     await header.headerBasketButton.click()

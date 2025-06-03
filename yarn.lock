@@ -6494,10 +6494,10 @@ contentful-sdk-core@^9.0.1:
   optionalDependencies:
     "@rollup/rollup-linux-x64-gnu" "^4.18.0"
 
-contentful@11.5.24, contentful@^11.5.10:
-  version "11.5.24"
-  resolved "https://registry.yarnpkg.com/contentful/-/contentful-11.5.24.tgz#efefcd3abf0a63f13a3e804cc5fc2ae83cd2f5d5"
-  integrity sha512-o8LvGTOubyZC2nKlleu3bofAgJH4R+BsMxKsCy++7CbtENGmGRN0r9GSg1qYXgOfCdU3hDZYJLfxXqSqxGLVsA==
+contentful@11.5.25:
+  version "11.5.25"
+  resolved "https://registry.yarnpkg.com/contentful/-/contentful-11.5.25.tgz#c17f50eca387a7c56b427e75e4df625b3f2dd597"
+  integrity sha512-o7yG6Dq7dy7vvZv5NXnZVUTzQrScX7iW/bsdM4SQp51zjmuyLfrJDYG6H/MEsqAwa4aFfR0SbNOWmdM9ySBdNw==
   dependencies:
     "@contentful/content-source-maps" "^0.11.8"
     "@contentful/rich-text-types" "^16.6.1"
@@ -6517,6 +6517,19 @@ contentful@^10.15.1:
     axios "^1.7.4"
     contentful-resolve-response "^1.9.0"
     contentful-sdk-core "^8.3.1"
+    json-stringify-safe "^5.0.1"
+    type-fest "^4.0.0"
+
+contentful@^11.5.10:
+  version "11.5.24"
+  resolved "https://registry.yarnpkg.com/contentful/-/contentful-11.5.24.tgz#efefcd3abf0a63f13a3e804cc5fc2ae83cd2f5d5"
+  integrity sha512-o8LvGTOubyZC2nKlleu3bofAgJH4R+BsMxKsCy++7CbtENGmGRN0r9GSg1qYXgOfCdU3hDZYJLfxXqSqxGLVsA==
+  dependencies:
+    "@contentful/content-source-maps" "^0.11.8"
+    "@contentful/rich-text-types" "^16.6.1"
+    axios "^1.8.4"
+    contentful-resolve-response "^1.9.0"
+    contentful-sdk-core "^9.0.1"
     json-stringify-safe "^5.0.1"
     type-fest "^4.0.0"
 

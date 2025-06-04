@@ -342,7 +342,7 @@ export default {
     },
   },
   plugins: [
-    plugin(({ addUtilities, addVariant, addBase }) => {
+    plugin(({ addUtilities, addVariant }) => {
       const autofillStyles = {
         '-webkit-box-shadow': '0 0 0 30px #fff inset !important',
         '-webkit-text-fill-color': '#000 !important',
@@ -356,9 +356,6 @@ export default {
             '&:active': autofillStyles,
           },
         },
-        '.top-white-shadow': {
-          boxShadow: '0 -22px 10px 0 #fff',
-        },
         '.anchor-scrolling-none': {
           overflowAnchor: 'none',
         },
@@ -367,30 +364,6 @@ export default {
           'scrollbar-width': 'none',
           /* Safari and Chrome */
           '&::-webkit-scrollbar': {
-            display: 'none',
-          },
-        },
-        '.search-decoration-none': {
-          '&::-ms-clear': {
-            display: 'none',
-            width: '0',
-            height: '0',
-          },
-          '&::-ms-reveal': {
-            display: 'none',
-            width: '0',
-            height: '0',
-          },
-          '&::-webkit-search-decoration': {
-            display: 'none',
-          },
-          '&::-webkit-search-cancel-button': {
-            display: 'none',
-          },
-          '&::-webkit-search-results-button': {
-            display: 'none',
-          },
-          '&::-webkit-search-results-decoration': {
             display: 'none',
           },
         },
@@ -455,16 +428,6 @@ export default {
         '& *::-webkit-details-marker',
       ])
       addVariant('supports-hover', ['@media(hover:hover)'])
-
-      // Add reset for search input fields on safari
-      addBase({
-        '[type="search"]::-webkit-search-decoration': { display: 'none' },
-        '[type="search"]::-webkit-search-cancel-button': { display: 'none' },
-        '[type="search"]::-webkit-search-results-button': { display: 'none' },
-        '[type="search"]::-webkit-search-results-decoration': {
-          display: 'none',
-        },
-      })
     }),
   ],
 }

@@ -3,17 +3,19 @@ import { computed, type ComputedRef } from 'vue'
 import { useBasket, useCurrentPromotions } from '#storefront/composables'
 import { getPromotionIdFromProductAttributes } from '~/utils'
 
-type UseMovPromotionsReturn = {
+type UseActiveProgressPromotionsReturn = {
   /** A list of MOV promotions which have at least one promoted product in the basket. */
-  movPromotions: ComputedRef<Promotion[]>
+  promotions: ComputedRef<Promotion[]>
 }
 /**
- * A composable that retrieve a list of active MOV promotions.
+ * A composable that retrieve a list of active MOV or tiered promotions.
  *
- * @returns A promise resolving to an object containing the mov promotions list.
+ * An active promotion is a current promotion which applies to an item in the current basket.
+ *
+ * @returns A promise resolving to an object containing the list of promotions.
  */
-export function useMovPromotions(): UseMovPromotionsReturn &
-  Promise<UseMovPromotionsReturn> {
+export function useActiveProgressPromotions(): UseActiveProgressPromotionsReturn &
+  Promise<UseActiveProgressPromotionsReturn> {
   const basket = useBasket()
   const promotionData = useCurrentPromotions()
 
@@ -23,13 +25,13 @@ export function useMovPromotions(): UseMovPromotionsReturn &
     return promotionData.data?.value?.entities ?? []
   })
 
-  const movPromotions = computed(() => {
+  const promotions = computed(() => {
     if (!allCurrentPromotions.value.length) {
       return []
     }
 
     return allCurrentPromotions.value.filter((promotion) => {
-      const isPromotedBasketItem = (basketItems.value ?? []).some(
+      const hasPromotedBasketItem = (basketItems.value ?? []).some(
         ({ product, status }) => {
           if (status !== 'available') {
             return false
@@ -48,14 +50,18 @@ export function useMovPromotions(): UseMovPromotionsReturn &
         },
       )
 
-      return !!promotion?.customData?.minimumOrderValue && isPromotedBasketItem
+      return (
+        (promotion.tiers?.length ||
+          !!promotion?.customData?.minimumOrderValue) &&
+        hasPromotedBasketItem
+      )
     })
   })
 
   return extendPromise(
     Promise.all([basket, promotionData]).then(() => ({})),
     {
-      movPromotions,
+      promotions,
     },
   )
 }

@@ -9,7 +9,7 @@ export * from './useBasketActions'
 // Promotions
 export * from './usePromotionGiftSelection'
 export * from './usePromotionCustomData'
-export * from './useMovPromotions'
+export * from './useActiveProgressPromotions'
 export * from './usePromotionGiftSelection'
 
 // Auth

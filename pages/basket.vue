@@ -15,7 +15,7 @@
       >
         <SFBasketHeadline v-if="basketCount" :count="basketCount" />
         <SFProductPromotionBanner
-          v-for="promotion in movPromotions"
+          v-for="promotion in progressPromotions"
           :key="promotion.id"
           :promotion="promotion"
           class="w-full lg:max-w-156"
@@ -75,7 +75,7 @@ import { useRoute } from '#app/composables/router'
 import { WishlistListingMetadata } from '~/constants/listingMetadata'
 import {
   useBasketActions,
-  useMovPromotions,
+  useActiveProgressPromotions,
   usePageState,
   useTrackingEvents,
 } from '~/composables'
@@ -124,7 +124,7 @@ whenever(
   },
   { immediate: true },
 )
-const { movPromotions } = useMovPromotions()
+const { promotions: progressPromotions } = useActiveProgressPromotions()
 
 onMounted(() => {
   if (!basketItems.value) {

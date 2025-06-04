@@ -118,10 +118,10 @@ export default {
       semibold: '600',
       bold: '700',
     },
+    animation: {
+      pulse: 'pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+    },
     keyframes: {
-      ping: {
-        '25%, 50%': { transform: 'scale(.8)', opacity: 10 },
-      },
       pulse: {
         '0%, 100%': { opacity: 1 },
         '50%': { opacity: 0.5 },
@@ -333,11 +333,6 @@ export default {
       spacing: {
         11: '2.625rem  ',
         13: '3.25rem',
-      },
-      animation: {
-        'ping-small': 'ping 1s cubic-bezier(0, 0, 0.2, 1) infinite',
-        grow: 'grow 0.3s forwards',
-        shrink: 'shrink 0.3s forwards',
       },
     },
   },

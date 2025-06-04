@@ -36,7 +36,6 @@
         'size-4': isSize('sm'),
         'size-3': isSize('xs'),
         'size-2': isSize('4xs'),
-        'group-hover:animate-ping-small': animateIcon,
       }"
     />
     <slot />
@@ -49,7 +48,6 @@
         'size-4': isSize('sm'),
         'size-3': isSize('xs'),
         'size-2': isSize('4xs'),
-        'group-hover:animate-ping-small': animateIcon,
       }"
     />
     <slot v-if="badge !== undefined" name="badge" :badge="badge">
@@ -83,7 +81,6 @@ const {
   badge?: number
   isFullWidth?: boolean
   loading?: boolean
-  animateIcon?: boolean
   fab?: boolean
   isUppercase?: boolean
   hasShadow?: boolean

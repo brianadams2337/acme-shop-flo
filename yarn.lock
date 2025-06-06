@@ -11964,10 +11964,10 @@ number-is-nan@^1.0.0:
   resolved "https://registry.yarnpkg.com/number-is-nan/-/number-is-nan-1.0.1.tgz#097b602b53422a522c1afb8790318336941a011d"
   integrity sha512-4jbtZXNAsfZbAHiiqjLPBiCl16dES1zI4Hpzzxw61Tk+loF+sBDBKx1ICKKKwIqQ7M0mFn1TmkN7euSncWgHiQ==
 
-nuxt-svgo@4.2.1:
-  version "4.2.1"
-  resolved "https://registry.yarnpkg.com/nuxt-svgo/-/nuxt-svgo-4.2.1.tgz#51d5fdef0e68295741407d7ecabcc32f3a8dcebb"
-  integrity sha512-3l4Q0wRZbZCpOKEMe7fbfmLY2y7CUdWEFFKovXdTqTuwI94h5dSAfe2BEp3zJkS68gO/NwqXsL0Uoa6UZiywIQ==
+nuxt-svgo@4.2.2:
+  version "4.2.2"
+  resolved "https://registry.yarnpkg.com/nuxt-svgo/-/nuxt-svgo-4.2.2.tgz#19817ea2c8173572eff5645f37824b870a30a1a8"
+  integrity sha512-IOQQc5CpHmTWff5zIcQ81cJHSizaH691JyY/XCil83F+f6nwizkx9k7maaLixZi+dEVuiMZ3nJ1usAmMsSylNQ==
   dependencies:
     "@nuxt/kit" "^3.4.0"
     mini-svg-data-uri "^1.4.4"

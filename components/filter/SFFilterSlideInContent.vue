@@ -4,7 +4,7 @@
     class="md:hidden"
     :label="$t('filter_slide_in_content.sorting')"
   >
-    <SFSortSelection />
+    <SFMobileSortSelection />
   </SFFilterGroup>
   <template v-for="(filter, index) in availableFilters" :key="filter.slug">
     <SFFilterGroup
@@ -133,7 +133,7 @@ import type {
   FilterItemWithValues,
 } from '@scayle/storefront-nuxt'
 import type { RangeTuple } from '@scayle/storefront-product-listing'
-import SFSortSelection from '../sorting/SFSortSelection.vue'
+import SFMobileSortSelection from '../sorting/SFMobileSortSelection.vue'
 import SFFilterColorChip from './SFFilterColorChip.vue'
 import SFFilterGroup from './SFFilterGroup.vue'
 import { ProductColor } from '~/constants/product'

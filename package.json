@@ -119,7 +119,7 @@
     "@scayle/unstorage-scayle-kv-driver": "1.0.1",
     "@storyblok/nuxt": "7.0.1",
     "@storyblok/richtext": "3.3.0",
-    "@storyblok/vue": "9.0.0",
+    "@storyblok/vue": "9.0.1",
     "@tailwindcss/forms": "0.5.10",
     "@tailwindcss/typography": "0.5.16",
     "@types/google.maps": "3.58.1",

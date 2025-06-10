@@ -19,6 +19,8 @@ export class WishlistPage {
   readonly buttonRemoveFromWishlist: Locator
   readonly h1: Locator
   readonly pageTitle: Locator
+  readonly productImage: Locator
+  readonly productUrl: Locator
 
   constructor(page: Page, rpc: RPC) {
     this.page = page
@@ -43,6 +45,8 @@ export class WishlistPage {
     )
     this.h1 = page.locator('h1')
     this.pageTitle = page.getByTestId('headline')
+    this.productImage = page.getByTestId('product-image')
+    this.productUrl = page.locator('[data-testid="wishlist-card"] >> a')
   }
 
   radioButtonSize(size: string): Locator {

@@ -115,3 +115,52 @@ test('C2141222 C2183076 Verify Wishlist non-empty state', async ({
     }).toPass()
   })
 })
+
+/**
+ * Verifies that when a product card on Wishlist is clicked, respective PDP is loaded.
+ */
+test('C2228716 Verify Wishlist product click redirects to PDP', async ({
+  wishlistPage,
+  header,
+  page,
+  countryDetector,
+  homePage,
+  mobileNavigation,
+  mainNavigation,
+  breadcrumb,
+  productListingPage,
+  productDetailPage,
+}) => {
+  await test.step('Add item to wishlist', async () => {
+    await expect(async () => {
+      await homePage.visitPage()
+      await page.waitForLoadState('networkidle')
+      await countryDetector.closeModal()
+      if (isMobile(page)) {
+        await mobileNavigation.openPlpMobile()
+      } else {
+        await mainNavigation.navigateToPlpMainCategory()
+      }
+      await breadcrumb.breadcrumbCategoryActive.waitFor()
+      await productListingPage.addProductToWishlist()
+      await header.wishlistLink.waitFor()
+      await expect(header.wishlistNumItems).toHaveText('1')
+      await header.wishlistLink.click()
+      await wishlistPage.wishlistItemsWrapper.waitFor()
+      await countryDetector.closeModal()
+      await wishlistPage.wishlistCard.waitFor()
+    }).toPass()
+  })
+  await test.step('Click the product card and verify PDP is loaded', async () => {
+    await wishlistPage.productImage.first().hover()
+    await page.waitForLoadState('domcontentloaded')
+    const productUrl = (await wishlistPage.productUrl
+      .first()
+      .getAttribute('href')) as string
+
+    await wishlistPage.productImage.first().click()
+    await productDetailPage.h1.waitFor()
+    await page.waitForURL(productUrl)
+    expect(page.url()).toContain(productUrl)
+  })
+})

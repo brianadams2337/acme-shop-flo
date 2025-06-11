@@ -3990,10 +3990,10 @@
     "@storyblok/richtext" "3.2.0"
     storyblok-js-client "7.0.0"
 
-"@storyblok/js@4.0.1":
-  version "4.0.1"
-  resolved "https://registry.yarnpkg.com/@storyblok/js/-/js-4.0.1.tgz#8cb135ac17eec839f962e574d6c2f06a1a4e5e58"
-  integrity sha512-L+MNz1Ke21XXO6zNmYm6jgHOjMaO8et8x4UBF8/mzwncavpLpF4qo+WdCjycNkgQCcrLoDzFGaOpf9E5QPnqJA==
+"@storyblok/js@4.0.2":
+  version "4.0.2"
+  resolved "https://registry.yarnpkg.com/@storyblok/js/-/js-4.0.2.tgz#cd4c2e6bf20ccec6ae97d9e8e127623e53d1cba1"
+  integrity sha512-ZbdTWaM2AJgA0EkC94A2Ijk0Nx3UVmvBszMvOzmv9GHx46ZH3hMCUemFmiW1XZNkJbuQ9R9kzmsqKLRMOiGtmA==
   dependencies:
     "@storyblok/richtext" "3.3.0"
     storyblok-js-client "7.0.0"
@@ -4020,12 +4020,12 @@
   resolved "https://registry.yarnpkg.com/@storyblok/richtext/-/richtext-3.3.0.tgz#f8e9b6ac10655019ce8788950e777e091578375d"
   integrity sha512-YUwwKVW1dYyx1/Sa389TIkGbtBj7/GZI+TBVdTAjTsccUq/BoIALFVwMInI81mM9ZboaFoiukCuqGMMuDOVQBw==
 
-"@storyblok/vue@9.0.1":
-  version "9.0.1"
-  resolved "https://registry.yarnpkg.com/@storyblok/vue/-/vue-9.0.1.tgz#74d5d845fa8e75bf72c90d8c298f5f7e908f9a44"
-  integrity sha512-KDK/6x+rK2RLok33gfsXucfUCcn4aJr72V/0oFc6rwgJgT6weMgq90GLHzHfyMx69MJVO6E19oMCSPrp4RmAZQ==
+"@storyblok/vue@9.0.2":
+  version "9.0.2"
+  resolved "https://registry.yarnpkg.com/@storyblok/vue/-/vue-9.0.2.tgz#8d279698a321988215431b5f1cdf8be00617a1f5"
+  integrity sha512-ChDXgJVsGf0Ru/j45aiIgkEoHmyUopvKO/DnM/UZi23vBlMvjLquHiScz4uznDzpMJSg15hlM8WeyUJQX4h67Q==
   dependencies:
-    "@storyblok/js" "4.0.1"
+    "@storyblok/js" "4.0.2"
 
 "@storyblok/vue@^9.0.0":
   version "9.0.0"

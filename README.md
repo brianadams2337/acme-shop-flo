@@ -1,43 +1,55 @@
-# scayle/storefront-application-nuxt
+# @scayle/storefront-application-nuxt
 
-<br />
 <div align="center">
-  <a href="https://scayle.dev/en/storefront">
-    <img src="docs/images/scayle.svg" alt="Logo" height="80">
-  </a>
+  <img src="https://cdn-prod.scayle.com/public/media/general/SCAYLE-Commerce-Engine-header.png" alt="SCAYLE Commerce Engine" />
+</div>
 
-<h3 align="center">SCAYLE Storefront Boilerplate Nuxt</h3>
+<div align="center">
+  <br />
+  <h1>SCAYLE Storefront Application</h1>
+</div>
 
-<p align="center">
+<div align="center">
+  <h4><a href="https://scayle.dev/en/storefront">SCAYLE Storefront</a> | <a href="https://scayle.dev">SCAYLE Documentation</a> | <a href="https://www.scayle.com/">SCAYLE Website</a></h4>
+</div>
+
+<div align="center">
     A <a href="https://nuxt.com/docs/getting-started/introduction" target="_blank" >Nuxt 3</a>-based Boilerplate to kick-start your SCAYLE Storefront Application development.
     <br />
-    <a href="https://scayle.dev/en/storefront"><strong>Explore the docs »</strong></a>
     <br />
+    <a href="https://scayle.dev/en/storefront-guide/developer-guide/getting-started/what-is-storefront"><strong>Explore the Development Guide »</strong></a>
+    <br />
+</div>
+
+<hr
+
+<div align="center">
+  <br />
+  <a href="https://nuxt.com/docs/getting-started/introduction"><img src="https://img.shields.io/badge/Nuxt-002E3B?style=for-the-badge&logo=nuxtdotjs&logoColor=#00DC82" alt="Nuxt" /></a> <a href="https://vuejs.org/guide/introduction.html"><img src="https://img.shields.io/badge/vuejs-%2335495e.svg?style=for-the-badge&logo=vuedotjs&logoColor=%234FC08D" alt="Vue" /></a> <a href="https://tailwindcss.com/docs/installation"><img src="https://img.shields.io/badge/tailwindcss-%2338B2AC.svg?style=for-the-badge&logo=tailwind-css&logoColor=white" alt="TailwindCSS" /></a>
+
 </div>
 
 ## About SCAYLE Storefront
 
-SCAYLE Storefront Application is an all-in-one starter kit for building
-high-performance e-commerce shops for the SCAYLE Commerce Engine. It makes it
-quick and easy to build a best-in-class shop frontend. The latest version of the
-Storefront Application is based on Nuxt and Vue 3 and consists of two parts:
+**SCAYLE Storefront Application** is an all-in-one starter kit for building high-performance e-commerce shops for the SCAYLE Commerce Engine. It makes it quick and easy to build a best-in-class shop frontend. The latest version of the Storefront application is based on _Nuxt_ and _Vue 3_ and consists of two parts:
 
-- Storefront SDKs: the headless storefront that provides design-agnostic business logic,
-  feature packages, composables, and several helpers and utilities to simplify
-  the development of Nuxt-based e-commerce applications on top of the SCAYLE Commerce Engine.
-- Storefront Application: This is the complete starter Nuxt application, which
-  includes the Storefront SDKs along with all the features and pages required
-  for a modern e-commerce frontend.
+- **Storefront SDKs:** the headless storefront that provides design-agnostic business logic, feature packages, composables, and several helpers and utilities to simplify the development of Nuxt-based e-commerce applications on top of the SCAYLE Commerce Engine
+- **Storefront Application:** This is the complete starter Nuxt application, which includes the Storefront SDKs along with all the features and pages required for a modern e-commerce frontend.
 
-The Storefront Application is built to make it easy to change or extend the shop design.
-This approach drastically reduces the effort required to launch a new e-commerce shop,
-as you only have to focus on customizing the UI and design layer to your specific needs.
+The **Storefront Application** is built to make it easy to change or extend the shop design. This approach drastically reduces the effort required to launch a new e-commerce shop, as you only have to focus on customizing the UI and design layer to your specific needs.
 
-### Built With
+## Getting Support
 
-- [![Nuxt](https://img.shields.io/badge/Nuxt-002E3B?style=for-the-badge&logo=nuxtdotjs&logoColor=#00DC82)](https://nuxt.com/docs/getting-started/introduction)
-- [![Vue.js](https://img.shields.io/badge/vuejs-%2335495e.svg?style=for-the-badge&logo=vuedotjs&logoColor=%234FC08D)](https://vuejs.org/guide/introduction.html)
-- [![TailwindCSS](https://img.shields.io/badge/tailwindcss-%2338B2AC.svg?style=for-the-badge&logo=tailwind-css&logoColor=white)](https://tailwindcss.com/docs/installation)
+While the Storefront Applications aims to reduce complexity where possible, we understand that questions and issues may still arise. For technical assistance, to raise issues, or to exchange with other developers using the SCAYLE Storefront Application, please visit our [GitHub Discussions page](https://github.com/scayle/storefront-application/discussions).
+
+To access the repository and participate in discussions, you'll need to be granted access. Please get in touch with your SCAYLE Representative and your Github Username, who will be able to facilitate access for you, and don't forget to provide your Github username.
+
+We encourage you to utilize the GitHub Discussions as your primary resource for:
+
+- **Technical Helpdesk:** Find answers to common questions and troubleshoot issues.
+- **Raising Issues:** Report bugs or unexpected behavior.
+- **Asking Questions:** Get clarification on features or implementation details.
+- **Community Exchange:** Connect with other developers, share insights, and learn best practices.
 
 ## Getting Started
 

@@ -357,7 +357,7 @@ test('C2162468: Verify PLP Pagination setting filters', async ({
  * applied sorting option and if the order of the first product card changes
  * after applying different sorting methods.
  */
-test('C2162411: Verify PLP Sorting', async ({
+test('C2162411 C2229455 Verify PLP Sorting', async ({
   productListingPage,
   filters,
   page,
@@ -365,7 +365,7 @@ test('C2162411: Verify PLP Sorting', async ({
 }) => {
   if (isMobile(page)) {
     await filters.filterButton.nth(1).click()
-    await sorting.applySorting(SORTING.priceAsc, 1)
+    await sorting.applySortingMobile(SORTING.priceAsc)
     await filters.closeFiltersButton.first().click()
   } else {
     await sorting.applySorting(SORTING.priceAsc, 0)
@@ -379,7 +379,7 @@ test('C2162411: Verify PLP Sorting', async ({
 
   if (isMobile(page)) {
     await filters.filterButton.nth(1).click()
-    await sorting.applySorting(SORTING.priceDesc, 1)
+    await sorting.applySortingMobile(SORTING.priceDesc)
     await filters.closeFiltersButton.first().click()
   } else {
     await sorting.applySorting(SORTING.priceDesc, 0)
@@ -420,7 +420,7 @@ test('C2139182: Verify PLP SEO data', async ({
   await test.step('Apply Sorting and check SEO data', async () => {
     if (isMobile(page)) {
       await filters.filterButton.nth(1).click()
-      await sorting.applySorting(SORTING.priceDesc, 1)
+      await sorting.applySortingMobile(SORTING.priceDesc)
       await filters.closeFiltersButton.first().click()
     } else {
       await sorting.applySorting(SORTING.priceAsc, 0)

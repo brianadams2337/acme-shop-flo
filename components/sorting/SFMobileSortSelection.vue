@@ -1,5 +1,5 @@
 <template>
-  <SFItemsSlider mode="horizontal">
+  <SFItemsSlider mode="horizontal" data-testid="sorting-items-slider">
     <SFLocalizedLink
       v-for="sort in sortLinks"
       :key="sort.key"

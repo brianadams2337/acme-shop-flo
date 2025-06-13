@@ -51,7 +51,7 @@
     "@nuxtjs/i18n": "9.5.5",
     "@nuxtjs/tailwindcss": "6.14.0",
     "@parcel/watcher": "2.5.1",
-    "@scayle/eslint-config-storefront": "4.5.4",
+    "@scayle/eslint-config-storefront": "4.5.5",
     "@scayle/eslint-plugin-vue-composable": "0.2.1",
     "@scayle/prettier-config-storefront": "2.0.2",
     "@testing-library/jest-dom": "6.6.3",

@@ -16,6 +16,7 @@ const { data: rootCategories, status } = useCategoryTree(
   },
   'category-navigation-tree',
 )
+
 // was changed to
 
 const { data: rootCategories, status } = useCategoryTree(

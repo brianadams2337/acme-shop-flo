@@ -221,8 +221,12 @@ const shopCategoryparams = computed(() => ({
   id: currentCategoryId.value,
 }))
 
-const { data: categoriesForAllShops } = useAllShopCategoriesForId({
+// This request needs to be awaited to have the hreflang links available on server side. Additionally, it needs to be lazy to avoid blocking the page load.
+const { data: categoriesForAllShops } = await useAllShopCategoriesForId({
   params: shopCategoryparams,
+  options: {
+    lazy: true,
+  },
 })
 
 watch(

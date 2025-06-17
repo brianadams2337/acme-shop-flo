@@ -374,8 +374,12 @@ const params = computed(() => ({
   with: { attributes: { withKey: ['name'] } },
 }))
 
-const { data: productsForAllShops } = useAllShopProductsForId({
+// This request needs to be awaited to have the hreflang links available on server side. Additionally, it needs to be lazy to avoid blocking the page load.
+const { data: productsForAllShops } = await useAllShopProductsForId({
   params,
+  options: {
+    lazy: true,
+  },
 })
 
 const { getProductDetailRoute, getLocalizedHref } = useRouteHelpers()

@@ -3,12 +3,12 @@ import type { Locator, Page } from '@playwright/test'
 export class Sorting {
   readonly page: Page
   readonly sortDropdown: Locator
-  readonly sortingSlider: Locator
+  readonly mobileSortWrapper: Locator
 
   constructor(page: Page) {
     this.page = page
     this.sortDropdown = page.getByTestId('sort-dropdown')
-    this.sortingSlider = page.getByTestId('sorting-items-slider')
+    this.mobileSortWrapper = page.getByTestId('mobile-sort-wrapper')
   }
 
   sortOptionItem(sortingOption: string): Locator {
@@ -22,7 +22,7 @@ export class Sorting {
   }
 
   async applySortingMobile(sortingOption: string) {
-    const specificSortingLinkLocator = this.sortingSlider.locator(
+    const specificSortingLinkLocator = this.mobileSortWrapper.locator(
       `[href*="?sort=${sortingOption}"]`,
     )
     await specificSortingLinkLocator.waitFor({ state: 'visible' })

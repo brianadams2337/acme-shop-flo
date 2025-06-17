@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-wrap">
+  <div class="flex flex-wrap" data-testid="mobile-sort-wrapper">
     <SFLocalizedLink
       v-for="sort in sortLinks"
       :key="sort.key"

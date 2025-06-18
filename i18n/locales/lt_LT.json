@@ -636,5 +636,16 @@
     "shipped": "Išsiųsta",
     "cancelled": "Atšauktas",
     "confirmed": "Patvirtinta"
+  },
+  "filter_range_slider": {
+    "to": "į",
+    "price": {
+      "maximum": "Maksimali kaina: {price}",
+      "minimum": "Minimali kaina: {price}"
+    },
+    "percentage": {
+      "maximum": "Maksimalus sumažinimas: {reduction}",
+      "minimum": "Minimalus sumažinimas: {reduction}"
+    }
   }
 }

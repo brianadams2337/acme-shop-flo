@@ -636,5 +636,16 @@
     "shipped": "Enviado",
     "cancelled": "Cancelado",
     "confirmed": "Confirmado"
+  },
+  "filter_range_slider": {
+    "to": "hasta",
+    "price": {
+      "maximum": "Precio máximo: {price}",
+      "minimum": "Precio mínimo: {price}"
+    },
+    "percentage": {
+      "maximum": "Reducción máxima: {reduction}",
+      "minimum": "Reducción mínima: {reduction}"
+    }
   }
 }

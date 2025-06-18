@@ -636,5 +636,16 @@
     "shipped": "Levererad",
     "cancelled": "Avbeställd",
     "confirmed": "Bekräftad"
+  },
+  "filter_range_slider": {
+    "to": "till",
+    "price": {
+      "maximum": "Maximalt pris: {price}",
+      "minimum": "Lägsta pris: {price}"
+    },
+    "percentage": {
+      "maximum": "Maximal reduktion: {reduction}",
+      "minimum": "Minsta minskning: {reduction}"
+    }
   }
 }

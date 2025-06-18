@@ -636,5 +636,16 @@
     "shipped": "Odoslané",
     "cancelled": "Zrušené",
     "confirmed": "Potvrdené"
+  },
+  "filter_range_slider": {
+    "to": "do",
+    "price": {
+      "maximum": "Maximálna cena: {price}",
+      "minimum": "Minimálna cena: {price}"
+    },
+    "percentage": {
+      "maximum": "Maximálne zníženie: {reduction}",
+      "minimum": "Minimálne zníženie: {reduction}"
+    }
   }
 }

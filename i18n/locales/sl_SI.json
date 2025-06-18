@@ -636,5 +636,16 @@
     "shipped": "Odeslano",
     "cancelled": "Preklicano",
     "confirmed": "Potrjeno"
+  },
+  "filter_range_slider": {
+    "to": "na",
+    "price": {
+      "maximum": "Najvišja cena: {price}",
+      "minimum": "Najnižja cena: {price}"
+    },
+    "percentage": {
+      "maximum": "Največje zmanjšanje: {reduction}",
+      "minimum": "Najmanjše zmanjšanje: {reduction}"
+    }
   }
 }

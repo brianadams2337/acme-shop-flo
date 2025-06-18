@@ -636,5 +636,16 @@
     "shipped": "Lähetetty",
     "cancelled": "Peruutettu",
     "confirmed": "Vahvistettu"
+  },
+  "filter_range_slider": {
+    "to": "",
+    "price": {
+      "maximum": "Enimmäishinta: {price}",
+      "minimum": "Vähimmäishinta: {price}"
+    },
+    "percentage": {
+      "maximum": "Suurin vähennys: {reduction}",
+      "minimum": "Vähimmäisvähenny: {reduction}"
+    }
   }
 }

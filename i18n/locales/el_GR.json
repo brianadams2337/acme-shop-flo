@@ -636,5 +636,16 @@
     "shipped": "Αποστολή",
     "cancelled": "Ακυρώθηκε",
     "confirmed": "Επιβεβαιωμένη"
+  },
+  "filter_range_slider": {
+    "to": "σε",
+    "price": {
+      "maximum": "Μέγιστη τιμή: {price}",
+      "minimum": "Ελάχιστη τιμή: {price}"
+    },
+    "percentage": {
+      "maximum": "Μέγιστη μείωση: {reduction}",
+      "minimum": "Ελάχιστη μείωση: {reduction}"
+    }
   }
 }

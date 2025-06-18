@@ -636,5 +636,16 @@
     "shipped": "Gönderildi",
     "cancelled": "İptal",
     "confirmed": "Onaylandı"
+  },
+  "filter_range_slider": {
+    "to": "için",
+    "price": {
+      "maximum": "Maksimum fiyat: {price}",
+      "minimum": "Minimum fiyat: {price}"
+    },
+    "percentage": {
+      "maximum": "Maksimum indirim: {reduction}",
+      "minimum": "Minimum indirim: {reduction}"
+    }
   }
 }

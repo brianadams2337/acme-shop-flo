@@ -636,5 +636,16 @@
     "shipped": "Verzonden",
     "cancelled": "Geannuleerd",
     "confirmed": "Bevestigd"
+  },
+  "filter_range_slider": {
+    "to": "naar",
+    "price": {
+      "maximum": "Maximale prijs: {price}",
+      "minimum": "Minimumprijs: {price}"
+    },
+    "percentage": {
+      "maximum": "Maximale korting: {reduction}",
+      "minimum": "Minimale korting: {reduction}"
+    }
   }
 }

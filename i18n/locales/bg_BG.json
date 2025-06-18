@@ -636,5 +636,16 @@
     "shipped": "Изпратено",
     "cancelled": "Отменена",
     "confirmed": "Потвърдено"
+  },
+  "filter_range_slider": {
+    "to": "към",
+    "price": {
+      "maximum": "Максимална цена: {price}",
+      "minimum": "Минимална цена: {price}"
+    },
+    "percentage": {
+      "maximum": "Максимално намаление: {reduction}",
+      "minimum": "Минимално намаление: {reduction}"
+    }
   }
 }

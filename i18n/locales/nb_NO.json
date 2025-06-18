@@ -636,5 +636,16 @@
     "shipped": "Sendt",
     "cancelled": "Avbestilt",
     "confirmed": "Bekreftet"
+  },
+  "filter_range_slider": {
+    "to": "til",
+    "price": {
+      "maximum": "Maksimal pris: {price}",
+      "minimum": "Minimum pris: {price}"
+    },
+    "percentage": {
+      "maximum": "Maksimal reduksjon: {reduction}",
+      "minimum": "Minimum reduksjon: {reduction}"
+    }
   }
 }

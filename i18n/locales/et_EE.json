@@ -636,5 +636,16 @@
     "shipped": "Saadetud",
     "cancelled": "Tühistatud",
     "confirmed": "Kinnitatud"
+  },
+  "filter_range_slider": {
+    "to": "mine",
+    "price": {
+      "maximum": "Maksimaalne hind: {price}",
+      "minimum": "Minimaalne hind: {price}"
+    },
+    "percentage": {
+      "maximum": "Maksimaalne vähendamine: {reduction}",
+      "minimum": "Minimaalne vähendamine: {reduction}"
+    }
   }
 }

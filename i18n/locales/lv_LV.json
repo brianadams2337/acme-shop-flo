@@ -636,5 +636,16 @@
     "shipped": "Nosūtīts",
     "cancelled": "Atcelts",
     "confirmed": "Apstiprināts"
+  },
+  "filter_range_slider": {
+    "to": "uz",
+    "price": {
+      "maximum": "Maksimālā cena: {price}",
+      "minimum": "Minimālā cena: {price}"
+    },
+    "percentage": {
+      "maximum": "Maksimālais samazinājums: {reduction}",
+      "minimum": "Minimālais samazinājums: {reduction}"
+    }
   }
 }

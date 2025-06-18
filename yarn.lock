@@ -3860,13 +3860,13 @@
   resolved "https://registry.yarnpkg.com/@scayle/storefront-basket/-/storefront-basket-0.3.0.tgz#a77d08f2ac0946d0a42a81f7d4fe68324a6afe3b"
   integrity sha512-XV7a/nygUpq5GPOOr5GRQ2+akmGrCjSuKsW5yN7YS9MWn7GOJzhSDPhN6Lhiw3arAWYFrMXu2RMeaWF64HAt2A==
 
-"@scayle/storefront-core@8.30.0":
-  version "8.30.0"
-  resolved "https://registry.yarnpkg.com/@scayle/storefront-core/-/storefront-core-8.30.0.tgz#75bf5c859d8e8e433ccd734e573ceafb093ede7b"
-  integrity sha512-rbot6m+lXv+6YGeUUxw16d84pHl7itV1nkzfTr8aHuzWetpIi4zpGH8iNhbM5AhCxKyktlHqFhV5FFwxE0tV9Q==
+"@scayle/storefront-core@8.30.1":
+  version "8.30.1"
+  resolved "https://registry.yarnpkg.com/@scayle/storefront-core/-/storefront-core-8.30.1.tgz#4284383b0a1552a171ea6c1fb4c11f8acc67a1f2"
+  integrity sha512-Ao2q+o/MTmjjNl/YoIX9euRvXWVQpEwxLFY2DrCJjR5d/FXsI7s/MtrUc/8SIuNJkVoxoMH6BEE6QRx9rj0Stg==
   dependencies:
     "@scayle/storefront-api" "18.9.0"
-    "@scayle/unstorage-scayle-kv-driver" "1.0.1"
+    "@scayle/unstorage-scayle-kv-driver" "1.0.2"
     crypto-js "^4.2.0"
     hookable "^5.5.3"
     jose "^6.0.8"
@@ -3885,14 +3885,14 @@
   resolved "https://registry.yarnpkg.com/@scayle/storefront-navigation/-/storefront-navigation-0.3.0.tgz#0ea9261fbb8dd5fd69d8bc5787c126bb0b927e17"
   integrity sha512-cSBEibsw2DxlpLoyKSdUqfCOjnNbjule3o7dy4wurggwhzTcZ6PmUx+i7rdSTV77OcqzVO/8e0VcYHFtdh6Vhw==
 
-"@scayle/storefront-nuxt@8.30.0":
-  version "8.30.0"
-  resolved "https://registry.yarnpkg.com/@scayle/storefront-nuxt/-/storefront-nuxt-8.30.0.tgz#d2ed267e2498a64709eb1cf429a05c302d4cdd9e"
-  integrity sha512-P30VmLwVu63NBoSK2EZ44TL63gSLPLKqEE3T2k/FOQ8e79WmjJEtEC+DEuUlinmbIFNntqFj2ZPEvf+abnP6HA==
+"@scayle/storefront-nuxt@8.30.1":
+  version "8.30.1"
+  resolved "https://registry.yarnpkg.com/@scayle/storefront-nuxt/-/storefront-nuxt-8.30.1.tgz#a39315ae3c33dcd2c0a3db02f991c34e64fd18c9"
+  integrity sha512-u+DPua5Q5Kb2yN7QR/WcQsTYZ4E7DJ1jMF/NdhaM2JBf8NFEmYwQimBl0qBK/csMs5gYs93gMDOkMx2i9NklNg==
   dependencies:
     "@opentelemetry/api" "^1.9.0"
     "@scayle/h3-session" "0.6.1"
-    "@scayle/storefront-core" "8.30.0"
+    "@scayle/storefront-core" "8.30.1"
     "@scayle/unstorage-compression-driver" "^1.0.0"
     "@vercel/nft" "0.29.4"
     "@vueuse/core" "13.3.0"
@@ -3943,6 +3943,13 @@
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/@scayle/unstorage-scayle-kv-driver/-/unstorage-scayle-kv-driver-1.0.1.tgz#1d353c45994d77243d45f839ca3bb5fab48e3b5f"
   integrity sha512-Zr0zwlLnCvpNNqB9JFwBrHcZND49DfTmSuQ5RKQGxskfE3sNx/liPDREGDliYXdhurzD6brgPkJEz3qUfSzDQQ==
+  dependencies:
+    unstorage "1.16.0"
+
+"@scayle/unstorage-scayle-kv-driver@1.0.2":
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/@scayle/unstorage-scayle-kv-driver/-/unstorage-scayle-kv-driver-1.0.2.tgz#b193bd107f8f21ea9b394e1e624581160978165e"
+  integrity sha512-kmlfDRSHD8HwHikYDKSzKrBTFeK6KFzaVDIqp5j57m9Z7n5bkrgBvA6T/9+bKo3xlB/DRD8bezEu8fMdb5i3fQ==
   dependencies:
     unstorage "1.16.0"
 

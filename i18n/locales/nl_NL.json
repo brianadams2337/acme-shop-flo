@@ -404,11 +404,6 @@
     "show_results": "Artikelen weergeven",
     "reset_all_filter": "Alles resetten"
   },
-  "price_range_slider": {
-    "to": "naar",
-    "minimum_price": "Minimale prijs: {price}",
-    "maximum_price": "Maximale prijs: {price}"
-  },
   "filter_slide_in_content": {
     "sorting": "Sorteren",
     "size_option": "Maat: {size}",

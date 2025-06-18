@@ -404,11 +404,6 @@
     "show_results": "Преглед на елементите",
     "reset_all_filter": "Нулиране на всички"
   },
-  "price_range_slider": {
-    "to": "към",
-    "minimum_price": "Минимална цена: {price}",
-    "maximum_price": "Максимална цена: {price}"
-  },
   "filter_slide_in_content": {
     "sorting": "Сортиране",
     "size_option": "Размер: {size}",

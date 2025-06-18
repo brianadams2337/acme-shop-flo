@@ -410,11 +410,6 @@
     "show_results": "View items",
     "reset_all_filter": "Reset all"
   },
-  "price_range_slider": {
-    "to": "to",
-    "minimum_price": "Minimum price: {price}",
-    "maximum_price": "Maximum price: {price}"
-  },
   "filter_slide_in_content": {
     "sorting": "Sorting",
     "size_option": "Size: {size}",
@@ -642,5 +637,16 @@
   "product_attribute": {
     "size": "Size",
     "color": "Color"
+  },
+  "filter_range_slider": {
+    "to": "to",
+    "price": {
+      "maximum": "Maximum price: {price}",
+      "minimum": "Minimum price: {price}"
+    },
+    "percentage": {
+      "maximum": "Maximum reduction: {reduction}",
+      "minimum": "Minimum reduction: {reduction}"
+    }
   }
 }

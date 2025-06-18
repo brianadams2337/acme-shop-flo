@@ -7,41 +7,83 @@
     <SFMobileSortSelection />
   </SFFilterGroup>
   <template v-for="(filter, index) in availableFilters" :key="filter.slug">
-    <SFFilterGroup
+    <template
       v-if="
         filter.type === 'range' &&
         filter.values[0]?.min !== filter.values[0]?.max
       "
-      :label="filter.name"
-      :show-action="
-        !!(appliedFilter.maxPrice || appliedFilter.minPrice) &&
-        (appliedFilter.minPrice !== filter.values[0]?.min ||
-          appliedFilter.maxPrice !== filter.values[0]?.max)
-      "
-      :class="{ 'border-t': index !== 0 }"
-      @click-reset="$emit('resetPriceFilter')"
     >
-      <SFPriceRangeSlider
-        :model-value="getPriceRange(filter.values[0].min, filter.values[0].max)"
-        class="mt-10"
-        :max="filter.values[0]?.max"
-        :min="filter.values[0]?.min"
-        @drag-end="
-          handleApplyOrResetPriceFilterEmit(
-            $event,
-            filter.values[0].min,
-            filter.values[0].max,
-          )
+      <SFFilterGroup
+        v-if="filter.slug === 'prices'"
+        :label="filter.name"
+        :show-action="
+          !!(appliedFilter.maxPrice || appliedFilter.minPrice) &&
+          (appliedFilter.minPrice !== filter.values[0]?.min ||
+            appliedFilter.maxPrice !== filter.values[0]?.max)
         "
-        @input-field-update="
-          handleApplyOrResetPriceFilterEmit(
-            $event,
-            filter.values[0].min,
-            filter.values[0].max,
-          )
+        :class="{ 'border-t': index !== 0 }"
+        @click-reset="$emit('resetPriceFilter')"
+      >
+        <SFFilterRangeSlider
+          filter-slug="prices"
+          :model-value="
+            getPriceRange(filter.values[0].min, filter.values[0].max)
+          "
+          class="mt-10"
+          :max="filter.values[0]?.max"
+          :min="filter.values[0]?.min"
+          @drag-end="
+            handleApplyOrResetPriceFilterEmit(
+              $event,
+              filter.values[0].min,
+              filter.values[0].max,
+            )
+          "
+          @input-field-update="
+            handleApplyOrResetPriceFilterEmit(
+              $event,
+              filter.values[0].min,
+              filter.values[0].max,
+            )
+          "
+        />
+      </SFFilterGroup>
+      <SFFilterGroup
+        v-if="filter.slug === 'max_savings_percentage'"
+        :label="filter.name"
+        :show-action="
+          !!(appliedFilter.maxReduction || appliedFilter.minReduction) &&
+          (appliedFilter.minReduction !== filter.values[0]?.min ||
+            appliedFilter.maxReduction !== filter.values[0]?.max)
         "
-      />
-    </SFFilterGroup>
+        :class="{ 'border-t': index !== 0 }"
+        @click-reset="$emit('resetReductionFilter')"
+      >
+        <SFFilterRangeSlider
+          filter-slug="max_savings_percentage"
+          :model-value="
+            getReductionRange(filter.values[0].min, filter.values[0].max)
+          "
+          class="mt-10"
+          :max="filter.values[0]?.max"
+          :min="filter.values[0]?.min"
+          @drag-end="
+            handleApplyOrResetReductionFilterEmit(
+              $event,
+              filter.values[0].min,
+              filter.values[0].max,
+            )
+          "
+          @input-field-update="
+            handleApplyOrResetReductionFilterEmit(
+              $event,
+              filter.values[0].min,
+              filter.values[0].max,
+            )
+          "
+        />
+      </SFFilterGroup>
+    </template>
     <SFFilterGroup
       v-if="filter.type === 'boolean'"
       :class="{ 'border-t': index !== 0 }"
@@ -141,7 +183,7 @@ import {
   SFCheckbox,
   SFSwitch,
   SFChip,
-  SFPriceRangeSlider,
+  SFFilterRangeSlider,
 } from '#storefront-ui/components'
 import { useI18n } from '#i18n'
 
@@ -156,6 +198,8 @@ const { appliedFilter } = defineProps<{
 const emit = defineEmits<{
   resetPriceFilter: []
   applyPriceFilter: [range: RangeTuple]
+  resetReductionFilter: []
+  applyReductionFilter: [range: RangeTuple]
   applyBooleanFilter: [slug: string, value: boolean]
   reset: [slug: string]
   applyAttributeFilter: [slug: string, value: number]
@@ -181,12 +225,37 @@ const handleApplyOrResetPriceFilterEmit = (
   }
 }
 
+const handleApplyOrResetReductionFilterEmit = (
+  event: RangeTuple,
+  filterMin: number,
+  filterMax: number,
+) => {
+  if (event[0] === filterMin && event[1] === filterMax) {
+    emit('resetReductionFilter')
+  } else {
+    emit('applyReductionFilter', event)
+  }
+}
+
 const getPriceRange = (
   currentMin: CentAmount,
   currentMax: CentAmount,
 ): RangeTuple => {
   const appliedMin = appliedFilter.minPrice
   const appliedMax = appliedFilter.maxPrice
+
+  const min = Math.max(currentMin, appliedMin ?? currentMin, 0)
+  const max = Math.min(currentMax, appliedMax ?? currentMax)
+
+  return [min, max]
+}
+
+const getReductionRange = (
+  currentMin: number,
+  currentMax: number,
+): RangeTuple => {
+  const appliedMin = appliedFilter.minReduction
+  const appliedMax = appliedFilter.maxReduction
 
   const min = Math.max(currentMin, appliedMin ?? currentMin, 0)
   const max = Math.min(currentMax, appliedMax ?? currentMax)

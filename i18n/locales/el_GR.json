@@ -404,11 +404,6 @@
     "show_results": "Προβολή προϊόντων",
     "reset_all_filter": "Επαναφορά όλων"
   },
-  "price_range_slider": {
-    "to": "σε",
-    "minimum_price": "Ελάχιστη τιμή: {price}",
-    "maximum_price": "Μέγιστη τιμή: {price}"
-  },
   "filter_slide_in_content": {
     "sorting": "Ταξινόμηση",
     "size_option": "Μέγεθος: {size}",

@@ -404,11 +404,6 @@
     "show_results": "Vis varer",
     "reset_all_filter": "Nulstil alle"
   },
-  "price_range_slider": {
-    "to": "til",
-    "minimum_price": "Minimumspris: {price}",
-    "maximum_price": "Maksimal pris: {price}"
-  },
   "filter_slide_in_content": {
     "sorting": "Sortering",
     "size_option": "Størrelse: {size}",

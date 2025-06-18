@@ -404,11 +404,6 @@
     "show_results": "Prikaži elemente",
     "reset_all_filter": "Ponastavi vse"
   },
-  "price_range_slider": {
-    "to": "na",
-    "minimum_price": "Najnižja cena: {price}",
-    "maximum_price": "Največja cena: {price}"
-  },
   "filter_slide_in_content": {
     "sorting": "Razvrščanje",
     "size_option": "Velikost: {size}",

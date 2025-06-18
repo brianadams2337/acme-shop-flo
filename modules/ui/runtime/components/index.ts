@@ -12,7 +12,7 @@ import SFCheckbox from './form/SFCheckbox.vue'
 import SFDropdown from './form/SFDropdown.vue'
 import SFSwitch from './form/SFSwitch.vue'
 import SFPriceInput from './form/SFPriceInput.vue'
-import SFPriceRangeSlider from './form/SFPriceRangeSlider.vue'
+import SFFilterRangeSlider from './form/SFFilterRangeSlider.vue'
 import SFTextInput from './form/SFTextInput.vue'
 import SFValidatedInputGroup from './form/SFValidatedInputGroup.vue'
 
@@ -56,7 +56,7 @@ export {
   SFSwitch,
   SFTextInput,
   SFPriceInput,
-  SFPriceRangeSlider,
+  SFFilterRangeSlider,
   SFValidatedInputGroup,
   SFHeadline,
   SFGoBackLink,

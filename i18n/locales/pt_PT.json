@@ -404,11 +404,6 @@
     "show_results": "Ver artigos",
     "reset_all_filter": "Repor todos os filtros"
   },
-  "price_range_slider": {
-    "to": "para",
-    "minimum_price": "Preço mínimo: {price}",
-    "maximum_price": "Preço máximo: {price}"
-  },
   "filter_slide_in_content": {
     "sorting": "Ordenar",
     "size_option": "Tamanho: {size}",

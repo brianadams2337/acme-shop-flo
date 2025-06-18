@@ -404,11 +404,6 @@
     "show_results": "Öğeleri görüntüle",
     "reset_all_filter": "Tümünü sıfırla"
   },
-  "price_range_slider": {
-    "to": "için",
-    "minimum_price": "Minimum fiyat: {price}",
-    "maximum_price": "Maksimum fiyat: {price}"
-  },
   "filter_slide_in_content": {
     "sorting": "Sıralama",
     "size_option": "Boyut: {size}",

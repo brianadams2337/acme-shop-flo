@@ -20,6 +20,7 @@ import {
   createNewPriceQuery,
   useAppliedFilters,
   type UseFiltersForListingReturn,
+  createNewReductionQuery,
 } from '#storefront-product-listing'
 
 interface FilterOptions {
@@ -43,6 +44,11 @@ type UseFilterReturn = Awaited<UseFiltersForListingReturn> & {
    * @param prices - The prices to apply.
    */
   applyPriceFilter: (prices: RangeTuple) => Promise<void>
+  /**
+   * Applies a reduction filter to the current category.
+   * @param reductions - The reductions to apply.
+   */
+  applyReductionFilter: (reductions: RangeTuple) => Promise<void>
   /**
    * Applies a boolean filter to the current category.
    * @param slug - The name of the filter.
@@ -69,6 +75,10 @@ type UseFilterReturn = Awaited<UseFiltersForListingReturn> & {
    * Resets the price filter.
    */
   resetPriceFilter: () => Promise<void>
+  /**
+   * Resets the reduction filter.
+   */
+  resetReductionFilter: () => Promise<void>
   /**
    * Resets a specific filter.
    * @param key - The name of the filter that should be reset.
@@ -143,6 +153,12 @@ export function useFilter(
     await applyFilters(filters)
   }
 
+  const applyReductionFilter = async (prices: RangeTuple) => {
+    const filters = createNewReductionQuery(route, appliedFilter.value, prices)
+    trackFilterApply('reductions', prices.join(','))
+    await applyFilters(filters)
+  }
+
   const onSlideInOpen = () => trackFilterFlyout('open', 'true')
 
   const onSlideInClose = () => {
@@ -166,6 +182,10 @@ export function useFilter(
 
   const resetPriceFilter = async () => {
     await applyFilters(getClearedFilterQueryByKey(route, 'prices'))
+  }
+
+  const resetReductionFilter = async () => {
+    await applyFilters(getClearedFilterQueryByKey(route, 'reductions'))
   }
 
   const resetFilter = async (key: string) => {
@@ -216,9 +236,11 @@ export function useFilter(
     applyPriceFilter,
     applyBooleanFilter,
     applyAttributeFilter,
+    applyReductionFilter,
     trackFilterFlyout,
     resetFilters,
     resetPriceFilter,
+    resetReductionFilter,
     resetFilter,
     areFiltersCleared: readonly(areFiltersCleared),
   })

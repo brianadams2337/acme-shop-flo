@@ -404,11 +404,6 @@
     "show_results": "Rādīt preces",
     "reset_all_filter": "Atiestatīt visus"
   },
-  "price_range_slider": {
-    "to": "uz",
-    "minimum_price": "Minimālā cena: {price}",
-    "maximum_price": "Maksimālā cena: {price}"
-  },
   "filter_slide_in_content": {
     "sorting": "Šķirošana",
     "size_option": "Izmērs: {size}",

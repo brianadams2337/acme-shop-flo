@@ -404,11 +404,6 @@
     "show_results": "Zobraziť položky",
     "reset_all_filter": "Obnoviť všetky"
   },
-  "price_range_slider": {
-    "to": "do",
-    "minimum_price": "Minimálna cena: {price}",
-    "maximum_price": "Maximálna cena: {price}"
-  },
   "filter_slide_in_content": {
     "sorting": "Triedenie",
     "size_option": "Veľkosť: {size}",

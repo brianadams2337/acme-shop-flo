@@ -404,11 +404,6 @@
     "show_results": "Visa artiklar",
     "reset_all_filter": "Återställ alla"
   },
-  "price_range_slider": {
-    "to": "till",
-    "minimum_price": "Lägsta pris: {price}",
-    "maximum_price": "Högsta pris: {price}"
-  },
   "filter_slide_in_content": {
     "sorting": "Sortering",
     "size_option": "storlek: {size}",

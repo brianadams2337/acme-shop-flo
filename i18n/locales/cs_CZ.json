@@ -404,11 +404,6 @@
     "show_results": "Zobrazit produkty",
     "reset_all_filter": "Obnovit vše"
   },
-  "price_range_slider": {
-    "to": "do",
-    "minimum_price": "Minimální cena: {price}",
-    "maximum_price": "Maximální cena: {price}"
-  },
   "filter_slide_in_content": {
     "sorting": "Třídění",
     "size_option": "Velikost: {size}",

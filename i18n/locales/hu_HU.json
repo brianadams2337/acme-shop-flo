@@ -404,11 +404,6 @@
     "show_results": "Termékek",
     "reset_all_filter": "Az összes szűrő visszaállítása"
   },
-  "price_range_slider": {
-    "to": "",
-    "minimum_price": "Minimális ár: {price}",
-    "maximum_price": "Maximális ár: {price}"
-  },
   "filter_slide_in_content": {
     "sorting": "Rendezés",
     "size_option": "Méret: {size}",

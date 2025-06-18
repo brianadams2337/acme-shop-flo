@@ -404,11 +404,6 @@
     "show_results": "Vaata tooteid",
     "reset_all_filter": "Kõikide filtrite lähtestamine"
   },
-  "price_range_slider": {
-    "to": "mine",
-    "minimum_price": "Minimaalne hind: {price}",
-    "maximum_price": "Maksimaalne hind: {price}"
-  },
   "filter_slide_in_content": {
     "sorting": "Sorteerimine",
     "size_option": "Suurus: {size}",

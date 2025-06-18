@@ -404,11 +404,6 @@
     "show_results": "Näytä tuotteet",
     "reset_all_filter": "Nollaa kaikki"
   },
-  "price_range_slider": {
-    "to": "",
-    "minimum_price": "Vähimmäishinta: {price}",
-    "maximum_price": "Enimmäishinta: {price}"
-  },
   "filter_slide_in_content": {
     "sorting": "Lajittelu",
     "size_option": "Koko: {size}",

@@ -38,13 +38,19 @@
         </template>
         <template #tooltip="{ value }">
           <div class="rounded bg-gray-300 p-1 text-sm text-secondary">
-            {{ formatCurrency(value) }}
+            <template v-if="filterSlug === 'prices'">
+              {{ formatCurrency(value) }}
+            </template>
+            <template v-else>
+              {{ formatPercentage(value / 100) }}
+            </template>
           </div>
         </template>
       </VueSlider>
     </ClientOnly>
     <div class="mt-4 flex items-center">
-      <SFPriceInput
+      <SFRangeInput
+        :variant="filterSlug === 'prices' ? 'price' : 'percentage'"
         :model-value="range[0]"
         :min="roundDownPrice(min)"
         :max="range[1]"
@@ -53,17 +59,14 @@
         :format-options="{
           minimumFractionDigits: 0,
         }"
-        :aria-label="
-          $t('price_range_slider.minimum_price', {
-            price: formatCurrency(range[0]),
-          })
-        "
+        :aria-label="minLabel"
         @update:model-value="changeRangeAtIndex(roundDownPrice($event), 0)"
       />
       <div class="mx-auto text-center text-xs font-semibold text-secondary">
-        {{ $t('price_range_slider.to') }}
+        {{ $t('filter_range_slider.to') }}
       </div>
-      <SFPriceInput
+      <SFRangeInput
+        :variant="filterSlug === 'prices' ? 'price' : 'percentage'"
         :model-value="range[1]"
         :min="range[0]"
         :max="roundUpPrice(max)"
@@ -72,11 +75,7 @@
         :format-options="{
           minimumFractionDigits: 0,
         }"
-        :aria-label="
-          $t('price_range_slider.maximum_price', {
-            price: formatCurrency(range[1]),
-          })
-        "
+        :aria-label="maxLabel"
         @update:model-value="changeRangeAtIndex(roundUpPrice($event), 1)"
       />
     </div>
@@ -94,16 +93,22 @@ import VueSlider from 'vue-slider-component/dist-css/vue-slider-component.umd.mi
 import 'vue-slider-component/dist-css/vue-slider-component.css'
 import '@/assets/css/slider/default.css'
 import type { RangeTuple } from '@scayle/storefront-product-listing'
-import { useCurrentShop } from '#storefront/composables'
-import { SFPriceInput } from '#storefront-ui/components'
+import SFRangeInput from './SFRangeInput.vue'
+import { useCurrentShop, useFormatHelpers } from '#storefront/composables'
 import {
   getDecimalPlacesForCurrency,
   roundDown,
   roundUp,
 } from '#storefront-ui/helpers/utils'
 import { ClientOnly } from '#components'
+import { useI18n } from '#imports'
 
-const { min = 0, max = 100000 } = defineProps<{
+const {
+  min = 0,
+  max = 100000,
+  filterSlug,
+} = defineProps<{
+  filterSlug: 'prices' | 'max_savings_percentage'
   min?: number
   max?: number
 }>()
@@ -154,6 +159,10 @@ const updateRange = (newRange: RangeTuple) => {
  */
 
 const decimalPlaces = computed(() => {
+  if (filterSlug === 'max_savings_percentage') {
+    return 0
+  }
+
   if (!currencyCode) {
     return 2
   }
@@ -184,4 +193,29 @@ const formatCurrency = (value: number): string => {
     minimumFractionDigits: 0,
   })
 }
+const { formatPercentage } = useFormatHelpers()
+
+const { t } = useI18n()
+const maxLabel = computed(() => {
+  if (filterSlug === 'prices') {
+    return t('filter_range_slider.price.maximum', {
+      price: formatCurrency(range.value[1]),
+    })
+  }
+
+  return t('filter_range_slider.percentage.maximum', {
+    reduction: formatPercentage(range.value[1] / 100),
+  })
+})
+const minLabel = computed(() => {
+  if (filterSlug === 'prices') {
+    return t('filter_range_slider.price.minimum', {
+      price: formatCurrency(range.value[0]),
+    })
+  }
+
+  return t('filter_range_slider.percentage.minimum', {
+    reduction: formatPercentage(range.value[0] / 100),
+  })
+})
 </script>

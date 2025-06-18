@@ -404,11 +404,6 @@
     "show_results": "Rodyti prekes",
     "reset_all_filter": "Iš naujo nustatyti visus"
   },
-  "price_range_slider": {
-    "to": "į",
-    "minimum_price": "Minimali kaina: {price}",
-    "maximum_price": "Didžiausia kaina: {price}"
-  },
   "filter_slide_in_content": {
     "sorting": "Rūšiavimas",
     "size_option": "Dydis: {size}",

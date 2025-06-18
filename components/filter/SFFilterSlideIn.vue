@@ -19,6 +19,8 @@
         @apply-attribute-filter="applyAttributeFilter"
         @apply-boolean-filter="applyBooleanFilter"
         @reset-price-filter="resetPriceFilter"
+        @reset-reduction-filter="resetReductionFilter"
+        @apply-reduction-filter="applyReductionFilter"
         @reset="resetFilter"
       />
     </template>
@@ -54,9 +56,11 @@ const {
   onSlideInOpen,
   onSlideInClose,
   applyPriceFilter,
+  applyReductionFilter,
   applyAttributeFilter,
   applyBooleanFilter,
   resetPriceFilter,
+  resetReductionFilter,
   resetFilters,
   resetFilter,
   filteredProductCount,

@@ -404,11 +404,6 @@
     "show_results": "Vezi articolele",
     "reset_all_filter": "Resetează tot"
   },
-  "price_range_slider": {
-    "to": "la",
-    "minimum_price": "Prețul minim: {price}",
-    "maximum_price": "Prețul maxim: {price}"
-  },
   "filter_slide_in_content": {
     "sorting": "Sortare",
     "size_option": "Mărime: {size}",

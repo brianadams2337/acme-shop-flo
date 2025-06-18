@@ -102,6 +102,8 @@ import SFFilterSlideIn from '~/components/filter/SFFilterSlideIn.vue'
 import SFScrollToTopButton from '~/components/SFScrollToTopButton.vue'
 import {
   useProductListingSeoData,
+  defaultSortingOptions,
+  DEFAULT_SORTING_KEY,
   useProductsForListing,
   useAppliedFilters,
   useProductListSort,
@@ -126,33 +128,12 @@ const { rootCategories, fetchingCategories } = defineProps<{
 }>()
 
 const currentCategoryId = computed(() => getCategoryId(route.params))
-const { selectedSort } = useProductListSort(route)
-const { appliedFilter } = useAppliedFilters(route)
-
-const params = computed(() => ({
-  categoryId: currentCategoryId.value,
-  with: PRODUCT_TILE_WITH_PARAMS,
-  sort: selectedSort.value,
-  perPage: PRODUCTS_PER_PAGE,
-  where: appliedFilter.value,
-  page: Number(route.query.page) || 1,
-}))
-
-const {
-  products,
-  pagination,
-  status: productsStatus,
-  totalProductsCount,
-  paginationOffset,
-} = useProductsForListing({
-  params,
-  fetchingOptions: { lazy: true },
-})
 
 const categoryParams = computed(() => ({
   id: currentCategoryId.value,
   children: 0,
   properties: { withName: ['sale'] },
+  includeProductSorting: true,
 }))
 
 const {
@@ -190,6 +171,44 @@ const validateCategoryExistsAndRedirect = async () => {
 }
 
 onServerPrefetch(validateCategoryExistsAndRedirect)
+
+const sortingOptions = computed(() => {
+  const smartSortingKey = currentCategory.value?.productSorting?.smartSortingKey
+
+  if (!smartSortingKey) {
+    return defaultSortingOptions
+  }
+  return defaultSortingOptions.map((option) => {
+    return option.key === DEFAULT_SORTING_KEY
+      ? { ...option, sortingKey: smartSortingKey }
+      : option
+  })
+})
+
+const { selectedSort } = useProductListSort(route, {
+  sortingOptions: sortingOptions.value,
+})
+const { appliedFilter } = useAppliedFilters(route)
+
+const params = computed(() => ({
+  categoryId: currentCategoryId.value,
+  with: PRODUCT_TILE_WITH_PARAMS,
+  sort: selectedSort.value,
+  perPage: PRODUCTS_PER_PAGE,
+  where: appliedFilter.value,
+  page: Number(route.query.page) || 1,
+}))
+
+const {
+  products,
+  pagination,
+  status: productsStatus,
+  totalProductsCount,
+  paginationOffset,
+} = useProductsForListing({
+  params,
+  fetchingOptions: { lazy: true },
+})
 
 const trackProductClick = (product: Product) => {
   trackSelectItem({

@@ -3938,13 +3938,6 @@
     destr "2.0.5"
     unstorage "1.16.0"
 
-"@scayle/unstorage-scayle-kv-driver@1.0.1":
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/@scayle/unstorage-scayle-kv-driver/-/unstorage-scayle-kv-driver-1.0.1.tgz#1d353c45994d77243d45f839ca3bb5fab48e3b5f"
-  integrity sha512-Zr0zwlLnCvpNNqB9JFwBrHcZND49DfTmSuQ5RKQGxskfE3sNx/liPDREGDliYXdhurzD6brgPkJEz3qUfSzDQQ==
-  dependencies:
-    unstorage "1.16.0"
-
 "@scayle/unstorage-scayle-kv-driver@1.0.2":
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/@scayle/unstorage-scayle-kv-driver/-/unstorage-scayle-kv-driver-1.0.2.tgz#b193bd107f8f21ea9b394e1e624581160978165e"

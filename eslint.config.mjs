@@ -116,6 +116,12 @@ export default withNuxt(
   },
   {
     rules: {
+      'import/no-extraneous-dependencies': [
+        'warn',
+        {
+          includeTypes: true,
+        },
+      ],
       'eslint-comments/no-unlimited-disable': 'off',
       'vue/html-self-closing': [
         'error',

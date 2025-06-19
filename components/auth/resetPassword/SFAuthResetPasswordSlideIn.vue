@@ -11,8 +11,11 @@
     <template #slide-in-body>
       <SFAuthResetPasswordSlideInBody
         v-if="isOpen"
+        :error-message="errorMessage"
+        :is-submitting="isSubmitting"
         class="px-6 py-4 max-lg:pb-11"
         @close="closeAndClear"
+        @submit="submit"
       />
     </template>
   </SFSlideIn>
@@ -36,11 +39,19 @@ const hasToken = computed(() => !!route.query.hash)
 
 const { close, isOpen } = useSlideIn(SLIDE_IN_KEY, hasToken.value)
 
-const { clearErrorMessage } = useAuthentication('reset_password')
+const { clearErrorMessage, resetPasswordByHash, errorMessage, isSubmitting } =
+  useAuthentication()
 
 const closeAndClear = () => {
   router.replace({ query: {} })
   clearErrorMessage()
   close()
+}
+
+const submit = async (payload: { password: string; hash: string }) => {
+  await resetPasswordByHash(payload)
+  if (!errorMessage.value) {
+    closeAndClear()
+  }
 }
 </script>

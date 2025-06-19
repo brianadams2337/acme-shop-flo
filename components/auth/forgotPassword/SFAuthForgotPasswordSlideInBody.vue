@@ -49,11 +49,7 @@ import { ref } from 'vue'
 import useVuelidate from '@vuelidate/core'
 import { watchImmediate } from '@vueuse/core'
 import SFErrorMessageContainer from '../../SFErrorMessageContainer.vue'
-import {
-  useValidationRules,
-  useAuthentication,
-  useRouteHelpers,
-} from '~/composables'
+import { useValidationRules, useRouteHelpers } from '~/composables'
 import {
   SFButton,
   SFTextInput,
@@ -61,12 +57,13 @@ import {
 } from '#storefront-ui/components'
 import { routeList } from '~/utils'
 
-const emit = defineEmits<{ close: [] }>()
+const emit = defineEmits<{ close: []; submit: [email: string] }>()
 
-const { prefilledEmail } = defineProps<{ prefilledEmail: string }>()
-
-const { forgotPassword, isSubmitting, errorMessage } =
-  useAuthentication('forgot_password')
+const { prefilledEmail } = defineProps<{
+  prefilledEmail: string
+  isSubmitting: boolean
+  errorMessage: string | null
+}>()
 
 const validationRules = useValidationRules()
 
@@ -79,11 +76,7 @@ const onSubmit = async () => {
   if (!isValid) {
     return
   }
-  const success = await forgotPassword(email.value)
-  if (success) {
-    close()
-    emit('close')
-  }
+  emit('submit', email.value)
 }
 
 const backToLogin = async () => {

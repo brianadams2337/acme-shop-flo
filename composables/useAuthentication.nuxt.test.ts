@@ -5,7 +5,6 @@ import type { Gender } from '@scayle/storefront-nuxt'
 import { FetchError } from 'ofetch'
 import { userFactory } from '@scayle/storefront-nuxt/test/factories'
 import { useAuthentication } from './useAuthentication'
-import type { AuthTrackingEvent } from '~/types/tracking'
 
 const {
   useSession,
@@ -55,13 +54,13 @@ vi.mock('~/composables', () => ({
  * The `useI18n` composable must be executed within a setup function. Additionally, when accessing reactive
  * data from `useauthentication` within the test component, avoid destructuring it, as this will lead to a loss of reactivity.
  */
-const getTestComponent = (event: AuthTrackingEvent) => {
+const getTestComponent = () => {
   return mount(
     defineComponent({
       template: '<div />',
 
       setup() {
-        return useAuthentication(event)
+        return useAuthentication()
       },
     }),
   )
@@ -100,7 +99,7 @@ describe('useAuthentication', () => {
         customerType: toRef(customerType),
         user: toRef(userFactory.build({ id: 1, email: 'user@example.org' })),
       })
-      const { login } = getTestComponent(loginEvent).vm
+      const { login } = getTestComponent().vm
 
       await login(loginPayload)
 
@@ -134,7 +133,7 @@ describe('useAuthentication', () => {
 
       route.query = { redirectUrl: '/de/wishlist' }
 
-      const { login } = getTestComponent(loginEvent).vm
+      const { login } = getTestComponent().vm
 
       await login(loginPayload)
 
@@ -163,7 +162,7 @@ describe('useAuthentication', () => {
         const error = new FetchError('Fetch Error')
         Object.assign(error, { response: { status: Number(statusCode) } })
 
-        const component = getTestComponent(loginEvent)
+        const component = getTestComponent()
 
         const { login } = component.vm
 
@@ -204,7 +203,7 @@ describe('useAuthentication', () => {
         customerType: toRef(customerType),
         user: toRef(userFactory.build({ id: 1, email: 'user@gmail.com' })),
       })
-      const { loginIDP } = getTestComponent(loginEvent).vm
+      const { loginIDP } = getTestComponent().vm
 
       await loginIDP(code)
 
@@ -233,7 +232,7 @@ describe('useAuthentication', () => {
 
       route.query = { redirectUrl: '/de/basket' }
 
-      const { loginIDP } = getTestComponent(loginEvent).vm
+      const { loginIDP } = getTestComponent().vm
 
       await loginIDP(code)
 
@@ -265,7 +264,7 @@ describe('useAuthentication', () => {
         customerType: toRef(customerType),
         user: toRef(userFactory.build({ id: 1, email: 'user@example.org' })),
       })
-      const { guestLogin } = getTestComponent(guestEvent).vm
+      const { guestLogin } = getTestComponent().vm
 
       await guestLogin(guestPayload)
 
@@ -299,7 +298,7 @@ describe('useAuthentication', () => {
 
       route.query = { redirectUrl: '/de/wishlist' }
 
-      const { guestLogin } = getTestComponent(guestEvent).vm
+      const { guestLogin } = getTestComponent().vm
 
       await guestLogin(guestPayload)
 
@@ -327,9 +326,9 @@ describe('useAuthentication', () => {
         const error = new FetchError('Fetch Error')
         Object.assign(error, { response: { status: Number(statusCode) } })
 
-        const component = getTestComponent(guestEvent)
+        const component = getTestComponent()
 
-        const { guestLogin } = getTestComponent(guestEvent).vm
+        const { guestLogin } = component.vm
 
         guestLoginMock.mockRejectedValue(error)
 
@@ -373,7 +372,7 @@ describe('useAuthentication', () => {
         customerType: toRef(customerType),
         user: toRef(userFactory.build({ id: 1, email: 'user@example.org' })),
       })
-      const { register } = getTestComponent(registerEvent).vm
+      const { register } = getTestComponent().vm
 
       await register(registerPayload)
 
@@ -407,7 +406,7 @@ describe('useAuthentication', () => {
 
       route.query = { redirectUrl: '/de/wishlist' }
 
-      const { register } = getTestComponent(registerEvent).vm
+      const { register } = getTestComponent().vm
 
       await register(registerPayload)
 
@@ -437,9 +436,9 @@ describe('useAuthentication', () => {
         const error = new FetchError('Fetch Error')
         Object.assign(error, { response: { status: Number(statusCode) } })
 
-        const component = getTestComponent(registerEvent)
+        const component = getTestComponent()
 
-        const { register } = getTestComponent(registerEvent).vm
+        const { register } = component.vm
 
         registerMock.mockRejectedValue(error)
 
@@ -467,17 +466,15 @@ describe('useAuthentication', () => {
   })
 
   describe('forgotPassword', () => {
-    // eslint-disable-next-line sonarjs/no-hardcoded-passwords
-    const forgotPasswordEvent = 'forgot_password'
     it('should successfully initiate forgot password flow', async () => {
       useUser.mockReturnValue({
         refresh: vi.fn(),
         customerType: undefined,
         user: undefined,
       })
-      const { forgotPassword } = getTestComponent(forgotPasswordEvent).vm
+      const { forgotPassword } = getTestComponent().vm
 
-      const response = await forgotPassword('user@example.org')
+      await forgotPassword('user@example.org')
 
       expect(forgotPasswordMock).toBeCalledWith({ email: 'user@example.org' })
 
@@ -485,8 +482,6 @@ describe('useAuthentication', () => {
         'Ein Link zum Zurücksetzen deines Passworts wurde an deine E-Mail-Adresse geschickt.',
         { action: 'CONFIRM', type: 'INFO' },
       )
-
-      expect(response).toEqual(true)
     })
 
     const httpErrorMessages = {
@@ -510,13 +505,13 @@ describe('useAuthentication', () => {
         const error = new FetchError('Fetch Error')
         Object.assign(error, { response: { status: Number(statusCode) } })
 
-        const component = getTestComponent(forgotPasswordEvent)
+        const component = getTestComponent()
 
-        const { forgotPassword } = getTestComponent(forgotPasswordEvent).vm
+        const { forgotPassword } = component.vm
 
         forgotPasswordMock.mockRejectedValue(error)
 
-        const response = await forgotPassword('user@example.org')
+        await forgotPassword('user@example.org')
 
         expect(forgotPasswordMock).toBeCalledWith({ email: 'user@example.org' })
 
@@ -524,8 +519,6 @@ describe('useAuthentication', () => {
 
         component.unmount()
         expect(component.vm.errorMessage).toBeNull()
-
-        expect(response).toEqual(false)
       },
     )
   })
@@ -545,7 +538,7 @@ describe('useAuthentication', () => {
         customerType: toRef(customerType),
         user: toRef(userFactory.build({ id: 1, email: 'user@example.org' })),
       })
-      const { resetPasswordByHash } = getTestComponent(resetPasswordEvent).vm
+      const { resetPasswordByHash } = getTestComponent().vm
 
       await resetPasswordByHash(resetPasswordPayload)
 
@@ -579,7 +572,7 @@ describe('useAuthentication', () => {
 
       route.query = { redirectUrl: '/de/wishlist' }
 
-      const { resetPasswordByHash } = getTestComponent(resetPasswordEvent).vm
+      const { resetPasswordByHash } = getTestComponent().vm
 
       await resetPasswordByHash(resetPasswordPayload)
 
@@ -607,9 +600,9 @@ describe('useAuthentication', () => {
         const error = new FetchError('Fetch Error')
         Object.assign(error, { response: { status: Number(statusCode) } })
 
-        const component = getTestComponent(resetPasswordEvent)
+        const component = getTestComponent()
 
-        const { resetPasswordByHash } = getTestComponent(resetPasswordEvent).vm
+        const { resetPasswordByHash } = component.vm
 
         resetPasswordByHashMock.mockRejectedValue(error)
 
@@ -626,7 +619,6 @@ describe('useAuthentication', () => {
   })
 
   describe('logout', () => {
-    const logoutEvent = 'logout'
     const customerType = 'existing'
 
     it('should successfully initiate reset password by hash flow', async () => {
@@ -635,7 +627,7 @@ describe('useAuthentication', () => {
         customerType: toRef(customerType),
         user: toRef(userFactory.build({ id: 1, email: 'user@example.org' })),
       })
-      const { logout } = getTestComponent(logoutEvent).vm
+      const { logout } = getTestComponent().vm
 
       await logout()
 
@@ -664,7 +656,7 @@ describe('useAuthentication', () => {
         const error = new FetchError('Fetch Error')
         Object.assign(error, { response: { status: Number(statusCode) } })
 
-        const component = getTestComponent(logoutEvent)
+        const component = getTestComponent()
 
         const { logout } = component.vm
 

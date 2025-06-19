@@ -63,7 +63,7 @@ const { isOpen, navigationItems } = defineProps<{
 const emit = defineEmits<{ close: [] }>()
 
 const { user } = useUser()
-const { logout } = useAuthentication('logout')
+const { logout } = useAuthentication()
 
 const handleLogout = async () => {
   await logout()

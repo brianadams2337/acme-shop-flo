@@ -67,7 +67,7 @@ const emit = defineEmits<{
 }>()
 
 const { user } = useUser()
-const { logout, isSubmitting } = useAuthentication('logout')
+const { logout, isSubmitting } = useAuthentication()
 
 const isGuest = computed(() => user.value?.status?.isGuestCustomer)
 const handleLogout = async () => {

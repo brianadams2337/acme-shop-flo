@@ -5,8 +5,7 @@ import type {
   UpdatePasswordByHashRequest,
 } from '@scayle/storefront-nuxt'
 import { FetchError } from 'ofetch'
-import { computed, ref, readonly, onUnmounted } from 'vue'
-import { useState } from 'nuxt/app'
+import { ref, readonly, onUnmounted } from 'vue'
 import type { Ref } from 'vue'
 import { clearNuxtData } from '#app/composables/asyncData'
 import { useRouteHelpers, useToast, useTrackingEvents } from '~/composables'
@@ -33,7 +32,7 @@ export interface UseAuthenticationReturn {
   /** An async function that handles registering the user */
   register: (data: Omit<RegisterRequest, 'shop_id'>) => Promise<void>
   /** An async function that handles the password recovery process for a specific user */
-  forgotPassword: (email: string) => Promise<boolean>
+  forgotPassword: (email: string) => Promise<void>
   /** An async function that handles resetting the password using a hash */
   resetPasswordByHash: (
     data: Omit<UpdatePasswordByHashRequest, 'shop_id'>,
@@ -53,18 +52,16 @@ export interface UseAuthenticationReturn {
  * In addition of interacting with the authentication, it also takes care of tracking,
  * handling errors and displaying success toast messages.
 
- * @param event - Authentication event type
  * @param method - Authentication type method
  * @returns An {@link UseAuthenticationReturn} object containing reactive authentication data and functions.
  */
 export function useAuthentication(
-  event: AuthTrackingEvent,
   method: AuthenticationType = 'email',
 ): UseAuthenticationReturn {
   const $i18n = useI18n()
   const route = useRoute()
 
-  const errorMessage = useState<string | null>(event, () => null)
+  const errorMessage = ref<string | null>(null)
 
   const toast = useToast()
 
@@ -76,9 +73,9 @@ export function useAuthentication(
 
   const isSubmitting = ref(false)
 
-  const successMessage = computed<string>(() => {
+  const successMessage = (event: AuthTrackingEvent) => {
     return $i18n.t(`authentication.notification.success.${event}`)
-  })
+  }
 
   const { refresh: refreshWishlist } = useWishlist()
   const { refresh: refreshBasket, data: basketData } = useBasket()
@@ -97,10 +94,10 @@ export function useAuthentication(
 
     try {
       await session.login(data)
-      await authenticated()
+      await authenticated('login')
     } catch (error) {
-      trackFailedAuthentication(data.email)
-      handleError(error)
+      trackFailedAuthentication(data.email, 'login')
+      handleError(error, 'login')
     }
 
     isSubmitting.value = false
@@ -111,9 +108,9 @@ export function useAuthentication(
 
     try {
       await session.loginWithIDP({ code })
-      await authenticated()
+      await authenticated('login')
     } catch (error) {
-      handleError(error)
+      handleError(error, 'login')
     }
 
     isSubmitting.value = false
@@ -126,10 +123,10 @@ export function useAuthentication(
 
     try {
       await session.guestLogin(data)
-      await authenticated()
+      await authenticated('guest_login')
     } catch (error) {
-      trackFailedAuthentication(data.email)
-      handleError(error)
+      trackFailedAuthentication(data.email, 'guest_login')
+      handleError(error, 'guest_login')
     }
 
     isSubmitting.value = false
@@ -142,30 +139,28 @@ export function useAuthentication(
 
     try {
       await session.register(data)
-      await authenticated()
+      await authenticated('sign_up')
     } catch (error) {
-      trackFailedAuthentication(data.email)
-      handleError(error)
+      trackFailedAuthentication(data.email, 'sign_up')
+      handleError(error, 'sign_up')
     }
 
     isSubmitting.value = false
   }
 
-  const forgotPassword = async (email: string): Promise<boolean> => {
-    let hasSuccess = true
-
+  const forgotPassword = async (email: string): Promise<void> => {
     isSubmitting.value = true
 
     try {
       await session.forgetPassword({ email })
-      toast.show(successMessage.value, { action: 'CONFIRM', type: 'INFO' })
+      toast.show(successMessage('forgot_password'), {
+        action: 'CONFIRM',
+        type: 'INFO',
+      })
     } catch (error) {
-      handleError(error)
-      hasSuccess = false
+      handleError(error, 'forgot_password')
     }
     isSubmitting.value = false
-
-    return hasSuccess
   }
 
   const resetPasswordByHash = async (
@@ -175,9 +170,9 @@ export function useAuthentication(
 
     try {
       await session.resetPasswordByHash(data)
-      await authenticated()
+      await authenticated('reset_password')
     } catch (error) {
-      handleError(error)
+      handleError(error, 'reset_password')
     }
 
     isSubmitting.value = false
@@ -196,7 +191,7 @@ export function useAuthentication(
         trackLogout()
       }
     } catch (error) {
-      handleError(error)
+      handleError(error, 'logout')
     }
 
     await refresh()
@@ -214,7 +209,7 @@ export function useAuthentication(
    * After a user was authenticated by login in, or registering.
    * Refresh user data, basket & wishlist.
    */
-  const authenticated = async (): Promise<void> => {
+  const authenticated = async (event: AuthTrackingEvent): Promise<void> => {
     await refresh()
 
     if (!user.value) {
@@ -236,10 +231,13 @@ export function useAuthentication(
       (route.query.redirectUrl as string) ?? routeList.home.path,
     )
 
-    toast.show(successMessage.value, { action: 'CONFIRM', type: 'SUCCESS' })
+    toast.show(successMessage(event), { action: 'CONFIRM', type: 'SUCCESS' })
   }
 
-  const trackFailedAuthentication = async (email: string): Promise<void> => {
+  const trackFailedAuthentication = async (
+    email: string,
+    event: AuthTrackingEvent,
+  ): Promise<void> => {
     await trackAuthenticated(
       {
         event,
@@ -273,7 +271,7 @@ export function useAuthentication(
     }
   }
 
-  const handleError = (error: unknown): void => {
+  const handleError = (error: unknown, event: AuthTrackingEvent): void => {
     if (error instanceof FetchError) {
       const status = error.response?.status
       if (status) {

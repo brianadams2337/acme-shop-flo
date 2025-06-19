@@ -105,7 +105,7 @@ const userPayload = reactive<Record<'email' | 'password', string>>({
   email: '',
   password: '',
 })
-const { login, isSubmitting, errorMessage } = useAuthentication('login')
+const { login, isSubmitting, errorMessage } = useAuthentication()
 
 const validationRules = useValidationRules()
 

@@ -9,7 +9,7 @@ import { useAuthentication } from '~/composables'
 
 const route = useRoute()
 
-const { loginIDP } = useAuthentication('login')
+const { loginIDP } = useAuthentication()
 
 const idpCode = computed(() => {
   const code = route.query.code

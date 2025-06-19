@@ -36,17 +36,22 @@ import { ref, computed } from 'vue'
 import useVuelidate from '@vuelidate/core'
 import SFErrorMessageContainer from '../../SFErrorMessageContainer.vue'
 import SFPasswordInput from '../../form/SFPasswordInput.vue'
-import { useValidationRules, useAuthentication } from '~/composables'
+import { useValidationRules } from '~/composables'
 import { SFButton, SFValidatedInputGroup } from '#storefront-ui/components'
 import { PASSWORD_MIN_LENGTH } from '~/constants/password'
 import { useRoute } from '#app/composables/router'
 
-const emit = defineEmits<{ close: [] }>()
+const emit = defineEmits<{
+  close: []
+  submit: [payload: { password: string; hash: string }]
+}>()
+
+defineProps<{
+  errorMessage: string | null
+  isSubmitting: boolean
+}>()
 
 const route = useRoute()
-
-const { resetPasswordByHash, isSubmitting, errorMessage } =
-  useAuthentication('reset_password')
 
 const validationRules = useValidationRules()
 
@@ -74,9 +79,6 @@ const onSubmit = async () => {
   if (!isValid) {
     return
   }
-  await resetPasswordByHash({ password: password.value, hash: token.value })
-  if (!errorMessage.value) {
-    emit('close')
-  }
+  emit('submit', { password: password.value, hash: token.value })
 }
 </script>

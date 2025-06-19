@@ -140,9 +140,7 @@ const isGuestFlowEnabled = ref(false)
 // eslint-disable-next-line sonarjs/no-hardcoded-passwords
 const PASSWORD_FIELD_NAME = 'register-password'
 
-const { register, isSubmitting, guestLogin, errorMessage } = useAuthentication(
-  isGuestFlowEnabled.value ? 'sign_up' : 'guest_login',
-)
+const { register, isSubmitting, guestLogin, errorMessage } = useAuthentication()
 const validationRules = useValidationRules()
 
 type UserPayload = {

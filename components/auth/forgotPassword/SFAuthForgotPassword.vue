@@ -22,7 +22,10 @@
         v-if="isOpen"
         class="px-6 py-4 max-lg:pb-11"
         :prefilled-email="prefilledEmail"
+        :error-message="errorMessage"
+        :is-submitting="isSubmitting"
         @close="closeAndClear"
+        @submit="submit"
       />
     </template>
   </SFSlideIn>
@@ -41,10 +44,18 @@ defineProps<{ prefilledEmail: string }>()
 
 const { toggle, close, isOpen } = useSlideIn(SLIDE_IN_KEY)
 
-const { clearErrorMessage } = useAuthentication('forgot_password')
+const { clearErrorMessage, errorMessage, isSubmitting, forgotPassword } =
+  useAuthentication()
 
 const closeAndClear = () => {
   clearErrorMessage()
   close()
+}
+
+const submit = async (email: string) => {
+  await forgotPassword(email)
+  if (!errorMessage.value) {
+    closeAndClear()
+  }
 }
 </script>

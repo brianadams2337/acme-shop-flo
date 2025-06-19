@@ -5325,13 +5325,13 @@
   dependencies:
     vue-demi "^0.13.11"
 
-"@vueuse/components@13.3.0":
-  version "13.3.0"
-  resolved "https://registry.yarnpkg.com/@vueuse/components/-/components-13.3.0.tgz#bbcad7d1d49b1ca72e26470854cfb556fa504036"
-  integrity sha512-ZnJiVknPtlWyeE4qwIXkDOlHM3W4bgMCxgeXj1Dec/aF/+8N+yAj+7rRdRUWUnqr8uKRin368RjG1FPKsF2erA==
+"@vueuse/components@13.4.0":
+  version "13.4.0"
+  resolved "https://registry.yarnpkg.com/@vueuse/components/-/components-13.4.0.tgz#c921cacaa56616237ba55922b31c320442c9949c"
+  integrity sha512-tWw1BZgKp+9kD+qiCy2uA2N7v27WUUUFHKX3lcFaefGIt/7J1CKczYO/rbZNRobRr7OidoOZuG2NZ2Ym5R2uRw==
   dependencies:
-    "@vueuse/core" "13.3.0"
-    "@vueuse/shared" "13.3.0"
+    "@vueuse/core" "13.4.0"
+    "@vueuse/shared" "13.4.0"
 
 "@vueuse/core@13.3.0":
   version "13.3.0"
@@ -5341,6 +5341,15 @@
     "@types/web-bluetooth" "^0.0.21"
     "@vueuse/metadata" "13.3.0"
     "@vueuse/shared" "13.3.0"
+
+"@vueuse/core@13.4.0":
+  version "13.4.0"
+  resolved "https://registry.yarnpkg.com/@vueuse/core/-/core-13.4.0.tgz#c9b3c21e2e284797e9d899ca2ae01b143d1e901e"
+  integrity sha512-OnK7zW3bTq/QclEk17+vDFN3tuAm8ONb9zQUIHrYQkkFesu3WeGUx/3YzpEp+ly53IfDAT9rsYXgGW6piNZC5w==
+  dependencies:
+    "@types/web-bluetooth" "^0.0.21"
+    "@vueuse/metadata" "13.4.0"
+    "@vueuse/shared" "13.4.0"
 
 "@vueuse/gesture@2.0.0":
   version "2.0.0"
@@ -5352,18 +5361,23 @@
     upath "^2.0.1"
     vue-demi "*"
 
-"@vueuse/integrations@13.3.0":
-  version "13.3.0"
-  resolved "https://registry.yarnpkg.com/@vueuse/integrations/-/integrations-13.3.0.tgz#cb0db38326242b7135274c9df4b3862d3010a6db"
-  integrity sha512-h5mGRYPbiTZTFP/AKELLPGnUDBly7z7Qd1pgEQlT3ItQ0NlZM0vB+8SOQycpSBOBlgg72Zgw+mi2r+4O/G8RuQ==
+"@vueuse/integrations@13.4.0":
+  version "13.4.0"
+  resolved "https://registry.yarnpkg.com/@vueuse/integrations/-/integrations-13.4.0.tgz#d8e0597b695a0ed96a0a484b40a977101177d908"
+  integrity sha512-rwNoE0MNJBUuSzTZcUVrkovtHvpWIySOcC6XpcS33ZarHDNhd9CPvCD4eNl3N0Phz1he1JV0iYULRyPQ5HCbFA==
   dependencies:
-    "@vueuse/core" "13.3.0"
-    "@vueuse/shared" "13.3.0"
+    "@vueuse/core" "13.4.0"
+    "@vueuse/shared" "13.4.0"
 
 "@vueuse/metadata@13.3.0":
   version "13.3.0"
   resolved "https://registry.yarnpkg.com/@vueuse/metadata/-/metadata-13.3.0.tgz#b75185e304f3301e449ebcd55298db54a276b4fa"
   integrity sha512-42IzJIOYCKIb0Yjv1JfaKpx8JlCiTmtCWrPxt7Ja6Wzoq0h79+YVXmBV03N966KEmDEESTbp5R/qO3AB5BDnGw==
+
+"@vueuse/metadata@13.4.0":
+  version "13.4.0"
+  resolved "https://registry.yarnpkg.com/@vueuse/metadata/-/metadata-13.4.0.tgz#c65ca82dc920548d655307f6f3a3344fe3b28a44"
+  integrity sha512-CPDQ/IgOeWbqItg1c/pS+Ulum63MNbpJ4eecjFJqgD/JUCJ822zLfpw6M9HzSvL6wbzMieOtIAW/H8deQASKHg==
 
 "@vueuse/nuxt@13.3.0":
   version "13.3.0"
@@ -5379,6 +5393,11 @@
   version "13.3.0"
   resolved "https://registry.yarnpkg.com/@vueuse/shared/-/shared-13.3.0.tgz#b74f796d584cd1e62547bedb29bbbcf06e434671"
   integrity sha512-L1QKsF0Eg9tiZSFXTgodYnu0Rsa2P0En2LuLrIs/jgrkyiDuJSsPZK+tx+wU0mMsYHUYEjNsuE41uqqkuR8VhA==
+
+"@vueuse/shared@13.4.0":
+  version "13.4.0"
+  resolved "https://registry.yarnpkg.com/@vueuse/shared/-/shared-13.4.0.tgz#0bc48d961bc8154b2fb96c26de869659ead55b71"
+  integrity sha512-+AxuKbw8R1gYy5T21V5yhadeNM7rJqb4cPaRI9DdGnnNl3uqXh+unvQ3uCaA2DjYLbNr1+l7ht/B4qEsRegX6A==
 
 "@whatwg-node/disposablestack@^0.0.6":
   version "0.0.6"

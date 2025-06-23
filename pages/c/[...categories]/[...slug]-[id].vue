@@ -174,13 +174,18 @@ onServerPrefetch(validateCategoryExistsAndRedirect)
 
 const sortingOptions = computed(() => {
   const smartSortingKey = currentCategory.value?.productSorting?.smartSortingKey
+  const customSortingKey =
+    currentCategory.value?.productSorting?.customSortingKey
 
-  if (!smartSortingKey) {
+  if (!smartSortingKey && !customSortingKey) {
     return defaultSortingOptions
   }
   return defaultSortingOptions.map((option) => {
+    const sortingKey = [customSortingKey, smartSortingKey].filter(
+      (item): item is string => !!item,
+    )
     return option.key === DEFAULT_SORTING_KEY
-      ? { ...option, sortingKey: smartSortingKey }
+      ? { ...option, sortingKey }
       : option
   })
 })

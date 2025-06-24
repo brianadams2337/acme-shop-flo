@@ -1,8 +1,10 @@
 {
-  "name": "playwright",
+  "name": "@scayle/storefront-application-playwright",
+  "private": true,
   "author": "SCAYLE Commerce Engine",
   "description": "End-to-End test suite for the SCAYLE Storefront Application.",
   "version": "1.0.0",
+  "packageManager": "pnpm@10.12.1",
   "directories": {
     "test": "tests"
   },
@@ -19,7 +21,6 @@
     "eslint": "9.29.0",
     "eslint-plugin-playwright": "2.2.0",
     "lighthouse": "12.6.1",
-    "playwright-testrail-reporter": "1.2.1",
     "ts-node": "10.9.2",
     "typescript": "5.8.3"
   },

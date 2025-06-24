@@ -14,6 +14,7 @@ import { ROUTES } from '../support/constants'
 test.beforeEach(async ({ page, baseURL }) => {
   await expect(async () => {
     const pageUrl = `${baseURL}/en`
+
     await page.goto(pageUrl, { waitUntil: 'load' })
   }).toPass()
 })
@@ -47,8 +48,10 @@ test.describe('Test from Berlin against US shop', () => {
       await countryDetector.switchShopButton.first().click()
       await page.waitForLoadState('networkidle')
       await page.waitForTimeout(500)
+
       const pageUrl = page.url()
       expect(pageUrl).toContain(ROUTES.homepageDefault)
+
       await expect(countryDetector.switchShopButton).not.toBeVisible()
     }).toPass()
   })
@@ -63,6 +66,7 @@ test.describe('Test from Berlin against US shop', () => {
 
       const pageUrl = page.url()
       expect(pageUrl).toContain(ROUTES.homepage1)
+
       await expect(countryDetector.stayInShopButton).not.toBeVisible()
     }).toPass()
   })
@@ -77,8 +81,10 @@ test.describe('Test from Berlin against US shop', () => {
     await countryDetector.switchShopButton.first().click()
     await page.waitForLoadState('networkidle')
     await page.waitForTimeout(500)
+
     const pageUrl = page.url()
     expect(pageUrl).toContain(ROUTES.homepageDefault)
+
     await expect(countryDetector.switchShopButton).not.toBeVisible()
   })
 })

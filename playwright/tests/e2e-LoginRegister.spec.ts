@@ -121,7 +121,7 @@ test('C2171373 Verify User registration with already registered user account', a
     await signinPage.registerTab.click()
     await signinPage.registerForm.waitFor()
   })
-  await test.step('Fill and sumbit register form', async () => {
+  await test.step('Fill and submit register form', async () => {
     await signinPage.selectGender('f')
     await signinPage.fillRegistrationData(
       TEST_USERS.firstNameRegUser,
@@ -316,7 +316,7 @@ test('C2171374 Verify User registration guest flow', async ({
   header,
   toastMessage,
 }, testInfo) => {
-  // Test skipped only for Firefox due to the timeouts occuring in the Gitlab CI execution.
+  // Test skipped only for Firefox due to the timeouts occurring in the Gitlab CI execution.
   // This is the known issue with .hover() failing in Linux Firefox: https://github.com/microsoft/playwright/issues/27969
   // Feel free to remove the line below and try to execute the test locally or in CI to check if the timeouts are encountered.
   test.skip(

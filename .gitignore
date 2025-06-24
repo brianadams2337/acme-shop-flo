@@ -23,8 +23,6 @@ logs
 .env.*
 !.env.example
 
-.npmrc
-
 # # automatically downloaded fonts
 assets/css/fonts.css
 assets/fonts

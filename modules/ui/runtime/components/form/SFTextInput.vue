@@ -62,7 +62,7 @@ const {
   required = false,
   hasErrors = false,
   placeholder,
-  // Disabling unimport/auto-insert here due misdetection of "readonly" keyword
+  // Disabling unimport/auto-insert here due incorrect detection of "readonly" keyword
   // eslint-disable-next-line unimport/auto-insert
   readonly = false,
   name,

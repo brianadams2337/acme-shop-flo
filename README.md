@@ -119,7 +119,7 @@ Use <http://localhost:3000/> to open the shop
 
 ## Running a production-like preview
 
-Run `yarn build` to build the latest changes and followed by `yarn preview`.
+Run `pnpm build` to build the latest changes and followed by `pnpm preview`.
 Keep in mind that a `redis-server` needs to be running.
 This will run the generated nuxt application from the `.output/` directory,
 similar to how the application will be deployed on a production server.

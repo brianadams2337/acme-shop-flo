@@ -133,7 +133,7 @@ type ModuleOptions = {
    */
   devtools?: boolean
   /**
-   * Synchronise GTM with NuxtRouter
+   * Synchronize GTM with NuxtRouter
    */
   enableRouterSync?: boolean
 

@@ -1,61 +1,53 @@
 import * as dotenv from 'dotenv'
-import type { ReporterDescription } from '@playwright/test'
+
+import type { PlaywrightTestConfig } from '@playwright/test'
 import { defineConfig, devices } from '@playwright/test'
 
 /**
  * Read environment variables from file.
+ * E.g. used for `BASE_URL` environment variable.
  *
  * @see https://github.com/motdotla/dotenv
  */
 dotenv.config({ path: '../.env' })
 
-const BASE_URL = process.env.BASE_URL ?? 'https://localhost:3000/de/' // Try to use local .env BASE_URL or fallback
-
-const reporters: ReporterDescription[] = [
-  ['junit', { outputFile: 'test-results/results.xml' }],
-  ['list', { printSteps: true }],
-]
-
-// Only add the testrail reporter if the host is configured
-if (process.env.TESTRAIL_HOST) {
-  reporters.push(['playwright-testrail-reporter'])
-}
-
-const isTargetingVercel = process.env.TARGET_ENV === 'vercel'
+/**
+ * Define the base URL to use in actions like `await page.goto('/')`.
+ * It tries to use the BASE_URL environment variable or fallback to 'https://localhost:3000/de/'.
+ * If a local .env file is present, it will use the BASE_URL from the file.
+ */
+const BASE_URL = process.env.BASE_URL ?? 'https://localhost:3000/de/'
 
 /**
  * @see https://playwright.dev/docs/test-configuration
  */
-export default defineConfig({
+export const playwrightConfig: PlaywrightTestConfig = {
   testDir: './tests',
-  /* Run tests in files in parallel */
+  // Run tests in files in parallel
   fullyParallel: true,
-  /* Fail the build on CI if you accidentally left test.only in the source code. */
+  // Fail the build on CI if you accidentally left test.only in the source code.
   forbidOnly: !!process.env.CI,
-  /* Retry on CI only */
+  // Retry on CI only
   retries: process.env.CI ? 2 : 0,
-  /* Opt out of parallel tests on CI. */
+  // Opt out of parallel tests on CI.
   workers: process.env.CI ? 1 : undefined,
-  /* Reporter to use. See https://playwright.dev/docs/test-reporters */
-  reporter: reporters,
-  /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
+  // Reporter to use. See https://playwright.dev/docs/test-reporters
+  reporter: [
+    ['junit', { outputFile: 'test-results/results.xml' }],
+    ['list', { printSteps: true }],
+  ],
+  // Shared settings for all the projects below.
+  // See https://playwright.dev/docs/api/class-testoptions
   use: {
-    /* Base URL to use in actions like `await page.goto('/')`. */
+    // Base URL to use in actions like `await page.goto('/')`.
     baseURL: BASE_URL,
-
-    extraHTTPHeaders: isTargetingVercel
-      ? {
-          'x-vercel-protection-bypass':
-            process.env.VERCEL_AUTOMATION_BYPASS_SECRET ?? '',
-          'x-vercel-set-bypass-cookie': 'true',
-        }
-      : {},
-
-    /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
+    // Collect trace when retrying the failed test.
+    // See https://playwright.dev/docs/trace-viewer
     trace: 'on-first-retry',
+    // Ignore HTTPS errors
     ignoreHTTPSErrors: true,
   },
-  /* Configure projects for major browsers */
+  // Configure projects for major browsers
   projects: [
     {
       name: 'chromium',
@@ -77,29 +69,7 @@ export default defineConfig({
       name: 'mobile-safari',
       use: { ...devices['iPhone 15'] },
     },
-    /* Test against mobile viewports. */
-    // {
-    //   name: 'Mobile Chrome',
-    //   use: { ...devices['Pixel 5'] },
-    // },
-    // {
-    //   name: 'Mobile Safari',
-    //   use: { ...devices['iPhone 12'] },
-    // },
-    /* Test against branded browsers. */
-    // {
-    //   name: 'Microsoft Edge',
-    //   use: { ...devices['Desktop Edge'], channel: 'msedge' },
-    // },
-    // {
-    //   name: 'Google Chrome',
-    //   use: { ...devices['Desktop Chrome'], channel: 'chrome' },
-    // },
   ],
-  /* Run your local dev server before starting the tests */
-  // webServer: {
-  //   command: 'npm run start',
-  //   url: 'http://127.0.0.1:3000',
-  //   reuseExistingServer: !process.env.CI,
-  // },
-})
+}
+
+export default defineConfig(playwrightConfig)

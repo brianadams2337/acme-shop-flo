@@ -980,7 +980,7 @@ We've redesigned the Search Results Page for a smoother, more consistent browsin
 - **\[UI\]** After refactoring to use prop destructuring in the `SFProductCardBadgesFooter` component, the default value of the `isPromotionBadgeFullWidth` prop was not being applied correctly.
   This has been fixed, restoring the intended default behavior.
 - **\[UI\]** Implemented a focus trap in the `SFModal` component to maintain responsiveness when a `SFSlideIn` is also open.
-- **\[UI\]** The `isGiftSelectionShown` property in `SFProductPromotionSelectionModal` is now reset when the component is unmounted, preventing the modal from persisting across page navigations.
+- **\[UI\]** The `isGiftSelectionShown` property in `SFProductPromotionSelectionModal` is now reset when the component is unmounted, preventing the modal from persisting across page navigation.
 - **\[UI\]** The `SFPriceInput` component now only emits the `update:model-value` event when the input value actually changes, preventing unnecessary updates.
 - **\[UI\]** Resolved a layout issue with the filter button within the `/pages/c/[...categories]/[...slug]-[id].vue` component.
 - **\[UI\]** Fix sticky behavior of category side navigation in `/pages/c/[...categories]/[...slug]-[id].vue`.
@@ -2059,7 +2059,7 @@ We’ve updated the CMS integration of Storefront, enhancing both Storyblok and 
 
 - **\[CMS\]** Fixed footer social media icons not being visible even though content had been set via CMS provider
 - **\[CMS\]** Fixed issues with Storyblok CMS setup by removing legacy runtime option (`public.storyblok` in `nuxt.config.ts`)
-  and ensuring the necessary `accessToken` is not overriden during Storyblok module initialization.
+  and ensuring the necessary `accessToken` is not overridden during Storyblok module initialization.
 - **\[CMS\]** Fixed issues with Storyblok CMS setup where the `@storyblok/vue` plugin has been initialized twice, resulting in misleading runtime warnings and errors.
 - **\[CMS\]** Replaced Storyblok RichTextResolver class with dedicated `@storyblok/richtext` dependency
 - **\[CMS\]** Removed deprecated `AppFooter` component as it has been replaced by `CMSAppFooter`

@@ -533,7 +533,8 @@ export const getGiftcardAmount = ({
 }
 
 /**
- * Orders can only have vouchers(same as coupons) with a particular type, like 'relative' or 'absolute'. Dependending on this type the value is calculated differently.
+ * Orders can only have vouchers(same as coupons) with a particular type, like 'relative' or 'absolute'.
+ * Depending on this type the value is calculated differently.
  *
  * voucherType is optional and is derived from orderData if not provided
  * @param orderData

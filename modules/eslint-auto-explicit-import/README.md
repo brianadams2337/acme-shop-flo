@@ -46,8 +46,8 @@ Running `eslint` should now throw errors if a source file does use auto-import.
 Adding `--fix` allows for automatically inserting / fixing of missing imports.
 
 ```sh
-# yarn lint .
-yarn lint . --fix
+# pnpm lint .
+pnpm lint . --fix
 ```
 
 ## Troubleshooting

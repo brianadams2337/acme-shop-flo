@@ -3,12 +3,11 @@
   "description": "SCAYLE Storefront demo shop application based on Nuxt 3",
   "version": "1.10.0",
   "private": true,
-  "workspaces": [
-    "./"
-  ],
   "engines": {
-    "node": ">= 22.15.0"
+    "node": ">= 22.15.0",
+    "pnpm": ">= 10.12.0"
   },
+  "packageManager": "pnpm@10.12.1",
   "website": "https://scayle.dev/en/storefront-guide/developer-guide/getting-started/about-storefront",
   "type": "module",
   "scripts": {
@@ -18,16 +17,15 @@
     "coverage": "vitest run --coverage",
     "dev:https": "nuxt dev --https",
     "dev": "nuxt dev --development",
-    "e2e:test": "yarn --cwd ./playwright e2e:test",
-    "e2e:ui": "yarn --cwd ./playwright e2e:ui",
+    "e2e:test": "pnpm --dir ./playwright e2e:test",
+    "e2e:ui": "pnpm --dir ./playwright e2e:ui",
     "format:fix": "prettier --ignore-unknown --log-level warn --write .",
     "format": "prettier --ignore-unknown --log-level warn --check .",
     "generate": "nuxt generate",
     "license:overview": "license-checker --csv --out node-licenses.csv",
     "lint:fix": "eslint . --fix",
-    "lint:script": "eslint .",
-    "lint": "yarn lint:script",
-    "postinstall": "patch-package && nuxt prepare",
+    "lint": "pnpm eslint .",
+    "prepare": "nuxt prepare",
     "preview": "nuxt preview",
     "start:node": "node --env-file .env .output/server/index.mjs",
     "storyblok:download": "env-cmd -f .env.storyblok -x storyblok pull-components --space \\$STORYBLOK_SPACE_ID",
@@ -49,8 +47,8 @@
     "@intlify/eslint-plugin-vue-i18n": "4.0.1",
     "@nuxt/eslint": "1.4.1",
     "@nuxt/image": "1.10.0",
-    "@nuxt/kit": "3.17.4",
-    "@nuxt/schema": "3.17.4",
+    "@nuxt/kit": "3.16.2",
+    "@nuxt/schema": "3.16.2",
     "@nuxt/test-utils": "3.18.0",
     "@nuxtjs/i18n": "9.5.5",
     "@nuxtjs/storybook": "8.3.5",
@@ -80,38 +78,37 @@
     "autoprefixer": "10.4.21",
     "debug": "4.4.1",
     "env-cmd": "10.1.0",
-    "eslint": "9.29.0",
     "eslint-formatter-gitlab": "6.0.1",
     "eslint-plugin-nuxt": "4.0.0",
     "eslint-plugin-storybook": "9.0.12",
     "eslint-plugin-tailwindcss": "3.18.0",
     "eslint-plugin-unimport": "0.1.2",
     "eslint-plugin-vuejs-accessibility": "2.4.1",
+    "eslint": "9.29.0",
     "fishery": "2.3.1",
     "happy-dom": "18.0.1",
     "jiti": "2.4.2",
     "license-checker": "25.0.1",
     "lint-staged": "16.1.2",
-    "nuxt": "3.16.2",
     "nuxt-svgo": "4.2.2",
+    "nuxt": "3.16.2",
     "ofetch": "1.4.1",
-    "patch-package": "8.0.0",
     "pathe": "2.0.3",
-    "postcss": "8.5.6",
     "postcss-custom-properties": "14.0.6",
     "postcss-html": "1.8.0",
     "postcss-import": "16.1.1",
+    "postcss": "8.5.6",
     "postinstall-postinstall": "2.1.0",
     "prettier": "3.0.3",
-    "storyblok": "3.36.1",
     "storyblok-generate-ts": "2.2.0",
     "storybook": "8.6.12",
+    "storyblok": "3.36.1",
     "tailwindcss": "3.4.17",
     "typescript": "5.8.3",
     "unimport": "5.0.1",
     "utility-types": "3.11.0",
-    "vitest": "3.2.4",
     "vitest-environment-nuxt": "1.0.1",
+    "vitest": "3.2.4",
     "vue-tsc": "2.2.10"
   },
   "dependencies": {
@@ -178,17 +175,23 @@
     "./**/*{.md,.json,.css}\"": "prettier --write "
   },
   "volta": {
-    "node": "22.16.0"
+    "node": "22.16.0",
+    "pnpm": "10.12.3"
   },
-  "resolutions": {
-    "import-in-the-middle": "1.14.2",
-    "unicorn-magic": "0.2.0",
-    "vue": "3.5.17",
-    "@vue/compiler-dom": "3.5.17",
-    "@vue/compiler-sfc": "3.5.17",
-    "@vue/compiler-core": "3.5.17",
-    "@vue/compiler-ssr": "3.5.17",
-    "@vue/shared": "3.5.17",
-    "globals": "16.2.0"
+  "pnpm": {
+    "overrides": {
+      "@nuxt/kit": "3.16.2",
+      "@nuxt/schema": "3.16.2",
+      "@vue/compiler-core": "3.5.17",
+      "@vue/compiler-dom": "3.5.17",
+      "@vue/compiler-sfc": "3.5.17",
+      "@vue/compiler-ssr": "3.5.17",
+      "@vue/shared": "3.5.17",
+      "esbuild": "0.25.3",
+      "globals": "16.2.0",
+      "import-in-the-middle": "1.14.2",
+      "unicorn-magic": "0.2.0",
+      "vue": "3.5.17"
+    }
   }
 }

@@ -28,6 +28,7 @@ test.beforeEach(
   async ({ accountPage, homePage, page, countryDetector }, testInfo) => {
     const projectName = testInfo.project.name
     const { email, password } = getUserForBrowser(projectName)
+
     await homePage.visitPage()
     await page.waitForLoadState('networkidle')
     await countryDetector.closeModal()
@@ -65,6 +66,7 @@ test('C2173505 C2173506 C2173507 C2173508 C2181795 C2182370 C2181791 Verify OSP'
     } else {
       await mainNavigation.navigateToPlpMainCategory()
     }
+
     await breadcrumb.breadcrumbCategoryActive.waitFor()
     await productListingPage.productCard.first().waitFor()
     await productListingPage.productImage.first().click()
@@ -72,6 +74,7 @@ test('C2173505 C2173506 C2173507 C2173508 C2181795 C2182370 C2181791 Verify OSP'
     await productDetailPage.chooseProductVariant()
     await productDetailPage.addProductToBasket()
   })
+
   await test.step('Visit Checkout page and continue with order', async () => {
     await page.goto(ROUTES.checkout, { waitUntil: 'commit' })
     await checkoutPage.basketContainer.waitFor()
@@ -82,6 +85,7 @@ test('C2173505 C2173506 C2173507 C2173508 C2181795 C2182370 C2181791 Verify OSP'
     await checkoutPage.checkboxAcceptTerms.check()
     await checkoutPage.ctaPayButton.click()
   })
+
   await test.step('Verify OSP Order overview', async () => {
     await orderSuccessPage.ospGreetingBox.waitFor()
     await countryDetector.closeModal()
@@ -91,6 +95,7 @@ test('C2173505 C2173506 C2173507 C2173508 C2181795 C2182370 C2181791 Verify OSP'
     await expect(orderSuccessPage.ospPaymentData).toBeVisible()
     await expect(orderSuccessPage.ospDeliveryAddress).toBeVisible()
   })
+
   await test.step('Verify OSP Order product details', async () => {
     await expect(orderSuccessPage.ospDeliveryDate).toBeVisible()
     await expect(orderSuccessPage.ospCarrier).toBeVisible()
@@ -103,6 +108,7 @@ test('C2173505 C2173506 C2173507 C2173508 C2181795 C2182370 C2181791 Verify OSP'
     await expect(orderSuccessPage.ospProductQuantity.first()).toBeVisible()
     await expect(orderSuccessPage.ospProductPrice.first()).toBeVisible()
   })
+
   await test.step('Verify OSP Price summary', async () => {
     await orderSuccessPage.assertOspPriceSummary(
       orderSuccessPage.ospSubtotal,
@@ -110,21 +116,25 @@ test('C2173505 C2173506 C2173507 C2173508 C2181795 C2182370 C2181791 Verify OSP'
       orderSuccessPage.ospTotal,
     )
   })
+
   await test.step('Verify OSP SEO', async () => {
     await verifySeoMetaTags(page, {
       robots: OSP_TEST_DATA.seoRobots,
     })
   })
+
   await test.step('Verify OSP CTA buttons', async () => {
     if (isMobile(page)) {
       await orderSuccessPage.ospContinueShoppingButton.nth(1).click()
     } else {
       await orderSuccessPage.ospContinueShoppingButton.nth(0).click()
     }
+
     await homePage.homepageContent.waitFor()
     await expect(homePage.homepageContent).toBeAttached()
     await page.goBack()
     await page.waitForLoadState('networkidle')
+
     if (isMobile(page)) {
       await orderSuccessPage.ospOrderDetailsButton.nth(1).waitFor()
       await orderSuccessPage.ospOrderDetailsButton.nth(1).click()
@@ -132,6 +142,7 @@ test('C2173505 C2173506 C2173507 C2173508 C2181795 C2182370 C2181791 Verify OSP'
       await orderSuccessPage.ospOrderDetailsButton.nth(0).waitFor()
       await orderSuccessPage.ospOrderDetailsButton.nth(0).click()
     }
+
     await page.waitForTimeout(500)
     expect(page.url()).toContain(ROUTES.orders)
   })
@@ -149,13 +160,14 @@ test('C2182954 Verify OSP Error page', async ({
   orderSuccessPage,
   homePage,
 }) => {
-  await test.step('Visit OSP with incorect token and assert page elements', async () => {
+  await test.step('Visit OSP with incorrect token and assert page elements', async () => {
     await page.goto(OSP_TEST_DATA.incorrectCbdUrl, { waitUntil: 'commit' })
     await orderSuccessPage.ospEmptyStateContainer.waitFor()
     await expect(orderSuccessPage.ospEmptyStateHeadline).toBeVisible()
     await expect(orderSuccessPage.ospEmptyStateSubheadline).toBeVisible()
     await expect(orderSuccessPage.ospEmptyStateIcon).toBeVisible()
   })
+
   await test.step('Click Continue Shopping button and assert Homepage is loaded', async () => {
     await orderSuccessPage.ospEmptyStateContinueShoppingButton.waitFor()
     await orderSuccessPage.ospEmptyStateContinueShoppingButton.click()

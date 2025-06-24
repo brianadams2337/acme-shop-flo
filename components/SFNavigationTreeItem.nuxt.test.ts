@@ -113,7 +113,7 @@ describe('active Link', () => {
     expect(item).not.toHaveAttribute('target')
   })
 
-  it('shoud open page navigation items in new tab', async () => {
+  it('should open page navigation items in new tab', async () => {
     const { getByRole } = await renderSuspended(SFNavigationTreeItem, {
       props: {
         navigationItem: navigationItemPageFactory.build({

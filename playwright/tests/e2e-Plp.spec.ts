@@ -191,10 +191,10 @@ test('C2130727: Verify PLP Filters and Product Count', async ({
 
 /**
  * Verifies that directly navigating to a PLP with predefined filters
- * in the URL (deeplink) correctly applies those filters, as indicated
+ * in the URL (deep-link) correctly applies those filters, as indicated
  * by the filter counter and the checked state of the filter options.
  */
-test('C2139744: Verify PLP Filters deeplink', async ({
+test('C2139744: Verify PLP Filters deep-link', async ({
   productListingPage,
   filters,
   countryDetector,
@@ -279,14 +279,15 @@ test('C2132074: Verify PLP Product siblings', async ({
  */
 test('C2141756: Verify PLP page title', async ({ breadcrumb, page }) => {
   await breadcrumb.breadcrumbCategoryLvl0.waitFor()
+
   const category = await breadcrumb.breadcrumbCategoryLvl0.textContent()
-  const breadrumbActive =
+  const breadcrumbActive =
     await breadcrumb.breadcrumbCategoryActive.textContent()
   const productCounter = await breadcrumb.productCounter.textContent()
 
   const activeCategory =
-    breadrumbActive !== null
-      ? breadrumbActive
+    breadcrumbActive !== null
+      ? breadcrumbActive
           .replace(new RegExp(productCounter as string, 'g'), '')
           .trim()
       : ''
@@ -397,7 +398,7 @@ test('C2162411 C2229455 Verify PLP Sorting', async ({
 /**
  * Verifies the SEO meta tags (robots and canonical) on the PLP
  * in its default state, after applying sorting, and after navigating to
- * the PLP with applied filters via a deeplink. It also checks if the main
+ * the PLP with applied filters via a deep-link. It also checks if the main
  * headline (H1) contains the page title in the default state.
  */
 test('C2139182: Verify PLP SEO data', async ({

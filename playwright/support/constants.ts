@@ -12,8 +12,8 @@ export const LIGHTHOUSE_THRESHOLDS = {
  * within `/playwright/tests/e2e-Plp.spec.ts`. Extend this object to include
  * other filter keys (e.g., color, size) to broaden deep link filter testing.
  *
- * Note: if this object is extended with additional filters, the test "C2139744: Verify PLP Filters deep link"
- * should be adjusted accordingly.
+ * NOTE: If this object is extended with additional filters, the test
+ * "C2139744: Verify PLP Filters deep link" should be adjusted accordingly.
  */
 export const PLP_FILTER_DEEP_LINK = {
   sale: true,
@@ -94,8 +94,8 @@ export const LIGHTHOUSE_AUDIT_PATHS = {
  */
 export const TEST_USERS = {
   /**
-   Dedicated test user for Chromium in tests that are prone to conflicts (e.g. adding product to Basket in parallel for all browsers).
-  This user is also used as a default test user across the Storefront Boilerplate end-to-end tests suite.
+   * Dedicated test user for Chromium in tests that are prone to conflicts (e.g. adding product to Basket in parallel for all browsers).
+   * This user is also used as a default test user across the Storefront Boilerplate end-to-end tests suite.
    */
   testUserEmail1: process.env.TEST_USER_EMAIL1 as string,
   /** Dedicated test user for desktop Firefox. */
@@ -139,11 +139,6 @@ export const SORTING = {
   priceDesc: 'price_desc',
   priceAsc: 'price_asc',
   reductionDesc: 'reduction_desc',
-}
-
-export const HYDRATION_TEST_USER = {
-  userEmail: process.env.TEST_USER_EMAIL6 as string,
-  password: process.env.TEST_USER_PASSWORD as string,
 }
 
 export const ROUTES = {

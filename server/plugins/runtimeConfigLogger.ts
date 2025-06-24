@@ -28,14 +28,14 @@ export default defineNitroPlugin(() => {
     'secret',
   ]
 
-  const logableConfig: Record<string, unknown> = purifySensitiveData(
+  const loggableConfig: Record<string, unknown> = purifySensitiveData(
     runtimeConfig,
     sensitiveKeys,
   )
 
   const configToPrint = stringToBoolean(process.env.CONFIG_LOG_PRETTIER_ENABLED)
-    ? JSON.stringify(logableConfig, null, 2)
-    : JSON.stringify(logableConfig)
+    ? JSON.stringify(loggableConfig, null, 2)
+    : JSON.stringify(loggableConfig)
 
   console.log(
     '[storefront-application] runtimeConfig after startup:',

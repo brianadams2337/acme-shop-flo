@@ -14,7 +14,7 @@ Initial example stories have been added for key UI components to demonstrate usa
 To run Storybook locally:
 
 ```bash
-yarn storybook
+pnpm storybook
 ```
 
 This starts a development server at [http://localhost:6006](http://localhost:6006).
@@ -22,7 +22,7 @@ This starts a development server at [http://localhost:6006](http://localhost:600
 To generate a static Storybook build, use:
 
 ```bash
-yarn storybook:build
+pnpm storybook:build
 ```
 
 The output will be placed in the `public/storybook` directory and can be accessed at [http://localhost:3000/storybook](http://localhost:3000/storybook).

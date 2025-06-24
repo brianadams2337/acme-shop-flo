@@ -1,5 +1,5 @@
 <template>
-  <SFLocalizedLink :to="link" raw tabindex="-1">
+  <SFLocalizedLink class="min-w-full" :to="link" raw tabindex="-1">
     <SFProductImage
       :image="image"
       :image-loading="imageLoading"

@@ -1,6 +1,9 @@
 <template>
-  <div class="relative shrink-0 overflow-hidden rounded-lg bg-gray-100">
-    <SFLocalizedLink v-if="link" :to="link" raw tabindex="-1">
+  <div
+    class="relative flex w-full grow items-center justify-center overflow-hidden rounded-lg bg-gray-100"
+    :class="isSmallSize ? 'max-w-28' : 'max-w-36'"
+  >
+    <SFLocalizedLink v-if="link" class="w-full" :to="link" raw tabindex="-1">
       <SFProductImage
         v-if="image"
         :image="image"

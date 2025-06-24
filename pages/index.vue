@@ -11,13 +11,14 @@ import { defineOptions } from 'vue'
 import { sanitizeCanonicalURL } from '@scayle/storefront-nuxt'
 import { useAvailableShops } from '@scayle/storefront-nuxt/composables'
 import type { OnlineStore, WithContext } from 'schema-dts'
+import { join } from 'pathe'
 import {
   useHead,
   useSeoMeta,
   definePageMeta,
   useSwitchLocalePath,
 } from '#imports'
-import { useNuxtApp, useRuntimeConfig } from '#app'
+import { useNuxtApp, useRequestURL, useRuntimeConfig } from '#app'
 import { useRoute } from '#app/composables/router'
 import CMSContentPage from '#storefront-cms/components/ContentPage.vue'
 import { useJsonld } from '~/composables/useJsonld'
@@ -25,13 +26,13 @@ import SFContentPageSkeletonLoader from '~/components/SFContentPageSkeletonLoade
 import { type Locale, useI18n } from '#i18n'
 import { useRouteHelpers } from '~/composables'
 
-const config = useRuntimeConfig()
 const route = useRoute()
 const availableShops = useAvailableShops()
 const i18n = useI18n()
 const switchLocalePath = useSwitchLocalePath()
 const { getLocalizedHref } = useRouteHelpers()
-
+const { origin } = useRequestURL()
+const config = useRuntimeConfig()
 useSeoMeta({ robots: 'index,follow' })
 
 useHead({
@@ -39,7 +40,9 @@ useHead({
     {
       rel: 'canonical',
       key: 'canonical',
-      href: sanitizeCanonicalURL(`${config.public.baseUrl}${route?.fullPath}`),
+      href: sanitizeCanonicalURL(
+        `${origin}${join(config.app.baseURL, route?.fullPath)}`,
+      ),
     },
     ...availableShops.value.flatMap((shop) => {
       const href = getLocalizedHref(
@@ -71,7 +74,7 @@ definePageMeta({ pageType: 'homepage' })
 
 const {
   $config: {
-    public: { baseUrl, shopName },
+    public: { shopName },
   },
 } = useNuxtApp()
 
@@ -81,8 +84,8 @@ useJsonld(
       '@context': 'https://schema.org',
       '@type': 'OnlineStore',
       name: shopName,
-      url: baseUrl,
-      logo: `${baseUrl}/logo.svg`,
+      url: origin,
+      logo: `${origin}${join(config.app.baseURL, 'logo.svg')}`,
     }) as WithContext<OnlineStore>,
 )
 </script>

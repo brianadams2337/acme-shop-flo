@@ -316,9 +316,6 @@ export default defineNuxtConfig({
         previewAccessToken: process.env.NUXT_PUBLIC_CMS_PREVIEW_TOKEN,
         space: process.env.NUXT_PUBLIC_CMS_SPACE,
       },
-      /** Nuxt - Base URL
-       * https://nuxt.com/docs/api/nuxt-config#baseurl */
-      baseUrl: process.env.BASE_URL, // Override: NUXT_PUBLIC_BASE_URL
 
       // Override: NUXT_PUBLIC_CDN_URL
       cdnUrl: '',

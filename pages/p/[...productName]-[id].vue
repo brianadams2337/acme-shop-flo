@@ -121,7 +121,13 @@ import {
 } from '@scayle/storefront-nuxt'
 import { clearNuxtData } from '#app/composables/asyncData'
 import { useRoute, navigateTo, useRouter } from '#app/composables/router'
-import { useSeoMeta, useHead, definePageMeta, useImage } from '#imports'
+import {
+  useSeoMeta,
+  useHead,
+  definePageMeta,
+  useImage,
+  useRequestURL,
+} from '#imports'
 import { useNuxtApp } from '#app/nuxt'
 import { createError } from '#app/composables/error'
 import { useJsonld } from '~/composables/useJsonld'
@@ -322,6 +328,7 @@ const breadcrumbs = computed(() =>
 
 const { getImage } = useImage()
 const { $config } = useNuxtApp()
+const { origin } = useRequestURL()
 
 const productInfo = computed(() => ({
   name: name.value,
@@ -332,7 +339,7 @@ const productInfo = computed(() => ({
     return generateProductSchema({
       productName: `${name.value}, ${color.value}`,
       variant,
-      url: `${$config.public.baseUrl}${route.fullPath}`,
+      url: `${origin}${route.fullPath}`,
       size,
       image: image.value
         ? getImage(image.value?.hash, {
@@ -351,7 +358,10 @@ const productInfo = computed(() => ({
 const { canonicalLink, robots, title, productJsonLd, productBreadcrumbJsonLd } =
   useProductSeoData(
     breadcrumbs,
-    { baseUrl: $config.public.baseUrl, fullPath: route.fullPath },
+    {
+      baseUrl: `${origin}${$config.app.baseURL}`,
+      fullPath: route.fullPath,
+    },
     productInfo,
   )
 

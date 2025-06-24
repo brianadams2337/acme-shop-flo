@@ -72,7 +72,7 @@ import {
   type Product,
   type Category,
 } from '@scayle/storefront-nuxt'
-import { useSeoMeta, useHead, definePageMeta } from '#imports'
+import { useSeoMeta, useHead, definePageMeta, useRequestURL } from '#imports'
 import { useI18n, type Locale } from '#i18n'
 import { navigateTo, useRoute } from '#app/composables/router'
 import { useNuxtApp } from '#app/nuxt'
@@ -269,9 +269,11 @@ const breadcrumbs = computed(() =>
     : [],
 )
 
+const { origin } = useRequestURL()
+
 const { title, robots, canonicalLink, categoryBreadcrumbSchema } =
   useProductListingSeoData(breadcrumbs, route, {
-    baseUrl: $config.public.baseUrl,
+    baseUrl: `${origin}${$config.app.baseURL}`,
     fullPath: route.fullPath,
   })
 

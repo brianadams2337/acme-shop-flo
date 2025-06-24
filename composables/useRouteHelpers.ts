@@ -24,6 +24,7 @@ import {
 } from '#storefront-search/utils'
 import { buildQueryFromCategoryFilters } from '#storefront-product-listing'
 import { useNuxtApp } from '#app/nuxt'
+import { useRequestURL } from '#app'
 
 /**
  * A collection of helpers for building and working with routes.
@@ -35,6 +36,7 @@ export function useRouteHelpers() {
   const currentShop = useCurrentShop()
   const switchLocalePath = useSwitchLocalePath()
   const { $config, $i18n } = useNuxtApp()
+  const { origin } = useRequestURL()
 
   /**
    * Localized a route and navigates to it.
@@ -262,12 +264,10 @@ export function useRouteHelpers() {
       ? baseUrlPrefix
       : joinURL(baseUrlPrefix, pathname)
 
-    const origin = new URL(
-      $i18n.differentDomains
-        ? switchLocalePath(locale)
-        : $config.public.baseUrl,
-    ).origin
-    return new URL(fullPath, origin).href
+    const newOrigin = $i18n.differentDomains
+      ? new URL(switchLocalePath(locale)).origin
+      : origin
+    return new URL(fullPath, newOrigin).href
   }
 
   return {

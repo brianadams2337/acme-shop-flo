@@ -9,9 +9,10 @@
       <slot name="action" />
     </div>
     <SFFadeInFromBottomTransition appear>
+      <!-- The transparent border is crucial for keeping the hover state while moving the cursor between the action and content, prevent the popover from flickering.  -->
       <div
         v-if="isOpen"
-        class="absolute right-0 z-10 mt-2 hidden min-w-max overflow-hidden bg-clip-content supports-hover:block"
+        class="absolute right-0 z-10 hidden min-w-max overflow-hidden border-t-8 border-transparent bg-clip-content supports-hover:block"
       >
         <div class="overflow-hidden rounded-lg border border-gray-400 bg-white">
           <slot name="content" />

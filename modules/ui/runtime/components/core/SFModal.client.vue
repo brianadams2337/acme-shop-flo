@@ -44,8 +44,17 @@ import { ClientOnly } from '#components'
 
 const { hideCloseButton = false, transitionComponent = SFFadeInTransition } =
   defineProps<{
+    /**
+     * Whether to hide the close button in the top-right corner.
+     */
     hideCloseButton?: boolean
+    /**
+     * Vue component to use for the modal transition animation.
+     */
     transitionComponent?: Component
+    /**
+     * Whether to apply transition on initial render.
+     */
     appear?: boolean
   }>()
 

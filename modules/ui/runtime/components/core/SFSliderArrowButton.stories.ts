@@ -10,7 +10,7 @@ import SFSliderArrowButton from './SFSliderArrowButton.vue'
  * - Optional inverted radius styling
  */
 export default {
-  title: 'Core/SFSliderArrowButton',
+  title: 'Base Components/SFSliderArrowButton',
   component: SFSliderArrowButton,
   argTypes: {
     direction: {

@@ -15,7 +15,7 @@ import { ButtonVariant, Size } from '#storefront-ui'
  * - Link behavior when using the 'to' prop
  */
 export default {
-  title: 'Core/SFButton',
+  title: 'Base Components/SFButton',
   component: SFButton,
   argTypes: {
     variant: {

@@ -17,7 +17,16 @@
 </template>
 
 <script setup lang="ts" generic="T">
-defineProps<{ item: T; inputAriaLabel?: string }>()
+defineProps<{
+  /**
+   * The value associated with this chip. This will be included in the v-model array when selected.
+   */
+  item: T
+  /**
+   * Accessibility label for the checkbox input. Should describe the action and context.
+   */
+  inputAriaLabel?: string
+}>()
 
 const model = defineModel<T[]>()
 </script>

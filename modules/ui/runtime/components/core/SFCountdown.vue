@@ -30,8 +30,17 @@ const {
   unitSize = 'long',
   timeUntil,
 } = defineProps<{
+  /**
+   * ISO date string representing the target date and time for the countdown.
+   */
   timeUntil: string
+  /**
+   * Whether to display unit labels (days, hours, minutes, seconds) next to the numbers.
+   */
   showUnits?: boolean
+  /**
+   * Length of unit labels. Short uses single letters (D, H, M, S), long uses full words.
+   */
   unitSize?: 'short' | 'long'
 }>()
 

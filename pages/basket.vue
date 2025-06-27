@@ -69,7 +69,8 @@
 import { computed, defineOptions, onMounted } from 'vue'
 import { useConfirmDialog, whenever } from '@vueuse/core'
 import { sanitizeCanonicalURL, type BasketItem } from '@scayle/storefront-nuxt'
-import { useHead, useSeoMeta, definePageMeta } from '#imports'
+import { join } from 'pathe'
+import { useHead, useSeoMeta, definePageMeta, useRequestURL } from '#imports'
 import { createError, useNuxtApp } from '#app'
 import { useRoute } from '#app/composables/router'
 import { WishlistListingMetadata } from '~/constants/listingMetadata'
@@ -96,7 +97,7 @@ import { isBuyXGetYType } from '#storefront-promotions/utils'
 
 const route = useRoute()
 const { pageState } = usePageState()
-
+const { origin } = useRequestURL()
 const wishlist = useWishlist()
 const {
   data: basketData,
@@ -177,17 +178,14 @@ const deleteBasketItem = async (item: BasketItem) => {
   await removeItem(item)
 }
 
-const {
-  $i18n,
-  $config: {
-    public: { shopName, baseUrl },
-  },
-} = useNuxtApp()
+const { $i18n, $config } = useNuxtApp()
 
 useSeoMeta({
   robots: 'noindex,follow',
   title: $i18n.t('basket_page.meta.title'),
-  description: $i18n.t('basket_page.meta.description', { shopName }),
+  description: $i18n.t('basket_page.meta.description', {
+    shopName: $config.public.shopName,
+  }),
 })
 
 useHead({
@@ -195,7 +193,9 @@ useHead({
     {
       rel: 'canonical',
       key: 'canonical',
-      href: sanitizeCanonicalURL(`${baseUrl}${route.fullPath}`),
+      href: sanitizeCanonicalURL(
+        `${origin}${join($config.app.baseURL, route.fullPath)}`,
+      ),
     },
   ],
 })

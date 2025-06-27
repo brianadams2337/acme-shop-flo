@@ -119,6 +119,7 @@ import {
   type Product,
   type Variant,
 } from '@scayle/storefront-nuxt'
+import { join } from 'pathe'
 import { clearNuxtData } from '#app/composables/asyncData'
 import { useRoute, navigateTo, useRouter } from '#app/composables/router'
 import {
@@ -339,7 +340,7 @@ const productInfo = computed(() => ({
     return generateProductSchema({
       productName: `${name.value}, ${color.value}`,
       variant,
-      url: `${origin}${route.fullPath}`,
+      url: `${origin}${join($config.app.baseURL, route.fullPath)}`,
       size,
       image: image.value
         ? getImage(image.value?.hash, {
@@ -359,8 +360,8 @@ const { canonicalLink, robots, title, productJsonLd, productBreadcrumbJsonLd } =
   useProductSeoData(
     breadcrumbs,
     {
-      baseUrl: `${origin}${$config.app.baseURL}`,
-      fullPath: route.fullPath,
+      baseUrl: origin,
+      fullPath: join($config.app.baseURL, route.fullPath),
     },
     productInfo,
   )

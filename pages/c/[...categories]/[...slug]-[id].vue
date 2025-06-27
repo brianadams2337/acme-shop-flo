@@ -72,6 +72,7 @@ import {
   type Product,
   type Category,
 } from '@scayle/storefront-nuxt'
+import { join } from 'pathe'
 import { useSeoMeta, useHead, definePageMeta, useRequestURL } from '#imports'
 import { useI18n, type Locale } from '#i18n'
 import { navigateTo, useRoute } from '#app/composables/router'
@@ -273,8 +274,8 @@ const { origin } = useRequestURL()
 
 const { title, robots, canonicalLink, categoryBreadcrumbSchema } =
   useProductListingSeoData(breadcrumbs, route, {
-    baseUrl: `${origin}${$config.app.baseURL}`,
-    fullPath: route.fullPath,
+    baseUrl: origin,
+    fullPath: join($config.app.baseURL, route.fullPath),
   })
 
 useJsonld(() => categoryBreadcrumbSchema.value)

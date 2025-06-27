@@ -56,12 +56,14 @@
 import { defineOptions } from 'vue'
 import { whenever } from '@vueuse/core'
 import { sanitizeCanonicalURL } from '@scayle/storefront-nuxt'
+import { join } from 'pathe'
 import {
   useHead,
   useSeoMeta,
   definePageMeta,
   useNuxtApp,
   useRoute,
+  useRequestURL,
 } from '#imports'
 import SFProductCardSkeleton from '~/components/product/card/SFProductCardSkeleton.vue'
 import SFAsyncStatusWrapper from '~/components/SFAsyncStatusWrapper.vue'
@@ -74,7 +76,7 @@ import { ClientOnly } from '#components'
 import { useI18n } from '#i18n'
 
 const { count, status, items, products } = useWishlist()
-
+const { origin } = useRequestURL()
 const { t } = useI18n()
 
 const { trackWishlistPage } = useWishlistTracking()
@@ -86,11 +88,7 @@ whenever(
   { once: true, immediate: true },
 )
 
-const {
-  $config: {
-    public: { baseUrl },
-  },
-} = useNuxtApp()
+const { $config } = useNuxtApp()
 useSeoMeta({
   robots: 'noindex, nofollow',
   title: t('wishlist_page.meta.title'),
@@ -103,7 +101,9 @@ useHead({
     {
       rel: 'canonical',
       key: 'canonical',
-      href: sanitizeCanonicalURL(`${baseUrl}${route?.fullPath}`),
+      href: sanitizeCanonicalURL(
+        `${origin}${join($config.app.baseURL, route.fullPath)}`,
+      ),
     },
   ],
 })

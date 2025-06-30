@@ -14,7 +14,6 @@ import SFButton from './SFButton.vue'
  * - Focus trap for accessibility and keyboard navigation
  * - Backdrop click to close functionality
  * - Escape key support for closing
- * - Configurable close button visibility
  * - Customizable transition animations
  * - Proper ARIA attributes and accessibility
  */
@@ -79,37 +78,4 @@ export const Default = {
       </SFModal>
     </div>`,
   }),
-} satisfies Meta<typeof SFModal>
-
-/**
- * Modal without a close button, requiring users to interact with the content
- * or use the escape key to close. Useful for important confirmations or forms.
- */
-export const NoCloseButton = {
-  render: (args) => ({
-    components: { SFModal, SFButton },
-    setup() {
-      const isVisible = ref(false)
-      return { args, isVisible }
-    },
-    template: `
-    <div>
-      <SFButton @click="isVisible = true">Open Modal (No Close Button)</SFButton>
-      <SFModal v-model:visible="isVisible" v-bind="args">
-        <div class="p-6">
-          <h2 class="mb-4 text-xl font-semibold">Important Action Required</h2>
-          <p class="mb-4 text-gray-600">
-            This modal doesn't have a close button. You must make a choice or press Escape to close.
-          </p>
-          <div class="flex justify-end gap-2">
-            <SFButton variant="secondary" @click="isVisible = false">Cancel</SFButton>
-            <SFButton @click="isVisible = false">Confirm Action</SFButton>
-          </div>
-        </div>
-      </SFModal>
-    </div>`,
-  }),
-  args: {
-    hideCloseButton: true,
-  },
 } satisfies Meta<typeof SFModal>

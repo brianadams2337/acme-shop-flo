@@ -118,14 +118,9 @@ const {
 
 const range = defineModel<RangeTuple>({
   required: true,
-  set([min, max]) {
-    return [roundDownPrice(min), roundUpPrice(max)]
-  },
-  get([min, max]) {
-    return [roundDownPrice(min), roundUpPrice(max)]
-  },
+  set: ([min, max]) => [roundDownPrice(min), roundUpPrice(max)],
+  get: ([min, max]) => [roundDownPrice(min), roundUpPrice(max)],
 })
-console.log('filterSlug', range)
 
 const currentShop = useCurrentShop()
 const locale = currentShop.value!.locale

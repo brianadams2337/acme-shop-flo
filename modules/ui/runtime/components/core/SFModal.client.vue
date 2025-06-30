@@ -16,7 +16,6 @@ Therefore, to ensure it's also not rendered on the server, it must be wrapped in
         @cancel="onCancel"
       >
         <button
-          v-if="!hideCloseButton"
           data-testid="close-button"
           class="group absolute right-6 top-6 z-20 cursor-pointer rounded-full p-2.5 transition-colors max-md:bg-gray-200 md:hover:bg-gray-200"
           :aria-label="$t('global.cancel')"
@@ -42,21 +41,16 @@ import { vDialog } from '../../directives/dialog'
 import SFFadeInTransition from '#storefront-ui/components/transitions/SFFadeInTransition.vue'
 import { ClientOnly } from '#components'
 
-const { hideCloseButton = false, transitionComponent = SFFadeInTransition } =
-  defineProps<{
-    /**
-     * Whether to hide the close button in the top-right corner.
-     */
-    hideCloseButton?: boolean
-    /**
-     * Vue component to use for the modal transition animation.
-     */
-    transitionComponent?: Component
-    /**
-     * Whether to apply transition on initial render.
-     */
-    appear?: boolean
-  }>()
+const { transitionComponent = SFFadeInTransition } = defineProps<{
+  /**
+   * Vue component to use for the modal transition animation.
+   */
+  transitionComponent?: Component
+  /**
+   * Whether to apply transition on initial render.
+   */
+  appear?: boolean
+}>()
 
 const visible = defineModel<boolean>('visible', {
   type: Boolean,

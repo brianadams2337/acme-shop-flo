@@ -7,7 +7,7 @@
   >
     <template #default>
       <span class="max-w-[80%] overflow-hidden text-ellipsis !text-md">
-        {{ selectedSort && $t(selectedSort.label) }}
+        {{ selectedSort && selectedSort.label }}
       </span>
     </template>
     <template #item="{ item, selectItem }">
@@ -25,7 +25,7 @@
         "
       >
         <span class="flex w-full items-center justify-between">
-          {{ $t(item.label) }}
+          {{ item.label }}
           <IconCheck
             v-if="item.key === selectedSort?.key"
             class="size-4 text-accent"
@@ -37,12 +37,14 @@
 </template>
 
 <script setup lang="ts">
+import type { SortLink, SelectedSort } from '@scayle/storefront-product-listing'
 import SFLocalizedLink from '../SFLocalizedLink.vue'
 import { useTrackingEvents } from '~/composables'
 import { SFDropdown } from '#storefront-ui/components'
-import { useProductListSort } from '#storefront-product-listing'
-import { useRoute } from '#app/composables/router'
 
-const { selectedSort, sortLinks } = useProductListSort(useRoute())
+const { selectedSort, sortLinks } = defineProps<{
+  selectedSort?: SelectedSort
+  sortLinks: SortLink[]
+}>()
 const { trackFilterApply } = useTrackingEvents()
 </script>

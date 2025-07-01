@@ -4,7 +4,10 @@
     class="md:hidden"
     :label="$t('filter_slide_in_content.sorting')"
   >
-    <SFMobileSortSelection />
+    <SFMobileSortSelection
+      :selected-sort="selectedSort"
+      :sort-links="sortLinks"
+    />
   </SFFilterGroup>
   <template v-for="(filter, index) in availableFilters" :key="filter.slug">
     <template
@@ -174,7 +177,11 @@ import type {
   BooleanFilterItemWithValues,
   FilterItemWithValues,
 } from '@scayle/storefront-nuxt'
-import type { RangeTuple } from '@scayle/storefront-product-listing'
+import type {
+  RangeTuple,
+  SortLink,
+  SelectedSort,
+} from '@scayle/storefront-product-listing'
 import SFMobileSortSelection from '../sorting/SFMobileSortSelection.vue'
 import SFFilterColorChip from './SFFilterColorChip.vue'
 import SFFilterGroup from './SFFilterGroup.vue'
@@ -193,6 +200,8 @@ const { appliedFilter } = defineProps<{
   appliedBooleanValues: Record<string, boolean>
   appliedFilter: ProductSearchQuery
   hideSorting: boolean
+  selectedSort?: SelectedSort
+  sortLinks: SortLink[]
 }>()
 
 const emit = defineEmits<{

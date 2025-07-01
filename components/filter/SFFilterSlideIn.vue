@@ -15,6 +15,8 @@
         :applied-boolean-values="appliedBooleanValues"
         :applied-filter="appliedFilter"
         :available-filters="availableFilters"
+        :selected-sort="selectedSort"
+        :sort-links="sortLinks"
         @apply-price-filter="applyPriceFilter"
         @apply-attribute-filter="applyAttributeFilter"
         @apply-boolean-filter="applyBooleanFilter"
@@ -35,6 +37,7 @@
 </template>
 
 <script setup lang="ts">
+import type { SortLink, SelectedSort } from '@scayle/storefront-product-listing'
 import SFFilterSlideInContent from './SFFilterSlideInContent.vue'
 import SFFilterActions from './SFFilterActions.vue'
 import SFFilterHeader from './SFFilterHeader.vue'
@@ -43,9 +46,16 @@ import { SFSlideIn } from '#storefront-ui/components'
 import { useAppliedFilters } from '#storefront-product-listing'
 import { useRoute } from '#app/composables/router'
 
-const { currentCategoryId, hideSorting = false } = defineProps<{
+const {
+  currentCategoryId,
+  hideSorting = false,
+  selectedSort = undefined,
+  sortLinks = [],
+} = defineProps<{
   currentCategoryId?: number
   hideSorting?: boolean
+  selectedSort?: SelectedSort
+  sortLinks?: SortLink[]
 }>()
 
 const { appliedBooleanValues, appliedFilter, appliedAttributeValues } =

@@ -31,7 +31,11 @@
             />
           </div>
           <div class="hidden gap-4 md:flex">
-            <SFSortSelection class="max-sm:hidden" />
+            <SFSortSelection
+              class="max-sm:hidden"
+              :selected-sort="selectedSort"
+              :sort-links="sortLinks"
+            />
             <SFFilterToggleButton :label="$t('filter.show_filter')" />
           </div>
         </div>
@@ -56,7 +60,11 @@
         />
       </div>
     </div>
-    <SFFilterSlideIn :current-category-id="currentCategoryId" />
+    <SFFilterSlideIn
+      :current-category-id="currentCategoryId"
+      :selected-sort="selectedSort"
+      :sort-links="sortLinks"
+    />
     <Teleport to="#teleports">
       <div class="fixed bottom-8 right-4 md:bottom-24">
         <SFScrollToTopButton />
@@ -73,6 +81,7 @@ import {
   type Category,
 } from '@scayle/storefront-nuxt'
 import { join } from 'pathe'
+import type { SelectedSort } from '@scayle/storefront-product-listing'
 import { useSeoMeta, useHead, definePageMeta, useRequestURL } from '#imports'
 import { useI18n, type Locale } from '#i18n'
 import { navigateTo, useRoute } from '#app/composables/router'
@@ -103,14 +112,17 @@ import SFFilterSlideIn from '~/components/filter/SFFilterSlideIn.vue'
 import SFScrollToTopButton from '~/components/SFScrollToTopButton.vue'
 import {
   useProductListingSeoData,
-  defaultSortingOptions,
-  DEFAULT_SORTING_KEY,
   useProductsForListing,
   useAppliedFilters,
   useProductListSort,
   useAllShopCategoriesForId,
   generateProductListingHreflangLinks,
   flattenCategoryTree,
+  createDefaultSortingOption,
+  SORT_DATE_NEWEST,
+  SORT_PRICE_DESC,
+  SORT_PRICE_ASC,
+  SORT_REDUCTION_DESC,
 } from '#storefront-product-listing'
 import { useCategoryById } from '#storefront/composables'
 
@@ -173,27 +185,37 @@ const validateCategoryExistsAndRedirect = async () => {
 
 onServerPrefetch(validateCategoryExistsAndRedirect)
 
-const sortingOptions = computed(() => {
-  const smartSortingKey = currentCategory.value?.productSorting?.smartSortingKey
-  const customSortingKey =
-    currentCategory.value?.productSorting?.customSortingKey
-
-  if (!smartSortingKey && !customSortingKey) {
-    return defaultSortingOptions
-  }
-  return defaultSortingOptions.map((option) => {
-    const sortingKey = [customSortingKey, smartSortingKey].filter(
-      (item): item is string => !!item,
-    )
-    return option.key === DEFAULT_SORTING_KEY
-      ? { ...option, sortingKey }
-      : option
-  })
+const sortingOptions = computed<SelectedSort[]>(() => {
+  return [
+    {
+      ...createDefaultSortingOption(currentCategory.value ?? undefined),
+      label: i18n.t('sorting_select.top_seller'),
+    },
+    {
+      ...SORT_DATE_NEWEST,
+      label: i18n.t('sorting_select.date_newest'),
+    },
+    {
+      ...SORT_PRICE_DESC,
+      label: i18n.t('sorting_select.price_desc'),
+    },
+    {
+      ...SORT_PRICE_ASC,
+      label: i18n.t('sorting_select.price_asc'),
+    },
+    {
+      ...SORT_REDUCTION_DESC,
+      label: i18n.t('sorting_select.reduction_desc'),
+    },
+  ]
 })
 
-const { selectedSort } = useProductListSort(route, {
-  sortingOptions: sortingOptions.value,
-})
+const { selectedSort, sortLinks, isDefaultSortSelected } = useProductListSort(
+  route,
+  {
+    sortingOptions: sortingOptions,
+  },
+)
 const { appliedFilter } = useAppliedFilters(route)
 
 const params = computed(() => ({
@@ -242,13 +264,13 @@ const trackViewListing = ({
   })
 }
 
-const shopCategoryparams = computed(() => ({
+const shopCategoryParams = computed(() => ({
   id: currentCategoryId.value,
 }))
 
 // This request needs to be awaited to have the hreflang links available on server side. Additionally, it needs to be lazy to avoid blocking the page load.
 const { data: categoriesForAllShops } = await useAllShopCategoriesForId({
-  params: shopCategoryparams,
+  params: shopCategoryParams,
   options: {
     lazy: true,
   },
@@ -273,10 +295,15 @@ const breadcrumbs = computed(() =>
 const { origin } = useRequestURL()
 
 const { title, robots, canonicalLink, categoryBreadcrumbSchema } =
-  useProductListingSeoData(breadcrumbs, route, {
-    baseUrl: origin,
-    fullPath: join($config.app.baseURL, route.fullPath),
-  })
+  useProductListingSeoData(
+    breadcrumbs,
+    route,
+    {
+      baseUrl: origin,
+      fullPath: join($config.app.baseURL, route.fullPath),
+    },
+    isDefaultSortSelected,
+  )
 
 useJsonld(() => categoryBreadcrumbSchema.value)
 

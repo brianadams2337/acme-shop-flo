@@ -11,17 +11,19 @@
       }"
       @click="trackFilterApply('sort', sort.key)"
     >
-      {{ $t(sort.label) }}
+      {{ sort.label }}
     </SFLocalizedLink>
   </div>
 </template>
 
 <script setup lang="ts">
+import type { SortLink, SelectedSort } from '@scayle/storefront-product-listing'
 import SFLocalizedLink from '../SFLocalizedLink.vue'
 import { useTrackingEvents } from '~/composables'
-import { useProductListSort } from '#storefront-product-listing'
-import { useRoute } from '#app/composables/router'
 
-const { selectedSort, sortLinks } = useProductListSort(useRoute())
+const { selectedSort, sortLinks } = defineProps<{
+  selectedSort?: SelectedSort
+  sortLinks: SortLink[]
+}>()
 const { trackFilterApply } = useTrackingEvents()
 </script>

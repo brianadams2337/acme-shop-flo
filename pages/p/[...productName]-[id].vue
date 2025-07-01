@@ -95,6 +95,7 @@
           </h2>
         </template>
       </SFProductRecommendations>
+      <SFRecentlyViewedProductsSlider class="max-md:px-5" />
     </div>
     <template #loading>
       <SFProductDetailPageLoadingState />
@@ -169,6 +170,8 @@ import {
   isBuyXGetYType,
   isGiftConditionMet,
 } from '#storefront-promotions/utils'
+import { useRecentlyViewedProducts } from '#storefront-product-detail/composables'
+import SFRecentlyViewedProductsSlider from '~/components/product/SFRecentlyViewedProductsSlider.vue'
 
 const SFLazyStoreLocatorSlideIn = defineAsyncComponent(
   () => import('~/components/locator/SFStoreLocatorSlideIn.vue'),
@@ -203,7 +206,7 @@ const productAsyncData = await useProduct(
   CURRENT_PRODUCT_DATA_KEY,
 )
 
-const { data: product, error } = productAsyncData
+const { data: product, error, status } = productAsyncData
 
 whenever(
   error,
@@ -421,6 +424,10 @@ useJsonld(() => [productBreadcrumbJsonLd.value, productJsonLd.value])
 definePageMeta({ pageType: 'product_detail_page', key: 'PDP' })
 
 function redirectProductIfNecessary(product: Product) {
+  if (status.value == 'pending') {
+    return
+  }
+
   const expectedPath = getProductDetailRoute(
     product.id,
     getFirstAttributeValue(product.attributes, 'name')?.label,
@@ -465,4 +472,22 @@ onMounted(async () => {
 onUnmounted(() => {
   clearNuxtData(CURRENT_PRODUCT_DATA_KEY)
 })
+
+const { addProductId, loadMissingProducts } = useRecentlyViewedProducts()
+// Because we do define the same key `PDP` in the `definePageMeta` hook, `onMounted` hook is not necessarily called when the PDP changes.
+// Therefore we update the recently viewed products every time the current product changes.
+// This also avoids the `beforeunload` event, which does not properly work on IOS.
+whenever(
+  product,
+  async () => {
+    if (import.meta.server) {
+      return
+    }
+    // We load the products before adding the current product to the list.
+    // This is to avoid showing the current product as first item in the recently viewed products slider.
+    await loadMissingProducts()
+    addProductId(productId.value)
+  },
+  { immediate: true },
+)
 </script>

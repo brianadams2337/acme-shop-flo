@@ -636,5 +636,8 @@
       "maximum": "Maksimālais samazinājums: {reduction}",
       "minimum": "Minimālais samazinājums: {reduction}"
     }
+  },
+  "recentlyViewedProductsSlider": {
+    "title": "Nesen skatītie"
   }
 }

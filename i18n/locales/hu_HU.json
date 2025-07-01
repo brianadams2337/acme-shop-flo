@@ -636,5 +636,8 @@
       "maximum": "Maximális csökkentés: {reduction}",
       "minimum": "Minimális csökkentés: {reduction}"
     }
+  },
+  "recentlyViewedProductsSlider": {
+    "title": "Legutóbb megtekintett"
   }
 }

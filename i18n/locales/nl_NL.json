@@ -636,5 +636,8 @@
       "maximum": "Maximale korting: {reduction}",
       "minimum": "Minimale korting: {reduction}"
     }
+  },
+  "recentlyViewedProductsSlider": {
+    "title": "Recent bekeken"
   }
 }

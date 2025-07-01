@@ -636,5 +636,8 @@
       "maximum": "Максимално намаление: {reduction}",
       "minimum": "Минимално намаление: {reduction}"
     }
+  },
+  "recentlyViewedProductsSlider": {
+    "title": "Наскоро разгледани"
   }
 }

@@ -636,5 +636,8 @@
       "maximum": "Največje zmanjšanje: {reduction}",
       "minimum": "Najmanjše zmanjšanje: {reduction}"
     }
+  },
+  "recentlyViewedProductsSlider": {
+    "title": "Nedavno ogledano"
   }
 }

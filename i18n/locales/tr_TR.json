@@ -636,5 +636,8 @@
       "maximum": "Maksimum indirim: {reduction}",
       "minimum": "Minimum indirim: {reduction}"
     }
+  },
+  "recentlyViewedProductsSlider": {
+    "title": "Son Görüntülenenler"
   }
 }

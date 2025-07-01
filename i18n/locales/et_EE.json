@@ -636,5 +636,8 @@
       "maximum": "Maksimaalne vähendamine: {reduction}",
       "minimum": "Minimaalne vähendamine: {reduction}"
     }
+  },
+  "recentlyViewedProductsSlider": {
+    "title": "Hiljuti vaadatud"
   }
 }

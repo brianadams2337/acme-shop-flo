@@ -636,5 +636,8 @@
       "maximum": "Maximale Reduzierung: {reduction}",
       "minimum": "Mindestrabatt: {reduction}"
     }
+  },
+  "recentlyViewedProductsSlider": {
+    "title": "Zuletzt angesehen"
   }
 }

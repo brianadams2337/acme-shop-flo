@@ -636,5 +636,8 @@
       "maximum": "Maximální snížení: {reduction}",
       "minimum": "Minimální snížení: {reduction}"
     }
+  },
+  "recentlyViewedProductsSlider": {
+    "title": "Nedávno zobrazené"
   }
 }

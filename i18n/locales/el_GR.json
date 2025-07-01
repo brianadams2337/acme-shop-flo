@@ -636,5 +636,8 @@
       "maximum": "Μέγιστη μείωση: {reduction}",
       "minimum": "Ελάχιστη μείωση: {reduction}"
     }
+  },
+  "recentlyViewedProductsSlider": {
+    "title": "Πρόσφατα προβολή"
   }
 }

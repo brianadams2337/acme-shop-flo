@@ -636,5 +636,8 @@
       "maximum": "Suurin vähennys: {reduction}",
       "minimum": "Vähimmäisvähenny: {reduction}"
     }
+  },
+  "recentlyViewedProductsSlider": {
+    "title": "Äskettäin katsotut"
   }
 }

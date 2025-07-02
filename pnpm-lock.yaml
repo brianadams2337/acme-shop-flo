@@ -134,8 +134,8 @@ importers:
         specifier: 11.7.5
         version: 11.7.5(debug@4.4.1)
       contentful-export:
-        specifier: 7.21.63
-        version: 7.21.63(debug@4.4.1)
+        specifier: 7.21.64
+        version: 7.21.64(debug@4.4.1)
       defu:
         specifier: 6.1.4
         version: 6.1.4
@@ -4230,8 +4230,8 @@ packages:
     resolution: {integrity: sha512-nNAycOJIvo2arHbXIgsF1I8xXXJtnTooGJaHwfamFeuXbyp1q5NlNbHYGqWVR5vQjLJsuk48VExLbpa26T9C9g==}
     engines: {node: '>=18'}
 
-  contentful-export@7.21.63:
-    resolution: {integrity: sha512-IcMdw9IkpTber89/wHWhful0luqOj51K44LcEhSfVLrS3c7De0yUoqVpn8kVeexuxZBvC6F3oqDGgtIF48CUbA==}
+  contentful-export@7.21.64:
+    resolution: {integrity: sha512-FQ13prEVXd2o4IxU/l3uJozB8xtCrm5JbxVnpJue85RipZyEekZqxfeL+z8jZDuQUabygNDmCj687d8eh9+rrw==}
     engines: {node: '>=18'}
     hasBin: true
 
@@ -14293,7 +14293,7 @@ snapshots:
       '@oclif/core': 3.27.0
       '@oclif/plugin-help': 6.2.29
       contentful: 10.15.1(debug@4.4.1)
-      contentful-export: 7.21.63(debug@4.4.1)
+      contentful-export: 7.21.64(debug@4.4.1)
       contentful-management: 11.54.0(debug@4.4.1)
       fs-extra: 11.3.0
       lodash: 4.17.21
@@ -14619,7 +14619,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  contentful-export@7.21.63(debug@4.4.1):
+  contentful-export@7.21.64(debug@4.4.1):
     dependencies:
       axios: 1.10.0(debug@4.4.1)
       bfj: 8.0.0

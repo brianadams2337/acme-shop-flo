@@ -1230,8 +1230,8 @@ packages:
     resolution: {integrity: sha512-uEFA0LAcBGd3+fgDSLkTTsrgyooKqu8mN/qA+F/COS2A7NFWRcLFnjVKH/xZhxq+oQkrSa+XPS9qj2wgQosiQw==}
     engines: {node: '>=18.0.0'}
 
-  '@netlify/zip-it-and-ship-it@12.1.5':
-    resolution: {integrity: sha512-9XyDTOaHfuZ5wF5rkOb0wLLZF7ZzGgBhKCCLKd2dmvnTnOWtA+PrinSdT/rn6TabUwQ56T5vNWvQZ//FxTweOw==}
+  '@netlify/zip-it-and-ship-it@12.2.0':
+    resolution: {integrity: sha512-64tKrE4bGGh/uChrCKQ1g6rDmY+Jl95bh+GGeP1mzIOcXmZHFja8sWMyaKv8iOxIiPdaJCQuhadSmE4ATUDVFg==}
     engines: {node: '>=18.14.0'}
     hasBin: true
 
@@ -10697,7 +10697,7 @@ snapshots:
       '@netlify/blobs': 9.1.2
       '@netlify/dev-utils': 2.2.0
       '@netlify/serverless-functions-api': 1.41.2
-      '@netlify/zip-it-and-ship-it': 12.1.5(rollup@4.44.1)
+      '@netlify/zip-it-and-ship-it': 12.2.0(rollup@4.44.1)
       cron-parser: 4.9.0
       decache: 4.6.2
       extract-zip: 2.0.1
@@ -10719,7 +10719,7 @@ snapshots:
 
   '@netlify/serverless-functions-api@2.1.2': {}
 
-  '@netlify/zip-it-and-ship-it@12.1.5(rollup@4.44.1)':
+  '@netlify/zip-it-and-ship-it@12.2.0(rollup@4.44.1)':
     dependencies:
       '@babel/parser': 7.27.7
       '@babel/types': 7.27.6

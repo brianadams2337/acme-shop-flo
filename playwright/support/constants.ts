@@ -44,16 +44,6 @@ export const SEARCH = {
 }
 
 export const BASKET_TEST_DATA = {
-  regularPriceVariantId: 335323,
-  salePriceVariantId: 336068,
-  promotionPriceProductId: '205808',
-  soldOutProductUser: process.env.TEST_USER_EMAIL7 as string,
-  soldOutProductPassword: process.env.TEST_USER_PASSWORD as string,
-  productAvailableLessThanTen: 319859,
-  productAvailableMoreThanTen: 333231,
-  promoPaidProduct: 333618,
-  promoFreeProduct: 336349,
-  freeProductPriceLabel: ' 0,00 € ',
   seoRobots: 'noindex,follow',
 }
 
@@ -77,16 +67,15 @@ export const USER_ACCOUNT = {
 }
 
 export const PDP_E2E = {
-  regularProductUrl: '/p/sweatshirt-205801',
-  oneSizeProductUrl: '/p/umhangetasche-adicolor-classic-206025',
-  subscribeProductUrl: '/p/sneaker-forum-bold-206136',
-  subscribeNotEligibleVariantId: '333740',
   seoRobots: 'index, follow',
 }
 
+/**
+ * URL paths for PLP (Product Listing Page) and PDP (Product Detail Page) used in Google Lighthouse audits.
+ */
 export const LIGHTHOUSE_AUDIT_PATHS = {
-  plp: '/de/c/frauen/bekleidung-50338',
-  pdp: '/de/p/jacke-205696',
+  plp: process.env.LIGHTHOUSE_PLP_PATH as string,
+  pdp: process.env.LIGHTHOUSE_PDP_PATH as string,
 }
 
 /**
@@ -123,16 +112,16 @@ export const TEST_USERS = {
   emailInvalidFormat: 'test@test',
 }
 
+/**
+ * Viewport size used for Lighthouse audits, configurable via the LIGHTHOUSE_VIEWPORT_SIZE environment variable.
+ */
 export const LIGHTHOUSE_VIEWPORT_SIZE = Number.parseInt(
   process.env.LIGHTHOUSE_VIEWPORT_SIZE as string,
 )
 
-export const LOCATION = {
-  city: 'hamburg',
-  zipCode: '20095',
-  zipCodeInvalid: '000000000',
-}
-
+/**
+ * Supported sorting options for product listings, mapped to their backend identifiers.
+ */
 export const SORTING = {
   topSeller: 'top_seller',
   dateNewest: 'date_newest',
@@ -141,6 +130,9 @@ export const SORTING = {
   reductionDesc: 'reduction_desc',
 }
 
+/**
+ * Commonly used application routes for navigation and testing.
+ */
 export const ROUTES = {
   wishlist: '/wishlist',
   basket: '/basket',
@@ -150,35 +142,34 @@ export const ROUTES = {
   checkout: '/checkout',
 }
 
-export const PDP_TEST_VARIANT_ID = {
-  multiSizeProductUrl: '/p/between-season-jacket-premium-205632',
-  availableVariantId: '334990',
-  availableVariantId2: '334992',
-  availableSize: '32',
-  availableSize2: '36',
-  oneSizeProductUrl: '/p/umhangetasche-adicolor-classic-206008',
-  oneSizeProductUrl2: '/p/umhangetasche-adicolor-classic-206025',
-  oneSizeVariantId: '333316',
-  soldOutVariantUrl: '/p/between-season-jacket-premium-205632?variantId=334988',
-  soldOutVariantSize: '28',
-}
-
+/**
+ * Test data for OSP (Order Success Page) scenarios, including SEO and URL parameters.
+ */
 export const OSP_TEST_DATA = {
   incorrectCbdUrl:
     '/success?cbd=eyJzdGF0dXNTg1NTI3Y2I3NjY0NWQ3NA==&login=1&pmm=b2b',
   seoRobots: 'noindex,nofollow',
 }
 
+/**
+ * Test data for login and registration flows, including SEO and URL parameters.
+ */
 export const LOGIN_REGISTRATION = {
   seoRobots: 'noindex,follow',
   regUrlParam: 'register=true',
 }
 
+/**
+ * Product Listing Page (PLP) test data for SEO robots meta tag scenarios.
+ */
 export const PLP_TEST_DATA = {
   seoRobotsDefault: 'index,follow',
   seoRobotsFiltersSorting: 'noindex,follow',
 }
 
+/**
+ * Wishlist page test data for SEO and title validation.
+ */
 export const WISHLIST_TEST_DATA = {
   seoTitle: 'Deine Wunschliste | SCAYLE',
   seoRobots: 'noindex, nofollow',

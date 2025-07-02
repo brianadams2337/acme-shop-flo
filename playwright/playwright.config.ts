@@ -4,12 +4,14 @@ import type { PlaywrightTestConfig } from '@playwright/test'
 import { defineConfig, devices } from '@playwright/test'
 
 /**
- * Read environment variables from file.
+ * Read environment variables from file if not running in CI.
  * E.g. used for `BASE_URL` environment variable.
  *
  * @see https://github.com/motdotla/dotenv
  */
-dotenv.config({ path: '../.env' })
+if (!process.env.CI) {
+  dotenv.config({ path: '../.env' })
+}
 
 /**
  * Define the base URL to use in actions like `await page.goto('/')`.

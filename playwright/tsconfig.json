@@ -8,8 +8,7 @@
     "sourceMap": true,
     "outDir": "./dist",
     "types": ["node"],
-    "resolveJsonModule": true,
-    "erasableSyntaxOnly": true
+    "resolveJsonModule": true
   },
   "include": [
     "./tests/**/*.ts",

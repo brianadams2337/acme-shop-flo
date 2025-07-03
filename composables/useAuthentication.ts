@@ -89,8 +89,13 @@ export function useAuthentication(
     await applyPromotions()
   }
 
+  const clearErrorMessage = (): void => {
+    errorMessage.value = null
+  }
+
   const login = async (data: Omit<LoginRequest, 'shop_id'>): Promise<void> => {
     isSubmitting.value = true
+    clearErrorMessage()
 
     try {
       await session.login(data)
@@ -105,6 +110,7 @@ export function useAuthentication(
 
   const loginIDP = async (code: string): Promise<void> => {
     isSubmitting.value = true
+    clearErrorMessage()
 
     try {
       await session.loginWithIDP({ code })
@@ -120,6 +126,7 @@ export function useAuthentication(
     data: Omit<GuestRequest, 'shop_id'>,
   ): Promise<void> => {
     isSubmitting.value = true
+    clearErrorMessage()
 
     try {
       await session.guestLogin(data)
@@ -136,6 +143,7 @@ export function useAuthentication(
     data: Omit<RegisterRequest, 'shop_id'>,
   ): Promise<void> => {
     isSubmitting.value = true
+    clearErrorMessage()
 
     try {
       await session.register(data)
@@ -150,6 +158,7 @@ export function useAuthentication(
 
   const forgotPassword = async (email: string): Promise<void> => {
     isSubmitting.value = true
+    clearErrorMessage()
 
     try {
       await session.forgetPassword({ email })
@@ -167,6 +176,7 @@ export function useAuthentication(
     data: Omit<UpdatePasswordByHashRequest, 'shop_id'>,
   ): Promise<void> => {
     isSubmitting.value = true
+    clearErrorMessage()
 
     try {
       await session.resetPasswordByHash(data)
@@ -180,6 +190,7 @@ export function useAuthentication(
 
   const logout = async (): Promise<void> => {
     isSubmitting.value = true
+    clearErrorMessage()
 
     try {
       await session.revokeToken()
@@ -199,10 +210,6 @@ export function useAuthentication(
     isSubmitting.value = false
 
     redirectUser(routeList.home.path)
-  }
-
-  const clearErrorMessage = (): void => {
-    errorMessage.value = null
   }
 
   /**

@@ -143,52 +143,39 @@ describe('useAuthentication', () => {
         route.query.redirectUrl,
       )
     })
-    const httpErrorMessages = {
-      400: "Deine Anfrage konnte nicht bearbeitet werden, versuch's nochmal.",
-      401: "Deine Anfrage konnte nicht bearbeitet werden, versuch's nochmal.",
-      403: 'Dieser Benutzer ist deaktiviert.',
-      404: "Deine E-Mail-Adresse oder dein Passwort stimmt nicht. Bitte versuch's nochmal.",
-      500: 'Bei deiner Anfrage ist ein Fehler aufgetreten.',
-    }
 
-    it.each(Object.entries(httpErrorMessages))(
-      'should handle %s error and clear it on unmount',
-      async (statusCode, message) => {
-        useUser.mockReturnValue({
-          refresh: vi.fn(),
-          customerType: toRef(customerType),
-          user: toRef(undefined),
-        })
-        const error = new FetchError('Fetch Error')
-        Object.assign(error, { response: { status: Number(statusCode) } })
+    it('should handle errors', async () => {
+      useUser.mockReturnValue({
+        refresh: vi.fn(),
+        customerType: toRef(customerType),
+        user: toRef(undefined),
+      })
+      const error = new FetchError('Fetch Error')
+      Object.assign(error, { response: { status: Number(400) } })
 
-        const component = getTestComponent()
+      const component = getTestComponent()
 
-        const { login } = component.vm
+      const { login } = component.vm
 
-        loginMock.mockRejectedValue(error)
+      loginMock.mockRejectedValue(error)
 
-        await login(loginPayload)
+      const promise = login(loginPayload)
 
-        expect(loginMock).toBeCalledWith(loginPayload)
+      await expect(promise).rejects.toThrowError()
 
-        const { trackAuthenticated } = useTrackingEvents()
+      expect(loginMock).toBeCalledWith(loginPayload)
 
-        expect(trackAuthenticated).toBeCalledWith(
-          {
-            event: loginEvent,
-            method: 'email',
-            status: 'error',
-          },
-          loginPayload.email,
-        )
+      const { trackAuthenticated } = useTrackingEvents()
 
-        expect(component.vm.errorMessage).toEqual(message)
-
-        component.unmount()
-        expect(component.vm.errorMessage).toBeNull()
-      },
-    )
+      expect(trackAuthenticated).toBeCalledWith(
+        {
+          event: loginEvent,
+          method: 'email',
+          status: 'error',
+        },
+        loginPayload.email,
+      )
+    })
   })
 
   describe('loginIDP', () => {
@@ -309,50 +296,36 @@ describe('useAuthentication', () => {
       )
     })
 
-    const httpErrorMessages = {
-      400: "Deine Anfrage konnte nicht bearbeitet werden, versuch's nochmal.",
-      401: "Deine Anfrage konnte nicht bearbeitet werden, versuch's nochmal.",
-      409: 'Das ist ein registrierter Account. Bitte gib das richtige Passwort ein, um dich anzumelden.',
-      500: 'Bei deiner Anfrage ist ein Fehler aufgetreten.',
-    }
+    it('should handle errors', async () => {
+      useUser.mockReturnValue({
+        refresh: vi.fn(),
+        user: toRef(undefined),
+      })
+      const error = new FetchError('Fetch Error')
+      Object.assign(error, { response: { status: Number(400) } })
 
-    it.each(Object.entries(httpErrorMessages))(
-      'should handle %s error and clear it on unmount',
-      async (statusCode, message) => {
-        useUser.mockReturnValue({
-          refresh: vi.fn(),
-          user: toRef(undefined),
-        })
-        const error = new FetchError('Fetch Error')
-        Object.assign(error, { response: { status: Number(statusCode) } })
+      const component = getTestComponent()
 
-        const component = getTestComponent()
+      const { guestLogin } = component.vm
 
-        const { guestLogin } = component.vm
+      guestLoginMock.mockRejectedValue(error)
 
-        guestLoginMock.mockRejectedValue(error)
+      const promise = guestLogin(guestPayload)
+      await expect(promise).rejects.toThrowError()
 
-        await guestLogin(guestPayload)
+      expect(guestLoginMock).toBeCalledWith(guestPayload)
 
-        expect(guestLoginMock).toBeCalledWith(guestPayload)
+      const { trackAuthenticated } = useTrackingEvents()
 
-        const { trackAuthenticated } = useTrackingEvents()
-
-        expect(trackAuthenticated).toBeCalledWith(
-          {
-            event: guestEvent,
-            method: 'email',
-            status: 'error',
-          },
-          guestPayload.email,
-        )
-
-        expect(component.vm.errorMessage).toEqual(message)
-
-        component.unmount()
-        expect(component.vm.errorMessage).toBeNull()
-      },
-    )
+      expect(trackAuthenticated).toBeCalledWith(
+        {
+          event: guestEvent,
+          method: 'email',
+          status: 'error',
+        },
+        guestPayload.email,
+      )
+    })
   })
 
   describe('register', () => {
@@ -417,52 +390,34 @@ describe('useAuthentication', () => {
       )
     })
 
-    const httpErrorMessages = {
-      400: "Deine Anfrage konnte nicht bearbeitet werden, versuch's nochmal.",
-      401: "Deine Anfrage konnte nicht bearbeitet werden, versuch's nochmal.",
+    it('should handle errors', async () => {
+      useUser.mockReturnValue({
+        refresh: vi.fn(),
+        user: toRef(undefined),
+      })
+      const error = new FetchError('Fetch Error')
+      Object.assign(error, { response: { status: Number(400) } })
 
-      409: "Dieses Konto gibt's schon.",
-      422: "Deine Anfrage konnte nicht bearbeitet werden, versuch's nochmal.",
-      500: 'Bei deiner Anfrage ist ein Fehler aufgetreten.',
-    }
+      const component = getTestComponent()
 
-    it.each(Object.entries(httpErrorMessages))(
-      'should handle %s error and clear it on unmount',
-      async (statusCode, message) => {
-        useUser.mockReturnValue({
-          refresh: vi.fn(),
-          user: toRef(undefined),
-        })
-        const error = new FetchError('Fetch Error')
-        Object.assign(error, { response: { status: Number(statusCode) } })
+      const { register } = component.vm
 
-        const component = getTestComponent()
+      registerMock.mockRejectedValue(error)
 
-        const { register } = component.vm
+      const promise = register(registerPayload)
+      await expect(promise).rejects.toThrowError()
 
-        registerMock.mockRejectedValue(error)
+      const { trackAuthenticated } = useTrackingEvents()
 
-        await register(registerPayload)
-
-        expect(registerMock).toBeCalledWith(registerPayload)
-
-        const { trackAuthenticated } = useTrackingEvents()
-
-        expect(trackAuthenticated).toBeCalledWith(
-          {
-            event: registerEvent,
-            method: 'email',
-            status: 'error',
-          },
-          registerPayload.email,
-        )
-
-        expect(component.vm.errorMessage).toEqual(message)
-
-        component.unmount()
-        expect(component.vm.errorMessage).toBeNull()
-      },
-    )
+      expect(trackAuthenticated).toBeCalledWith(
+        {
+          event: registerEvent,
+          method: 'email',
+          status: 'error',
+        },
+        registerPayload.email,
+      )
+    })
   })
 
   describe('forgotPassword', () => {
@@ -484,43 +439,25 @@ describe('useAuthentication', () => {
       )
     })
 
-    const httpErrorMessages = {
-      400: "Deine Anfrage konnte nicht bearbeitet werden, versuch's nochmal.",
-      401: "Deine Anfrage konnte nicht bearbeitet werden, versuch's nochmal.",
+    it('should handle errors', async () => {
+      useUser.mockReturnValue({
+        refresh: vi.fn(),
+        user: undefined,
+      })
+      const error = new FetchError('Fetch Error')
+      Object.assign(error, { response: { status: Number(400) } })
 
-      403: 'Dieser Benutzer ist deaktiviert.',
-      406: 'Dein Token wurde schon benutzt oder ist abgelaufen. Bitte frag eine neue E-Mail zum Zurücksetzen des Passworts an.',
-      409: "Dieses Konto gibt's schon.",
-      422: "Deine Anfrage konnte nicht bearbeitet werden, versuch's nochmal.",
-      500: 'Bei deiner Anfrage ist ein Fehler aufgetreten.',
-    }
+      const component = getTestComponent()
 
-    it.each(Object.entries(httpErrorMessages))(
-      'should handle %s error and clear it on unmount',
-      async (statusCode, message) => {
-        useUser.mockReturnValue({
-          refresh: vi.fn(),
-          user: undefined,
-        })
-        const error = new FetchError('Fetch Error')
-        Object.assign(error, { response: { status: Number(statusCode) } })
+      const { forgotPassword } = component.vm
 
-        const component = getTestComponent()
+      forgotPasswordMock.mockRejectedValue(error)
 
-        const { forgotPassword } = component.vm
+      const promise = forgotPassword('user@example.org')
+      await expect(promise).rejects.toThrowError()
 
-        forgotPasswordMock.mockRejectedValue(error)
-
-        await forgotPassword('user@example.org')
-
-        expect(forgotPasswordMock).toBeCalledWith({ email: 'user@example.org' })
-
-        expect(component.vm.errorMessage).toEqual(message)
-
-        component.unmount()
-        expect(component.vm.errorMessage).toBeNull()
-      },
-    )
+      expect(forgotPasswordMock).toBeCalledWith({ email: 'user@example.org' })
+    })
   })
 
   describe('resetPasswordByHash', () => {
@@ -583,39 +520,27 @@ describe('useAuthentication', () => {
       )
     })
 
-    const httpErrorMessages = {
-      400: "Deine Anfrage konnte nicht bearbeitet werden, versuch's nochmal.",
-      401: "Deine Anfrage konnte nicht bearbeitet werden, versuch's nochmal.",
-      500: 'Bei deiner Anfrage ist ein Fehler aufgetreten.',
-    }
+    it('should handle errors', async () => {
+      useUser.mockReturnValue({
+        refresh: vi.fn(),
+        customerType: toRef(customerType),
+        user: toRef(userFactory.build({ id: 1, email: 'user@example.org' })),
+      })
+      const error = new FetchError('Fetch Error')
+      Object.assign(error, { response: { status: Number(400) } })
 
-    it.each(Object.entries(httpErrorMessages))(
-      'should handle %s error and clear it on unmount',
-      async (statusCode, message) => {
-        useUser.mockReturnValue({
-          refresh: vi.fn(),
-          customerType: toRef(customerType),
-          user: toRef(userFactory.build({ id: 1, email: 'user@example.org' })),
-        })
-        const error = new FetchError('Fetch Error')
-        Object.assign(error, { response: { status: Number(statusCode) } })
+      const component = getTestComponent()
 
-        const component = getTestComponent()
+      const { resetPasswordByHash } = component.vm
 
-        const { resetPasswordByHash } = component.vm
+      resetPasswordByHashMock.mockRejectedValue(error)
 
-        resetPasswordByHashMock.mockRejectedValue(error)
+      const promise = resetPasswordByHash(resetPasswordPayload)
 
-        await resetPasswordByHash(resetPasswordPayload)
+      await expect(promise).rejects.toThrowError()
 
-        expect(resetPasswordByHashMock).toBeCalledWith(resetPasswordPayload)
-
-        expect(component.vm.errorMessage).toEqual(message)
-
-        component.unmount()
-        expect(component.vm.errorMessage).toBeNull()
-      },
-    )
+      expect(resetPasswordByHashMock).toBeCalledWith(resetPasswordPayload)
+    })
   })
 
   describe('logout', () => {
@@ -640,37 +565,26 @@ describe('useAuthentication', () => {
       expect(useRouteHelpers().localizedNavigateTo).toBeCalledWith('/')
     })
 
-    const httpErrorMessages = {
-      400: "Deine Anfrage konnte nicht bearbeitet werden, versuch's nochmal.",
-      422: "Deine Anfrage konnte nicht bearbeitet werden, versuch's nochmal.",
-    }
+    it('should handle errors', async () => {
+      useUser.mockReturnValue({
+        refresh: vi.fn(),
+        customerType: toRef(customerType),
+        user: toRef(userFactory.build({ id: 1, email: 'user@example.org' })),
+      })
+      const error = new FetchError('Fetch Error')
+      Object.assign(error, { response: { status: Number(400) } })
 
-    it.each(Object.entries(httpErrorMessages))(
-      'should handle %s error and clear it on unmount',
-      async (statusCode, message) => {
-        useUser.mockReturnValue({
-          refresh: vi.fn(),
-          customerType: toRef(customerType),
-          user: toRef(userFactory.build({ id: 1, email: 'user@example.org' })),
-        })
-        const error = new FetchError('Fetch Error')
-        Object.assign(error, { response: { status: Number(statusCode) } })
+      const component = getTestComponent()
 
-        const component = getTestComponent()
+      const { logout } = component.vm
 
-        const { logout } = component.vm
+      logoutMock.mockRejectedValue(error)
 
-        logoutMock.mockRejectedValue(error)
+      const promise = logout()
 
-        await logout()
+      await expect(promise).rejects.toThrowError()
 
-        expect(logoutMock).toBeCalled()
-
-        expect(component.vm.errorMessage).toEqual(message)
-
-        component.unmount()
-        expect(component.vm.errorMessage).toBeNull()
-      },
-    )
+      expect(logoutMock).toBeCalled()
+    })
   })
 })

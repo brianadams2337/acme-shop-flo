@@ -55,9 +55,9 @@
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue'
+import { computed, ref } from 'vue'
 import SFAccountLink from './SFAccountLink.vue'
-import { useUser } from '#storefront/composables'
+import { useLog, useUser } from '#storefront/composables'
 import { useAuthentication } from '~/composables'
 import { routeList } from '~/utils/route'
 import { SFButton } from '#storefront-ui/components'
@@ -67,11 +67,19 @@ const emit = defineEmits<{
 }>()
 
 const { user } = useUser()
-const { logout, isSubmitting } = useAuthentication()
+const { logout } = useAuthentication()
+const isSubmitting = ref(false)
+const log = useLog('SFUserActions')
 
 const isGuest = computed(() => user.value?.status?.isGuestCustomer)
 const handleLogout = async () => {
-  await logout()
-  emit('close')
+  try {
+    await logout()
+    emit('close')
+  } catch (error) {
+    log.error('Error during logging out', error)
+  } finally {
+    isSubmitting.value = false
+  }
 }
 </script>

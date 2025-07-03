@@ -122,6 +122,7 @@ import SFErrorMessageContainer from '../../SFErrorMessageContainer.vue'
 import SFAuthIDPRedirects from '../SFAuthIDPRedirects.vue'
 import SFAuthRegisterPrivacyDisclaimer from './SFAuthRegisterPrivacyDisclaimer.vue'
 import SFAuthRegisterToggleGuest from './SFAuthRegisterToggleGuest.vue'
+import { useI18n } from '#i18n'
 import SFLocalizedLink from '~/components/SFLocalizedLink.vue'
 import { useValidationRules, useAuthentication } from '~/composables'
 import { routeList } from '~/utils'
@@ -132,6 +133,7 @@ import {
 } from '#storefront-ui/components'
 import SFAuthSeparator from '~/components/auth/SFAuthSeparator.vue'
 import { PASSWORD_MIN_LENGTH } from '~/constants/password'
+import { resolveErrorMessage } from '~/utils/authentication'
 
 defineProps<{ externalIDPRedirects?: Record<string, string> }>()
 
@@ -140,7 +142,7 @@ const isGuestFlowEnabled = ref(false)
 // eslint-disable-next-line sonarjs/no-hardcoded-passwords
 const PASSWORD_FIELD_NAME = 'register-password'
 
-const { register, isSubmitting, guestLogin, errorMessage } = useAuthentication()
+const { register, guestLogin } = useAuthentication()
 const validationRules = useValidationRules()
 
 type UserPayload = {
@@ -203,7 +205,9 @@ const validateForm = async (): Promise<boolean> => {
     ? v.value.$errors.every((item) => item.$property === 'password')
     : !v.value.$errors.length
 }
-
+const errorMessage = ref<string | null>(null)
+const isSubmitting = ref(false)
+const i18n = useI18n()
 const onSubmit = async () => {
   const isValid = await validateForm()
 
@@ -213,10 +217,22 @@ const onSubmit = async () => {
 
   const { password, ...payload } = userPayload
 
-  if (isGuestFlowEnabled.value) {
-    await guestLogin(payload as Required<Omit<UserPayload, 'password'>>)
-  } else {
-    await register({ ...payload, password } as Required<UserPayload>)
+  isSubmitting.value = true
+  errorMessage.value = null
+  try {
+    if (isGuestFlowEnabled.value) {
+      await guestLogin(payload as Required<Omit<UserPayload, 'password'>>)
+    } else {
+      await register({ ...payload, password } as Required<UserPayload>)
+    }
+  } catch (error) {
+    errorMessage.value = resolveErrorMessage(
+      error,
+      isGuestFlowEnabled.value ? 'guest_login' : 'sign_up',
+      i18n,
+    )
+  } finally {
+    isSubmitting.value = false
   }
 }
 

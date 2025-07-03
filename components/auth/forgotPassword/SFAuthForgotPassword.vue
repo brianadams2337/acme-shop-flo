@@ -32,11 +32,14 @@
 </template>
 
 <script setup lang="ts">
+import { ref } from 'vue'
 import SFAuthForgotPasswordSlideInHeader from './SFAuthForgotPasswordSlideInHeader.vue'
 import SFAuthForgotPasswordSlideInBody from './SFAuthForgotPasswordSlideInBody.vue'
 import { SFButton, SFSlideIn } from '#storefront-ui/components'
 import { useSlideIn } from '#storefront-ui/composables'
 import { useAuthentication } from '~/composables'
+import { resolveErrorMessage } from '~/utils/authentication'
+import { useI18n } from '#i18n'
 
 const SLIDE_IN_KEY = 'ForgotPasswordSlideIn'
 
@@ -44,18 +47,24 @@ defineProps<{ prefilledEmail: string }>()
 
 const { toggle, close, isOpen } = useSlideIn(SLIDE_IN_KEY)
 
-const { clearErrorMessage, errorMessage, isSubmitting, forgotPassword } =
-  useAuthentication()
+const { forgotPassword } = useAuthentication()
 
 const closeAndClear = () => {
-  clearErrorMessage()
   close()
 }
-
+const errorMessage = ref<string | null>(null)
+const isSubmitting = ref(false)
+const i18n = useI18n()
 const submit = async (email: string) => {
-  await forgotPassword(email)
-  if (!errorMessage.value) {
+  try {
+    isSubmitting.value = true
+    errorMessage.value = null
+    await forgotPassword(email)
     closeAndClear()
+  } catch (error) {
+    errorMessage.value = resolveErrorMessage(error, 'forgot_password', i18n)
+  } finally {
+    isSubmitting.value = false
   }
 }
 </script>

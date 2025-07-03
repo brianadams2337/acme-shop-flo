@@ -78,7 +78,7 @@
 </template>
 
 <script setup lang="ts">
-import { reactive, computed } from 'vue'
+import { reactive, computed, ref } from 'vue'
 import useVuelidate from '@vuelidate/core'
 import SFLocalizedLink from '../SFLocalizedLink.vue'
 import SFErrorMessageContainer from '../SFErrorMessageContainer.vue'
@@ -94,6 +94,8 @@ import {
 import SFAuthSeparator from '~/components/auth/SFAuthSeparator.vue'
 import { routeList } from '~/utils'
 import { PASSWORD_MIN_LENGTH } from '~/constants/password'
+import { useI18n } from '#i18n'
+import { resolveErrorMessage } from '~/utils/authentication'
 
 defineProps<{ externalIDPRedirects?: Record<string, string> }>()
 
@@ -105,7 +107,7 @@ const userPayload = reactive<Record<'email' | 'password', string>>({
   email: '',
   password: '',
 })
-const { login, isSubmitting, errorMessage } = useAuthentication()
+const { login } = useAuthentication()
 
 const validationRules = useValidationRules()
 
@@ -127,12 +129,24 @@ const rules = {
 
 const v = useVuelidate(rules, userPayload)
 
+const errorMessage = ref<string | null>(null)
+const isSubmitting = ref(false)
+const i18n = useI18n()
+
 const onSubmit = async () => {
   const isValid = await v.value.$validate()
   if (!isValid) {
     return
   }
 
-  await login(userPayload)
+  isSubmitting.value = true
+  errorMessage.value = null
+  try {
+    await login(userPayload)
+  } catch (error) {
+    errorMessage.value = resolveErrorMessage(error, 'login', i18n)
+  } finally {
+    isSubmitting.value = false
+  }
 }
 </script>

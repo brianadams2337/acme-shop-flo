@@ -4,9 +4,6 @@ import type {
   RegisterRequest,
   UpdatePasswordByHashRequest,
 } from '@scayle/storefront-nuxt'
-import { FetchError } from 'ofetch'
-import { ref, readonly, onUnmounted } from 'vue'
-import type { Ref } from 'vue'
 import { clearNuxtData } from '#app/composables/asyncData'
 import { useRouteHelpers, useToast, useTrackingEvents } from '~/composables'
 import type { AuthTrackingEvent, AuthenticationType } from '~/types/tracking'
@@ -23,28 +20,43 @@ import { routeList } from '~/utils'
 import { useApplyPromotions } from '#storefront-promotions/composables/useApplyPromotions'
 
 export interface UseAuthenticationReturn {
-  /** An async function that handles the authentication process for a regular user */
+  /**
+   * An async function that handles the authentication process for a regular user
+   * @throws {FetchError} If the authentication process fails
+   */
   login: (data: Omit<LoginRequest, 'shop_id'>) => Promise<void>
-  /** An async function that handles the authentication process for a guest user */
+  /**
+   * An async function that handles the authentication process for a guest user
+   * @throws {FetchError} If the authentication process fails
+   */
   guestLogin: (data: Omit<GuestRequest, 'shop_id'>) => Promise<void>
-  /** An async function that handles logging out the user */
+  /**
+   * An async function that handles logging out the user
+   * @throws {FetchError} If the logout process fails
+   */
   logout: () => Promise<void>
-  /** An async function that handles registering the user */
+  /**
+   * An async function that handles registering the user
+   * @throws {FetchError} If the registration process fails
+   */
   register: (data: Omit<RegisterRequest, 'shop_id'>) => Promise<void>
-  /** An async function that handles the password recovery process for a specific user */
+  /**
+   * An async function that handles the password recovery process for a specific user
+   * @throws {FetchError} If the password recovery process fails
+   */
   forgotPassword: (email: string) => Promise<void>
-  /** An async function that handles resetting the password using a hash */
+  /**
+   * An async function that handles resetting the password using a hash
+   * @throws {FetchError} If the password reset process fails
+   */
   resetPasswordByHash: (
     data: Omit<UpdatePasswordByHashRequest, 'shop_id'>,
   ) => Promise<void>
-  /** An async function that handles login through an identity provider (IDP) */
+  /**
+   * An async function that handles login through an identity provider (IDP)
+   * @throws {FetchError} If the login through an identity provider (IDP) fails
+   */
   loginIDP: (code: string) => Promise<void>
-  /** A readonly reactive boolean that indicates whether each of the actions mentioned above is currently in the process of being submitted */
-  isSubmitting: Readonly<Ref<boolean, boolean>>
-  /** A readonly reactive string for storing the error message */
-  errorMessage: Readonly<Ref<string | null, string | null>>
-  /** A function that cleares the error message */
-  clearErrorMessage: () => void
 }
 
 /**
@@ -61,8 +73,6 @@ export function useAuthentication(
   const $i18n = useI18n()
   const route = useRoute()
 
-  const errorMessage = ref<string | null>(null)
-
   const toast = useToast()
 
   const { trackAuthenticated, trackLogout } = useTrackingEvents()
@@ -70,8 +80,6 @@ export function useAuthentication(
   const session = useSession()
   const { localizedNavigateTo } = useRouteHelpers()
   const log = useLog('useAuthentication')
-
-  const isSubmitting = ref(false)
 
   const successMessage = (event: AuthTrackingEvent) => {
     return $i18n.t(`authentication.notification.success.${event}`)
@@ -89,77 +97,54 @@ export function useAuthentication(
     await applyPromotions()
   }
 
-  const clearErrorMessage = (): void => {
-    errorMessage.value = null
-  }
-
   const login = async (data: Omit<LoginRequest, 'shop_id'>): Promise<void> => {
-    isSubmitting.value = true
-    clearErrorMessage()
-
     try {
       await session.login(data)
       await authenticated('login')
     } catch (error) {
       trackFailedAuthentication(data.email, 'login')
       handleError(error, 'login')
+      throw error
     }
-
-    isSubmitting.value = false
   }
 
   const loginIDP = async (code: string): Promise<void> => {
-    isSubmitting.value = true
-    clearErrorMessage()
-
     try {
       await session.loginWithIDP({ code })
       await authenticated('login')
     } catch (error) {
       handleError(error, 'login')
+      throw error
     }
-
-    isSubmitting.value = false
   }
 
   const guestLogin = async (
     data: Omit<GuestRequest, 'shop_id'>,
   ): Promise<void> => {
-    isSubmitting.value = true
-    clearErrorMessage()
-
     try {
       await session.guestLogin(data)
       await authenticated('guest_login')
     } catch (error) {
       trackFailedAuthentication(data.email, 'guest_login')
       handleError(error, 'guest_login')
+      throw error
     }
-
-    isSubmitting.value = false
   }
 
   const register = async (
     data: Omit<RegisterRequest, 'shop_id'>,
   ): Promise<void> => {
-    isSubmitting.value = true
-    clearErrorMessage()
-
     try {
       await session.register(data)
       await authenticated('sign_up')
     } catch (error) {
       trackFailedAuthentication(data.email, 'sign_up')
       handleError(error, 'sign_up')
+      throw error
     }
-
-    isSubmitting.value = false
   }
 
   const forgotPassword = async (email: string): Promise<void> => {
-    isSubmitting.value = true
-    clearErrorMessage()
-
     try {
       await session.forgetPassword({ email })
       toast.show(successMessage('forgot_password'), {
@@ -167,31 +152,25 @@ export function useAuthentication(
         type: 'INFO',
       })
     } catch (error) {
+      trackFailedAuthentication(email, 'forgot_password')
       handleError(error, 'forgot_password')
+      throw error
     }
-    isSubmitting.value = false
   }
 
   const resetPasswordByHash = async (
     data: Omit<UpdatePasswordByHashRequest, 'shop_id'>,
   ): Promise<void> => {
-    isSubmitting.value = true
-    clearErrorMessage()
-
     try {
       await session.resetPasswordByHash(data)
       await authenticated('reset_password')
     } catch (error) {
       handleError(error, 'reset_password')
+      throw error
     }
-
-    isSubmitting.value = false
   }
 
   const logout = async (): Promise<void> => {
-    isSubmitting.value = true
-    clearErrorMessage()
-
     try {
       await session.revokeToken()
       // we call `useUser` in templates/nuxt/middleware/authGuard.global.ts with the key `authGuard-user`.
@@ -203,13 +182,11 @@ export function useAuthentication(
       }
     } catch (error) {
       handleError(error, 'logout')
+      throw error
+    } finally {
+      await refresh()
+      redirectUser(routeList.home.path)
     }
-
-    await refresh()
-
-    isSubmitting.value = false
-
-    redirectUser(routeList.home.path)
   }
 
   /**
@@ -255,46 +232,11 @@ export function useAuthentication(
     )
   }
 
-  const getGenericErrorMessage = (status: number): string => {
-    switch (status) {
-      case 400:
-        return $i18n.t('authentication.notification.error.generic.400')
-      case 401:
-        return $i18n.t('authentication.notification.error.generic.401')
-      case 403:
-        return $i18n.t('authentication.notification.error.generic.403')
-      case 404:
-        return $i18n.t('authentication.notification.error.generic.404')
-      case 406:
-        return $i18n.t('authentication.notification.error.generic.406')
-      case 409:
-        return $i18n.t('authentication.notification.error.generic.409')
-      case 422:
-        return $i18n.t('authentication.notification.error.generic.422')
-      case 500:
-        return $i18n.t('authentication.notification.error.generic.500')
-      default:
-        return $i18n.t('authentication.notification.error.generic.500')
-    }
-  }
-
   const handleError = (error: unknown, event: AuthTrackingEvent): void => {
-    if (error instanceof FetchError) {
-      const status = error.response?.status
-      if (status) {
-        const authFlowSpecificPath = `authentication.notification.error.${event}.${status}`
-        // Prioritize specific translations for certain flows (e.g., guest login error 409).
-        // If a specific translation is not available, fall back to the general sign-in error message translations.
-        errorMessage.value = $i18n.te(authFlowSpecificPath)
-          ? $i18n.t(authFlowSpecificPath)
-          : getGenericErrorMessage(status)
-      }
-    }
     // remove user data (email, password) from the error object, before logging it
 
     // @ts-expect-error Property 'config' does not exist on type '{}'.ts(2339)
     delete error?.config?.data
-
     log.error(`Error while ${event} was called.`, {
       error,
     })
@@ -306,8 +248,6 @@ export function useAuthentication(
       : await localizedNavigateTo(redirectTo)
   }
 
-  onUnmounted(() => clearErrorMessage())
-
   return {
     login,
     guestLogin,
@@ -316,8 +256,5 @@ export function useAuthentication(
     forgotPassword,
     resetPasswordByHash,
     loginIDP,
-    clearErrorMessage,
-    isSubmitting: readonly(isSubmitting),
-    errorMessage: readonly(errorMessage),
   }
 }

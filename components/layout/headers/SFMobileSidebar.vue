@@ -52,7 +52,7 @@ import { SFButton } from '#storefront-ui/components'
 import { routeList } from '~/utils'
 import SFLocalizedLink from '~/components/SFLocalizedLink.vue'
 import { useAuthentication } from '~/composables'
-import { useUser } from '#storefront/composables'
+import { useLog, useUser } from '#storefront/composables'
 import { onBeforeRouteLeave } from '#app/composables/router'
 
 const { isOpen, navigationItems } = defineProps<{
@@ -64,10 +64,15 @@ const emit = defineEmits<{ close: [] }>()
 
 const { user } = useUser()
 const { logout } = useAuthentication()
+const log = useLog('SFMobileSidebar')
 
 const handleLogout = async () => {
-  await logout()
-  emit('close')
+  try {
+    await logout()
+    emit('close')
+  } catch (error) {
+    log.error('Error during logging out', error)
+  }
 }
 
 // Whenever the route changes, we want to make sure that the mobile sidebar is closed.

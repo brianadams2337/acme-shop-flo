@@ -22,13 +22,15 @@
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue'
+import { computed, ref } from 'vue'
 import SFAuthResetPasswordSlideInHeader from './SFAuthResetPasswordSlideInHeader.vue'
 import SFAuthResetPasswordSlideInBody from './SFAuthResetPasswordSlideInBody.vue'
 import { SFSlideIn } from '#storefront-ui/components'
 import { useSlideIn } from '#storefront-ui/composables'
 import { useAuthentication } from '~/composables'
 import { useRoute, useRouter } from '#app/composables/router'
+import { resolveErrorMessage } from '~/utils/authentication'
+import { useI18n } from '#i18n'
 
 const SLIDE_IN_KEY = 'ResetPasswordSlideIn'
 
@@ -39,19 +41,29 @@ const hasToken = computed(() => !!route.query.hash)
 
 const { close, isOpen } = useSlideIn(SLIDE_IN_KEY, hasToken.value)
 
-const { clearErrorMessage, resetPasswordByHash, errorMessage, isSubmitting } =
-  useAuthentication()
+const { resetPasswordByHash } = useAuthentication()
+
+const errorMessage = ref<string | null>(null)
+const isSubmitting = ref(false)
+const i18n = useI18n()
 
 const closeAndClear = () => {
   router.replace({ query: {} })
-  clearErrorMessage()
+  errorMessage.value = null
   close()
 }
 
 const submit = async (payload: { password: string; hash: string }) => {
-  await resetPasswordByHash(payload)
-  if (!errorMessage.value) {
+  isSubmitting.value = true
+  errorMessage.value = null
+
+  try {
+    await resetPasswordByHash(payload)
     closeAndClear()
+  } catch (error) {
+    errorMessage.value = resolveErrorMessage(error, 'reset_password', i18n)
+  } finally {
+    isSubmitting.value = false
   }
 }
 </script>

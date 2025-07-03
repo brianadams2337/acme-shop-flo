@@ -6,8 +6,11 @@
 import { computed, defineOptions, onMounted } from 'vue'
 import { useRoute } from '#app/composables/router'
 import { useAuthentication } from '~/composables'
+import { useLog } from '#storefront/composables'
 
 const route = useRoute()
+
+const log = useLog('CallbackPage')
 
 const { loginIDP } = useAuthentication()
 
@@ -20,7 +23,11 @@ onMounted(async () => {
   if (!idpCode.value) {
     return
   }
-  await loginIDP(idpCode.value)
+  try {
+    await loginIDP(idpCode.value)
+  } catch (error) {
+    log.error('Error during logging in', error)
+  }
 })
 
 defineOptions({ name: 'CallbackPage' })

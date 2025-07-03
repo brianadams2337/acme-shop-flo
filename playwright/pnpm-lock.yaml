@@ -37,8 +37,8 @@ importers:
         specifier: 2.2.0
         version: 2.2.0(eslint@9.30.1(jiti@2.4.2))
       lighthouse:
-        specifier: 12.7.0
-        version: 12.7.0
+        specifier: 12.7.1
+        version: 12.7.1
       ts-node:
         specifier: 10.9.2
         version: 10.9.2(@types/node@22.16.0)(typescript@5.8.3)
@@ -2048,8 +2048,8 @@ packages:
   lighthouse-stack-packs@1.12.2:
     resolution: {integrity: sha512-Ug8feS/A+92TMTCK6yHYLwaFMuelK/hAKRMdldYkMNwv+d9PtWxjXEg6rwKtsUXTADajhdrhXyuNCJ5/sfmPFw==}
 
-  lighthouse@12.7.0:
-    resolution: {integrity: sha512-Pr0ZUYpr+B6kwmLVpG2CRbDn/zrmP8YxieSKHN7IZWzRQAabZ8+hW4umLH01kBaezDD4X6Gmoq6TPgr4/SlTaQ==}
+  lighthouse@12.7.1:
+    resolution: {integrity: sha512-AfiLXG8gnisMPFqNK4+Y36A+JrirTYsogIiuIL1pQsAkwPHaTnBXN+ldt+TiLssEbKIkIpaWhViDQjUJbrbxnQ==}
     engines: {node: '>=18.20'}
     hasBin: true
 
@@ -5333,7 +5333,7 @@ snapshots:
 
   lighthouse-stack-packs@1.12.2: {}
 
-  lighthouse@12.7.0:
+  lighthouse@12.7.1:
     dependencies:
       '@paulirish/trace_engine': 0.0.56
       '@sentry/node': 9.33.0

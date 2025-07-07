@@ -95,7 +95,7 @@ const openFlyout = async (shouldTrapFocusImmediately: boolean) => {
 }
 const closeFlyout = () => {
   isOpen.value = false
-  deactivate()
+  deactivate({ returnFocus: trapFocusImmediately.value })
 }
 
 const ARROW_KEYS = ['ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown']

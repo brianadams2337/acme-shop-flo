@@ -13,7 +13,7 @@
         isSecondary,
       'rounded-xl border border-gray-500 bg-transparent font-semibold text-primary hover:bg-gray-100 hover:text-primary':
         isTertiary,
-      'rounded-lg bg-accent font-semibold text-white hover:bg-accent/75 hover:text-white':
+      'rounded-lg bg-accent font-semibold text-white hover:text-white supports-hover:hover:bg-accent/75':
         isAccent,
       'text-primary hover:text-primary': isRaw,
       'w-full': isFullWidth,

@@ -6,6 +6,7 @@ import SFModal from './core/SFModal.client.vue'
 import SFSkeletonLoader from './core/SFSkeletonLoader.vue'
 import SFSlideIn from './core/SFSlideIn.client.vue'
 import SFPopover from './core/SFPopover.vue'
+import SFBadge from './core/SFBadge.vue'
 
 // Form
 import SFCheckbox from './form/SFCheckbox.vue'
@@ -71,4 +72,5 @@ export {
   SFSlideInFromBottomTransition,
   SFSlideInFromLeftTransition,
   SFAccordionEntry,
+  SFBadge,
 }

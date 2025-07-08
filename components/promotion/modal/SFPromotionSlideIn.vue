@@ -29,13 +29,11 @@
               ? $t('promotion_slide_in.active_promotions')
               : $t('promotion_slide_in.no_active_promotions')
           }}
-          <span
+          <SFBadge
             v-if="promotionsSortedByPriority.length"
-            class="inline-flex h-4 items-center justify-center rounded-full bg-black px-1.5 text-sm text-white"
+            :badge="promotionsSortedByPriority.length"
             data-testid="promotion-counter"
-          >
-            {{ promotionsSortedByPriority.length }}
-          </span>
+          />
         </div>
         <div class="mb-8 text-md">{{ $t('promotion_slide_in.subline') }}</div>
 
@@ -59,7 +57,12 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import type { Promotion } from '@scayle/storefront-nuxt'
-import { SFSlideIn, SFButton, SFHeadline } from '#storefront-ui/components'
+import {
+  SFSlideIn,
+  SFButton,
+  SFHeadline,
+  SFBadge,
+} from '#storefront-ui/components'
 import SFProductPromotionBanner from '~/components/product/promotion/banners/SFProductPromotionBanner.vue'
 import { sortPromotionsByPriority } from '#storefront-promotions/utils'
 

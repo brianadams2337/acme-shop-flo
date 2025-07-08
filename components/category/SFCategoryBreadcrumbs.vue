@@ -33,13 +33,11 @@
     >
       {{ category.name }}
       <SFFadeInTransition>
-        <span
+        <SFBadge
           v-if="!productsFetching && productsCount !== undefined"
-          class="ml-0.5 inline-flex h-4.5 items-center rounded-full bg-primary px-2 text-sm font-semibold leading-4 text-white"
+          :badge="productsCount"
           data-testid="breadcrumb-product-counter"
-        >
-          {{ productsCount }}
-        </span>
+        />
       </SFFadeInTransition>
     </SFHeadline>
   </div>
@@ -51,7 +49,11 @@ import { computed } from 'vue'
 import SFLocalizedLink from '../SFLocalizedLink.vue'
 import type { BreadcrumbItem } from '~/types/breadcrumbs'
 import { useBreadcrumbs } from '~/composables'
-import { SFFadeInTransition, SFHeadline } from '#storefront-ui/components'
+import {
+  SFFadeInTransition,
+  SFHeadline,
+  SFBadge,
+} from '#storefront-ui/components'
 import { showDividerTag } from '#storefront-ui'
 
 const {

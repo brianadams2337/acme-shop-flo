@@ -4,13 +4,12 @@
       <slot name="label">
         <SFHeadline v-if="label" tag="h4" size="lg" class="leading-normal">
           {{ label }}
-          <span
-            class="inline-flex h-4 items-center justify-center rounded-full bg-black px-1.5 text-sm leading-4 text-white opacity-0"
+          <SFBadge
+            class="opacity-0"
             :class="{ 'opacity-100': badge > 0 }"
+            :badge="badge"
             data-testid="filter-group-counter"
-          >
-            {{ badge }}
-          </span>
+          />
         </SFHeadline>
       </slot>
       <slot name="action">
@@ -32,7 +31,7 @@
 </template>
 
 <script setup lang="ts">
-import { SFButton, SFHeadline } from '#storefront-ui/components'
+import { SFButton, SFHeadline, SFBadge } from '#storefront-ui/components'
 
 const {
   resetLabel,

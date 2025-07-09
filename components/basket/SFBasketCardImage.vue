@@ -13,7 +13,7 @@
         :class="[{ 'opacity-60': isSoldOut }]"
       />
       <SFPromotionBadge
-        v-if="basketItem.promotion"
+        v-if="basketItem.promotion && basketItem.promotion.isValid"
         :text="text"
         :style="style"
         class="absolute bottom-2.5 ml-1"

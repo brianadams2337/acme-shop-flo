@@ -5,6 +5,7 @@ FROM node:22.16.0-alpine3.20@sha256:2289fb1fba0f4633b08ec47b94a89c7e20b829fc5679
 
 ARG VERSION
 ARG CMS_PROVIDER=scayle
+ARG SHOP_SELECTOR_MODE=path
 ARG GIT_REPOSITORY_URL
 ARG GIT_COMMIT_SHA
 
@@ -15,7 +16,8 @@ COPY package.json pnpm-lock.yaml pnpm-workspace.yaml patches/ ./
 ENV VERSION=${VERSION} \
     CMS_PROVIDER=${CMS_PROVIDER} \
     OTEL_ENABLED=true \
-    OTEL_RESOURCE_ATTRIBUTES=git.commit.sha=${GIT_COMMIT_SHA},git.repository_url=${GIT_REPOSITORY_URL}
+    OTEL_RESOURCE_ATTRIBUTES=git.commit.sha=${GIT_COMMIT_SHA},git.repository_url=${GIT_REPOSITORY_URL} \
+    SHOP_SELECTOR_MODE=${SHOP_SELECTOR_MODE}
 
 RUN corepack enable && corepack prepare pnpm@latest --activate
 RUN pnpm install --frozen-lockfile

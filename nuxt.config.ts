@@ -68,7 +68,8 @@ type NitroRouteConfig = NitroRouteRules extends Record<string, infer Value>
 const baseShopDomain = (code: string | string[]) =>
   `${Array.isArray(code) ? code[0] : code}.localhost:3000`
 
-const SHOP_SELECTOR_MODE = 'path' as ModuleBaseOptions['shopSelector']
+const SHOP_SELECTOR_MODE = (process.env.SHOP_SELECTOR_MODE ??
+  'path') as ModuleBaseOptions['shopSelector']
 const DOMAIN_PER_LOCALE = SHOP_SELECTOR_MODE === 'domain'
 
 const isVercel =

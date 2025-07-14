@@ -86,7 +86,7 @@
     "license-checker": "25.0.1",
     "lint-staged": "16.1.2",
     "nuxt": "3.16.2",
-    "nuxt-svgo": "4.2.3",
+    "nuxt-svgo": "4.2.4",
     "ofetch": "1.4.1",
     "pathe": "2.0.3",
     "postcss": "8.5.6",

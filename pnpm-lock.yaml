@@ -321,8 +321,8 @@ importers:
         specifier: 3.16.2
         version: 3.16.2(@netlify/blobs@8.2.0)(@parcel/watcher@2.5.1)(@types/node@22.16.3)(@upstash/redis@1.35.1)(@vercel/kv@3.0.0)(db0@0.3.2)(eslint@9.31.0(jiti@2.4.2))(ioredis@5.6.1)(magicast@0.3.5)(optionator@0.9.4)(rollup@4.44.1)(terser@5.43.1)(typescript@5.8.3)(vite@7.0.0(@types/node@22.16.3)(jiti@2.4.2)(terser@5.43.1)(yaml@2.8.0))(vue-tsc@3.0.1(typescript@5.8.3))(yaml@2.8.0)
       nuxt-svgo:
-        specifier: 4.2.3
-        version: 4.2.3(magicast@0.3.5)(vue@3.5.17(typescript@5.8.3))
+        specifier: 4.2.4
+        version: 4.2.4(magicast@0.3.5)(vue@3.5.17(typescript@5.8.3))
       ofetch:
         specifier: 1.4.1
         version: 1.4.1
@@ -7068,8 +7068,8 @@ packages:
     resolution: {integrity: sha512-4jbtZXNAsfZbAHiiqjLPBiCl16dES1zI4Hpzzxw61Tk+loF+sBDBKx1ICKKKwIqQ7M0mFn1TmkN7euSncWgHiQ==}
     engines: {node: '>=0.10.0'}
 
-  nuxt-svgo@4.2.3:
-    resolution: {integrity: sha512-1TQ6UFM/kU+YKn4Vp7QofZq1Y3+7Yxkw2F5T4IIdAW5jGH3QlE86QtkCP2ZIWjTbfZEzuCtdBtLWFpenFOaLFA==}
+  nuxt-svgo@4.2.4:
+    resolution: {integrity: sha512-OQdXecLlcJ15Q2mrzIbHpy6SIS/ExujyeZys/CgSQdmQtBagoac56aPBpgMIDGjQ0QXiLKPKOjSeby7hcKDfsw==}
     peerDependencies:
       svgo-loader: ^4.0.0
       vue: 3.5.17
@@ -18095,7 +18095,7 @@ snapshots:
 
   number-is-nan@1.0.1: {}
 
-  nuxt-svgo@4.2.3(magicast@0.3.5)(vue@3.5.17(typescript@5.8.3)):
+  nuxt-svgo@4.2.4(magicast@0.3.5)(vue@3.5.17(typescript@5.8.3)):
     dependencies:
       '@nuxt/kit': 3.16.2(magicast@0.3.5)
       mini-svg-data-uri: 1.4.4

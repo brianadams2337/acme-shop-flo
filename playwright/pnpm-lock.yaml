@@ -22,8 +22,8 @@ importers:
         specifier: 1.54.0
         version: 1.54.0
       '@scayle/eslint-config-storefront':
-        specifier: 4.5.13
-        version: 4.5.13(@vue/compiler-sfc@3.5.17)(eslint@9.31.0)(typescript@5.8.3)
+        specifier: 4.5.14
+        version: 4.5.14(@vue/compiler-sfc@3.5.17)(eslint@9.31.0)(typescript@5.8.3)
       '@types/node':
         specifier: 22.16.3
         version: 22.16.3
@@ -471,8 +471,8 @@ packages:
     engines: {node: '>=18'}
     hasBin: true
 
-  '@scayle/eslint-config-storefront@4.5.13':
-    resolution: {integrity: sha512-shrcaWihckOKUVejbb0u8NAUxWfLhasb1uiwHbvBiAtNlcnJvyziNROZAwfKfrye19bp2zbR/7DHtObH/auByw==}
+  '@scayle/eslint-config-storefront@4.5.14':
+    resolution: {integrity: sha512-d2VXR8gCnGbBh4FUcyCVBddqL8DCTaA2tFPoABl6APVGnRjyKTrRSN988foCJQhLIsnzEu7/NlNDjvuul0nCSw==}
     peerDependencies:
       eslint: '>=9.0.0'
       typescript: '>=5.4.0'
@@ -3116,7 +3116,7 @@ snapshots:
       - bare-buffer
       - supports-color
 
-  '@scayle/eslint-config-storefront@4.5.13(@vue/compiler-sfc@3.5.17)(eslint@9.31.0)(typescript@5.8.3)':
+  '@scayle/eslint-config-storefront@4.5.14(@vue/compiler-sfc@3.5.17)(eslint@9.31.0)(typescript@5.8.3)':
     dependencies:
       '@antfu/eslint-config': 4.16.2(@vue/compiler-sfc@3.5.17)(eslint@9.31.0)(typescript@5.8.3)
       '@eslint/eslintrc': 3.3.1

@@ -225,8 +225,8 @@ importers:
         specifier: 2.5.1
         version: 2.5.1
       '@scayle/eslint-config-storefront':
-        specifier: 4.5.13
-        version: 4.5.13(@vue/compiler-sfc@3.5.17)(eslint-plugin-vuejs-accessibility@2.4.1(eslint@9.31.0(jiti@2.4.2)))(eslint@9.31.0(jiti@2.4.2))(typescript@5.8.3)(vitest@3.2.4(@types/debug@4.1.12)(@types/node@22.16.3)(happy-dom@18.0.1)(jiti@2.4.2)(terser@5.43.1)(yaml@2.8.0))
+        specifier: 4.5.14
+        version: 4.5.14(@vue/compiler-sfc@3.5.17)(eslint-plugin-vuejs-accessibility@2.4.1(eslint@9.31.0(jiti@2.4.2)))(eslint@9.31.0(jiti@2.4.2))(typescript@5.8.3)(vitest@3.2.4(@types/debug@4.1.12)(@types/node@22.16.3)(happy-dom@18.0.1)(jiti@2.4.2)(terser@5.43.1)(yaml@2.8.0))
       '@scayle/eslint-plugin-vue-composable':
         specifier: 0.2.1
         version: 0.2.1(eslint@9.31.0(jiti@2.4.2))
@@ -2514,8 +2514,8 @@ packages:
       zen-observable:
         optional: true
 
-  '@scayle/eslint-config-storefront@4.5.13':
-    resolution: {integrity: sha512-shrcaWihckOKUVejbb0u8NAUxWfLhasb1uiwHbvBiAtNlcnJvyziNROZAwfKfrye19bp2zbR/7DHtObH/auByw==}
+  '@scayle/eslint-config-storefront@4.5.14':
+    resolution: {integrity: sha512-d2VXR8gCnGbBh4FUcyCVBddqL8DCTaA2tFPoABl6APVGnRjyKTrRSN988foCJQhLIsnzEu7/NlNDjvuul0nCSw==}
     peerDependencies:
       eslint: '>=9.0.0'
       typescript: '>=5.4.0'
@@ -12605,7 +12605,7 @@ snapshots:
     transitivePeerDependencies:
       - zenObservable
 
-  '@scayle/eslint-config-storefront@4.5.13(@vue/compiler-sfc@3.5.17)(eslint-plugin-vuejs-accessibility@2.4.1(eslint@9.31.0(jiti@2.4.2)))(eslint@9.31.0(jiti@2.4.2))(typescript@5.8.3)(vitest@3.2.4(@types/debug@4.1.12)(@types/node@22.16.3)(happy-dom@18.0.1)(jiti@2.4.2)(terser@5.43.1)(yaml@2.8.0))':
+  '@scayle/eslint-config-storefront@4.5.14(@vue/compiler-sfc@3.5.17)(eslint-plugin-vuejs-accessibility@2.4.1(eslint@9.31.0(jiti@2.4.2)))(eslint@9.31.0(jiti@2.4.2))(typescript@5.8.3)(vitest@3.2.4(@types/debug@4.1.12)(@types/node@22.16.3)(happy-dom@18.0.1)(jiti@2.4.2)(terser@5.43.1)(yaml@2.8.0))':
     dependencies:
       '@antfu/eslint-config': 4.16.1(@vue/compiler-sfc@3.5.17)(eslint-plugin-vuejs-accessibility@2.4.1(eslint@9.31.0(jiti@2.4.2)))(eslint@9.31.0(jiti@2.4.2))(typescript@5.8.3)(vitest@3.2.4(@types/debug@4.1.12)(@types/node@22.16.3)(happy-dom@18.0.1)(jiti@2.4.2)(terser@5.43.1)(yaml@2.8.0))
       '@eslint/eslintrc': 3.3.1

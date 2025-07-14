@@ -225,7 +225,7 @@ importers:
         specifier: 2.5.1
         version: 2.5.1
       '@scayle/eslint-auto-explicit-import':
-        specifier: ^0.2.0
+        specifier: 0.2.0
         version: 0.2.0(@nuxt/kit@3.16.2(magicast@0.3.5))
       '@scayle/eslint-config-storefront':
         specifier: 4.5.14

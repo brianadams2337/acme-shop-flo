@@ -290,25 +290,25 @@ The included tracking implementation has been refactored and received various im
 
 ### 💅 Minor Changes
 
-- Fixed caching behaviour for account area via `routeRules` in `nuxt.config.ts`
+- Fixed caching behavior for account area via `routeRules` in `nuxt.config.ts`
 - Fixed wishlist toggle if wishlist data is being toggled and fetched in `components/product/WishlistToggle.vue`
 - Refactored error message handling during local development mode to show actual error with stack trace
-- Fixed product detail page and product listing page (category page) behaviour if basket data is undefined
+- Fixed product detail page and product listing page (category page) behavior if basket data is undefined
 - Fixed Storyblok CMS data handling in `pages/s/[slug].vue`
 - Fixed Storyblok CMS components handling in `pages/c/[slug].vue`
 - Renamed `categoryNotFound` to `foundCategoryByPath` in `pages/[...category].vue`
 - Fixed error handling for non existing category slug by throwing a `404` error and removed error handling from `layouts/defaults.vue`
 - Fixed redirection from error page to homepage
 - Converted `routeChangeTrackingObserver` to the route middleware and added delayed execution
-- Fixed redirection behaviour on login from checkout, as it will now redirect after login back to checkout
+- Fixed redirection behavior on login from checkout, as it will now redirect after login back to checkout
 - Used `onNuxtReady` instead of `tryOnMounted` for `composables/tracking/watchers/useCustomerDataChangeWatcher.ts` and removed user force refresh
 - Fixed links on Storyblok grid tile, clickable image and banner link
   - `modules/cms/providers/storyblok/components/BannerLink.vue`
   - `modules/cms/providers/storyblok/components/ClickableImage.vue`
   - `modules/cms/providers/storyblok/components/GridTile.vue`
   - `modules/cms/providers/storyblok/components/StoryblokLink.vue`
-- Fixed category behaviour by using new composable `useCategoryByPath` to source category data in `pages/[...category].vue`
-- Fixed category behaviour by using `stripShopLocaleFromPath` and remove computed value in `pages/[...category].vue`
+- Fixed category behavior by using new composable `useCategoryByPath` to source category data in `pages/[...category].vue`
+- Fixed category behavior by using `stripShopLocaleFromPath` and remove computed value in `pages/[...category].vue`
 - Refactored root categories logic and implement app navigation trees
   - Added `composables/useCategory.ts`
   - Added `composables/useNavigationTreeItems.ts`
@@ -319,7 +319,7 @@ The included tracking implementation has been refactored and received various im
   - Refactored `components/layout/navigation/MobileSidebar.vue`
   - Refactored `composables/useProductList.ts`
   - Refactored `pages/[...category].vue`
-- Improved tracking behaviour
+- Improved tracking behavior
   - Refactored `composables/tracking/events/useUserActionEvents.ts`
   - Refactored `composables/tracking/watchers/useCustomerDataChangeWatcher.ts`
   - Refactored `composables/useWishlistPage.ts`
@@ -360,7 +360,7 @@ The included tracking implementation has been refactored and received various im
   - Refactored `langs/de-DE.json`
   - Refactored `langs/en-GB.json`
   - Refactored `langs/en_origin.json`
-- Extended End-to-End testing behaviour with promotion features
+- Extended End-to-End testing behavior with promotion features
   - Refactored `components/product/promotion/ProductPromotionSelectionModal.vue`
   - Refactored `components/promotion/PromotionHurryToSaveBanners.vue`
   - Refactored `composables/useBasketPromotions.ts`
@@ -486,8 +486,8 @@ The included tracking implementation has been refactored and received various im
   - `components/search/SearchResultItem.vue`
   - `components/search/SearchResults.vue`
   - `components/search/SearchResultsContainer.vue`
-- Fixed `DefaultLink` behaviour with path-based routing in `components/ui/links/DefaultLink.vue`
-- Fixed client-side validation behaviour for login and registration forms
+- Fixed `DefaultLink` behavior with path-based routing in `components/ui/links/DefaultLink.vue`
+- Fixed client-side validation behavior for login and registration forms
   - `components/auth/GuestLoginForm.vue`
   - `components/auth/LoginForm.vue`
   - `components/auth/RegisterForm.vue`
@@ -715,7 +715,7 @@ Storefront Boilerplate does now support deployment to Vercel Edge, besides Docke
 - Fixed Storyblok integration on Category pages without defined Storyblok CMS category slug resulting in error pages in `pages/[...category].vue`
 - Fixed issue with unavailable product colors on Product Detail Page in `pages/p/[slug].vue]`
 - Removed `version: getStoryblokContentVersion(),` from `composables/useCms.ts`
-- Fixed caching behaviour incorrect product list layout in `components/productList/ProductList.vue` & `pages/[...category].vue]`
+- Fixed caching behavior incorrect product list layout in `components/productList/ProductList.vue` & `pages/[...category].vue]`
 - Fixed Order types in `components/order/OrderHeader.vue`, `components/order/OrderItems.vue`, `components/order/summary/PaymentSummary.vue`, `pages/account/orders/[id].vue`
 - Fixed computed property `orderItems` in `pages/account/orders/[id].vue`
 - Fixed ProductBadge position in `components/product/ProductBadge.vue` and `components/productList/ProductList.vue`
@@ -725,7 +725,7 @@ Storefront Boilerplate does now support deployment to Vercel Edge, besides Docke
 - Fixed size picker overlapping issue in `components/wishlist/card/WishlistCard.vue`
 - Fixed SlideIn overlapping issue in `components/layout/SlideIn.vue` and `composables/useSlideIn.ts`
 - Fixed Wishlist and Basket page being incorrectly cached
-- Fixed incorrect routing behaviour in the following files
+- Fixed incorrect routing behavior in the following files
   - `components/layout/headers/search/HeaderSearch.vue`
   - `components/ui/links/DefaultLink.vue`
   - `composables/useRouteHelpers.ts`
@@ -833,7 +833,7 @@ Storefront Boilerplate does now support deployment to Vercel Edge, besides Docke
 - Reduction of hydration errors
 - Improved error handling for invalid products on PDP, as well as category and service pages
 - Improved handling of displaying account related UI elements for guest user
-- Improved order refresh behaviour on Order Success Page
+- Improved order refresh behavior on Order Success Page
 - Various smaller bug fixes
 
 ## 1.0.0-rc.01
@@ -850,7 +850,7 @@ Storefront Boilerplate does now support deployment to Vercel Edge, besides Docke
 - Improved error handling and displaying of error pages
 - Improvements to redirect handling
 - Improved SVG icon handling
-- Improvements to mobile styling and behaviour
+- Improvements to mobile styling and behavior
 
 ### Patch Changes
 

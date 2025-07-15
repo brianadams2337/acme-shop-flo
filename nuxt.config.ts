@@ -136,7 +136,7 @@ export default defineNuxtConfig({
   // Any key/value pair outside of the `public` key are private/server-side only
   // https://nuxt.com/docs/guide/going-further/runtime-config
   runtimeConfig: {
-    // Following keys are Overrideable using prefix NUXT_CHECKOUT_
+    // Following keys are overridable using prefix NUXT_CHECKOUT_
     checkout: {
       accessHeader: undefined, // Override: NUXT_CHECKOUT_ACCESS_HEADER
     },
@@ -203,18 +203,18 @@ export default defineNuxtConfig({
        * https://scayle.dev/en/storefront-guide/developer-guide/basic-setup/introduction#shops */
       shops: shops.reduce(
         (previousShopConfigs, shop) => ({
-          /** Values within `storefront.shops` are Overrideable by using their locale as identifier.
+          /** Values within `storefront.shops` are overridable by using their locale as identifier.
            * Example of an runtimeConfig override: NUXT_STOREFRONT_SHOPS_EN_US_PATH=someValue
            * All values should be provided through runtime using NUXT_ environment variable overrides.
            * https://nuxt.com/docs/guide/going-further/runtime-config#example */
           ...previousShopConfigs,
 
           /** We can use shop.locale instead of shop.shopId to avoid conflicts if we use the same shopId for multiple shop.
-           * The key [shop.locale] is connected to the Overrideable environment variables like NUXT_STOREFRONT_SHOPS_{UNIQUE_IDENTIFIER}_CHECKOUT_USER.
+           * The key [shop.locale] is connected to the overridable environment variables like NUXT_STOREFRONT_SHOPS_{UNIQUE_IDENTIFIER}_CHECKOUT_USER.
            * Depending on what key will be used here, the variables need use either the locale or shopId as{UNIQUE_IDENTIFIER}.
            * NOTE: We recommend to use the shopId as {UNIQUE_IDENTIFIER}!
-           * Example if `[shop.locale]` is used -> Overrideable environment variable: NUXT_STOREFRONT_SHOPS_EN_US_CHECKOUT_USER.
-           * Example if `[shop.shopId]` is used -> Overrideable environment variable: NUXT_STOREFRONT_SHOPS_1001_CHECKOUT_USER. */
+           * Example if `[shop.locale]` is used -> overridable environment variable: NUXT_STOREFRONT_SHOPS_EN_US_CHECKOUT_USER.
+           * Example if `[shop.shopId]` is used -> overridable environment variable: NUXT_STOREFRONT_SHOPS_1001_CHECKOUT_USER. */
           [shop.shopId]: {
             /** Storefront Core - Identity Provider support for Token-based (OAuth) Authentication
              * https://scayle.dev/en/storefront-guide/developer-guide/basic-setup/authentication#identity-providers */
@@ -287,7 +287,7 @@ export default defineNuxtConfig({
         }),
         {},
       ),
-      /** [OPTIONAL] Storefront Core - Internal cache behaviour configurations
+      /** [OPTIONAL] Storefront Core - Internal cache behavior configurations
        * https://scayle.dev/en/storefront-guide/developer-guide/basic-setup/introduction#cache */
       cache: {
         auth: {
@@ -298,9 +298,9 @@ export default defineNuxtConfig({
       },
       /** [OPTIONAL] Storefront Core - `with` Parameter
        * https://scayle.dev/en/storefront-guide/developer-guide/basic-setup/introduction#with-parameters */
-      withParams, // Previous withParams keys are Overrideable using prefix NUXT_PUBLIC_WITH_PARAMS_
+      withParams, // Previous withParams keys are Overridable using prefix NUXT_PUBLIC_WITH_PARAMS_
     },
-    // Following keys are Overrideable using prefix NUXT_PUBLIC_
+    // Following keys are Overridable using prefix NUXT_PUBLIC_
     public: {
       shopName: 'SCAYLE Storefront',
       storefront: {

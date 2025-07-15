@@ -107,7 +107,7 @@ const scrollPaddingReady = ref(false)
 const slideIn = useTemplateRef<HTMLDialogElement>('slideIn')
 
 // Syncs both refs after nextTick
-// Reason: Appyling scroll-margin directly causes a pre-scrolled slide in.
+// Reason: Applying scroll-margin directly causes a pre-scrolled slide in.
 syncRefs(isOpen, scrollPaddingReady, { flush: 'post' })
 
 const onClick = (e: MouseEvent) => {

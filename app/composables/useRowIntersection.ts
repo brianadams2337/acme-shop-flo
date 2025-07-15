@@ -21,7 +21,7 @@ export interface UseRowIntersectionReturn {
   ) => CollectedRowIntersection | undefined
 }
 /**
- * Composable for collecitng row data on intersection.
+ * Composable for collecting row data on intersection.
  *
  * @param productItems - Product items on which the row intersection will be manipulated.
  * @returns An {@link UseRowIntersectionReturn} object containing row intersection collector function.

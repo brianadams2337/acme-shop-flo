@@ -84,7 +84,7 @@ test('C2162471: Verify Shop Selector switch from non-Homepage', async ({
   header,
   wishlistPage,
 }, testInfo) => {
-  // Test skipped only for Mobile Safari due to the timeouts occuring in the Gitlab CI execution.
+  // Test skipped only for Mobile Safari due to the timeouts occurring in the Gitlab CI execution.
   // Feel free to remove the line below and try to execute the test locally or in CI to check if the timeouts are encountered.
   test.skip(
     testInfo.project.name === 'mobile-safari',

@@ -17,7 +17,7 @@ vi.mock('~/composables', () => ({
   }),
 }))
 
-describe('useBreadcumbs', () => {
+describe('useBreadcrumbs', () => {
   describe('getBreadcrumbsFromCategory', () => {
     it('should return category breadcrumbs without active category breadcrumb', () => {
       const shirtCategory = categoryFactory.build({

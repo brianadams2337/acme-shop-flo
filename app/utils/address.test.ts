@@ -78,7 +78,7 @@ describe('getFormattedLocaleAddresses', () => {
       city: 'Hamburg',
       countryCode: 'DEU',
       houseNumber: '12',
-      street: 'Test strasse',
+      street: 'Test Strasse',
       zipCode: '54321',
       recipient: {
         firstName: 'FirstName',
@@ -91,7 +91,7 @@ describe('getFormattedLocaleAddresses', () => {
 
     expect(formattedOtherAddress).toEqual([
       'FirstName LastName',
-      'Test strasse 12',
+      'Test Strasse 12',
       '54321 Hamburg',
     ])
   })
@@ -101,7 +101,7 @@ describe('getFormattedLocaleAddresses', () => {
       city: 'Hamburg',
       countryCode: 'DEU',
       houseNumber: '12',
-      street: 'Test strasse',
+      street: 'Test Strasse',
       zipCode: '54321',
       additional: 'additional value',
       recipient: {
@@ -115,7 +115,7 @@ describe('getFormattedLocaleAddresses', () => {
 
     expect(formattedOtherAddress).toEqual([
       'FirstName LastName',
-      'Test strasse 12',
+      'Test Strasse 12',
       '54321 Hamburg',
       'additional value',
     ])

@@ -181,7 +181,7 @@ const onEnter = (event: KeyboardEvent) => {
     return currentElement.click()
   }
 
-  // Check if currrent element is password field and that it has toggle
+  // Check if current element is password field and that it has toggle
   // visibility button in it. If yes, skip it, end focus element after
   if (
     (currentElement as HTMLInputElement).name === PASSWORD_FIELD_NAME &&

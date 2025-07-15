@@ -47,7 +47,7 @@ export const Default: Story = {
   args: {
     size: HeadlineSize['2XL'],
     tag: HeadlineTag.P,
-    default: 'Default headline',
+    default: 'Default Headline',
   },
 }
 
@@ -59,7 +59,7 @@ export const WithBadge: Story = {
     size: HeadlineSize.XL,
     tag: HeadlineTag.H2,
     badge: 'New',
-    default: 'Headline with badge',
+    default: 'Headline with Badge',
   },
 }
 
@@ -71,7 +71,7 @@ export const Uppercase: Story = {
     size: HeadlineSize.LG,
     tag: HeadlineTag.H3,
     isUppercase: true,
-    default: 'Uppercased headline',
+    default: 'Uppercase Headline',
   },
 }
 

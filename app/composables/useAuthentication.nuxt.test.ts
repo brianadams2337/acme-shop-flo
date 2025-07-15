@@ -50,9 +50,9 @@ vi.mock('~/composables', () => ({
 }))
 
 /**
- * The `useauthentication` composable must be wrapped in a vue component because it relies on `useI18n` and includes lifecycle hooks.
+ * The `useAuthentication` composable must be wrapped in a vue component because it relies on `useI18n` and includes lifecycle hooks.
  * The `useI18n` composable must be executed within a setup function. Additionally, when accessing reactive
- * data from `useauthentication` within the test component, avoid destructuring it, as this will lead to a loss of reactivity.
+ * data from `useAuthentication` within the test component, avoid destructuring it, as this will lead to a loss of reactivity.
  */
 const getTestComponent = () => {
   return mount(

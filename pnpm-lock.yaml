@@ -224,6 +224,9 @@ importers:
       '@parcel/watcher':
         specifier: 2.5.1
         version: 2.5.1
+      '@scayle/changelog-formatter':
+        specifier: ^1.1.0
+        version: 1.1.0
       '@scayle/eslint-auto-explicit-import':
         specifier: 0.2.0
         version: 0.2.0(@nuxt/kit@3.17.7(magicast@0.3.5))
@@ -2554,6 +2557,9 @@ packages:
         optional: true
       zen-observable:
         optional: true
+
+  '@scayle/changelog-formatter@1.1.0':
+    resolution: {integrity: sha512-3CPTf6cEw3lwV3wQugCgVoYhz93dql/KUPa7iCWBt8D5WXcXnJ9rj1hik2pJRz/tOMDnkJBnuh8wOVlVBIM+Tw==}
 
   '@scayle/eslint-auto-explicit-import@0.2.0':
     resolution: {integrity: sha512-LGVvL637qwQ/4R3SRTqtgGcWn12CrD4gRWEeDBGA/P6Pqi4R9+S5DQlhAnDgASpTt3USzienbgNj1MC6E3ibsw==}
@@ -12815,6 +12821,10 @@ snapshots:
       rxjs: 6.6.7
     transitivePeerDependencies:
       - zenObservable
+
+  '@scayle/changelog-formatter@1.1.0':
+    dependencies:
+      '@changesets/types': 6.1.0
 
   '@scayle/eslint-auto-explicit-import@0.2.0(@nuxt/kit@3.17.7(magicast@0.3.5))':
     dependencies:

@@ -79,7 +79,7 @@
     "eslint-formatter-gitlab": "6.0.1",
     "eslint-plugin-nuxt": "4.0.0",
     "eslint-plugin-storybook": "0.12.0",
-    "eslint-plugin-tailwindcss": "3.18.0",
+    "eslint-plugin-tailwindcss": "3.18.2",
     "eslint-plugin-unimport": "0.1.2",
     "eslint-plugin-vuejs-accessibility": "2.4.1",
     "fishery": "2.3.1",

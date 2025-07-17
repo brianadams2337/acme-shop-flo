@@ -26,6 +26,11 @@ export default defineNuxtRouteMiddleware(async (to, from) => {
   const isProtectedRoute = (exclude?: string): boolean => {
     const routes = getProtectedRouteList(exclude)
     const targetBaseName = getRouteBaseName(to)
+
+    if (targetBaseName === 'checkout' && to.query.transactionId) {
+      return false
+    }
+
     return routes.some(
       (protectedRoute) => protectedRoute.name === targetBaseName,
     )

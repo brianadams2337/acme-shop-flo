@@ -15,7 +15,11 @@
     "cancel": "Mégse",
     "payment_key": {
       "default": "Kártyás fizetés",
-      "accounting": "Számlás fizetés"
+      "accounting": "Számlás fizetés",
+      "paypal": "PayPal",
+      "klarna_paylater": "Klarna Pay Later",
+      "klarna_paynow": "Klarna Pay Now",
+      "klarna_installments": "Klarna Installments"
     },
     "carrier_key": {
       "DEFAULT": "UPS"

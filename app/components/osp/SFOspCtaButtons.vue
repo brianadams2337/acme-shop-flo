@@ -9,7 +9,7 @@
       {{ $t('global.continue_shopping') }}
     </SFButton>
     <SFButton
-      v-if="orderData.id"
+      v-if="orderData.id && !orderData.customer?.status.isGuestCustomer"
       variant="tertiary"
       class="flex-1"
       data-testid="osp-order-details-button"

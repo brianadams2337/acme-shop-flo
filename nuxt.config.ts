@@ -2,7 +2,6 @@ import { type NuxtConfig, defineNuxtConfig } from 'nuxt/config'
 import type { HookResult } from '@nuxt/schema'
 import { HashAlgorithm, type ModuleBaseOptions } from '@scayle/storefront-nuxt'
 import { defaultSvgoConfig } from 'nuxt-svgo'
-import { createResolver } from '@nuxt/kit'
 import * as customRpcMethods from './rpcMethods'
 import withParams from './shared/constants/withParams'
 import { shops } from './config/shops'
@@ -119,8 +118,6 @@ const defaultShop = shops.find((shop) => shop.isDefault) ?? shops[0]
 const i18nDefaultLocale = Array.isArray(defaultShop.code)
   ? defaultShop.code[0]
   : defaultShop.code
-
-const { resolve } = createResolver(import.meta.url)
 
 export default defineNuxtConfig({
   // https://nuxt.com/docs/api/nuxt-config#compatibilitydate
@@ -697,16 +694,6 @@ export default defineNuxtConfig({
   },
 
   hooks: {
-    'scripts:registry'(registry) {
-      registry.push({
-        category: 'Scayle',
-        label: 'Scayle Checkout Components',
-        import: {
-          name: 'useCheckoutComponents',
-          from: resolve('./app/scriptRegistry/checkout'),
-        },
-      })
-    },
     'nitro:config'(nitroConfig) {
       // Override the root devStorage to use the fs-lite driver which does not depend on chokidar
       // This is a workaround to avoid excessive file handlers

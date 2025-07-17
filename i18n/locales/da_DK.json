@@ -15,7 +15,11 @@
     "cancel": "Annuller",
     "payment_key": {
       "default": "Kreditkort",
-      "accounting": "Betaling med faktura"
+      "accounting": "Betaling med faktura",
+      "paypal": "PayPal",
+      "klarna_paylater": "Klarna Pay Later",
+      "klarna_paynow": "Klarna Pay Now",
+      "klarna_installments": "Klarna Installments"
     },
     "carrier_key": {
       "DEFAULT": "UPS"

@@ -1,10 +1,12 @@
 <template>
   <div id="ayCheckoutContainer" class="min-h-[85vh]">
     <scayle-checkout
-      v-if="accessToken && checkoutJwt"
+      v-if="
+        (data?.accessToken || $route.query.transactionId) && data?.checkoutJwt
+      "
       ref="checkoutRef"
-      :access-token="accessToken"
-      :jwt="checkoutJwt"
+      :access-token="data.accessToken"
+      :jwt="data.checkoutJwt"
       header-element="#header"
       :transaction-id="$route.query.transactionId"
       @error="handleError"
@@ -21,13 +23,19 @@ import {
   useCheckoutWebComponent,
   useCheckoutStepTrackingInterceptor,
 } from '~/composables'
-import { useBasket, useLog, useUser } from '#storefront/composables'
+import { useBasket, useLog, useRpc, useUser } from '#storefront/composables'
 import { useI18n } from '#i18n'
 import { useApplyPromotions } from '#storefront-promotions/composables/useApplyPromotions'
 
-const { accessToken, checkoutJwt, fetchCheckoutToken } =
-  useCheckoutWebComponent()
+useCheckoutWebComponent()
 const { refresh: refreshBasket, status, data: basket } = useBasket()
+const { data, refresh: fetchCheckoutToken } = useRpc(
+  'getCheckoutToken',
+  'getCheckoutToken',
+  undefined,
+  { immediate: false },
+)
+
 const { applyPromotions } = useApplyPromotions({ basket })
 
 const { user, refresh: refreshUser } = useUser()
@@ -73,7 +81,7 @@ const handleError = (payload = {}) => {
   console.error('Checkout web component ran into an error: ', payload)
   const loggingPayload = JSON.stringify({
     userId: user.value?.id,
-    checkoutJwt,
+    checkoutJwt: data.value?.checkoutJwt,
   })
   log.error('[onCheckoutError]', loggingPayload)
 }

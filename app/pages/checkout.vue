@@ -6,6 +6,7 @@
       :access-token="accessToken"
       :jwt="checkoutJwt"
       header-element="#header"
+      :transaction-id="$route.query.transactionId"
       @error="handleError"
     />
   </div>

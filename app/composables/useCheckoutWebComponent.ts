@@ -1,5 +1,5 @@
 import { computed } from 'vue'
-import { useHead } from '#imports'
+import { useCheckoutComponents } from '#imports'
 import { useCurrentShop, useRpc } from '#storefront/composables'
 
 export type Customer = {
@@ -25,16 +25,9 @@ export type Customer = {
 
 export function useCheckoutWebComponent() {
   const currentShop = useCurrentShop()
-  useHead({
-    script: [
-      {
-        key: 'checkout-wc',
-        defer: true,
-        async: true,
-        fetchpriority: 'high',
-        src: `${currentShop.value?.checkout.host}/frontend/checkout-wc/js?appId=${currentShop.value?.shopId}`,
-      },
-    ],
+  useCheckoutComponents({
+    host: currentShop.value?.checkout.host,
+    shopId: currentShop.value?.shopId,
   })
 
   const { data, refresh: fetchCheckoutToken } = useRpc(

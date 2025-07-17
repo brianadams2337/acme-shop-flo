@@ -35,7 +35,9 @@
       class="px-5"
     />
   </div>
+
   <div class="bg-gray-100 px-5 pb-5 lg:hidden">
+    <SFExpressCheckout />
     <SFBasketPromotionCodes />
   </div>
   <p class="bg-gray-100 px-5 pb-8 text-sm text-secondary lg:hidden">
@@ -46,6 +48,7 @@
 <script lang="ts" setup>
 import type { BasketResponseData } from '@scayle/storefront-nuxt'
 import SFBasketPromotionCodes from '../SFBasketPromotionCodes.vue'
+import SFExpressCheckout from '../SFExpressCheckout.client.vue'
 import SFBasketSummaryFinalSection from './SFBasketSummaryFinalSection.vue'
 import SFBasketSummaryReductions from './SFBasketSummaryReductions.vue'
 import { SFHeadline } from '#storefront-ui/components'

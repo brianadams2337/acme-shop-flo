@@ -32,6 +32,7 @@
         :cost="basket.cost"
         :basket-items="basket.items"
       />
+      <SFExpressCheckout />
       <SFBasketPromotionCodes />
       <p class="text-sm text-secondary">
         {{ deliveryCostsDisclaimer }}
@@ -45,6 +46,7 @@
 import { computed } from 'vue'
 import type { BasketResponseData, Campaign } from '@scayle/storefront-nuxt'
 import SFBasketPromotionCodes from '../SFBasketPromotionCodes.vue'
+import SFExpressCheckout from '../SFExpressCheckout.client.vue'
 import SFBasketSummaryReductions from './SFBasketSummaryReductions.vue'
 import SFBasketSummaryFinalSection from './SFBasketSummaryFinalSection.vue'
 import SFBasketSummaryMobile from './SFBasketSummaryMobile.vue'

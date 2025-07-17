@@ -167,6 +167,7 @@ export default withNuxt(
           ignorePatterns: [
             'icon(\\-\\w+)+',
             'scayle-checkout',
+            'scayle-express-checkout',
             'subscription-overview',
             'subscription-cancellation',
           ],

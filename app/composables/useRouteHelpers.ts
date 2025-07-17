@@ -270,6 +270,13 @@ export function useRouteHelpers() {
     return new URL(fullPath, newOrigin).href
   }
 
+  const getExpressCheckoutRoute = (transactionId?: string) => {
+    return localePath({
+      name: routeList.checkout.name,
+      query: { transactionId },
+    })
+  }
+
   return {
     localizedNavigateTo,
     getProductDetailRoute,
@@ -281,5 +288,6 @@ export function useRouteHelpers() {
     buildCategoryPath,
     buildNavigationTreeItemRoute,
     getLocalizedHref,
+    getExpressCheckoutRoute,
   }
 }

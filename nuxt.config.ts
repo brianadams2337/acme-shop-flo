@@ -24,8 +24,10 @@ declare module '#app' {
 /** [DEFAULT VALUE] Storefront Core - Configure format for AppKey generation for baskets and wishlists
  * https://scayle.dev/en/storefront-guide/developer-guide/basic-setup/authentication#app-keys */
 const DEFAULT_APP_KEYS = {
-  wishlistKey: 'wishlist_{shopId}_{userId}', // Override: NUXT_STOREFRONT_SHOPS_{UNIQUE_IDENTIFIER}_APP_KEYS_WISHLIST_KEY
-  basketKey: 'basket_{shopId}_{userId}', // Override: NUXT_STOREFRONT_SHOPS_{UNIQUE_IDENTIFIER}_APP_KEYS_BASKET_KEY
+  // NOTE: Baskets and wishlists are unscoped and shared across all configured shops.
+  // If baskets and wishlists should be scoped by shop, the respective keys need to be extended with `{shopId}`.
+  wishlistKey: 'wishlist_{userId}', // Override: NUXT_STOREFRONT_SHOPS_{UNIQUE_IDENTIFIER}_APP_KEYS_WISHLIST_KEY
+  basketKey: 'basket_{userId}', // Override: NUXT_STOREFRONT_SHOPS_{UNIQUE_IDENTIFIER}_APP_KEYS_BASKET_KEY
   hashAlgorithm: HashAlgorithm.SHA256, // Override: NUXT_STOREFRONT_SHOPS_{UNIQUE_IDENTIFIER}_APP_KEYS_HASH_ALGORITHM
 }
 

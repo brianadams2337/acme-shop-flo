@@ -532,10 +532,9 @@ export default defineNuxtConfig({
     differentDomains: DOMAIN_PER_LOCALE,
     detectBrowserLanguage: false,
     defaultLocale: i18nDefaultLocale,
-    lazy: true,
     strategy: getI18nStrategy(),
-    bundle: {
-      optimizeTranslationDirective: false,
+    experimental: {
+      nitroContextDetection: false,
     },
   },
 

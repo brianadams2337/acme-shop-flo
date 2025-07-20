@@ -66,7 +66,7 @@ export default (item: BasketItem | OrderItem) => {
         : undefined
 
     if (deliveryDay) {
-      const ordinalSuffixKey = getOrdinalSuffix($i18n.locale, deliveryDay)
+      const ordinalSuffixKey = getOrdinalSuffix($i18n.locale.value, deliveryDay)
       attributes.push({
         label: $i18n.t('subscription.follow_up_delivery'),
         value: $i18n.t('subscription.day_of_month_selection_caption', {

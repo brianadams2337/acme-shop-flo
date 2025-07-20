@@ -1,5 +1,5 @@
 export default {
   legacy: false,
-  locale: 'en',
-  fallbackLocale: 'en',
+  locale: 'de',
+  fallbackLocale: 'de',
 }

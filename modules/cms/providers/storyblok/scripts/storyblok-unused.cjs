@@ -3,7 +3,8 @@
 // You can create it here https://app.storyblok.com/#/me/account?tab=token
 // Then add it to your .env file
 
-require('dotenv').config({ path: '.env.storyblok' })
+// https://nodejs.org/docs/latest-v20.x/api/process.html#processloadenvfilepath
+process.loadEnvFile('.env.storyblok')
 
 // Install dependency: npm install storyblok-js-client
 const StoryblokClient = require('storyblok-js-client')

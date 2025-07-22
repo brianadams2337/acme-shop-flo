@@ -1,16 +1,11 @@
-import * as dotenv from 'dotenv'
-
 import type { PlaywrightTestConfig } from '@playwright/test'
 import { defineConfig, devices } from '@playwright/test'
 
-/**
- * Read environment variables from file if not running in CI.
- * E.g. used for `BASE_URL` environment variable.
- *
- * @see https://github.com/motdotla/dotenv
- */
+// Read environment variables from file if not running in CI.
+// E.g. used for `BASE_URL` environment variable.
 if (!process.env.CI) {
-  dotenv.config({ path: '../.env' })
+  // https://nodejs.org/docs/latest-v20.x/api/process.html#processloadenvfilepath
+  process.loadEnvFile('../.env')
 }
 
 /**

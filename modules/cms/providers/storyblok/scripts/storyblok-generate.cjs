@@ -1,7 +1,8 @@
 // Takes the downloaded components JSON Schema and transforms it into TS types
 // The generated file is at cms/storyblok/types/storyblok.gen.d.ts
 
-require('dotenv').config({ path: '.env.storyblok' })
+// https://nodejs.org/docs/latest-v20.x/api/process.html#processloadenvfilepath
+process.loadEnvFile('.env.storyblok')
 
 const path = require('node:path')
 const fs = require('node:fs')

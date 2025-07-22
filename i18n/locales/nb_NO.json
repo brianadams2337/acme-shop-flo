@@ -406,7 +406,8 @@
   "filter_slide_in_content": {
     "sorting": "Sortering",
     "size_option": "størrelse: {size}",
-    "only_sale_option": "Vis bare salgsprodukter"
+    "only_sale_option": "Vis bare salgsprodukter",
+    "product_image_view": "Vis"
   },
   "filter_group": {
     "reset": "Tilbakestill filter"
@@ -654,5 +655,8 @@
     "add_success": "Koden din er brukt.",
     "add_error": "Dessverre mislyktes det å legge til kampanjekoden.",
     "remove_error": "Dessverre mislyktes fjerningen av kampanjekoden."
+  },
+  "preferred_primary_image_type_toggle": {
+    "default": "Standard"
   }
 }

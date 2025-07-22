@@ -406,7 +406,8 @@
   "filter_slide_in_content": {
     "sorting": "Sorting",
     "size_option": "Size: {size}",
-    "only_sale_option": "Show only sale products"
+    "only_sale_option": "Show only sale products",
+    "product_image_view": "View"
   },
   "filter_group": {
     "reset": "Reset filter"
@@ -654,5 +655,8 @@
     "add_success": "Your code has been applied successfully.",
     "add_error": "Unfortunately, adding the promotion code failed.",
     "remove_error": "Unfortunately, removing the promotion code failed."
+  },
+  "preferred_primary_image_type_toggle": {
+    "default": "Default"
   }
 }

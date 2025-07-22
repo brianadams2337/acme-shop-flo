@@ -406,7 +406,8 @@
   "filter_slide_in_content": {
     "sorting": "Lajittelu",
     "size_option": "Koko: {size}",
-    "only_sale_option": "Näytä vain aletuotteet"
+    "only_sale_option": "Näytä vain aletuotteet",
+    "product_image_view": "Näytä"
   },
   "filter_group": {
     "reset": "Nollaa suodatin"
@@ -654,5 +655,8 @@
     "add_success": "Koodisi on lisätty onnistuneesti.",
     "add_error": "Valitettavasti tarjouskoodin lisääminen epäonnistui.",
     "remove_error": "Valitettavasti tarjouskoodin poistaminen epäonnistui."
+  },
+  "preferred_primary_image_type_toggle": {
+    "default": "Oletus"
   }
 }

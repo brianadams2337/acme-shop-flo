@@ -406,7 +406,8 @@
   "filter_slide_in_content": {
     "sorting": "Sortering",
     "size_option": "storlek: {size}",
-    "only_sale_option": "Visa endast reaprodukter"
+    "only_sale_option": "Visa endast reaprodukter",
+    "product_image_view": "Visa"
   },
   "filter_group": {
     "reset": "Återställ filter"
@@ -654,5 +655,8 @@
     "add_success": "Din kod har tillämpats.",
     "add_error": "Tyvärr gick det inte att lägga till kampanjkoden.",
     "remove_error": "Tyvärr gick det inte att ta bort kampanjkoden."
+  },
+  "preferred_primary_image_type_toggle": {
+    "default": "Standard"
   }
 }

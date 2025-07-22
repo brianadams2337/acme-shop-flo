@@ -406,7 +406,8 @@
   "filter_slide_in_content": {
     "sorting": "Sortare",
     "size_option": "Mărime: {size}",
-    "only_sale_option": "Afișează numai produsele la reduceri"
+    "only_sale_option": "Afișează numai produsele la reduceri",
+    "product_image_view": "Vizualizare"
   },
   "filter_group": {
     "reset": "Resetează filtrul"
@@ -654,5 +655,8 @@
     "add_success": "Codul dvs. a fost aplicat cu succes.",
     "add_error": "Din păcate, adăugarea codului promoțional a eșuat.",
     "remove_error": "Din păcate, eliminarea codului promoțional nu a reușit."
+  },
+  "preferred_primary_image_type_toggle": {
+    "default": "Implicit"
   }
 }

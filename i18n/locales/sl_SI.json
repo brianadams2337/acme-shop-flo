@@ -406,7 +406,8 @@
   "filter_slide_in_content": {
     "sorting": "Razvrščanje",
     "size_option": "Velikost: {size}",
-    "only_sale_option": "Prikaži samo prodajne izdelke"
+    "only_sale_option": "Prikaži samo prodajne izdelke",
+    "product_image_view": "Poglej"
   },
   "filter_group": {
     "reset": "Ponastavi filter"
@@ -654,5 +655,8 @@
     "add_success": "Vaša koda je bila uspešno uporabljena.",
     "add_error": "Na žalost dodajanje promocijske kode ni uspelo.",
     "remove_error": "Na žalost odstranitev promocijske kode ni uspela."
+  },
+  "preferred_primary_image_type_toggle": {
+    "default": "Privzet"
   }
 }

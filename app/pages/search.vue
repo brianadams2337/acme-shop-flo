@@ -33,15 +33,21 @@
       :products="products"
       :pagination="pagination"
       :loading="isLoading"
+      :preferred-primary-image-type="primaryImageType"
       class="mt-6"
     />
 
-    <SFFilterSlideIn hide-sorting />
+    <SFFilterSlideIn
+      hide-sorting
+      :selected-primary-image-type="primaryImageType"
+      :primary-image-type-options="imageTypeOptions"
+    />
   </section>
 </template>
 
 <script setup lang="ts">
 import { computed, defineOptions } from 'vue'
+import type { Value } from '@scayle/storefront-nuxt'
 import { useSeoMeta, definePageMeta } from '#imports'
 import { useRoute } from '#app/composables/router'
 import {
@@ -57,11 +63,17 @@ import { useNuxtApp } from '#app/nuxt'
 import SFProductList from '~/components/productList/SFProductList.vue'
 import SFFilterSlideIn from '~/components/filter/SFFilterSlideIn.vue'
 import SFFilterToggleButton from '~/components/filter/SFFilterToggleButton.vue'
+import { getDistinctPrimaryImageTypes } from '~/utils'
+import { usePrimaryImageType } from '~/composables/usePrimaryImageType'
 
 const route = useRoute()
 const { $i18n } = useNuxtApp()
 
 const { appliedFilter } = useAppliedFilters(route)
+const imageTypeOptions = computed<Value[]>(() => {
+  return getDistinctPrimaryImageTypes(products.value)
+})
+const { primaryImageType } = usePrimaryImageType(() => imageTypeOptions.value)
 
 const term = computed(() => appliedFilter.value.term ?? '')
 

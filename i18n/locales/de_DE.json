@@ -406,7 +406,8 @@
   "filter_slide_in_content": {
     "sorting": "Sortierung",
     "size_option": "Größe: {size}",
-    "only_sale_option": "Nur Produkte im Angebot anzeigen"
+    "only_sale_option": "Nur Produkte im Angebot anzeigen",
+    "product_image_view": "Ansicht"
   },
   "filter_group": {
     "reset": "Filter zurücksetzen"
@@ -654,5 +655,8 @@
     "add_success": "Dein Code wurde erfolgreich angewendet.",
     "add_error": "Leider hat das Hinzufügen des Aktionscodes nicht geklappt.",
     "remove_error": "Leider konnte der Aktionscode nicht gelöscht werden."
+  },
+  "preferred_primary_image_type_toggle": {
+    "default": "Standard"
   }
 }

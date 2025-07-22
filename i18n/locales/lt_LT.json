@@ -406,7 +406,8 @@
   "filter_slide_in_content": {
     "sorting": "Rūšiavimas",
     "size_option": "Dydis: {size}",
-    "only_sale_option": "Rodyti tik parduodamas prekes"
+    "only_sale_option": "Rodyti tik parduodamas prekes",
+    "product_image_view": "Peržiūrėti"
   },
   "filter_group": {
     "reset": "Iš naujo nustatyti filtrą"
@@ -654,5 +655,8 @@
     "add_success": "Jūsų kodas buvo sėkmingai pritaikytas.",
     "add_error": "Deja, nepavyko pridėti reklaminio kodo.",
     "remove_error": "Deja, nepavyko pašalinti reklaminio kodo."
+  },
+  "preferred_primary_image_type_toggle": {
+    "default": "Numatytasis"
   }
 }

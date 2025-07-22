@@ -406,7 +406,8 @@
   "filter_slide_in_content": {
     "sorting": "Ordenar",
     "size_option": "Tamanho: {size}",
-    "only_sale_option": "Mostrar apenas produtos em promoção"
+    "only_sale_option": "Mostrar apenas produtos em promoção",
+    "product_image_view": "Ver"
   },
   "filter_group": {
     "reset": "Reiniciar o filtro"
@@ -654,5 +655,8 @@
     "add_success": "O teu código foi aplicado com sucesso.",
     "add_error": "Infelizmente, não foi possível adicionar o código promocional.",
     "remove_error": "Infelizmente, não foi possível remover o código promocional."
+  },
+  "preferred_primary_image_type_toggle": {
+    "default": "Padrão"
   }
 }

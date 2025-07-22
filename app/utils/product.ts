@@ -4,6 +4,8 @@ import {
   type Product,
   getAttributeValueTuples,
   getFirstAttributeValue,
+  type ProductImage,
+  type Value,
 } from '@scayle/storefront-nuxt'
 import type { BasketItemPrice } from '@scayle/storefront-nuxt/composables'
 import { getPrimaryImage } from './image'
@@ -118,3 +120,28 @@ export const createCustomPrice = <T = Price | BasketItemPrice>(
 // Note: The basket does not allow a quantity > 50, therefore we limit it to prevent errors
 export const getMaxQuantity = (stockQuantity?: number) =>
   Math.max(Math.min(stockQuantity ?? 1, 10), 0)
+
+/**
+ * Returns a list of distinct primary image types from a list of products.
+ *
+ * @param products - The list of products to get the distinct primary image types from.
+ * @returns A list of distinct primary image types.
+ */
+export const getDistinctPrimaryImageTypes = (products: Product[]) => {
+  return Array.from(
+    products
+      .flatMap((product: Product) => {
+        return product.images.filter((img: ProductImage) => {
+          return !!img.attributes?.primaryImageType
+        })
+      })
+      .reduce<Map<number, Value>>((acc, img) => {
+        const value = getFirstAttributeValue(img.attributes, 'primaryImageType')
+        if (value && value.id) {
+          acc.set(value.id, value)
+        }
+        return acc
+      }, new Map<number, Value>())
+      .values(),
+  )
+}

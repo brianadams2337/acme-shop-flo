@@ -406,7 +406,8 @@
   "filter_slide_in_content": {
     "sorting": "Sortowanie",
     "size_option": "Rozmiar: {size}",
-    "only_sale_option": "Pokaż tylko produkty w wyprzedaży"
+    "only_sale_option": "Pokaż tylko produkty w wyprzedaży",
+    "product_image_view": "Wyświetl"
   },
   "filter_group": {
     "reset": "Zresetuj filtr"
@@ -654,5 +655,8 @@
     "add_success": "Twój kod został pomyślnie zastosowany.",
     "add_error": "Dodanie kodu promocyjnego nie powiodło się.",
     "remove_error": "Niestety, usunięcie kodu promocyjnego nie powiodło się."
+  },
+  "preferred_primary_image_type_toggle": {
+    "default": "Domyślny"
   }
 }

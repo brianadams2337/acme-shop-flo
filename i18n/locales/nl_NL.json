@@ -406,7 +406,8 @@
   "filter_slide_in_content": {
     "sorting": "Sorteren",
     "size_option": "Maat: {size}",
-    "only_sale_option": "Toon alleen producten in de sale"
+    "only_sale_option": "Toon alleen producten in de sale",
+    "product_image_view": "Bekijken"
   },
   "filter_group": {
     "reset": "Filter resetten"
@@ -654,5 +655,8 @@
     "add_success": "Je code is goed toegevoegd.",
     "add_error": "Helaas is het toevoegen van de promotiecode mislukt.",
     "remove_error": "Helaas is het verwijderen van de promotiecode mislukt."
+  },
+  "preferred_primary_image_type_toggle": {
+    "default": "Standaard"
   }
 }

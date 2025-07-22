@@ -406,7 +406,8 @@
   "filter_slide_in_content": {
     "sorting": "Trier",
     "size_option": "Taille : {size}",
-    "only_sale_option": "Afficher uniquement les produits en solde"
+    "only_sale_option": "Afficher uniquement les produits en solde",
+    "product_image_view": "Voir"
   },
   "filter_group": {
     "reset": "Réinitialiser le filtre"
@@ -654,5 +655,8 @@
     "add_success": "Ton code a bien été appliqué.",
     "add_error": "Désolé, on n'a pas pu ajouter le code promo.",
     "remove_error": "Désolé, on n'a pas pu supprimer le code promo."
+  },
+  "preferred_primary_image_type_toggle": {
+    "default": "Par défaut"
   }
 }

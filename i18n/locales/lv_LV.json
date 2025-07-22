@@ -406,7 +406,8 @@
   "filter_slide_in_content": {
     "sorting": "Šķirošana",
     "size_option": "Izmērs: {size}",
-    "only_sale_option": "Rādīt tikai izpārdošanas preces"
+    "only_sale_option": "Rādīt tikai izpārdošanas preces",
+    "product_image_view": "Skatīt"
   },
   "filter_group": {
     "reset": "Atiestatīt filtru"
@@ -654,5 +655,8 @@
     "add_success": "Jūsu kods ir veiksmīgi piemērots.",
     "add_error": "Diemžēl akcijas koda pievienošana neizdevās.",
     "remove_error": "Diemžēl akcijas koda dzēšana neizdevās."
+  },
+  "preferred_primary_image_type_toggle": {
+    "default": "Noklusējums"
   }
 }

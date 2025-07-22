@@ -406,7 +406,8 @@
   "filter_slide_in_content": {
     "sorting": "Сортиране",
     "size_option": "Размер: {size}",
-    "only_sale_option": "Покажи само продукти на промоция"
+    "only_sale_option": "Покажи само продукти на промоция",
+    "product_image_view": "Виж"
   },
   "filter_group": {
     "reset": "Нулиране на филтъра"
@@ -654,5 +655,8 @@
     "add_success": "Вашият код е приложен успешно.",
     "add_error": "За съжаление, добавянето на промоционалния код не успя.",
     "remove_error": "За съжаление, премахването на промоционалния код не успя."
+  },
+  "preferred_primary_image_type_toggle": {
+    "default": "По подразбиране"
   }
 }

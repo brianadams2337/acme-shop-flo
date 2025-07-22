@@ -406,7 +406,8 @@
   "filter_slide_in_content": {
     "sorting": "Sortering",
     "size_option": "Størrelse: {size}",
-    "only_sale_option": "Vis kun salgsprodukter"
+    "only_sale_option": "Vis kun salgsprodukter",
+    "product_image_view": "Vis"
   },
   "filter_group": {
     "reset": "Nulstil filter"
@@ -654,5 +655,8 @@
     "add_success": "Din kode er blevet anvendt korrekt.",
     "add_error": "Desværre kunne kampagnekoden ikke tilføjes.",
     "remove_error": "Desværre kunne kampagnekoden ikke fjernes."
+  },
+  "preferred_primary_image_type_toggle": {
+    "default": "Standard"
   }
 }

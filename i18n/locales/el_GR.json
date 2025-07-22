@@ -406,7 +406,8 @@
   "filter_slide_in_content": {
     "sorting": "Ταξινόμηση",
     "size_option": "Μέγεθος: {size}",
-    "only_sale_option": "Εμφάνιση μόνο προϊόντων προσφορας"
+    "only_sale_option": "Εμφάνιση μόνο προϊόντων προσφορας",
+    "product_image_view": "Προβολή"
   },
   "filter_group": {
     "reset": "Επαναφορά φίλτρου"
@@ -654,5 +655,8 @@
     "add_success": "Ο κωδικός σας έχει εφαρμοστεί με επιτυχία.",
     "add_error": "Δυστυχώς, η προσθήκη του κωδικού προσφοράς απέτυχε.",
     "remove_error": "Δυστυχώς, η κατάργηση του κωδικού προσφοράς απέτυχε."
+  },
+  "preferred_primary_image_type_toggle": {
+    "default": "Προεπιλογή"
   }
 }

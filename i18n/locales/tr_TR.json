@@ -406,7 +406,8 @@
   "filter_slide_in_content": {
     "sorting": "Sıralama",
     "size_option": "Boyut: {size}",
-    "only_sale_option": "Yalnızca satış ürünlerini göster"
+    "only_sale_option": "Yalnızca satış ürünlerini göster",
+    "product_image_view": "Görüntüle"
   },
   "filter_group": {
     "reset": "Filtreyi sıfırla"
@@ -654,5 +655,8 @@
     "add_success": "Kodunuz başarıyla uygulanmıştır.",
     "add_error": "Maalesef, promosyon kodu eklenemedi.",
     "remove_error": "Maalesef, promosyon kodunun kaldırılması başarısız oldu."
+  },
+  "preferred_primary_image_type_toggle": {
+    "default": "Varsayılan"
   }
 }

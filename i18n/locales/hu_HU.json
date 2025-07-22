@@ -406,7 +406,8 @@
   "filter_slide_in_content": {
     "sorting": "Rendezés",
     "size_option": "Méret: {size}",
-    "only_sale_option": "Csak akciós termékek megjelenítése"
+    "only_sale_option": "Csak akciós termékek megjelenítése",
+    "product_image_view": "Megtekintés"
   },
   "filter_group": {
     "reset": "Szűrő visszaállítása"
@@ -654,5 +655,8 @@
     "add_success": "A kód sikeresen alkalmazásra került.",
     "add_error": "Sajnos a promóciós kód hozzáadása nem sikerült.",
     "remove_error": "Sajnos a promóciós kód eltávolítása nem sikerült."
+  },
+  "preferred_primary_image_type_toggle": {
+    "default": "Alapértelmezett"
   }
 }

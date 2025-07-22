@@ -406,7 +406,8 @@
   "filter_slide_in_content": {
     "sorting": "Třídění",
     "size_option": "Velikost: {size}",
-    "only_sale_option": "Zobrazit pouze produkty ve výprodeji"
+    "only_sale_option": "Zobrazit pouze produkty ve výprodeji",
+    "product_image_view": "Zobrazit"
   },
   "filter_group": {
     "reset": "Obnovit filtr"
@@ -654,5 +655,8 @@
     "add_success": "Váš kód byl úspěšně použit.",
     "add_error": "Přidání propagačního kódu se bohužel nezdařilo.",
     "remove_error": "Bohužel se odstranění propagačního kódu nezdařilo."
+  },
+  "preferred_primary_image_type_toggle": {
+    "default": "Výchozí"
   }
 }

@@ -62,10 +62,10 @@
       </div>
     </div>
     <SFFilterSlideIn
-      :selected-primary-image-type="primaryImageType"
       :current-category-id="currentCategoryId"
       :selected-sort="selectedSort"
       :sort-links="sortLinks"
+      :selected-primary-image-type="primaryImageType"
       :primary-image-type-options="imageTypeOptions"
     />
     <Teleport to="#teleports">
@@ -83,9 +83,6 @@ import {
   type Product,
   type Category,
   type Value,
-  getFirstAttributeValue,
-  type ProductImage,
-  type Product as ProductType,
 } from '@scayle/storefront-nuxt'
 import { join } from 'pathe'
 import type { SelectedSort } from '@scayle/storefront-product-listing'
@@ -101,7 +98,7 @@ import {
   useRouteHelpers,
 } from '~/composables'
 import { createError } from '#app/composables/error'
-import { getCategoryId } from '~/utils'
+import { getCategoryId, getDistinctPrimaryImageTypes } from '~/utils'
 import {
   categoryListingMetaData,
   PRODUCT_TILE_WITH_PARAMS,
@@ -227,22 +224,7 @@ const { selectedSort, sortLinks, isDefaultSortSelected } = useProductListSort(
 const { appliedFilter } = useAppliedFilters(route)
 
 const imageTypeOptions = computed<Value[]>(() => {
-  return Array.from(
-    products.value
-      .flatMap((product: ProductType) => {
-        return product.images.filter((img: ProductImage) => {
-          return !!img.attributes?.primaryImageType
-        })
-      })
-      .reduce<Map<number, Value>>((acc, img) => {
-        const value = getFirstAttributeValue(img.attributes, 'primaryImageType')
-        if (value && value.id) {
-          acc.set(value.id, value)
-        }
-        return acc
-      }, new Map<number, Value>())
-      .values(),
-  )
+  return getDistinctPrimaryImageTypes(products.value)
 })
 const { primaryImageType } = usePrimaryImageType(() => imageTypeOptions.value)
 

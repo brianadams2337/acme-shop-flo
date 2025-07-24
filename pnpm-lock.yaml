@@ -71,8 +71,8 @@ importers:
         specifier: 1.0.0
         version: 1.0.0(unstorage@1.16.0(@upstash/redis@1.35.1)(@vercel/kv@3.0.0)(db0@0.3.2)(ioredis@5.6.1))
       '@scayle/unstorage-scayle-kv-driver':
-        specifier: 1.0.2
-        version: 1.0.2(unstorage@1.16.0(@upstash/redis@1.35.1)(@vercel/kv@3.0.0)(db0@0.3.2)(ioredis@5.6.1))
+        specifier: 1.0.3
+        version: 1.0.3(unstorage@1.16.0(@upstash/redis@1.35.1)(@vercel/kv@3.0.0)(db0@0.3.2)(ioredis@5.6.1))
       '@storyblok/nuxt':
         specifier: 7.2.0
         version: 7.2.0(vue@3.5.17(typescript@5.8.3))
@@ -2646,6 +2646,11 @@ packages:
 
   '@scayle/unstorage-scayle-kv-driver@1.0.2':
     resolution: {integrity: sha512-kmlfDRSHD8HwHikYDKSzKrBTFeK6KFzaVDIqp5j57m9Z7n5bkrgBvA6T/9+bKo3xlB/DRD8bezEu8fMdb5i3fQ==}
+    peerDependencies:
+      unstorage: ^1.10.1
+
+  '@scayle/unstorage-scayle-kv-driver@1.0.3':
+    resolution: {integrity: sha512-RTsyznS9NL+xW5IvfA5royDwNZKxK6XBjnV/Q3KmFbVgvLg98WgFBxklQuLCbnryQ6vWqJHkbfeoaa3P9fsbqQ==}
     peerDependencies:
       unstorage: ^1.10.1
 
@@ -12958,6 +12963,10 @@ snapshots:
       unstorage: 1.16.0(@upstash/redis@1.35.1)(@vercel/kv@3.0.0)(db0@0.3.2)(ioredis@5.6.1)
 
   '@scayle/unstorage-scayle-kv-driver@1.0.2(unstorage@1.16.0(@upstash/redis@1.35.1)(@vercel/kv@3.0.0)(db0@0.3.2)(ioredis@5.6.1))':
+    dependencies:
+      unstorage: 1.16.0(@upstash/redis@1.35.1)(@vercel/kv@3.0.0)(db0@0.3.2)(ioredis@5.6.1)
+
+  '@scayle/unstorage-scayle-kv-driver@1.0.3(unstorage@1.16.0(@upstash/redis@1.35.1)(@vercel/kv@3.0.0)(db0@0.3.2)(ioredis@5.6.1))':
     dependencies:
       unstorage: 1.16.0(@upstash/redis@1.35.1)(@vercel/kv@3.0.0)(db0@0.3.2)(ioredis@5.6.1)
 

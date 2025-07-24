@@ -653,6 +653,20 @@
     "add_error": "Na žalost dodajanje promocijske kode ni uspelo.",
     "remove_error": "Na žalost odstranitev promocijske kode ni uspela."
   },
+  "expressCheckout": {
+    "error": {
+      "deviceNotSupported": "Dana naprava ni dovoljena.",
+      "paymentMethodNotAvailable": "Izbrani način plačila ni na voljo.",
+      "pspSessionCreationFailed": "Ustvarjanje seje ponudnika plačilnih storitev ni uspelo.",
+      "failedToFetchSession": "Ni mogoče pridobiti veljavne seje od ponudnika plačilnih storitev.",
+      "basketNotFound": "Košarica ni bila najdena.",
+      "basketInvalid": "Košarica ni veljavna.",
+      "failedDependency": "Posodobitev transakcije ni uspela.",
+      "unknownError": "Nastala je napaka. Poskusite znova.",
+      "errorShippingAddressValidationFailed": "Preverjanje naslova za dostavo ni uspelo.",
+      "outOfConstraints": "Skupna vrednost košarice presega dovoljeno vrednost naročila."
+    }
+  },
   "preferred_primary_image_type_toggle": {
     "default": "Privzet"
   },

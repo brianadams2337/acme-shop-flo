@@ -653,6 +653,20 @@
     "add_error": "Maalesef, promosyon kodu eklenemedi.",
     "remove_error": "Maalesef, promosyon kodunun kaldırılması başarısız oldu."
   },
+  "expressCheckout": {
+    "error": {
+      "deviceNotSupported": "Verilen cihaz izin verilmiyor.",
+      "paymentMethodNotAvailable": "Seçilen ödeme yöntemi kullanılamıyor.",
+      "pspSessionCreationFailed": "Ödeme hizmeti sağlayıcısı oturumu oluşturulamadı.",
+      "failedToFetchSession": "Ödeme hizmeti sağlayıcısından geçerli bir oturum alınamadı.",
+      "basketNotFound": "Sepet bulunamadı.",
+      "basketInvalid": "Sepet geçersiz.",
+      "failedDependency": "İşlem güncellenemedi.",
+      "unknownError": "Bir sorun oluştu. Lütfen tekrar deneyin.",
+      "errorShippingAddressValidationFailed": "Teslimat adresi doğrulaması başarısız oldu.",
+      "outOfConstraints": "Sepet toplamı izin verilen sipariş değerinin dışındadır."
+    }
+  },
   "preferred_primary_image_type_toggle": {
     "default": "Varsayılan"
   },

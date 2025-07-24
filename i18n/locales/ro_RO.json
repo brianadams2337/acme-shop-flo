@@ -653,6 +653,20 @@
     "add_error": "Din păcate, adăugarea codului promoțional a eșuat.",
     "remove_error": "Din păcate, eliminarea codului promoțional nu a reușit."
   },
+  "expressCheckout": {
+    "error": {
+      "deviceNotSupported": "Dispozitivul indicat nu este permis.",
+      "paymentMethodNotAvailable": "Metoda de plată selectată nu este disponibilă.",
+      "pspSessionCreationFailed": "Nu s-a putut crea sesiunea furnizorului de servicii de plată.",
+      "failedToFetchSession": "Nu se poate prelua o sesiune validă de la furnizorul de servicii de plată.",
+      "basketNotFound": "Coșul nu a fost găsit.",
+      "basketInvalid": "Coșul este invalid.",
+      "failedDependency": "Nu s-a putut actualiza tranzacția.",
+      "unknownError": "A apărut o eroare. Vă rugăm să încercați din nou.",
+      "errorShippingAddressValidationFailed": "Validarea adresei de livrare a eșuat.",
+      "outOfConstraints": "Totalul coșului depășește valoarea maximă permisă pentru comandă."
+    }
+  },
   "preferred_primary_image_type_toggle": {
     "default": "Implicit"
   },

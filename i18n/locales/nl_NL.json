@@ -653,6 +653,20 @@
     "add_error": "Helaas is het toevoegen van de promotiecode mislukt.",
     "remove_error": "Helaas is het verwijderen van de promotiecode mislukt."
   },
+  "expressCheckout": {
+    "error": {
+      "deviceNotSupported": "Het opgegeven apparaat is niet toegestaan.",
+      "paymentMethodNotAvailable": "De gekozen betaalmethode is niet beschikbaar.",
+      "pspSessionCreationFailed": "Het is niet gelukt om een sessie met de betalingsdienstaanbieder te maken.",
+      "failedToFetchSession": "Kan geen goede sessie vinden bij de betaalprovider.",
+      "basketNotFound": "Winkelwagen niet gevonden.",
+      "basketInvalid": "De winkelwagen is niet goed.",
+      "failedDependency": "Kan de transactie niet bijwerken.",
+      "unknownError": "Er is iets misgegaan. Probeer het nog eens.",
+      "errorShippingAddressValidationFailed": "Het verzendadres kan niet worden gevalideerd.",
+      "outOfConstraints": "Het totaalbedrag van je winkelmandje is hoger dan de toegestane bestelwaarde."
+    }
+  },
   "preferred_primary_image_type_toggle": {
     "default": "Standaard"
   },

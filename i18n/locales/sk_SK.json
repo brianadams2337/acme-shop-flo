@@ -653,6 +653,20 @@
     "add_error": "Pridanie propagačného kódu sa bohužiaľ nepodarilo.",
     "remove_error": "Bohužiaľ, odstránenie propagačného kódu sa nepodarilo."
   },
+  "expressCheckout": {
+    "error": {
+      "deviceNotSupported": "Dané zariadenie nie je povolené.",
+      "paymentMethodNotAvailable": "Zvolená platobná metóda nie je k dispozícii.",
+      "pspSessionCreationFailed": "Nepodarilo sa vytvoriť reláciu poskytovateľa platobných služieb.",
+      "failedToFetchSession": "Nie je možné načítať platnú reláciu od poskytovateľa platobných služieb.",
+      "basketNotFound": "Košík nebol nájdený.",
+      "basketInvalid": "Košík je neplatný.",
+      "failedDependency": "Aktualizácia transakcie sa nepodarila.",
+      "unknownError": "Niečo sa pokazilo. Skúste to znovu.",
+      "errorShippingAddressValidationFailed": "Overenie dodacej adresy zlyhalo.",
+      "outOfConstraints": "Celková suma v košíku presahuje povolenú hodnotu objednávky."
+    }
+  },
   "preferred_primary_image_type_toggle": {
     "default": "Predvolené"
   },

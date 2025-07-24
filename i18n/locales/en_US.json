@@ -653,6 +653,20 @@
     "add_error": "Unfortunately, adding the promotion code failed.",
     "remove_error": "Unfortunately, removing the promotion code failed."
   },
+  "expressCheckout": {
+    "error": {
+      "deviceNotSupported": "The given device is not allowed.",
+      "paymentMethodNotAvailable": "The selected payment method is not available.",
+      "pspSessionCreationFailed": "Failed to create payment service provider session.",
+      "failedToFetchSession": "Unable to fetch a valid session from the payment service provider.",
+      "basketNotFound": "Basket was not found.",
+      "basketInvalid": "The basket is invalid.",
+      "failedDependency": "Failed to update transaction.",
+      "unknownError": "Something went wrong. Please try again.",
+      "errorShippingAddressValidationFailed": "Shipping address validation failed.",
+      "outOfConstraints": "The basket total is outside allwoed order value."
+    }
+  },
   "preferred_primary_image_type_toggle": {
     "default": "Default"
   },

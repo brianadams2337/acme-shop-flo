@@ -653,6 +653,20 @@
     "add_error": "Dessverre mislyktes det å legge til kampanjekoden.",
     "remove_error": "Dessverre mislyktes fjerningen av kampanjekoden."
   },
+  "expressCheckout": {
+    "error": {
+      "deviceNotSupported": "Den angitte enheten er ikke tillatt.",
+      "paymentMethodNotAvailable": "Den valgte betalingsmåten er ikke tilgjengelig.",
+      "pspSessionCreationFailed": "Det gikk ikke med å opprette en økt for betalingstjenesteleverandøren.",
+      "failedToFetchSession": "Kan ikke hente en gyldig økt fra betalingstjenesteleverandøren.",
+      "basketNotFound": "Handlekurven ble ikke funnet.",
+      "basketInvalid": "Handlekurven er ugyldig.",
+      "failedDependency": "Kunne ikke oppdatere transaksjonen.",
+      "unknownError": "Noe gikk galt. Prøv igjen.",
+      "errorShippingAddressValidationFailed": "Validering av leveringsadresse mislyktes.",
+      "outOfConstraints": "Totalsummen i handlekurven overskrider den tillatte ordreverdien."
+    }
+  },
   "preferred_primary_image_type_toggle": {
     "default": "Standard"
   },

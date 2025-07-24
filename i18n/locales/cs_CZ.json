@@ -653,6 +653,20 @@
     "add_error": "Přidání propagačního kódu se bohužel nezdařilo.",
     "remove_error": "Bohužel se odstranění propagačního kódu nezdařilo."
   },
+  "expressCheckout": {
+    "error": {
+      "deviceNotSupported": "Dané zařízení není povoleno.",
+      "paymentMethodNotAvailable": "Vybraná platební metoda není k dispozici.",
+      "pspSessionCreationFailed": "Nelze vytvořit relaci poskytovatele platebních služeb.",
+      "failedToFetchSession": "Nelze načíst platnou relaci od poskytovatele platebních služeb.",
+      "basketNotFound": "Nenalezeno.",
+      "basketInvalid": "Košík je neplatný.",
+      "failedDependency": "Aktualizace transakce se nezdařila.",
+      "unknownError": "Došlo k chybě. Zkuste to prosím znovu.",
+      "errorShippingAddressValidationFailed": "Ověření dodací adresy se nezdařilo.",
+      "outOfConstraints": "Celková hodnota košíku překračuje povolenou hodnotu objednávky."
+    }
+  },
   "preferred_primary_image_type_toggle": {
     "default": "Výchozí"
   },

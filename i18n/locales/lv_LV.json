@@ -653,6 +653,20 @@
     "add_error": "Diemžēl akcijas koda pievienošana neizdevās.",
     "remove_error": "Diemžēl akcijas koda dzēšana neizdevās."
   },
+  "expressCheckout": {
+    "error": {
+      "deviceNotSupported": "Norādītā ierīce nav atļauta.",
+      "paymentMethodNotAvailable": "Izvēlētais maksājuma veids nav pieejams.",
+      "pspSessionCreationFailed": "Neizdevās izveidot maksājumu pakalpojumu sniedzēja sesiju.",
+      "failedToFetchSession": "Nav iespējams iegūt derīgu sesiju no maksājumu pakalpojumu sniedzēja.",
+      "basketNotFound": "Groza nav atrasts.",
+      "basketInvalid": "Groza saturs ir nederīgs.",
+      "failedDependency": "Neizdevās atjaunināt darījumu.",
+      "unknownError": "Kaut kas nogāja greizi. Lūdzu, mēģiniet vēlreiz.",
+      "errorShippingAddressValidationFailed": "Piegādes adreses validēšana neizdevās.",
+      "outOfConstraints": "Groza kopējā summa pārsniedz atļauto pasūtījuma vērtību."
+    }
+  },
   "preferred_primary_image_type_toggle": {
     "default": "Noklusējums"
   },

@@ -653,6 +653,20 @@
     "add_error": "Valitettavasti tarjouskoodin lisääminen epäonnistui.",
     "remove_error": "Valitettavasti tarjouskoodin poistaminen epäonnistui."
   },
+  "expressCheckout": {
+    "error": {
+      "deviceNotSupported": "Annettua laitetta ei tueta.",
+      "paymentMethodNotAvailable": "Valittua maksutapaa ei ole saatavilla.",
+      "pspSessionCreationFailed": "Maksupalveluntarjoajan istunnon luominen epäonnistui.",
+      "failedToFetchSession": "Maksupalveluntarjoajalta ei voitu hakea kelvollista istuntoa.",
+      "basketNotFound": "Ostoskoria ei löytynyt.",
+      "basketInvalid": "Ostoskori on virheellinen.",
+      "failedDependency": "Transaktiota ei voitu päivittää.",
+      "unknownError": "Jotain meni vikaan. Yritä uudelleen.",
+      "errorShippingAddressValidationFailed": "Toimitusosoitteen vahvistus epäonnistui.",
+      "outOfConstraints": "Ostoskorin kokonaissumma ylittää sallitun tilausarvon."
+    }
+  },
   "preferred_primary_image_type_toggle": {
     "default": "Oletus"
   },

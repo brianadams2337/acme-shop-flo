@@ -653,6 +653,20 @@
     "add_error": "Lamentablemente, no se ha podido añadir el código promocional.",
     "remove_error": "Lamentablemente, no se ha podido eliminar el código promocional."
   },
+  "expressCheckout": {
+    "error": {
+      "deviceNotSupported": "El dispositivo indicado no está permitido.",
+      "paymentMethodNotAvailable": "El método de pago seleccionado no está disponible.",
+      "pspSessionCreationFailed": "No se ha podido crear la sesión del proveedor de servicios de pago.",
+      "failedToFetchSession": "No se puede obtener una sesión válida del proveedor de servicios de pago.",
+      "basketNotFound": "No se ha encontrado la cesta.",
+      "basketInvalid": "La cesta no es válida.",
+      "failedDependency": "No se ha podido actualizar la transacción.",
+      "unknownError": "Ha ocurrido un error. Inténtalo de nuevo.",
+      "errorShippingAddressValidationFailed": "Error en la validación de la dirección de envío.",
+      "outOfConstraints": "El total de la cesta supera el valor máximo permitido para el pedido."
+    }
+  },
   "preferred_primary_image_type_toggle": {
     "default": "Predeterminado"
   },

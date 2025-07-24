@@ -653,6 +653,20 @@
     "add_error": "Infelizmente, não foi possível adicionar o código promocional.",
     "remove_error": "Infelizmente, não foi possível remover o código promocional."
   },
+  "expressCheckout": {
+    "error": {
+      "deviceNotSupported": "O dispositivo fornecido não é permitido.",
+      "paymentMethodNotAvailable": "O método de pagamento escolhido não está disponível.",
+      "pspSessionCreationFailed": "Não foi possível criar a sessão do provedor de serviços de pagamento.",
+      "failedToFetchSession": "Não foi possível obter uma sessão válida do provedor de serviços de pagamento.",
+      "basketNotFound": "O carrinho não foi encontrado.",
+      "basketInvalid": "O carrinho não está válido.",
+      "failedDependency": "Falha ao atualizar a transação.",
+      "unknownError": "Algo deu errado. Por favor, tente de novo.",
+      "errorShippingAddressValidationFailed": "Falha na validação do endereço de entrega.",
+      "outOfConstraints": "O total do carrinho está fora do valor permitido para o pedido."
+    }
+  },
   "preferred_primary_image_type_toggle": {
     "default": "Padrão"
   },

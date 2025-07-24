@@ -653,6 +653,20 @@
     "add_error": "Sajnos a promóciós kód hozzáadása nem sikerült.",
     "remove_error": "Sajnos a promóciós kód eltávolítása nem sikerült."
   },
+  "expressCheckout": {
+    "error": {
+      "deviceNotSupported": "A megadott eszköz nem engedélyezett.",
+      "paymentMethodNotAvailable": "A kiválasztott fizetési mód nem elérhető.",
+      "pspSessionCreationFailed": "A fizetési szolgáltató munkamenet létrehozása sikertelen.",
+      "failedToFetchSession": "Nem sikerült érvényes munkamenetet lekérni a fizetési szolgáltatótól.",
+      "basketNotFound": "A kosár nem található.",
+      "basketInvalid": "A kosár érvénytelen.",
+      "failedDependency": "A tranzakció frissítése sikertelen.",
+      "unknownError": "Valami hiba történt. Kérjük, próbálja meg újra.",
+      "errorShippingAddressValidationFailed": "A szállítási cím ellenőrzése sikertelen.",
+      "outOfConstraints": "A kosár összege meghaladja a megengedett rendelési értéket."
+    }
+  },
   "preferred_primary_image_type_toggle": {
     "default": "Alapértelmezett"
   },

@@ -653,6 +653,20 @@
     "add_error": "Kahjuks ei õnnestunud sooduskoodi lisamine.",
     "remove_error": "Kahjuks ei õnnestunud sooduskoodi eemaldamine."
   },
+  "expressCheckout": {
+    "error": {
+      "deviceNotSupported": "Antud seade ei ole lubatud.",
+      "paymentMethodNotAvailable": "Valitud makseviis ei ole saadaval.",
+      "pspSessionCreationFailed": "Makseteenuse pakkuja sessiooni loomine ebaõnnestus.",
+      "failedToFetchSession": "Makse teenusepakkujalt ei õnnestunud kehtivat sessiooni hankida.",
+      "basketNotFound": "Ostukorvi ei leitud.",
+      "basketInvalid": "Ostukorv on kehtetu.",
+      "failedDependency": "Tehingu uuendamine ebaõnnestus.",
+      "unknownError": "Midagi läks valesti. Palun proovige uuesti.",
+      "errorShippingAddressValidationFailed": "Saaja aadressi kontrollimine ebaõnnestus.",
+      "outOfConstraints": "Korvi kogusumma ületab lubatud tellimuse väärtuse."
+    }
+  },
   "preferred_primary_image_type_toggle": {
     "default": "Vaikimisi"
   },

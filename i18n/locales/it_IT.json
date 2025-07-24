@@ -653,6 +653,20 @@
     "add_error": "Purtroppo, non è stato possibile aggiungere il codice promozionale.",
     "remove_error": "Purtroppo, non è stato possibile rimuovere il codice promozionale."
   },
+  "expressCheckout": {
+    "error": {
+      "deviceNotSupported": "Il dispositivo indicato non è supportato.",
+      "paymentMethodNotAvailable": "Il metodo di pagamento che hai scelto non è disponibile.",
+      "pspSessionCreationFailed": "Non è stato possibile creare la sessione del fornitore del servizio di pagamento.",
+      "failedToFetchSession": "Impossibile recuperare una sessione valida dal fornitore del servizio di pagamento.",
+      "basketNotFound": "Il carrello non è stato trovato.",
+      "basketInvalid": "Il carrello non è valido.",
+      "failedDependency": "Non è stato possibile aggiornare la transazione.",
+      "unknownError": "Qualcosa è andato storto. Prova di nuovo.",
+      "errorShippingAddressValidationFailed": "Non è stato possibile verificare l'indirizzo di spedizione.",
+      "outOfConstraints": "Il totale del carrello supera il valore massimo consentito per l'ordine."
+    }
+  },
   "preferred_primary_image_type_toggle": {
     "default": "Predefinito"
   },

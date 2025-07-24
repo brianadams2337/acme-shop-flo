@@ -656,6 +656,20 @@
     "add_error": "Leider hat das Hinzufügen des Aktionscodes nicht geklappt.",
     "remove_error": "Leider konnte der Aktionscode nicht gelöscht werden."
   },
+  "expressCheckout": {
+    "error": {
+      "deviceNotSupported": "Das angegebene Gerät wird nicht unterstützt.",
+      "paymentMethodNotAvailable": "Die ausgewählte Zahlungsmethode ist nicht verfügbar.",
+      "pspSessionCreationFailed": "Die Sitzung mit dem Zahlungsdienstleister konnte nicht erstellt werden.",
+      "failedToFetchSession": "Es konnte keine gültige Sitzung vom Zahlungsdienstleister abgerufen werden.",
+      "basketNotFound": "Warenkorb wurde nicht gefunden.",
+      "basketInvalid": "Der Warenkorb ist ungültig.",
+      "failedDependency": "Die Transaktion konnte nicht aktualisiert werden.",
+      "unknownError": "Etwas ist schiefgelaufen. Bitte versuch's nochmal.",
+      "errorShippingAddressValidationFailed": "Die Überprüfung der Lieferadresse hat nicht geklappt.",
+      "outOfConstraints": "Der Gesamtbetrag im Warenkorb ist zu hoch."
+    }
+  },
   "preferred_primary_image_type_toggle": {
     "default": "Standard"
   }

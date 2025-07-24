@@ -653,6 +653,20 @@
     "add_error": "Desværre kunne kampagnekoden ikke tilføjes.",
     "remove_error": "Desværre kunne kampagnekoden ikke fjernes."
   },
+  "expressCheckout": {
+    "error": {
+      "deviceNotSupported": "Den angivne enhed er ikke tilladt.",
+      "paymentMethodNotAvailable": "Den valgte betalingsmetode er ikke tilgængelig.",
+      "pspSessionCreationFailed": "Det lykkedes ikke at oprette en session til betalingstjenesteudbyderen.",
+      "failedToFetchSession": "Det er ikke muligt at hente en gyldig session fra betalingstjenesteudbyderen.",
+      "basketNotFound": "Kurven blev ikke fundet.",
+      "basketInvalid": "Kurven er ugyldig.",
+      "failedDependency": "Transaktionen kunne ikke opdateres.",
+      "unknownError": "Der opstod en fejl. Prøv igen.",
+      "errorShippingAddressValidationFailed": "Validering af leveringsadresse mislykkedes.",
+      "outOfConstraints": "Kurvens samlede beløb overstiger den tilladte ordreværdi."
+    }
+  },
   "preferred_primary_image_type_toggle": {
     "default": "Standard"
   },

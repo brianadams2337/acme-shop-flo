@@ -653,6 +653,20 @@
     "add_error": "Désolé, on n'a pas pu ajouter le code promo.",
     "remove_error": "Désolé, on n'a pas pu supprimer le code promo."
   },
+  "expressCheckout": {
+    "error": {
+      "deviceNotSupported": "L'appareil utilisé n'est pas autorisé.",
+      "paymentMethodNotAvailable": "Le mode de paiement que tu as choisi n'est pas disponible.",
+      "pspSessionCreationFailed": "Impossible de créer la session du fournisseur de services de paiement.",
+      "failedToFetchSession": "Impossible de récupérer une session valide auprès du fournisseur de services de paiement.",
+      "basketNotFound": "Le panier n'a pas été trouvé.",
+      "basketInvalid": "Le panier n'est pas valide.",
+      "failedDependency": "Impossible de mettre à jour la transaction.",
+      "unknownError": "Il y a eu un problème. Essaie encore.",
+      "errorShippingAddressValidationFailed": "La validation de l'adresse de livraison a échoué.",
+      "outOfConstraints": "Le total du panier dépasse la valeur maximale autorisée pour la commande."
+    }
+  },
   "preferred_primary_image_type_toggle": {
     "default": "Par défaut"
   },

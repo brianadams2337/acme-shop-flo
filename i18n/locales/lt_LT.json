@@ -653,6 +653,20 @@
     "add_error": "Deja, nepavyko pridėti reklaminio kodo.",
     "remove_error": "Deja, nepavyko pašalinti reklaminio kodo."
   },
+  "expressCheckout": {
+    "error": {
+      "deviceNotSupported": "Nurodytas įrenginys nėra leidžiamas.",
+      "paymentMethodNotAvailable": "Pasirinkta mokėjimo priemonė nėra prieinama.",
+      "pspSessionCreationFailed": "Nepavyko sukurti mokėjimo paslaugų teikėjo sesijos.",
+      "failedToFetchSession": "Nepavyko gauti galiojančios sesijos iš mokėjimo paslaugų teikėjo.",
+      "basketNotFound": "Krepšelis nerastas.",
+      "basketInvalid": "Krepšelis yra negaliojantis.",
+      "failedDependency": "Nepavyko atnaujinti sandorio.",
+      "unknownError": "Kilo problema. Bandykite dar kartą.",
+      "errorShippingAddressValidationFailed": "Pristatymo adreso patvirtinimas nepavyko.",
+      "outOfConstraints": "Krepšelio suma viršija leistiną užsakymo vertę."
+    }
+  },
   "preferred_primary_image_type_toggle": {
     "default": "Numatytasis"
   },

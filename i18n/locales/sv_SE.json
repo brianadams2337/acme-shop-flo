@@ -653,6 +653,20 @@
     "add_error": "Tyvärr gick det inte att lägga till kampanjkoden.",
     "remove_error": "Tyvärr gick det inte att ta bort kampanjkoden."
   },
+  "expressCheckout": {
+    "error": {
+      "deviceNotSupported": "Den angivna enheten är inte tillåten.",
+      "paymentMethodNotAvailable": "Den valda betalningsmetoden är inte tillgänglig.",
+      "pspSessionCreationFailed": "Det gick inte att skapa en session för betalningstjänstleverantören.",
+      "failedToFetchSession": "Det går inte att hämta en giltig session från betaltjänstleverantören.",
+      "basketNotFound": "Korgen hittades inte.",
+      "basketInvalid": "Varukorgen är ogiltig.",
+      "failedDependency": "Det gick inte att uppdatera transaktionen.",
+      "unknownError": "Något gick fel. Försök igen.",
+      "errorShippingAddressValidationFailed": "Validering av leveransadress misslyckades.",
+      "outOfConstraints": "Kundvagnens totala belopp överstiger det tillåtna ordervärdet."
+    }
+  },
   "preferred_primary_image_type_toggle": {
     "default": "Standard"
   },

@@ -653,6 +653,20 @@
     "add_error": "Dodanie kodu promocyjnego nie powiodło się.",
     "remove_error": "Niestety, usunięcie kodu promocyjnego nie powiodło się."
   },
+  "expressCheckout": {
+    "error": {
+      "deviceNotSupported": "Podane urządzenie nie jest obsługiwane.",
+      "paymentMethodNotAvailable": "Wybrana metoda płatności jest niedostępna.",
+      "pspSessionCreationFailed": "Nie udało się utworzyć sesji dostawcy usług płatniczych.",
+      "failedToFetchSession": "Nie można pobrać prawidłowej sesji od dostawcy usług płatniczych.",
+      "basketNotFound": "Koszyk nie został znaleziony.",
+      "basketInvalid": "Koszyk jest nieprawidłowy.",
+      "failedDependency": "Nie udało się zaktualizować transakcji.",
+      "unknownError": "Wystąpił błąd. Spróbuj ponownie.",
+      "errorShippingAddressValidationFailed": "Weryfikacja adresu wysyłki nie powiodła się.",
+      "outOfConstraints": "Łączna wartość koszyka przekracza dopuszczalną wartość zamówienia."
+    }
+  },
   "preferred_primary_image_type_toggle": {
     "default": "Domyślny"
   },

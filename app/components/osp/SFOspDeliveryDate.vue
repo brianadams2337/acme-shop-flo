@@ -9,7 +9,6 @@
     </div>
     <div class="p-2 text-sm text-secondary" data-testid="osp-carrier">
       {{ $t('order_information.order_details.delivered_by') }}
-      <!--TODO do not use dynamic translation key -->
       {{ $t('global.carrier_key.' + sender) }}
     </div>
   </div>

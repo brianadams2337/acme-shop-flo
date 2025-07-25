@@ -38,8 +38,7 @@
   },
   "notification": {
     "confirm": "OK",
-    "view": "Изглед",
-    "reload_page": "Презареждане на страницата"
+    "view": "Изглед"
   },
   "promotion": {
     "deal": "Deal",
@@ -391,8 +390,7 @@
     "date_newest": "Най-ново",
     "price_desc": "Цена в низходящ ред",
     "price_asc": "Цена във възходящ ред",
-    "reduction_desc": "Намаление в низходящ ред",
-    "reduction_asc": "Намаление във възходящ ред"
+    "reduction_desc": "Намаление в низходящ ред"
   },
   "filter_header": {
     "title": "Категории на филтъра",

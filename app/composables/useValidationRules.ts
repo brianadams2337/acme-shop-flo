@@ -82,13 +82,35 @@ const toSnakeCase = (stringValue: string) =>
 export function useValidationRules() {
   const { $i18n } = useNuxtApp()
 
+  const getFormFieldTranslationKey = (key: string | undefined): string => {
+    switch (key) {
+      case 'first_name':
+        return $i18n.t('form_fields.first_name')
+      case 'last_name':
+        return $i18n.t('form_fields.last_name')
+      case 'email':
+        return $i18n.t('form_fields.email')
+      case 'password':
+        return $i18n.t('form_fields.password')
+      case 'old_password':
+        return $i18n.t('form_fields.old_password')
+      case 'new_password':
+        return $i18n.t('form_fields.new_password')
+      case 'gender':
+        return $i18n.t('form_fields.gender')
+      case 'birth_date':
+        return $i18n.t('form_fields.birth_date')
+      default:
+        return ''
+    }
+  }
+
   const withI18nMessage = createI18nMessage({
     t: $i18n.t.bind($i18n),
-    messagePath: ({ $validator }) => `validation.${toSnakeCase($validator)}`,
     messageParams: ({ field, max, otherName, property, ...params }) => ({
       ...params,
       property,
-      field: $i18n.t(`form_fields.${toSnakeCase(field || property)}`),
+      field: getFormFieldTranslationKey(toSnakeCase(field || property)),
       max,
       otherField: otherName,
     }),
@@ -98,38 +120,57 @@ export function useValidationRules() {
     /**
      * Validates that a value is required.
      */
-    required: withI18nMessage(required),
+    required: withI18nMessage(required, {
+      messagePath: () => 'validation.required',
+    }),
     /**
      * Validates that a value is a valid email address.
      */
-    email: withI18nMessage(email),
+    email: withI18nMessage(email, { messagePath: () => 'validation.email' }),
     /**
      * Validates that a value is a valid date after 1.1.1900.
      */
-    date: withI18nMessage(validateDate),
+    date: withI18nMessage(validateDate, {
+      messagePath: () => 'validation.date',
+    }),
     /**
      * Validates that a password has at least 8 characters, a special, an uppercase.
      */
-    password: withI18nMessage(validatePassword),
+    password: withI18nMessage(validatePassword, {
+      messagePath: () => 'validation.password',
+    }),
     /**
      * Validates that a date is in the past.
      */
-    pastDate: withI18nMessage(validatePastDate),
+    pastDate: withI18nMessage(validatePastDate, {
+      messagePath: () => 'validation.past_date',
+    }),
     /**
      * Validates that a value only contains valid unicode letters, spaces, and punctuation.
      */
-    name: withI18nMessage(validateName),
+    name: withI18nMessage(validateName, {
+      messagePath: () => 'validation.name',
+    }),
     /**
      * Validates that a value is the same as another value.
      */
-    sameAs: withI18nMessage(sameAs, { withArguments: true }),
+    sameAs: withI18nMessage(sameAs, {
+      withArguments: true,
+      messagePath: () => 'validation.same_as',
+    }),
     /**
      * Validates that a value has a maximum length.
      */
-    maxLength: withI18nMessage(maxLength, { withArguments: true }),
+    maxLength: withI18nMessage(maxLength, {
+      withArguments: true,
+      messagePath: () => 'validation.max_length',
+    }),
     /**
      * Validates that a value has a minimum length.
      */
-    minLength: withI18nMessage(minLength, { withArguments: true }),
+    minLength: withI18nMessage(minLength, {
+      withArguments: true,
+      messagePath: () => 'validation.min_length',
+    }),
   }
 }

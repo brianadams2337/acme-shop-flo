@@ -38,8 +38,7 @@
   },
   "notification": {
     "confirm": "OK",
-    "view": "visa",
-    "reload_page": "Ladda om"
+    "view": "visa"
   },
   "promotion": {
     "deal": "Erbjudande",
@@ -391,8 +390,7 @@
     "date_newest": "Nyaste",
     "price_desc": "Pris fallande",
     "price_asc": "Pris stigande",
-    "reduction_desc": "Rabatt fallande",
-    "reduction_asc": "Rabatt stigande"
+    "reduction_desc": "Rabatt fallande"
   },
   "filter_header": {
     "title": "Filtrera kategorier",

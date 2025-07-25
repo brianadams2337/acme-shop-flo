@@ -79,6 +79,7 @@ const stayInShop = function () {
 const currentCountry = computed<string | undefined>(() => {
   return getShopCountryName(currentShop.value, false)
 })
+
 const getShopCountryName = (shop: ShopInfo, includeLanguage: boolean) => {
   const locale = new Intl.Locale(shop.locale)
   if (!locale.region) {

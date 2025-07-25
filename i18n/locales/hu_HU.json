@@ -38,8 +38,7 @@
   },
   "notification": {
     "confirm": "OK",
-    "view": "Megtekintés",
-    "reload_page": "Újratöltés"
+    "view": "Megtekintés"
   },
   "promotion": {
     "deal": "Ajánlat",
@@ -391,8 +390,7 @@
     "date_newest": "Legújabb",
     "price_desc": "Ár szerint csökkenő",
     "price_asc": "Ár szerint növekvő",
-    "reduction_desc": "Kedvezmény szerint csökkenő",
-    "reduction_asc": "Kedvezmény szerint növekvő"
+    "reduction_desc": "Kedvezmény szerint csökkenő"
   },
   "filter_header": {
     "title": "Kategóriák szűrése",

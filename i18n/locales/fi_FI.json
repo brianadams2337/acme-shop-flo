@@ -38,8 +38,7 @@
   },
   "notification": {
     "confirm": "OK",
-    "view": "Näytä",
-    "reload_page": "Lataa uudelleen"
+    "view": "Näytä"
   },
   "promotion": {
     "deal": "Diili",
@@ -391,8 +390,7 @@
     "date_newest": "Uusin",
     "price_desc": "Hinta laskeva",
     "price_asc": "Hinta nouseva",
-    "reduction_desc": "Alennus laskeva",
-    "reduction_asc": "Alennus nouseva"
+    "reduction_desc": "Alennus laskeva"
   },
   "filter_header": {
     "title": "Suodata kategoriat",

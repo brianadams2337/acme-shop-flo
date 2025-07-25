@@ -38,8 +38,7 @@
   },
   "notification": {
     "confirm": "GERAI",
-    "view": "Peržiūrėti",
-    "reload_page": "Perkrauti puslapį"
+    "view": "Peržiūrėti"
   },
   "promotion": {
     "deal": "Pasiūlymas",
@@ -391,8 +390,7 @@
     "date_newest": "Naujausia",
     "price_desc": "Kainos mažėjimo tvarka",
     "price_asc": "Kainos didėjimo tvarka",
-    "reduction_desc": "Nuolaidos mažėjimo tvarka",
-    "reduction_asc": "Nuolaidos didėjimo tvarka"
+    "reduction_desc": "Nuolaidos mažėjimo tvarka"
   },
   "filter_header": {
     "title": "Filtravimo kategorijos",

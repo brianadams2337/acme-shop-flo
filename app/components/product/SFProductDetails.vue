@@ -10,7 +10,7 @@
       >
         <template #title>
           <h2>
-            {{ $t('product_details.information.' + key) }}
+            {{ types.get(key) }}
           </h2>
         </template>
         <div class="flex flex-col gap-2">
@@ -58,13 +58,23 @@ import type { Product } from '@scayle/storefront-nuxt'
 import { useProductBaseInfo } from '~/composables/useProductBaseInfo'
 import { SFAccordionEntry } from '#storefront-ui/components'
 import { getFilteredAttributeGroups } from '#storefront-product-detail'
+import { useI18n } from '#i18n'
+
+const { t } = useI18n()
 
 const { product } = defineProps<{ product: Product }>()
 
-const types = ['fit_size', 'extras', 'design']
+// This Map combines dynamic usage of translations and still keeps the static values of the translation keys.
+const types = new Map<string, string>([
+  ['fit_size', t('product_details.information.fit_size')],
+  ['extras', t('product_details.information.extras')],
+  ['design', t('product_details.information.design')],
+])
+
 const { description } = useProductBaseInfo(() => product)
 const filteredAttributeGroups = computed(
   () =>
-    product.attributes && getFilteredAttributeGroups(product.attributes, types),
+    product.attributes &&
+    getFilteredAttributeGroups(product.attributes, types.keys().toArray()),
 )
 </script>

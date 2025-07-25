@@ -20,6 +20,13 @@ export type PreferredDeliveryDate = {
   label: string
 }
 
+export const ORDINAL_INDEX_MAP: Record<string, number> = {
+  one: 1,
+  two: 2,
+  few: 3,
+  other: 0,
+}
+
 // check if at least one variant of the product is eligible for subscription
 export const isProductSubscriptionEligible = (product?: Product) =>
   !!product?.variants?.length &&
@@ -53,7 +60,7 @@ export const getSubscriptionIntervals = (variant?: Variant) => {
   )
 }
 
-export const getOrdinalSuffix = (locale: string, value?: number) => {
+export const getOrdinalSuffixKey = (locale: string, value?: number) => {
   if (!value) {
     return
   }

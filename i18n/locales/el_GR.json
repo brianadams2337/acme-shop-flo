@@ -38,8 +38,7 @@
   },
   "notification": {
     "confirm": "OK",
-    "view": "Προβολή",
-    "reload_page": "Επαναφόρτωση"
+    "view": "Προβολή"
   },
   "promotion": {
     "deal": "Προσφορά",
@@ -391,8 +390,7 @@
     "date_newest": "Τα νεότερα",
     "price_desc": "Τιμή φθίνουσα",
     "price_asc": "Αύξουσα τιμή",
-    "reduction_desc": "Μείωση τιμής φθίνουσα",
-    "reduction_asc": "Μείωση τιμής αύξουσα"
+    "reduction_desc": "Μείωση τιμής φθίνουσα"
   },
   "filter_header": {
     "title": "Κατηγορίες φίλτρων",

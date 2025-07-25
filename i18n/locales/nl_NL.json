@@ -38,8 +38,7 @@
   },
   "notification": {
     "confirm": "OK",
-    "view": "Weergeven",
-    "reload_page": "opnieuw laden"
+    "view": "Weergeven"
   },
   "promotion": {
     "deal": "Deal",
@@ -391,8 +390,7 @@
     "date_newest": "Nieuwste",
     "price_desc": "Prijs aflopend",
     "price_asc": "Prijs oplopend",
-    "reduction_desc": "Korting aflopend",
-    "reduction_asc": "Korting oplopend"
+    "reduction_desc": "Korting aflopend"
   },
   "filter_header": {
     "title": "Filter categorieën",

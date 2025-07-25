@@ -38,8 +38,7 @@
   },
   "notification": {
     "confirm": "LABI",
-    "view": "Skatīt",
-    "reload_page": "Pārlādēt"
+    "view": "Skatīt"
   },
   "promotion": {
     "deal": "Piedāvājums",
@@ -391,8 +390,7 @@
     "date_newest": "Jaunākās preces",
     "price_desc": "Cena dilstošā secībā",
     "price_asc": "Cenas augošā secībā",
-    "reduction_desc": "Atlaide dilstošā secībā",
-    "reduction_asc": "Atlaide augošā secībā"
+    "reduction_desc": "Atlaide dilstošā secībā"
   },
   "filter_header": {
     "title": "Filtrēt kategorijas",

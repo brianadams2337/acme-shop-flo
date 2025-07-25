@@ -38,8 +38,7 @@
   },
   "notification": {
     "confirm": "OK",
-    "view": "Pogled",
-    "reload_page": "Ponovno nalaganje"
+    "view": "Pogled"
   },
   "promotion": {
     "deal": "Ponudba",
@@ -391,8 +390,7 @@
     "date_newest": "Najnovejši",
     "price_desc": "Padajoča cena",
     "price_asc": "Naraščajoča cena",
-    "reduction_desc": "Znižanje padajoče",
-    "reduction_asc": "Znižanje naraščajoče"
+    "reduction_desc": "Znižanje padajoče"
   },
   "filter_header": {
     "title": "Filtriranje kategorij",

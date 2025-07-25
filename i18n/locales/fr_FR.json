@@ -38,8 +38,7 @@
   },
   "notification": {
     "confirm": "OK",
-    "view": "Afficher",
-    "reload_page": "Réactualiser"
+    "view": "Afficher"
   },
   "promotion": {
     "deal": "Offre",
@@ -391,8 +390,7 @@
     "date_newest": "Plus récent",
     "price_desc": "Prix décroissant",
     "price_asc": "Prix croissant",
-    "reduction_desc": "Réduction décroissante",
-    "reduction_asc": "Réduction ascendante"
+    "reduction_desc": "Réduction décroissante"
   },
   "filter_header": {
     "title": "Catégories de filtres",

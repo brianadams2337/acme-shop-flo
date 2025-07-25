@@ -16,7 +16,7 @@
           {{ $t('order_information.payment_details.payment_method') }}:
         </span>
         <span>
-          {{ $t('global.payment_key.' + paymentKey) }}
+          {{ $t(`global.payment_key.${paymentKey}`) }}
         </span>
       </div>
     </SFOrderDetailBox>
@@ -58,6 +58,6 @@ const shippingAddressTitle = computed(() => {
     ? t('order_information.address_details.delivery_and_billing_address')
     : t('order_information.address_details.delivery_address')
 })
-// TODO: translation return translated text instead of key
+
 const paymentKey = computed(() => orderDetails.payment?.[0]?.key)
 </script>

@@ -12,12 +12,7 @@
     "days": "day | days",
     "back": "Back",
     "continue_shopping": "Continue shopping",
-    "ordinal_suffixes": {
-      "one": "st",
-      "two": "nd",
-      "few": "rd",
-      "other": "th"
-    },
+    "ordinal_suffix": "th | st | nd | rd",
     "cancel": "Cancel",
     "payment_key": {
       "default": "Credit Card",
@@ -38,8 +33,7 @@
   },
   "notification": {
     "confirm": "OK",
-    "view": "View",
-    "reload_page": "Reload"
+    "view": "View"
   },
   "promotion": {
     "deal": "Deal",
@@ -407,8 +401,7 @@
     "date_newest": "Newest",
     "price_desc": "Price descending",
     "price_asc": "Price ascending",
-    "reduction_desc": "Reduction descending",
-    "reduction_asc": "Reduction ascending"
+    "reduction_desc": "Reduction descending"
   },
   "filter_header": {
     "title": "Filter categories",

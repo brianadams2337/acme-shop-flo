@@ -38,8 +38,7 @@
   },
   "notification": {
     "confirm": "OK",
-    "view": "Vizualizează",
-    "reload_page": "Încarcă din nou"
+    "view": "Vizualizează"
   },
   "promotion": {
     "deal": "Ofertă",
@@ -391,8 +390,7 @@
     "date_newest": "Cel mai nou",
     "price_desc": "Preț descrescător",
     "price_asc": "Preț crescător",
-    "reduction_desc": "Reducere descrescătoare",
-    "reduction_asc": "Reducere crescătoare"
+    "reduction_desc": "Reducere descrescătoare"
   },
   "filter_header": {
     "title": "Categorii de filtre",

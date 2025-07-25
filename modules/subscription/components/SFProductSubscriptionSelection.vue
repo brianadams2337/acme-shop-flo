@@ -39,10 +39,10 @@
       >
         <template #default>
           {{
-            $t('subscription.' + selectedPreferredDeliveryDate?.label, {
+            $t('subscription.day_of_month_selection_caption', {
               dayOfMonth:
                 selectedPreferredDeliveryDate?.day +
-                $t(`global.ordinal_suffixes.${ordinalSuffixKey}`),
+                _getOrdinalSuffix(ordinalSuffixKey),
             })
           }}
         </template>
@@ -59,12 +59,7 @@
               $t('subscription.day_of_month_selection_caption', {
                 dayOfMonth:
                   item?.day +
-                  $t(
-                    `global.ordinal_suffixes.${getOrdinalSuffix(
-                      locale,
-                      item?.day,
-                    )}`,
-                  ),
+                  _getOrdinalSuffix(getOrdinalSuffixKey(locale, item?.day)),
               })
             }}
           </SFButton>
@@ -91,10 +86,11 @@ import { computed, watch } from 'vue'
 import type { Product, Variant } from '@scayle/storefront-nuxt'
 import { useSubscription } from '../composables/useSubscription'
 import type { PreferredDeliveryDate } from '../helpers/subscription'
-import { getOrdinalSuffix } from '../helpers/subscription'
+import { getOrdinalSuffixKey, ORDINAL_INDEX_MAP } from '../helpers/subscription'
 import type { AddToBasketItem } from '~/composables'
 import { SFButton, SFDropdown } from '#storefront-ui/components'
 import { useCurrentShop } from '#storefront/composables'
+import { useI18n } from '#i18n'
 
 const { product, variant, preferredDeliveryDate, pricePromotionKey, quantity } =
   defineProps<{
@@ -106,7 +102,7 @@ const { product, variant, preferredDeliveryDate, pricePromotionKey, quantity } =
   }>()
 
 defineEmits<{ addItemToBasket: [item?: AddToBasketItem] }>()
-
+const i18n = useI18n()
 const currentShop = useCurrentShop()
 
 const locale = computed(() => {
@@ -127,6 +123,11 @@ const {
   () => quantity,
   'product-subscription-selection.vue',
 )
+
+const _getOrdinalSuffix = (key?: string) => {
+  const index = ORDINAL_INDEX_MAP[key || 'other'] ?? 0
+  return i18n.t('global.ordinal_suffix', index)
+}
 
 const subscriptionState = computed(() => ({
   isInitial: !variant,

@@ -38,8 +38,7 @@
   },
   "notification": {
     "confirm": "Tamam",
-    "view": "Görünüm",
-    "reload_page": "Yeniden Yükle"
+    "view": "Görünüm"
   },
   "promotion": {
     "deal": "Fırsat",
@@ -391,8 +390,7 @@
     "date_newest": "En Yeni",
     "price_desc": "Azalan fiyat",
     "price_asc": "Yükselen fiyat",
-    "reduction_desc": "Azalan azaltma",
-    "reduction_asc": "Azalan artan"
+    "reduction_desc": "Azalan azaltma"
   },
   "filter_header": {
     "title": "Filtre kategorileri",

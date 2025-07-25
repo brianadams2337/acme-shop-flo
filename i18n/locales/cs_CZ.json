@@ -38,8 +38,7 @@
   },
   "notification": {
     "confirm": "OK",
-    "view": "Zobrazit",
-    "reload_page": "Znovu načíst"
+    "view": "Zobrazit"
   },
   "promotion": {
     "deal": "Deal",
@@ -391,8 +390,7 @@
     "date_newest": "Nejnovější",
     "price_desc": "Cena sestupně",
     "price_asc": "Cena vzestupně",
-    "reduction_desc": "Sleva sestupně",
-    "reduction_asc": "Sleva vzestupně"
+    "reduction_desc": "Sleva sestupně"
   },
   "filter_header": {
     "title": "Filtrování kategorií",

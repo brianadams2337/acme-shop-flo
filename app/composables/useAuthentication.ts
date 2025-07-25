@@ -81,10 +81,6 @@ export function useAuthentication(
   const { localizedNavigateTo } = useRouteHelpers()
   const log = useLog('useAuthentication')
 
-  const successMessage = (event: AuthTrackingEvent) => {
-    return $i18n.t(`authentication.notification.success.${event}`)
-  }
-
   const { refresh: refreshWishlist } = useWishlist()
   const { refresh: refreshBasket, data: basketData } = useBasket()
   const { user, refresh: refreshUser, customerType } = useUser()
@@ -100,7 +96,10 @@ export function useAuthentication(
   const login = async (data: Omit<LoginRequest, 'shop_id'>): Promise<void> => {
     try {
       await session.login(data)
-      await authenticated('login')
+      await authenticated(
+        'login',
+        $i18n.t('authentication.notification.success.login'),
+      )
     } catch (error) {
       trackFailedAuthentication(data.email, 'login')
       handleError(error, 'login')
@@ -111,7 +110,10 @@ export function useAuthentication(
   const loginIDP = async (code: string): Promise<void> => {
     try {
       await session.loginWithIDP({ code })
-      await authenticated('login')
+      await authenticated(
+        'login',
+        $i18n.t('authentication.notification.success.login'),
+      )
     } catch (error) {
       handleError(error, 'login')
       throw error
@@ -123,7 +125,10 @@ export function useAuthentication(
   ): Promise<void> => {
     try {
       await session.guestLogin(data)
-      await authenticated('guest_login')
+      await authenticated(
+        'guest_login',
+        $i18n.t('authentication.notification.success.guest_login'),
+      )
     } catch (error) {
       trackFailedAuthentication(data.email, 'guest_login')
       handleError(error, 'guest_login')
@@ -136,7 +141,10 @@ export function useAuthentication(
   ): Promise<void> => {
     try {
       await session.register(data)
-      await authenticated('sign_up')
+      await authenticated(
+        'sign_up',
+        $i18n.t('authentication.notification.success.sign_up'),
+      )
     } catch (error) {
       trackFailedAuthentication(data.email, 'sign_up')
       handleError(error, 'sign_up')
@@ -147,10 +155,13 @@ export function useAuthentication(
   const forgotPassword = async (email: string): Promise<void> => {
     try {
       await session.forgetPassword({ email })
-      toast.show(successMessage('forgot_password'), {
-        action: 'CONFIRM',
-        type: 'INFO',
-      })
+      toast.show(
+        $i18n.t('authentication.notification.success.forgot_password'),
+        {
+          action: 'CONFIRM',
+          type: 'INFO',
+        },
+      )
     } catch (error) {
       trackFailedAuthentication(email, 'forgot_password')
       handleError(error, 'forgot_password')
@@ -163,7 +174,10 @@ export function useAuthentication(
   ): Promise<void> => {
     try {
       await session.resetPasswordByHash(data)
-      await authenticated('reset_password')
+      await authenticated(
+        'reset_password',
+        $i18n.t('authentication.notification.success.reset_password'),
+      )
     } catch (error) {
       handleError(error, 'reset_password')
       throw error
@@ -193,7 +207,10 @@ export function useAuthentication(
    * After a user was authenticated by login in, or registering.
    * Refresh user data, basket & wishlist.
    */
-  const authenticated = async (event: AuthTrackingEvent): Promise<void> => {
+  const authenticated = async (
+    event: AuthTrackingEvent,
+    successMessage: string,
+  ): Promise<void> => {
     await refresh()
 
     if (!user.value) {
@@ -215,7 +232,7 @@ export function useAuthentication(
       (route.query.redirectUrl as string) ?? routeList.home.path,
     )
 
-    toast.show(successMessage(event), { action: 'CONFIRM', type: 'SUCCESS' })
+    toast.show(successMessage, { action: 'CONFIRM', type: 'SUCCESS' })
   }
 
   const trackFailedAuthentication = async (

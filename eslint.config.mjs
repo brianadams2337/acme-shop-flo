@@ -90,11 +90,29 @@ export default withNuxt(
           ? 'error'
           : 'warn',
         '@intlify/vue-i18n/no-duplicate-keys-in-locale': 'error',
-        '@intlify/vue-i18n/no-dynamic-keys': 'warn',
+        '@intlify/vue-i18n/no-dynamic-keys': 'off',
+        '@intlify/vue-i18n/no-unused-keys': [
+          'error',
+          {
+            extensions: ['.js', '.vue', '.ts'],
+            ignores: [
+              // We ignore validation errors because it is used in VueValidators `createI18nMessage` function.
+              // This is not seen as 'used' by this rule as it does not use the `t` function.
+              // See composables/useValidationRules.ts
+              '/validation/',
+              // Following keys are used dynamically in the codebase and are not seen as 'used' by this rule.
+              // The static usage of the keys would make the codebase harder to read and maintain.
+              '/global.payment_key/',
+              '/global.carrier_key/',
+              '/auth_idp_redirects/',
+              '/country_detection.override_codes/',
+            ],
+          },
+        ],
       },
       settings: {
         'vue-i18n': {
-          localeDir: './i18n/locales/*.json',
+          localeDir: './i18n/locales/en_GB.json',
           messageSyntaxVersion: '^10.0.7',
         },
       },

@@ -15,11 +15,12 @@ import {
   SUBSCRIPTION_ELIGIBILITY_ATTRIBUTE_NAME,
   SUBSCRIPTION_INTERVALS_ATTRIBUTE_NAME,
   SUBSCRIPTION_TERM,
-  getOrdinalSuffix,
+  getOrdinalSuffixKey,
   getSubscriptionIntervals,
   getSubscriptionItemGroup,
+  ORDINAL_INDEX_MAP,
 } from '../helpers/subscription'
-import { useI18n } from '#i18n'
+import { useNuxtApp } from '#app'
 import { useBasket, useProduct } from '#storefront/composables'
 import type { AddToBasketItem } from '~/composables'
 
@@ -33,7 +34,7 @@ export function useSubscription(
   quantity: MaybeRefOrGetter<number>,
   key?: string,
 ) {
-  const i18n = useI18n()
+  const { $i18n } = useNuxtApp()
   const { items: basketItems } = useBasket()
 
   const productPromise = useProduct(
@@ -117,32 +118,33 @@ export function useSubscription(
   })
 
   const ordinalSuffixKey = computed(() =>
-    getOrdinalSuffix(
-      i18n.locale.value,
+    getOrdinalSuffixKey(
+      $i18n.locale.value,
       selectedPreferredDeliveryDate.value?.day,
     ),
   )
 
   const displayData = computed(() => {
-    const intervalValue = `${i18n.t(
+    const intervalValue = `${$i18n.t(
       'subscription.interval',
     )}: ${selectedInterval.value?.label}`
 
-    const deliveryValue = `${i18n.t(
+    const index = ORDINAL_INDEX_MAP[ordinalSuffixKey.value || 'other'] ?? 0
+    const ordinalSuffix = $i18n.t('global.ordinal_suffix', index)
+
+    const deliveryValue = `${$i18n.t(
       'subscription.follow_up_delivery',
-    )}: ${i18n.t('subscription.day_of_month_selection_caption', {
-      dayOfMonth:
-        selectedPreferredDeliveryDate.value?.day +
-        i18n.t(`global.ordinal_suffixes.${ordinalSuffixKey.value}`),
+    )}: ${$i18n.t('subscription.day_of_month_selection_caption', {
+      dayOfMonth: selectedPreferredDeliveryDate.value?.day + ordinalSuffix,
     })}`
 
-    const term = `${i18n.t('subscription.term')}: ${subscriptionTerm.value
+    const term = `${$i18n.t('subscription.term')}: ${subscriptionTerm.value
       ?.label}`
 
     return {
       'attribute-1': {
         key: 'subscriptionDefinition',
-        label: i18n.t('subscription.subscription'),
+        label: $i18n.t('subscription.subscription'),
         value: `${intervalValue} | ${deliveryValue} | ${term}`,
       },
     }

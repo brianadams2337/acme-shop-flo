@@ -38,8 +38,7 @@
   },
   "notification": {
     "confirm": "OK",
-    "view": "Visning",
-    "reload_page": "Last inn på nytt"
+    "view": "Visning"
   },
   "promotion": {
     "deal": "Tilbud",
@@ -391,8 +390,7 @@
     "date_newest": "Nyeste",
     "price_desc": "Pris synkende",
     "price_asc": "Stigende pris",
-    "reduction_desc": "Reduksjon synkende",
-    "reduction_asc": "Reduksjon stigende"
+    "reduction_desc": "Reduksjon synkende"
   },
   "filter_header": {
     "title": "Filtrer kategorier",

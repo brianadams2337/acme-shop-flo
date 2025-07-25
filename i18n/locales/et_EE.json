@@ -38,8 +38,7 @@
   },
   "notification": {
     "confirm": "OK",
-    "view": "Vaata",
-    "reload_page": "Lae uuesti"
+    "view": "Vaata"
   },
   "promotion": {
     "deal": "Eripakkumine",
@@ -391,8 +390,7 @@
     "date_newest": "Uusim",
     "price_desc": "Hind kahanevas järjestuses",
     "price_asc": "Hind kasvavas järjestuses",
-    "reduction_desc": "Vähendamine kahanevas järjestuses",
-    "reduction_asc": "Reduktsioon kasvavas järjestuses"
+    "reduction_desc": "Vähendamine kahanevas järjestuses"
   },
   "filter_header": {
     "title": "Filtreeri kategooriad",

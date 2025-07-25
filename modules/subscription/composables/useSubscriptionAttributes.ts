@@ -2,8 +2,9 @@ import { getAttributeValueTuples } from '@scayle/storefront-nuxt'
 import { computed } from 'vue'
 import type { BasketItem } from '@scayle/storefront-nuxt'
 import {
-  getOrdinalSuffix,
+  getOrdinalSuffixKey,
   hasSubscriptionCustomData,
+  ORDINAL_INDEX_MAP,
 } from '../helpers/subscription'
 import { useNuxtApp } from '#app'
 import type { OrderItem } from '~~/types/order'
@@ -66,13 +67,18 @@ export default (item: BasketItem | OrderItem) => {
         : undefined
 
     if (deliveryDay) {
-      const ordinalSuffixKey = getOrdinalSuffix($i18n.locale.value, deliveryDay)
+      const ordinalSuffixKey = getOrdinalSuffixKey(
+        $i18n.locale.value,
+        deliveryDay,
+      )
+
+      const index = ORDINAL_INDEX_MAP[ordinalSuffixKey || 'other'] ?? 0
+      const ordinalSuffix = $i18n.t('global.ordinal_suffix', index)
+
       attributes.push({
         label: $i18n.t('subscription.follow_up_delivery'),
         value: $i18n.t('subscription.day_of_month_selection_caption', {
-          dayOfMonth:
-            deliveryDay +
-            $i18n.t(`global.ordinal_suffixes.${ordinalSuffixKey}`),
+          dayOfMonth: deliveryDay + ordinalSuffix,
         }),
       })
     }

@@ -25,22 +25,52 @@ const getGenericErrorMessage = (status: number, i18n: Composer): string => {
   }
 }
 
+const getGuestLoginErrorMessage = (status: number, i18n: Composer): string => {
+  if (status === 409) {
+    return i18n.t('authentication.notification.error.guest_login.409')
+  }
+
+  return getGenericErrorMessage(status, i18n)
+}
+
+const getForgotPasswordErrorMessage = (
+  status: number,
+  i18n: Composer,
+): string => {
+  if (status === 404) {
+    return i18n.t('authentication.notification.error.forgot_password.404')
+  }
+
+  return getGenericErrorMessage(status, i18n)
+}
+
+const getResetPasswordErrorMessage = (
+  status: number,
+  i18n: Composer,
+): string => {
+  if (status === 404) {
+    return i18n.t('authentication.notification.error.reset_password.404')
+  }
+
+  return getGenericErrorMessage(status, i18n)
+}
+
 export const resolveErrorMessage = (
   error: unknown,
   event: AuthTrackingEvent,
   i18n: Composer,
 ): string => {
-  if (error instanceof FetchError) {
-    const status = error.response?.status
-    if (status) {
-      const authFlowSpecificPath = `authentication.notification.error.${event}.${status}`
-      // Prioritize specific translations for certain flows (e.g., guest login error 409).
-      // If a specific translation is not available, fall back to the general sign-in error message translations.
-      return i18n.te(authFlowSpecificPath)
-        ? i18n.t(authFlowSpecificPath)
-        : getGenericErrorMessage(status, i18n)
-    }
+  if (!(error instanceof FetchError) || !error.response?.status) {
+    return i18n.t('authentication.notification.error.generic.500')
   }
 
-  return i18n.t('authentication.notification.error.generic.500')
+  if (event === 'guest_login') {
+    return getGuestLoginErrorMessage(error.response.status, i18n)
+  } else if (event === 'forgot_password') {
+    return getForgotPasswordErrorMessage(error.response.status, i18n)
+  } else if (event === 'reset_password') {
+    return getResetPasswordErrorMessage(error.response.status, i18n)
+  }
+
+  return getGenericErrorMessage(error.response.status, i18n)
 }

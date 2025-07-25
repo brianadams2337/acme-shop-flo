@@ -68,8 +68,8 @@ importers:
         specifier: 0.3.0
         version: 0.3.0(@nuxt/kit@3.17.7(magicast@0.3.5))(@scayle/storefront-nuxt@8.36.0(@nuxt/kit@3.17.7(magicast@0.3.5))(@scayle/storefront-api@18.11.0(fishery@2.3.1))(@upstash/redis@1.35.1)(@vercel/kv@3.0.0)(db0@0.3.2)(fishery@2.3.1)(h3@1.15.3)(ioredis@5.6.1)(nitropack@2.12.4(@upstash/redis@1.35.1)(@vercel/kv@3.0.0))(nuxt@3.17.7(@parcel/watcher@2.5.1)(@types/node@22.16.5)(@upstash/redis@1.35.1)(@vercel/kv@3.0.0)(@vue/compiler-sfc@3.5.17)(db0@0.3.2)(eslint@9.31.0(jiti@2.4.2))(ioredis@5.6.1)(magicast@0.3.5)(optionator@0.9.4)(rollup@4.45.1)(terser@5.43.1)(typescript@5.8.3)(vite@7.0.6(@types/node@22.16.5)(jiti@2.4.2)(terser@5.43.1)(yaml@2.8.0))(vue-tsc@3.0.3(typescript@5.8.3))(yaml@2.8.0))(rollup@4.45.1)(unstorage@1.16.0(@upstash/redis@1.35.1)(@vercel/kv@3.0.0)(db0@0.3.2)(ioredis@5.6.1))(vue@3.5.17(typescript@5.8.3)))(vue@3.5.17(typescript@5.8.3))
       '@scayle/unstorage-compression-driver':
-        specifier: 1.0.0
-        version: 1.0.0(unstorage@1.16.0(@upstash/redis@1.35.1)(@vercel/kv@3.0.0)(db0@0.3.2)(ioredis@5.6.1))
+        specifier: 1.0.1
+        version: 1.0.1(unstorage@1.16.0(@upstash/redis@1.35.1)(@vercel/kv@3.0.0)(db0@0.3.2)(ioredis@5.6.1))
       '@scayle/unstorage-scayle-kv-driver':
         specifier: 1.0.3
         version: 1.0.3(unstorage@1.16.0(@upstash/redis@1.35.1)(@vercel/kv@3.0.0)(db0@0.3.2)(ioredis@5.6.1))
@@ -2641,6 +2641,11 @@ packages:
 
   '@scayle/unstorage-compression-driver@1.0.0':
     resolution: {integrity: sha512-A5/oEKQ2C6UCpElNxgbATKoc4BmnjQs+vEK89e/4P2P4pCJKL8RgKwIJmPgNUXRsrBECY1fThN9uyJxRuEpSFA==}
+    peerDependencies:
+      unstorage: ^1.10.1
+
+  '@scayle/unstorage-compression-driver@1.0.1':
+    resolution: {integrity: sha512-GQXajbzL4iVE2cIgx9zJsCS8rdMeeWs7wQjl2GeU+ZLpESVGRSR/CHP3h5mP6JfkwgNvQpWyhXwwUuGGuuMRYQ==}
     peerDependencies:
       unstorage: ^1.10.1
 
@@ -9514,8 +9519,8 @@ packages:
   vue-component-type-helpers@2.2.12:
     resolution: {integrity: sha512-YbGqHZ5/eW4SnkPNR44mKVc6ZKQoRs/Rux1sxC6rdwXb4qpbOSYfDr9DsTHolOTGmIKgM9j141mZbBeg05R1pw==}
 
-  vue-component-type-helpers@3.0.3:
-    resolution: {integrity: sha512-koiBu7lO8e6w/UlbZAAIW11qcFQocYIl7Nh/SVwGZ804ej5KrncU32bRxi2zfU2Kyf6HWuk1CeeVP2rhIL+vyQ==}
+  vue-component-type-helpers@3.0.4:
+    resolution: {integrity: sha512-WtR3kPk8vqKYfCK/HGyT47lK/T3FaVyWxaCNuosaHYE8h9/k0lYRZ/PI/+T/z2wP+uuNKmL6z30rOcBboOu/YA==}
 
   vue-demi@0.13.11:
     resolution: {integrity: sha512-IR8HoEEGM65YY3ZJYAjMlKygDQn25D5ajNFNoKh9RSDMQtlzCxtfQjdQgv9jjK+m3377SsJXY8ysq8kLCZL25A==}
@@ -12962,6 +12967,11 @@ snapshots:
       destr: 2.0.5
       unstorage: 1.16.0(@upstash/redis@1.35.1)(@vercel/kv@3.0.0)(db0@0.3.2)(ioredis@5.6.1)
 
+  '@scayle/unstorage-compression-driver@1.0.1(unstorage@1.16.0(@upstash/redis@1.35.1)(@vercel/kv@3.0.0)(db0@0.3.2)(ioredis@5.6.1))':
+    dependencies:
+      destr: 2.0.5
+      unstorage: 1.16.0(@upstash/redis@1.35.1)(@vercel/kv@3.0.0)(db0@0.3.2)(ioredis@5.6.1)
+
   '@scayle/unstorage-scayle-kv-driver@1.0.2(unstorage@1.16.0(@upstash/redis@1.35.1)(@vercel/kv@3.0.0)(db0@0.3.2)(ioredis@5.6.1))':
     dependencies:
       unstorage: 1.16.0(@upstash/redis@1.35.1)(@vercel/kv@3.0.0)(db0@0.3.2)(ioredis@5.6.1)
@@ -13122,7 +13132,7 @@ snapshots:
       storybook: 9.0.5(@testing-library/dom@9.3.4)(prettier@3.0.3)
       type-fest: 2.19.0
       vue: 3.5.17(typescript@5.8.3)
-      vue-component-type-helpers: 3.0.3
+      vue-component-type-helpers: 3.0.4
 
   '@stylistic/eslint-plugin@5.2.2(eslint@9.31.0(jiti@2.4.2))':
     dependencies:
@@ -21020,7 +21030,7 @@ snapshots:
 
   vue-component-type-helpers@2.2.12: {}
 
-  vue-component-type-helpers@3.0.3: {}
+  vue-component-type-helpers@3.0.4: {}
 
   vue-demi@0.13.11(vue@3.5.17(typescript@5.8.3)):
     dependencies:

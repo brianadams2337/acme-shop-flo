@@ -124,7 +124,7 @@
     "@scayle/storefront-product-listing": "2.0.2",
     "@scayle/storefront-promotions": "2.2.0",
     "@scayle/storefront-search": "0.3.0",
-    "@scayle/unstorage-compression-driver": "1.0.0",
+    "@scayle/unstorage-compression-driver": "1.0.1",
     "@scayle/unstorage-scayle-kv-driver": "1.0.3",
     "@storyblok/nuxt": "7.2.0",
     "@storyblok/richtext": "3.5.0",

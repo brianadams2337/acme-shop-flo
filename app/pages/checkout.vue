@@ -1,12 +1,10 @@
 <template>
   <div id="ayCheckoutContainer" class="min-h-[85vh]">
     <scayle-checkout
-      v-if="
-        (data?.accessToken || $route.query.transactionId) && data?.checkoutJwt
-      "
+      v-if="(accessToken || $route.query.transactionId) && checkoutJwt"
       ref="checkoutRef"
-      :access-token="data.accessToken"
-      :jwt="data.checkoutJwt"
+      :access-token="accessToken"
+      :jwt="checkoutJwt"
       header-element="#header"
       :transaction-id="$route.query.transactionId"
       @error="handleError"
@@ -23,18 +21,12 @@ import {
   useCheckoutWebComponent,
   useCheckoutStepTrackingInterceptor,
 } from '~/composables'
-import { useBasket, useLog, useRpc, useUser } from '#storefront/composables'
+import { useBasket, useLog, useUser } from '#storefront/composables'
 import { useI18n } from '#i18n'
 import { useApplyPromotions } from '#storefront-promotions/composables/useApplyPromotions'
 
-useCheckoutWebComponent()
+const { accessToken, checkoutJwt } = useCheckoutWebComponent()
 const { refresh: refreshBasket, status, data: basket } = useBasket()
-const { data, refresh: fetchCheckoutToken } = useRpc(
-  'getCheckoutToken',
-  'getCheckoutToken',
-  undefined,
-  { immediate: false },
-)
 
 const { applyPromotions } = useApplyPromotions({ basket })
 
@@ -73,7 +65,7 @@ useEventListener('message', (event) =>
 )
 
 onBeforeMount(async () => {
-  await Promise.all([refreshBasket(), refreshUser(), fetchCheckoutToken()])
+  await Promise.all([refreshBasket(), refreshUser()])
   await applyPromotions(basket)
 })
 
@@ -81,7 +73,7 @@ const handleError = (payload = {}) => {
   console.error('Checkout web component ran into an error: ', payload)
   const loggingPayload = JSON.stringify({
     userId: user.value?.id,
-    checkoutJwt: data.value?.checkoutJwt,
+    checkoutJwt: checkoutJwt.value,
   })
   log.error('[onCheckoutError]', loggingPayload)
 }

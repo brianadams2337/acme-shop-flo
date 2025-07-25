@@ -2,8 +2,8 @@
   <scayle-express-checkout
     v-if="ready"
     origin="web"
-    :jwt="data?.checkoutJwt"
-    :access-token="data?.accessToken"
+    :jwt="checkoutJwt"
+    :access-token="accessToken"
     :consent="JSON.stringify(consent)"
     :basket-total="basket?.cost.withTax"
     @invalid-access-token="onInvalidAccessToken"
@@ -15,7 +15,7 @@
 </template>
 <script setup lang="ts">
 import { ref, computed, reactive } from 'vue'
-import { useBasket, useLog, useRpc } from '@scayle/storefront-nuxt/composables'
+import { useBasket, useLog } from '@scayle/storefront-nuxt/composables'
 import { navigateTo } from '#app/composables/router'
 import {
   useCheckoutWebComponent,
@@ -35,18 +35,12 @@ const consent = reactive<Record<string, boolean>>({
   klarna: true,
 })
 
-const { onLoaded } = useCheckoutWebComponent()
+const { onLoaded, refreshToken, status, accessToken, checkoutJwt } =
+  useCheckoutWebComponent()
 onLoaded(async () => {
   loaded.value = true
 })
 
-const {
-  data,
-  refresh: fetchCheckoutToken,
-  status,
-} = useRpc('getCheckoutToken', 'getCheckoutToken', undefined, {
-  server: false,
-})
 const { data: basket } = useBasket()
 const ready = computed(
   () => status.value === 'success' && !!basket.value && !!loaded.value,
@@ -54,7 +48,7 @@ const ready = computed(
 
 const toast = useToast()
 const onInvalidAccessToken = () => {
-  fetchCheckoutToken()
+  refreshToken()
 }
 
 type ExpressCheckoutConsentMissingEvent = Event & {

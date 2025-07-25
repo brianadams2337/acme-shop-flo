@@ -28,7 +28,7 @@ const log = useLog('SFExpressCheckout')
 const loaded = ref(false)
 
 log.warn(
-  '<SFExpressCheckout /> does not handle consent management by default. Please adjust the consent object to respect the users consent based on your consent management system.',
+  '<SFExpressCheckout /> does not handle consent management by default. Please adjust the consent object to respect the users consent based on your implemented consent management.',
 )
 const consent = reactive<Record<string, boolean>>({
   paypal: true,

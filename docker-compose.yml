@@ -15,7 +15,7 @@ services:
   node:
     build:
       context: ./
-      dockerfile: docker/node/Dockerfile
+      dockerfile: docker/Dockerfile
     depends_on:
       - redis
     environment:
@@ -30,29 +30,6 @@ services:
     profiles:
       - node
     restart: always
-    volumes:
-      - ./.env:/app/.env
-    networks:
-      - storefront-application
-
-  bun:
-    build:
-      context: ./
-      dockerfile: docker/bun/Dockerfile
-    depends_on:
-      - redis
-    environment:
-      - NITRO_HOST=bun
-      - NITRO_PORT=3000
-      - NITRO_SSL_CERT=${SSL_CERT}
-      - NITRO_SSL_KEY=${SSL_KEY}
-      - NUXT_STOREFRONT_STORAGE_CACHE_HOST=redis
-      - NUXT_STOREFRONT_STORAGE_SESSION_HOST=redis
-    ports:
-      - '3000:3000'
-    restart: always
-    profiles:
-      - bun
     volumes:
       - ./.env:/app/.env
     networks:

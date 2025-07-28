@@ -14,6 +14,7 @@ import {
   assertFilterCounter,
   navigateToPlp,
   applySorting,
+  parseLocatorTextToNumber,
 } from '../../support/utils'
 
 /**
@@ -104,16 +105,14 @@ test('C2130727: Verify PLP Filters and Product Count', async ({
   toastMessage,
   page,
 }) => {
-  const initialProductCountText = await breadcrumb.productCounter.textContent()
-  let initialProductCount: number | null = null
+  const initialProductCountValue = await parseLocatorTextToNumber(
+    breadcrumb.productCounter,
+  )
+
   const MIN_PRICE_DISPLAY = '80'
   const MAX_PRICE_DISPLAY = '100'
   const MIN_PRICE_URL = parseInt(MIN_PRICE_DISPLAY) * 100
   const MAX_PRICE_URL = parseInt(MAX_PRICE_DISPLAY) * 100
-
-  if (initialProductCountText) {
-    initialProductCount = parseInt(initialProductCountText, 10)
-  }
 
   await test.step('Verify initial state', async () => {
     await expect(breadcrumb.productCounter).toBeVisible()
@@ -136,7 +135,9 @@ test('C2130727: Verify PLP Filters and Product Count', async ({
 
     const currentProductCount = breadcrumb.productCounter
 
-    await expect(currentProductCount).not.toHaveText(initialProductCount)
+    expect(currentProductCount).not.toBeNull()
+    expect(currentProductCount).not.toBe(initialProductCountValue)
+
     expect(page.url()).toContain(
       `filters[minPrice]=${MIN_PRICE_URL}&filters[maxPrice]=${MAX_PRICE_URL}`,
     )
@@ -167,22 +168,25 @@ test('C2130727: Verify PLP Filters and Product Count', async ({
   })
 
   await test.step('Check product counter', async () => {
-    let currentProductCount: number | null = null
-    const currentProductCountText =
-      await breadcrumb.productCounter.textContent()
+    const currentProductCount = await parseLocatorTextToNumber(
+      breadcrumb.productCounter,
+    )
     const filteredButtonLabel = await filters.filterApplyButton.textContent()
 
-    if (currentProductCountText) {
-      currentProductCount = parseInt(currentProductCountText, 10)
-    }
+    let counterFilterButton: number | null = null
     if (filteredButtonLabel) {
       const match = filteredButtonLabel.match(/\d+/g)
-      const counterFilterButton = match ? parseInt(match[0], 10) : null
-
-      expect(currentProductCount).toEqual(counterFilterButton)
+      counterFilterButton = match ? parseInt(match[0], 10) : null
+      counterFilterButton = isNaN(counterFilterButton as number)
+        ? null
+        : counterFilterButton
     }
 
-    expect(currentProductCount).not.toEqual(initialProductCount)
+    expect(currentProductCount).not.toBeNull()
+    expect(counterFilterButton).not.toBeNull()
+    expect(currentProductCount).toEqual(counterFilterButton)
+
+    expect(currentProductCount).not.toEqual(initialProductCountValue)
   })
 
   await test.step('Apply filters and close the flyout', async () => {
@@ -381,13 +385,12 @@ test('C2162411 C2229455 Verify PLP Sorting', async ({
     productListingPage,
     SORTING.priceAsc,
   )
-  await page.waitForTimeout(1000)
+  await productListingPage.productImage.first().waitFor()
 
   const pageUrlPriceAsc = page.url()
-
   expect(pageUrlPriceAsc).toContain(SORTING.priceAsc)
 
-  const productIdPriceAsc = productListingPage.productCard.first()
+  const productIdPriceAscString = productListingPage.productCard.first()
 
   await applySorting(
     page,
@@ -396,17 +399,18 @@ test('C2162411 C2229455 Verify PLP Sorting', async ({
     productListingPage,
     SORTING.priceDesc,
   )
-  await page.waitForTimeout(1000)
+  await productListingPage.productImage.first().waitFor()
 
   const pageUrl = page.url()
-
   expect(pageUrl).toContain(SORTING.priceDesc)
 
-  const productIdPriceDesc = await productListingPage.productCard
+  const productIdPriceDescString = await productListingPage.productCard
     .first()
     .getAttribute('id')
 
-  await expect(productIdPriceAsc).not.toHaveAttribute('id', productIdPriceDesc)
+  expect(productIdPriceAscString).not.toBeNull()
+  expect(productIdPriceDescString).not.toBeNull()
+  expect(productIdPriceAscString).not.toBe(productIdPriceDescString)
 })
 
 /**

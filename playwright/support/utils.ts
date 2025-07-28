@@ -1,4 +1,4 @@
-import type { Page } from 'playwright-core'
+import type { Locator, Page } from 'playwright-core'
 import { expect } from '@playwright/test'
 import { BREAKPOINTS } from '../../config/ui'
 import type { MobileNavigation } from '../page-objects/components/mobileNavigation'
@@ -110,6 +110,32 @@ export const navigationItemLabel = (stringValue: string) =>
 export const formatCategoryUrlSegment = (activeCategoryText: string | null) => {
   const lowercasedText = activeCategoryText?.toLowerCase() ?? ''
   return lowercasedText.replace(/ \d+$/, '-')
+}
+
+/**
+ * Asynchronously extracts and parses an integer from a locator's text content
+ * directly in the browser context.
+ *
+ * @param locator - The Playwright Locator to evaluate.
+ * @returns A Promise that resolves to the parsed integer, or `null` if the
+ * text is missing, empty, or not a valid integer.
+ */
+export const parseLocatorTextToNumber = (
+  locator: Locator,
+): Promise<number | null> => {
+  return locator.evaluate((element) => {
+    // This function runs in the browser
+    const text = element.textContent?.trim()
+
+    if (!text) {
+      return null
+    }
+
+    const parsedNumber = Number(text)
+
+    // Ensure the parsed value is a finite integer, not a float or NaN
+    return Number.isInteger(parsedNumber) ? parsedNumber : null
+  })
 }
 
 // --- Test-Specific Helpers (Actions) ---

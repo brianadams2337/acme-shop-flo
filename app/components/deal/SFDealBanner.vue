@@ -2,21 +2,23 @@
   <component
     :is="componentName"
     v-bind="attributes"
-    :aria-label="componentName === SFLink ? headline : undefined"
+    :aria-label="componentName === SFLink ? displayData?.headline : undefined"
     class="relative block w-full rounded-xl border text-white"
-    :style="{ borderColor: colorStyle.backgroundColor }"
+    :style="{ borderColor: displayData?.colorStyle.backgroundColor }"
     @click="track"
   >
-    <SFPromotionTimer
-      v-if="expirationDate && !hideCountdown"
+    <SFDealTimer
+      v-if="displayData?.expirationDate && !displayData?.hideCountdown"
       class="absolute -translate-y-1/2 translate-x-6"
-      :time-until="expirationDate"
+      :time-until="displayData.expirationDate"
       data-testid="promotion-countdown"
-      :color-style="colorStyle"
+      :color-style="displayData.colorStyle"
     />
-    <div class="-m-px rounded-xl px-6 py-4" :style="colorStyle">
-      <div class="font-bold">{{ headline }}</div>
-      <div v-if="subline" class="text-md">{{ subline }}</div>
+    <div class="-m-px rounded-xl px-6 py-4" :style="displayData.colorStyle">
+      <div class="font-bold">{{ displayData?.headline }}</div>
+      <div v-if="displayData?.subline" class="text-md">
+        {{ displayData.subline }}
+      </div>
     </div>
     <ClientOnly>
       <template #fallback>
@@ -31,9 +33,9 @@
       </template>
       <SFFadeInTransition>
         <div>
-          <SFPromotionProgressWrapper :promotion="promotion" />
+          <slot name="progress" />
           <div
-            v-if="conditions && showCondition"
+            v-if="displayData?.conditions && showCondition"
             class="flex flex-col px-6 py-4 text-md text-secondary"
           >
             <div class="flex flex-col gap-2">
@@ -42,7 +44,7 @@
                 {{ $t('promotion.condition') }}
               </div>
               <div class="whitespace-break-spaces text-sm">
-                {{ conditions }}
+                {{ displayData.conditions }}
               </div>
             </div>
           </div>
@@ -54,53 +56,45 @@
 
 <script setup lang="ts">
 import { computed } from 'vue'
-import type { Promotion } from '@scayle/storefront-nuxt'
-import SFPromotionProgressWrapper from './SFPromotionProgressWrapper.vue'
-import SFPromotionTimer from '~/components/promotion/SFPromotionTimer.vue'
+import SFDealTimer from '~/components/deal/SFDealTimer.vue'
 import { SFLink } from '~~/modules/ui/runtime/components'
 import { ClientOnly } from '#components'
 import { SFSkeletonLoader, SFFadeInTransition } from '#storefront-ui/components'
-import { useTrackingEvents, usePromotionCustomData } from '~/composables'
+import { useTrackingEvents } from '~/composables'
+import type { PromotionDisplayData } from '~~/types/promotion'
+import type { TrackingEvent } from '~~/types/tracking'
 
-const { promotion, showCondition = false } = defineProps<{
-  /**
-   * The promotion object containing all details about the offer, including type, conditions, and custom data.
-   */
-  promotion: Promotion
+const {
+  displayData,
+  showCondition = false,
+  trackEvent,
+} = defineProps<{
+  displayData: PromotionDisplayData
+  trackEvent: TrackingEvent
   /**
    * Controls the visibility of promotion conditions.
    */
   showCondition?: boolean
 }>()
 
-const {
-  headline,
-  subline,
-  link,
-  colorStyle,
-  conditions,
-  hideCountdown,
-  expirationDate,
-} = usePromotionCustomData(promotion)
-
 const { trackPromotion } = useTrackingEvents()
 
 function track() {
-  if (!link.value) {
+  if (!displayData?.link) {
     return
   }
 
-  trackPromotion('select_promotion', {
-    promotion_id: promotion.id,
-    promotion_name: promotion.name,
+  trackPromotion(trackEvent, {
+    promotion_id: displayData.id,
+    promotion_name: displayData.name,
     creative_name: 'teaser',
     index: '1',
   })
 }
 
-const componentName = computed(() => (link.value ? SFLink : 'div'))
+const componentName = computed(() => (displayData?.link ? SFLink : 'div'))
 
 const attributes = computed(() => ({
-  ...(link.value && { raw: true, to: link.value }),
+  ...(displayData?.link && { raw: true, to: displayData.link }),
 }))
 </script>

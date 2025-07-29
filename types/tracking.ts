@@ -11,6 +11,7 @@ export type EcommerceTrackingEvent =
   | 'view_item'
   | 'view_item_list'
   | 'view_promotion'
+  | 'view_campaign'
   | 'add_to_wishlist'
   | 'remove_from_wishlist'
   | 'view_cart'
@@ -18,6 +19,7 @@ export type EcommerceTrackingEvent =
   | 'remove_from_cart'
   | 'select_item'
   | 'select_promotion'
+  | 'select_campaign'
 
 export type BasicTrackingEvent =
   | 'shop_init'

@@ -23,42 +23,18 @@ import { usePromotionTierProgress } from '#storefront-promotions/composables'
 import { usePromotionCustomData } from '~/composables'
 import { isBuyXGetYType } from '#storefront-promotions/utils'
 import { useFormatHelpers, useBasket } from '#storefront/composables'
+import { getTieredPromotion } from '~/utils'
 
 const { promotion } = defineProps<{ promotion: Promotion }>()
 
 const { t } = useI18n()
 
-function asTieredPromotion(
-  promo: Promotion,
-): Promotion & Required<Pick<Promotion, 'tiers'>> {
-  if (promo.tiers?.length) {
-    return promo as Promotion & Required<Pick<Promotion, 'tiers'>>
-  } else if (promo.customData.minimumOrderValue) {
-    return {
-      ...promo,
-      tiers: [
-        {
-          effect: promo.effect,
-          id: 1,
-          name: 'mov',
-          mov: promo.customData.minimumOrderValue,
-        },
-      ],
-    }
-  } else {
-    return {
-      ...promo,
-      tiers: [],
-    }
-  }
-}
-
 const isTieredDiscount = computed(() => {
-  return !!asTieredPromotion(promotion).tiers.length
+  return !!getTieredPromotion(promotion).tiers.length
 })
 
 const { progress, discount, tiers, isPromotionApplied, remaining, complete } =
-  usePromotionTierProgress(asTieredPromotion(promotion))
+  usePromotionTierProgress(getTieredPromotion(promotion))
 
 const { items: basketItems } = useBasket()
 

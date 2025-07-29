@@ -7,13 +7,12 @@
     <SFToastContainer />
     <CountryDetection @switch-shop="switchShop" />
     <div>
-      <SFPromotionRibbon
+      <SFDealRibbon
         v-if="
-          promotions?.entities.length &&
-          shouldShowPromotionRibbon &&
-          !isMobileSidebarOpen
+          ribbonDisplayData && shouldShowPromotionRibbon && !isMobileSidebarOpen
         "
-        :promotions="promotions.entities"
+        :display-data="ribbonDisplayData"
+        :track-event="campaign ? 'view_campaign' : 'view_promotion'"
       />
       <SFHeaderTopBar />
       <SFHeader v-model:is-mobile-sidebar-open="isMobileSidebarOpen" />
@@ -27,7 +26,10 @@
       </main>
       <SFFooter class="mt-16 max-lg:mb-4" />
     </div>
-    <SFPromotionSlideIn :promotions="promotions?.entities" />
+    <SFPromotionSlideIn
+      :promotions="promotions?.entities"
+      :campaign="campaign"
+    />
     <SFShopSwitcherFlyout />
   </div>
 </template>
@@ -42,6 +44,7 @@ import {
   useCurrentPromotions,
   useCurrentShop,
   useBasket,
+  useCampaign,
 } from '#storefront/composables'
 import {
   USE_DEFAULT_BREAKPOINTS_KEY,
@@ -65,9 +68,14 @@ import { routeList } from '~/utils'
 import { useShopSwitcher } from '~/composables/useShopSwitcher'
 import { useLocalePath } from '#i18n'
 import SFShopSwitcherFlyout from '~/components/layout/headers/SFShopSwitcherFlyout.vue'
-import SFPromotionRibbon from '~/components/promotion/SFPromotionRibbon.vue'
+import SFDealRibbon from '~/components/deal/SFDealRibbon.vue'
 import { useApplyPromotions } from '#storefront-promotions/composables/useApplyPromotions'
 import SFPromotionSlideIn from '~/components/promotion/modal/SFPromotionSlideIn.vue'
+import { sortPromotionsByPriority } from '#storefront-promotions/utils'
+import {
+  getCampaignDisplayData,
+  getPromotionDisplayData,
+} from '~/utils/promotion'
 
 const { changeShop } = useShopSwitcher()
 
@@ -76,7 +84,31 @@ const route = useRoute()
 const localePath = useLocalePath()
 
 // Initialize data
-const { data: promotions } = useCurrentPromotions()
+const { data: promotions } = await useCurrentPromotions({
+  options: {
+    lazy: true,
+  },
+})
+const { data: campaign } = await useCampaign({
+  options: {
+    lazy: true,
+  },
+})
+const highestPriorityPromotion = computed(() => {
+  return promotions.value?.entities.toSorted(sortPromotionsByPriority)[0]
+})
+
+const ribbonDisplayData = computed(() => {
+  if (campaign.value) {
+    return getCampaignDisplayData(campaign.value)
+  }
+
+  if (!highestPriorityPromotion.value) {
+    return
+  }
+
+  return getPromotionDisplayData(highestPriorityPromotion.value)
+})
 
 const isMobileSidebarOpen = ref(false)
 

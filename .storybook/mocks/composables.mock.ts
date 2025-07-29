@@ -115,6 +115,9 @@ export function useCategoryByPath() {
 export function useCurrentPromotions() {
   return { data: ref([]) }
 }
+export function useCampaign() {
+  return { data: ref({}) }
+}
 export function useFilters() {
   return { data: ref([]) }
 }

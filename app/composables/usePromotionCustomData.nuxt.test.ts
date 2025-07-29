@@ -10,6 +10,7 @@ describe('usePromotionCustomData', () => {
   beforeEach(() => {
     promotion = automaticDiscountPromotionFactory.build({
       name: 'Test Promotion',
+      displayName: 'Display Name',
       customData: {},
       schedule: {
         to: '2024-01-01T00:00:00.000Z',
@@ -28,7 +29,7 @@ describe('usePromotionCustomData', () => {
       expirationDate,
     } = usePromotionCustomData(promotion)
 
-    expect(headline.value).toBe('Test Promotion')
+    expect(headline.value).toBe('Display Name')
     expect(subline.value).toBeUndefined()
     expect(conditions.value).toBeUndefined()
     expect(colorStyle.value).toStrictEqual({
@@ -42,7 +43,6 @@ describe('usePromotionCustomData', () => {
 
   it('should return custom data when provided', () => {
     promotion.customData = {
-      headline: 'Custom Headline',
       subline: 'Custom Subline',
       conditions: 'Custom Conditions',
       color: { text: 'white', background: 'red' },
@@ -53,7 +53,7 @@ describe('usePromotionCustomData', () => {
     const { headline, subline, conditions, colorStyle, hideCountdown, link } =
       usePromotionCustomData(promotion)
 
-    expect(headline.value).toBe('Custom Headline')
+    expect(headline.value).toBe('Display Name')
     expect(subline.value).toBe('Custom Subline')
     expect(conditions.value).toBe('Custom Conditions')
     expect(colorStyle.value).toStrictEqual({

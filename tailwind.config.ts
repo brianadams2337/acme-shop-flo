@@ -58,7 +58,8 @@ export default {
       },
       primary: '#171717',
       secondary: '#666666',
-      promotion: '#0038ff',
+      promotion: '#AEECEF',
+      campaign: '#FFC65F',
       product: {
         sale: '#d93321',
         'sold-out': '#d93321',

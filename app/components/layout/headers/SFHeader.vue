@@ -56,9 +56,7 @@
         :block-popup="isSideNavigationOpen"
         @click="isSideNavigationOpen = false"
       />
-      <SFPromotionModalButton
-        :promotion-count="promotionData.data?.value?.entities.length"
-      />
+      <SFPromotionModalButton :promotion-count="promotionCount" />
       <SFWishlistNavigationItem @click="isSideNavigationOpen = false" />
       <SFBasketNavigationItem
         :block-popup="isSideNavigationOpen || isBasketPage"
@@ -89,7 +87,7 @@ import { useHeaderNavigation } from '#storefront-navigation/composables'
 import { useDefaultBreakpoints } from '~~/modules/ui/runtime'
 import { useLocalePath } from '#i18n'
 import { useRoute } from '#app/composables/router'
-import { useCurrentPromotions } from '#storefront/composables'
+import { useCampaign, useCurrentPromotions } from '#storefront/composables'
 
 const isSideNavigationOpen = defineModel('isMobileSidebarOpen', {
   type: Boolean,
@@ -115,5 +113,10 @@ const { data: navigationTree } = useHeaderNavigation({
 
 const mainNavigationItems = computed(() => navigationTree.value?.items)
 
-const promotionData = useCurrentPromotions()
+const { data: promotions } = useCurrentPromotions()
+const { data: campaign } = useCampaign()
+
+const promotionCount = computed(() => {
+  return Number(!!campaign.value) + (promotions.value?.entities.length || 0)
+})
 </script>

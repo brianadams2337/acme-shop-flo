@@ -1,9 +1,13 @@
 import { describe, expect, it } from 'vitest'
 import { buyXGetYPromotionFactory } from '@scayle/storefront-nuxt/test/factories'
+import type { Campaign } from '@scayle/storefront-nuxt'
 import {
   getBackgroundColorStyle,
   getTextColorStyle,
   getPromotionStyle,
+  getCampaignStyle,
+  FALLBACK_CAMPAIGN_COLORS,
+  FALLBACK_PROMOTION_COLORS,
 } from './promotion'
 
 describe('getBackgroundColorStyle', () => {
@@ -14,12 +18,14 @@ describe('getBackgroundColorStyle', () => {
 
   it('should return fallback background color without alpha if color and alpha value is not provided', () => {
     const backgroundColor = getBackgroundColorStyle()
-    expect(backgroundColor).toEqual({ backgroundColor: '#0038FF' })
+    expect(backgroundColor).toEqual({
+      backgroundColor: FALLBACK_PROMOTION_COLORS.background,
+    })
   })
   it('should return fallback background color with alpha if color is not provided', () => {
     const backgroundColor = getBackgroundColorStyle(undefined, 50)
     expect(backgroundColor).toEqual({
-      backgroundColor: 'rgba(0, 56, 255, 0.5)',
+      backgroundColor: 'rgba(174, 236, 239, 0.5)',
     })
   })
 
@@ -39,12 +45,12 @@ describe('getTextColorStyle', () => {
 
   it('should return fallback text color if color is not provided', () => {
     const color = getTextColorStyle()
-    expect(color).toEqual({ color: '#0038FF' })
+    expect(color).toEqual({ color: '#AEECEF' })
   })
   it('should return fallback text color with alpha if color is not provided', () => {
     const backgroundColor = getBackgroundColorStyle(undefined, 50)
     expect(backgroundColor).toEqual({
-      backgroundColor: 'rgba(0, 56, 255, 0.5)',
+      backgroundColor: 'rgba(174, 236, 239, 0.5)',
     })
   })
 
@@ -82,8 +88,33 @@ describe('getPromotionStyle', () => {
 
   it('should return default if promotion is not provided', () => {
     expect(getPromotionStyle()).toStrictEqual({
-      backgroundColor: '#0038ff',
-      color: '#ffffff',
+      backgroundColor: FALLBACK_PROMOTION_COLORS.background,
+      color: FALLBACK_PROMOTION_COLORS.text,
+    })
+  })
+})
+
+describe('geCampaignStyle', () => {
+  it('should return promotion style object', () => {
+    const campaign = {
+      name: 'Test Campaign',
+      color: {
+        background: '#ffffff',
+        text: '#EEEEEE',
+      },
+    }
+    const style = getCampaignStyle(campaign as Campaign)
+
+    expect(style).toEqual({
+      backgroundColor: '#ffffff',
+      color: '#EEEEEE',
+    })
+  })
+
+  it('should return default if promotion is not provided', () => {
+    expect(getCampaignStyle()).toStrictEqual({
+      backgroundColor: FALLBACK_CAMPAIGN_COLORS.background,
+      color: FALLBACK_CAMPAIGN_COLORS.text,
     })
   })
 })

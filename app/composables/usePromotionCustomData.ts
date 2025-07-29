@@ -50,7 +50,7 @@ export function usePromotionCustomData(
   const promotion = toRef(_promotion)
 
   const headline = computed(
-    () => promotion.value?.customData.headline || promotion.value?.name,
+    () => promotion.value?.displayName || promotion.value?.name,
   )
 
   const subline = computed(() => promotion.value?.customData.subline)

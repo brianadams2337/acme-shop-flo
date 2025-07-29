@@ -14,12 +14,17 @@
         class="mx-5 flex flex-col space-y-4 pb-8 pt-1.5 lg:ml-7 lg:mr-13 lg:w-3/5 lg:items-end lg:space-y-8 lg:py-8"
       >
         <SFBasketHeadline v-if="basketCount" :count="basketCount" />
-        <SFProductPromotionBanner
+        <SFDealBanner
           v-for="promotion in progressPromotions"
           :key="promotion.id"
-          :promotion="promotion"
+          :display-data="getPromotionDisplayData(promotion)"
+          track-event="view_promotion"
           class="w-full lg:max-w-2xl"
-        />
+        >
+          <template #progress>
+            <SFPromotionProgressWrapper :promotion="promotion" />
+          </template>
+        </SFDealBanner>
         <template
           v-for="promotion in basketData?.applicablePromotions"
           :key="promotion.promotion.id"
@@ -91,9 +96,11 @@ import SFBasketHeadline from '~/components/basket/SFBasketHeadline.vue'
 import SFBasketDeleteConfirmationModal from '~/components/basket/SFBasketDeleteConfirmationModal.vue'
 import SFBasketAvailableItems from '~/components/basket/SFBasketAvailableItems.vue'
 import SFBasketUnavailableItems from '~/components/basket/SFBasketUnavailableItems.vue'
-import SFProductPromotionBanner from '~/components/product/promotion/banners/SFProductPromotionBanner.vue'
+import SFDealBanner from '~/components/deal/SFDealBanner.vue'
 import SFProductPromotionGifts from '~/components/product/promotion/gifts/SFProductPromotionGifts.vue'
 import { isBuyXGetYType } from '#storefront-promotions/utils'
+import SFPromotionProgressWrapper from '~/components/product/promotion/banners/SFPromotionProgressWrapper.vue'
+import { getPromotionDisplayData } from '~/utils/promotion'
 
 const route = useRoute()
 const { pageState } = usePageState()

@@ -46,7 +46,15 @@
               show-tax-info
               :show-price-from="showFrom"
             />
-            <SFProductPromotionBanner v-if="promotion" :promotion="promotion" />
+            <SFDealBanner
+              v-if="promotion"
+              :display-data="getPromotionDisplayData(promotion)"
+              track-event="view_promotion"
+            >
+              <template #progress>
+                <SFPromotionProgressWrapper :promotion="promotion" />
+              </template>
+            </SFDealBanner>
           </div>
 
           <SFProductActions
@@ -149,7 +157,7 @@ import SFAsyncDataWrapper from '~/components/SFAsyncDataWrapper.vue'
 import SFProductGallery from '~/components/product/detail/productGallery/SFProductGallery.vue'
 import SFProductBreadcrumbs from '~/components/product/SFProductBreadcrumbs.vue'
 import SFProductPrice from '~/components/product/SFProductPrice.vue'
-import SFProductPromotionBanner from '~/components/product/promotion/banners/SFProductPromotionBanner.vue'
+import SFDealBanner from '~/components/deal/SFDealBanner.vue'
 import SFProductActions from '~/components/product/detail/SFProductActions.vue'
 import SFStoreVariantAvailability from '~/components/locator/SFStoreVariantAvailability.vue'
 import SFProductDetails from '~/components/product/SFProductDetails.vue'
@@ -172,6 +180,8 @@ import {
 } from '#storefront-promotions/utils'
 import { useRecentlyViewedProducts } from '#storefront-product-detail/composables'
 import SFRecentlyViewedProductsSlider from '~/components/product/SFRecentlyViewedProductsSlider.vue'
+import SFPromotionProgressWrapper from '~/components/product/promotion/banners/SFPromotionProgressWrapper.vue'
+import { getPromotionDisplayData } from '~/utils/promotion'
 
 const SFLazyStoreLocatorSlideIn = defineAsyncComponent(
   () => import('~/components/locator/SFStoreLocatorSlideIn.vue'),

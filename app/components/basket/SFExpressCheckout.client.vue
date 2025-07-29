@@ -1,6 +1,12 @@
 <template>
+  <!--
+    We need to use a `key` to force the web component to re-render when the breakpoint changes.
+    Otherwise, the component will not be rendered when it gets teleported to a different
+    DOM node.
+  -->
   <scayle-express-checkout
     v-if="ready"
+    :key="`express-checkout-desktop-${isDesktop}`"
     origin="web"
     :jwt="checkoutJwt"
     :access-token="accessToken"
@@ -22,7 +28,12 @@ import {
   useRouteHelpers,
   useToast,
 } from '~/composables'
-import { useI18n } from '#imports'
+import { useI18n } from '#i18n'
+import { useDefaultBreakpoints } from '#storefront-ui/composables'
+
+const isDesktop = computed(
+  () => useDefaultBreakpoints().greaterOrEqual('lg').value,
+)
 
 const log = useLog('SFExpressCheckout')
 const loaded = ref(false)
@@ -30,6 +41,7 @@ const loaded = ref(false)
 log.warn(
   '<SFExpressCheckout /> does not handle consent management by default. Please adjust the consent object to respect the users consent based on your implemented consent management.',
 )
+
 const consent = reactive<Record<string, boolean>>({
   paypal: true,
   klarna: true,
@@ -57,6 +69,7 @@ type ExpressCheckoutConsentMissingEvent = Event & {
     provider: string
   }
 }
+
 const onConsentMissing = (e: ExpressCheckoutConsentMissingEvent) => {
   log.warn(
     `The consent is missing for the payment provider ${e.detail.provider}. Adding "${e.detail.provider}: false" to the consent object.`,
@@ -69,6 +82,7 @@ type ExpressCheckoutSDKError = {
   paymentKey: string
   provider: string
 }
+
 type ExpressCheckoutApiError = {
   url: string
   statusCode: number
@@ -83,9 +97,11 @@ type ExpressCheckoutApiError = {
     | 'failed_dependency'
   message: string
 }
+
 type ExpressCheckoutErrorEvent = Event & {
   detail: ExpressCheckoutSDKError | ExpressCheckoutApiError
 }
+
 const i18n = useI18n()
 const onExpressError = (error: ExpressCheckoutErrorEvent) => {
   if ('errorKey' in error.detail) {
@@ -113,10 +129,12 @@ const onExpressError = (error: ExpressCheckoutErrorEvent) => {
           return i18n.t('expressCheckout.error.unknownError')
       }
     }
+
     toast.show(getErrorMessage(error.detail.errorKey), {
       action: 'CONFIRM',
       type: 'ERROR',
     })
+
     return
   }
 
@@ -133,6 +151,7 @@ type ExpressCheckoutFinishedEvent = Event & {
     id: string
   }
 }
+
 const { getExpressCheckoutRoute } = useRouteHelpers()
 const onExpressCheckoutFinished = async (
   event: ExpressCheckoutFinishedEvent,
@@ -141,6 +160,7 @@ const onExpressCheckoutFinished = async (
     log.debug('Express checkout in a single step is not supported.')
     return
   }
+
   await navigateTo(getExpressCheckoutRoute(event.detail.id))
 }
 

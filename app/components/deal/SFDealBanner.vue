@@ -61,7 +61,7 @@ import { SFLink } from '~~/modules/ui/runtime/components'
 import { ClientOnly } from '#components'
 import { SFSkeletonLoader, SFFadeInTransition } from '#storefront-ui/components'
 import { useTrackingEvents } from '~/composables'
-import type { PromotionDisplayData } from '~~/types/promotion'
+import type { DealDisplayData } from '~~/types/promotion'
 import type { TrackingEvent } from '~~/types/tracking'
 
 const {
@@ -69,7 +69,7 @@ const {
   showCondition = false,
   trackEvent,
 } = defineProps<{
-  displayData: PromotionDisplayData
+  displayData: DealDisplayData
   trackEvent: TrackingEvent
   /**
    * Controls the visibility of promotion conditions.

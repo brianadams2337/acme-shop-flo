@@ -28,7 +28,7 @@ const { validPromotions: validPromotions = [] } = defineProps<{
 }>()
 
 const getHeadlineParts = (promotion: Promotion): string => {
-  return promotion.customData.headline || promotion.name
+  return promotion.displayName || promotion.name
 }
 
 const { formatCurrency } = useFormatHelpers()

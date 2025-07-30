@@ -12,12 +12,21 @@
         class="overflow-hidden rounded-lg"
         :class="[{ 'opacity-60': isSoldOut }]"
       />
-      <SFPromotionBadge
-        v-if="basketItem.promotion && basketItem.promotion.isValid"
-        :text="text"
-        :style="style"
-        class="absolute bottom-2.5 ml-1"
-      />
+      <div
+        v-if="isCampaignProduct || basketItem.promotion"
+        class="absolute bottom-2.5 ml-1 flex w-full flex-col gap-1"
+      >
+        <SFDealBadge
+          v-if="isCampaignProduct"
+          :text="campaignText || $t('campaign.deal')"
+          :style="getCampaignStyle(campaign)"
+        />
+        <SFDealBadge
+          v-if="basketItem.promotion && basketItem.promotion.isValid"
+          :text="promotionText || $t('promotion.deal')"
+          :style="style"
+        />
+      </div>
     </SFLocalizedLink>
     <div
       v-if="!hideWishlistToggle"
@@ -29,30 +38,42 @@
 </template>
 <script setup lang="ts">
 import { computed } from 'vue'
-import type { BasketItem } from '@scayle/storefront-nuxt'
-import SFPromotionBadge from '../promotion/SFPromotionBadge.vue'
+import type { BasketItem, Campaign } from '@scayle/storefront-nuxt'
+import SFDealBadge from '../deal/SFDealBadge.vue'
 import SFLocalizedLink from '~/components/SFLocalizedLink.vue'
 import SFProductImage from '~/components/product/SFProductImage.vue'
 import SFWishlistToggle from '~/components/product/SFWishlistToggle.vue'
 import { useProductBaseInfo } from '~/composables'
-import { getPromotionStyle } from '~/utils'
+import { getPromotionStyle, getCampaignStyle } from '~/utils'
 
 const {
   basketItem,
   isSoldOut,
   isSmallSize = false,
   hideWishlistToggle = false,
+  campaign,
 } = defineProps<{
   basketItem: BasketItem
   isSoldOut: boolean
   isSmallSize?: boolean
   hideWishlistToggle?: boolean
+  campaign?: Campaign | null
 }>()
 
 const { image, alt, link } = useProductBaseInfo(basketItem.product)
 
-const text = computed(() => {
+const promotionText = computed(() => {
   return basketItem.promotion?.customData.product?.badgeLabel
+})
+
+const campaignText = computed(() => {
+  return campaign?.product?.badgeLabel
+})
+
+const isCampaignProduct = computed(() => {
+  return basketItem.price.total.appliedReductions.some(
+    (reduction) => reduction.category === 'campaign',
+  )
 })
 
 const style = computed(() => {

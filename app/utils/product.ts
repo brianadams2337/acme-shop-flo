@@ -145,3 +145,15 @@ export const getDistinctPrimaryImageTypes = (products: Product[]) => {
       .values(),
   )
 }
+
+/**
+ * Checks if a price has a campaign reduction.
+ *
+ * @param price - The price to check.
+ * @returns True if the price has a campaign reduction, false otherwise.
+ */
+export const hasCampaignReduction = (price?: Price) => {
+  return price?.appliedReductions.find(
+    (reduction) => reduction.category === 'campaign',
+  )
+}

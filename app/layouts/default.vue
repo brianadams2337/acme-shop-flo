@@ -125,7 +125,7 @@ const currentShop = useCurrentShop()
 const shouldShowPromotionRibbon = computed(() => {
   const isBasketPage = route.path === localePath(routeList.basket)
   const isOSP = route.path === localePath(routeList.osp)
-  return promotions.value?.entities.length && !isBasketPage && !isOSP
+  return ribbonDisplayData.value && !isBasketPage && !isOSP
 })
 
 const { data: basketData } = useBasket()

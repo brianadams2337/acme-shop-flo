@@ -12,12 +12,6 @@
     "days": "päev | päevad",
     "back": "Tagasi",
     "continue_shopping": "Jätka ostlemist",
-    "ordinal_suffixes": {
-      "one": "st",
-      "two": "nd",
-      "few": "rd",
-      "other": "th"
-    },
     "cancel": "Tühista",
     "payment_key": {
       "default": "Krediitkaart",
@@ -34,7 +28,8 @@
     "save": "Salvesta",
     "search": "Otsing",
     "quantity": "Kogus",
-    "scroll_to_top_label": "Scroll to top"
+    "scroll_to_top_label": "Scroll to top",
+    "ordinal_suffix": "th | st | nd | rd"
   },
   "notification": {
     "confirm": "OK",
@@ -656,5 +651,8 @@
   },
   "preferred_primary_image_type_toggle": {
     "default": "Vaikimisi"
+  },
+  "campaign": {
+    "deal": "Eriline"
   }
 }

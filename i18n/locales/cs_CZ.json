@@ -12,12 +12,6 @@
     "days": "den | dny",
     "back": "Zpět",
     "continue_shopping": "Pokračovat v nakupování",
-    "ordinal_suffixes": {
-      "one": "",
-      "two": "",
-      "few": "",
-      "other": ""
-    },
     "cancel": "Zrušit",
     "payment_key": {
       "default": "Platební karta",
@@ -34,7 +28,8 @@
     "save": "Uložit",
     "search": "Vyhledávání",
     "quantity": "Množství",
-    "scroll_to_top_label": "Scroll to top"
+    "scroll_to_top_label": "Scroll to top",
+    "ordinal_suffix": "th | st | nd | rd"
   },
   "notification": {
     "confirm": "OK",
@@ -656,5 +651,8 @@
   },
   "preferred_primary_image_type_toggle": {
     "default": "Výchozí"
+  },
+  "campaign": {
+    "deal": "Speciální"
   }
 }

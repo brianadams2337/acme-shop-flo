@@ -6,6 +6,7 @@
     <SFBasketCard
       v-for="item in availableItems"
       :key="item.key"
+      :campaign="campaign"
       :basket-item="item"
       class="-mt-px w-full focus-within:z-10"
       @update:quantity="$emit('update:quantity', item, $event)"
@@ -15,10 +16,13 @@
 </template>
 
 <script setup lang="ts">
-import type { BasketItem } from '@scayle/storefront-nuxt'
+import type { BasketItem, Campaign } from '@scayle/storefront-nuxt'
 import SFBasketCard from './SFBasketCard.vue'
 
-const { availableItems = [] } = defineProps<{ availableItems?: BasketItem[] }>()
+const { availableItems = [], campaign } = defineProps<{
+  availableItems?: BasketItem[]
+  campaign?: Campaign | null
+}>()
 
 defineEmits<{
   delete: [item: BasketItem]

@@ -12,12 +12,6 @@
     "days": "zi | zile",
     "back": "Înapoi",
     "continue_shopping": "Continuă cumpărăturile",
-    "ordinal_suffixes": {
-      "one": "",
-      "two": "",
-      "few": "",
-      "other": ""
-    },
     "cancel": "Anulare",
     "payment_key": {
       "default": "Card bancar",
@@ -34,7 +28,8 @@
     "save": "Salvează",
     "search": "Caută",
     "quantity": "Cantitate",
-    "scroll_to_top_label": "Derulați în partea de sus"
+    "scroll_to_top_label": "Derulați în partea de sus",
+    "ordinal_suffix": "th | st | nd | rd"
   },
   "notification": {
     "confirm": "OK",
@@ -656,5 +651,8 @@
   },
   "preferred_primary_image_type_toggle": {
     "default": "Implicit"
+  },
+  "campaign": {
+    "deal": "Special"
   }
 }

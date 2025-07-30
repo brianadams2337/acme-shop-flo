@@ -12,12 +12,6 @@
     "days": "nap | nap",
     "back": "Vissza",
     "continue_shopping": "Vásárlás folytatása",
-    "ordinal_suffixes": {
-      "one": "",
-      "two": "",
-      "few": "",
-      "other": ""
-    },
     "cancel": "Mégse",
     "payment_key": {
       "default": "Kártyás fizetés",
@@ -34,7 +28,8 @@
     "save": "Mentés",
     "search": "Keresés",
     "quantity": "Mennyiség",
-    "scroll_to_top_label": "Scroll to top"
+    "scroll_to_top_label": "Scroll to top",
+    "ordinal_suffix": "th | st | nd | rd"
   },
   "notification": {
     "confirm": "OK",
@@ -656,5 +651,8 @@
   },
   "preferred_primary_image_type_toggle": {
     "default": "Alapértelmezett"
+  },
+  "campaign": {
+    "deal": "Különleges"
   }
 }

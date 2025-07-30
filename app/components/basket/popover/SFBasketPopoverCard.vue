@@ -30,6 +30,7 @@
         </div>
       </div>
       <SFProductPrice
+        :campaign="campaign"
         :price="price"
         :lowest-prior-price="basketItem?.variant?.lowestPriorPrice"
         :promotion="basketItem.promotion"
@@ -44,7 +45,7 @@
 
 <script setup lang="ts">
 import { computed } from 'vue'
-import type { BasketItem } from '@scayle/storefront-nuxt'
+import type { BasketItem, Campaign } from '@scayle/storefront-nuxt'
 import SFBasketCardImage from '../SFBasketCardImage.vue'
 import SFBasketCardDetails from '../SFBasketCardDetails.vue'
 import SFProductPrice from '~/components/product/SFProductPrice.vue'
@@ -52,7 +53,10 @@ import SFLocalizedLink from '~/components/SFLocalizedLink.vue'
 import { isFreeGiftBasketItem } from '#storefront-promotions/utils'
 import { useProductBaseInfo, useRouteHelpers } from '~/composables'
 
-const { basketItem } = defineProps<{ basketItem: BasketItem }>()
+const { basketItem } = defineProps<{
+  basketItem: BasketItem
+  campaign?: Campaign | null
+}>()
 
 const { getProductDetailRoute } = useRouteHelpers()
 

@@ -14,17 +14,27 @@
         class="mx-5 flex flex-col space-y-4 pb-8 pt-1.5 lg:ml-7 lg:mr-13 lg:w-3/5 lg:items-end lg:space-y-8 lg:py-8"
       >
         <SFBasketHeadline v-if="basketCount" :count="basketCount" />
-        <SFDealBanner
-          v-for="promotion in progressPromotions"
-          :key="promotion.id"
-          :display-data="getPromotionDisplayData(promotion)"
-          track-event="view_promotion"
-          class="w-full lg:max-w-2xl"
+        <div
+          v-if="campaign || progressPromotions.length"
+          class="flex w-full flex-col gap-6 lg:max-w-2xl"
         >
-          <template #progress>
-            <SFPromotionProgressWrapper :promotion="promotion" />
-          </template>
-        </SFDealBanner>
+          <SFDealBanner
+            v-if="campaign && hasCampaignReduction(basketCost)"
+            :display-data="getCampaignDisplayData(campaign)"
+            track-event="view_campaign"
+          />
+          <SFDealBanner
+            v-for="promotion in progressPromotions"
+            :key="promotion.id"
+            :display-data="getPromotionDisplayData(promotion)"
+            track-event="view_promotion"
+          >
+            <template #progress>
+              <SFPromotionProgressWrapper :promotion="promotion" />
+            </template>
+          </SFDealBanner>
+        </div>
+
         <template
           v-for="promotion in basketData?.applicablePromotions"
           :key="promotion.promotion.id"
@@ -40,6 +50,7 @@
         <SFBasketAvailableItems
           v-if="groupedBasketItems?.available"
           :available-items="groupedBasketItems?.available"
+          :campaign="campaign"
           @update:quantity="(...args) => updateItemQuantity(...args)"
           @delete="deleteBasketItem($event)"
         />
@@ -57,7 +68,11 @@
           />
         </template>
       </div>
-      <SFBasketSummary v-if="basketData" :basket="basketData" />
+      <SFBasketSummary
+        v-if="basketData"
+        :basket="basketData"
+        :campaign="campaign"
+      />
       <SFBasketDeleteConfirmationModal
         :visible="isDeleteConfirmationRevealed"
         :on-confirm="confirmDeletion"
@@ -85,7 +100,7 @@ import {
   usePageState,
   useTrackingEvents,
 } from '~/composables'
-import { useBasket, useWishlist } from '#storefront/composables'
+import { useBasket, useCampaign, useWishlist } from '#storefront/composables'
 import SFAsyncStatusWrapper from '~/components/SFAsyncStatusWrapper.vue'
 import { basketListingMetaData } from '~~/shared/constants'
 import SFBasketSkeleton from '~/components/basket/skeleton/SFBasketSkeleton.vue'
@@ -100,7 +115,11 @@ import SFDealBanner from '~/components/deal/SFDealBanner.vue'
 import SFProductPromotionGifts from '~/components/product/promotion/gifts/SFProductPromotionGifts.vue'
 import { isBuyXGetYType } from '#storefront-promotions/utils'
 import SFPromotionProgressWrapper from '~/components/product/promotion/banners/SFPromotionProgressWrapper.vue'
-import { getPromotionDisplayData } from '~/utils/promotion'
+import {
+  getCampaignDisplayData,
+  getPromotionDisplayData,
+} from '~/utils/promotion'
+import { hasCampaignReduction } from '~/utils'
 
 const route = useRoute()
 const { pageState } = usePageState()
@@ -133,6 +152,7 @@ whenever(
   { immediate: true },
 )
 const { promotions: progressPromotions } = useActiveProgressPromotions()
+const { data: campaign } = useCampaign()
 
 onMounted(() => {
   if (!basketItems.value) {

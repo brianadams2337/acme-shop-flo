@@ -12,12 +12,6 @@
     "days": "diena | dienas",
     "back": "Atpakaļ",
     "continue_shopping": "Turpināt iepirkties",
-    "ordinal_suffixes": {
-      "one": "",
-      "two": "",
-      "few": "",
-      "other": ""
-    },
     "cancel": "Atcelt",
     "payment_key": {
       "default": "Kredītkarte",
@@ -34,7 +28,8 @@
     "save": "Saglabāt",
     "search": "Meklēt",
     "quantity": "Daudzums",
-    "scroll_to_top_label": "Ritināt uz augšu"
+    "scroll_to_top_label": "Ritināt uz augšu",
+    "ordinal_suffix": "th | st | nd | rd"
   },
   "notification": {
     "confirm": "LABI",
@@ -656,5 +651,8 @@
   },
   "preferred_primary_image_type_toggle": {
     "default": "Noklusējums"
+  },
+  "campaign": {
+    "deal": "Īpašais"
   }
 }

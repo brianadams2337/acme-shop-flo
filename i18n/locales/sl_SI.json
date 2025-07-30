@@ -12,12 +12,6 @@
     "days": "dan | dni",
     "back": "Nazaj",
     "continue_shopping": "Nadaljuj nakupovanje",
-    "ordinal_suffixes": {
-      "one": "st",
-      "two": "nd",
-      "few": "rd",
-      "other": "th"
-    },
     "cancel": "Preklic",
     "payment_key": {
       "default": "Kreditna kartica",
@@ -34,7 +28,8 @@
     "save": "Shrani",
     "search": "Iskanje",
     "quantity": "Količina",
-    "scroll_to_top_label": "Pomaknite se na vrh"
+    "scroll_to_top_label": "Pomaknite se na vrh",
+    "ordinal_suffix": "th | st | nd | rd"
   },
   "notification": {
     "confirm": "OK",
@@ -656,5 +651,8 @@
   },
   "preferred_primary_image_type_toggle": {
     "default": "Privzet"
+  },
+  "campaign": {
+    "deal": "Posebno"
   }
 }

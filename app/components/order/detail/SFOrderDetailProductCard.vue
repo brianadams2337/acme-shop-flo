@@ -29,6 +29,7 @@
     </div>
     <div class="flex flex-col justify-end">
       <SFProductPrice
+        :campaign="campaign"
         :price="orderItem.price"
         class="ml-auto"
         data-testid="order-product-card-prices"
@@ -49,6 +50,9 @@ import SFLocalizedLink from '~/components/SFLocalizedLink.vue'
 import type { OrderItem } from '~~/types/order'
 import SFProductImage from '~/components/product/SFProductImage.vue'
 import { useProductBaseInfo } from '~/composables'
+import { useCampaign } from '#storefront/composables'
+
+const { data: campaign } = useCampaign()
 
 const { orderItem, quantity = 1 } = defineProps<{
   orderItem: OrderItem

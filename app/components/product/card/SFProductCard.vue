@@ -49,12 +49,24 @@
           @click.capture="$emit('clickProduct')"
         />
       </template>
-      <SFPromotionBadge
-        v-if="productPromotion"
-        :text="productPromotion?.customData?.product?.badgeLabel"
-        :style="getPromotionStyle(productPromotion)"
-        class="absolute bottom-5 left-1"
-      />
+      <div
+        v-if="campaign || productPromotion"
+        class="absolute bottom-2.5 ml-1 flex w-full flex-col gap-1"
+      >
+        <SFDealBadge
+          v-if="campaign && hasCampaignReduction(price)"
+          :text="campaign.product?.badgeLabel || $t('campaign.deal')"
+          :style="getCampaignStyle(campaign)"
+        />
+        <SFDealBadge
+          v-if="productPromotion"
+          :text="
+            productPromotion?.customData?.product?.badgeLabel ||
+            $t('promotion.deal')
+          "
+          :style="getPromotionStyle(productPromotion)"
+        />
+      </div>
       <SFProductCardInBasketBadge
         class="absolute bottom-0 right-0"
         :product="product"
@@ -64,6 +76,7 @@
       v-if="link"
       :product="product"
       :link="link"
+      :campaign="campaign"
       @click.capture="$emit('clickProduct')"
     />
   </article>
@@ -71,7 +84,7 @@
 
 <script setup lang="ts">
 import { nextTick, computed, ref, useTemplateRef, watch } from 'vue'
-import type { Product, Value } from '@scayle/storefront-nuxt'
+import type { Product, Value, Campaign } from '@scayle/storefront-nuxt'
 import { vElementVisibility } from '@vueuse/components'
 import { onKeyStroke, useFocus } from '@vueuse/core'
 import SFWishlistToggle from '../SFWishlistToggle.vue'
@@ -83,8 +96,13 @@ import SFProductCardInBasketBadge from './badges/SFProductCardInBasketBadge.vue'
 import { useProductBaseInfo, useRouteHelpers } from '~/composables'
 import type { ListItem } from '~~/types/tracking'
 import { useCurrentPromotions } from '#storefront/composables'
-import SFPromotionBadge from '~/components/promotion/SFPromotionBadge.vue'
-import { getPromotionStyle, getPromotionForProduct } from '~/utils'
+import SFDealBadge from '~/components/deal/SFDealBadge.vue'
+import {
+  getPromotionStyle,
+  getPromotionForProduct,
+  hasCampaignReduction,
+  getCampaignStyle,
+} from '~/utils'
 
 const {
   product,
@@ -118,6 +136,10 @@ const {
    * The preferred primary image type.
    */
   preferredPrimaryImageType?: Value
+  /**
+   * The campaign.
+   */
+  campaign?: Campaign | null
 }>()
 
 const hasBeenVisible = ref(false)
@@ -141,7 +163,7 @@ const onMouseLeave = () => {
   emit('product-image:mouseleave')
 }
 
-const { alt, image, images, link, name } = useProductBaseInfo(
+const { alt, image, images, link, name, price } = useProductBaseInfo(
   () => product,
   () => preferredPrimaryImageType,
 )

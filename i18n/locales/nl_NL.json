@@ -12,12 +12,6 @@
     "days": "dag | dagen",
     "back": "Terug",
     "continue_shopping": "Verder winkelen",
-    "ordinal_suffixes": {
-      "one": "e",
-      "two": "e",
-      "few": "e",
-      "other": "e"
-    },
     "cancel": "Annuleren",
     "payment_key": {
       "default": "Creditcard",
@@ -34,7 +28,8 @@
     "save": "Opslaan",
     "search": "Zoeken",
     "quantity": "Hoeveelheid",
-    "scroll_to_top_label": "Scroll naar boven"
+    "scroll_to_top_label": "Scroll naar boven",
+    "ordinal_suffix": "th | st | nd | rd"
   },
   "notification": {
     "confirm": "OK",
@@ -656,5 +651,8 @@
   },
   "preferred_primary_image_type_toggle": {
     "default": "Standaard"
+  },
+  "campaign": {
+    "deal": "Speciaal"
   }
 }

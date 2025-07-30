@@ -12,12 +12,6 @@
     "days": "gün | günler",
     "back": "Geri",
     "continue_shopping": "Alışverişe devam et",
-    "ordinal_suffixes": {
-      "one": "st",
-      "two": "nd",
-      "few": "rd",
-      "other": "inci"
-    },
     "cancel": "İptal",
     "payment_key": {
       "default": "Kredi Kartı",
@@ -34,7 +28,8 @@
     "save": "Kaydet",
     "search": "Arama",
     "quantity": "Miktar",
-    "scroll_to_top_label": "Yukarı kaydır"
+    "scroll_to_top_label": "Yukarı kaydır",
+    "ordinal_suffix": "th | st | nd | rd"
   },
   "notification": {
     "confirm": "Tamam",
@@ -656,5 +651,8 @@
   },
   "preferred_primary_image_type_toggle": {
     "default": "Varsayılan"
+  },
+  "campaign": {
+    "deal": "Özel"
   }
 }

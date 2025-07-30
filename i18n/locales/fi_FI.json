@@ -12,12 +12,6 @@
     "days": "päivä | päivää",
     "back": "Takaisin",
     "continue_shopping": "Jatka ostoksia",
-    "ordinal_suffixes": {
-      "one": ".",
-      "two": ".",
-      "few": ".",
-      "other": "."
-    },
     "cancel": "Peruuta",
     "payment_key": {
       "default": "Luottokortti",
@@ -34,7 +28,8 @@
     "save": "Tallenna",
     "search": "Haku",
     "quantity": "Määrä",
-    "scroll_to_top_label": "Vieritä ylöspäin"
+    "scroll_to_top_label": "Vieritä ylöspäin",
+    "ordinal_suffix": "th | st | nd | rd"
   },
   "notification": {
     "confirm": "OK",
@@ -656,5 +651,8 @@
   },
   "preferred_primary_image_type_toggle": {
     "default": "Oletus"
+  },
+  "campaign": {
+    "deal": "Erityinen"
   }
 }

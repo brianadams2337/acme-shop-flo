@@ -12,12 +12,6 @@
     "days": "deň | dni",
     "back": "Späť",
     "continue_shopping": "Pokračovať v nakupovaní",
-    "ordinal_suffixes": {
-      "one": "",
-      "two": "",
-      "few": "",
-      "other": ""
-    },
     "cancel": "Zrušiť",
     "payment_key": {
       "default": "Platobná karta",
@@ -34,7 +28,8 @@
     "save": "Uložiť",
     "search": "Hľadať",
     "quantity": "Množstvo",
-    "scroll_to_top_label": "Posunúť na začiatok"
+    "scroll_to_top_label": "Posunúť na začiatok",
+    "ordinal_suffix": "th | st | nd | rd"
   },
   "notification": {
     "confirm": "OK",
@@ -656,5 +651,8 @@
   },
   "preferred_primary_image_type_toggle": {
     "default": "Predvolené"
+  },
+  "campaign": {
+    "deal": "Špeciálne"
   }
 }

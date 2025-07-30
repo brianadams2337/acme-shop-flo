@@ -12,12 +12,6 @@
     "days": "dag | dager",
     "back": "tilbake",
     "continue_shopping": "Fortsett å handle",
-    "ordinal_suffixes": {
-      "one": "st",
-      "two": "nd",
-      "few": "rd",
-      "other": "th"
-    },
     "cancel": "Avbryt",
     "payment_key": {
       "default": "Kredittkort",
@@ -34,7 +28,8 @@
     "save": "Lagre",
     "search": "Søk",
     "quantity": "antall",
-    "scroll_to_top_label": "Rull til toppen"
+    "scroll_to_top_label": "Rull til toppen",
+    "ordinal_suffix": "th | st | nd | rd"
   },
   "notification": {
     "confirm": "OK",
@@ -656,5 +651,8 @@
   },
   "preferred_primary_image_type_toggle": {
     "default": "Standard"
+  },
+  "campaign": {
+    "deal": "Spesial"
   }
 }

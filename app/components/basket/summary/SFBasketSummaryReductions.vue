@@ -8,6 +8,11 @@
         <li
           v-if="reduction.category !== 'promotion'"
           class="flex justify-between text-product-sale"
+          :style="
+            reduction.category === 'campaign'
+              ? `color: ${getCampaignStyle(campaign).backgroundColor}`
+              : undefined
+          "
         >
           <h2>{{ getReductionCategory(reduction) }}</h2>
           <span :data-testid="`basket-discount-${reduction.category}`">
@@ -24,16 +29,22 @@
 import type {
   AppliedReduction,
   BasketResponseData,
+  Campaign,
 } from '@scayle/storefront-nuxt'
 import SFBasketSummaryPromotions from './promotions/SFBasketSummaryPromotions.vue'
 import { useI18n } from '#i18n'
 import { useFormatHelpers } from '#storefront/composables'
+import { getCampaignStyle } from '~/utils'
 
 const { formatCurrency } = useFormatHelpers()
 
-const { basket } = defineProps<{ basket: BasketResponseData }>()
+const { basket, campaign } = defineProps<{
+  basket: BasketResponseData
+  campaign?: Campaign | null
+}>()
 
 const { t } = useI18n()
+
 const getReductionCategory = (reduction: AppliedReduction) => {
   switch (reduction.category) {
     case 'promotion':
@@ -41,7 +52,11 @@ const getReductionCategory = (reduction: AppliedReduction) => {
     case 'voucher':
       return t('basket_summary_reduction.voucher')
     case 'campaign':
-      return t('basket_summary_reduction.campaign')
+      return (
+        campaign?.headline ||
+        campaign?.name ||
+        t('basket_summary_reduction.campaign')
+      )
     case 'sale':
       return t('basket_summary_reduction.sale')
   }

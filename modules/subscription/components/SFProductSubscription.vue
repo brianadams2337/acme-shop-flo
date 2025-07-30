@@ -30,6 +30,7 @@
       <SFProductPrice
         v-else
         :promotion="promotion"
+        :campaign="campaign"
         size="lg"
         type="normal"
         :price="subscriptionPrice"
@@ -57,7 +58,7 @@ import { useSubscription } from '../composables/useSubscription'
 import type { PreferredDeliveryDate } from '../helpers/subscription'
 import { SFProductSubscriptionSelection } from '#storefront-subscription/components'
 import type { AddToBasketItem } from '~/composables/useBasketActions'
-import { useCurrentPromotions } from '#storefront/composables'
+import { useCampaign, useCurrentPromotions } from '#storefront/composables'
 import { getPromotionForProduct } from '~/utils'
 import { SFFadeInTransition } from '#storefront-ui/components'
 import SFProductPrice from '~/components/product/SFProductPrice.vue'
@@ -103,4 +104,5 @@ const promotion = computed(() => {
     promotionData.data?.value?.entities ?? [],
   )
 })
+const { data: campaign } = useCampaign()
 </script>

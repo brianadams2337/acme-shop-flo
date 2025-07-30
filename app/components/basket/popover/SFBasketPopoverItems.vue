@@ -8,6 +8,7 @@
       v-for="item in items"
       :key="item.key"
       :basket-item="item"
+      :campaign="campaign"
       class="w-80 sm:w-96"
     />
   </ul>
@@ -18,7 +19,8 @@
 
 <script setup lang="ts">
 import SFBasketPopoverCard from './SFBasketPopoverCard.vue'
-import { useBasket } from '#storefront/composables'
+import { useBasket, useCampaign } from '#storefront/composables'
 
 const { items } = useBasket()
+const { data: campaign } = useCampaign()
 </script>

@@ -17,6 +17,7 @@
       <SFBasketCardImage
         :basket-item="basketItem"
         :is-sold-out="isSoldOut"
+        :campaign="campaign"
         @click="trackSelectItem(trackingItem)"
       />
       <div class="flex w-full flex-col overflow-hidden">
@@ -71,6 +72,7 @@
             />
             <SFProductPrice
               :price="price"
+              :campaign="campaign"
               class="ml-auto max-lg:hidden"
               data-testid="basket-card-prices"
               :show-badges="!isFreeGift"
@@ -96,6 +98,7 @@
       />
       <SFProductPrice
         :price="price"
+        :campaign="campaign"
         :lowest-prior-price="basketItem?.lowestPriorPrice"
         :promotion="basketItem.promotion"
         :show-badges="!isFreeGift"
@@ -109,7 +112,7 @@
 
 <script setup lang="ts">
 import { computed } from 'vue'
-import type { BasketItem } from '@scayle/storefront-nuxt'
+import type { BasketItem, Campaign } from '@scayle/storefront-nuxt'
 import SFBasketCardDetails from './SFBasketCardDetails.vue'
 import SFBasketCardImage from './SFBasketCardImage.vue'
 import SFBasketCardSoldOutTitle from './SFBasketCardSoldOutTitle.vue'
@@ -131,7 +134,10 @@ import { useRoute } from '#app'
 
 defineOptions({ inheritAttrs: false })
 
-const { basketItem } = defineProps<{ basketItem: BasketItem }>()
+const { basketItem, campaign } = defineProps<{
+  basketItem: BasketItem
+  campaign?: Campaign | null
+}>()
 
 const route = useRoute()
 

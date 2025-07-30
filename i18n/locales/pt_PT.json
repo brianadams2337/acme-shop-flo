@@ -12,12 +12,6 @@
     "days": "dia | dias",
     "back": "Voltar",
     "continue_shopping": "Continuar a comprar",
-    "ordinal_suffixes": {
-      "one": ".º",
-      "two": ".º",
-      "few": ".º",
-      "other": ".º"
-    },
     "cancel": "Cancelar",
     "payment_key": {
       "default": "Cartão de crédito",
@@ -34,7 +28,8 @@
     "save": "Guardar",
     "search": "Procurar",
     "quantity": "Quantidade",
-    "scroll_to_top_label": "Rola para o topo"
+    "scroll_to_top_label": "Rola para o topo",
+    "ordinal_suffix": "th | st | nd | rd"
   },
   "notification": {
     "confirm": "OK",
@@ -656,5 +651,8 @@
   },
   "preferred_primary_image_type_toggle": {
     "default": "Padrão"
+  },
+  "campaign": {
+    "deal": "Especial"
   }
 }

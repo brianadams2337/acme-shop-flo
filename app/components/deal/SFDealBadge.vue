@@ -3,7 +3,7 @@
     class="w-min max-w-[70%] truncate rounded-sm p-1 text-sm leading-none"
     :style="style"
   >
-    {{ text ? text : $t('promotion.deal') }}
+    {{ text }}
   </div>
 </template>
 
@@ -17,7 +17,7 @@ const {
     color: FALLBACK_PROMOTION_COLORS.text,
   },
 } = defineProps<{
-  text?: string
+  text: string
   style?: PromotionStyle
 }>()
 </script>

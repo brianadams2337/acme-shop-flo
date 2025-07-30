@@ -8,7 +8,10 @@
         v-for="({ value, category }, index) in relativeReductions"
         :key="`${value}-badge-${category}-${index}`"
         class="mr-1 inline-block rounded bg-product-sale px-1 text-sm font-semibold text-white"
-        :style="category === 'promotion' && promotionStyle"
+        :style="
+          (category === 'promotion' && promotionStyle) ||
+          (category === 'campaign' && campaignStyle)
+        "
       >
         -{{ value }}%
       </span>
@@ -61,9 +64,10 @@ import type {
   LowestPriorPrice,
   Price,
   Promotion,
+  Campaign,
 } from '@scayle/storefront-nuxt'
 import { Size } from '#storefront-ui'
-import { getPromotionStyle } from '~/utils'
+import { getPromotionStyle, getCampaignStyle } from '~/utils'
 import {
   useFormatHelpers,
   useProductPrice,
@@ -78,6 +82,7 @@ const {
   size = Size.MD,
   type = 'normal',
   promotion = undefined,
+  campaign = undefined,
   price,
   inline = true,
   lowestPriorPrice = undefined,
@@ -85,6 +90,7 @@ const {
   price: Price | BasketItemPrice | OrderPrice
   lowestPriorPrice?: LowestPriorPrice
   promotion?: Promotion | null
+  campaign?: Campaign | null
   showTaxInfo?: boolean
   showPriceFrom?: boolean
   showBadges?: boolean
@@ -103,7 +109,7 @@ const {
 const { formatCurrency, formatPercentage } = useFormatHelpers()
 
 const promotionStyle = computed(() => getPromotionStyle(promotion))
-
+const campaignStyle = computed(() => getCampaignStyle(campaign))
 const classes = computed(() => ({
   'text-xl': size === Size.XL,
   'text-lg': size === Size.LG,

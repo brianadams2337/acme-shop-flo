@@ -1,7 +1,7 @@
 import type { Campaign, Promotion } from '@scayle/storefront-nuxt'
 import Color from 'color'
 import { theme } from '#tailwind-config'
-import type { PromotionDisplayData } from '~~/types/promotion'
+import type { DealDisplayData } from '~~/types/promotion'
 
 const getRGBAValue = (color: string, alpha: AlphaValue) =>
   Color(color)
@@ -160,9 +160,7 @@ export function getTieredPromotion(
  *
  * @returns An object containing the promotion display data.
  */
-export function getPromotionDisplayData(
-  promotion: Promotion,
-): PromotionDisplayData {
+export function getPromotionDisplayData(promotion: Promotion): DealDisplayData {
   return {
     id: promotion.id,
     name: promotion.name,
@@ -183,9 +181,7 @@ export function getPromotionDisplayData(
  *
  * @returns An object containing the campaign display data.
  */
-export function getCampaignDisplayData(
-  campaign: Campaign,
-): PromotionDisplayData {
+export function getCampaignDisplayData(campaign: Campaign): DealDisplayData {
   return {
     id: campaign.id.toString(),
     name: campaign.name,

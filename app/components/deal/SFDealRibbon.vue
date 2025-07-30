@@ -36,11 +36,11 @@ import { computed } from 'vue'
 import SFDealTimer from '~/components/deal/SFDealTimer.vue'
 import SFLink from '~~/modules/ui/runtime/components/links/SFLink.vue'
 import { useTrackingEvents } from '~/composables'
-import type { PromotionDisplayData } from '~~/types/promotion'
+import type { DealDisplayData } from '~~/types/promotion'
 import type { TrackingEvent } from '~~/types/tracking'
 
 const { displayData, trackEvent } = defineProps<{
-  displayData: PromotionDisplayData
+  displayData: DealDisplayData
   trackEvent: TrackingEvent
 }>()
 

@@ -12,12 +12,6 @@
     "days": "ден | дни",
     "back": "Назад",
     "continue_shopping": "Продължи пазаруването",
-    "ordinal_suffixes": {
-      "one": "st",
-      "two": "nd",
-      "few": "rd",
-      "other": "th"
-    },
     "cancel": "Отмяна",
     "payment_key": {
       "default": "Кредитна карта",
@@ -34,7 +28,8 @@
     "save": "Запазване",
     "search": "Търсене",
     "quantity": "Количество",
-    "scroll_to_top_label": "Превъртете към върха"
+    "scroll_to_top_label": "Превъртете към върха",
+    "ordinal_suffix": "th | st | nd | rd"
   },
   "notification": {
     "confirm": "OK",
@@ -656,5 +651,8 @@
   },
   "preferred_primary_image_type_toggle": {
     "default": "По подразбиране"
+  },
+  "campaign": {
+    "deal": "Специално"
   }
 }

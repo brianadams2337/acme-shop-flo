@@ -23,6 +23,7 @@
         :preferred-primary-image-type="preferredPrimaryImageType"
         multiple-images
         :listing-meta-data="categoryListingMetaData"
+        :campaign="campaign"
         @intersect:product="onProductIntersect(index)"
         @click-product="emit('clickProduct', product, index)"
       />
@@ -53,6 +54,7 @@ import {
 } from '~~/shared/constants'
 import { SFPagination } from '#storefront-ui/components'
 import type { CollectedRowIntersection } from '~/composables'
+import { useCampaign } from '#storefront/composables'
 
 const {
   loading = true,
@@ -72,6 +74,8 @@ const {
 const isPaginationShown = computed(() => {
   return pagination && isPaginationVisible && pagination.last > 1
 })
+
+const { data: campaign } = useCampaign()
 
 const { collectRowIntersection } = useRowIntersection(() => products)
 

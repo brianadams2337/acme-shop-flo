@@ -8,7 +8,6 @@ declare module '@scayle/storefront-nuxt' {
       attributeId: number
       badgeLabel: string
     }
-    headline?: string
     subline?: string
     conditions?: string
     minimumOrderValue?: CentAmount
@@ -21,7 +20,7 @@ declare module '@scayle/storefront-nuxt' {
   }
 }
 
-export interface PromotionDisplayData {
+export interface DealDisplayData {
   /**
    * The ID of the promotion or campaign
    */

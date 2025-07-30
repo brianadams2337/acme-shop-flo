@@ -24,6 +24,7 @@
         <SFBasketSummaryReductions
           v-if="basket.cost.appliedReductions.length > 0"
           :basket="basket"
+          :campaign="campaign"
         />
       </SFFadeInFromBottomTransition>
       <hr class="h-px border-none bg-gray-400" />
@@ -42,7 +43,7 @@
 
 <script lang="ts" setup>
 import { computed } from 'vue'
-import type { BasketResponseData } from '@scayle/storefront-nuxt'
+import type { BasketResponseData, Campaign } from '@scayle/storefront-nuxt'
 import SFBasketPromotionCodes from '../SFBasketPromotionCodes.vue'
 import SFBasketSummaryReductions from './SFBasketSummaryReductions.vue'
 import SFBasketSummaryFinalSection from './SFBasketSummaryFinalSection.vue'
@@ -55,7 +56,10 @@ import { useFormatHelpers } from '#storefront/composables'
 import { getTotalPriceWithoutReductions } from '#storefront-basket/utils/basket'
 import { useShopConfigCustomData } from '~/composables'
 
-const { basket } = defineProps<{ basket: BasketResponseData }>()
+const { basket, campaign } = defineProps<{
+  basket: BasketResponseData
+  campaign?: Campaign | null
+}>()
 const subtotal = computed(() => getTotalPriceWithoutReductions(basket.cost))
 
 const { formatCurrency } = useFormatHelpers()

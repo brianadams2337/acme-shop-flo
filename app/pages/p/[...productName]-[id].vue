@@ -40,21 +40,29 @@
               size="lg"
               class="mt-3"
               :promotion="promotion"
+              :campaign="campaign"
               :price="price"
               :lowest-prior-price="lowestPriorPrice"
               type="normal"
               show-tax-info
               :show-price-from="showFrom"
             />
-            <SFDealBanner
-              v-if="promotion"
-              :display-data="getPromotionDisplayData(promotion)"
-              track-event="view_promotion"
-            >
-              <template #progress>
-                <SFPromotionProgressWrapper :promotion="promotion" />
-              </template>
-            </SFDealBanner>
+            <div v-if="campaign || promotion" class="flex flex-col gap-6">
+              <SFDealBanner
+                v-if="campaign && hasCampaignReduction(price)"
+                :display-data="getCampaignDisplayData(campaign)"
+                track-event="view_campaign"
+              />
+              <SFDealBanner
+                v-if="promotion"
+                :display-data="getPromotionDisplayData(promotion)"
+                track-event="view_promotion"
+              >
+                <template #progress>
+                  <SFPromotionProgressWrapper :promotion="promotion" />
+                </template>
+              </SFDealBanner>
+            </div>
           </div>
 
           <SFProductActions
@@ -146,9 +154,10 @@ import {
   useCurrentPromotions,
   useBasket,
   useProduct,
+  useCampaign,
 } from '#storefront/composables'
 import { useTrackingEvents } from '~/composables/useTrackingEvents'
-import { getPromotionForProduct } from '~/utils'
+import { getPromotionForProduct, hasCampaignReduction } from '~/utils'
 import { useProductBaseInfo } from '~/composables/useProductBaseInfo'
 import { useFavoriteStore } from '~/composables/useFavoriteStore'
 import { useI18n, type Locale } from '#i18n'
@@ -181,7 +190,10 @@ import {
 import { useRecentlyViewedProducts } from '#storefront-product-detail/composables'
 import SFRecentlyViewedProductsSlider from '~/components/product/SFRecentlyViewedProductsSlider.vue'
 import SFPromotionProgressWrapper from '~/components/product/promotion/banners/SFPromotionProgressWrapper.vue'
-import { getPromotionDisplayData } from '~/utils/promotion'
+import {
+  getCampaignDisplayData,
+  getPromotionDisplayData,
+} from '~/utils/promotion'
 
 const SFLazyStoreLocatorSlideIn = defineAsyncComponent(
   () => import('~/components/locator/SFStoreLocatorSlideIn.vue'),
@@ -277,6 +289,7 @@ const basketItem = computed(() => {
 })
 
 const promotionData = useCurrentPromotions()
+const { data: campaign } = useCampaign()
 
 const areGiftConditionsMet = computed(() => {
   if (!promotion.value || !basketData.value?.applicablePromotions?.length) {

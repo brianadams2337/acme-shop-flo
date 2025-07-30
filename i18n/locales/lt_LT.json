@@ -12,12 +12,6 @@
     "days": "diena | dienos",
     "back": "Atgal",
     "continue_shopping": "Tęsti apsipirkimą",
-    "ordinal_suffixes": {
-      "one": "",
-      "two": "",
-      "few": "",
-      "other": ""
-    },
     "cancel": "Atšaukti",
     "payment_key": {
       "default": "Kredito kortelė",
@@ -34,7 +28,8 @@
     "save": "Išsaugoti",
     "search": "Paieška",
     "quantity": "Kiekis",
-    "scroll_to_top_label": "Slinkti į viršų"
+    "scroll_to_top_label": "Slinkti į viršų",
+    "ordinal_suffix": "th | st | nd | rd"
   },
   "notification": {
     "confirm": "GERAI",
@@ -656,5 +651,8 @@
   },
   "preferred_primary_image_type_toggle": {
     "default": "Numatytasis"
+  },
+  "campaign": {
+    "deal": "Specialus"
   }
 }

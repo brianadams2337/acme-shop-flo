@@ -12,12 +12,6 @@
     "days": "día | días",
     "back": "Volver",
     "continue_shopping": "Seguir comprando",
-    "ordinal_suffixes": {
-      "one": "º",
-      "two": "º",
-      "few": "º",
-      "other": "º"
-    },
     "cancel": "Cancelar",
     "payment_key": {
       "default": "Tarjeta de crédito",
@@ -34,7 +28,8 @@
     "save": "Guardar",
     "search": "Buscar",
     "quantity": "Cantidad",
-    "scroll_to_top_label": "Desplázate hacia arriba"
+    "scroll_to_top_label": "Desplázate hacia arriba",
+    "ordinal_suffix": "th | st | nd | rd"
   },
   "notification": {
     "confirm": "Ok",
@@ -656,5 +651,8 @@
   },
   "preferred_primary_image_type_toggle": {
     "default": "Predeterminado"
+  },
+  "campaign": {
+    "deal": "Especial"
   }
 }

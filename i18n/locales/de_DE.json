@@ -35,6 +35,9 @@
     "confirm": "OK",
     "view": "Anzeigen"
   },
+  "campaign": {
+    "deal": "Sonderangebot"
+  },
   "promotion": {
     "deal": "Deal",
     "free_label": "Gratis",

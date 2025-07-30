@@ -30,6 +30,7 @@
     <SFProductPrice
       v-if="price"
       :promotion="promotion"
+      :campaign="campaign"
       :price="price"
       :lowest-prior-price="lowestPriorPrice"
       :show-price-from="showPriceFrom"
@@ -39,7 +40,7 @@
 </template>
 
 <script setup lang="ts">
-import type { Product } from '@scayle/storefront-nuxt'
+import type { Product, Campaign } from '@scayle/storefront-nuxt'
 import { computed } from 'vue'
 import SFProductPrice from '../SFProductPrice.vue'
 import SFProductCardSiblingsPicker from './siblings/SFProductCardSiblingsPicker.vue'
@@ -47,7 +48,10 @@ import { useProductBaseInfo } from '~/composables'
 import { getPromotionForProduct } from '~/utils'
 import { useCurrentPromotions } from '#storefront/composables'
 
-const { product } = defineProps<{ product: Product }>()
+const { product, campaign } = defineProps<{
+  product: Product
+  campaign?: Campaign | null
+}>()
 
 const { brand, name, price, lowestPriorPrice, nonSoldOutSiblings } =
   useProductBaseInfo(() => product)

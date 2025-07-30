@@ -12,12 +12,6 @@
     "days": "dag | dagar",
     "back": "tillbaka",
     "continue_shopping": "Fortsätt shoppa",
-    "ordinal_suffixes": {
-      "one": ".",
-      "two": ".",
-      "few": ".",
-      "other": "."
-    },
     "cancel": "Avbryt",
     "payment_key": {
       "default": "Kreditkort",
@@ -34,7 +28,8 @@
     "save": "spara",
     "search": "sök",
     "quantity": "Antal",
-    "scroll_to_top_label": "Scrolla till toppen"
+    "scroll_to_top_label": "Scrolla till toppen",
+    "ordinal_suffix": "th | st | nd | rd"
   },
   "notification": {
     "confirm": "OK",
@@ -656,5 +651,8 @@
   },
   "preferred_primary_image_type_toggle": {
     "default": "Standard"
+  },
+  "campaign": {
+    "deal": "Special"
   }
 }

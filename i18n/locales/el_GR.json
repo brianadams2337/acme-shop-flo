@@ -12,12 +12,6 @@
     "days": "ημέρα| ημέρες",
     "back": "Πίσω",
     "continue_shopping": "Συνέχεια αγορών",
-    "ordinal_suffixes": {
-      "one": "st",
-      "two": "nd",
-      "few": "rd",
-      "other": "th"
-    },
     "cancel": "Ακύρωση",
     "payment_key": {
       "default": "Πιστωτική κάρτα",
@@ -34,7 +28,8 @@
     "save": "Αποθήκευση",
     "search": "Αναζήτηση",
     "quantity": "Ποσότητα",
-    "scroll_to_top_label": "Κύλιση προς τα πάνω"
+    "scroll_to_top_label": "Κύλιση προς τα πάνω",
+    "ordinal_suffix": "th | st | nd | rd"
   },
   "notification": {
     "confirm": "OK",
@@ -656,5 +651,8 @@
   },
   "preferred_primary_image_type_toggle": {
     "default": "Προεπιλογή"
+  },
+  "campaign": {
+    "deal": "Ειδική"
   }
 }

@@ -113,7 +113,7 @@
     "@contentful/rich-text-html-renderer": "17.1.0",
     "@googlemaps/js-api-loader": "1.16.8",
     "@nuxt/fonts": "0.11.4",
-    "@nuxt/scripts": "^0.11.10",
+    "@nuxt/scripts": "0.11.10",
     "@scayle/nuxt-image-provider": "0.3.1",
     "@scayle/nuxt-opentelemetry": "0.13.13",
     "@scayle/omnichannel-nuxt": "4.3.2",

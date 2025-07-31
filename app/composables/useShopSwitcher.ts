@@ -118,7 +118,9 @@ export function useShopSwitcher(
         window.location.replace(`${origin}`)
       } else {
         // For path based shop selection, the homepage is under `/<shopPath>`. We just redirect to the passed path.
-        window.location.replace(`/${path}`)
+        window.location.replace(
+          switchLocalePath(path as Locale).split('?')[0] as string,
+        )
       }
     } else {
       // When `i18n.differentDomains` is false we preserve the current path and only change the origin or shop path using `switchLocalePath()`

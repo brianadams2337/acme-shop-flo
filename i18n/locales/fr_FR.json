@@ -402,7 +402,6 @@
   },
   "filter_slide_in_content": {
     "sorting": "Trier",
-    "size_option": "Taille : {size}",
     "only_sale_option": "Afficher uniquement les produits en solde",
     "product_image_view": "Voir"
   },

@@ -402,7 +402,6 @@
   },
   "filter_slide_in_content": {
     "sorting": "Сортиране",
-    "size_option": "Размер: {size}",
     "only_sale_option": "Покажи само продукти на промоция",
     "product_image_view": "Виж"
   },

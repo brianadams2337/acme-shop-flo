@@ -402,7 +402,6 @@
   },
   "filter_slide_in_content": {
     "sorting": "Sıralama",
-    "size_option": "Boyut: {size}",
     "only_sale_option": "Yalnızca satış ürünlerini göster",
     "product_image_view": "Görüntüle"
   },

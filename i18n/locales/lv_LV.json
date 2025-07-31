@@ -402,7 +402,6 @@
   },
   "filter_slide_in_content": {
     "sorting": "Šķirošana",
-    "size_option": "Izmērs: {size}",
     "only_sale_option": "Rādīt tikai izpārdošanas preces",
     "product_image_view": "Skatīt"
   },

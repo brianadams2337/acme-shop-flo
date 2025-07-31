@@ -402,7 +402,6 @@
   },
   "filter_slide_in_content": {
     "sorting": "Lajittelu",
-    "size_option": "Koko: {size}",
     "only_sale_option": "Näytä vain aletuotteet",
     "product_image_view": "Näytä"
   },

@@ -402,7 +402,6 @@
   },
   "filter_slide_in_content": {
     "sorting": "Sortowanie",
-    "size_option": "Rozmiar: {size}",
     "only_sale_option": "Pokaż tylko produkty w wyprzedaży",
     "product_image_view": "Wyświetl"
   },

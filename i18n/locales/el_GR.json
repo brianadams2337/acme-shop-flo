@@ -402,7 +402,6 @@
   },
   "filter_slide_in_content": {
     "sorting": "Ταξινόμηση",
-    "size_option": "Μέγεθος: {size}",
     "only_sale_option": "Εμφάνιση μόνο προϊόντων προσφορας",
     "product_image_view": "Προβολή"
   },

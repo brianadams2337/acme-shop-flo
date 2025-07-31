@@ -402,7 +402,6 @@
   },
   "filter_slide_in_content": {
     "sorting": "Sorteren",
-    "size_option": "Maat: {size}",
     "only_sale_option": "Toon alleen producten in de sale",
     "product_image_view": "Bekijken"
   },

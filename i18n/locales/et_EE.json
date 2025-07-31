@@ -402,7 +402,6 @@
   },
   "filter_slide_in_content": {
     "sorting": "Sorteerimine",
-    "size_option": "Suurus: {size}",
     "only_sale_option": "Näita ainult müügitavaid tooteid",
     "product_image_view": "Vaata"
   },

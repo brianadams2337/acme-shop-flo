@@ -402,7 +402,6 @@
   },
   "filter_slide_in_content": {
     "sorting": "Ordenar",
-    "size_option": "Tamaño: {size}",
     "only_sale_option": "Mostrar solo productos en rebaja.",
     "product_image_view": "Ver"
   },

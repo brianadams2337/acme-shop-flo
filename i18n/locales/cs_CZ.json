@@ -402,7 +402,6 @@
   },
   "filter_slide_in_content": {
     "sorting": "Třídění",
-    "size_option": "Velikost: {size}",
     "only_sale_option": "Zobrazit pouze produkty ve výprodeji",
     "product_image_view": "Zobrazit"
   },

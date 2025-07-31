@@ -402,7 +402,6 @@
   },
   "filter_slide_in_content": {
     "sorting": "Sortering",
-    "size_option": "størrelse: {size}",
     "only_sale_option": "Vis bare salgsprodukter",
     "product_image_view": "Vis"
   },

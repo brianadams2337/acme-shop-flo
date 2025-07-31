@@ -402,7 +402,6 @@
   },
   "filter_slide_in_content": {
     "sorting": "Sortare",
-    "size_option": "Mărime: {size}",
     "only_sale_option": "Afișează numai produsele la reduceri",
     "product_image_view": "Vizualizare"
   },

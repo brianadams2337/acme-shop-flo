@@ -421,7 +421,6 @@
   },
   "filter_slide_in_content": {
     "sorting": "Sorting",
-    "size_option": "Size: {size}",
     "only_sale_option": "Show only sale products",
     "product_image_view": "View"
   },
@@ -577,7 +576,6 @@
     "select_store": "Select store",
     "no_results": "No results"
   },
-  "intl": {},
   "subscription_page": {
     "headline": "Manage your subscriptions",
     "meta": {

@@ -402,7 +402,6 @@
   },
   "filter_slide_in_content": {
     "sorting": "Sorting",
-    "size_option": "Size: {size}",
     "only_sale_option": "Show only sale products",
     "product_image_view": "View"
   },

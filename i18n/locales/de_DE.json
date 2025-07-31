@@ -405,7 +405,6 @@
   },
   "filter_slide_in_content": {
     "sorting": "Sortierung",
-    "size_option": "Größe: {size}",
     "only_sale_option": "Nur Produkte im Angebot anzeigen",
     "product_image_view": "Ansicht"
   },

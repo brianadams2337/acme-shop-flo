@@ -402,7 +402,6 @@
   },
   "filter_slide_in_content": {
     "sorting": "Rendezés",
-    "size_option": "Méret: {size}",
     "only_sale_option": "Csak akciós termékek megjelenítése",
     "product_image_view": "Megtekintés"
   },

@@ -402,7 +402,6 @@
   },
   "filter_slide_in_content": {
     "sorting": "Sortering",
-    "size_option": "storlek: {size}",
     "only_sale_option": "Visa endast reaprodukter",
     "product_image_view": "Visa"
   },

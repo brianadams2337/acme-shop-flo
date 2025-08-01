@@ -162,7 +162,7 @@
         :class="{ 'border-t': index !== 0 || primaryImageTypeOptions?.length }"
         @click-reset="$emit('reset', filter.slug)"
       >
-        <div class="flex flex-col gap-2">
+        <div class="flex flex-col gap-3">
           <SFCheckbox
             v-for="item in filter.values"
             :id="item.name"

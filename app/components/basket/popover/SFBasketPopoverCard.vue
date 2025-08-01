@@ -14,6 +14,7 @@
           is-small-size
           hide-wishlist-toggle
           class="mr-3"
+          :campaign="campaign"
         />
         <div class="flex flex-col items-start space-x-1">
           <span

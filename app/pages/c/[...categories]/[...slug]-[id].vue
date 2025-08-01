@@ -25,7 +25,7 @@
             />
             <SFCategoryBreadcrumbs
               v-if="currentCategory"
-              :products-fetching="productsStatus === 'pending'"
+              :loading="isLoading"
               :category="currentCategory"
               :products-count="totalProductsCount"
             />
@@ -54,7 +54,7 @@
           :products="products"
           :pagination="pagination"
           :current-category="currentCategory"
-          :loading="productsStatus === 'pending'"
+          :loading="isLoading"
           class="mt-6"
           @click-product="trackProductClick"
           @intersect:row="trackViewListing"
@@ -247,6 +247,12 @@ const {
 } = useProductsForListing({
   params,
   fetchingOptions: { lazy: true },
+})
+
+const isLoading = computed(() => {
+  return (
+    productsStatus.value === 'pending' || categoryStatus.value === 'pending'
+  )
 })
 
 const trackProductClick = (product: Product) => {

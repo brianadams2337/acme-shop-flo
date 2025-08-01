@@ -34,7 +34,7 @@
       {{ category.name }}
       <SFFadeInTransition>
         <SFBadge
-          v-if="!productsFetching && productsCount !== undefined"
+          v-if="!loading && productsCount !== undefined"
           :badge="productsCount"
           data-testid="breadcrumb-product-counter"
         />
@@ -59,11 +59,11 @@ import { showDividerTag } from '#storefront-ui'
 const {
   category,
   productsCount,
-  productsFetching = false,
+  loading = false,
 } = defineProps<{
   category: Category
   productsCount?: number
-  productsFetching?: boolean
+  loading?: boolean
 }>()
 
 const { getBreadcrumbsFromCategory } = useBreadcrumbs()

@@ -21,7 +21,6 @@ export class BasketPage extends Base {
 
   // --- Price Summary Elements ---
   readonly priceSubtotal: Locator
-  readonly priceSubtotalMobile: Locator
   readonly priceFinal: Locator
   readonly initialProductPrice: Locator
   readonly productPrice: Locator
@@ -80,7 +79,6 @@ export class BasketPage extends Base {
       'basket-remove-item-confirm-button',
     )
     this.priceSubtotal = page.getByTestId('basket-price-subtotal')
-    this.priceSubtotalMobile = page.getByTestId('basket-price-subtotal-mobile')
     this.priceFinal = page.getByTestId('basket-final-price')
     this.discountSale = page.getByTestId('basket-discount-sale')
     this.discountPromotion = page.getByTestId('basket-discount-promotion')
@@ -111,17 +109,6 @@ export class BasketPage extends Base {
   }
 
   // --- Action Methods ---
-
-  /**
-   * Navigates to the Checkout page from the Basket.
-   * Clicks the checkout button based on its position for mobile/desktop.
-   */
-  async gotoCheckoutPage() {
-    await this.checkoutButton
-      .nth(this.responsiveElementIndex)
-      .waitFor({ state: 'visible' })
-    await this.checkoutButton.nth(this.responsiveElementIndex).click()
-  }
 
   /**
    * Adds a product to the basket using an RPC (Remote Procedure Call) to the backend.
@@ -258,11 +245,7 @@ export class BasketPage extends Base {
       return parseFloat(text?.replace(NON_NUMERIC_PRICE_CHARS_REGEX, '') ?? '0')
     }
 
-    const targetSubtotalPriceLocator = this.isMobileViewport
-      ? this.priceSubtotalMobile
-      : this.priceSubtotal
-
-    const priceSubtotalValue = await extractPrice(targetSubtotalPriceLocator)
+    const priceSubtotalValue = await extractPrice(this.priceSubtotal)
     const priceFinalValue = await extractPrice(this.priceFinal.first())
 
     let discountValue = 0

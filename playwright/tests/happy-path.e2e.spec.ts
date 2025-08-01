@@ -64,7 +64,8 @@ test('C2139186: E2E from Home to Checkout - happy path', async ({
 
   await test.step('Go to Checkout page', async () => {
     await expect(async () => {
-      await basketPage.gotoCheckoutPage()
+      await basketPage.checkoutButton.waitFor({ state: 'visible' })
+      await basketPage.checkoutButton.click()
       await signinPage.loginButton.waitFor({ state: 'visible' })
       expect(page.url()).toContain(ROUTES.homepageDefault + ROUTES.checkout)
     }).toPass()

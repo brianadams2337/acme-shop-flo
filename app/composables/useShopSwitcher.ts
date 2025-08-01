@@ -1,6 +1,6 @@
 import { computed, type ComputedRef } from 'vue'
 import { useCountryDetection } from '@scayle/storefront-country-detection/composables'
-import { useSwitchLocalePath, useI18n, type Locale } from '#i18n'
+import { useSwitchLocalePath, useI18n, type Locale, useLocalePath } from '#i18n'
 import { useCurrentShop, useAvailableShops } from '#storefront/composables'
 import { useTrackingEvents } from '~/composables/useTrackingEvents'
 import { useCurrentShopLocale } from '~/composables/useCurrentShopLocale'
@@ -59,6 +59,7 @@ export function useShopSwitcher(
   const availableShops = useAvailableShops()
 
   const switchLocalePath = useSwitchLocalePath()
+  const localePath = useLocalePath()
 
   const { trackShopChange } = useTrackingEvents()
 
@@ -118,9 +119,7 @@ export function useShopSwitcher(
         window.location.replace(`${origin}`)
       } else {
         // For path based shop selection, the homepage is under `/<shopPath>`. We just redirect to the passed path.
-        window.location.replace(
-          switchLocalePath(path as Locale).split('?')[0] as string,
-        )
+        window.location.replace(localePath('/', path as Locale))
       }
     } else {
       // When `i18n.differentDomains` is false we preserve the current path and only change the origin or shop path using `switchLocalePath()`

@@ -491,7 +491,7 @@
     "go_to_login": "Prijavi se tukaj"
   },
   "auth_register_privacy_disclaimer": {
-    "privacy_disclaimer": "Z ustvarjanjem računa sprejemaš naše {terms} in potrjuješ, da si se seznanil z našo {terms}.",
+    "privacy_disclaimer": "Z ustvarjanjem računa sprejemaš naše {terms} in potrjuješ, da si se seznanil z našo {policy}.",
     "go_to_terms_of_service": "Pogoji uporabe storitev",
     "go_to_privacy_policy": "Politika zasebnosti"
   },

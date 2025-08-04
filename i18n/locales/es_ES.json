@@ -491,7 +491,7 @@
     "go_to_login": "Inicia sesión aquí"
   },
   "auth_register_privacy_disclaimer": {
-    "privacy_disclaimer": "Al registrarte, aceptas nuestros {términos} y aceptas nuestra {política}.",
+    "privacy_disclaimer": "Al registrarte, aceptas nuestros {terms} y aceptas nuestra {policy}.",
     "go_to_terms_of_service": "Términos y condiciones de uso",
     "go_to_privacy_policy": "Protección de datos"
   },

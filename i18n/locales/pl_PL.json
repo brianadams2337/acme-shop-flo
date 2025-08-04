@@ -141,7 +141,7 @@
   },
   "footer_promises": {
     "payment_options": "Elastyczne opcje płatności",
-    "free_shipping": "Darmowa dostawa przy zamówieniach powyżej 50 PLN",
+    "free_shipping": "Darmowa dostawa przy zamówieniach powyżej 50 {currency}",
     "return_policy": "50-dniowa polityka bezpłatnych zwrotów"
   },
   "wishlist_page": {

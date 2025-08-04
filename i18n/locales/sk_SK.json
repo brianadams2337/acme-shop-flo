@@ -110,7 +110,7 @@
   },
   "navigation": {
     "find_a_store": "Nájsť obchod",
-    "wishlist": "Zoznam prianí | Zoznam prianí, {count = 0} položiek | Zoznam prianí, {count = 1} položka | Zoznam prianí, {count = 2,3,4} položky | Zoznam prianí, {count = 5 and more} položiek",
+    "wishlist": "Zoznam prianí | Zoznam prianí, {count} položiek | Zoznam prianí, {count} položka | Zoznam prianí, {count} položky | Zoznam prianí, {count} položiek",
     "a11ly": {
       "side_navigation": "Otvoriť bočné menu"
     }
@@ -160,7 +160,7 @@
   "basket_page": {
     "title": "Košík",
     "a11y": {
-      "title": "Košík | Košík, {count = 0} položiek | Košík , {count = 1} položka | Košík, {count = 2,3,4} položky | Košík, {count = 5 and more} položiek"
+      "title": "Košík | Košík, {count} položiek | Košík , {count} položka | Košík, {count} položky | Košík, {count} položiek"
     },
     "empty_basket_title": "Tvoj nákupný košík je prázdny.",
     "empty_basket_description": "Produkty sa zobrazia hneď, ako ich pridáš do košíka.",

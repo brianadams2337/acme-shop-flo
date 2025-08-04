@@ -104,7 +104,7 @@ type ExpressCheckoutErrorEvent = Event & {
 
 const i18n = useI18n()
 const onExpressError = (error: ExpressCheckoutErrorEvent) => {
-  if ('errorKey' in error.detail) {
+  if (typeof error?.detail === 'object' && 'errorKey' in error.detail) {
     const getErrorMessage = (errorKey: ExpressCheckoutApiError['errorKey']) => {
       switch (errorKey) {
         case 'device_not_supported':

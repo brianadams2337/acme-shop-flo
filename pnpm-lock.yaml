@@ -161,8 +161,8 @@ importers:
         specifier: 1.1.5
         version: 1.1.5
       storyblok-js-client:
-        specifier: 7.1.1
-        version: 7.1.1
+        specifier: 7.1.2
+        version: 7.1.2
       swiper:
         specifier: 11.2.10
         version: 11.2.10
@@ -8575,6 +8575,9 @@ packages:
 
   storyblok-js-client@7.1.1:
     resolution: {integrity: sha512-Z1ZQR3cIkRpfgD7Zv/0TSxfttfYN3xcj1iiJ3sgsun721pqKFQLROYAy1WsuVXawE/JVYH63zYNMzqDJBLmsJw==}
+
+  storyblok-js-client@7.1.2:
+    resolution: {integrity: sha512-bwzm6xCWb2/nVFQ2TemgdXal2bmWyD4l+Y5/V2GTN0Wi8g1w3DC8AtlZQiF7seXfQAK6Eht9dgvUqjQgT+CpLg==}
 
   storyblok@3.36.1:
     resolution: {integrity: sha512-njWhjXUMlQnP/7fE5KBybK5zyk6ITDeMLfJA/rI+JDt5I+cavl692g1NkoR1cIEGlpaokWESEWJbPStlZ+f6lg==}
@@ -20075,6 +20078,8 @@ snapshots:
   storyblok-js-client@7.1.0: {}
 
   storyblok-js-client@7.1.1: {}
+
+  storyblok-js-client@7.1.2: {}
 
   storyblok@3.36.1(debug@4.4.1):
     dependencies:

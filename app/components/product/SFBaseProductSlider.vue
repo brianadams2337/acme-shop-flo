@@ -41,6 +41,7 @@
         >
           <SFProductCard
             hide-badges
+            :campaign="campaign"
             :product="product"
             multiple-images
             class="mx-1"
@@ -70,6 +71,7 @@ import { useRoute } from '#app/composables/router'
 import { SFSkeletonLoader, SFItemsSlider } from '#storefront-ui/components'
 import type { AsyncDataRequestStatus } from '#app'
 import SFSliderArrowButton from '~~/modules/ui/runtime/components/core/SFSliderArrowButton.vue'
+import { useCampaign } from '#storefront/composables'
 
 const { products, title, status } = defineProps<{
   title: string
@@ -77,6 +79,7 @@ const { products, title, status } = defineProps<{
   status: AsyncDataRequestStatus
 }>()
 
+const { data: campaign } = useCampaign()
 const { trackSelectItem } = useTrackingEvents()
 const { pageState } = usePageState()
 const route = useRoute()

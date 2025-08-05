@@ -32,6 +32,7 @@
           :key="`product-${key}-${product}`"
           :index="index"
           :product="product"
+          :campaign="campaign"
           data-testid="wishlist-card"
           class="col-span-6 mb-4 sm:col-span-4 lg:col-span-3 xl:col-span-2"
         />
@@ -66,7 +67,7 @@ import {
 import SFProductCardSkeleton from '~/components/product/card/SFProductCardSkeleton.vue'
 import SFAsyncStatusWrapper from '~/components/SFAsyncStatusWrapper.vue'
 import { useWishlistTracking } from '~/composables'
-import { useWishlist } from '#storefront/composables'
+import { useWishlist, useCampaign } from '#storefront/composables'
 import SFEmptyState from '~/components/SFEmptyState.vue'
 import SFProductCard from '~/components/product/card/SFProductCard.vue'
 import {
@@ -80,7 +81,7 @@ import { useI18n } from '#i18n'
 const { count, status, items, products } = useWishlist()
 const { origin } = useRequestURL()
 const { t } = useI18n()
-
+const { data: campaign } = useCampaign()
 const { trackWishlistPage } = useWishlistTracking()
 
 // Track the wishlist once it is loaded

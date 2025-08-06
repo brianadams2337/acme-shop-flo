@@ -1,5 +1,170 @@
 # @scayle/storefront-application-nuxt
 
+## 1.12.0
+
+### Minor Changes
+
+- **\[Header & Footer\]** We've introduced scheduled visibility for navigation items directly from the SCAYLE Panel.
+  The `useHeaderNavigation`, `useFooterNavigation`, `useSimpleHeaderNavigation` and `useSimpleFooterNavigation` composables now support a `visibleAt` parameter, allowing you to display or hide specific navigation links based on a set date and time.
+
+  For more details, see the [SCAYLE Resource Center Documentation](https://scayle.dev/en/developer-guide/shops/shop-navigation#time-schedule-visibility-of-navigation-items).
+
+- **\[Architecture\]** To prepare for future development, the project has been made compatible with Nuxt 4, and the project's directory structure has been updated accordingly.
+  Developers should familiarize themselves with the [new Nuxt 4 directory structure](https://nuxt.com/docs/getting-started/upgrade#new-directory-structure) to locate files in their new locations.
+- **\[Promotions\]** The following components have been enhanced to display both promotion and campaign information, such as campaign badge labels and reduction amounts:
+  `SFProductPrice`, `SFBasketSummaryReductions`, `SFBasketCardImage`, and `SFProductCard`.
+  Additionally, the `SFPromotionBadge` component has been renamed to the more accurate `SFDealBadge`.
+- **\[Translations\]** To improve the reliability and maintainability of our translation files, we have refactored the codebase to use static translation keys where possible.
+  A new ESLint rule (`@intlify/vue-i18n/no-unused-keys`) has been enabled to flag unused keys as errors, ensuring our translation files remain clean and accurate.
+  A few dynamic keys are intentionally ignored where necessary for code readability.
+- **\[Code Style\]** The project's ESLint configuration has been streamlined by removing the redundant `eslint-plugin-nuxt` package.
+- **\[Architecture\]** The application's shop selector mode is now configurable via the `SHOP_SELECTOR_MODE` environment variable.
+  Set this variable before building your application to define the desired routing behavior for your international shops.
+  Please refer to the [documentation](<](https://scayle.dev/en/storefront-guide/developer-guide/features/internationalization/configuration#routing-configuration)>) for available modes.
+- **\[Architecture\]** The custom logic for loading checkout web components has been replaced.
+  We now use the official `@nuxt/scripts` module, aligning with Nuxt best practices and simplifying script management.
+- **\[E2E\]** To improve the overall quality of the end-to-end test suite, significant code improvements have been applied to both test files and Page Objects, making them more robust and efficient.
+  Additionally, JSDoc comments have been added to further clarify test scenarios.
+- **\[Basket\]** Express Checkout is now available on the basket page.
+  This feature, powered by the `<scayle-express-checkout />` web component, allows all users—including guests—to quickly proceed to checkout.
+  The authentication guard (`/app/middleware/authGuard.global.ts` and `/app/pages/checkout.vue`) has been updated to permit guest access when an express checkout `transactionId` is present in the URL query parameter.
+  For more details, see the [Express Checkout documentation](https://scayle.dev/en/checkout-guide/integration/express-checkout).
+- **\[Architecture\]** The Storefront Application has been upgraded to `nuxt@3.17.7`, which brings router enhancements and performance improvements.
+  While this Nuxt release has no breaking changes, the update revealed two pre-existing issues in our application that have now been resolved:
+  A duplicated `definePageMeta` on the Product Listing Page and a missing `inheritAttrs: false` on the `SFModal` component.
+  We had been inadvertently relying on a Nuxt bug which caused attributes to not be inherited through `ClientOnly`.
+  For more details on the Nuxt release, see the [official blog post](https://nuxt.com/blog/v3-17).
+- **\[CMS\]** Addressed an issue where the `<CMSText />` component would fail if not nested within a paragraph from Contentful.
+  The component now correctly checks the node type and can render standalone text content.
+- **\[Code Style\]** To standardize our development tooling, the local `eslint-auto-explicit-import` module has been replaced with the official `@scayle/eslint-auto-explicit-import` package.
+  This ESLint module automatically adds necessary imports as you code, replacing our previous local implementation and streamlining the development process.
+- **\[Config\]** You can now enable a Shared Basket and Wishlist across your multi-language shops.
+  This optional feature provides a seamless experience for users navigating between different language versions of your store.
+  For implementation details, please refer to [our guide on integrating a Shared Basket](https://scayle.dev/en/checkout-guide/how-tos/how-to-integrate-a-shared-basket-for-multi-language-shop-countries) within the SCAYLE Resource Center.
+- **\[Basket\]** Merged `SFBasketSummaryMobile.vue` and `SFBasketSummary.vue` into a single `SFBasketSummary.vue` component.
+  This eliminates duplicated code and DOM elements, and ensures that only one instance of `SFExpressCheckout.client.vue` is mounted.
+  This change addresses limitations of the `<scayle-express-checkout />` web component, which requires a single instance.
+- **\[Promotions\]** To provide a unified experience for all types of offers, we've integrated Campaigns into our existing promotion components.
+  Components like the `SFDealRibbon`, `SFPromotionSlideIn` and `SFDealBanner` now display both promotions and campaigns, using new utility functions (`getCampaignDisplayData`, `getPromotionDisplayData`) to handle the display logic.
+
+  To better reflect this broader purpose, several components have been renamed from `SFProductPromotionBanner` to `SFDealBanner`, `SFPromotionRibbon` to `SFDealRibbon` and `SFPromotionTimer` to `SFDealTimer`.
+
+  - Before:
+
+    ```html
+    <SFProductPromotionBanner :promotion="promotion" show-condition />
+
+    <SFPromotionRibbon :promotion="promotion" />
+    ```
+
+  - After:
+
+    ```html
+    <script setup lang="ts">
+      import {
+        getPromotionDisplayData,
+        getCampaignDisplayData,
+      } from '~/utils/promotion'
+    </script>
+
+    <SFDealBanner
+      :display-data="getPromotionDisplayData(promotion)"
+      show-condition
+      track-event="select_promotion"
+    />
+
+    <SFDealRibbon
+      :display-data="getCampaignDisplayData(campaign)"
+      track-event="view_campaign"
+    />
+    ```
+
+- **\[UI\]** To improve usability and provide a larger touch target, especially on mobile devices, the `SFCheckbox` component has been enlarged.
+  The checkbox itself is now `size-6` (`24px`), and its label has been increased to `text-md` (`14px`).
+
+### Patch Changes
+
+- **\[Code Style\]** To align with Vue best practices, explicit imports for the `defineOptions` compiler macro have been removed.
+  These imports are unnecessary as Vue handles them automatically during compilation.
+- **\[E2E\]** The accuracy of PLP tests has been enhanced by introducing a new `parseLocatorTextToNumber` helper function.
+  This utility more reliably extracts numbers from UI elements, ensuring that assertions for the product count and card data are correct after filtering or sorting.
+- **\[PLP\]** Addressed an issue where resetting filters would incorrectly remove all URL query parameters, not just those related to filtering.
+  The fix ensures that only parameters prefixed with `filters` are removed, preserving the rest of the page state.
+- Added dependency `@nuxt/scripts@0.11.10`
+- Added dependency `@scayle/changelog-formatter@1.1.0`
+- Added dependency `@scayle/eslint-auto-explicit-import@0.2.0`
+- Added dependency `eslint-plugin-playwright@2.2.2`
+- Added dependency `license-checker-rseidelsohn@4.4.2`
+- Removed dependency `dotenv@16.6.1`
+- Removed dependency `eslint-plugin-nuxt@4.0.0`
+- Removed dependency `license-checker@25.0.1`
+- Updated dependency `@contentful/live-preview@4.6.27` to `@contentful/live-preview@4.6.38`
+- Updated dependency `@contentful/rich-text-html-renderer@17.0.1` to `@contentful/rich-text-html-renderer@17.1.0`
+- Updated dependency `@scayle/nuxt-opentelemetry@0.13.10` to `@scayle/nuxt-opentelemetry@0.13.13`
+- Updated dependency `@scayle/storefront-country-detection@2.0.0` to `@scayle/storefront-country-detection@2.0.1`
+- Updated dependency `@scayle/storefront-nuxt@8.33.2` to `@scayle/storefront-nuxt@8.39.0`
+- Updated dependency `@scayle/storefront-product-detail@1.5.0` to `@scayle/storefront-product-detail@1.5.1`
+- Updated dependency `@scayle/storefront-product-listing@2.0.0` to `@scayle/storefront-product-listing@2.0.2`
+- Updated dependency `@scayle/storefront-promotions@2.2.0` to `@scayle/storefront-promotions@2.2.2`
+- Updated dependency `@scayle/unstorage-compression-driver@1.0.0` to `@scayle/unstorage-compression-driver@1.0.1`
+- Updated dependency `@scayle/unstorage-scayle-kv-driver@1.0.2` to `@scayle/unstorage-scayle-kv-driver@1.0.3`
+- Updated dependency `@storyblok/nuxt@7.1.3` to `@storyblok/nuxt@7.2.0`
+- Updated dependency `@storyblok/richtext@3.4.0` to `@storyblok/richtext@3.5.0`
+- Updated dependency `@storyblok/vue@9.1.2` to `@storyblok/vue@9.2.3`
+- Updated dependency `@vueuse/components@13.5.0` to `@vueuse/components@13.6.0`
+- Updated dependency `@vueuse/core@13.5.0` to `@vueuse/core@13.6.0`
+- Updated dependency `@vueuse/integrations@13.5.0` to `@vueuse/integrations@13.6.0`
+- Updated dependency `@vueuse/nuxt@13.5.0` to `@vueuse/nuxt@13.6.0`
+- Updated dependency `axios@1.10.0` to `axios@1.11.0`
+- Updated dependency `contentful@11.7.6` to `contentful@11.7.15`
+- Updated dependency `contentful-export@7.21.64` to `contentful-export@7.21.77`
+- Updated dependency `storyblok-js-client@7.0.2` to `storyblok-js-client@7.1.2`
+- Updated dependency `unstorage@1.16.0` to `unstorage@1.16.1`
+- Updated dependency `vue@3.5.17` to `vue@3.5.18`
+- Updated dependency `@contentful/rich-text-types@17.0.1` to `@contentful/rich-text-types@17.1.0`
+- Updated dependency `@intlify/eslint-plugin-vue-i18n@4.0.1` to `@intlify/eslint-plugin-vue-i18n@4.1.0`
+- Updated dependency `@nuxt/eslint@1.4.1` to `@nuxt/eslint@1.8.0`
+- Updated dependency `@nuxt/image@1.10.0` to `@nuxt/image@1.11.0`
+- Updated dependency `@nuxt/kit@3.16.2` to `@nuxt/kit@3.17.7`
+- Updated dependency `@nuxt/schema@3.16.2` to `@nuxt/schema@3.17.7`
+- Updated dependency `@nuxtjs/i18n@9.5.6` to `@nuxtjs/i18n@10.0.3`
+- Updated dependency `@scayle/eslint-config-storefront@4.5.12` to `@scayle/eslint-config-storefront@4.7.2`
+- Updated dependency `@testing-library/jest-dom@6.6.3` to `@testing-library/jest-dom@6.6.4`
+- Updated dependency `@types/node@22.16.2` to `@types/node@22.17.0`
+- Updated dependency `@typescript-eslint/scope-manager@8.36.0` to `@typescript-eslint/scope-manager@8.39.0`
+- Updated dependency `@typescript-eslint/utils@8.36.0` to `@typescript-eslint/utils@8.39.0`
+- Updated dependency `@upstash/redis@1.35.1` to `@upstash/redis@1.35.3`
+- Updated dependency `@vue/typescript-plugin@3.0.1` to `@vue/typescript-plugin@3.0.4`
+- Updated dependency `eslint@9.30.1` to `eslint@9.32.0`
+- Updated dependency `eslint-plugin-storybook@0.12.0` to `eslint-plugin-storybook@9.0.5`
+- Updated dependency `eslint-plugin-tailwindcss@3.18.0` to `eslint-plugin-tailwindcss@3.18.2`
+- Updated dependency `jiti@2.4.2` to `jiti@2.5.1`
+- Updated dependency `lint-staged@16.1.2` to `lint-staged@16.1.4`
+- Updated dependency `nuxt@3.16.2` to `nuxt@3.17.7`
+- Updated dependency `nuxt-svgo@4.2.3` to `nuxt-svgo@4.2.6`
+- Updated dependency `typescript@5.8.3` to `typescript@5.9.2`
+- Updated dependency `unimport@5.1.0` to `unimport@5.2.0`
+- Updated dependency `vue-tsc@3.0.1` to `vue-tsc@3.0.5`
+- **\[E2E\]** The end-to-end test framework has been refactored to be more modular and maintainable.
+  A new abstract `Base` class now centralizes common logic for all Page Objects, and a suite of reusable helper functions has been introduced to streamline common test automation tasks like navigation and filtering.
+- **\[UI\]** Resolved a layout issue in the basket popover card (`SFBasketPopoverCard`) where long product or brand names would cause the product image to shrink and the text to overflow.
+  The text now truncates correctly, ensuring a consistent and clean layout, by setting `min-w-0` and `overflow-hidden` classes correctly solved both issues.
+- **\[Product Listing\]** To improve consistency across all filter types, the special `aria-label` translation for the size filter has been removed.
+  It now uses the same labeling pattern as other attribute filters.
+- **\[E2E\]** To improve maintainability, our end-to-end tests have been simplified.
+  We've removed the outdated `priceSubtotalMobile` locator and simplified the checkout navigation logic, as the UI now uses a single, responsive component.
+- **\[PLP\]** Resolved a race condition where products could be loaded before their category-specific sorting configuration was applied.
+  The application now correctly awaits the category data (`useCategoryById`) before fetching the product list (`getProductsByCategory`) to ensure the proper sort order is always used.
+- **\[Types\]** To improve code quality and maintainability, the obsolete module declaration for the removed `shop:change` hook has been deleted.
+- **\[Promotions\]** Updated dependency `@scayle/storefront-promotions` to `2.2.2`.
+
+  This release resolves issue with promotion code not being removed from basket.
+
+- **\[UI\]** The `<SFPopover />` component has been updated to render its `content` slot only on the client side.
+  This change was necessary to fix a hydration mismatch caused by using transitions with the `appear` attribute that are not safe for server-side rendering.
+- **\[ShopSwitcher\]** Resolved a routing issue where the `useShopSwitcher` composable would generate an incorrect base path when switching to the default shop in `path_or_default` mode.
+  It now correctly uses the `useLocalePath()` composable to ensure proper navigation.
+
 ## 1.11.0
 
 ### 🔥 Highlights

@@ -2,6 +2,8 @@
 
 ## 1.12.0
 
+**Release Date:** _2025-08-06_
+
 ### 🔥 Highlights
 
 #### 🏷️ Introducing Campaigns: A Unified Display for All Deals

@@ -637,7 +637,7 @@
   },
   "product_attribute": {
     "size": "Size",
-    "color": "Color"
+    "color": "Flavor"
   },
   "filter_range_slider": {
     "to": "to",

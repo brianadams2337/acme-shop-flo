@@ -14,8 +14,12 @@
         :display-data="ribbonDisplayData"
         :track-event="campaign ? 'view_campaign' : 'view_promotion'"
       />
-      <SFHeaderTopBar />
+      <!-- <SFHeaderTopBar /> -->
       <SFHeader v-model:is-mobile-sidebar-open="isMobileSidebarOpen" />
+      <div style="background: #000; overflow: hidden; padding: 0.5%; text-align: center; color: #fff; font-size: 12px;">
+        <div style="float: left; width: 50%;">Save 10% When You Pick Up In-Store!</div>
+        <div style="float: right; width: 50%;">Free Shipping Over $59</div>
+      </div>
       <main
         id="main-content"
         class="grow focus:shadow-none focus:outline-none"

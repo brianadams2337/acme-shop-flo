@@ -2,7 +2,9 @@
   <header
     class="flex h-13 items-center space-x-4 border-gray-300 px-4 lg:relative lg:h-16 lg:space-x-7 lg:border-b lg:px-7"
     data-testid="header"
+    style="display: block; height: auto; overflow: hidden; padding: 1% 3% 0; border: none;"
   >
+    <div>
     <SFButton
       variant="raw"
       class="shrink-0 lg:hidden"
@@ -33,24 +35,17 @@
     <SFLogoLink
       data-testid="header-logo"
       class="lg:!ml-0"
+      style="float: left; width: 33%;"
       @click="isSideNavigationOpen = false"
     />
 
-    <nav class="h-full grow max-lg:hidden" data-testid="nav-categories">
-      <ul class="flex h-full grow-[2]">
-        <SFHeaderNavigationItem
-          v-for="item in mainNavigationItems"
-          :key="item.id"
-          :item="item"
-        />
-      </ul>
-    </nav>
     <SFSearchInput
       id="search-desktop"
       class="shrink grow max-lg:hidden"
+      style="float: left; width: 33%; max-width: none!important;"
       data-testid="search-desktop"
     />
-    <div class="flex items-center max-lg:grow max-lg:justify-end">
+    <div class="flex items-center max-lg:grow max-lg:justify-end" style="float: right;">
       <SFUserNavigationItem
         class="mr-[1ch]"
         :block-popup="isSideNavigationOpen"
@@ -63,7 +58,19 @@
         @click="isSideNavigationOpen = false"
       />
     </div>
+  </div>
   </header>
+  <div style="padding: 1% 3%;">
+      <nav class="h-full grow max-lg:hidden" data-testid="nav-categories">
+      <ul class="flex h-full grow-[2]">
+        <SFHeaderNavigationItem
+          v-for="item in mainNavigationItems"
+          :key="item.id"
+          :item="item"
+        />
+      </ul>
+    </nav>
+  </div>
 </template>
 
 <script setup lang="ts">

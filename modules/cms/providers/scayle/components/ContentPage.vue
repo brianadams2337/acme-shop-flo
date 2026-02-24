@@ -1,6 +1,6 @@
 <template>
-  <section class="-mb-16 overflow-hidden text-clip px-7 md:px-20">
-    <div class="mx-auto flex w-full flex-col lg:flex-row">
+  <section class="-mb-16 overflow-hidden text-clip px-7 md:px-20" style="padding: 0;">
+    <!-- <div class="mx-auto flex w-full flex-col lg:flex-row">
       <div
         class="bg-lined-grid shrink-0 py-4 text-secondary lg:w-1/2 lg:py-10 lg:pr-12"
         style="--lined-grid-gradient-start: calc(100% - 12rem)"
@@ -42,7 +42,39 @@
           alt="Storefront Boilerplate"
         />
       </div>
-    </div>
+    </div> -->
+      <div class="self-end" style="width: 100%;">
+        <img
+          class="lg:-ml-12 lg:w-[87rem] lg:max-w-none"
+          src="../assets/images/heroGNC1.png"
+          alt="Storefront Boilerplate"
+          style="margin: 0 auto; width: 100%; object-fit: cover;"
+        />
+      </div>
+      <div class="self-end" style="width: 100%;">
+        <img
+          class="lg:-ml-12 lg:w-[87rem] lg:max-w-none"
+          src="../assets/images/heroGNC2.png"
+          alt="Storefront Boilerplate"
+          style="margin: 0 auto; width: 100%; object-fit: cover;"
+        />
+      </div>
+      <div class="self-end" style="width: 100%;">
+        <img
+          class="lg:-ml-12 lg:w-[87rem] lg:max-w-none"
+          src="../assets/images/heroGNC3.png"
+          alt="Storefront Boilerplate"
+          style="margin: 0 auto; width: 100%; object-fit: cover;"
+        />
+      </div>
+      <div class="self-end" style="width: 100%;">
+        <img
+          class="lg:-ml-12 lg:w-[87rem] lg:max-w-none"
+          src="../assets/images/heroGNC4.png"
+          alt="Storefront Boilerplate"
+          style="margin: 0 auto; width: 100%; object-fit: cover;"
+        />
+      </div>
   </section>
 </template>
 

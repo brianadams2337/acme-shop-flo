@@ -15,7 +15,7 @@
         data-testid="nav-link-main"
         :is-active="isActive"
       >
-        <span class="text-md font-semibold leading-10">
+        <span class="text-md font-semibold leading-10" style="font-size: 12px;">
           {{ item.name }}
         </span>
       </SFNavigationTreeItem>

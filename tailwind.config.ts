@@ -64,7 +64,7 @@ export default {
         sale: '#d93321',
         'sold-out': '#d93321',
       },
-      accent: '#5328e1',
+      accent: '#dc3545',
       status: {
         success: {
           light: '#cef5e8',
@@ -93,6 +93,13 @@ export default {
       semibold: '600',
       bold: '700',
     },
+    borderRadius: {
+        DEFAULT: '0', // overrides the default `rounded`
+        sm: '0',      // overrides `rounded-sm`
+        md: '0',     // overrides `rounded-md`
+        lg: '0',         // overrides `rounded-lg`
+        xl: '0',       // overrides `rounded-xl`
+      },
     animation: {
       pulse: 'pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite',
     },

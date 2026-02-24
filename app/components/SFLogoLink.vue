@@ -5,7 +5,7 @@
     :aria-label="shopName"
     @click="scrollToTop"
   >
-    <IconLogo class="size-7" />
+    <IconLogo class="size-7" style="width: 6rem; height: 3rem;" />
   </SFLocalizedLink>
 </template>
 
